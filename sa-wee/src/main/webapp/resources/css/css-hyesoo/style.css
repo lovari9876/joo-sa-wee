@@ -1,0 +1,1876 @@
+/* =================================
+------------------------------------
+  EndGam - Gaming Magazine Template
+  Version: 1.0
+ ------------------------------------
+ ====================================*/
+
+/* 폰트 */
+@font-face {
+	font-family: 'designhouseBold';
+	src: url("designhouseBold.ttf") format('truetype');
+}
+
+@font-face {
+	font-family: 'dunggeunmo';
+	src: url("DungGeunMo.ttf") format('truetype');
+}
+
+/*----------------------------------------*/
+/* Template default CSS
+/*----------------------------------------*/
+html, body {
+	height: 100%;
+	font-family: dunggeunmo;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: dunggeunmo;
+	margin: 0;
+	color: #111111;
+	font-weight: 500;
+}
+
+h1 {
+	font-size: 70px;
+}
+
+h2 {
+	font-size: 36px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+h4 {
+	font-size: 24px;
+}
+
+h5 {
+	font-size: 18px;
+}
+
+h6 {
+	font-size: 16px;
+}
+
+p {
+	font-size: 15px;
+	color: #585858;
+	line-height: 1.6;
+	font-weight: 500;
+}
+
+img {
+	max-width: 100%;
+}
+
+input:focus, select:focus, button:focus, textarea:focus {
+	outline: none;
+}
+
+a:hover, a:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+ul, ol {
+	padding: 0;
+	margin: 0;
+}
+
+::-webkit-input-placeholder {
+	color: #fff;
+	/* font-style: italic; */
+	text-transform: uppercase;
+}
+
+:-ms-input-placeholder {
+	color: #fff;
+	/* font-style: italic; */
+	text-transform: uppercase;
+}
+
+::-ms-input-placeholder {
+	color: #fff;
+	/* font-style: italic; */
+	text-transform: uppercase;
+}
+
+::placeholder {
+	color: #fff;
+	/* font-style: italic; */
+	text-transform: uppercase;
+}
+
+/*---------------------
+  Helper CSS
+-----------------------*/
+.section-title h2 {
+	font: dunggeunmo;
+	font-size: 30px;
+	text-transform: uppercase;
+	font-weight: 700;
+	/* font-style: italic; */
+	margin-top: 10px;
+	font-size: 30px;
+}
+
+.set-bg {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: top center;
+}
+
+.spad {
+	padding-top: 105px;
+	padding-bottom: 30px;
+}
+
+.text-white h1, .text-white h2, .text-white h3, .text-white h4,
+	.text-white h5, .text-white h6, .text-white p, .text-white span,
+	.text-white li, .text-white a {
+	color: #fff;
+}
+
+/*---------------------
+  Commom elements
+-----------------------*/
+
+/* buttons */
+.site-btn {
+	display: inline-block;
+	border: none;
+	font-size: 14px;
+	font-weight: 700;
+	/* font-style: italic; */
+	min-width: 186px;
+	padding: 24px 30px;
+	border-radius: 0;
+	text-transform: uppercase;
+	color: #081624;
+	line-height: normal;
+	cursor: pointer;
+	text-align: center;
+	background: #fff;
+	position: relative;
+	z-index: 1;
+}
+
+.site-btn img {
+	position: relative;
+	left: 13px;
+	width: auto !important;
+	display: inline-block !important;
+}
+
+.site-btn:after, .site-btn:before {
+	position: absolute;
+	content: "";
+	width: 100%;
+	height: 100%;
+	left: 9px;
+	top: 10px;
+	background: #b01ba5;
+	z-index: -2;
+	-webkit-box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
+	box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.24);
+}
+
+.site-btn:before {
+	left: 0;
+	top: 0;
+	background: #fff;
+	z-index: -1;
+}
+
+.site-btn:hover {
+	color: #081624;
+}
+
+/* Preloder */
+#preloder {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999999;
+	background: #000;
+}
+
+.loader {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -13px;
+	margin-left: -13px;
+	border-radius: 60px;
+	animation: loader 0.8s linear infinite;
+	-webkit-animation: loader 0.8s linear infinite;
+}
+
+@keyframes loader {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+	50% {
+		-webkit-transform: rotate(180deg);
+		transform: rotate(180deg);
+		border: 4px solid #673ab7;
+		border-left-color: transparent;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+}
+
+@-webkit-keyframes loader {
+	0% {
+		-webkit-transform: rotate(0deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+	50% {
+		-webkit-transform: rotate(180deg);
+		border: 4px solid #673ab7;
+		border-left-color: transparent;
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		border: 4px solid #f44336;
+		border-left-color: transparent;
+	}
+}
+
+/*------------------
+  Header section 상단바 부분
+---------------------*/
+
+
+
+/* 상단바 바꾸는 곳 */
+.header-section {
+	
+	width: 100%;
+	/* left: 0;
+	top: 0; */
+	/* background : red; */
+	/* padding: 15px 15px 0; */
+	/* 상단바 이미지 바꾸는곳 */
+	/* background: #1E0A37; */
+	/* background-image: url("../img/main.jpg"); */
+	
+	
+}
+
+
+/* 내사위는 주사위(사라지는) 부분 */
+.dice{
+	
+	color : #fff;
+	text-align : center;
+	font-size : 40px;
+	padding : 20px 0;
+	background: #1E0A37;
+	/* width:100%;
+	height : 300px; */
+}
+
+
+/* (고정되는)상단바 */
+
+.header-warp {
+	left : 0;
+	
+	position: fixed;
+	width : 100%;
+	/* max-width: 1496px; */
+	margin: 0 auto;
+	z-index: 99;
+	background: #1E0A37;
+}
+
+/* 스크롤시 변경되는 부분때문에 추가한 css */
+.header-wrap-style{
+	top : 0;
+}
+
+.header-bar-warp {
+	padding: 15px 40px 0;
+	
+}
+
+
+
+
+
+
+/* mysearch : 검색창 부분 */
+.mysearch {
+	padding: 6px 20px;
+	border-right: 1px solid rgba(255, 255, 255, 0.5);
+	cursor: pointer;
+}
+
+.mysearch span {
+	color: #fff;
+}
+
+.mysearch:hover .mysearch-field {
+	transform: scaleY(1) !important;
+}
+
+@media ( max-width : 767px) {
+	.mysearch {
+		margin-right: 60px;
+	}
+}
+
+.mysearch-field {
+	transform: scaleY(0);
+	-webkit-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	position: absolute;
+	top: -13px;
+	right: -2px;
+}
+
+.mysearch-field:hover {
+	transform: scaleY(1) !important;
+}
+
+.mysearch-field input {
+	line-height: 60px;
+	background: #1E0A37;
+	/* background: #4a4fad; */
+	border: none;
+	color: #fff;
+	padding: 0 70px 0 25px;
+	font-weight: 400;
+	width: 800px;
+}
+
+
+
+@media ( max-width : 991px) {
+	
+	.mysearch-field input {
+		width: 400px;
+	}
+}
+
+@media ( max-width : 767px) {
+	
+	.mysearch-field input {
+		width: 300px;
+	}
+}
+
+@media ( max-width : 575px) {
+	
+	.mysearch-field input {
+		width: 200px;
+	}
+}
+
+/* 검색창 돋보기버튼이 넘 작아서 키웠삼 */
+button span.lnr-magnifier {
+    font-size: large;
+}
+
+.mysearch-field .mysearch-submit {
+	width: 60px;
+	height: 60px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.mysearch-field .mysearch-submit span {
+	color: #fff;
+}
+
+
+
+
+
+
+
+
+/* 여기부터 */
+.header-social {
+	margin-left: 20px;
+}
+
+@media ( max-width : 767px) {
+	.header-social {
+		display: none !important;
+	}
+}
+
+
+.header-social {
+	margin-left: 20px;
+}
+
+.user-panel {
+	float: right;
+	/* font-size: 16px; */
+	font-weight: 500;
+	color: #fff;
+	padding-top: 3px;
+}
+
+.user-panel a {
+	color: #fff;
+	font-size: 30px;
+}
+
+.user-panel a:hover {
+	color: #b01ba5;
+}
+
+/* 여기까지는 잘 모름 */
+
+/* 여기부터 상단바 리스트 */
+.main-menu {
+	list-style: none;
+	text-align: center;
+	padding-top: 3px;
+	font: dunggeunmo;
+}
+
+.main-menu li {
+	display: inline-block;
+	position: relative;
+}
+/* 상단바 폰트 색상(a 태그로 되어있는것들) */
+.main-menu li a {
+	display: block;
+	font-size: 16px;
+	font-weight: 500;
+	color: #fff;
+	margin-right: 20px;
+	padding-bottom: 28px;
+	position: relative;
+	padding-right: 20px;
+	font: dunggeunmo;
+}
+
+/* 상단바 서브메뉴 있는것들 뒤에 > 이미지 넣기*/
+.main-menu .gameinfo:after {
+	position: absolute;
+	content: "";
+	width: 20px;
+	height: 20px;
+	right: 0;
+	top: 1px;
+	background-image: url("../img/img-hyesoo/arrow-down.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+.main-menu .comm:after {
+	position: absolute;
+	content: "";
+	width: 20px;
+	height: 20px;
+	right: 0;
+	top: 1px;
+	background-image: url("../img/img-hyesoo/arrow-down.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+.main-menu .help:after {
+	position: absolute;
+	content: "";
+	width: 20px;
+	height: 20px;
+	right: 0;
+	top: 1px;
+	background-image: url("../img/img-hyesoo/arrow-down.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+/* 안씀 */
+.main-menu li a i {
+	color: #928d92;
+	margin-left: 5px;
+}
+/*상단바 메뉴에 마우스 올렸을때 폰트 색상 변화(a 태그로 되어있는것들)  */
+.main-menu li a:hover {
+	color: #fff;
+}
+/* 상단바 메뉴에 마우스 올렸을때 뒤에 > 이미지 (색상) 변화*/
+.main-menu li a:hover:after {
+	background-image: url("../img/img-hyesoo/arrow-down-color.png");
+}
+
+/* 안씀 */
+.main-menu li a:hover i {
+	color: #fff;
+}
+/* 상단바 메뉴에 마우스 올렸을때 밑에 있는애들 */
+.main-menu li:hover .sub-menu {
+	visibility: visible;
+	opacity: 1;
+	margin-top: 0;
+}
+/* 상단바 메뉴에 마우스 올렸을때....모르겠음 */
+.main-menu li:hover>a {
+	color: #fff;
+}
+
+/* 서브메뉴로 마우스 이동시에도 > 이거 자주색 이미지로 유지 */
+.main-menu li:hover>a:after {
+	background-image: url("../img/img-hyesoo/arrow-down-color.png");
+}
+
+/* 로그인.회원가입 아이콘 크기,위치 조정  */
+.main-menu li .fa-user {
+	font-size: 25px;
+	left: 25px;
+	top: 4px;
+}
+
+/* 서브메뉴 관련  */
+.main-menu li .sub-menu {
+	position: absolute;
+	list-style: none;
+	text-align: left;
+	width: 220px;
+	left: 0;
+	top: 100%;
+	padding: 20px 0;
+	visibility: hidden;
+	opacity: 0;
+	margin-top: 50px;
+	background: #fff;
+	z-index: 99;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+	-webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.4);
+	box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.4);
+	width: 220px;
+}
+
+.main-menu li .sub-menu li {
+	display: block;
+}
+
+.main-menu li .sub-menu li a {
+	display: block;
+	margin-right: 0;
+	padding: 8px 30px;
+	color: #000;
+}
+
+.main-menu li .sub-menu li a:after {
+	display: none;
+}
+
+.main-menu li .sub-menu li a:hover {
+	color: #b01ba5;
+}
+
+/* 로그인, 회원가입 창 부분 크기 조정 */
+.main-menu li:last-child .sub-menu {
+	width: 150px;
+}
+
+.slicknav_menu {
+	display: none;
+}
+
+/* 여기부터 도로록 관련임*/
+.sidenav {
+	width: 100px;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 50px;
+	z-index: 100;
+	padding-top: 300px;
+	color: #1E0A37;
+	font-weight: bold;
+}
+
+.mymenu {
+	list-style: none;
+	display: inline-block;
+}
+
+/* 도로록 아이콘 색 */
+.icon {
+	color: #1E0A37;
+	font-size: 40px;
+	margin: 40px 0;
+}
+
+/* 도로록 아이콘 위에 올렸을때 바뀌는 색 정하는 곳 */
+.mymenu li a:hover {
+	color: #1E0A37;
+}
+
+.mymenu li .hide {
+	display: none;
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	position: absolute;
+	width: 100px;
+	z-index: 200;
+	left: 80px;
+	width: 100px;
+}
+
+/* 도로록에서 나타나는 글씨  */
+/* 글씨 여기서 바꿈 */
+/* 옆에 글씨 나타나는거 위치 조정 여기서함 */
+.mymenu li:hover .hide {
+	display: inline-block;
+	margin-top: 45px;
+	color: #1E0A37;
+	font-weight: bold;
+}
+
+/*------------------
+  광고 section
+---------------------*/
+
+.main-section{
+	
+	padding-top : 100px;
+	padding-bottom : 100px;
+}
+
+/* 뒤에 배경 넣는거 */
+.main-section:after{
+	 content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url("../img/img-hyesoo/Delicate.jpg");
+	opacity : 0.4; 
+    width : 100%;
+    /* 이거로 main section 뒤에 배경 높이 조절해야함 */
+    height : 3000px;
+    z-index: -1;
+	
+}
+
+
+
+.main-wrap{
+	
+	/* 근데 width 로 조절하면 절대 안됨. margin 아니면 padding으로 해야함 */
+	margin-left : 330px;
+	margin-right : 250px;
+
+}
+@media screen and (max-width : 1900px){
+	.main-wrap{
+		margin-left : 200px;
+		margin-right : 0px;
+	}
+}
+
+@media screen and (max-width : 1530px){
+	.main-wrap{
+		margin-rignt : 0px;
+		margin-left : 150px;
+	}
+	
+}
+
+@media screen and (max-width : 1400px){
+	.main-wrap{
+		margin : 0px;
+	}
+}
+
+.forname{
+	float : left;
+}
+
+/* 위에 광고, 이벤트, 랭킹 써있는 거 */
+/* 광고, 랭킹 부분  */
+.ad-name{
+	text-align : left;
+	/* margin-left : 30px; */
+	/* background :  rgba(30, 10, 55, 0.1); */
+	background : #FBF7FD;
+	padding : 7px;
+	/* width: 150px; */
+    /* border-radius: 10px 30px 0px 0px; */
+    font-size : 20px;
+	
+}
+/* 이벤트 */
+.ev-name{
+	text-align : left;
+	/* background :rgba(30, 10, 55, 0.1); */
+	background : #FBF7FD;
+	padding : 7px;
+	/* width: 150px;
+    */
+    font-size : 20px;
+}
+
+
+
+/* 오각형 만드는 부분. */
+ #octagon {
+      width: 140px;
+      height: 44px;
+      /* background: red; */
+      position: relative;
+      
+    }
+ #octagon:before {
+      content: "";
+      width: 140px;
+      height: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+     
+      border-bottom: 20px solid transparent;
+    
+      border-right: 35px solid rgb(240,237,245);
+    }
+    
+  #octagon2 {
+      width: 150px;
+      height: 44px;
+
+      position: relative;
+    }
+    #octagon2:before {
+      content: "";
+      width: 150px;
+      height: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-bottom: 20px solid transparent;
+    
+      border-right: 35px solid rgb(243,241,247);
+    } 
+  
+
+
+
+
+/* 광고슬라이더 */
+
+.advertise-wrap{
+	/* background: rgba(233, 228, 240, 0.9); */
+	/* background : green; */
+	text-align : center;
+	overflow : hidden;
+	/* padding : 10px; */
+	/* border-radius : 20px; */
+}
+
+.slider-wrap{
+	/* background : rgba(30, 10, 55, 0.1); */
+	background : #FBF7FD;
+	/* background : #F8F7FC; */
+	/* background : blue; */
+	float : left;
+	/* 여기서 max-width 주니까 일단 됨 */
+	max-width: 900px;
+	
+	min-width : 335px;
+    padding: 30px;
+    padding-top : 15px;
+    margin-right : 60px;
+   /*  margin-left : 30px; */
+   /*  border-radius : 20px; */
+}
+
+@media screen and (max-width : 1530px){
+	.slider-wrap{
+		margin-right : 0;
+	}
+}
+
+@media screen and (max-width : 768px){
+	.slider-wrap{
+		margin-left : 0;
+		margin-right : 0;
+	}
+}
+
+
+.carousel-inner, .carousel-item{
+	height : 100%;
+}
+
+.carousel .carousel-item {
+   /*  height: 500px; */
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+.carousel-item img{
+	width : 100%;
+	height : 100%;
+}
+
+/* 이벤트부분 */
+
+.image-wrap{
+	background : #FBF7FD;
+	/* background : rgba(30, 10, 55, 0.1); */
+	/* background : black; */
+	float : left;
+	/* 이걸로 width 에 따른 height 변화로 사진 크기 바꿈*/
+	/* border-radius : 20px; */
+	max-width : 350px;
+	padding : 30px;
+	padding-top : 15px;
+	/* 여기서 height 조절해봐야 아무 도움 안됨 */
+}
+
+.advertise-image{
+	position : relative;
+}
+/* 이벤트 사진 위에 설명 써놓는 부분 */
+.content{
+	position : absolute;
+	bottom: 0;
+    margin-bottom: 30px;
+	background: rgba(0, 0, 0, 0.5);
+  	width: 100%;
+ 	padding: 20px;
+}
+
+.content h3{
+	color : #fff;
+}
+
+/* 클릭하는 화살표 누르면 슬라이드 넘어가는거 */
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 50px;
+    height: 50px;
+    
+}
+
+/*광고에 설명 써놓는 부분  */
+
+.carousel-caption {
+	 background: rgba(0, 0, 0, 0.4);
+	 padding: 15px;
+	 margin: 0;
+	 color : #fff;
+	 font-size: 19px;
+	 margin-bottom: 40px;
+	 width : 100%;
+	 margin-left : -105px;
+}
+
+/* 랭킹 부분 */
+.ranking-wrap{
+	background : #FBF7FD;
+	/* background : rgba(30, 10, 55, 0.1); */
+	/* background : brown; */
+	padding : 40px;
+	text-align : center;
+	/* border-radius : 20px; */
+	/* margin-top : 15px; */
+}
+
+.rank{
+	display : inline-block;
+}
+
+.rank img{
+	width : 90px;
+}
+
+.medal , .shield{
+	margin-right : 200px;
+}
+
+.ranking-wrap h3{
+	font-size : 30px;
+	margin-bottom : 15px;
+}
+
+.rank-name{
+	margin-top : 20px;
+	display : inline-block;
+}
+
+@media screen and (max-width : 768px){
+	.medal, .shield{
+		margin : 0px;
+	}
+}
+
+.shadow{
+	filter: drop-shadow(10px  10px 10px #ccccc);
+}
+
+
+
+
+
+
+
+
+/* ----------------
+  Intro section
+---------------------*/
+.intro-section {
+	background: #0c062e;
+	padding: 115px 0;
+}
+
+.text-box .top-meta {
+	font-size: 18px;
+	font-weight: 500;
+	margin-bottom: 20px;
+}
+
+.text-box .top-meta a {
+	color: #b01ba5;
+}
+
+.text-box h3 {
+	margin-bottom: 40px;
+	max-width: 370px;
+}
+
+.text-box p {
+	font-size: 15px;
+	font-weight: 500;
+	color: #68647d;
+	margin-bottom: 35px;
+}
+
+.text-box .read-more {
+	font-size: 15px;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-style: italic;
+	color: #fff;
+}
+
+.text-box .read-more img {
+	margin-left: 13px;
+}
+
+/* ----------------
+ Blog Section
+---------------------*/
+.blog-section {
+	/* background: #fff; */
+	background-image: url("../img/img-hyesoo/sub4.jpg");
+
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#501755+0,2d1854+100 */
+	/* background: #501755; */
+	/* Old browsers */
+	/* FF3.6-15 */
+	/* background: -webkit-linear-gradient(45deg, #501755 0%, #2d1854 100%); */
+	/* Chrome10-25,Safari5.1-6 */
+	/* background: -o-linear-gradient(45deg, #501755 0%, #2d1854 100%);
+	background: linear-gradient(45deg, #501755 0%, #2d1854 100%); */
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	/* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#501755', endColorstr='#2d1854', GradientType=1); */
+	/* IE6-9 fallback on horizontal gradient */
+}
+
+#best {
+	background: #fff;
+	/* background-image : url("../img/sub5.jpg"); */
+}
+
+.blog-section .section-title {
+	margin-bottom: 25px;
+}
+
+.blog-filter {
+	list-style: none;
+	display: block;
+}
+
+.blog-filter li {
+	display: inline-block;
+}
+
+.blog-filter li a {
+	display: block;
+	color: #fff;
+	padding: 16px 36px;
+	font-size: 16px;
+	font-weight: 700;
+	background: #6f2b95;
+	line-height: 1.1;
+	margin-right: 7px;
+	-webkit-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+	margin-bottom: 10px;
+}
+
+.blog-filter li a:hover {
+	background: #b01ba5;
+}
+
+.blog-item {
+	margin-top: 86px;
+}
+
+.blog-item .blog-thumb {
+	width: 362px;
+	float: left;
+	margin-right: 30px;
+}
+
+.blog-item .text-box {
+	overflow: hidden;
+}
+
+.blog-item .text-box p {
+	margin-bottom: 42px;
+}
+
+.widget-item {
+	margin-bottom: 85px;
+}
+
+.widget-item:last-child {
+	margin-bottom: 0;
+}
+
+.widget-item .widget-title {
+	color: #fff;
+	text-transform: uppercase;
+	font-weight: 700;
+	font-style: italic;
+	padding-left: 38px;
+	margin-bottom: 48px;
+}
+
+.trending-widget .tw-item {
+	margin-bottom: 38px;
+}
+
+.trending-widget .tw-item:last-child {
+	margin-bottom: 0;
+}
+
+.trending-widget .tw-thumb {
+	float: left;
+	margin-right: 17px;
+	overflow: hidden;
+}
+
+.trending-widget .tw-text .tw-meta {
+	color: #68647d;
+	font-size: 12px;
+	font-weight: 500;
+	margin-bottom: 7px;
+}
+
+.trending-widget .tw-text .tw-meta a {
+	color: #b01ba5;
+}
+
+.trending-widget .tw-text h5 {
+	font-size: 18px;
+	color: #fff;
+	line-height: 1.5;
+}
+
+.categories-widget {
+	background: #34164b;
+	padding: 55px 0 25px;
+}
+
+.categories-widget ul {
+	list-style: none;
+	padding: 0 38px;
+}
+
+.categories-widget ul li {
+	display: block;
+}
+
+.categories-widget ul li a {
+	display: inline-block;
+	position: relative;
+	font-size: 16px;
+	color: #68647d;
+	font-weight: 500;
+	margin-bottom: 15px;
+	padding-right: 19px;
+	-webkit-transition: all 0.2s;
+	-o-transition: all 0.2s;
+	transition: all 0.2s;
+	background-image: url("../img/img-hyesoo/double-arrow.png");
+	background-repeat: no-repeat;
+	background-position: right -120% center;
+	background-size: 11px;
+}
+
+.categories-widget ul li a:hover {
+	color: #b01ba5;
+	background-position: right center;
+}
+
+.search-widget {
+	position: relative;
+}
+
+.search-widget input {
+	width: 100%;
+	height: 40px;
+	border: none;
+	border-bottom: 2px solid #72628b;
+	background: none;
+	padding-right: 60px;
+	color: #fff;
+}
+
+.search-widget button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	color: #b01ba5;
+	font-weight: 700;
+	font-size: 14px;
+	font-style: italic;
+	cursor: pointer;
+	background: none;
+	border: none;
+	text-transform: uppercase;
+}
+
+.latest-comments .lc-item {
+	margin-bottom: 30px;
+}
+
+.latest-comments .lc-item:last-child {
+	margin-bottom: 0;
+}
+
+.latest-comments .lc-item .lc-avatar {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	float: left;
+	margin-right: 12px;
+}
+
+.latest-comments .lc-item .tw-text {
+	padding-top: 10px;
+	font-size: 16px;
+	color: #fff;
+	font-weight: 500;
+}
+
+.latest-comments .lc-item .tw-text a {
+	color: #b01ba5;
+}
+
+.latest-comments .lc-item .tw-text span {
+	color: #68647d;
+}
+
+/* --------------------
+  Intro video section
+-----------------------*/
+.intro-video-section {
+	height: 757px;
+	position: relative;
+}
+
+.video-play-btn {
+	position: absolute;
+	left: calc(50% - 61px);
+	top: calc(50% - 61px);
+	width: 122px;
+	height: 122px;
+	text-align: center;
+	padding-top: 35px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.16);
+}
+
+.video-text {
+	margin-bottom: 80px;
+	padding: 27px 0;
+	padding-left: 25px;
+	position: relative;
+}
+
+.video-text h2 {
+	font-size: 48px;
+	text-transform: uppercase;
+	font-style: italic;
+	font-weight: 700;
+	color: #fff;
+	margin-bottom: 1px;
+}
+
+.video-text p {
+	font-size: 18px;
+	color: #a3a1b3;
+	font-weight: 500;
+	margin-bottom: 0;
+}
+
+.video-text:after {
+	position: absolute;
+	content: "";
+	width: 9px;
+	height: 100%;
+	left: -22px;
+	top: 0;
+	border-left: 3px solid #de46d6;
+	background: #fff;
+	-webkit-box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.5);
+	box-shadow: 0 0 9px 3px rgba(226, 30, 228, 0.5);
+}
+
+/* ----------------
+  Featured section
+---------------------*/
+.featured-section {
+	position: relative;
+	overflow: hidden;
+}
+
+.featured-bg {
+	width: calc(50% - 156px);
+	/* float: left; */
+	height: 100%;
+	left: 0;
+	right: 0;
+	position: absolute;
+}
+
+.featured-box {
+	/* float: right; */
+	width: calc(50% + 156px);
+	background: #fff;
+	padding: 100px 50px 130px 79px;
+}
+
+.featured-box .text-box {
+	max-width: 810px;
+}
+
+.featured-box .text-box .top-meta {
+	color: #68647d;
+}
+
+.featured-box .text-box h3 {
+	font-size: 60px;
+	max-width: 100%;
+}
+
+.featured-box .text-box p {
+	font-size: 16px;
+}
+
+.featured-box .text-box .read-more {
+	color: #251e2f;
+}
+
+.gradient-bg, .newsletter-section {
+	background-image: url("../img/img-hyesoo/sub4.jpg");
+	/* Old browsers */
+	/* FF3.6-15 */
+	/* background: -webkit-linear-gradient(left, #3e0f3d 0%, #1c0f3b 100%);
+	Chrome10-25,Safari5.1-6
+	background: -webkit-gradient(linear, left top, right top, from(#3e0f3d), to(#1c0f3b));
+	background: -o-linear-gradient(left, #3e0f3d 0%, #1c0f3b 100%);
+	background: linear-gradient(to right, #3e0f3d 0%, #1c0f3b 100%);
+	W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3e0f3d', endColorstr='#1c0f3b', GradientType=1);
+	IE6-9 */
+}
+
+/* --------------------
+  Newsletter section
+----------------------*/
+.newsletter-section {
+	background-image: url("../img/img-hyesoo/sub4.jpg");
+}
+
+.newsletter-section .container .section-title h2 {
+	font-family: designhouseBold;
+}
+
+.newsletter-section .container button {
+	font: dunggeunmo;
+}
+
+.newsletter-section {
+	padding: 108px 0 95px;
+	text-align: center;
+}
+
+.newsletter-section h2 {
+	font-size: 48px;
+	color: #fff;
+	font-weight: 700;
+	/* font-style: italic; */
+	text-transform: uppercase;
+	margin-bottom: 73px;
+}
+
+.newsletter-form {
+	padding-left: 56px;
+}
+
+.newsletter-form input {
+	font-size: 14px;
+	font-weight: 700;
+	font: dunggeunmo;
+	color: #fff;
+	width: 787px;
+	border: none;
+	border-bottom: 2px solid #9b91a6;
+	background: none;
+	height: 63px;
+	margin-right: 26px;
+}
+
+/* ----------------
+  Footer section
+---------------------*/
+.ftco-section {
+  padding: 6em 0;
+  position: relative;
+  background : #1E0A37;
+}
+
+@media (max-width: 767.98px) {
+    .ftco-section {
+      padding: 6em 0; 
+	} 
+}
+
+
+.rowa {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px; 
+ }
+
+.ftco-footer {
+  font-size: 16px;
+  padding: 3em 0;
+  background: #1E0A37;; 
+}
+  
+.ftco-footer .ftco-footer-logo {
+    text-transform: uppercase;
+    letter-spacing: .1em; }
+
+/* 내사위는 주사위, Contact us 부분  */
+.ftco-footer .ftco-footer-widget h2 {
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 40px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+/* 트위터, 페이스북, 인스타그램 아이콘 색상 */
+.ftco-footer .ftco-footer-widget ul li a span {
+    color: #fff;
+}
+
+.ftco-footer .ftco-footer-widget .btn-primary {
+    background: #fff !important;
+    border: 2px solid #fff !important; 
+}
+
+.ftco-footer .ftco-footer-widget .btn-primary:hover {
+      background: #fff;
+      border: 2px solid #fff !important; 
+      
+ }
+ 
+/* 내사위는 주사위 밑에 어쩌고 저쩌고 써놓는 곳 */
+  .ftco-footer p {
+    color: #fff;
+    font-size : 16px;
+}
+
+/* 없음 */
+  .ftco-footer a {
+    color: rgba(255, 255, 255, 0.7); }
+    .ftco-footer a:hover {
+      color: #fff; }
+ 
+/* 트위터, 인스타그램, 페이스북 부분 */
+.ftco-footer-social li {
+  list-style: none;
+  margin: 0 10px 0 0;
+  display: inline-block; 
+}
+  .ftco-footer-social li a {
+    height: 50px;
+    width: 50px;
+    display: block;
+    float: left;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    position: relative; }
+    .ftco-footer-social li a span {
+      position: absolute;
+      font-size: 26px;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%); }
+    .ftco-footer-social li a:hover {
+      color: #fff; }
+
+.block-23 ul {
+	padding: 0;
+}
+
+.block-23 ul li, .block-23 ul li > a {
+    display: table;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color : #fff;
+}
+
+.block-23 ul li span {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.block-23 ul li .icon, .block-23 ul li .text {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.block-23 ul li .icon {
+    width: 40px;
+    font-size: 18px;
+    padding-top: 2px;
+    color: white; 
+}
+
+.site{
+	
+	margin-right : 100px;
+}
+
+@media (max-width: 767.98px) {
+	.site{
+		margin-right : 0px;
+	}
+}
+
+
+/* background-image: url("../img/sub4.jpg"); */
+
+
+
+/* ----------------
+  Other Pages
+=====================
+---------------------*/
+.page-top-section {
+	height: 355px;
+	padding-top: 210px;
+}
+
+.page-info {
+	max-width: 1496px;
+	margin: 0 auto;
+	font-size: 16px;
+	color: #fff;
+	padding-left: 60px;
+}
+
+.page-info h2 {
+	color: #fff;
+	font-size: 48px;
+}
+
+.site-breadcrumb a, .site-breadcrumb span {
+	font-style: italic;
+	color: #fff;
+	margin: 0 10px;
+	font-weight: 700;
+}
+
+.site-breadcrumb a:first-child {
+	margin-left: 0;
+}
+
+.site-breadcrumb span {
+	color: #c313b7;
+}
+
+
+/* ----------------
+  Responsive
+---------------------*/
+@media ( min-width : 1200px) {
+	.container {
+		max-width: 1175px;
+	}
+}
+
+@media ( max-width : 1530px) {
+	.hero-slider .owl-dots {
+		width: 1170px;
+		left: calc(50% - 585px);
+	}
+}
+
+@media ( max-width : 1400px) {
+	.sidenav {
+		display: none;
+	}
+}
+
+/* Medium screen : 992px. */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+	.blog-item .blog-thumb {
+		width: 250px;
+	}
+	.hero-item p {
+		font-size: 22px;
+	}
+	.hero-slider .owl-nav .owl-next {
+		right: 30px;
+	}
+	.hero-slider .owl-dots {
+		width: 930px;
+		left: calc(50% - 465px);
+	}
+	.newsletter-form {
+		padding-left: 0;
+	}
+	.newsletter-form input {
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 40px;
+	}
+	.game-filter li {
+		width: 31px;
+		height: 31px;
+	}
+	.game-filter li a {
+		padding-top: 5px;
+	}
+	
+	
+	
+	
+}
+
+/* Tablet :768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.header-bar-warp {
+		padding: 39px 15px 0;
+	}
+	.main-menu li a {
+		margin-right: 10px;
+	}
+	.hero-item h2 {
+		font-size: 110px;
+	}
+	.hero-item p {
+		font-size: 16px;
+		padding: 0 30px;
+	}
+	.hero-slider .owl-nav .owl-next {
+		right: 0;
+	}
+	.hero-slider .owl-dots {
+		width: 690px;
+		left: calc(50% - 345px);
+	}
+	.blog-item .blog-thumb {
+		float: none;
+		margin-right: 0;
+		width: 100%;
+		margin-bottom: 30px;
+	}
+	.featured-bg {
+		display: none;
+	}
+	.featured-box {
+		float: none;
+		width: 100%;
+	}
+	.newsletter-form input {
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 40px;
+	}
+	.footer-right-pic {
+		right: 15px;
+	}
+	.footer-left-pic {
+		left: -44px;
+	}
+	.game-filter {
+		text-align: center;
+	}
+	.game-filter li {
+		margin-bottom: 5px;
+	}
+	.gameSingle-content .gs-title {
+		font-size: 40px;
+	}
+	.review-pic img {
+		min-width: 100%;
+		margin-bottom: 30px;
+	}
+	.contact-text {
+		margin-bottom: 50px;
+	}
+	
+	
+	
+	
+}
+
+/* Large Mobile :480px. */
+@media only screen and (max-width: 767px) {
+	.header-bar-warp {
+		padding: 25px 20px 10px;
+	}
+	.main-menu.primary-menu {
+		display: none;
+	}
+	.slicknav_menu {
+		display: block;
+		background: #1E0A37;
+	}
+	.slicknav_btn {
+		margin-right: 10px;
+		background: #1E0A37;
+	}
+	.slicknav_nav a:hover, .slicknav_nav .slicknav_row:hover {
+		background: #25394c;
+		color: #fff;
+	}
+	
+	/* search 오른쪽 여백 조정 */
+	.mysearch {
+   		margin-right: 60px;
+   		height: 30px;
+		border-right: 1px hidden rgba(255, 255, 255, 0.5) !important;
+	}
+	
+	/* hover 시 나타나는 검색 입력창 위치 조정 */
+	.mysearch-field {
+	    position: relative;
+	    top: -20px;
+	    /* height: 10px; */
+	    right: 1px;
+	}
+	
+	/* 입력창 */
+	.mysearch-field input {
+   		height: 30px;
+	}
+	
+	.mysearch-field .mysearch-submit {
+    	width: 60px;
+    	height: 30px;
+	}
+	
+	/* 검색창 돋보기버튼 조정 */
+	button span.lnr-magnifier {
+    	font-size: small;
+	}
+	
+	
+	
+	
+	
+	
+	
+	.hero-item h2 {
+		font-size: 70px;
+	}
+	.hero-item p {
+		font-size: 18px;
+	}
+	.footer-right-pic, .footer-left-pic {
+		display: none;
+	}
+	.hero-slider .owl-nav .owl-next {
+		top: auto;
+		bottom: 33px;
+		right: 15px;
+		z-index: 99;
+	}
+	.hero-slider .owl-dots {
+		width: 100%;
+		left: 0;
+		padding-left: 15px;
+	}
+	.intro-text-box {
+		margin-bottom: 40px;
+	}
+	.blog-item .blog-thumb {
+		float: none;
+		margin-right: 0;
+		width: 100%;
+		margin-bottom: 30px;
+	}
+	.sidebar {
+		padding-top: 60px;
+	}
+	.featured-bg {
+		display: none;
+	}
+	.featured-box {
+		float: none;
+		width: 100%;
+	}
+	.featured-box .text-box h3 {
+		font-size: 45px;
+	}
+	.newsletter-form {
+		padding-left: 0;
+	}
+	.newsletter-form input {
+		width: 100%;
+		margin-right: 0;
+		margin-bottom: 40px;
+	}
+	.video-text:after {
+		left: 0;
+	}
+	.page-top-section {
+		height: 400px;
+		padding-top: 250px;
+	}
+	.game-filter {
+		text-align: center;
+	}
+	.game-filter li {
+		margin-bottom: 5px;
+	}
+	.gameSingle-content .gs-title {
+		font-size: 40px;
+	}
+	.review-pic img {
+		min-width: 100%;
+		margin-bottom: 30px;
+	}
+	.contact-text {
+		margin-bottom: 50px;
+	}
+	.review-content .rating {
+		position: relative;
+		margin-bottom: 20px;
+	}
+	.review-content .rating h5 {
+		text-align: left;
+		padding-right: 0;
+	}
+	
+	
+}
+
+/* Small Mobile :320px. */
+@media only screen and (max-width: 479px) {
+	.hero-item h2 {
+		font-size: 55px;
+		margin-bottom: 20px;
+	}
+	.hero-item p {
+		font-size: 15px;
+	}
+	.video-text h2 {
+		font-size: 30px;
+	}
+	.video-play-btn {
+		top: calc(30% - 61px);
+	}
+	.featured-box {
+		padding: 100px 15px;
+	}
+	.featured-box .text-box h3, .newsletter-section h2 {
+		font-size: 35px;
+	}
+	.main-menu li a {
+		margin-right: 20px;
+	}
+	
+	/* search 조정 */
+	.mysearch { 
+		height: 30px;
+	    border-right: 1px hidden rgba(255, 255, 255, 0.5) !important;
+	}
+	
+	/* hover 시 나타나는 검색 입력창 위치 조정 */
+	.mysearch-field {
+	    position: relative;
+	    top: -20px;
+	    /* height: 10px; */
+	    right: 1px;
+	}
+	
+	/* 입력창 */
+	.mysearch-field input {
+   		height: 30px;
+	}
+	
+	.mysearch-field .mysearch-submit {
+	    width: 60px;
+	    height: 30px;
+	}
+	
+	/* 검색창 돋보기버튼 조정 */
+	button span.lnr-magnifier {
+    	font-size: small;
+	}
+	
+	
+	
+	
+	
+	
+	
+}
