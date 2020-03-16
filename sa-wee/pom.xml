@@ -13,7 +13,7 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
-
+    
 	<!-- 1. 오라클 JDBC 라이브러리 -->
 	<!-- 2. 스프링에서 JDBC 사용 위한 라이브러리 -->
 	<!-- 3. 커넥션 풀 위한 라이브러리 -->
