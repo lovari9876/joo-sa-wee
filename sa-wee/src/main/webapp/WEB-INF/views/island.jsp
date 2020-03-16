@@ -133,7 +133,7 @@
 	<!-- Header section end -->
 
 
-    <!-- styles
+    <!-- styles // 본문 테이블
     ================================================== -->
     <section id="styles" class="s-styles">
     
