@@ -4,7 +4,7 @@
 
     <!-- Java Script for header
     ================================================== -->   
-    	<script src="js/js_header/jquery.slicknav.min.js"></script>
+    <script src="js/js_header/jquery.slicknav.min.js"></script>
 	<script src="js/js_header/header_hyesoo.js"></script>
 	<script src="js/js_header/scroll.js"></script>
 
@@ -22,6 +22,6 @@ footer:
 ===========================================================
 jquery가 페이지 내에 없을 경우 js 가장 상단에 첨부
 
-<script src="js/js_cassie/jquery-3.2.1.min.js"></script>
+	<script src="js/js_cassie/jquery-3.2.1.min.js"></script>
 
 

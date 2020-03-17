@@ -97,7 +97,7 @@ body {
 	color: #656565;
 	margin: 0;
 	padding: 0;
-	padding-top: 60px !important;
+	/* padding-top: 60px !important; */
 	/* 중요! 이것으로 content가 가려지고, scroll이 top으로 안가는 문제, body가 밑에서 시작하는 문제 모두 해결! */
 	/* 헤더가 커지거나 작아질 때, 꼭 padding-top 손볼것!!!! */
 }
