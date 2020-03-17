@@ -36,9 +36,10 @@
 
 <body>
 
-	<%@ include file="../header.jsp"%>
+	<!-- header include start -->
+	<%@ include file="/WEB-INF/views/share/header.jsp"%>
+	<!-- header include end -->
 	<br />
-
 
 	<div class="container web-portion">
 		<h3 class=" text-center"></h3>
@@ -64,7 +65,8 @@
 						<div class="chat_list active_chat">
 							<div class="chat_people">
 								<div class="chat_img">
-									<img src="resources/images/bl_share/icons/wolf_logo.png" alt="sunil">
+									<img src="resources/images/bl_share/icons/wolf_logo.png"
+										alt="sunil">
 								</div>
 								<div class="chat_ib">
 									<h5>
@@ -156,7 +158,7 @@
 						</div>
 					</div>
 					<ul class="notebox">
-						<li><a href="send_message" 
+						<li><a href="send_message"
 							onClick="window.open(this.href, '', 'width=900, height=800, left=400, top=100'); return false;">
 								<i class="fas fa-paper-plane"></i> 쪽지 보내기
 						</a></li>
@@ -171,12 +173,23 @@
 		</div>
 	</div>
 
+	<!-- footer include start -->
+	<%@ include file="/WEB-INF/views/share/footer.jsp"%>
+	<!-- footer include end -->
 </body>
 
 <script src="resources/js/mypage/jquery-3.2.1.min.js"></script>
 <script src="resources/js/mypage/popper.min.js"></script>
 <script src="resources/js/mypage/bootstrap.min.js"></script>
 <script src="resources/js/mypage/script.js"></script>
+
+<!-- Java Script for header
+    ================================================== -->
+<script src="js/js_header/jquery.slicknav.min.js"></script>
+<script src="js/js_header/header_hyesoo.js"></script>
+<script src="js/js_header/scroll.js"></script>
+
+
 
 
 </html>
