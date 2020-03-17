@@ -25,14 +25,10 @@
 	<!-- 상단바 전체 -->
 	<!-- Header section -->
 	<header class="header-section">
+		<div class="dice">내 사위는 주사위</div>
 		<div class="header-warp">
 			<div class="header-bar-warp d-flex ">
-
-				<!-- site logo -->
-				<!-- <a href="home.html" class="site-logo">
-					<img src="./img/3535.png" width = "200px" height = "40px" alt="">
-				</a> -->
-				<nav class="top-nav-area w-100 row">
+				<nav class="top-nav-area w-100">
 
 					<!-- 상단바 메뉴 -->
 					<ul class="main-menu head--ul primary-menu">
@@ -42,7 +38,7 @@
 								<li><a href="">당신의 보드게임</a></li>
 								<li><a href="">보드게임 리스트</a></li>
 							</ul></li>
-						<li><a class="comm" href="games">커뮤니티</a>
+						<li><a class="comm" href="list_home">커뮤니티</a>
 							<ul class="sub-menu">
 								<li><a href="list">보드이야기</a></li>
 								<li><a href="list">개봉기 및 리뷰</a></li>
@@ -51,12 +47,12 @@
 								<li><a href="list">질문 & 답변</a></li>
 								<li><a href="list">창작 보드게임</a></li>
 							</ul></li>
-						<li><a href="review">보드게임카페</a></li>
+						<li><a href="cafe_map">보드게임카페</a></li>
 						<li><a href="blog">보부상</a></li>
 						<li><a class="help" href="contact">헬프데스크</a>
 							<ul class="sub-menu">
 								<li><a href="">자주하는 질문</a></li>
-								<li><a href="">1 : 1 문의 </a></li>
+								<li><a href="question_list">1 : 1 문의 </a></li>
 								<li><a href="">무인도 </a></li>
 							</ul></li>
 						<!-- 검색창  -->
@@ -78,13 +74,8 @@
 								<li><a href="gameSingle">로그인</a></li>
 								<li><a href="gameSingle">회원가입</a></li>
 
-							</ul> <!-- <div class = smile>
-								<a class = "fas fa-user" href="#"></a>
-								<ul class = "sub-menu">
-									<li><a href = "">로그인</a></li>
-									<li><a href = "">회원가입</a></li>
-								</ul>
-							</div>	 --></li>
+							</ul> 
+						</li>
 					</ul>
 				</nav>
 			</div>
@@ -92,6 +83,7 @@
 	</header>
 	<!-- Header section end -->
 
+<script src="js/js_header/scroll.js"></script>
 </body>
 
 </html>

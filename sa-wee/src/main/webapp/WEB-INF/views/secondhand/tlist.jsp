@@ -648,6 +648,7 @@
     <script src="js/js_cassie/main.js"></script>
     <script src="js/js_header/jquery.slicknav.min.js"></script>
 	<script src="js/js_header/header_hyesoo.js"></script>
+	<script src="js/js_header/scroll.js"></script>
 	<!-- <script src="js/js_footer/footer_hee.js"></script> --> <!-- scroll to top 이미 있음 -->
 
 </body>

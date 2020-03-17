@@ -23,17 +23,26 @@ html, body {
 
 /* 상단바 바꾸는 곳 */
 .header-section {
-	position: fixed;
+	/* position: fixed; */
 	width: 100%;
-	left: 0;
+	/* left: 0;
 	top: 0;
-	z-index: 99;
+	z-index: 99; */
 	/* padding: 15px 15px 0; */
 	/* 상단바 이미지 바꾸는곳 */
-	background: #1E0A37;
+	/* background: #1E0A37; */
 	/* background-image: url("../../images/img_header/main.jpg"); */
 	font: dunggeunmo;
 	box-shadow: 0 0.17rem 0.5rem rgba(132, 116, 160, 0.75);
+}
+
+/* 내 사위는 주사위(사라지는부분) */
+.dice{
+	color : #fff;
+	text-align : center;
+	font-size : 40px;
+	padding : 20px 0;
+	background: #1E0A37;
 }
 
 /* 무인도 헤더 그림자 제거 */
@@ -41,19 +50,30 @@ html, body {
 	box-shadow: none;
 }
 
+
+/* (고정되는부분) 상단바 */
+
 .header-warp {
-	max-width: 1496px;
+	left : 0;
+	
+	position: fixed;
+	width : 100%;
+	/* max-width: 1496px; */
 	margin: 0 auto;
+	z-index: 99;
+	background: #1E0A37;
+}
+
+/* 스크롤시 변경되는 부분때문에 추가한 css */
+.header-wrap-style{
+	top : 0;
 }
 
 .header-bar-warp {
 	padding: 15px 40px 0;
 }
 
-.site-logo {
-	float: left;
-	text-align: center;
-}
+
 
 /* 중고거래 게시판에서 자체 main.css 때문에 밑단이 커지는 문제 해결 */
 .header-section .head--ul {
