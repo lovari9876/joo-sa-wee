@@ -8,9 +8,9 @@
 
     <!-- 혜수꺼 css
     ================================================== -->
-    <link rel="stylesheet" href="css_header/header_hyesoo.css">
-    <link rel="stylesheet" href="css_header/slicknav.min.css" /> 
-    <link rel="stylesheet" href="css_header/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/css_header/header_hyesoo.css">
+    <link rel="stylesheet" href="css/css_header/slicknav.min.css" /> 
+    <link rel="stylesheet" href="css/css_header/font-awesome.min.css" />
     <link rel="stylesheet"
 		href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 	<link rel="stylesheet"
@@ -26,16 +26,16 @@
 	<!-- Header section -->
 	<header class="header-section">
 		<div class="header-warp">
-			<div class="header-bar-warp d-flex">
+			<div class="header-bar-warp d-flex ">
 
 				<!-- site logo -->
 				<!-- <a href="home.html" class="site-logo">
 					<img src="./img/3535.png" width = "200px" height = "40px" alt="">
 				</a> -->
-				<nav class="top-nav-area w-100">
+				<nav class="top-nav-area w-100 row">
 
 					<!-- 상단바 메뉴 -->
-					<ul class="main-menu primary-menu">
+					<ul class="main-menu head--ul primary-menu">
 						<li><a href="home">Home</a></li>
 						<li><a class="gameinfo" href="">보드게임 정보</a>
 							<ul class="sub-menu">
@@ -91,13 +91,6 @@
 		</div>
 	</header>
 	<!-- Header section end -->
-
-	<!-- 바디 맨끝에 놓을 자바스크립트 -->
-
-    <!-- Java Script for header
-    ================================================== -->   
-    <script src="js_header/jquery.slicknav.min.js"></script>
-	<script src="js_header/hyesoo.js"></script>
 
 </body>
 

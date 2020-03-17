@@ -30,23 +30,6 @@
     		
     	}  
     </style> 
-    
-    <!-- 혜수꺼 css
-    ================================================== -->
-    <link rel="stylesheet" href="css_header/header_hyesoo.css">
-    <link rel="stylesheet" href="css_header/slicknav.min.css" /> 
-    <link rel="stylesheet" href="css_header/font-awesome.min.css" />
-    <link rel="stylesheet"
-		href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-
-	<!-- 희정 footer css
-    ================================================== -->
-	<link rel="stylesheet" href="css_footer/footer_hee.css">
-	<link rel="stylesheet" href="fonts/fonts_cassie/icomoon/style.css"> <!-- scroll 화살표 -->
 
     <!-- script
     ================================================== -->
@@ -62,77 +45,11 @@
 
 <body id="top" class="island">
 
-	<!-- 상단바 전체 -->
-	<!-- Header section -->
-	<header class="header-section">
-		<div class="header-warp">
-			<div class="header-bar-warp d-flex ">
-
-				<!-- site logo -->
-				<!-- <a href="home.html" class="site-logo">
-					<img src="./img/3535.png" width = "200px" height = "40px" alt="">
-				</a> -->
-				<nav class="top-nav-area w-100 row">
-
-					<!-- 상단바 메뉴 -->
-					<ul class="main-menu head--ul primary-menu">
-						<li><a href="home">Home</a></li>
-						<li><a class="gameinfo" href="">보드게임 정보</a>
-							<ul class="sub-menu">
-								<li><a href="">당신의 보드게임</a></li>
-								<li><a href="">보드게임 리스트</a></li>
-							</ul></li>
-						<li><a class="comm" href="games">커뮤니티</a>
-							<ul class="sub-menu">
-								<li><a href="list">보드이야기</a></li>
-								<li><a href="list">개봉기 및 리뷰</a></li>
-								<li><a href="list">보드게임 모임</a></li>
-								<li><a href="list">보드 뉴스</a></li>
-								<li><a href="list">질문 & 답변</a></li>
-								<li><a href="list">창작 보드게임</a></li>
-							</ul></li>
-						<li><a href="review">보드게임카페</a></li>
-						<li><a href="blog">보부상</a></li>
-						<li><a class="help" href="contact">헬프데스크</a>
-							<ul class="sub-menu">
-								<li><a href="">자주하는 질문</a></li>
-								<li><a href="">1 : 1 문의 </a></li>
-								<li><a href="">무인도 </a></li>
-							</ul></li>
-						<!-- 검색창  -->
-						<li><div class="mysearch relative">
-								<span class="lnr lnr-magnifier"></span>
-								<form action="#" class="mysearch-field">
-									<input type="text" placeholder="검색어를 입력하세요"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = '검색어를 입력하세요'">
-									<button class="mysearch-submit">
-										<span class="lnr lnr-magnifier"></span>
-									</button>
-								</form>
-							</div></li>
-
-						<!-- 사람모양 아이콘  -->
-						<li><a class="fas fa-user" href="#"></a>
-							<ul class="sub-menu">
-								<li><a href="gameSingle">로그인</a></li>
-								<li><a href="gameSingle">회원가입</a></li>
-
-							</ul> <!-- <div class = smile>
-								<a class = "fas fa-user" href="#"></a>
-								<ul class = "sub-menu">
-									<li><a href = "">로그인</a></li>
-									<li><a href = "">회원가입</a></li>
-								</ul>
-							</div>	 --></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
-	<!-- Header section end -->
-
-
+	<!-- header include start -->
+	<%@ include file="/WEB-INF/views/share/header.jsp" %>
+	<!-- header include end -->
+	
+	
     <!-- styles // 본문 테이블
     ================================================== -->
     <section id="styles" class="s-styles">
@@ -336,62 +253,9 @@
     </section> <!-- end styles -->
 
 
-	<!-- Footer section -->
-	<footer class="site-footer">
-
-		<a href="#top" class="smoothscroll scroll-top"> <span
-			class="icon-keyboard_arrow_up"></span>
-		</a>
-
-		<div class="container">
-			<div class="footer--row mb-5">
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href="#"><h3>Home</h3></a>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href=""><h3>보드게임 정보</h3></a>
-					<ul class="list-unstyled">
-						<li><a href="#">당신의 보드게임</a></li>
-						<li><a href="#">보드게임 리스트</a></li>
-					</ul>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href=""><h3>커뮤니티</h3></a>
-					<ul class="list-unstyled">
-						<li><a href="#">보드 이야기</a></li>
-						<li><a href="#">개봉기 및 리뷰</a></li>
-						<li><a href="#">보드게임 모임</a></li>
-						<li><a href="#">보드 뉴스</a></li>
-						<li><a href="#">질문 & 답변</a></li>
-						<li><a href="#">창작 보드게임</a></li>
-					</ul>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href="#"><h3>보드게임 카페</h3></a>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href="#"><h3>보부상</h3></a>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href=""><h3>헬프데스크</h3></a>
-					<ul class="list-unstyled">
-						<li><a href="#">자주하는 질문</a></li>
-						<li><a href="#">1:1 문의</a></li>
-						<li><a href="#">무인도</a></li>
-					</ul>
-				</div>				
-			</div>
-
-			<div class="footer--row text-center">
-				<div class="col-12">
-					<div class="copyright text-white">
-						<a href="">Colorlib</a> 2018 @ All rights reserved
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Footer section end -->
+	<!-- footer include start -->
+	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
+	<!-- footer include end -->
 
 
     <!-- Java Script
@@ -399,9 +263,9 @@
     <script src="js/js_cassie/jquery-3.2.1.min.js"></script>
     <script src="js/js_cassie/plugins.js"></script>
     <script src="js/js_cassie/main.js"></script>
-    <script src="js_header/jquery.slicknav.min.js"></script>
-	<script src="js_header/header_hyesoo.js"></script>
-	<script src="js_footer/footer_hee.js"></script>
+    <script src="js/js_header/jquery.slicknav.min.js"></script>
+	<script src="js/js_header/header_hyesoo.js"></script>
+	<!-- <script src="js/js_footer/footer_hee.js"></script> --> <!-- scroll to top 이미 있음 -->
 
 </body>
 

@@ -1,4 +1,4 @@
-package com.son_in_law_is_dice.plz;
+package com.soninlawisdice.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -36,19 +36,35 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/header", method = RequestMethod.GET)
+	public String header(Model model) {
+		logger.info("header");
+		
+		return "header";
+	}
+	
+	@RequestMapping(value = "/footer", method = RequestMethod.GET)
+	public String footer(Model model) {
+		logger.info("footer");
+		
+		return "footer";
+	}
+	
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
 	public String tlist(Model model) {
 		logger.info("tlist");
 		
-		return "tlist";
+		return "secondhand/tlist";
 	}
 	
-	@RequestMapping(value = "/island", method = RequestMethod.GET)
-	public String island(Model model) {
-		logger.info("island");
+	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
+	public String island_list(Model model) {
+		logger.info("island_list");
 		
-		return "island";
+		return "island/island_list";
 	}
+	
+	
 	
 	
 		
