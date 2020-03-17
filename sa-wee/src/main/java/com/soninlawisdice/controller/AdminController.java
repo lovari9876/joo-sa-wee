@@ -1,4 +1,4 @@
-package com.son_in_law_is_dice.plz.controller;
+package com.soninlawisdice.controller;
 
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class AdminController {
 	@RequestMapping("/user_list")
 	public String user_list() {
 
-		return "user_list";
+		return "admin/user_list";
 	}
 
 	////////////////////////////////////////////////////////////////////////////
@@ -109,31 +109,31 @@ public class AdminController {
 	@RequestMapping("/report_view2")
 	public String report_view2() {
 
-		return "report_view2";
+		return "admin/report_view2";
 	}
 
 	@RequestMapping("/notice_list")
 	public String notice_list() {
 
-		return "notice_list";
+		return "admin/notice_list";
 	}
 
 	@RequestMapping("/notice_write")
 	public String notice_write() {
 
-		return "notice_write";
+		return "admin/notice_write";
 	}
 
 	@RequestMapping("/board_list")
 	public String board_list() {
 
-		return "board_list";
+		return "admin/board_list";
 	}
 
 	@RequestMapping("/notice_view")
 	public String notice_view() {
 
-		return "notice_view";
+		return "admin/notice_view";
 	}
 
 	@RequestMapping("/faq")
@@ -145,79 +145,79 @@ public class AdminController {
 	@RequestMapping("/faq_list")
 	public String faq_list() {
 
-		return "faq_list";
+		return "admin/faq_list";
 	}
 
 	@RequestMapping("/faq_write")
 	public String faq_write() {
 
-		return "faq_write";
+		return "admin/faq_write";
 	}
 
 	@RequestMapping("/cafe_list")
 	public String cafe_list() {
 
-		return "cafe_list";
+		return "admin/cafe_list";
 	}
 
 	@RequestMapping("/ask_list")
 	public String ask_list() {
 
-		return "ask_list";
+		return "admin/ask_list";
 	}
 
 	@RequestMapping("/cafe_write")
 	public String cafe_write() {
 
-		return "cafe_write";
+		return "admin/cafe_write";
 	}
 
 	@RequestMapping("/cafe_view")
 	public String cafe_view() {
 
-		return "cafe_view";
+		return "admin/cafe_view";
 	}
 
 	@RequestMapping("/game_list")
 	public String game_list() {
 
-		return "game_list";
+		return "admin/game_list";
 	}
 	
 	@RequestMapping("/withdrawer_list")
 	public String withdrawer_list() {
 
-		return "withdrawer_list";
+		return "admin/withdrawer_list";
 	}
 
 	@RequestMapping("/game_write")
 	public String game_write() {
 
-		return "game_write";
+		return "admin/game_write";
 	}
 
 	@RequestMapping("/sponsor_list")
 	public String sponsor_list() {
 
-		return "sponsor_list";
+		return "admin/sponsor_list";
 	}
 
 	@RequestMapping("/trade_list")
 	public String trade_list() {
 
-		return "trade_list";
+		return "admin/trade_list";
 	}
 
 	@RequestMapping("/chart")
 	public String chart() {
 
-		return "chart";
+		return "admin/chart";
 	}
 
 	@RequestMapping("/chart2")
 	public String chart2() {
 
-		return "chart2";
+		return "admin/chart2";
 	}
 
 	@RequestMapping("/search")

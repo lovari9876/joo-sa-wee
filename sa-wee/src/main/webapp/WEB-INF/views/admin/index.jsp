@@ -8,27 +8,27 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edmin</title>
-<link type="text/css" href="css_admin/bootstrap.min.css"
+<title>Admin</title>
+<link type="text/css" href="css/admin/bootstrap.min.css"
 	rel="stylesheet">
-<link type="text/css" href="css_admin/bootstrap-responsive.min.css"
+<link type="text/css" href="css/admin/bootstrap-responsive.min.css"
 	rel="stylesheet">
-<link type="text/css" href="css_admin/theme.css" rel="stylesheet">
-<link type="text/css" href="img_admin/icons/css/font-awesome.css"
+<link type="text/css" href="css/admin/theme.css" rel="stylesheet">
+<link type="text/css" href="images/admin/icons/css/font-awesome.css"
 	rel="stylesheet">
 <!--         <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
             rel='stylesheet'> -->
 </head>
 <body>
 
-	<script src="js_admin/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	
 	<!-- 탭 -->
-	<script src="js_admin/chart/tab.js" type="text/javascript"></script> 
+	<script src="js/admin/chart/tab.js" type="text/javascript"></script> 
 
 	<!-- 차트 Chart.js -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="js_admin/chart/chart1.js" type="text/javascript"></script>
+	<script src="js/admin/chart/chart1.js" type="text/javascript"></script>
 
 	<%@include file="side.jsp"%>
 
@@ -145,9 +145,9 @@
 		</div>
 	</div>
 	<!-- <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script> -->
-	<script src="js_admin/jquery-ui-1.10.1.custom.min.js"
+	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
-	<script src="js_admin/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
 
 
 </body>

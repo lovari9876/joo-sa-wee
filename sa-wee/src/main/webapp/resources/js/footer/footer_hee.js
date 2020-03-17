@@ -1,6 +1,6 @@
 // 이미 smoothscroll 쓰고 있다면 안겹치게 주석 고고
 
-/*jQuery(function($) {
+jQuery(function($) {
 
 	'use strict';
 
@@ -24,4 +24,4 @@
 	};
 	OnePageNavigation();	
 
-});*/
+});
