@@ -29,13 +29,13 @@
 	
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/css-hyesoo/bootstrap.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/font-awesome.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/slicknav.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/owl.carousel.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/magnific-popup.css" />
-<link rel="stylesheet" href="css/css-hyesoo/animate.css" />
-<link rel="stylesheet" href="css/css-hyesoo/linearicons.css" />
+<link rel="stylesheet" href="css/board_hs/bootstrap.min.css" />
+<link rel="stylesheet" href="css/board_hs/font-awesome.min.css" />
+<link rel="stylesheet" href="css/board_hs/slicknav.min.css" />
+<link rel="stylesheet" href="css/board_hs/owl.carousel.min.css" />
+<link rel="stylesheet" href="css/board_hs/magnific-popup.css" />
+<link rel="stylesheet" href="css/board_hs/animate.css" />
+<link rel="stylesheet" href="css/board_hs/linearicons.css" />
 <link rel="stylesheet"
 	href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 <link rel="stylesheet"
@@ -44,9 +44,9 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
-<link rel="stylesheet" href="css/css-hyesoo/style.css" />
-<link rel="stylesheet" href="css/css-hyesoo/cafe_content_view_style.css" />
-<link rel="stylesheet" href="css/css-hyesoo/footer-style.css"/>
+<link rel="stylesheet" href="css/board_hs/style.css" />
+<link rel="stylesheet" href="css/board_hs/cafe_content_view_style.css" />
+<link rel="stylesheet" href="css/board_hs/footer-style.css"/>
 
 
 </head>
@@ -163,15 +163,15 @@
 
 						<div class="carousel-inner" role="listbox">
 							<div class="carousel-item active">
-								<img src="img/img-hyesoo/cafe1.png">
+								<img src="images/img-hyesoo/cafe1.png">
 							</div>
 
 							<div id="target" class="carousel-item">
-								<img src="img/img-hyesoo/cafe2.png">
+								<img src="images/img-hyesoo/cafe2.png">
 							</div>
 
 							<div class="carousel-item">
-								<img src="img/img-hyesoo/cafe4.png">
+								<img src="images/img-hyesoo/cafe4.png">
 							</div>
 						</div>
 
@@ -636,22 +636,20 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/js-hyesoo/jquery-3.2.1.min.js"></script>
-	<script src="js/js-hyesoo/bootstrap.min.js"></script>
-	<script src="js/js-hyesoo/jquery.slicknav.min.js"></script>
-	<script src="js/js-hyesoo/owl.carousel.min.js"></script>
-	<script src="js/js-hyesoo/jquery.sticky-sidebar.min.js"></script>
-	<script src="js/js-hyesoo/jquery.magnific-popup.min.js"></script>
-	<script src="js/js-hyesoo/main.js"></script>
-	<script src="js/js-hyesoo/doro.js"></script>
-	<!-- <script src="js/scroll.js"></script> -->
-	<!-- <script src="js/tab.js"></script> -->
-	<script src="js/js-hyesoo/cafe-photo.js"></script>
-	<script src="js/js-hyesoo/jquery.easing.1.3.js"></script>
-	<script src="js/js-hyesoo/isotope.pkgd.min.js"></script>
-	<script src="js/js-hyesoo/bootstrap-select.min.js"></script>
-	<script src="jsjs-hyesoo//custom.js"></script>
-	<!-- <script src="js/cafe-doro"></script> -->
+	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
+	<script src="js/board_hs/bootstrap.min.js"></script>
+	<script src="js/board_hs/jquery.slicknav.min.js"></script>
+	<script src="js/board_hs/owl.carousel.min.js"></script>
+	<script src="js/board_hs/jquery.sticky-sidebar.min.js"></script>
+	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
+	<script src="js/board_hs/main.js"></script>
+	<script src="js/board_hs/doro.js"></script>
+	
+	<script src="js/board_hs/cafe-photo.js"></script>
+	<script src="js/board_hs/jquery.easing.1.3.js"></script>
+	<script src="js/board_hs/isotope.pkgd.min.js"></script>
+	<script src="js/board_hs/bootstrap-select.min.js"></script>
+	<script src="js/board_hs/custom.js"></script>
 	
 	<!-- script 부분 -->
 	<!-- tooltip 부분 -->

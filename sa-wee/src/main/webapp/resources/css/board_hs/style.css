@@ -482,7 +482,7 @@ button span.lnr-magnifier {
 	height: 20px;
 	right: 0;
 	top: 1px;
-	background-image: url("../img/img-hyesoo/arrow-down.png");
+	background-image: url("/images/img-hyesoo/arrow-down.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 }
@@ -494,7 +494,7 @@ button span.lnr-magnifier {
 	height: 20px;
 	right: 0;
 	top: 1px;
-	background-image: url("../img/img-hyesoo/arrow-down.png");
+	background-image: url("/images/img-hyesoo/arrow-down.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 }
@@ -506,7 +506,7 @@ button span.lnr-magnifier {
 	height: 20px;
 	right: 0;
 	top: 1px;
-	background-image: url("../img/img-hyesoo/arrow-down.png");
+	background-image: url("/images/img-hyesoo/arrow-down.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 }
@@ -522,7 +522,7 @@ button span.lnr-magnifier {
 }
 /* 상단바 메뉴에 마우스 올렸을때 뒤에 > 이미지 (색상) 변화*/
 .main-menu li a:hover:after {
-	background-image: url("../img/img-hyesoo/arrow-down-color.png");
+	background-image: url("../images/img-hyesoo/arrow-down-color.png");
 }
 
 /* 안씀 */
@@ -542,7 +542,7 @@ button span.lnr-magnifier {
 
 /* 서브메뉴로 마우스 이동시에도 > 이거 자주색 이미지로 유지 */
 .main-menu li:hover>a:after {
-	background-image: url("../img/img-hyesoo/arrow-down-color.png");
+	background-image: url("../images/img-hyesoo/arrow-down-color.png");
 }
 
 /* 로그인.회원가입 아이콘 크기,위치 조정  */
@@ -672,7 +672,7 @@ button span.lnr-magnifier {
     position: absolute;
     top: 0;
     left: 0;
-    background-image: url("../img/img-hyesoo/Delicate.jpg");
+    background-image: url("../images/img-hyesoo/Delicate.jpg");
 	opacity : 0.4; 
     width : 100%;
     /* 이거로 main section 뒤에 배경 높이 조절해야함 */
@@ -992,7 +992,7 @@ button span.lnr-magnifier {
 ---------------------*/
 .blog-section {
 	/* background: #fff; */
-	background-image: url("../img/img-hyesoo/sub4.jpg");
+	background-image: url("/images/img-hyesoo/sub4.jpg");
 
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#501755+0,2d1854+100 */
 	/* background: #501755; */
@@ -1135,7 +1135,7 @@ button span.lnr-magnifier {
 	-webkit-transition: all 0.2s;
 	-o-transition: all 0.2s;
 	transition: all 0.2s;
-	background-image: url("../img/img-hyesoo/double-arrow.png");
+	background-image: url("../images/img-hyesoo/double-arrow.png");
 	background-repeat: no-repeat;
 	background-position: right -120% center;
 	background-size: 11px;
@@ -1307,7 +1307,7 @@ button span.lnr-magnifier {
 }
 
 .gradient-bg, .newsletter-section {
-	background-image: url("../img/img-hyesoo/sub4.jpg");
+	background-image: url("/images/img-hyesoo/sub4.jpg");
 	/* Old browsers */
 	/* FF3.6-15 */
 	/* background: -webkit-linear-gradient(left, #3e0f3d 0%, #1c0f3b 100%);
@@ -1324,7 +1324,7 @@ button span.lnr-magnifier {
   Newsletter section
 ----------------------*/
 .newsletter-section {
-	background-image: url("../img/img-hyesoo/sub4.jpg");
+	background-image: url("/images/img-hyesoo/sub4.jpg");
 }
 
 .newsletter-section .container .section-title h2 {

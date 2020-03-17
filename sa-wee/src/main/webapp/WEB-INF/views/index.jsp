@@ -19,13 +19,13 @@
 	rel="stylesheet">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/css-hyesoo/bootstrap.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/font-awesome.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/slicknav.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/owl.carousel.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/magnific-popup.css" />
-<link rel="stylesheet" href="css/css-hyesoo/animate.css" />
-<link rel="stylesheet" href="css/css-hyesoo/linearicons.css" />
+<link rel="stylesheet" href="css/board_hs/bootstrap.min.css" />
+<link rel="stylesheet" href="css/board_hs/font-awesome.min.css" />
+<link rel="stylesheet" href="css/board_hs/slicknav.min.css" />
+<link rel="stylesheet" href="css/board_hs/owl.carousel.min.css" />
+<link rel="stylesheet" href="css/board_hs/magnific-popup.css" />
+<link rel="stylesheet" href="css/board_hs/animate.css" />
+<link rel="stylesheet" href="css/board_hs/linearicons.css" />
 <link rel="stylesheet"
 	href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 <link rel="stylesheet"
@@ -34,8 +34,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
-<link rel="stylesheet" href="css/css-hyesoo/style.css" />
-<link rel="stylesheet" href="css/css-hyesoo/home-liststyle.css" />
+<link rel="stylesheet" href="css/board_hs/style.css" />
+<link rel="stylesheet" href="css/board_hs/home-liststyle.css" />
 
 
 <!--[if lt IE 9]>
@@ -169,7 +169,7 @@
 									<div class="carousel-item active">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/">
-											<img class="d-block w-100 " src="img/img-hyesoo/jumanji.png">
+											<img class="d-block w-100 " src="images/img-hyesoo/jumanji.png">
 										</a>
 										<div class="carousel-caption">첫번째</div>
 									</div>
@@ -177,14 +177,14 @@
 									<div id="target" class="carousel-item ">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
-											class="d-block w-100" src="img/img-hyesoo/jumanji.png"></a>
+											class="d-block w-100" src="images/img-hyesoo/jumanji.png"></a>
 										<div class="carousel-caption">두번째</div>
 									</div>
 
 									<div class="carousel-item">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
-											class="d-block w-100" src="img/img-hyesoo/jumanji.png"></a>
+											class="d-block w-100" src="images/img-hyesoo/jumanji.png"></a>
 										<div class="carousel-caption">세번째</div>
 									</div>
 
@@ -217,7 +217,7 @@
 						<div class="advertise-image">
 
 							<a target="_blank" href="https://www.naver.com"><img
-								src="img/img-hyesoo/age.png"></a>
+								src="images/img-hyesoo/age.png"></a>
 							<div class="content">
 								<h3>이벤트입니다</h3>
 							</div>
@@ -233,19 +233,19 @@
 				<!-- <h3>오늘의 랭킹</h3> -->
 
 				<div class="rank medal">
-					<img src="img/img-hyesoo/gold-medal128.png">
+					<img src="images/img-hyesoo/gold-medal128.png">
 					<div class="rank-name">어쩌고 1위</div>
 					<div class="rank-name">누구</div>
 				</div>
 
 				<div class="rank shield">
-					<img src="img/img-hyesoo/shield128.png">
+					<img src="images/img-hyesoo/shield128.png">
 					<div class="rank-name">어쩌고 1위</div>
 					<div class="rank-name">누구</div>
 				</div>
 
 				<div class="rank siren">
-					<img src="img/img-hyesoo/alert.png">
+					<img src="images/img-hyesoo/alert.png">
 					<div class="rank-name">어쩌고 1위</div>
 					<div class="rank-name">누구</div>
 					
@@ -583,15 +583,15 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/js-hyesoo/jquery-3.2.1.min.js"></script>
-	<script src="js/js-hyesoo/bootstrap.min.js"></script>
-	<script src="js/js-hyesoo/jquery.slicknav.min.js"></script>
-	<script src="js/js-hyesoo/owl.carousel.min.js"></script>
-	<script src="js/js-hyesoo/jquery.sticky-sidebar.min.js"></script>
-	<script src="js/js-hyesoo/jquery.magnific-popup.min.js"></script>
-	<script src="js/js-hyesoo/main.js"></script>
-	<script src="js/js-hyesoo/doro.js"></script>
-	<script src="js/js-hyesoo/scroll.js"></script>
-	<script src="js/js-hyesoo/cafe-photo.js"></script>
+	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
+	<script src="js/board_hs/bootstrap.min.js"></script>
+	<script src="js/board_hs/jquery.slicknav.min.js"></script>
+	<script src="js/board_hs/owl.carousel.min.js"></script>
+	<script src="js/board_hs/jquery.sticky-sidebar.min.js"></script>
+	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
+	<script src="js/board_hs/main.js"></script>
+	<script src="js/board_hs/doro.js"></script>
+	<script src="js/board_hs/scroll.js"></script>
+	<script src="js/board_hs/cafe-photo.js"></script>
 </body>
 </html>

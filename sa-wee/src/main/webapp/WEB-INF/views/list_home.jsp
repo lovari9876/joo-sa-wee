@@ -16,13 +16,13 @@
 	rel="stylesheet">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/css-hyesoo/bootstrap.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/font-awesome.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/slicknav.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/owl.carousel.min.css" />
-<link rel="stylesheet" href="css/css-hyesoo/magnific-popup.css" />
-<link rel="stylesheet" href="css/css-hyesoo/animate.css" />
-<link rel="stylesheet" href="css/css-hyesoo/linearicons.css" />
+<link rel="stylesheet" href="css/board_hs/bootstrap.min.css" />
+<link rel="stylesheet" href="css/board_hs/font-awesome.min.css" />
+<link rel="stylesheet" href="css/board_hs/slicknav.min.css" />
+<link rel="stylesheet" href="css/board_hs/owl.carousel.min.css" />
+<link rel="stylesheet" href="css/board_hs/magnific-popup.css" />
+<link rel="stylesheet" href="css/board_hs/animate.css" />
+<link rel="stylesheet" href="css/board_hs/linearicons.css" />
 <link rel="stylesheet"
 	href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 <link rel="stylesheet"
@@ -31,15 +31,14 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
-<link rel="stylesheet" href="css/css-hyesoo/style.css" />
-<link rel="stylesheet" href="css/css-hyesoo/list-home-style.css" />
-<!--  <link rel="stylesheet" href="css/style5.css" /> -->
+<link rel="stylesheet" href="css/board_hs/style.css" />
+<link rel="stylesheet" href="css/board_hs/list-home-style.css" />
 
 
-<link rel="stylesheet" href="css/css-hyesoo/flaticon.css">
-<link rel="stylesheet" href="css/css-hyesoo/icomoon.css">
-<link rel="stylesheet" href="css/css-hyesoo/ionicons.min.css">
-<link rel="stylesheet" href="css/css-hyesoo/open-iconic-bootstrap.min.css">
+<link rel="stylesheet" href="css/board_hs/flaticon.css">
+<link rel="stylesheet" href="css/board_hs/icomoon.css">
+<link rel="stylesheet" href="css/board_hs/ionicons.min.css">
+<link rel="stylesheet" href="css/board_hs/open-iconic-bootstrap.min.css">
 
 </head>
 <body style="overflow-x:hidden; overflow-y:auto;">
@@ -133,7 +132,7 @@
 					<div class="col-lg-6 ">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img"
-								style="background-image: url(img/img-hyesoo/5.jpg);"></a>
+								style="background-image: url(images/img-hyesoo/5.jpg);"></a>
 							
 							
 							<div class="half left-arrow d-flex align-items-center">
@@ -165,7 +164,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img"
-								style="background-image: url(img/img-hyesoo/6.jpg);"></a>
+								style="background-image: url(images/img-hyesoo/6.jpg);"></a>
 							<div class="half left-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -196,7 +195,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img order-md-last"
-								style="background-image: url(img/img-hyesoo/2.jpg);"></a>
+								style="background-image: url(images/img-hyesoo/2.jpg);"></a>
 							<div class="half right-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -226,7 +225,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img order-md-last"
-								style="background-image: url(img/img-hyesoo/3.jpg);"></a>
+								style="background-image: url(images/img-hyesoo/3.jpg);"></a>
 							<div class="half right-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -256,7 +255,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img"
-								style="background-image: url(img/img-hyesoo/1.jpg);"></a>
+								style="background-image: url(images/img-hyesoo/1.jpg);"></a>
 							<div class="half left-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -286,7 +285,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img"
-								style="background-image: url(img/img-hyesoo/4.jpg);"></a>
+								style="background-image: url(images/img-hyesoo/4.jpg);"></a>
 							<div class="half left-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -322,16 +321,14 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/js-hyesoo/jquery-3.2.1.min.js"></script>
-	<script src="js/js-hyesoo/bootstrap.min.js"></script>
-	<script src="js/js-hyesoo/jquery.slicknav.min.js"></script>
-	<script src="js/js-hyesoo/owl.carousel.min.js"></script>
-	<script src="js/js-hyesoo/jquery.sticky-sidebar.min.js"></script>
-	<script src="js/js-hyesoo/jquery.magnific-popup.min.js"></script>
-	<script src="js/js-hyesoo/main.js"></script>
-	<script src="js/js-hyesoo/doro.js"></script>
+	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
+	<script src="js/board_hs/bootstrap.min.js"></script>
+	<script src="js/board_hs/jquery.slicknav.min.js"></script>
+	<script src="js/board_hs/owl.carousel.min.js"></script>
+	<script src="js/board_hs/jquery.sticky-sidebar.min.js"></script>
+	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
+	<script src="js/board_hs/main.js"></script>
 	
-	<script src="js/js-hyesoo/tab.js"></script>
 
 </body>
 </html>
