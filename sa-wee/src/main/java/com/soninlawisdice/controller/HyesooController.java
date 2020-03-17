@@ -1,4 +1,4 @@
-package com.son_in_law_is_dice.plz;
+package com.soninlawisdice.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

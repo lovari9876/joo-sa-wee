@@ -4,8 +4,9 @@ header:
 
     <!-- Java Script for header
     ================================================== -->   
-    <script src="js_header/jquery.slicknav.min.js"></script>
-	<script src="js_header/hyesoo.js"></script>
+    <script src="js/js_header/jquery.slicknav.min.js"></script>
+	<script src="js/js_header/hyesoo.js"></script>
+	<script src="js/js_header/scroll.js"></script>
 
 =============================================================
 footer:
@@ -14,5 +15,5 @@ footer:
 	
 	<!-- Java Script for footer
     ================================================== -->  
-	<script src="js_footer/footer_hee.js"></script>
+	<script src="js/js_footer/footer_hee.js"></script>
 
