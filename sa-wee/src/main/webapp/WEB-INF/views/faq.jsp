@@ -13,7 +13,11 @@
 
 </head>
 <body id = "top"> <!-- js 적용위해 id 지정 -->
-      <%@include file="header.jsp"%>
+      
+      
+	<!-- header include start -->
+	<%@ include file="/WEB-INF/views/share/header.jsp" %>
+	<!-- header include end -->
 
 	<section
 		class="cd-faq js-cd-faq container max-width-md margin-top-lg margin-bottom-lg">
@@ -477,18 +481,26 @@
 	</section>
 	
 	
- 	 <%@include file="footer.jsp"%> 
+ 	<!-- footer include start -->
+	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
+	<!-- footer include end -->
 	
 	
 	
 	
 	
-	
+	<!-- =========== js ==================== -->
 	<!-- cd-faq -->
 	<script src="js/faq/util.js"></script>
 	<!-- util functions included in the CodyHouse framework -->
 	<script src="js/faq/main.js"></script>
-	
+	<!-- Java Script for header
+    ================================================== -->   
+    <script src="js_header/jquery.slicknav.min.js"></script>
+	<script src="js_header/hyesoo.js"></script>
+	<!-- Java Script for footer
+    ================================================== -->  
+	<script src="js_footer/footer_hee.js"></script>
 	
 	
 	
