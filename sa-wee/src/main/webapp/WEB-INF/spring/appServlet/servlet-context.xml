@@ -26,6 +26,13 @@
 	<resources mapping="/icon-fonts/**"	location="/resources/icon-fonts/" />
 	<resources mapping="/img/**" location="/resources/img/" />
 	<resources mapping="/resources/**" location="/resources/" />
+	
+	<resources mapping="/css_admin/**" location="/resources/css/css_admin/" />
+	<resources mapping="/js_admin/**" location="/resources/js/js_admin/" />
+	<resources mapping="/img_admin/**" location="/resources/images/img_admin/" />
+	
+	
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

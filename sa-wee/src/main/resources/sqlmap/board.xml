@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="edu.bit.ex.mapper.AdminMapper">
+
+	<!--page=2&perPageNum=10 -->
+    <select id="list" resultType="edu.bit.ex.vo.AdminVO" parameterType="edu.bit.ex.vo.SearchCriteria">
+
+	SELECT * FROM
+	(
+         SELECT st_no, st_date, st_visitor_num, st_post_num, st_trade_num, st_comment_num,
+		               ROW_NUMBER() OVER(ORDER BY st_no DESC) AS RNUM
+		         FROM statistics 
+		         WHERE 1=1
+		         <include refid="search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		ORDER BY st_no DESC
+
+	</select>
+	
+	
+	<select id="listCount" parameterType = "edu.bit.ex.vo.SearchCriteria" resultType="int">
+
+		SELECT COUNT(st_no)
+		  FROM statistics
+		 WHERE 1=1
+		 <include refid="search"></include>	
+		 AND st_no > 0
+
+	</select>
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND ST_COMMENT_NUM LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND ST_VISITOR_NUM LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND ST_TRADE_NUM LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (ST_COMMENT_NUM LIKE '%' || #{keyword} || '%') or (ST_VISITOR_NUM LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	
+	
+	
+</mapper>
