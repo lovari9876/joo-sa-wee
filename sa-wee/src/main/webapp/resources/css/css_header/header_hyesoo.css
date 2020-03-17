@@ -31,7 +31,7 @@ html, body {
 	/* padding: 15px 15px 0; */
 	/* 상단바 이미지 바꾸는곳 */
 	background: #1E0A37;
-	/* background-image: url("../img_header/main.jpg"); */
+	/* background-image: url("../../images/img_header/main.jpg"); */
 	font: dunggeunmo;
 	box-shadow: 0 0.17rem 0.5rem rgba(132, 116, 160, 0.75);
 }
@@ -212,7 +212,7 @@ button span.lnr-magnifier {
 	height: 20px;
 	right: 0;
 	top: 1px;
-	background-image: url("../img_header/icons/arrow-down.png");
+	background-image: url("../../images/img_header/icons/arrow-down.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 }
@@ -224,7 +224,7 @@ button span.lnr-magnifier {
 	height: 20px;
 	right: 0;
 	top: 1px;
-	background-image: url("../img_header/icons/arrow-down.png");
+	background-image: url("../../images/img_header/icons/arrow-down.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 }
@@ -236,7 +236,7 @@ button span.lnr-magnifier {
 	height: 20px;
 	right: 0;
 	top: 1px;
-	background-image: url("../img_header/icons/arrow-down.png");
+	background-image: url("../../images/img_header/icons/arrow-down.png");
 	background-repeat: no-repeat;
 	background-position: right center;
 }
@@ -252,7 +252,7 @@ button span.lnr-magnifier {
 }
 /* 상단바 메뉴에 마우스 올렸을때 뒤에 > 이미지 (색상) 변화*/
 .main-menu li a:hover:after {
-	background-image: url("../img_header/icons/arrow-down-color.png");
+	background-image: url("../../images/img_header/icons/arrow-down-color.png");
 }
 
 /* 안씀 */
@@ -272,7 +272,7 @@ button span.lnr-magnifier {
 
 /* 서브메뉴로 마우스 이동시에도 > 이거 자주색 이미지로 유지 */
 .main-menu li:hover>a:after {
-	background-image: url("../img_header/icons/arrow-down-color.png");
+	background-image: url("../../images/img_header/icons/arrow-down-color.png");
 }
 
 /* 로그인.회원가입 아이콘 크기,위치 조정  */

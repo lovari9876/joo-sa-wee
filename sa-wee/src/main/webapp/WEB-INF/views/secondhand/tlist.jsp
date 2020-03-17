@@ -22,23 +22,6 @@
     <link rel="stylesheet" href="css/css_secondhand/base.css">
     <link rel="stylesheet" href="css/css_secondhand/vendor.css">
     <link rel="stylesheet" href="css/css_secondhand/main.css">
-    
-    <!-- 혜수꺼 css
-    ================================================== -->
-    <link rel="stylesheet" href="css_header/header_hyesoo.css">
-    <link rel="stylesheet" href="css_header/slicknav.min.css" /> 
-    <link rel="stylesheet" href="css_header/font-awesome.min.css" />
-    <link rel="stylesheet"
-		href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
-	<link rel="stylesheet"
-		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-
-	<!-- 희정 footer css
-    ================================================== -->
-	<link rel="stylesheet" href="css_footer/footer_hee.css">
-	<link rel="stylesheet" href="fonts/fonts_cassie/icomoon/style.css"> <!-- scroll 화살표 -->
 
     <!-- script
     ================================================== -->
@@ -54,165 +37,11 @@
 
 <body id="top">
 
-	<!-- 상단바 전체 -->
-	<!-- Header section -->
-	<header class="header-section">
-		<div class="header-warp">
-			<div class="header-bar-warp d-flex ">
-
-				<!-- site logo -->
-				<!-- <a href="home.html" class="site-logo">
-					<img src="./img/3535.png" width = "200px" height = "40px" alt="">
-				</a> -->
-				<nav class="top-nav-area w-100 row">
-
-					<!-- 상단바 메뉴 -->
-					<ul class="main-menu head--ul primary-menu">
-						<li><a href="home">Home</a></li>
-						<li><a class="gameinfo" href="">보드게임 정보</a>
-							<ul class="sub-menu">
-								<li><a href="">당신의 보드게임</a></li>
-								<li><a href="">보드게임 리스트</a></li>
-							</ul></li>
-						<li><a class="comm" href="games">커뮤니티</a>
-							<ul class="sub-menu">
-								<li><a href="list">보드이야기</a></li>
-								<li><a href="list">개봉기 및 리뷰</a></li>
-								<li><a href="list">보드게임 모임</a></li>
-								<li><a href="list">보드 뉴스</a></li>
-								<li><a href="list">질문 & 답변</a></li>
-								<li><a href="list">창작 보드게임</a></li>
-							</ul></li>
-						<li><a href="review">보드게임카페</a></li>
-						<li><a href="blog">보부상</a></li>
-						<li><a class="help" href="contact">헬프데스크</a>
-							<ul class="sub-menu">
-								<li><a href="">자주하는 질문</a></li>
-								<li><a href="">1 : 1 문의 </a></li>
-								<li><a href="">무인도 </a></li>
-							</ul></li>
-						<!-- 검색창  -->
-						<li><div class="mysearch relative">
-								<span class="lnr lnr-magnifier"></span>
-								<form action="#" class="mysearch-field">
-									<input type="text" placeholder="검색어를 입력하세요"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = '검색어를 입력하세요'">
-									<button class="mysearch-submit">
-										<span class="lnr lnr-magnifier"></span>
-									</button>
-								</form>
-							</div></li>
-
-						<!-- 사람모양 아이콘  -->
-						<li><a class="fas fa-user" href="#"></a>
-							<ul class="sub-menu">
-								<li><a href="gameSingle">로그인</a></li>
-								<li><a href="gameSingle">회원가입</a></li>
-
-							</ul> <!-- <div class = smile>
-								<a class = "fas fa-user" href="#"></a>
-								<ul class = "sub-menu">
-									<li><a href = "">로그인</a></li>
-									<li><a href = "">회원가입</a></li>
-								</ul>
-							</div>	 --></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
-	<!-- Header section end -->
-
-
-    <!-- pageheader: 원래 헤더
-    ================================================== -->
-    <!-- <div class="s-pageheader">
-
-        <header class="header">
-            <div class="header__content row">
-
-                <div class="header__logo">
-                    <a class="logo" href="index.html">
-                        <img src="images/img_cassie/img_cassie/logo.svg" alt="Homepage">
-                    </a>
-                </div> end header__logo
-
-                <ul class="header__social">
-                    <li>
-                        <a href="#0"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                        <a href="#0"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                        <a href="#0"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                    </li>
-                    <li>
-                        <a href="#0"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
-                    </li>
-                </ul> end header__social
-
-                <a class="header__search-trigger" href="#0"></a>
-
-                <div class="header__search">
-
-                    <form role="search" method="get" class="header__search-form" action="#">
-                        <label>
-                            <span class="hide-content">Search for:</span>
-                            <input type="search" class="search-field" placeholder="Type Keywords" value="" name="s" title="Search for:" autocomplete="off">
-                        </label>
-                        <input type="submit" class="search-submit" value="Search">
-                    </form>
-        
-                    <a href="#0" title="Close Search" class="header__overlay-close">Close</a>
-
-                </div>  end header__search
-
-
-                <a class="header__toggle-menu" href="#0" title="Menu"><span>Menu</span></a>
-
-                <nav class="header__nav-wrap">
-
-                    <h2 class="header__nav-heading h6">Site Navigation</h2>
-
-                    <ul class="header__nav">
-                        <li><a href="index.html" title="">Home</a></li>
-                        <li class="has-children current">
-                            <a href="#0" title="">Categories</a>
-                            <ul class="sub-menu">
-                            <li><a href="category.html">Lifestyle</a></li>
-                            <li><a href="category.html">Health</a></li>
-                            <li><a href="category.html">Family</a></li>
-                            <li><a href="category.html">Management</a></li>
-                            <li><a href="category.html">Travel</a></li>
-                            <li><a href="category.html">Work</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-children">
-                            <a href="#0" title="">Blog</a>
-                            <ul class="sub-menu">
-                            <li><a href="single-video.html">Video Post</a></li>
-                            <li><a href="single-audio.html">Audio Post</a></li>
-                            <li><a href="single-gallery.html">Gallery Post</a></li>
-                            <li><a href="single-standard.html">Standard Post</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="style-guide.html" title="">Styles</a></li>
-                        <li><a href="about.html" title="">About</a></li>
-                        <li><a href="contact.html" title="">Contact</a></li>
-                    </ul> end header__nav
-
-                    <a href="#0" title="Close Menu" class="header__overlay-close close-mobile-menu">Close</a>
-
-                </nav> end header__nav-wrap
-
-            </div> header-content
-        </header> header
-
-    </div> end s-pageheader -->
-
-
+	<!-- header include start -->
+	<%@ include file="/WEB-INF/views/share/header.jsp" %>
+	<!-- header include end -->
+	
+    
     <!-- s-content
     ================================================== -->
     <section class="s-content">
@@ -807,170 +636,9 @@
     </section> <!-- end s-extra -->
 
 
-	<!-- Footer section -->
-	<footer class="site-footer">
-
-		<a href="#top" class="smoothscroll scroll-top"> <span
-			class="icon-keyboard_arrow_up"></span>
-		</a>
-
-		<div class="container">
-			<div class="footer--row mb-5">
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href="#"><h3>Home</h3></a>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href=""><h3>보드게임 정보</h3></a>
-					<ul class="list-unstyled">
-						<li><a href="#">당신의 보드게임</a></li>
-						<li><a href="#">보드게임 리스트</a></li>
-					</ul>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href=""><h3>커뮤니티</h3></a>
-					<ul class="list-unstyled">
-						<li><a href="#">보드 이야기</a></li>
-						<li><a href="#">개봉기 및 리뷰</a></li>
-						<li><a href="#">보드게임 모임</a></li>
-						<li><a href="#">보드 뉴스</a></li>
-						<li><a href="#">질문 & 답변</a></li>
-						<li><a href="#">창작 보드게임</a></li>
-					</ul>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href="#"><h3>보드게임 카페</h3></a>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href="#"><h3>보부상</h3></a>
-				</div>
-				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href=""><h3>헬프데스크</h3></a>
-					<ul class="list-unstyled">
-						<li><a href="#">자주하는 질문</a></li>
-						<li><a href="#">1:1 문의</a></li>
-						<li><a href="#">무인도</a></li>
-					</ul>
-				</div>				
-			</div>
-
-			<div class="footer--row text-center">
-				<div class="col-12">
-					<div class="copyright text-white">
-						<a href="">Colorlib</a> 2018 @ All rights reserved
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- Footer section end -->
-
-
-    <!-- s-footer 원래 있던 것(philosophy)
-    ================================================== -->
-    <!-- <footer class="s-footer">
-
-        <div class="s-footer__main">
-            <div class="row">
-                
-                <div class="col-two md-four mob-full s-footer__sitelinks">
-                        
-                    <h4>Quick Links</h4>
-
-                    <ul class="s-footer__linklist">
-                        <li><a href="#0">Home</a></li>
-                        <li><a href="#0">Blog</a></li>
-                        <li><a href="#0">Styles</a></li>
-                        <li><a href="#0">About</a></li>
-                        <li><a href="#0">Contact</a></li>
-                        <li><a href="#0">Privacy Policy</a></li>
-                    </ul>
-
-                </div> <!-- end s-footer__sitelinks -->
-
-                <!-- <div class="col-two md-four mob-full s-footer__archives">
-                        
-                    <h4>Archives</h4>
-
-                    <ul class="s-footer__linklist">
-                        <li><a href="#0">January 2018</a></li>
-                        <li><a href="#0">December 2017</a></li>
-                        <li><a href="#0">November 2017</a></li>
-                        <li><a href="#0">October 2017</a></li>
-                        <li><a href="#0">September 2017</a></li>
-                        <li><a href="#0">August 2017</a></li>
-                    </ul>
-
-                </div> <!-- end s-footer__archives -->
-
-                <!-- <div class="col-two md-four mob-full s-footer__social">
-                        
-                    <h4>Social</h4>
-
-                    <ul class="s-footer__linklist">
-                        <li><a href="#0">Facebook</a></li>
-                        <li><a href="#0">Instagram</a></li>
-                        <li><a href="#0">Twitter</a></li>
-                        <li><a href="#0">Pinterest</a></li>
-                        <li><a href="#0">Google+</a></li>
-                        <li><a href="#0">LinkedIn</a></li>
-                    </ul>
-
-                </div> <!-- end s-footer__social -->
-
-                <!-- <div class="col-five md-full end s-footer__subscribe">
-                        
-                    <h4>Our Newsletter</h4>
-
-                    <p>Sit vel delectus amet officiis repudiandae est voluptatem. Tempora maxime provident nisi et fuga et enim exercitationem ipsam. Culpa consequatur occaecati.</p>
-
-                    <div class="subscribe-form">
-                        <form id="mc-form" class="group" novalidate="true">
-
-                            <input type="email" value="" name="EMAIL" class="email" id="mc-email" placeholder="Email Address" required="">
-                
-                            <input type="submit" name="subscribe" value="Send">
-                
-                            <label for="mc-email" class="subscribe-message"></label>
-                
-                        </form>
-                    </div>
-
-                </div> <!-- end s-footer__subscribe -->
-
-            <!-- </div>
-        </div> <!-- end s-footer__main -->
-
-        <!-- <div class="s-footer__bottom">
-            <div class="row">
-                <div class="col-full">
-                    <div class="s-footer__copyright">
-                        <span>© Copyright Philosophy 2018</span> 
-                        <span>Site Template by <a href="https://colorlib.com/">Colorlib</a></span>
-                    </div>
-
-                    <div class="go-top">
-                        <a class="smoothscroll" title="Back to Top" href="#top"></a>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- end s-footer__bottom -->
-
-    <!-- </footer> <!-- end s-footer -->
-
-
-    <!-- preloader
-    ================================================== -->
-	<!--   <div id="preloader">
-        <div id="loader">
-            <div class="line-scale">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-    </div> -->
+	<!-- footer include start -->
+	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
+	<!-- footer include end -->
 
 
     <!-- Java Script
@@ -978,9 +646,9 @@
     <script src="js/js_cassie/jquery-3.2.1.min.js"></script>
     <script src="js/js_cassie/plugins.js"></script>
     <script src="js/js_cassie/main.js"></script>
-    <script src="js_header/jquery.slicknav.min.js"></script>
-	<script src="js_header/header_hyesoo.js"></script>
-	<script src="js_footer/footer_hee.js"></script>
+    <script src="js/js_header/jquery.slicknav.min.js"></script>
+	<script src="js/js_header/header_hyesoo.js"></script>
+	<!-- <script src="js/js_footer/footer_hee.js"></script> --> <!-- scroll to top 이미 있음 -->
 
 </body>
 
