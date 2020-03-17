@@ -21,7 +21,7 @@
 
     // svg fallback
     if (!Modernizr.svg) {
-        $(".header__logo img").attr("src", "images/img_cassie/logo.png");
+        $(".header__logo img").attr("src", "images/cassie/logo.png");
     }
 
 
@@ -395,9 +395,9 @@
 
             // marker url
             if ( winWidth > 480 ) {
-                marker_url = 'images/img_cassie/icon-location@2x.png';
+                marker_url = 'images/cassie/icon-location@2x.png';
             } else {
-                marker_url = 'images/img_cassie/icon-location.png';
+                marker_url = 'images/cassie/icon-location.png';
             }
 
             // map style

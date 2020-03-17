@@ -8,9 +8,9 @@
 
     <!-- 혜수꺼 css
     ================================================== -->
-    <link rel="stylesheet" href="css/css_header/header_hyesoo.css">
-    <link rel="stylesheet" href="css/css_header/slicknav.min.css" /> 
-    <link rel="stylesheet" href="css/css_header/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/header/header_hyesoo.css">
+    <link rel="stylesheet" href="css/header/slicknav.min.css" /> 
+    <link rel="stylesheet" href="css/header/font-awesome.min.css" />
     <link rel="stylesheet"
 		href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 	<link rel="stylesheet"
@@ -83,7 +83,7 @@
 	</header>
 	<!-- Header section end -->
 
-<script src="js/js_header/scroll.js"></script>
+
 </body>
 
 </html>

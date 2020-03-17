@@ -490,18 +490,18 @@
 	
 	
 	<!-- =========== js ==================== -->
-	<script src="js/js_cassie/jquery-3.2.1.min.js"></script>
+	<script src="js/cassie/jquery-3.2.1.min.js"></script>
 	<!-- cd-faq -->
 	<script src="js/faq/util.js"></script>
 	<!-- util functions included in the CodyHouse framework -->
 	<script src="js/faq/main.js"></script>
 	<!-- Java Script for header
     ================================================== -->   
-    <script src="js/js_header/jquery.slicknav.min.js"></script>
-	<script src="js/js_header/header_hyesoo.js"></script>
+    <script src="js/header/jquery.slicknav.min.js"></script>
+	<script src="js/header/header_hyesoo.js"></script>
 	<!-- Java Script for footer
     ================================================== -->  
-	<script src="js/js_footer/footer_hee.js"></script>
+	<script src="js/footer/footer_hee.js"></script>
 	
 	
 	

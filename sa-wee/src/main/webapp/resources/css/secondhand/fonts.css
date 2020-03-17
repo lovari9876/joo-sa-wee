@@ -1,0 +1,268 @@
+/* ===================================================================
+ * fonts.scss
+ *
+ * ------------------------------------------------------------------- */
+
+/*
+ * libre baskerville
+================================================================================ */
+@font-face {
+   font-family: "librebaskerville-regular";
+   src: url("../../fonts/fonts_cassie/librebaskerville/librebaskerville-regular-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/librebaskerville/librebaskerville-regular-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "librebaskerville-italic";
+   src: url("../../fonts/fonts_cassie/librebaskerville/librebaskerville-italic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/librebaskerville/librebaskerville-italic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "librebaskerville-bold";
+   src: url("../../fonts/fonts_cassie/librebaskerville/librebaskerville-bold-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/librebaskerville/librebaskerville-bold-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+/*
+ * metropolis
+================================================================================ */
+@font-face {
+   font-family: "metropolis-black";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-black-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-black-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-black-italic";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-blackitalic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-blackitalic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-extrabold";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-extrabold-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-extrabold-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-extrabold-italic";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-extrabolditalic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-extrabolditalic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-bold";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-bold-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-bold-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-bold-italic";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-bolditalic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-bolditalic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-semibold";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-semibold-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-semibold-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-semibold-italic";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-semibolditalic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-semibolditalic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-medium";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-medium-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-medium-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-medium-italic";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-mediumitalic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-mediumitalic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-regular";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-regular-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-regular-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-italic";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-regularitalic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-regularitalic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-light";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-light-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-light-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-light-italic";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-lightitalic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-lightitalic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-extralight";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-extralight-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-extralight-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-extralight-italic";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-extralightitalic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-extralightitalic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-thin";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-thin-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-thin-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+@font-face {
+   font-family: "metropolis-thin-italic";
+   src: url("../../fonts/fonts_cassie/metropolis/metropolis-thinitalic-webfont.woff2") format("woff2"), url("../../fonts/fonts_cassie/metropolis/metropolis-thinitalic-webfont.woff") format("woff");
+   font-style: normal;
+   font-weight: normal;
+}
+
+
+/*
+ * 내가 따로 집어넣은 폰트들
+================================================================================ */
+
+@font-face {
+	font-family: 'dunggeunmo';
+ 	src: url("../../fonts/fonts_cassie/joosaweefonts/DungGeunMo.ttf") format("truetype");
+   	font-style: normal;
+   	font-weight: normal;
+}
+
+@font-face {
+	font-family: 'leesunshinBold';
+	src: url("../../fonts/fonts_cassie/joosaweefonts/leesunshinBold.ttf") format("truetype");
+	font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+	font-family: 'leesunshinRegular';
+	src: url("../../fonts/fonts_cassie/joosaweefonts/leesunshinRegular.ttf") format("truetype");
+	font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+	font-family: 'designhouseBold';
+	src: url("../../fonts/fonts_cassie/joosaweefonts/designhouseBold.ttf") format("truetype");
+	font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+	font-family: 'designhouseLight';
+	src: url("../../fonts/fonts_cassie/joosaweefonts/designhouseLight.ttf") format("truetype");
+	font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+	font-family: 'EBSjoosikyengB';
+	src: url('../../fonts/fonts_cassie/joosaweefonts/EBSjoosikyengB.ttf') format('truetype');
+	font-weight: normal; 
+ 	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EBSjoosikyengL';
+	src: url('../../fonts/fonts_cassie/joosaweefonts/EBSjoosikyengL.ttf') format('truetype');
+	font-weight: normal; 
+ 	font-style: normal;
+}
+
+@font-face {
+	font-family: 'EBSjoosikyengM';
+	src: url('../../fonts/fonts_cassie/joosaweefonts/EBSjoosikyengM.ttf') format('truetype');
+	font-weight: normal; 
+ 	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ONsongganggasaB';
+	src: url("../../fonts/fonts_cassie/joosaweefonts/ONsongganggasaB.ttf") format('truetype');
+	font-weight: normal; 
+ 	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ONsongganggasaL';
+	src: url('../../fonts/fonts_cassie/joosaweefonts/ONsongganggasaL.ttf') format('truetype');
+	font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+	font-family: 'ONsongganggasaR';
+	src: url('../../fonts/fonts_cassie/joosaweefonts/ONsongganggasaR.ttf') format('truetype');
+	font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+	font-family: 'SSRockRegular';
+	src: url('../../fonts/fonts_cassie/joosaweefonts/SSRockRegular.ttf') format('truetype');
+	font-style: normal;
+    font-weight: normal;
+}
+
+/* 'Black And White Picture' */
+@import url('https://fonts.googleapis.com/css?family=Black+And+White+Picture&display=swap&subset=korean');
+
+/* 맛간 이순신 폰트 적용위해 눈누에서 가져옴 */
+@font-face { 
+	font-family: 'YiSunShinRegular'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinRegular.woff') format('woff'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+
+/* 맛간 주시경 폰트 적용위해 눈누에서 가져옴 */
+@font-face { 
+	font-family: 'EBSJSKMedium'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/EBSJSKMedium.woff') format('woff'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+
+
+/*# sourceMappingURL=fonts.css.map */

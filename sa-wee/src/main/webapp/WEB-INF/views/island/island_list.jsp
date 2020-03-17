@@ -20,9 +20,9 @@
 
 	<!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="css/css_secondhand/base.css">
-    <link rel="stylesheet" href="css/css_secondhand/vendor.css">
-    <link rel="stylesheet" href="css/css_secondhand/main.css">
+    <link rel="stylesheet" href="css/island/base.css">
+    <link rel="stylesheet" href="css/island/vendor.css">
+    <link rel="stylesheet" href="css/island/main.css">
     
 	<style type="text/css" media="screen"> /* 이 페이지에만 해당쓰~~ */
     	body{
@@ -33,7 +33,7 @@
 
     <!-- script
     ================================================== -->
-    <script src="js/js_cassie/modernizr.js"></script>
+    <script src="js/cassie/modernizr.js"></script>
     <!-- <script src="js/pace.min.js"></script> --><!-- 프리로더와 더불어 나아가는 흰 줄 -->
 
     <!-- favicons
@@ -43,7 +43,7 @@
 
 </head>
 
-<body id="top" class="island">
+<body id="top" >
 
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
@@ -54,7 +54,7 @@
     ================================================== -->
     <section id="styles" class="s-styles">
     
-        <div class="row narrow section-intro add-bottom text-center">
+        <div class="row narrow section-intro add-bottom text-center s-styles-header">
 
             <div class="col-twelve tab-full">
 
@@ -260,12 +260,16 @@
 
     <!-- Java Script
     ================================================== -->
-    <script src="js/js_cassie/jquery-3.2.1.min.js"></script>
-    <script src="js/js_cassie/plugins.js"></script>
-    <script src="js/js_cassie/main.js"></script>
-    <script src="js/js_header/jquery.slicknav.min.js"></script>
-	<script src="js/js_header/header_hyesoo.js"></script>
-	<!-- <script src="js/js_footer/footer_hee.js"></script> --> <!-- scroll to top 이미 있음 -->
+    <script src="js/cassie/jquery-3.2.1.min.js"></script>
+    <script src="js/cassie/plugins.js"></script>
+    <script src="js/cassie/main.js"></script>
+    <!-- header -->
+    <script src="js/header/jquery.slicknav.min.js"></script>
+	<script src="js/header/header_hyesoo.js"></script>
+	<script src="js/header/scroll.js"></script>
+	<!-- footer -->
+	<!-- <script src="js/footer/footer_hee.js"></script> --> <!-- scroll to top 이미 있음 -->
+
 
 </body>
 
