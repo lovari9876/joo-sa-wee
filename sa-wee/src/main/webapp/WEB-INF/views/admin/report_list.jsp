@@ -87,7 +87,7 @@
 						<tr class="trow header">
 							<td class="cell">신고 번호</td>
 							<td class="cell">신고 대상</td>
-							<td class="cell">신고 내용</td> 
+							<td class="cell title">신고 내용</td> 
 							<!-- 미리보기! 길면 ...으로 표시 ! 목록에서 선택시 content_view 페이지로 이동,  
 								 신고한 회원과, 신고당한 대상 이름, 내용 등 표시 -->
 							<td class="cell">신고일</td>
