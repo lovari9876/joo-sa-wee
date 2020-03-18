@@ -19,6 +19,9 @@
 	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/media/**" location="/resources/media/" />
 	<resources mapping="/resources/**" location="/resources/" />
+	
+	
+	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

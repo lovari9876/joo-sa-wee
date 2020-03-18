@@ -1,0 +1,315 @@
+/* =================================
+------------------------------------
+  EndGam - Gaming Magazine Template
+  Version: 1.0
+ ------------------------------------
+ ====================================*/
+
+/* 폰트 */
+@font-face {
+	font-family: 'designhouseBold';
+	src: url("designhouseBold.ttf") format('truetype');
+}
+
+@font-face {
+	font-family: 'dunggeunmo';
+	src: url("DungGeunMo.ttf") format('truetype');
+}
+
+/* 1 */
+.write-section {
+	width: 100%;
+	margin: 0 auto;
+	/* background : red; */
+}
+
+/* 2 */
+.write-container {
+	width: 100%;
+	min-height: 100vh;
+	/* background: #fff; */
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: start;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding-top : 90px;
+	/* margin-top: 90px; */
+	/* background : blue; */
+}
+
+/* 3 */
+.write-view {
+	width: 1200px;
+	margin-top: 10px;
+	padding-top : 10px;
+	padding-left : 80px;
+	padding-right : 80px;
+	padding-bottom : 30px;
+	overflow: hidden;
+	/* background : yellow; */
+	border-radius : 30px;
+}
+
+@media screen and (max-width : 768px) {
+	.write-view {
+		margin-left: 10px;
+		margin-right: 10px;
+		padding-left: 10px;
+	}
+}
+
+/* 3-1 */
+.writeName {
+	float: left;
+	margin: 20px 0 30px 0;
+	/* display : block; */
+	padding : 10px;
+	border-radius: 5px 25px 0 0;
+	background-color : #1E0A37;
+	opacity : 0.7;
+	/* color : #fff; */
+}
+
+.writeName h3{
+	color : #fff;
+	
+}
+
+@media screen and (max-width : 768px){
+	.write-view{
+		margin-left: 10px;
+    	margin-right: 10px;
+    	padding-right: 10px;
+    	padding-left: 10px;
+	}
+}
+
+.square{
+	width: 850px;
+    height: 10px;
+    background: #1E0A37;
+    opacity : 0.7;
+    float: left;
+    margin-top: 66px;
+ 	
+}
+
+@media screen and (max-width:768px){
+	.square{
+		display : none !important;
+	}
+	
+}
+/* question_write_view */
+.question-square {
+	width: 730px;
+    height: 10px;
+    background: #1E0A37;
+    opacity : 0.7;
+    float: left;
+    margin-top: 66px;
+ 	
+}
+
+@media screen and (max-width:768px){
+	.question-square{
+		display : none !important;
+	}
+}
+
+/* cafe-review-write */
+.cafe-square{
+	width: 820px;
+    height: 10px;
+    background: #1E0A37;
+    opacity : 0.7;
+    float: left;
+    margin-top: 66px;
+}
+
+@media screen and (max-width:768px){
+	.cafe-square{
+		display : none !important;
+	}
+}
+
+
+/* 3-2 */
+.write-table {
+	width: 100%;
+	display: table;
+	margin-top: 100px;
+}
+
+.write-table textarea {
+	width: 780px;
+	height: 400px;
+	resize: none;
+	border: none;
+}
+
+.write-table input {
+	width: 780px;
+	border: none;
+}
+
+
+.write-table input[type="file"] {
+	border: 1px solid #f2f2f2;
+}
+
+/* .write-table .row .file{
+	border : 1px solid #f2f2f2;
+	width : 600px;
+} */
+.write-table select {
+	height: 25px;
+	padding-left: 3px;
+	border-radius: 5px;
+	background: #fff;
+}
+
+.row {
+	display: table-row;
+	background: #fff;
+}
+
+.cell {
+	display: table-cell;
+}
+
+.row .cell {
+	font-size: 16px;
+	color: black;
+	line-height: 1.2;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+@media ( max-width : 768px) {
+	.row {
+		display: block;
+	}
+	.cell {
+		display: block;
+	}
+	.row .cell:nth-child(1) {
+		display: none;
+	}
+	.write-table, .row, .cell {
+		width: 100%;
+	}
+	.write-table textarea {
+		height: 270px;
+	}
+}
+
+::-webkit-input-placeholder {
+	color: #f2f2f2;
+}
+
+:-ms-input-placeholder {
+	color: #f2f2f2;
+}
+
+::-ms-input-placeholder {
+	color: #f2f2f2;
+}
+
+::placeholder {
+	color: #f2f2f2;
+}
+
+.row .cell:nth-child(1) {
+	width: 150px;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	/* padding-left : 50px;
+	padding-right : 30px; */
+}
+
+.row .cell:nth-child(2) {
+	padding-left: 10px;
+	border-left: 1px solid #f2f2f2;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+/* list : 목록가기 버튼, write-btn : 작성 버튼  */
+.list {
+	margin-top: 35px;
+	float: left;
+	cursor: pointer;
+	border-radius: 10px;
+	padding: 4px 14px;
+	border: 1px solid rgba(198, 198, 236, 0.7);
+	background: #1E0A37;
+	opacity: 0.7;
+	color: #fff;
+}
+
+.write-btn {
+	margin-top: 35px;
+	float: right;
+	cursor: pointer;
+	border-radius: 10px;
+	padding: 4px 14px;
+	border: 1px solid rgba(198, 198, 236, 0.6);
+	background: #1E0A37;
+	opacity: 0.7;
+	color: #fff;
+}
+
+/* 수정페이지도 이 css 쓰기때문에 이거 여기있음  */
+.modify-btn{
+	margin-top: 35px;
+	float: right;
+	cursor: pointer;
+	border-radius: 10px;
+	padding: 4px 14px;
+	border: 1px solid rgba(198, 198, 236, 0.7);
+	background: #1E0A37;
+	opacity: 0.7;
+	color: #fff;
+}
+
+.list:hover {
+	border: 1px solid rgba(198, 198, 236, 0.7);
+	background: #fff;
+	color : black;
+	opacity: 1;
+}
+
+.write-btn:hover {
+	/* background: #1E0A37;
+	opacity: 0.3;
+	color: #fff; */
+	border: 1px solid rgba(198, 198, 236, 0.7);
+	background: #fff;
+	color : black;
+	opacity: 1;
+}
+
+.modify-btn:hover{
+	border: 1px solid rgba(198, 198, 236, 0.7);
+	background: #fff;
+	color : black;
+	opacity: 1;
+}
+
+
+
+@media screen and (max-width : 768) {
+	.list {
+		margin-bottom: 10px;
+	}
+	.write-btn {
+		margin-bottom: 10px;
+	}
+}

@@ -19,14 +19,13 @@
 
 	<!-- CSS
     ================================================== -->
-    <link rel="stylesheet" href="css/css_secondhand/base.css">
-    <link rel="stylesheet" href="css/css_secondhand/vendor.css">
-    <link rel="stylesheet" href="css/css_secondhand/main.css">
+    <link rel="stylesheet" href="css/secondhand/base.css">
+    <link rel="stylesheet" href="css/secondhand/vendor.css">
+    <link rel="stylesheet" href="css/secondhand/main.css">
 
     <!-- script
     ================================================== -->
-    <script src="js/js_cassie/modernizr.js"></script>
-    <!-- <script src="js/pace.min.js"></script> --><!-- 프리로더와 더불어 나아가는 흰 줄 -->
+    <script src="js/cassie/modernizr.js"></script>
 
     <!-- favicons
     ================================================== -->
@@ -94,8 +93,8 @@
                         
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/img_cassie/thumbs/masonry/lamp-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/lamp-400.jpg 1x, images/img_cassie/thumbs/masonry/lamp-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/lamp-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/lamp-400.jpg 1x, images/cassie/thumbs/masonry/lamp-800.jpg 2x" alt="">
                         </a>
                     </div>
     
@@ -140,8 +139,8 @@
                         
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/img_cassie/thumbs/masonry/tulips-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/tulips-400.jpg 1x, images/img_cassie/thumbs/masonry/tulips-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/tulips-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/tulips-400.jpg 1x, images/cassie/thumbs/masonry/tulips-800.jpg 2x" alt="">
                         </a>
                     </div>
     
@@ -172,8 +171,8 @@
 
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/img_cassie/thumbs/masonry/cookies-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/cookies-400.jpg 1x, images/img_cassie/thumbs/masonry/cookies-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/cookies-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/cookies-400.jpg 1x, images/cassie/thumbs/masonry/cookies-800.jpg 2x" alt="">
                         </a>
                     </div>
     
@@ -205,8 +204,8 @@
 
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/img_cassie/thumbs/masonry/wheel-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/wheel-400.jpg 1x, images/img_cassie/thumbs/masonry/wheel-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/wheel-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/wheel-400.jpg 1x, images/cassie/thumbs/masonry/wheel-800.jpg 2x" alt="">
                         </a>
                     </div>
     
@@ -238,8 +237,8 @@
                         
                     <div class="entry__thumb video-image">
                         <a href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0" data-lity>
-                            <img src="images/img_cassie/thumbs/masonry/shutterbug-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/shutterbug-400.jpg 1x, images/img_cassie/thumbs/masonry/shutterbug-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/shutterbug-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/shutterbug-400.jpg 1x, images/cassie/thumbs/masonry/shutterbug-800.jpg 2x" alt="">
                         </a>
                     </div>
     
@@ -273,16 +272,16 @@
                     <div class="entry__thumb slider">
                         <div class="slider__slides">
                             <div class="slider__slide">
-                                <img src="images/img_cassie/thumbs/masonry/gallery/gallery-1-400.jpg" 
-                                     srcset="images/img_cassie/thumbs/masonry/gallery/gallery-1-400.jpg 1x, images/img_cassie/thumbs/masonry/gallery/gallery-1-800.jpg 2x" alt=""> 
+                                <img src="images/cassie/thumbs/masonry/gallery/gallery-1-400.jpg" 
+                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-1-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-1-800.jpg 2x" alt=""> 
                             </div>
                             <div class="slider__slide">
-                                <img src="images/img_cassie/thumbs/masonry/gallery/gallery-2-400.jpg" 
-                                     srcset="images/img_cassie/thumbs/masonry/gallery/gallery-2-400.jpg 1x, images/img_cassie/thumbs/masonry/gallery/gallery-2-800.jpg 2x" alt=""> 
+                                <img src="images/cassie/thumbs/masonry/gallery/gallery-2-400.jpg" 
+                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-2-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-2-800.jpg 2x" alt=""> 
                             </div>
                             <div class="slider__slide">
-                                <img src="images/img_cassie/thumbs/masonry/gallery/gallery-3-400.jpg" 
-                                     srcset="images/img_cassie/thumbs/masonry/gallery/gallery-3-400.jpg 1x, images/img_cassie/thumbs/masonry/gallery/gallery-3-800.jpg 2x" alt="">  
+                                <img src="images/cassie/thumbs/masonry/gallery/gallery-3-400.jpg" 
+                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-3-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-3-800.jpg 2x" alt="">  
                             </div>
                         </div>
                     </div>
@@ -315,8 +314,8 @@
 
                     <div class="entry__thumb">
                         <a href="single-audio.html" class="entry__thumb-link">
-                            <img src="images/img_cassie/thumbs/masonry/guitarman-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/guitarman-400.jpg 1x, images/img_cassie/thumbs/masonry/guitarman-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/guitarman-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/guitarman-400.jpg 1x, images/cassie/thumbs/masonry/guitarman-800.jpg 2x" alt="">
                         </a>
                         <div class="audio-wrap">
                             <audio id="player" src="media/AirReview-Landmarks-02-ChasingCorporate.mp3" width="100%" height="42" controls="controls"></audio>
@@ -364,8 +363,8 @@
 
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/img_cassie/thumbs/masonry/jump-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/jump-400.jpg 1x, images/img_cassie/thumbs/masonry/jump-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/jump-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/jump-400.jpg 1x, images/cassie/thumbs/masonry/jump-800.jpg 2x" alt="">
                         </a>
                     </div>
 
@@ -397,8 +396,8 @@
 
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/img_cassie/thumbs/masonry/beetle-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/beetle-400.jpg 1x, images/img_cassie/thumbs/masonry/beetle-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/beetle-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/beetle-400.jpg 1x, images/cassie/thumbs/masonry/beetle-800.jpg 2x" alt="">
                         </a>
                     </div>
 
@@ -429,8 +428,8 @@
 
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/img_cassie/thumbs/masonry/fuji-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/fuji-400.jpg 1x, images/img_cassie/thumbs/masonry/fuji-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/fuji-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/fuji-400.jpg 1x, images/cassie/thumbs/masonry/fuji-800.jpg 2x" alt="">
                         </a>
                     </div>
 
@@ -462,8 +461,8 @@
 
                     <div class="entry__thumb">
                         <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/img_cassie/thumbs/masonry/sydney-400.jpg" 
-                                 srcset="images/img_cassie/thumbs/masonry/sydney-400.jpg 1x, images/img_cassie/thumbs/masonry/sydney-800.jpg 2x" alt="">
+                            <img src="images/cassie/thumbs/masonry/sydney-400.jpg" 
+                                 srcset="images/cassie/thumbs/masonry/sydney-400.jpg 1x, images/cassie/thumbs/masonry/sydney-800.jpg 2x" alt="">
                         </a>
                     </div>
 
@@ -527,7 +526,7 @@
                 <div class="block-1-2 block-m-full popular__posts">
                     <article class="col-block popular__post">
                         <a href="#0" class="popular__thumb">
-                            <img src="images/img_cassie/thumbs/small/wheel-150.jpg" alt="">
+                            <img src="images/cassie/thumbs/small/wheel-150.jpg" alt="">
                         </a>
                         <h5><a href="#0">Visiting Theme Parks Improves Your Health.</a></h5>
                         <section class="popular__meta">
@@ -537,7 +536,7 @@
                     </article>
                     <article class="col-block popular__post">
                         <a href="#0" class="popular__thumb">
-                            <img src="images/img_cassie/thumbs/small/shutterbug-150.jpg" alt="">
+                            <img src="images/cassie/thumbs/small/shutterbug-150.jpg" alt="">
                         </a>
                         <h5><a href="#0">Key Benefits Of Family Photography.</a></h5>
                         <section class="popular__meta">
@@ -547,7 +546,7 @@
                     </article>
                     <article class="col-block popular__post">
                         <a href="#0" class="popular__thumb">
-                            <img src="images/img_cassie/thumbs/small/cookies-150.jpg" alt="">
+                            <img src="images/cassie/thumbs/small/cookies-150.jpg" alt="">
                         </a>
                         <h5><a href="#0">Absolutely No Sugar Oatmeal Cookies.</a></h5>
                         <section class="popular__meta">
@@ -557,7 +556,7 @@
                     </article>
                     <article class="col-block popular__post">
                         <a href="#0" class="popular__thumb">
-                            <img src="images/img_cassie/thumbs/small/beetle-150.jpg" alt="">
+                            <img src="images/cassie/thumbs/small/beetle-150.jpg" alt="">
                         </a>
                         <h5><a href="#0">Throwback To The Good Old Days.</a></h5>
                         <section class="popular__meta">
@@ -567,7 +566,7 @@
                     </article>
                     <article class="col-block popular__post">
                         <a href="#0" class="popular__thumb">
-                            <img src="images/img_cassie/thumbs/small/tulips-150.jpg" alt="">
+                            <img src="images/cassie/thumbs/small/tulips-150.jpg" alt="">
                         </a>
                         <h5><a href="#0">10 Interesting Facts About Caffeine.</a></h5>
                         <section class="popular__meta">
@@ -577,7 +576,7 @@
                     </article>
                     <article class="col-block popular__post">
                         <a href="#0" class="popular__thumb">
-                            <img src="images/img_cassie/thumbs/small/salad-150.jpg" alt="">
+                            <img src="images/cassie/thumbs/small/salad-150.jpg" alt="">
                         </a>
                         <h5><a href="#0">Healthy Mediterranean Salad Recipes</a></h5>
                         <section class="popular__meta">
@@ -643,12 +642,15 @@
 
     <!-- Java Script
     ================================================== -->
-    <script src="js/js_cassie/jquery-3.2.1.min.js"></script>
-    <script src="js/js_cassie/plugins.js"></script>
-    <script src="js/js_cassie/main.js"></script>
-    <script src="js/js_header/jquery.slicknav.min.js"></script>
-	<script src="js/js_header/header_hyesoo.js"></script>
-	<!-- <script src="js/js_footer/footer_hee.js"></script> --> <!-- scroll to top 이미 있음 -->
+    <script src="js/cassie/jquery-3.2.1.min.js"></script>
+    <script src="js/cassie/plugins.js"></script>
+    <script src="js/cassie/main.js"></script>
+    <!-- header -->
+    <script src="js/header/jquery.slicknav.min.js"></script>
+	<script src="js/header/header_hyesoo.js"></script>
+	<script src="js/header/scroll.js"></script>
+	<!-- footer -->
+	<!-- <script src="js/footer/footer_hee.js"></script> --> <!-- scroll to top 이미 있음 -->
 
 </body>
 

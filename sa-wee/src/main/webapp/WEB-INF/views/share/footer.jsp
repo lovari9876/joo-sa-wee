@@ -8,7 +8,7 @@
 
 	<!-- 희정 footer css
     ================================================== -->
-	<link rel="stylesheet" href="css/css_footer/footer_hee.css">
+	<link rel="stylesheet" href="css/footer/footer_hee.css">
 	<link rel="stylesheet" href="fonts/fonts_cassie/icomoon/style.css"> <!-- scroll 화살표 -->
 
 </head>
