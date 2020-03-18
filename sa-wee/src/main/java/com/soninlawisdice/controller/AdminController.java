@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
@@ -105,6 +106,18 @@ public class AdminController {
 	 */
 	////////////////////////////////////////////////////////////////////////////
 
+	
+	@RequestMapping("/report_list")
+	public String report_list() {
+
+		return "admin/report_list";
+	}
+	
+	
+	
+	
+	
+	
 	// ajax
 	@RequestMapping("/report_view2")
 	public String report_view2() {
