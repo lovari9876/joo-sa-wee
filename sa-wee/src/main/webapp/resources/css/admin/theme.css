@@ -849,6 +849,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@topColor', end
 	margin: 10px auto;
 	font-family :'Open Sans', Arial, sans-serif;
 	font-size : 14px; 
+	table-layout: fixed; /*길이가 너무 긴 내용 ...으로 줄이기 위해*/
 /* 	word-break:break-all;  << 단어 단위가 아니라 글자 하나하나 당 줄바꿈 되도록 하는것 */
 
 	
@@ -869,9 +870,11 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@topColor', end
 	text-align: center;
 }
 
+
+/*길이가 너무 긴 내용 ...으로 줄이기 위해!! */
 .trow .title {
- 	width:150px; 
-	vertical-align:middle;  
+	width:400px;/*이부분은 각 게시판마다 수정해야할듯*/
+/*	vertical-align:middle; */ 
 	overflow:hidden; 
 	text-overflow:ellipsis; 
 	white-space:nowrap;

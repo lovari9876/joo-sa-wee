@@ -8,7 +8,7 @@
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index"><img src="img_admin
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index"><img src="images/admin
                         /wolf_logo.png" width="30" class="logo_image" alt="logo">
                        ADMIN | 내사위는주사위</a>
                         <!-- home >> 사이트 메인화면으로  -->

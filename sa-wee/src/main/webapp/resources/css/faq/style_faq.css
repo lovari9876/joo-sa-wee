@@ -3788,13 +3788,13 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	}
 }
 
-.cd-faq__content .text-component {
-	font-size: 0.95em
+.cd-faq__content .text-component p{
+	font-size: 0.95em;
 }
 
-.cd-faq__content:hover {
+.cd-faq__content p:hover {
 	font-size: 0.95em;
-	color: black;
+	color: hsl(210, 14%, 37%);
 }
 
 .cd-faq__content p {
@@ -3810,7 +3810,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 		overflow: hidden
 	}
 	.cd-faq__content .text-component {
-		font-size: 0.75em;
+		font-size: 0.95em;
 		padding-bottom: 1.25em;
 		padding-bottom: var(- -space-md)
 	}

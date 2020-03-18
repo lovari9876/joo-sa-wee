@@ -495,6 +495,7 @@
 	<script src="js/faq/util.js"></script>
 	<!-- util functions included in the CodyHouse framework -->
 	<script src="js/faq/main.js"></script>
+	
 	<!-- Java Script for header
     ================================================== -->   
     <script src="js/header/jquery.slicknav.min.js"></script>
@@ -502,7 +503,8 @@
 	<!-- Java Script for footer
     ================================================== -->  
 	<script src="js/footer/footer_hee.js"></script>
-	
+
+	<script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js" integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8=" crossorigin="anonymous"></script>
 	
 	
 	
