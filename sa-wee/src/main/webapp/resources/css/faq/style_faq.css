@@ -124,7 +124,7 @@ img, video, svg {
 	-max-width-xxs: 32rem; -
 	-max-width-xs: 38rem; -
 	-max-width-sm: 48rem; -
-	-max-width-md: 64rem; -
+	-max-width-md: 986px; -
 	-max-width-lg: 80rem; -
 	-max-width-xl: 90rem; -
 	-max-width-xxl: 120rem
@@ -178,7 +178,7 @@ img, video, svg {
 	max-width: var(- -max-width-xs)
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.max-width-adaptive-sm {
 		max-width: 48rem;
 		max-width: var(- -max-width-sm)
@@ -190,9 +190,9 @@ img, video, svg {
 	max-width: var(- -max-width-xs)
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.max-width-adaptive-md {
-		max-width: 64rem;
+		max-width: 986px;
 		max-width: var(- -max-width-md)
 	}
 }
@@ -202,9 +202,9 @@ img, video, svg {
 	max-width: var(- -max-width-xs)
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.max-width-adaptive, .max-width-adaptive-lg {
-		max-width: 64rem;
+		max-width: 986px;
 		max-width: var(- -max-width-md)
 	}
 }
@@ -221,9 +221,9 @@ img, video, svg {
 	max-width: var(- -max-width-xs)
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.max-width-adaptive-xl {
-		max-width: 64rem;
+		max-width: 986px;
 		max-width: var(- -max-width-md)
 	}
 }
@@ -634,7 +634,7 @@ img, video, svg {
 	}
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.col\@md {
 		-ms-flex-positive: 1;
 		flex-grow: 1;
@@ -1480,13 +1480,13 @@ keyframes icon-spin { 0%{
 	}
 }
 
-@media not all and (min-width: 64rem) {
+@media not all and (min-width: 986px) {
 	.display\@md {
 		display: none !important
 	}
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.hide\@md {
 		display: none !important
 	}
@@ -1707,7 +1707,7 @@ keyframes icon-spin { 0%{
 	}
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.flex-wrap\@md {
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap
@@ -2448,7 +2448,7 @@ keyframes icon-spin { 0%{
 	}
 }
 
-@media not all and (min-width: 64rem) {
+@media not all and (min-width: 986px) {
 	.has-margin\@md {
 		margin: 0 !important
 	}
@@ -3013,7 +3013,7 @@ keyframes icon-spin { 0%{
 	}
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.text-center\@md {
 		text-align: center
 	}
@@ -3260,7 +3260,7 @@ keyframes icon-spin { 0%{
 }
 
 @
-supports (--css: variables ){@media (min-width : 64rem){:root { -
+supports (--css: variables ){@media (min-width : 986px){:root { -
 	-space-unit: 1.25em
 }
 
@@ -3289,7 +3289,7 @@ supports (--css: variables ){@media (min-width : 64rem){:root { -
 }
 
 @
-supports (--css: variables ){@media (min-width : 64rem){:root { -
+supports (--css: variables ){@media (min-width : 986px){:root { -
 	-text-base-size: 1.25em; -
 	-text-scale-ratio: 1.25
 }
@@ -3450,7 +3450,7 @@ mark {
 	text-decoration: none
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq {
 		position: relative;
 		box-shadow: none;
@@ -3467,7 +3467,7 @@ mark {
 	margin-top: 80px;
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__categories {
 		position: -webkit-sticky;
 		position: sticky;
@@ -3493,11 +3493,12 @@ mark {
 
 
 .cd-faq__category {
+	font-size: 1.2em;
 	position: relative;
 	display: block;
-	height: 50px;
-	line-height: 50px;
-	padding: 0 2em 0 1.05em;
+	height: 65px;
+	line-height: 65px;
+	padding: 0 2em 0 1.8em;
 	padding: 0 var(- -space-lg) 0 calc(var(- -space-sm)*1.4);
 	color: hsl(0, 0%, 100%);
 	color: var(- -cd-color-4);
@@ -3547,7 +3548,7 @@ li:last-child .cd-faq__category {
 	border-bottom: none
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__category {
 		font-size: 1em;
 		font-size: var(- -text-xs);
@@ -3625,7 +3626,7 @@ li:last-child .cd-faq__category {
 	margin-left: 20px;
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__items {
 		position: static;
 		height: auto;
@@ -3646,7 +3647,7 @@ li:last-child .cd-faq__category {
 	-webkit-transform: translateX(0);
 	-ms-transform: translateX(0);
 	transform: translateX(0);
-	margin-top: 55px;
+	margin-top: 70px;
 }
 
 html:not (.js ) .cd-faq__items {
@@ -3662,7 +3663,7 @@ html:not (.js ) .cd-faq__items {
 	display: none
 } */
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__group {
 		display: block;
 		padding-top: 1px
@@ -3678,17 +3679,17 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	margin: var(- -space-md) 0
 }
 
-.cd-faq__title h2 {
+.cd-faq__title h4 {
 	text-transform: uppercase;
-	font-size: 0.83333em;
-	font-size: var(- -text-sm);
+	/*font-size: 0.83333em;
+	font-size: var(- -text-sm);*/
 	font-weight: 700;
 	color: hsl(240, 1%, 74.7%);
 	color: hsl(var(- -color-contrast-low-h), var(- -color-contrast-low-s),
 		calc(var(- -color-contrast-low-l)*0.9))
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__title {
 		margin-bottom: 1em;
 		margin-bottom: var(- -space-sm)
@@ -3700,7 +3701,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	}
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__item {
 		background: hsl(0, 0%, 100%);
 		background: var(- -cd-color-4);
@@ -3717,7 +3718,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 		box-shadow: undefined;
 		box-shadow: 0 1px 10px var(- -box-shadow)
 	}
-	@media ( min-width : 64rem) {
+	@media ( min-width : 986px) {
 		.cd-faq__item:hover {
 			box-shadow: 0 1px 10px hsla(210, 14%, 49%, 0.3);
 			box-shadow: 0 1px 10px var(- -box-shadow)
@@ -3737,7 +3738,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	color: var(- -cd-color-2)
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__trigger {
 		font-weight: 300;
 		margin: 0;
@@ -3802,7 +3803,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	color: var(- -cd-color-3)
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__content {
 		display: none;
 		padding: 0 0.75em;
@@ -3820,7 +3821,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	display: block
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	html:not (.js ) .cd-faq__content {
 		display: block
 	}
@@ -3866,7 +3867,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	transform: rotate(-45deg)
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__close-panel {
 		display: none
 	}
@@ -3892,7 +3893,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	transition: opacity .3s, visibility .3s
 }
 
-@media ( min-width : 64rem) {
+@media ( min-width : 986px) {
 	.cd-faq__overlay {
 		display: none
 	}
@@ -3905,7 +3906,8 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 
 body {
 	background-color: hsl(0, 0%, 95%);
-	background-color: var(- -color-contrast-lower)
+	background-color: var(- -color-contrast-lower);
+	display: contents;.cd-faq__category
 }
 
  .cd-header { /* - */
