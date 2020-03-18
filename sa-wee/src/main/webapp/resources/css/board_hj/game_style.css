@@ -1256,7 +1256,7 @@ ul, ol {
 	margin-bottom: 0;
 }
 
-/* 투표버튼 */
+/* 버튼 */
 .btn {
   background-color: #9f80c2 !important;
   border: none;
@@ -1282,20 +1282,6 @@ ul, ol {
   outline: none;
   -webkit-box-shadow: none !important;
   box-shadow: none !important; 
- }
- 
- /* 상세정보 제목과 투표버튼 가로 정렬 */
- .rating-widget.btn_inline {
- 	text-align: left;
- }
- 
- .btn_item {
- 	display: inline-block;
- }
- 
- .btn_item.second {
- 	width: 15%;
- 	text-align: right;
  }
  
 /* 상세정보 제목 가로 정렬 */
@@ -1562,6 +1548,60 @@ ul, ol {
 	} 
 	.gameSingle-preview {
 		margin-left: 5% !important;
+	}
+}
+
+/* 게임정보에서 투표와 결과 관련 미디어 쿼리 */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	.g_vote .rating-widget {
+		height: 1300px;
+		display: block !important;
+	}
+	.inline-item.first {
+		width: 550px;
+		margin-left: 60px;
+	}
+	.inline-item {
+		display: block !important;	
+	}
+	.rating-widget ul li span {
+		float :right !important;
+	}
+	.inline-item.second {
+		width: 550px !important;
+		margin-left: 60px;
+		margin-top: 30px;
+	}
+	
+	.rating-widget ul li:last-child {
+		display: flow-root;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.g_vote .rating-widget {
+		height: 1300px;
+		display: block !important;
+	}
+	.inline-item.first {
+		width: 510px;
+	}
+	.inline-item {
+		display: block !important;	
+	}
+	.rating-widget ul li span {
+		float :right !important;
+	}
+	.inline-item.second {
+		width: 510px !important;
+		margin-top: 30px;
+	}
+	.rating-widget ul li:last-child {
+		display: flow-root;
+	}
+	
+	.rating-widget ul {
+		padding: 0px 25px;
 	}
 }
 
