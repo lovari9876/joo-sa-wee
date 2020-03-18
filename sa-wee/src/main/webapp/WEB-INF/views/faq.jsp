@@ -500,6 +500,8 @@
     ================================================== -->   
     <script src="js/header/jquery.slicknav.min.js"></script>
 	<script src="js/header/header_hyesoo.js"></script>
+	<script src="js/header/scroll.js"></script>
+	
 	<!-- Java Script for footer
     ================================================== -->  
 	<script src="js/footer/footer_hee.js"></script>

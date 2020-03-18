@@ -6,6 +6,8 @@
     ================================================== -->   
     <script src="js/header/jquery.slicknav.min.js"></script>
 	<script src="js/header/header_hyesoo.js"></script>
+	
+	<!-- 200317 새로 추가해야할 js -->
 	<script src="js/header/scroll.js"></script>
 
 
