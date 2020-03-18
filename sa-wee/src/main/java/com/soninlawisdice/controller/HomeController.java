@@ -50,23 +50,6 @@ public class HomeController {
 		return "footer";
 	}
 	
-	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
-	public String tlist(Model model) {
-		logger.info("tlist");
-		
-		return "secondhand/tlist";
-	}
 	
-	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
-	public String island_list(Model model) {
-		logger.info("island_list");
-		
-		return "island/island_list";
-	}
-	
-	
-	
-	
-		
 	
 }
