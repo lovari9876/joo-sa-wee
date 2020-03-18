@@ -23,7 +23,7 @@
 	font-style: normal; 
 }
 
-.sidenav li a{
+/* .sidenav li a{
 	color : #1E0A37;
 }
 
@@ -38,7 +38,7 @@
 }
 
 a {color: #9f80c2;}
-a:hover {color: #400186;}
+a:hover {color: #400186;} */
 
 /* 아이콘 폰트에 링크 걸 때 밑줄 때문에 점이 생기는 문제 해결 */
 .no-text-deco:hover {

@@ -31,7 +31,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
-<link rel="stylesheet" href="css/board_hs/style.css" />
+
 <link rel="stylesheet" href="css/board_hs/list-home-style.css" />
 
 
@@ -49,67 +49,10 @@
 
 
 	<!-- Header section -->
-	<header class="header-section">
-		<div class="header-warp">
-			<div class="header-bar-warp d-flex">
-
-				<!-- site logo -->
-				<!-- <a href="home.html" class="site-logo">
-					<img src="./img/3535.png" width = "200px" height = "40px" alt="">
-				</a> -->
-				<br />
-				<nav class="top-nav-area w-100">
-
-
-					<!-- Menu -->
-					<ul class="main-menu primary-menu">
-						<li><a class="home" href="home">HOME</a></li>
-						<li><a class="gameinfo" href="">보드게임 정보</a>
-							<ul class="sub-menu">
-								<li><a href="">당신의 보드게임</a></li>
-								<li><a href="">보드게임 리스트</a></li>
-							</ul></li>
-						<li><a class="comm" href="list_home">커뮤니티</a>
-							<ul class="sub-menu">
-								<li><a href="list">보드이야기</a></li>
-								<li><a href="list">개봉기 및 리뷰</a></li>
-								<li><a href="list">보드게임 모임</a></li>
-								<li><a href="list">보드 뉴스</a></li>
-								<li><a href="list">질문 & 답변</a></li>
-								<li><a href="list">창작 보드게임</a></li>
-							</ul></li>
-						<li><a href="cafe_map">보드게임카페</a></li>
-						<li><a href="blog">보부상</a></li>
-						<li><a class="help" href="contact">헬프데스크</a>
-							<ul class="sub-menu">
-								<li><a href="">자주하는 질문</a></li>
-								<li><a href="question_list">1 : 1 문의 </a></li>
-								<li><a href="">무인도 </a></li>
-							</ul></li>
-						<!-- 검색창  -->
-						<li><div class="mysearch relative">
-								<span class="lnr lnr-magnifier"></span>
-								<form action="#" class="mysearch-field">
-									<input type="text" placeholder="Search here"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Search here'">
-									<button class="mysearch-submit">
-										<span class="lnr lnr-magnifier"></span>
-									</button>
-								</form>
-							</div></li>
-
-						<li><a class="fas fa-user" href="#"></a>
-							<ul class="sub-menu">
-								<li><a href="gameSingle">로그인</a></li>
-								<li><a href="gameSingle">회원가입</a></li>
-
-							</ul></li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
+	
+	<!-- header include start -->
+	<%@ include file="/WEB-INF/views/share/header.jsp" %>
+	<!-- header include end -->
 
 	<!-- 밑에 전체부분 -->
 	<section class="ftco-section bg-light ftco-no-pb">
@@ -132,7 +75,7 @@
 					<div class="col-lg-6 ">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img"
-								style="background-image: url(images/img-hyesoo/5.jpg);"></a>
+								style="background-image: url(images/board_hs/5.jpg);"></a>
 							
 							
 							<div class="half left-arrow d-flex align-items-center">
@@ -164,7 +107,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img"
-								style="background-image: url(images/img-hyesoo/6.jpg);"></a>
+								style="background-image: url(images/board_hs/6.jpg);"></a>
 							<div class="half left-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -195,7 +138,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img order-md-last"
-								style="background-image: url(images/img-hyesoo/2.jpg);"></a>
+								style="background-image: url(images/board_hs/2.jpg);"></a>
 							<div class="half right-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -225,7 +168,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img order-md-last"
-								style="background-image: url(images/img-hyesoo/3.jpg);"></a>
+								style="background-image: url(images/board_hs/3.jpg);"></a>
 							<div class="half right-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -255,7 +198,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img"
-								style="background-image: url(images/img-hyesoo/1.jpg);"></a>
+								style="background-image: url(images/board_hs/1.jpg);"></a>
 							<div class="half left-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -285,7 +228,7 @@
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img"
-								style="background-image: url(images/img-hyesoo/4.jpg);"></a>
+								style="background-image: url(images/board_hs/4.jpg);"></a>
 							<div class="half left-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0">
@@ -328,7 +271,7 @@
 	<script src="js/board_hs/jquery.sticky-sidebar.min.js"></script>
 	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hs/main.js"></script>
-	
+	<script src="js/js_header/scroll.js"></script>
 
 </body>
 </html>

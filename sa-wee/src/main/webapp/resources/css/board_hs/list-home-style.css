@@ -29,7 +29,7 @@ body{
 	position: relative;
  	width: 100%;
 	display: block;
-	padding : 50px 180px 100px 180px;
+	padding : 100px 180px 100px 180px;
 }
 
 @media (max-width : 1416px){

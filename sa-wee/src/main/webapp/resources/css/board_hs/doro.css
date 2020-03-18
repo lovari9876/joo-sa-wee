@@ -1,0 +1,89 @@
+/* =================================
+------------------------------------
+  EndGam - Gaming Magazine Template
+  Version: 1.0
+ ------------------------------------
+ ====================================*/
+
+/* 폰트 */
+@font-face {
+	font-family: 'designhouseBold';
+	src: url("designhouseBold.ttf") format('truetype');
+}
+
+@font-face {
+	font-family: 'dunggeunmo';
+	src: url("DungGeunMo.ttf") format('truetype');
+}
+
+a:hover, a:focus {
+	text-decoration: none;
+	outline: none;
+}
+
+ul, ol {
+	padding: 0;
+	margin: 0;
+}
+
+
+
+/* 여기부터 도로록 관련임*/
+.sidenav {
+	width: 100px;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 50px;
+	z-index: 100;
+	padding-top: 300px;
+	color: #1E0A37;
+	font-weight: bold;
+}
+
+.mymenu {
+	list-style: none;
+	display: inline-block;
+}
+
+/* 도로록 아이콘 색 */
+.icon {
+	color: #1E0A37;
+	font-size: 40px;
+	margin: 40px 0;
+}
+
+/* 도로록 아이콘 위에 올렸을때 바뀌는 색 정하는 곳 */
+.mymenu li a:hover {
+	color: #1E0A37;
+}
+
+.mymenu li .hide {
+	display: none;
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	position: absolute;
+	width: 100px;
+	z-index: 200;
+	left: 80px;
+	width: 100px;
+}
+
+/* 도로록에서 나타나는 글씨  */
+/* 글씨 여기서 바꿈 */
+/* 옆에 글씨 나타나는거 위치 조정 여기서함 */
+.mymenu li:hover .hide {
+	display: inline-block;
+	margin-top: 45px;
+	color: #1E0A37;
+	font-weight: bold;
+}
+
+
+@media ( max-width : 1400px) {
+	.sidenav {
+		display: none;
+	}
+}

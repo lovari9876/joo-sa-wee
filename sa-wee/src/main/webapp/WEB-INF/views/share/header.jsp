@@ -8,8 +8,8 @@
 
     <!-- 혜수꺼 css
     ================================================== -->
+   	 <link rel="stylesheet" href="css/css_header/slicknav.min.css" /> 
     <link rel="stylesheet" href="css/css_header/header_hyesoo.css">
-    <link rel="stylesheet" href="css/css_header/slicknav.min.css" /> 
     <link rel="stylesheet" href="css/css_header/font-awesome.min.css" />
     <link rel="stylesheet"
 		href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
