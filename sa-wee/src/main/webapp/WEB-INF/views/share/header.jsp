@@ -40,12 +40,12 @@
 							</ul></li>
 						<li><a class="comm" href="list_home">커뮤니티</a>
 							<ul class="sub-menu">
-								<li><a href="list">보드이야기</a></li>
-								<li><a href="list">개봉기 및 리뷰</a></li>
-								<li><a href="list">보드게임 모임</a></li>
-								<li><a href="list">보드 뉴스</a></li>
-								<li><a href="list">질문 & 답변</a></li>
-								<li><a href="list">창작 보드게임</a></li>
+								<li><a href="board_story">보드이야기</a></li>
+								<li><a href="board_open_review">개봉기 및 리뷰</a></li>
+								<li><a href="board_meet">보드게임 모임</a></li>
+								<li><a href="board_news">보드 뉴스</a></li>
+								<li><a href="board_qna">질문 & 답변</a></li>
+								<li><a href="board_creation">창작 보드게임</a></li>
 							</ul></li>
 						<li><a href="cafe_map">보드게임카페</a></li>
 						<li><a href="blog">보부상</a></li>

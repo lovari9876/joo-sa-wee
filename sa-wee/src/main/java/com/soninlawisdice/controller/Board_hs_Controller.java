@@ -86,18 +86,54 @@ public class Board_hs_Controller {
 		return "board_hs/cafe_content_view";
 	}
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Locale locale, Model model) {
-		logger.info("home");
-		
-		return "board_hs/list";
-	}
 	
 	@RequestMapping(value = "/write_view", method = RequestMethod.GET)
 	public String write_view(Locale locale, Model model) {
 		logger.info("home");
 		
 		return "board_hs/write_view";
+	}
+	
+	@RequestMapping(value = "/board_story", method = RequestMethod.GET)
+	public String board_story(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_story";
+	}
+	
+	@RequestMapping(value = "/board_open_review", method = RequestMethod.GET)
+	public String board_open_review(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_open_review";
+	}
+	
+	@RequestMapping(value = "/board_meet", method = RequestMethod.GET)
+	public String board_meet(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_meet";
+	}
+	
+	@RequestMapping(value = "/board_news", method = RequestMethod.GET)
+	public String board_news(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_news";
+	}
+	
+	@RequestMapping(value = "/board_qna", method = RequestMethod.GET)
+	public String board_qna(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_qna";
+	}
+	
+	@RequestMapping(value = "/board_creation", method = RequestMethod.GET)
+	public String board_creation(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_creation";
 	}
 	
 	

@@ -57,7 +57,7 @@
 	/* margin-left : 10px; */
 	padding : 0;
 	overflow : hidden;
-	
+	margin-bottom: 0;
 }
 
 @media screen and (max-width:768px){
@@ -169,6 +169,7 @@
 	border-radius : 999px;
 	height : 24px;
 	border : none;
+	font-family : JSDongkang-Regular;
 }
 
 .search button {
@@ -385,6 +386,9 @@
 	padding-bottom: 19px; */
 }
 
+
+/* cell 별로 크기 정해주는 부분. 나중에 크기 다시 설정해야할듯. */
+/* 
 .row .cell:nth-child(1) {
 	width: 150px;
 	padding-left: 50px;
@@ -400,19 +404,13 @@
 
 .row .cell:nth-child(4) {
 	width: 190px;
-}
+} */
 
 .table, .row {
 	width: 100% !important;
 }
 
-/* .row:not (.table.header ):hover {
-	background-color: #ececff;
-	cursor: pointer;
-}
 
-
- */
 .row:hover{
 	background-color : #ececff;
 	cursor : pointer;
@@ -467,11 +465,20 @@
     cursor: pointer;
     background : #fff;
 	font-size : 0.9rem;
+	font-family : JSDongkang-Regular;
 }
 
 .write-view-btn:hover{
 	background : #6c7ae0;
 	/* opacity : 0.3; */
 	color : #fff;
+}
+
+select{
+	font-family : JSDongkang-Regular;
+}
+
+input:focus, select:focus, button:focus, textarea:focus {
+	outline: none;
 }
 
