@@ -11,8 +11,7 @@
 
 <!-- 파피콘 -->
 <link rel="icon" type="image/png"
-	href="resources/images/icons/wolf_logo.ico" />
-
+	href="images/share/wolf_logo.ico" />
 <!-- 내용 -->
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -22,21 +21,20 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link href="resources/css/message/message.css" type="text/css"
+<link href="css/message/message.css" type="text/css"
 	rel="stylesheet">
 
 <!-- 기본틀 -->
-<link rel="stylesheet" href="resources/css/mypage/bootstrap.min.css">
-<link rel="stylesheet" href="resources/css/fontawsom-all.min.css">
+<link rel="stylesheet" href="css/mypage/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
-	href="resources/css/mypage/style.css" />
+	href="css/mypage/style.css" />
 <link rel="stylesheet" type="text/css"
-	href="resources/css/mypage/liststyle.css" />
+	href="css/mypage/liststyle.css" />
 </head>
 
 <body>
 
-	<%@ include file="../header.jsp"%>
+    <%@ include file="/WEB-INF/views/share/header.jsp"%>
 	<br />
 
 
@@ -64,6 +62,8 @@
 						<div class="chat_list active_chat">
 							<div class="chat_people">
 								<div class="chat_img">
+									<img src="/images/bl_share/icons/wolf_logo.png"
+										alt="sunil">
 									<img src="resources/images/bl_share/icons/wolf_logo.png" alt="sunil">
 								</div>
 								<div class="chat_ib">
@@ -77,7 +77,7 @@
 						<div class="chat_list">
 							<div class="chat_people">
 								<div class="chat_img">
-									<img src="resources/images/icons/wolf_logo.png" alt="sunil">
+									<img src="/images/icons/wolf_logo.png" alt="sunil">
 								</div>
 								<div class="chat_ib">
 									<h5>
@@ -90,7 +90,7 @@
 						<div class="chat_list">
 							<div class="chat_people">
 								<div class="chat_img">
-									<img src="resources/images/icons/wolf_logo.png" alt="sunil">
+									<img src="/images/icons/wolf_logo.png" alt="sunil">
 								</div>
 								<div class="chat_ib">
 									<h5>

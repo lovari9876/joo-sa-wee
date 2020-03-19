@@ -23,7 +23,7 @@
 
 <body>
 
-	<%@ include file="../header.jsp"%>
+    <%@ include file="/WEB-INF/views/share/header.jsp"%>
 	<br />
 
 	<div class="container-fluid">

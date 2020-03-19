@@ -10,20 +10,17 @@
 <title>SON-IN-RAW IS DICE - my page</title>
 
 <!-- 파피콘 -->
-<link rel="icon" type="image/png"
-	href="resources/images/icons/wolf_logo.ico" />
+<link rel="icon" type="image/png" href="/images/share/wolf_logo.ico" />
 
-<link rel="stylesheet" href="resources/css/mypage/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="resources/css/fontawsom-all.min.css">
- --><link rel="stylesheet" type="text/css"
-	href="resources/css/mypage/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="resources/css/mypage/liststyle.css" />
+<link rel="stylesheet" href="/css/mypage/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="/css/mypage/style.css" />
+
+<link rel="stylesheet" type="text/css" href="/css/mypage/liststyle.css" />
 </head>
 
 <body>
 
-	<%@ include file="../header.jsp"%>
 	<br />
 
 	<div class="container-fluid">
@@ -34,7 +31,7 @@
 						<div class="col-md-4">
 							<div class="profil-det-img d-flex">
 								<div class="dp">
-									<img src="resources/images/icons/wolf_logo.png" alt="">
+									<img src="images/icons/wolf_logo.png" alt="">
 								</div>
 								<div class="pd">
 									<h2>닉네임</h2>
@@ -484,12 +481,14 @@
 			</div>
 		</div>
 	</div>
+
+
 </body>
 
-<script src="resources/js/mypage/jquery-3.2.1.min.js"></script>
-<script src="resources/js/mypage/popper.min.js"></script>
-<script src="resources/js/mypage/bootstrap.min.js"></script>
-<script src="resources/js/mypage/script.js"></script>
+<script src="js/mypage/jquery-3.2.1.min.js"></script>
+<script src="js/mypage/popper.min.js"></script>
+<script src="js/mypage/bootstrap.min.js"></script>
+<script src="js/mypage/script.js"></script>
 
 
 </html>

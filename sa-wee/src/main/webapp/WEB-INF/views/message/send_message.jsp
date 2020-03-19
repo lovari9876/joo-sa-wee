@@ -3,36 +3,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>send_message</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="resources/images/icons/login/wolf_logo.ico"/>
-	
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css"
-		href="resources/vendor/bootstrap/css/bootstrap.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css"
-		href="resources/css/font-awesome.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/vendor/animate/animate.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css"
-		href="resources/vendor/css-hamburgers/hamburgers.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css"
-		href="resources/vendor/animsition/css/animsition.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css"
-		href="resources/vendor/select2/select2.min.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css"
-		href="resources/vendor/daterangepicker/daterangepicker.css">
-	<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="resources/css/message/util.css">
-	<link rel="stylesheet" type="text/css" href="resources/css/message/main.css">
-	<!--===============================================================================================-->
+<meta charset="UTF-8">
+<title>send_message</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
+
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="resources/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="resources/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="resources/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="resources/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="resources/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="resources/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="resources/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css"
+	href="resources/css/message/util.css">
+<link rel="stylesheet" type="text/css"
+	href="resources/css/message/main.css">
+<!--===============================================================================================-->
 </head>
 <body>
 	<div class="container-contact100">
@@ -44,16 +48,14 @@
 			<form class="contact100-form validate-form">
 				<span class="contact100-form-title"> send message </span>
 
-				<div class="wrap-input100 validate-input"
-					data-validate="닉네임을 입력하세요">
-					<input class="input100" type="text" name="name"
-						placeholder="닉네임"> <span class="focus-input100"></span>
+				<div class="wrap-input100 validate-input" data-validate="닉네임을 입력하세요">
+					<input class="input100" type="text" name="name" placeholder="닉네임">
+					<span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input"
-					data-validate="제목을 입력하세요">
-					<input class="input100" type="text" name="name"
-						placeholder="제목"> <span class="focus-input100"></span>
+				<div class="wrap-input100 validate-input" data-validate="제목을 입력하세요">
+					<input class="input100" type="text" name="name" placeholder="제목">
+					<span class="focus-input100"></span>
 				</div>
 
 				<!-- <div class="wrap-input100 validate-input"
@@ -62,10 +64,8 @@
 						placeholder="Email"> <span class="focus-input100"></span>
 				</div> -->
 
-				<div class="wrap-input100 validate-input"
-					data-validate="메세지를 입력하세요">
-					<textarea class="input100" name="message"
-						placeholder="내용"></textarea>
+				<div class="wrap-input100 validate-input" data-validate="메세지를 입력하세요">
+					<textarea class="input100" name="message" placeholder="내용"></textarea>
 					<span class="focus-input100"></span>
 				</div>
 
@@ -75,8 +75,7 @@
 			</form>
 
 			<div class="contact100-more">
-				 <span
-					class="contact100-more-highlight">+001 345 6889</span>
+				<span class="contact100-more-highlight">+001 345 6889</span>
 			</div>
 		</div>
 	</div>
