@@ -1,0 +1,4 @@
+* 각자 이름 있는 폴더 만들고, 프로젝트와 관련있는 자료들 집어넣기 (예: __cassie )
+* 0_sql 에는 테이블 create ddl과 data insert 파일이 있다. 
+  한번에 데이터 insert 하고싶으면 insert_data_integrated.sql 사용, 테이블 별로 쓰고 싶다면 seperated 폴더 이하의 파일을 사용할 것.
+
