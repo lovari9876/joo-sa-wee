@@ -426,6 +426,11 @@ button span.lnr-magnifier {
 
 /* Small Mobile :320px. */
 @media only screen and (max-width: 400px) {
+	
+	.dice {
+		display: none;
+	}
+	
 	.main-menu li a {
 		margin-right: 20px;  
 	}
