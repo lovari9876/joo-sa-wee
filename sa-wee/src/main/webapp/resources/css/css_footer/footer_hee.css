@@ -1,0 +1,493 @@
+/* ==================================================
+* bootstrap.min.css 에서 footer 해당만 가져옴 
+===================================================== */
+.container {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto
+}
+
+@media ( min-width :576px) {
+	.container {
+		max-width: 540px
+	}
+}
+
+@media ( min-width :768px) {
+	.container {
+		max-width: 720px
+	}
+}
+
+@media ( min-width :992px) {
+	.container {
+		max-width: 960px
+	}
+}
+
+@media ( min-width :1200px) {
+	.container {
+		max-width: 1140px
+	}
+}
+
+.mb-4 {
+	margin-bottom: 1.5rem
+}
+
+.mb-5 {
+	margin-bottom: 3rem
+}
+
+@media ( min-width :768px) {
+	.m-md-0 {
+		margin: 0 !important
+	}
+	.mt-md-0, .my-md-0 {
+		margin-top: 0 !important
+	}
+	.mr-md-0, .mx-md-0 {
+		margin-right: 0 !important
+	}
+	.mb-md-0, .my-md-0 {
+		margin-bottom: 0 !important
+	}
+	.ml-md-0, .mx-md-0 {
+		margin-left: 0 !important
+	}
+	.m-md-1 {
+		margin: .25rem !important
+	}
+	.mt-md-1, .my-md-1 {
+		margin-top: .25rem !important
+	}
+	.mr-md-1, .mx-md-1 {
+		margin-right: .25rem !important
+	}
+	.mb-md-1, .my-md-1 {
+		margin-bottom: .25rem !important
+	}
+	.ml-md-1, .mx-md-1 {
+		margin-left: .25rem !important
+	}
+	.m-md-2 {
+		margin: .5rem !important
+	}
+	.mt-md-2, .my-md-2 {
+		margin-top: .5rem !important
+	}
+	.mr-md-2, .mx-md-2 {
+		margin-right: .5rem !important
+	}
+	.mb-md-2, .my-md-2 {
+		margin-bottom: .5rem !important
+	}
+	.ml-md-2, .mx-md-2 {
+		margin-left: .5rem !important
+	}
+	.m-md-3 {
+		margin: 1rem !important
+	}
+	.mt-md-3, .my-md-3 {
+		margin-top: 1rem !important
+	}
+	.mr-md-3, .mx-md-3 {
+		margin-right: 1rem !important
+	}
+	.mb-md-3, .my-md-3 {
+		margin-bottom: 1rem !important
+	}
+	.ml-md-3, .mx-md-3 {
+		margin-left: 1rem !important
+	}
+	.m-md-4 {
+		margin: 1.5rem !important
+	}
+	.mt-md-4, .my-md-4 {
+		margin-top: 1.5rem !important
+	}
+	.mr-md-4, .mx-md-4 {
+		margin-right: 1.5rem !important
+	}
+	.mb-md-4, .my-md-4 {
+		margin-bottom: 1.5rem !important
+	}
+	.ml-md-4, .mx-md-4 {
+		margin-left: 1.5rem !important
+	}
+	.m-md-5 {
+		margin: 3rem !important
+	}
+	.mt-md-5, .my-md-5 {
+		margin-top: 3rem !important
+	}
+	.mr-md-5, .mx-md-5 {
+		margin-right: 3rem !important
+	}
+	.mb-md-5, .my-md-5 {
+		margin-bottom: 3rem !important
+	}
+	.ml-md-5, .mx-md-5 {
+		margin-left: 3rem !important
+	}
+}
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5,
+	.col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1,
+	.col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4,
+	.col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto,
+	.col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2,
+	.col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8,
+	.col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11,
+	.col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6,
+	.col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1,
+	.col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4,
+	.col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+	position: relative;
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px
+}
+
+.col {
+	-ms-flex-preferred-size: 0;
+	flex-basis: 0;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	max-width: 100%
+}
+
+.col-auto {
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	width: auto;
+	max-width: 100%
+}
+
+.col-1 {
+	-ms-flex: 0 0 8.333333%;
+	flex: 0 0 8.333333%;
+	max-width: 8.333333%
+}
+
+.col-2 {
+	-ms-flex: 0 0 16.666667%;
+	flex: 0 0 16.666667%;
+	max-width: 16.666667%
+}
+
+.col-3 {
+	-ms-flex: 0 0 25%;
+	flex: 0 0 25%;
+	max-width: 25%
+}
+
+.col-4 {
+	-ms-flex: 0 0 33.333333%;
+	flex: 0 0 33.333333%;
+	max-width: 33.333333%
+}
+
+.col-5 {
+	-ms-flex: 0 0 41.666667%;
+	flex: 0 0 41.666667%;
+	max-width: 41.666667%
+}
+
+.col-6 {
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	max-width: 50%
+}
+
+.col-7 {
+	-ms-flex: 0 0 58.333333%;
+	flex: 0 0 58.333333%;
+	max-width: 58.333333%
+}
+
+.col-8 {
+	-ms-flex: 0 0 66.666667%;
+	flex: 0 0 66.666667%;
+	max-width: 66.666667%
+}
+
+.col-9 {
+	-ms-flex: 0 0 75%;
+	flex: 0 0 75%;
+	max-width: 75%
+}
+
+.col-10 {
+	-ms-flex: 0 0 83.333333%;
+	flex: 0 0 83.333333%;
+	max-width: 83.333333%
+}
+
+.col-11 {
+	-ms-flex: 0 0 91.666667%;
+	flex: 0 0 91.666667%;
+	max-width: 91.666667%
+}
+
+.col-12 {
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	max-width: 100%
+}
+
+@media ( min-width :768px) {
+	.col-md {
+		-ms-flex-preferred-size: 0;
+		flex-basis: 0;
+		-ms-flex-positive: 1;
+		flex-grow: 1;
+		max-width: 100%
+	}
+	.col-md-auto {
+		-ms-flex: 0 0 auto;
+		flex: 0 0 auto;
+		width: auto;
+		max-width: 100%
+	}
+	.col-md-1 {
+		-ms-flex: 0 0 8.333333%;
+		flex: 0 0 8.333333%;
+		max-width: 8.333333%
+	}
+	.col-md-2 {
+		-ms-flex: 0 0 16.666667%;
+		flex: 0 0 16.666667%;
+		max-width: 16.666667%
+	}
+	.col-md-3 {
+		-ms-flex: 0 0 25%;
+		flex: 0 0 25%;
+		max-width: 25%
+	}
+	.col-md-4 {
+		-ms-flex: 0 0 33.333333%;
+		flex: 0 0 33.333333%;
+		max-width: 33.333333%
+	}
+	.col-md-5 {
+		-ms-flex: 0 0 41.666667%;
+		flex: 0 0 41.666667%;
+		max-width: 41.666667%
+	}
+	.col-md-6 {
+		-ms-flex: 0 0 50%;
+		flex: 0 0 50%;
+		max-width: 50%
+	}
+	.col-md-7 {
+		-ms-flex: 0 0 58.333333%;
+		flex: 0 0 58.333333%;
+		max-width: 58.333333%
+	}
+	.col-md-8 {
+		-ms-flex: 0 0 66.666667%;
+		flex: 0 0 66.666667%;
+		max-width: 66.666667%
+	}
+	.col-md-9 {
+		-ms-flex: 0 0 75%;
+		flex: 0 0 75%;
+		max-width: 75%
+	}
+	.col-md-10 {
+		-ms-flex: 0 0 83.333333%;
+		flex: 0 0 83.333333%;
+		max-width: 83.333333%
+	}
+	.col-md-11 {
+		-ms-flex: 0 0 91.666667%;
+		flex: 0 0 91.666667%;
+		max-width: 91.666667%
+	}
+	.col-md-12 {
+		-ms-flex: 0 0 100%;
+		flex: 0 0 100%;
+		max-width: 100%
+	}
+}
+
+.list-unstyled {
+	padding-left: 0;
+	list-style: none
+}
+
+.text-center {
+	text-align: center !important
+}
+
+.text-white {
+	color: #fff !important
+}
+
+/* ==========================================
+* 희정 custom.css 에서 가져온 footer css 
+=============================================*/
+.site-footer {
+	padding: 64px 0;
+	position: relative;
+	background: #5C5874 !important;
+}
+
+@media ( max-width : 991.98px) {
+	.site-footer {
+		padding: 2rem 0;
+	}
+}
+
+.site-footer.slanted-footer:before {
+	content: "";
+	background: #001f42;
+	height: 200px;
+	-webkit-transform: skewY(-5deg);
+	-ms-transform: skewY(-5deg);
+	transform: skewY(-5deg);
+	position: absolute;
+	left: 0;
+	top: -100px;
+	right: 0;
+	z-index: -1;
+}
+
+.site-footer a {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.site-footer a:hover {
+	color: #fff;
+	text-decoration: none !important;
+}
+
+.site-footer ul {
+	margin-left: 0;
+}
+
+.site-footer ul li {
+	margin-bottom: 0rem !important;
+}
+
+.site-footer ul li a {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.site-footer ul li a:hover {
+	color: #fff;
+}
+
+.col-6.col-md-3.mb-4.mb-md-0 {
+	margin-bottom: 1rem !important;
+}
+
+.site-footer .scroll-top {
+	position: absolute;
+	z-index: 5;
+	top: 0;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	background: #fff;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	-webkit-box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.site-footer .scroll-top>span {
+	position: absolute;
+	font-size: 2rem;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	color: #000 !important;
+}
+
+.copyright {
+	color: rgba(255, 255, 255, 0.5);
+	margin-bottom: 0 !important;
+}
+
+.copyright a {
+	color: #fff;
+}
+
+/* ================== 여기부턴 하나씩 뜯어서 맞추는 중... ㅠㅠ ================== */
+.site-footer *, .site-footer *::after, .site-footer *::before {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	line-height: 24px;
+	font-size: 16px
+}
+
+.icon-keyboard_arrow_up, .icon-keyboard_arrow_up::before, .icon-keyboard_arrow_up::after {
+	font-size: 32px;
+}
+
+.footer--row {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px
+}
+
+.site-footer .mb-5 {
+	margin-bottom: 48px !important;
+	/* 3rem은 root인 html 기본 설정 폰트 크기인데 기본폰트 크기는 템플릿마다 달라서, 희정이 푸터의 경우 48px이다. */
+}
+
+.site-footer .col-6.col-md-3.mb-4.mb-md-0 {
+	margin-bottom: 16px !important; /* 위와 마찬가지로, 1em인데 16px */
+	font-weight: 400;
+}
+
+.site-footer a {
+	text-decoration: none;
+	background-color: transparent;
+}
+
+.site-footer h3 {
+	margin-top: 0;
+	margin-bottom: 8px !important;
+	font-family: inherit;
+	font-weight: 500;
+	line-height: 1.2;
+	color: #fff;
+}
+
+.site-footer ul {
+	margin: 0px 0px 0px;
+}
+
+.site-footer li {
+	padding: 0;
+}
+
+.copyright {
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.20;
+    line-height: 18px;
+}
+
+.copyright a {
+	font-size: 12px;
+    color: #9190a5;
+    line-height:18px;
+)
+
+
+
+
+

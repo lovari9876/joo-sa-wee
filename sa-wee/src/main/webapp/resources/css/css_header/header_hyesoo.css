@@ -1,0 +1,457 @@
+/* -----------------
+ * 폰트
+ ------------------- */
+ 
+@font-face {
+	font-family: 'designhouseBold';
+	src: url("designhouseBold.ttf") format('truetype');
+}
+
+@font-face {
+	font-family: 'dunggeunmo';
+	src: url("DungGeunMo.ttf") format('truetype');
+}
+
+html, body {
+	font-family: dunggeunmo;
+}
+
+
+/*------------------
+  Header section 상단바 부분
+---------------------*/
+
+/* 상단바 바꾸는 곳 */
+.header-section {
+	/* position: fixed; */
+	width: 100%;
+	/* left: 0;
+	top: 0;
+	z-index: 99; */
+	/* padding: 15px 15px 0; */
+	/* 상단바 이미지 바꾸는곳 */
+	/* background: #1E0A37; */
+	/* background-image: url("../../images/img_header/main.jpg"); */
+	font: dunggeunmo;
+	box-shadow: 0 0.17rem 0.5rem rgba(132, 116, 160, 0.75);
+}
+
+/* 내 사위는 주사위(사라지는부분) */
+.dice{
+	color : #fff;
+	text-align : center;
+	font-size : 40px;
+	padding : 20px 0;
+	background: #1E0A37;
+}
+
+/* 무인도 헤더 그림자 제거 */
+.island .header-section {
+	box-shadow: none;
+}
+
+
+/* (고정되는부분) 상단바 */
+
+.header-warp {
+	left : 0;
+	
+	position: fixed;
+	width : 100%;
+	/* max-width: 1496px; */
+	margin: 0 auto;
+	z-index: 99;
+	background: #1E0A37;
+}
+
+/* 스크롤시 변경되는 부분때문에 추가한 css */
+.header-wrap-style{
+	top : 0;
+}
+
+.header-bar-warp {
+	padding: 15px 40px 0;
+}
+
+
+
+/* 중고거래 게시판에서 자체 main.css 때문에 밑단이 커지는 문제 해결 */
+.header-section .head--ul {
+	margin-bottom: 0;
+}	
+
+/* mysearch : 검색창 부분 */
+.mysearch {
+	padding: 6px 20px;
+	border-right: 1px solid rgba(255, 255, 255, 0.5);
+	cursor: pointer;
+}
+
+.mysearch span {
+	color: #fff;
+}
+
+.mysearch:hover .mysearch-field {
+	transform: scaleY(1) !important;
+}
+
+@media ( max-width : 767px) {
+	.mysearch {
+		margin-right: 60px;
+	}
+}
+
+.mysearch-field {
+	transform: scaleY(0);
+	-webkit-transition: all 0.3s ease 0s;
+	-moz-transition: all 0.3s ease 0s;
+	-o-transition: all 0.3s ease 0s;
+	transition: all 0.3s ease 0s;
+	position: absolute;
+	top: -13px;
+	right: -2px;
+}
+
+.mysearch-field:hover {
+	transform: scaleY(1) !important;
+}
+
+.mysearch-field input {
+	line-height: 60px;
+	background: #1E0A37;
+	/* background: #4a4fad; */
+	border: none !important;
+	color: #fff !important;
+	padding: 0 70px 0 25px;
+	font-weight: 400;
+	width: 800px;
+}
+
+@media ( max-width : 991px) {
+	.mysearch-field input {
+		width: 700px;
+	}
+}
+
+@media ( max-width : 767px) {
+	.mysearch-field input {
+		width: 500px;
+	}
+}
+
+@media ( max-width : 575px) {
+	.mysearch-field input {
+		width: 300px;
+	}
+}
+
+/* 검색창 돋보기버튼이 넘 작아서 키웠삼 */
+button span.lnr-magnifier {
+    font-size: large;
+}
+
+.mysearch-field .mysearch-submit {
+	width: 60px;
+	height: 60px;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.mysearch-field .mysearch-submit span {
+	color: #fff;
+}
+
+.header-social {
+	margin-left: 20px;
+}
+
+@media ( max-width : 767px) {
+	.header-social {
+		display: none !important;
+	}
+}
+
+/* 여기부터 */
+.header-social {
+	margin-left: 20px;
+}
+
+.user-panel {
+	float: right;
+	/* font-size: 16px; */
+	font-weight: 500;
+	color: #fff;
+	padding-top: 3px;
+}
+
+.user-panel a {
+	color: #fff;
+	font-size: 30px;
+}
+
+.user-panel a:hover {
+	color: #b01ba5;
+}
+
+/* 여기까지는 잘 모름 */
+
+/* 여기부터 상단바 리스트 */
+.main-menu {
+	list-style: none;
+	text-align: center;
+	padding-top: 3px;
+	font: dunggeunmo;
+}
+
+.main-menu li {
+	display: inline-block;
+	position: relative;
+}
+/* 상단바 폰트 색상(a 태그로 되어있는것들) */
+.main-menu li a {
+	display: block;
+	font-size: 16px;
+	font-weight: 500;
+	color: #fff;
+	margin-right: 20px;
+	padding-bottom: 28px;
+	position: relative;
+	padding-right: 20px;
+	font: dunggeunmo;
+}
+
+/* 상단바 서브메뉴 있는것들 뒤에 > 이미지 넣기*/
+.main-menu .gameinfo:after {
+	position: absolute;
+	content: "";
+	width: 20px;
+	height: 20px;
+	right: 0;
+	top: 1px;
+	background-image: url("../../images/img_header/icons/arrow-down.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+.main-menu .comm:after {
+	position: absolute;
+	content: "";
+	width: 20px;
+	height: 20px;
+	right: 0;
+	top: 1px;
+	background-image: url("../../images/img_header/icons/arrow-down.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+.main-menu .help:after {
+	position: absolute;
+	content: "";
+	width: 20px;
+	height: 20px;
+	right: 0;
+	top: 1px;
+	background-image: url("../../images/img_header/icons/arrow-down.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+/* 안씀 */
+.main-menu li a i {
+	color: #928d92;
+	margin-left: 5px;
+}
+/*상단바 메뉴에 마우스 올렸을때 폰트 색상 변화(a 태그로 되어있는것들)  */
+.main-menu li a:hover {
+	color: #fff;
+}
+/* 상단바 메뉴에 마우스 올렸을때 뒤에 > 이미지 (색상) 변화*/
+.main-menu li a:hover:after {
+	background-image: url("../../images/img_header/icons/arrow-down-color.png");
+}
+
+/* 안씀 */
+.main-menu li a:hover i {
+	color: #fff;
+}
+/* 상단바 메뉴에 마우스 올렸을때 밑에 있는애들 */
+.main-menu li:hover .sub-menu {
+	visibility: visible;
+	opacity: 1;
+	margin-top: 0;
+}
+/* 상단바 메뉴에 마우스 올렸을때....모르겠음 */
+.main-menu li:hover>a {
+	color: #fff;
+}
+
+/* 서브메뉴로 마우스 이동시에도 > 이거 자주색 이미지로 유지 */
+.main-menu li:hover>a:after {
+	background-image: url("../../images/img_header/icons/arrow-down-color.png");
+}
+
+/* 로그인.회원가입 아이콘 크기,위치 조정  */
+.main-menu li .fa-user {
+	font-size: 25px;
+	left: 25px;
+	top: 4px;
+}
+
+/* 서브메뉴 관련  */
+.main-menu li .sub-menu {
+	position: absolute;
+	list-style: none;
+	text-align: left;
+	width: 220px;
+	left: 0;
+	top: 100%;
+	padding: 20px 0;
+	visibility: hidden;
+	opacity: 0;
+	margin-top: 50px;
+	background: #fff;
+	z-index: 99;
+	-webkit-transition: all 0.4s;
+	-o-transition: all 0.4s;
+	transition: all 0.4s;
+	-webkit-box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.4);
+	box-shadow: 2px 7px 20px rgba(0, 0, 0, 0.4);
+	width: 220px;
+}
+
+.main-menu li .sub-menu li {
+	display: block;
+}
+
+.main-menu li .sub-menu li a {
+	display: block;
+	margin-right: 0;
+	padding: 8px 30px;
+	color: #000;
+}
+
+.main-menu li .sub-menu li a:after {
+	display: none;
+}
+
+.main-menu li .sub-menu li a:hover {
+	color: #b01ba5;
+}
+
+/* 로그인, 회원가입 창 부분 크기 조정 */
+.main-menu li:last-child .sub-menu {
+	width: 150px;
+}
+
+.slicknav_menu {
+	display: none;
+}
+
+
+/* ---------------------------------
+* responsive header
+-----------------------------------*/
+
+/* Tablet :768px. */
+@media only screen  { 
+	/* .header-bar-warp {
+		padding: 39px 15px 0;
+	} */
+	.main-menu li a {
+		margin-right: 10px;
+	}
+}
+
+/* Large Mobile :480px. */
+@media only screen and (max-width: 985px) {
+	/* .header-bar-warp {
+		padding: 25px 20px 10px;
+	} */
+	.main-menu.primary-menu {
+		display: none;
+	}
+	.slicknav_menu {
+		display: block;
+		background: #1E0A37 !important;
+	}
+	.slicknav_btn {
+		margin-right: 10px;
+		background: #1E0A37 !important;
+	}
+	.slicknav_nav a:hover, .slicknav_nav .slicknav_row:hover {
+		background: #25394c;
+		color: #fff;
+	}
+	
+	/* search 오른쪽 여백 조정 */
+	.mysearch {
+   		margin-right: 60px;
+   		height: 30px;
+		border-right: 1px hidden rgba(255, 255, 255, 0.5) !important;
+	}
+	
+	/* hover 시 나타나는 검색 입력창 위치 조정 */
+	.mysearch-field {
+	    position: relative;
+	    top: -20px;
+	    /* height: 10px; */
+	    right: 1px;
+	}
+	
+	/* 입력창 */
+	.mysearch-field input {
+   		height: 30px;
+	}
+	
+	.mysearch-field .mysearch-submit {
+    	width: 60px;
+    	height: 30px;
+	}
+	
+	/* 검색창 돋보기버튼 조정 */
+	button span.lnr-magnifier {
+    	font-size: small;
+	}
+}
+
+/* Small Mobile :320px. */
+@media only screen and (max-width: 400px) {
+	.main-menu li a {
+		margin-right: 20px;  
+	}
+	
+	/* search 조정 */
+	.mysearch { 
+		height: 30px;
+	    border-right: 1px hidden rgba(255, 255, 255, 0.5) !important;
+	}
+	
+	/* hover 시 나타나는 검색 입력창 위치 조정 */
+	.mysearch-field {
+	    position: relative;
+	    top: -20px;
+	    /* height: 10px; */
+	    right: 1px;
+	}
+	
+	/* 입력창 */
+	.mysearch-field input {
+   		height: 30px;
+	}
+	
+	.mysearch-field .mysearch-submit {
+	    width: 60px;
+	    height: 30px;
+	}
+	
+	/* 검색창 돋보기버튼 조정 */
+	button span.lnr-magnifier {
+    	font-size: small;
+	}
+}
+
