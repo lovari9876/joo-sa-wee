@@ -10,25 +10,18 @@
 <title>SON-IN-RAW IS DICE - my page</title>
 
 <!-- 파피콘 -->
-<link rel="icon" type="image/png"
-	href="images/icons/wolf_logo.ico" />
+<link rel="icon" type="image/png" href="/images/share/wolf_logo.ico" />
 
-<link rel="stylesheet" href="css/mypage/bootstrap.min.css">
-<!-- <link rel="stylesheet" href="resources/css/fontawsom-all.min.css">
- -->
-<link rel="stylesheet" type="text/css"
-	href="css/mypage/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="css/mypage/style.css" />
+<link rel="stylesheet" href="/css/mypage/bootstrap.min.css">
 
-<link rel="stylesheet" type="text/css"
-	href="css/mypage/liststyle.css" />
+<link rel="stylesheet" type="text/css" href="/css/mypage/style.css" />
+
+<link rel="stylesheet" type="text/css" href="/css/mypage/liststyle.css" />
 </head>
 
 <body>
 
-    <%@ include file="/WEB-INF/views/share/header.jsp"%>
-  	<br />
+	<br />
 
 	<div class="container-fluid">
 		<div class="cover">
@@ -488,8 +481,8 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 </body>
 
 <script src="js/mypage/jquery-3.2.1.min.js"></script>
