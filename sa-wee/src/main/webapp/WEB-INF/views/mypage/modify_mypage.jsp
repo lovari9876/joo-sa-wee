@@ -23,9 +23,7 @@
 
 <body>
 
-	<!-- header include start -->
-	<%@ include file="/WEB-INF/views/share/header.jsp"%>
-	<!-- header include end -->
+	<%@ include file="../header.jsp"%>
 	<br />
 
 	<div class="container-fluid">
@@ -219,10 +217,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- footer include start -->
-	<%@ include file="/WEB-INF/views/share/footer.jsp"%>
-	<!-- footer include end -->
 </body>
 
 <script src="resources/js/mypage/file.js"></script>
@@ -231,14 +225,5 @@
 <script src="resources/js/mypage/bootstrap.min.js"></script>
 <script src="resources/js/mypage/script.js"></script>
 
-<!-- Java Script for header
-    ================================================== -->
-<script src="js/js_header/jquery.slicknav.min.js"></script>
-<script src="js/js_header/header_hyesoo.js"></script>
-<script src="js/js_header/scroll.js"></script>
-
-<!-- Java Script for footer
-    ================================================== -->
-<script src="js/js_footer/footer_hee.js"></script>
 
 </html>

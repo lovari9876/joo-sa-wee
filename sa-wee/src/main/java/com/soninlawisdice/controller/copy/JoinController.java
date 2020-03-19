@@ -1,4 +1,4 @@
-package com.soninlawisdice.controller;
+package com.son_in_law_is_dice.plz.copy;
 
 
 import java.util.Locale;
