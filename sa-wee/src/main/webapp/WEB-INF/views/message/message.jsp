@@ -11,7 +11,7 @@
 
 <!-- 파피콘 -->
 <link rel="icon" type="image/png"
-	href="resources/images/share/wolf_logo.ico" />
+	href="images/share/wolf_logo.ico" />
 <!-- 내용 -->
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -21,7 +21,7 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link href="resources/css/message/message.css" type="text/css"
+<link href="css/message/message.css" type="text/css"
 	rel="stylesheet">
 
 <!-- 기본틀 -->
