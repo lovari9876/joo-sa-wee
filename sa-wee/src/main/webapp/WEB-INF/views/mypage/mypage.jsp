@@ -13,16 +13,16 @@
 <link rel="icon" type="image/png"
 	href="images/icons/wolf_logo.ico" />
 
-<link rel="stylesheet" href="/css/mypage/bootstrap.min.css">
+<link rel="stylesheet" href="css/mypage/bootstrap.min.css">
 <!-- <link rel="stylesheet" href="resources/css/fontawsom-all.min.css">
  -->
 <link rel="stylesheet" type="text/css"
-	href="/css/mypage/style.css" />
+	href="css/mypage/style.css" />
 <link rel="stylesheet" type="text/css"
-	href="resources/css/mypage/style.css" />
+	href="css/mypage/style.css" />
 
 <link rel="stylesheet" type="text/css"
-	href="/css/mypage/liststyle.css" />
+	href="css/mypage/liststyle.css" />
 </head>
 
 <body>
