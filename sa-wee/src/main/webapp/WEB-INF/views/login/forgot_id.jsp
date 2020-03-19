@@ -36,7 +36,7 @@
 		<!-- 메인페이지와 연결되게 -->
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-30">
 			<a href="#" class="wrap-input100 p-b-30"> <img class="logo_image"
-				src="resources/images/bl_share/icons/login/wolf_logo.png"
+				src="images/bl_share/icons/login/wolf_logo.png"
 				alt="son-in-low_is_dice">
 			</a><br />
 			<form class="login100-form validate-form">

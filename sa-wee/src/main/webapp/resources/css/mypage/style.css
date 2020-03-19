@@ -28,7 +28,6 @@ Description: This Template is created for web template
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
-	
 }
 
 img {
@@ -299,7 +298,7 @@ body {
 	height: 250px;
 	/* background-color: rgba(0, 0, 0, 0.3); */
 	padding: 15px;
-} 
+}
 
 .web-portion {
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0
@@ -669,9 +668,9 @@ body {
 		text-align: center;
 	}
 }
+
 input[type=text] {
 	border: none;
-    border-bottom: 2px solid #e5e5e5;
-	
+	border-bottom: 2px solid #e5e5e5;
 }
 /*# sourceMappingURL=style.css.map */
