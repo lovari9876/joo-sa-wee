@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+
+input[type=radio] {
+  position: absolute;
+  visibility: hidden;
+  display: none;
+}
+
+label {
+  color: #72717b;
+  display: inline-block;
+  cursor: pointer;
+  padding: 1px 9px;
+  margin-bottom: 0px !important;
+}
+
+input[type=radio]:checked + label {
+  color: #ccc8ce; /* #ccc8ce */
+  background: #8e86b2;
+}
+
+label + input[type=radio] + label {
+  border-left: solid 2px #b2adc7;
+}
+
+.radio-group {
+  border: solid 2px #b2adc7;
+  display: inline-block;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: DungGeunMo;
+}
