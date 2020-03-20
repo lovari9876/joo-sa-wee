@@ -40,6 +40,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<!-- 댓글 달기 -->
 	<div class="pt-5">
 		<form action="">
 			<label for="drop_list"><h3 class="mb-5">6 댓글</h3></label> <select
@@ -72,7 +73,6 @@
 							autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
 							voluptas earum impedit necessitatibus, nihil?</p>
 
-						<!-- 대댓글 달기 -->
 						<div class="reply_test">
 							<div class="test_item rp">
 								<p>
@@ -105,7 +105,8 @@
 					</form>
 				</div>
 			</li>
-
+			
+			<!-- 댓글 달기 -> 이 친구한테 대댓글 닮 -->
 			<li class="comment">
 				<div class="comment-body">
 					<h3>Chris Meyer</h3>
@@ -118,7 +119,8 @@
 						<a href="#" class="reply">Reply</a>
 					</p>
 				</div>
-
+				
+				<!-- 대댓글 달기 -->
 				<ul class="children">
 					<li class="comment">
 						<div class="comment-body">
@@ -133,7 +135,7 @@
 							</p>
 						</div>
 
-
+						<!-- 대대댓글 달기 -->
 						<ul class="children">
 							<li class="comment">
 								<div class="comment-body">
@@ -147,7 +149,8 @@
 										<a href="#" class="reply">Reply</a>
 									</p>
 								</div>
-
+								
+								<!-- 대대대댓글 달기 -->
 								<ul class="children">
 									<li class="comment">
 										<div class="comment-body">
@@ -168,7 +171,8 @@
 					</li>
 				</ul>
 			</li>
-
+			
+			<!-- 댓글 달기 -->
 			<li class="comment">
 				<div class="comment-body">
 					<h3>Jean Doe</h3>
