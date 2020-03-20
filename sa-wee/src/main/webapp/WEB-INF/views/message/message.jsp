@@ -10,8 +10,7 @@
 <title>SON-IN-RAW IS DICE - my page</title>
 
 <!-- 파피콘 -->
-<link rel="icon" type="image/png"
-	href="images/share/wolf_logo.ico" />
+<link rel="icon" type="image/png" href="/images/share/wolf_logo.ico" />
 <!-- 내용 -->
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -21,22 +20,19 @@
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<link href="css/message/message.css" type="text/css"
-	rel="stylesheet">
+<link href="css/message/message.css" type="text/css" rel="stylesheet">
 
 <!-- 기본틀 -->
 <link rel="stylesheet" href="css/mypage/bootstrap.min.css">
-<link rel="stylesheet" type="text/css"
-	href="css/mypage/style.css" />
-<link rel="stylesheet" type="text/css"
-	href="css/mypage/liststyle.css" />
+<link rel="stylesheet" type="text/css" href="css/mypage/style.css" />
+<link rel="stylesheet" type="text/css" href="css/mypage/liststyle.css" />
 </head>
 
 <body>
 
-    <%@ include file="/WEB-INF/views/share/header.jsp"%>
+	<!-- header include -->
+	<%@ include file="/WEB-INF/views/share/header.jsp"%>
 	<br />
-
 
 	<div class="container web-portion">
 		<h3 class=" text-center"></h3>
@@ -62,9 +58,9 @@
 						<div class="chat_list active_chat">
 							<div class="chat_people">
 								<div class="chat_img">
-									<img src="/images/bl_share/icons/wolf_logo.png"
+									<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">
+									<img src="resources/images/bl_share/icons/wolf_logo.png"
 										alt="sunil">
-									<img src="resources/images/bl_share/icons/wolf_logo.png" alt="sunil">
 								</div>
 								<div class="chat_ib">
 									<h5>
@@ -156,7 +152,7 @@
 						</div>
 					</div>
 					<ul class="notebox">
-						<li><a href="send_message" 
+						<li><a href="send_message"
 							onClick="window.open(this.href, '', 'width=900, height=800, left=400, top=100'); return false;">
 								<i class="fas fa-paper-plane"></i> 쪽지 보내기
 						</a></li>
@@ -170,6 +166,9 @@
 			</p>
 		</div>
 	</div>
+	
+	<!-- footer include -->
+	<%@ include file="/WEB-INF/views/share/footer.jsp"%>
 
 </body>
 
@@ -177,6 +176,15 @@
 <script src="resources/js/mypage/popper.min.js"></script>
 <script src="resources/js/mypage/bootstrap.min.js"></script>
 <script src="resources/js/mypage/script.js"></script>
+
+<!-- Java Script for header  ================================================== -->
+<script src="js/header/jquery.slicknav.min.js"></script>
+<script src="js/header/header_hyesoo.js"></script>
+<!-- header 200317 새로 추가해야할 js -->
+<script src="js/header/scroll.js"></script>
+<!-- Java Script for footer   ================================================== -->
+<script src="js/footer/footer_hee.js"></script>
+<script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js" integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8=" crossorigin="anonymous"></script>
 
 
 </html>
