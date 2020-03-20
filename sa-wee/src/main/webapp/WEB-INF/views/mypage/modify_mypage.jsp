@@ -23,10 +23,8 @@
 </head>
 
 <body>
-
 	<!-- header include -->
 	<%@ include file="/WEB-INF/views/share/header.jsp"%>
-	<br />
 
 	<div class="container-fluid">
 		<div class="cover">
@@ -220,9 +218,6 @@
 		</div>
 	</div>
 
-	<!-- footer include -->
-	<%@ include file="/WEB-INF/views/share/footer.jsp"%>
-
 </body>
 
 <script src="resources/js/mypage/jquery-3.2.1.min.js"></script>
@@ -236,8 +231,7 @@
 <script src="/js/header/header_hyesoo.js"></script>
 <!-- header 200317 새로 추가해야할 js -->
 <script src="/js/header/scroll.js"></script>
-<!-- Java Script for footer   ================================================== -->
-<script src="/js/footer/footer_hee.js"></script>
+
 <script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js" integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8=" crossorigin="anonymous"></script>
 
 </html>

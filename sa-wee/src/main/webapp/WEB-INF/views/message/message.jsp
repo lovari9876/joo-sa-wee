@@ -32,7 +32,6 @@
 
 	<!-- header include -->
 	<%@ include file="/WEB-INF/views/share/header.jsp"%>
-	<br />
 
 	<div class="container web-portion">
 		<h3 class=" text-center"></h3>
@@ -59,8 +58,6 @@
 							<div class="chat_people">
 								<div class="chat_img">
 									<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">
-									<img src="resources/images/bl_share/icons/wolf_logo.png"
-										alt="sunil">
 								</div>
 								<div class="chat_ib">
 									<h5>
@@ -73,7 +70,7 @@
 						<div class="chat_list">
 							<div class="chat_people">
 								<div class="chat_img">
-									<img src="/images/icons/wolf_logo.png" alt="sunil">
+									<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">
 								</div>
 								<div class="chat_ib">
 									<h5>
@@ -86,7 +83,7 @@
 						<div class="chat_list">
 							<div class="chat_people">
 								<div class="chat_img">
-									<img src="/images/icons/wolf_logo.png" alt="sunil">
+									<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">
 								</div>
 								<div class="chat_ib">
 									<h5>
@@ -167,9 +164,7 @@
 		</div>
 	</div>
 	
-	<!-- footer include -->
-	<%@ include file="/WEB-INF/views/share/footer.jsp"%>
-
+	
 </body>
 
 <script src="resources/js/mypage/jquery-3.2.1.min.js"></script>
@@ -182,8 +177,7 @@
 <script src="js/header/header_hyesoo.js"></script>
 <!-- header 200317 새로 추가해야할 js -->
 <script src="js/header/scroll.js"></script>
-<!-- Java Script for footer   ================================================== -->
-<script src="js/footer/footer_hee.js"></script>
+
 <script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js" integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8=" crossorigin="anonymous"></script>
 
 
