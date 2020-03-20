@@ -142,6 +142,7 @@
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
+	<script src="js/category.js"></script>
 	<script src="js/js_footer/footer_hee.js"></script>
 
 </body>
