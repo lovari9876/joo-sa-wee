@@ -2,6 +2,7 @@ package com.soninlawisdice.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,42 @@ public class CassieController {
 		
 		return "island/island_list";
 	}
+	
+	
+//	@Autowired
+//	private EmpService empService;
+//	
+//	@RequestMapping("/list")
+//	public String emp(Model model) {
+//		
+//		System.out.println("emp");
+//		
+//		//ArrayList<EmpVO> empList = empService.selectAllEmpList();
+//		
+//		/*
+//		 * ArrayList<HashMap<String,Object>> empList =
+//		 * empServie.selectAllEmpListHashMap();
+//		 * 
+//		 * for (HashMap<String, Object> hashMap : empList) {
+//		 * 
+//		 * Iterator<String> keys = hashMap.keySet().iterator(); while( keys.hasNext() ){
+//		 * String key = keys.next(); System.out.println( String.format("Ű : %s, �� : %s",
+//		 * key, hashMap.get(key)) ); } }
+//		 * 
+//		 * 
+//		 * System.out.println(empList.size());
+//		 */
+//		
+//		DeptEmpVO deptEmpVO = empService.selectEmpDeptName(10);
+//		 
+//		model.addAttribute("deptEmpVO", deptEmpVO);
+//		model.addAttribute("empList", deptEmpVO.getEmpList());
+//		
+//		System.out.println(deptEmpVO.getDeptno());
+//		System.out.println(deptEmpVO.getEmpList().size()); 
+//		
+//		return "/list";
+//	}
 	
 	
 	
