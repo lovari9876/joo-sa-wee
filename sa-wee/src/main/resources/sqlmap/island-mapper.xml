@@ -10,12 +10,16 @@
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
 	<select id="selectTradeIslandList"
 		resultType="com.soninlawisdice.vo.TradeVO">
-		SELECT TRADE.* FROM TRADE ORDER BY T_NO DESC
+		SELECT TRADE.* FROM TRADE 
+		WHERE T_ISLAND != 0 
+		ORDER BY T_NO DESC
 	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
 
 	<select id="selectBoard_writeIslandList"
 		resultType="com.soninlawisdice.vo.Board_writeVO">
-		SELECT BOARD_WRITE.* FROM BOARD_WRITE ORDER BY BW_NO DESC
+		SELECT BOARD_WRITE.* FROM BOARD_WRITE 
+		WHERE BW_ISLAND != 0 
+		ORDER BY BW_NO DESC
 	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
 
 
