@@ -3549,6 +3549,8 @@ li:last-child .cd-faq__category {
 }
 
 @media ( min-width : 986px) {
+	
+	
 	.cd-faq__category {
 		font-size: 1em;
 		font-size: var(- -text-xs);
@@ -3639,7 +3641,9 @@ li:last-child .cd-faq__category {
 		transform: translateX(0);
 		padding: 0 0 0 0.75em;
 		padding: 0 0 0 var(- -space-sm);
-		background: transparent
+		background: transparent;
+		margin-top: 40px;
+		
 	}
 }
 
@@ -3666,7 +3670,8 @@ html:not (.js ) .cd-faq__items {
 @media ( min-width : 986px) {
 	.cd-faq__group {
 		display: block;
-		padding-top: 1px
+		padding-top: 1px;
+		margin-top: 30px;
 	}
 }
 
@@ -3700,6 +3705,14 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 		margin-top: 95px;
 	}
 }
+
+/* 모바일 버전에서 헤더 내려오는 현상 제거 */
+@media ( max-width : 986px) {
+	body {
+		display: contents;
+	}
+}
+
 
 @media ( min-width : 986px) {
 	.cd-faq__item {
@@ -3907,7 +3920,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 body {
 	background-color: hsl(0, 0%, 95%);
 	background-color: var(- -color-contrast-lower);
-	display: contents;.cd-faq__category
+	.cd-faq__category
 }
 
  .cd-header { /* - */
