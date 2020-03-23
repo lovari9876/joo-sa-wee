@@ -1,17 +1,17 @@
 package com.soninlawisdice.vo;
 
 // 파일
-public class FileVO {
+public class F_fileVO {
 	int f_no; // 파일번호
 	String f_name; // 파일이름
 	String f_type; // 파일타입
 	String f_path; // 경로
 	String f_use; // 용도
 
-	public FileVO() {
+	public F_fileVO() {
 	}
 
-	public FileVO(int f_no, String f_name, String f_type, String f_path, String f_use) {
+	public F_fileVO(int f_no, String f_name, String f_type, String f_path, String f_use) {
 		super();
 		this.f_no = f_no;
 		this.f_name = f_name;
