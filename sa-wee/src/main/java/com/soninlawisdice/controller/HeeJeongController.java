@@ -29,6 +29,13 @@ public class HeeJeongController {
 		return "content/content_view";
 	}
 	
+	@RequestMapping(value = "/comment_view", method = RequestMethod.GET)
+	public String comment_view(Locale locale, Model model) {
+		logger.info("comment_view");
+
+		return "content/comment_view";
+	}
+	
 	@RequestMapping(value = "/reply", method = RequestMethod.GET)
 	public String reply(Locale locale, Model model) {
 		logger.info("reply");
