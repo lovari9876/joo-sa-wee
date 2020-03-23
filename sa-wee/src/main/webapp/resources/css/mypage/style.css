@@ -8,20 +8,10 @@ Description: This Template is created for web template
 ======================================================================= */
 /* ===================================== Import Less ================================== */
 @font-face {
-	font-family: 'mouse-300';
-	src: url("../../fonts/RobotoSlab-Regular.ttf") format("truetype");
-}
-
-@font-face {
-	font-family: 'mouse-500';
-	src: url("../../fonts/RobotoSlab-Bold.ttf") format("truetype");
-}
-
-@font-face {
 	font-family: "DungGeunMo";
 	font-style: normal;
 	font-weight: normal;
-	src: url("../../fonts/DungGeunMo.ttf") format('truetype');
+	src: url("../../fonts/fonts_cassie/joosaweefonts/DungGeunMo.ttf") format('truetype');
 }
 /* ===================================== Basic CSS ================================== */
 * {
@@ -672,5 +662,8 @@ body {
 input[type=text] {
 	border: none;
 	border-bottom: 2px solid #e5e5e5;
+}
+#footer{
+	float:center;
 }
 /*# sourceMappingURL=style.css.map */

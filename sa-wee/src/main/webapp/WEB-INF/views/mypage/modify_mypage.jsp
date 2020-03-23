@@ -10,8 +10,7 @@
 <title>SON-IN-RAW IS DICE - my page</title>
 
 <!-- 파피콘 -->
-<link rel="icon" type="image/png"
-	href="resources/images/icons/wolf_logo.ico" />
+<link rel="icon" type="image/png" href="/images/share/wolf_logo.ico" />
 
 <link rel="stylesheet" href="resources/css/mypage/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/fontawsom-all.min.css">
@@ -19,12 +18,13 @@
 	href="resources/css/mypage/style.css" />
 <link rel="stylesheet" type="text/css"
 	href="resources/css/mypage/liststyle.css" />
+
+
 </head>
 
 <body>
-
-    <%@ include file="/WEB-INF/views/share/header.jsp"%>
-	<br />
+	<!-- header include -->
+	<%@ include file="/WEB-INF/views/share/header.jsp"%>
 
 	<div class="container-fluid">
 		<div class="cover">
@@ -217,13 +217,21 @@
 			</div>
 		</div>
 	</div>
+
 </body>
 
-<script src="resources/js/mypage/file.js"></script>
 <script src="resources/js/mypage/jquery-3.2.1.min.js"></script>
+<script src="resources/js/mypage/file.js"></script>
 <script src="resources/js/mypage/popper.min.js"></script>
 <script src="resources/js/mypage/bootstrap.min.js"></script>
 <script src="resources/js/mypage/script.js"></script>
 
+<!-- Java Script for header  ================================================== -->
+<script src="/js/header/jquery.slicknav.min.js"></script>
+<script src="/js/header/header_hyesoo.js"></script>
+<!-- header 200317 새로 추가해야할 js -->
+<script src="/js/header/scroll.js"></script>
+
+<script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js" integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8=" crossorigin="anonymous"></script>
 
 </html>
