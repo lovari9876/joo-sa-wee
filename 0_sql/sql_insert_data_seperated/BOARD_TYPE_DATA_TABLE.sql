@@ -6,6 +6,6 @@ Insert into CASSIE.BOARD_TYPE (BT_NO,BT_NAME,BT_INFO,BT_EXTRA) values (3,'보드
 Insert into CASSIE.BOARD_TYPE (BT_NO,BT_NAME,BT_INFO,BT_EXTRA) values (4,'보드 뉴스','커뮤니티',null);
 Insert into CASSIE.BOARD_TYPE (BT_NO,BT_NAME,BT_INFO,BT_EXTRA) values (5,'질문과 답변','커뮤니티',null);
 Insert into CASSIE.BOARD_TYPE (BT_NO,BT_NAME,BT_INFO,BT_EXTRA) values (6,'창작 보드게임','커뮤니티',null);
-Insert into CASSIE.BOARD_TYPE (BT_NO,BT_NAME,BT_INFO,BT_EXTRA) values (7,'자주하는 질문',null,null);
-Insert into CASSIE.BOARD_TYPE (BT_NO,BT_NAME,BT_INFO,BT_EXTRA) values (8,'헬프데스크',null,null);
+Insert into CASSIE.BOARD_TYPE (BT_NO,BT_NAME,BT_INFO,BT_EXTRA) values (7,'자주하는 질문','헬프데스크',null);
+Insert into CASSIE.BOARD_TYPE (BT_NO,BT_NAME,BT_INFO,BT_EXTRA) values (8,'일대일 문의','헬프데스크',null);
 Insert into CASSIE.BOARD_TYPE (BT_NO,BT_NAME,BT_INFO,BT_EXTRA) values (9,'보부상','중고거래',null);

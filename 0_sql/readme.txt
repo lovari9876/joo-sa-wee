@@ -1,6 +1,6 @@
-* 각자 이름 있는 폴더 만들고, 프로젝트와 관련있는 자료들 집어넣기 (예: __cassie )
 * 0_sql 에는 테이블 create ddl과 data insert 파일이 있다. 
   한번에 데이터 insert 하고싶으면 insert_data_integrated.sql 사용, 테이블 별로 쓰고 싶다면 seperated 폴더 이하의 파일을 사용할 것
+* DATA INSERT 파일들은 cassie.tablename 으로 되어있으므로... 한글이나 office 제품으로 cassie. 을 제거한 후 쓸 것
 *  insert_data_integrated.sql 쓸 때 슬프게도 순서를 본인이 알아서 실행해야함...
    서로 FK로 엮인 애들은 PK 쪽 애들부터 실행해줘야 부모를 못찾는다고 하지 않는다...
 
