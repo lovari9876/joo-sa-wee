@@ -19,25 +19,21 @@
 			<td>직업</td>
 			<td>매니저</td>
 			<td>고용일</td>
-			<td>급여</td>
-			<td>커미션</td>
-			<td>부서번호</td>
+			
 		</tr>
 
 
-		<c:forEach items="${empList}" var="empvo">
+		<c:forEach items="${tlist}" var="tradevo">
 			<tr>
-				<td>${deptEmpVO.deptno}</td>
-				<td>${deptEmpVO.dname}</td>
-				<td>${deptEmpVO.loc}</td>
-				<td>${empvo.empno}</td>
-				<td>${empvo.ename}</td>
-				<td>${empvo.job}</td>
-				<td>${empvo.mgr}</td>
-				<td>${empvo.hiredate}</td>
-				<td>${empvo.sal}</td>
-				<td>${empvo.comm}</td>
-				<td>${empvo.deptno}</td>
+				<td>${tradeVO.t_no}</td>
+				<td>${tradeVO.m_no}</td>
+				<td>${tradeVO.s_no}</td>
+				<td>${tradeVO.t_title}</td>
+				<td>${tradeVO.t_content}</td>
+				<td>${tradeVO.t_written_date}</td>
+				<td>${tradeVO.t_updated_date}</td>
+				<td>${tradeVO.t_hit}</td>
+			
 			</tr>
 		</c:forEach>
 
@@ -46,5 +42,29 @@
 			<td colspan="11"><a href="write_view">글작성</a></td>
 		</tr>
 	</table>
+	
+	<%-- 	<table width="500" cellpadding="0" cellspacing="0" border="1">
+		<tr>
+			<td>번호</td>
+			<td>이름</td>
+			<td>제목</td>
+			<td>날짜</td>
+			<td>히트</td>
+		</tr>
+		<c:forEach items="${list}" var="dto">
+			<tr>
+				<td>${dto.bId}</td>
+				<td>${dto.bName}</td>
+				<td><c:forEach begin="1" end="${dto.bIndent}">-</c:forEach> <a
+					href="content_view?bId=${dto.bId}">${dto.bTitle}</a></td>
+				<td>${dto.bDate}</td>
+				<td>${dto.bHit}</td>
+			</tr>
+		</c:forEach>
+		<tr>
+			<td colspan="5"><a href="write_view">글작성</a></td>
+		</tr>
+	</table> --%>
+	
 </body>
 </html>

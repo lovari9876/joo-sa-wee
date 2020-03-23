@@ -15,18 +15,27 @@ public class IslandServiceImpl implements IslandService {
 
 	@Autowired
 	IslandMapper islandMapper;
-
+	
+	
+	ArrayList<TradeVO> tList;
+	ArrayList<Board_writeVO> bwList;
+	
+	
 	// 보부상에서 가져오기
 	@Override
 	public ArrayList<TradeVO> selectTradeIslandList() {
-		return islandMapper.selectTradeIslandList();
+		tList = islandMapper.selectTradeIslandList();
+		return tList;
 	}
 
 	// 게시글에서 가져오기
 	@Override
 	public ArrayList<Board_writeVO> selectBoard_writeIslandList() {
-		return islandMapper.selectBoard_writeIslandList();
+		bwList = islandMapper.selectBoard_writeIslandList();
+		return bwList;
 	}
+	
+//	ArrayList<> iList = null;
 
 	
 	
