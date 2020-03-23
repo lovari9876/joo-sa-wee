@@ -34,7 +34,7 @@
 
 		<div class="cd-faq__items">
 			<ul id="basics" class="cd-faq__group">
-				<li class="cd-faq__title"><h2>Basics</h2></li>
+				<li class="cd-faq__title"><h4>Basics</h4></li>
 				<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0"><span>How
 							do I change my password?</span></a>
 					<div class="cd-faq__content">
@@ -99,7 +99,7 @@
 			<!-- cd-faq__group -->
 
 			<ul id="mobile" class="cd-faq__group">
-				<li class="cd-faq__title"><h2>Mobile</h2></li>
+				<li class="cd-faq__title"><h4>Mobile</h4></li>
 				<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0"><span>How
 							does syncing work?</span></a>
 					<div class="cd-faq__content">
@@ -154,7 +154,7 @@
 			<!-- cd-faq__group -->
 
 			<ul id="account" class="cd-faq__group">
-				<li class="cd-faq__title"><h2>Account</h2></li>
+				<li class="cd-faq__title"><h4>Account</h4></li>
 				<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0"><span>How
 							do I change my password?</span></a>
 					<div class="cd-faq__content">
@@ -229,7 +229,7 @@
 			<!-- cd-faq__group -->
 
 			<ul id="payments" class="cd-faq__group">
-				<li class="cd-faq__title"><h2>Payments</h2></li>
+				<li class="cd-faq__title"><h4>Payments</h4></li>
 				<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0"><span>Can
 							I have an invoice for my subscription?</span></a>
 					<div class="cd-faq__content">
@@ -286,7 +286,7 @@
 			<!-- cd-faq__group -->
 
 			<ul id="privacy" class="cd-faq__group">
-				<li class="cd-faq__title"><h2>Privacy</h2></li>
+				<li class="cd-faq__title"><h4>Privacy</h4></li>
 				<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0"><span>Can
 							I specify my own private key?</span></a>
 					<div class="cd-faq__content">
@@ -352,7 +352,7 @@
 			<!-- cd-faq__group -->
 
 			<ul id="delivery" class="cd-faq__group">
-				<li class="cd-faq__title"><h2>Delivery</h2></li>
+				<li class="cd-faq__title"><h4>Delivery</h4></li>
 				<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0"><span>What
 							should I do if my order hasn't been delivered yet?</span></a>
 					<div class="cd-faq__content">
