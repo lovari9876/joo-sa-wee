@@ -29,8 +29,15 @@ public class IslandService {
 
 	
 	
-	
 // 참고	
+
+//	@Inject
+//	EmpMapper empMapper;
+//	
+//	public ArrayList<EmpVO> selectAllEmpList() {
+//			return empMapper.selectAllEmpList() ;
+//   }
+//		
 //   public DeptEmpVO selectEmpDeptName(int deptno) {
 //		return empMapper.selectEmpDeptName(deptno) ;
 //   }
