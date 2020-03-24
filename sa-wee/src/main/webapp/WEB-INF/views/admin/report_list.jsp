@@ -17,9 +17,6 @@
 
 <body>
 
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/admin/fetchPage.js" type="text/javascript"></script>
 	
 
 	<%@include file="side.jsp"%>
@@ -34,43 +31,50 @@
 					<h3>신고관리</h3>
 				</div>
 				<div class="module-option clearfix">
-					<form>
-
+					<form role="form" method="get">
+					<div class = "search">
 						<div class="control-group">
 
 							<div class="controls">
 								<div class="dropdown">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">신고대상 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">회원</a></li>
-										<li><a href="#">게시글</a></li>
-										<li><a href="#">댓글</a></li>
-									
-									</ul>
-								
-									
+										<select name="searchType" class="span2">
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+
+
+										</select>
 								</div>
-									<div class="input-append pull-left">
-									<input type="text" class="span3"
-										placeholder="검색을 해라">
-									<button type="submit" class="btn">
+							
+								<div class="input-append pull-left">
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span3" placeholder="검색을 해라">
+									<button type="submit" class="btn" id="serchBtn">
 										<i class="icon-search"></i>
 									</button>
+									
+									<script>
+								      $(function(){
+								        $('#searchBtn').click(function() {
+								          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+								        });
+								      });   
+								    </script>
 								</div>
-								
-								
+
+
 							</div>
 						</div>
-
-					</form>
-					<div class="btn-group pull-right" data-toggle="buttons-radio">
-						<button type="button" class="btn">전체보기</button>
-						<button type="button" class="btn">회원</button>
-						<button type="button" class="btn">게시글</button>
-						<button type="button" class="btn">댓글</button>
+						<div class="btn-group pull-right" data-toggle="buttons-radio">
+						<button type="button" class="btn __all" value="">전체보기</button>
+						<button type="button" class="btn __member" value="회원">회원</button>
+						<button type="button" class="btn __board" value="게시글">게시글</button>
+						<button type="button" class="btn __comment" value="댓글">댓글</button>
 					</div>
+					</div>
+					</form>
+					
 				</div>
 
 
@@ -82,45 +86,46 @@
 
 
 					<!-- 리스트 -->
-					<div class = "table_mobile">
-					<table class="table">
-						<tr class="trow header">
-							<td class="cell">신고 번호</td>
-							<td class="cell">신고 대상</td>
-							<td class="cell title">신고 내용</td> 
-							<!-- 미리보기! 길면 ...으로 표시 ! 목록에서 선택시 content_view 페이지로 이동,  
+					<div class="table_mobile">
+						<table class="table">
+							<tr class="trow header">
+								<td class="cell">신고 번호</td>
+								<td class="cell">신고 대상</td>
+								<td class="cell title">신고 내용</td>
+								<!-- 미리보기! 길면 ...으로 표시 ! 목록에서 선택시 content_view 페이지로 이동,  
 								 신고한 회원과, 신고당한 대상 이름, 내용 등 표시 -->
-							<td class="cell">신고일</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">1</td>
-							<td class="cell"><a onclick="fetchPage('report_view2')">회원</a></td> <!-- ajax로 구현 -->
-							<td class="cell title"><a href="report_view">신고내용 내용 내용bbbbbbbbbbbbabccabababababababababbbbbbbbbbbbbbb </a></td><!-- 링크이동 -->
-							<td class="cell">2020-02-20</td>
-						</tr>
-						
-						<c:forEach items="${report_list}" var="report">
-						
-						
-						<tr class="trow">
-							<td class="cell">${report.st_no}</td>
-							<td class="cell"><a href = "report_view?st_no=${report.st_no}">${report.st_comment_num}</a></td>
-							<td class="cell">${report.st_trade_num}</td>
-							<td class="cell">${report.st_date}</td>
-						</tr>
-						
-						
-						</c:forEach>
-					</table>
+								<td class="cell">신고일</td>
+							</tr>
+								<tbody id="ajax_test"> 
+							<c:forEach items="${report_list}" var="report">
+								<tr class="trow" onClick="location.href='report_view?r_no=${report.r_no}'">
+									<td class="cell">${report.r_no}</td>
+									<td class="cell">${report.r_type}</td>
+									<td class="cell title">${report.r_content}</td>
+									<td class="cell">${report.r_report_date}</td>
+								</tr>
+							</c:forEach>
+							</tbody>			
+						</table>
 					</div>
 					<div class="pagination pagination-centered">
 						<ul>
-							<li><a href="#"><i class="icon-double-angle-left"></i></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"></i></a></li>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="report_list2${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="report_list2${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="report_list2${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 			</div>
@@ -155,5 +160,10 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+	<script src="js/admin/board_tab/tab.js" type="text/javascript"></script>
+	
+	
+	
+	
 </body>
 </html>
