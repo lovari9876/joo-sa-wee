@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.LoginService;
-import com.soninlawisdice.service.LoginServiceImpl;
 import com.soninlawisdice.vo.MemberVO;
 
 @Controller
@@ -22,16 +21,12 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login_home(Locale locale, Model model) {
-
-		return "login/login";
-	}
-	
 	@RequestMapping(value = "/login_check", method = RequestMethod.GET)
 	public String login_check(Locale locale, Model model) {
-
-		return "login/login_check";
+		System.out.println("login_check()");		
+		
+		
+		return "login/login";
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -49,6 +44,7 @@ public class LoginController {
 		System.out.println("loginService()");
 
 		if (login == null) {
+			session.setAttribute("member", null);
 			// RedirectAttributes 새로고침하면 날라가는 데이터(1회성)
 			rttr.addFlashAttribute("msg", false);
 			System.out.println("login == null");
@@ -57,7 +53,7 @@ public class LoginController {
 			System.out.println("login 성공");
 		}
 
-		return "redirect:/";
+		return "redirect:/login_check";
 	}
 
 	@RequestMapping(value = "/forgot_id", method = RequestMethod.GET)
