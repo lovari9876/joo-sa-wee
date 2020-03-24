@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- mapper 태그 내부에 sql문을 넣으면 mybatis가 알아서 해준다.. -->
-<mapper namespace="com.soninlawisdice.service.IslandService">
+<mapper namespace="com.soninlawisdice.mapper.IslandMapper">
 	<!-- namespace를 만든 인터페이스와 맞춰주기 -->
 	<!-- id를 service의 함수명과 맞춰주기 -->
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
