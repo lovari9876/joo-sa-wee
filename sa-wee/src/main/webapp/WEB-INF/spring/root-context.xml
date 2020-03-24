@@ -41,6 +41,7 @@
 		<property name="dataSource" ref="dataSource" />
 	 <!-- 	<property name="mapperLocations"
 			value="classpath:/sqlmap/*.xml" /> -->  <!-- mapper xml읽어들인다 -->
+			
 		<!-- src/main/resouces 이후 위치 알려준다. -->
 		<property name="configLocation" value="classpath:/config/sql-map-config.xml" /> 
 	</bean>
@@ -53,12 +54,17 @@
 	</bean>
 
 	<!-- 3번과 4번 방식을 사용하기 위한 방식임 -->
-	<!-- 3번: xml 읽는 대신에 Mapper Interface의 @어노테이션(sql문) 스캔!해서 객체 생성!! -->	
+	<!-- 3번: xml 읽는 대신에 Mapper Interface의 @어노테이션(sql문) 스캔!해서 객체 생성!! -->
 	<!-- Mapper Interface -->
 	<mybatis-spring:scan base-package="com.soninlawisdice.mapper" /> <!-- mapper 인식 -->
+
 	<!-- 이제 mybatis에서도 스캔함 -->
 	
 	<!-- @component(service 등) 써있는 클래스를 bean으로 인식 -->
 	<context:component-scan base-package="com.soninlawisdice.service" /> 
+
+	<context:component-scan
+		base-package="com.soninlawisdice.service" />
+
 
 </beans>

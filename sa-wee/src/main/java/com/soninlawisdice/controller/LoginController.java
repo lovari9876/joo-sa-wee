@@ -20,7 +20,7 @@ import com.soninlawisdice.vo.MemberVO;
 public class LoginController {
 
 	@Autowired
-	private LoginServiceImpl loginService;
+	private LoginService loginService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login_home(Locale locale, Model model) {

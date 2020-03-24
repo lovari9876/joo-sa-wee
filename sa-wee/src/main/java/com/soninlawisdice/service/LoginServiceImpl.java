@@ -11,6 +11,14 @@ public class LoginServiceImpl implements LoginService{
 
 	@Autowired	
 	LoginMapper loginMapper;
+	
+	// 생성자
+	public LoginServiceImpl() {}
+
+	public LoginServiceImpl(LoginMapper loginMapper) {
+		super();
+		this.loginMapper = loginMapper;
+	}
 
 	@Override
 	public MemberVO login(String m_id, String m_pw) throws Exception{
