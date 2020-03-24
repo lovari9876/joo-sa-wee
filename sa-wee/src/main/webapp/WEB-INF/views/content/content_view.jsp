@@ -55,22 +55,26 @@
 				<div class="col-md-12">
 					<div class="custom-breadcrumbs mb-0">
 						<!-- 게시판이름과 게시글 작성자 -->
-						<h4 id="community">보드 이야기</h4><br/>
+						<h4 id="community">${content_view.bt_no}</h4><br/>
 						<div class="title">
 							<div class="title_item frist">
-								<span class="slash">작성자</span>
+								<span class="slash">${content_view.s_no}</span>
 								<span class="slash">&bullet;</span> 
-								<span class="text-white">April 15, 2019</span>
+								<span class="slash">${content_view.m_no}</span>
+								<span class="slash">&bullet;</span> 
+								<span class="text-white">${content_view.bw_written_date}</span>
+								<span class="slash">&bullet;</span>
+								<span class="text-white">${content_view.bw_updated_date}</span>
 							</div>
 							<div class="title_item second">
-								<span class="slash">추천수(숫자)</span>
+								<span class="slash">추천수(${content_view.bw_recomend_num})</span>
 								<span class="slash">&bullet;</span> 
-								<span class="slash">조회수(숫자)</span>
+								<span class="slash">조회수(${content_view.bw_hit})</span>
 							</div>
 						</div>
 					</div>
 					<!-- 게시글 제목 -->
-					<h2 class="text-white">Where Do You Learn HTML &amp; CSS in 2020?</h2>
+					<h2 class="text-white">${content_view.bw_title}</h2>
 				</div>
 			</div>
 		</div>
@@ -91,12 +95,9 @@
 						<img src="images/board_hj/job_single_img_1.jpg" alt="Image"
 							class="img-fluid rounded">
 					</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Quae expedita cumque necessitatibus ducimus debitis totam, quasi
-						praesentium eveniet tempore possimus illo esse, facilis? Corrupti
-						possimus quae ipsa pariatur cumque, accusantium tenetur
-						voluptatibus incidunt reprehenderit, quidem repellat sapiente, id,
-						earum obcaecati.</p>
+					<p>${content_view.bw_content}</p>
+					<p>${content_view.bw_island}</p>
+					<p>${content_view.bw_secret}</p>
 
 					<blockquote>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
