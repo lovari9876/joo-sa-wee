@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soninlawisdice.controller.AdminController;
 import com.soninlawisdice.service.AdminService;
-import com.soninlawisdice.service.AdminServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
@@ -35,7 +34,7 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired
-	private AdminServiceImpl adminService;
+	private AdminService adminService;
 
 	@RequestMapping("/index")
 	public String index() {

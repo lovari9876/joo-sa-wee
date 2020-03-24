@@ -8,7 +8,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edmin</title>
+<title>Admin</title>
 <link type="text/css" href="css/admin/bootstrap.min.css"
 	rel="stylesheet">
 <link type="text/css" href="css/admin/bootstrap-responsive.min.css"
@@ -20,11 +20,11 @@
             rel='stylesheet'> -->
 </head>
 <body>
-	<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-	<script src="js/chart/tab.js" type="text/javascript"></script>
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="js/admin/chart/tab.js" type="text/javascript"></script>
 	<!-- 차트 Chart.js -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="js/chart/chart2.js" type="text/javascript"></script>
+	<script src="js/admin/chart/chart2.js" type="text/javascript"></script>
 
 
 

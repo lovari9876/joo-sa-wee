@@ -10,8 +10,7 @@ public class ReportVO {
 	private String r_type;
 	private int r_type_no;
 	private String r_content;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone = "Asia/Seoul")
-	private Timestamp r_report_date;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy.MM.dd", timezone = "Asia/Seoul")	private Timestamp r_report_date;
 	
 	
 	public ReportVO() {}

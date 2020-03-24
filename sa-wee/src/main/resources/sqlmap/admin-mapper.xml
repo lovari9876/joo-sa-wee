@@ -126,7 +126,7 @@
 		SELECT COUNT(r_no)
 		  FROM report
 		 WHERE 1=1
-		 <include refid="board_search"></include>	
+		 <include refid="report_search"></include>	
 		 AND r_no > 0
 
 	</select>

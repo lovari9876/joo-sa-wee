@@ -2,6 +2,9 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
+
+	
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,8 +63,8 @@
 								
 								
 								<div class="input-append pull-right"> 
-									<input type="text" class="span2" placeholder="검색을해라">
-									<button type="submit" class="btn">
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
+									<button type="submit" class="btn" id="serchBtn">
 										<i class="icon-search"></i>
 									</button>
 								</div>
@@ -121,9 +124,24 @@
 									<td class="cell">${board.bt_no}</td>
 									<td class="cell">${board.s_no}</td>
 									<td class="cell"><a
-										href="report_view?st_no=${board.bw_no}">${board.bw_title}</a></td>
+										href="board_view?st_no=${board.bw_no}">${board.bw_title}</a></td>
 									<td class="cell">${board.m_no}</td>
-									<td class="cell">${board.bw_written_date}</td>
+									<td class="cell"> 
+									
+									
+										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+										<jsp:useBean id="today" class="java.util.Date" />
+										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+										<fmt:formatDate value="${board.bw_written_date}" pattern="yyyy.MM.dd" var="date"/>
+										<c:choose>
+											<c:when test="${now ne date}">${now}</c:when>
+											<c:otherwise>
+												<fmt:formatDate value="${board.bw_written_date}" pattern="HH:mm:ss"/>
+											</c:otherwise>
+										</c:choose>
+										
+										
+									</td>
 									<td class="cell">${board.bw_report_num}</td>
 								</tr>
 							</c:forEach>
@@ -179,13 +197,14 @@
 	</div>
 
 	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
+	
 	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
 	<script src="js/admin/checkBox.js" type="text/javascript"></script>
 	
+	<!-- 말머리 탭 -->
 	<script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script>
 	
-	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
-		type="text/javascript"></script>
+	<script src="js/admin/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
 
 

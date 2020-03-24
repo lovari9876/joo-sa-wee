@@ -6,5 +6,6 @@
 	<!-- sql mapper 설정 -->
 	<mappers>
 		<mapper resource="sqlmap/island-mapper.xml" />
+		<mapper resource="sqlmap/admin-mapper.xml" />
 	</mappers>
 </configuration>

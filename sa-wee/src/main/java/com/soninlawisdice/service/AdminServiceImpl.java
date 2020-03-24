@@ -18,6 +18,17 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminMapper adminMapper;
+	
+	
+	//생성자
+	public AdminServiceImpl(AdminMapper adminMapper) {
+		super();
+		this.adminMapper = adminMapper;
+	}
+	
+	public AdminServiceImpl() {}
+	
+	
 
 	// 목록
 //	@Override
