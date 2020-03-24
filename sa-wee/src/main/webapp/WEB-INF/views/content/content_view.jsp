@@ -67,7 +67,7 @@
 								<span class="text-white">${content_view.bw_updated_date}</span>
 							</div>
 							<div class="title_item second">
-								<span class="slash">추천수(${content_view.bw_recomend_num})</span>
+								<span class="slash">추천수(${content_view.bw_recommend_num})</span>
 								<span class="slash">&bullet;</span> 
 								<span class="slash">조회수(${content_view.bw_hit})</span>
 							</div>
@@ -173,7 +173,6 @@
 							</div>
 						</div>
 					</form>
-					<!-- 목록 "list" -> action으로, 삭제 "delete?bId=${content_view.bId}" -->
 
 					<!-- 댓글부분 -->
 					<%@ include file="/WEB-INF/views/content/comment_view.jsp" %>
