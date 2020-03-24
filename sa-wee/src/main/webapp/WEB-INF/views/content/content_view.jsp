@@ -165,7 +165,7 @@
 								<a  href="#">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="#">삭제</a>
+								<a href="delete?bw_no=${content_view.bw_no}">삭제</a>
 							</div>
 							<div class="test_item fourth">
 								<a href="report"

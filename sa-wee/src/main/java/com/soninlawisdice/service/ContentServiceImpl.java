@@ -12,10 +12,18 @@ public class ContentServiceImpl implements ContentService {
 	@Autowired
 	ContentMapper contentMapper;
 	
+	// 게시글 보기(content_view)
 	@Override
 	public Board_writeVO selectContentOne(String bw_no) {
 		
 		return contentMapper.selectContentOne(bw_no);
+	}
+
+	// 게시글 삭제
+	@Override
+	public void deleteContent(Board_writeVO board_writeVO) {
+		
+		contentMapper.deleteContent(board_writeVO);
 	}
 
 }

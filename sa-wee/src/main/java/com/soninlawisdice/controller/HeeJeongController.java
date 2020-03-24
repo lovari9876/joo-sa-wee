@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.soninlawisdice.service.ContentServiceImpl;
+import com.soninlawisdice.vo.Board_writeVO;
 
 /**
  * Handles requests for the application home page.
@@ -24,7 +25,6 @@ public class HeeJeongController {
 	
 	@Autowired
 	ContentServiceImpl contentServiceImpl;
-	
 	
 	private static final Logger logger = LoggerFactory.getLogger(HeeJeongController.class);
 	
@@ -39,6 +39,15 @@ public class HeeJeongController {
 		model.addAttribute("content_view", contentServiceImpl.selectContentOne(bw_no));
 
 		return "content/content_view";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(Board_writeVO board_writeVO, Model model) {
+		logger.info("delete");
+		
+		contentServiceImpl.deleteContent(board_writeVO);
+
+		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "/comment_view", method = RequestMethod.GET)

@@ -9,13 +9,18 @@
 	<!-- id를 service의 함수명과 맞춰주기 -->
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
 	
-	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. -->
+	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 없애도 됨. -->
 	<select id="selectContentOne"
 		resultType="com.soninlawisdice.vo.Board_writeVO">
 		select * from board_write bw, member m, board_type bt, subject s where bw.m_no = m.m_no and bw.bt_no = bt.bt_no and bw.s_no = s.s_no and bw.bw_no = #{bw_no, jdbcType=INTEGER}
 	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
+	
+	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 없애도 됨. -->
+	<delete id="deleteContent">
+		delete from board_write where bw_no = #{bw_no, jdbcType=INTEGER};
+	</delete>
 
-	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면 -->
+	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면  -->
 	<!-- 자동으로 현재시간이 입력된다. -->
 	<!-- <insert id="insertBoard"> insert into mvc_board (bId, bName, bTitle, 
 		bContent, bHit, bGroup, bStep, bIndent) values (mvc_board_seq.nextval, #{bName}, 
