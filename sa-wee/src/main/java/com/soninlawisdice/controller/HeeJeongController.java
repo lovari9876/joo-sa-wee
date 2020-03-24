@@ -4,12 +4,18 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.soninlawisdice.service.ContentServiceImpl;
+import com.soninlawisdice.vo.Board_writeVO;
 
 /**
  * Handles requests for the application home page.
@@ -17,16 +23,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HeeJeongController {
 	
+	@Autowired
+	ContentServiceImpl contentServiceImpl;
+	
 	private static final Logger logger = LoggerFactory.getLogger(HeeJeongController.class);
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/content_view", method = RequestMethod.GET)
-	public String content(Locale locale, Model model) {
+	public String content(HttpServletRequest request, Model model) {
 		logger.info("content_view");
+		
+		String bw_no = request.getParameter("bw_no");
+		model.addAttribute("content_view", contentServiceImpl.selectContentOne(bw_no));
 
 		return "content/content_view";
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(Board_writeVO board_writeVO, Model model) {
+		logger.info("delete");
+		
+		contentServiceImpl.deleteContent(board_writeVO);
+
+		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "/comment_view", method = RequestMethod.GET)
