@@ -12,6 +12,13 @@ public class ContentServiceImpl implements ContentService {
 	@Autowired
 	ContentMapper contentMapper;
 	
+	
+	public ContentServiceImpl() {}
+
+	public ContentServiceImpl(ContentMapper contentMapper) {
+		this.contentMapper = contentMapper;
+	}
+
 	// 게시글 보기(content_view)
 	@Override
 	public Board_writeVO selectContentOne(String bw_no) {

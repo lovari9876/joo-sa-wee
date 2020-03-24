@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.ContentServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
 
@@ -24,7 +25,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 public class HeeJeongController {
 	
 	@Autowired
-	ContentServiceImpl contentServiceImpl;
+	ContentService contentService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HeeJeongController.class);
 	
@@ -36,7 +37,7 @@ public class HeeJeongController {
 		logger.info("content_view");
 		
 		String bw_no = request.getParameter("bw_no");
-		model.addAttribute("content_view", contentServiceImpl.selectContentOne(bw_no));
+		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
 
 		return "content/content_view";
 	}
@@ -45,7 +46,7 @@ public class HeeJeongController {
 	public String delete(Board_writeVO board_writeVO, Model model) {
 		logger.info("delete");
 		
-		contentServiceImpl.deleteContent(board_writeVO);
+		contentService.deleteContent(board_writeVO);
 
 		return "redirect:list";
 	}
