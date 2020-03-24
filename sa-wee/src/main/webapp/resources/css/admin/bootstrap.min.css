@@ -1329,7 +1329,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 	input[type="url"], input[type="search"], input[type="tel"], input[type="color"],
 	.uneditable-input {
 	display: inline-block;
-	height: 20px;
+	height: 30px;
 	padding: 4px 6px;
 
 	 margin-bottom: 10px; 

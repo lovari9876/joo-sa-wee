@@ -5,10 +5,9 @@
 
 	<mapper namespace="com.soninlawisdice.mapper.AdminMapper">
 
-	<!--page=2&perPageNum=10 -->
-	
-	
-    <select id="list" resultType="com.soninlawisdice.vo.StatisticsVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
+
+	<!-- ================================================List 출력====================================================== -->
+<!--     <select id="statisticsList" resultType="com.soninlawisdice.vo.StatisticsVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
 
 	SELECT * FROM
 	(
@@ -21,7 +20,7 @@
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY st_no DESC
 
-	</select>
+	</select> -->
 	
 	
 	<select id="memberList" resultType="com.soninlawisdice.vo.MemberVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
@@ -35,7 +34,7 @@
 		               ROW_NUMBER() OVER(ORDER BY m_no DESC) AS RNUM
 		         FROM member 
 		         WHERE 1=1
-		         <include refid="search"></include>
+		         <include refid="member_search"></include>
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY m_no DESC
@@ -51,12 +50,15 @@
 		               ROW_NUMBER() OVER(ORDER BY m_no DESC) AS RNUM
 		         FROM report 
 		         WHERE 1=1
-		         <include refid="search"></include>
+		         <include refid="report_search"></include>
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY r_no DESC
 
 	</select>
+	
+	
+	
 	
 	<select id="boardList" resultType="com.soninlawisdice.vo.Board_writeVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
 
@@ -66,7 +68,7 @@
 		               ROW_NUMBER() OVER(ORDER BY m_no DESC) AS RNUM
 		         FROM board_write
 		         WHERE 1=1
-		         <include refid="search"></include>
+		         <include refid="board_search"></include>
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY bw_no DESC
@@ -74,25 +76,72 @@
 	</select>
 	
 	
+	<!-- =============================================== 페이징 처리 & 검색 ====================================================== -->
 	
-	<select id="listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
+	<select id="board_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
 		SELECT COUNT(bw_no)
 		  FROM board_write
 		 WHERE 1=1
-		 <include refid="search"></include>	
+		 <include refid="board_search"></include>	
 		 AND bw_no > 0
 
 	</select>
 	
-	<sql id="search">
+	<sql id="board_search">
 		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND ST_COMMENT_NUM LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND ST_VISITOR_NUM LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND ST_TRADE_NUM LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (ST_COMMENT_NUM LIKE '%' || #{keyword} || '%') or (ST_VISITOR_NUM LIKE '%' || #{keyword} || '%')</if>
+			<if test="searchType == 't'.toString()">AND bw_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND bw_content LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND m_no LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (bw_title LIKE '%' || #{keyword} || '%') or (bw_content LIKE '%' || #{keyword} || '%')</if>
 		</if>
 	</sql>
+	
+	
+	
+	
+	<select id="member_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
+
+		SELECT COUNT(m_no)
+		  FROM member
+		 WHERE 1=1
+		 <include refid="member_search"></include>	
+		 AND m_no > 0
+
+	</select>
+	
+	<sql id="member_search">
+		<if test="searchType != null">
+			<if test="searchType == 'a'.toString()">AND m_id LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'b'.toString()">AND m_name LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND m_nick LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'd'.toString()">AND r_no LIKE '%' || #{keyword} || '%'</if>
+		</if>
+	</sql>
+	
+	
+	
+	<select id="report_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
+
+		SELECT COUNT(r_no)
+		  FROM report
+		 WHERE 1=1
+		 <include refid="board_search"></include>	
+		 AND r_no > 0
+
+	</select>
+	
+	<sql id="report_search">
+		<if test="searchType != null">
+			<if test="searchType == 'a'.toString()">AND m_no LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'b'.toString()">AND r_type_no LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND r_content LIKE '%' || #{keyword} || '%'</if>
+		</if>
+	</sql>
+	
+	
+	
+	
 	
 	
 	

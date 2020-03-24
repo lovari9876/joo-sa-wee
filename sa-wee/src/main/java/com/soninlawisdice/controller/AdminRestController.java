@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.soninlawisdice.service.AdminService;
+import com.soninlawisdice.service.AdminServiceImpl;
 import com.soninlawisdice.vo.StatisticsVO;
 import com.soninlawisdice.vo.ReportVO;
 
@@ -28,7 +29,7 @@ public class AdminRestController {
 
 
 	@Autowired
-	private AdminService adminService;
+	private AdminServiceImpl adminService;
 	
 	
 
@@ -71,14 +72,14 @@ public class AdminRestController {
 	}
 	
 	
-//	@RequestMapping("/report_view")
-//	public String report_view(ReportVO reportVO, Model model) throws Exception {
-//		int id = reportVO.getR_no();
-//		ReportVO view = adminService.selectReportView(id);
-//		model.addAttribute("report_view", view);
-//		
-//		return "report_view";
-//	}
+	@RequestMapping("/report_view")
+	public String report_view(ReportVO reportVO, Model model) throws Exception {
+		int id = reportVO.getR_no();
+		ReportVO view = adminService.selectReportView(id);
+		model.addAttribute("report_view", view);
+		
+		return "report_view";
+	}
 	
 	
 	

@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soninlawisdice.controller.AdminController;
 import com.soninlawisdice.service.AdminService;
+import com.soninlawisdice.service.AdminServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
+import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.StatisticsVO;
 
@@ -33,7 +35,7 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired
-	private AdminService adminService;
+	private AdminServiceImpl adminService;
 
 	@RequestMapping("/index")
 	public String index() {
@@ -55,19 +57,11 @@ public class AdminController {
 	 */
 	////////////////////////////////////////////////////////////////////////////
 
-	@RequestMapping("/report_list")
-	public String report_list(Model model) throws Exception {
-
-		List<StatisticsVO> list = adminService.selectAdminList();
-		model.addAttribute("report_list", list);
-
-		return "admin/report_list";
-	}
 
 	@RequestMapping("/report_view")
-	public String report_view(StatisticsVO adminVO, Model model) throws Exception {
-		int id = adminVO.getSt_no();
-		StatisticsVO view = adminService.selectAdminView(id);
+	public String report_view(ReportVO reportVO, Model model) throws Exception {
+		int id = reportVO.getR_no();
+		ReportVO view = adminService.selectReportView(id);
 		model.addAttribute("report_view", view);
 
 		return "admin/report_view";
@@ -93,7 +87,7 @@ public class AdminController {
 		model.addAttribute("report_list", adminService.reportList(scri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.listCount(scri));
+		pageMaker.setTotalCount(adminService.report_listCount(scri));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -106,7 +100,7 @@ public class AdminController {
 		model.addAttribute("user_list", adminService.memberList(scri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.listCount(scri));
+		pageMaker.setTotalCount(adminService.member_listCount(scri));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -120,7 +114,7 @@ public class AdminController {
 		model.addAttribute("board_list", adminService.boardList(scri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.listCount(scri));
+		pageMaker.setTotalCount(adminService.board_listCount(scri));
 
 		model.addAttribute("pageMaker", pageMaker);
 

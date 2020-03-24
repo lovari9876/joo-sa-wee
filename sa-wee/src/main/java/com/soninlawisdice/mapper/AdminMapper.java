@@ -14,22 +14,30 @@ import com.soninlawisdice.vo.SearchCriteria;
 public interface AdminMapper {
 
 	// 목록 출력
-	@Select("select * from statistics")
-	public List<StatisticsVO> selectAdminList();
+//	@Select("select * from statistics")
+//	public List<StatisticsVO> selectAdminList();
+	
 
-	// 페이징처리된 목록
-	public List<StatisticsVO> list(SearchCriteria scri);
+	// 페이징 처리 + 검색  List
+	public List<Board_writeVO> boardList(SearchCriteria scri);
+	public int board_listCount(SearchCriteria scri);
 	
 	public List<MemberVO> memberList(SearchCriteria scri);
-
+	public int member_listCount(SearchCriteria scri);
+	
 	public List<ReportVO> reportList(SearchCriteria scri);
-	
-	public List<Board_writeVO> boardList(SearchCriteria scri);
+	public int report_listCount(SearchCriteria scri);
 	
 
-	// 전체 글 갯수
-	public int listCount(SearchCriteria scri);
 
+
+	
+	
+	
+//	public List<StatisticsVO> list(SearchCriteria scri);
+
+	
+	
 	// 차트 : 최근 값 7개 출력 
 	@Select("select * from (select st_no, st_post_num, st_date, st_comment_num, st_trade_num from statistics order by st_no desc)" + 
 			"where rownum <= 7")
