@@ -6,7 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<bean name="dataSourceSpied"
@@ -14,7 +14,7 @@
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="url"
-			value="jdbc:oracle:thin:@127.0.0.1:1521:XE" />
+			value="jdbc:oracle:thin:@192.168.6.13:1521:XE" />
 		<property name="username" value="DB_SAWEE" />
 		<property name="password" value="JOO" />
 	</bean>
@@ -53,8 +53,9 @@
 	<!-- 3번: xml 읽는 대신에 Mapper Interface의 @어노테이션(sql문) 스캔!해서 객체 생성!! -->	
 	<!-- Mapper Interface -->
 	<mybatis-spring:scan base-package="com.soninlawisdice.*" />
+	
+	    <!-- scan -->
+	
 	<!-- 이제 mybatis에서도 스캔함 -->
 
 </beans>
-
-

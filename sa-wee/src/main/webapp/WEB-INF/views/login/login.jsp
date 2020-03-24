@@ -25,14 +25,14 @@
 	<div class="container-login100">
 		<!-- 메인페이지와 연결되게 -->
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-30">
-			
-			<a href="#" class="wrap-input100 p-b-30"> 
-				<img class="logo_image"
+
+			<a href="#" class="wrap-input100 p-b-30"> <img class="logo_image"
 				src="resources/images/bl_share/icons/login/wolf_logo.png"
 				alt="son-in-low_is_dice">
-			</a><br/>
-			
-			<form class="login100-form validate-form">
+			</a><br />
+
+			<form class="login100-form validate-form" method="post"
+				autocomplete="off" action="/login">
 				<!-- <span class="login100-form-title p-b-37"> <img
 					class="logo_image" src="resources/images/icons/login/wolf_logo.png"
 					alt="son-in-low_is_dice">
@@ -40,24 +40,30 @@
 
 				<div class="wrap-input100 validate-input m-b-20"
 					data-validate="Enter ID">
-					<input class="input100" type="text" name="username"
+					<input id="m_id" class="input100" type="text" name="m_id"
 						placeholder="ID"> <span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input m-b-25"
 					data-validate="Enter password">
-					<input class="input100" type="password" name="pass"
+					<input id="m_pw" class="input100" type="password" name="m_pw"
 						placeholder="PASSWARD"> <span class="focus-input100"></span>
 				</div>
 
 				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">로그인</button>
+					<button type="submit" class="login100-form-btn">로그인</button>
 				</div>
+				
+				<!-- F5를 누르면 사라짐 / 1회성  -->				
+				<c:if test="${msg == false}">
+					<p style="color: #f00;">로그인에 실패. 아이디 또는 패스워드를 다시 입력해주십시오.</p>
+				</c:if>
+				
 				<br />
 
 				<div class="text-center txt3">
-					FORGOT <a href="forgot_id" class="txt3 hov1"> ID</a> / <a href="forgot_pw"
-						class="txt3 hov1">PASSWARD</a>
+					FORGOT <a href="forgot_id" class="txt3 hov1"> ID</a> / <a
+						href="forgot_pw" class="txt3 hov1">PASSWARD</a>
 				</div>
 				<div class="text-center p-t-57 p-b-20">
 					<span class="txt1"> or login with </span>
@@ -71,7 +77,8 @@
 						src="resources/images/bl_share/icons/login/kakaolink_btn_medium_ov.png"
 						alt="KAKAO">
 					</a> <a href="#" class="login100-social-item"> <img
-						src="resources/images/bl_share/icons/login/icon-google.png" alt="GOOGLE">
+						src="resources/images/bl_share/icons/login/icon-google.png"
+						alt="GOOGLE">
 					</a> <a href="#" class="login100-social-item"> <img
 						src="resources/images/bl_share/icons/login/naver_logo_Green.PNG"
 						alt="NAVER">
