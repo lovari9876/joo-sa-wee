@@ -3,9 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
@@ -35,7 +39,7 @@
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-	 	<property name="mapperLocations"
+		<property name="mapperLocations"
 			value="classpath:/sqlmap/*.xml" />  <!-- mapper xml읽어들인다 -->
 		<!-- src/main/resouces 이후 위치 알려준다. -->
 		<!-- <property name="configLocation" value="classpath:/config/sql-map-config.xml" 
@@ -50,12 +54,17 @@
 	</bean>
 
 	<!-- 3번과 4번 방식을 사용하기 위한 방식임 -->
-	<!-- 3번: xml 읽는 대신에 Mapper Interface의 @어노테이션(sql문) 스캔!해서 객체 생성!! -->	
+	<!-- 3번: xml 읽는 대신에 Mapper Interface의 @어노테이션(sql문) 스캔!해서 객체 생성!! -->
 	<!-- Mapper Interface -->
-	<mybatis-spring:scan base-package="com.soninlawisdice.*" />
-	
-	    <!-- scan -->
-	
+	<mybatis-spring:scan
+		base-package="com.soninlawisdice.mapper" />
+
+	<!-- scan -->
+
 	<!-- 이제 mybatis에서도 스캔함 -->
+
+	<context:component-scan
+		base-package="com.soninlawisdice.service" />
+
 
 </beans>
