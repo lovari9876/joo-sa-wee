@@ -5,11 +5,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edmin</title>
+<title>Admin</title>
 <link type="text/css" href="css/admin/bootstrap.min.css"rel="stylesheet">
 <link type="text/css" href="css/admin/bootstrap-responsive.min.css"rel="stylesheet">
 <link type="text/css" href="css/admin/theme.css" rel="stylesheet">
-<link type="text/css" href="images/icons/css/font-awesome.css"rel="stylesheet">
+<link type="text/css" href="images/admin/icons/css/font-awesome.css"rel="stylesheet">
 <link type="text/css"href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'rel='stylesheet'>
 <!-- <link rel="stylesheet" href="css/liststyle.css" /> -->
 </head>
@@ -35,42 +35,45 @@
 
 							<div class="controls">
 							
-								<select tabindex="1" data-placeholder="전체게시판" class="span2 pull-left">
+								<select tabindex="1" onchange="categoryChange(this)" data-placeholder="전체게시판" class="span2 pull-left">
 										<option value="">전체게시판</option>
-										<option value="Category 1">보드이야기</option>
-										<option value="Category 2">개봉기 및 리뷰</option>
-										<option value="Category 3">보드게임 모임</option>
-										<option value="Category 4">보드뉴스</option>
-										<option value="Category 5">질문 n 답변</option>
-										<option value="Category 6">창작 보드게임</option>
+										<option value="category_1">보드이야기</option>
+										<option value="category_2">개봉기 및 리뷰</option>
+										<option value="category_3">보드게임 모임</option>
+										<option value="category_4">보드뉴스</option>
+										<option value="category_5">질문 n 답변</option>
+										<option value="category_6">창작 보드게임</option>
 								</select>
 									
-								<select tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
+								<select tabindex="2" id="category" data-placeholder="전체말머리" class="span2 pull-left">
+										<option>전체말머리</option>
+								</select>
+									
+									
+								<!-- <select tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
 										<option value="">전체말머리</option>
 										<option value="Category 1">말머리1</option>
 										<option value="Category 2">말머리2</option>
 										<option value="Category 3">말머리3</option>
 										<option value="Category 4">말머리4</option>
-								</select>
+								</select> -->
 								
 								
 								<div class="input-append pull-right"> 
-									<input type="text" class="span3" placeholder="검색을해라">
+									<input type="text" class="span2" placeholder="검색을해라">
 									<button type="submit" class="btn">
 										<i class="icon-search"></i>
 									</button>
 								</div>
 								
 								 <div class="dropdown pull-right">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">전체보기 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">아이디</a></li>
-										<li><a href="#">닉네임</a></li>
-										<li><a href="#">글 제목</a></li>
-										<li><a href="#">글 내용</a></li>
-									</ul>
+										<select name="searchType" class="span2">
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+										</select>
 								</div> 
 							</div>
 						</div>
@@ -78,7 +81,8 @@
 					</form>
 					
 					<div class="btn-group pull-left" >
-						<button type="button" class="btn" >선택 글 삭제</button>
+						<button type="button" class="btn selectDelete_btn" data-Num="${board.bw_no}" >선택 글 삭제</button>
+						<button type="button" class="btn">무인도 행</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn">정렬</button>
@@ -99,167 +103,57 @@
 					<div class = "table_mobile">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell"><input type="checkbox" value="0"></td> <!-- 전체선택 처리하기  -->
+							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
 							<td class="cell">글 번호</td>
 							<td class="cell">게시판</td>
+							<td class="cell">말머리</td>
 							<td class="cell">글 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
+							<td class="cell">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">1</td>
-							<td class="cell">Vincent Williamson</td><!-- 메인 사이트의 해당 글로 링크 걸기  -->
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-						</a>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="2"></td>
-							<td class="cell">2</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">3</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">4</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">5</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">6</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">7</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">8</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">9</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">10</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">11</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">12</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">13</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">14</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell"><input type="checkbox" value="1"></td>
-							<td class="cell">15</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
+						<c:forEach items="${board_list}" var="board">
+								<tr class="trow">
+									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${board.bw_no}"></td>
+									<td class="cell">${board.bw_no}</td>
+									<td class="cell">${board.bt_no}</td>
+									<td class="cell">${board.s_no}</td>
+									<td class="cell"><a
+										href="report_view?st_no=${board.bw_no}">${board.bw_title}</a></td>
+									<td class="cell">${board.m_no}</td>
+									<td class="cell">${board.bw_written_date}</td>
+									<td class="cell">${board.bw_report_num}</td>
+								</tr>
+							</c:forEach>
 
 					</table>
 					</div>
 
 					<div class="pagination pagination-centered">
 						<ul>
-							<li><a href="#"><i class="icon-double-angle-left"></i></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"></i></a></li>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="board_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="board_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="board_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 			</div>
 		</div>
 	</div>
-
 	</section>
 
 
@@ -285,8 +179,15 @@
 	</div>
 
 	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
+	<script src="js/admin/checkBox.js" type="text/javascript"></script>
+	
+	<script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script>
+	
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+
+
 </body>
 </html>

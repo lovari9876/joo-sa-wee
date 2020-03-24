@@ -49,28 +49,25 @@
 						<div class="content-view">
 
 							 <form action="" method = "post" enctype="multipart/form-data">
-							 <input type = "hidden" name = "st_no" value = "${report_view.st_no}">
+							 <input type = "hidden" name = "r_no" value = "${report_view.r_no}">
 								<table class="table" >
 									<tr class="row">
 										<td class="cell span2">신고한 회원</td>
-										<td class="cell">${report_view.st_no}</td>
+										<td class="cell span3">${report_view.m_no}</td>
 										<td class="cell span2">신고 타입</td>
-										<td class="cell">회원 / 게시글 / 댓글</td>
+										<td class="cell span3">${report_view.r_type}</td>
 									</tr>
 									
 									<tr class="row">
 										<td class="cell">신고 대상</td>
-										<td class="cell">아이디 / 글, 댓글 링크</td>
+										<td class="cell">${report_view.r_type_no}</td>
 										<td class="cell">신고일</td>
-										<td class="cell">${report_view.st_date}</td>
+										<td class="cell">${report_view.r_report_date}</td>
 									</tr>
 
 									<tr class="row">
 										<td class = "cell span1">신고 내용</td>
-										<td colspan= "3" class="cell span8">Lorem ipsum dolor  sit amet, consectetur
-											adipisicing elit. Quae quidem blanditiis delectus corporis,
-											possimus officia sint sequi ex tenetur id impedit est
-											pariatur iure animi non a ratione </td>
+										<td colspan= "3" class="cell span8">${report_view.r_content}</td>
 									</tr>
 
 

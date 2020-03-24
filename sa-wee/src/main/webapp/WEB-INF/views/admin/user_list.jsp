@@ -34,17 +34,13 @@
 
 							<div class="controls">
 								<div class="dropdown">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">전체보기 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">아이디</a></li>
-										<li><a href="#">닉네임</a></li>
-										<li><a href="#">어찌구</a></li>
-										
-									</ul>
-								
-									
+										<select name="searchType" class="span2">
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>아이디</option>
+											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>이름</option>
+											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>닉네임</option>
+											<option value = "d" class="btn" <c:out value="${scri.searchType eq 'd' ? 'selected' : ''}"/>>등급</option>
+										</select>
 								</div>
 									<div class="input-append pull-left">
 									<input type="text" class="span3"
@@ -81,18 +77,16 @@
 							<td class="cell">아이디</td><!-- 아이디 클릭시 회원정보 보기 링크 걸기 -->
 							<td class="cell">이름</td>
 							<td class="cell">닉네임</td>
-							<td class="cell">생년월일</td>
 							<td class="cell">등급</td>
 							<td class="cell">포인트</td>
-							<td class="cell">핸드폰</td>
 							<td class="cell">이메일</td>
 							<td class="cell">가입일</td>
-							<td class="cell">무인도</td>
+							<td class="cell">수정</td>
 							<td class="cell">탈퇴</td>
 							
 						</tr>
 
-						<tr class="trow">
+						<!-- <tr class="trow">
 							<td class="cell">Vincent</td>
 							<td class="cell">Vincent</td>
 							<td class="cell">Vincent</td>
@@ -102,206 +96,32 @@
 							<td class="cell">01000000000</td>
 							<td class="cell">abc@gmail.com</td>
 							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td> <!-- 정말 탈퇴???? 한번더 묻기  -->
+							<td class="cell"><button type="button" class="btn" >탈퇴</button></td> 정말 탈퇴???? 한번더 묻기 
 							
-						</tr>
+						</tr> -->
 						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
+						<c:forEach items="${user_list}" var="member">
+								<tr class="trow">
+									<td class="cell">${member.m_id}</td><!-- 해당 tr 클릭하면 메인사이트 회원정보 화면으로 이동  -->
+									<td class="cell"><a
+										href="report_view?st_no=${report.st_no}">${member.m_name}</a></td>
+									<td class="cell">${member.m_nick}</td>
+									<td class="cell">
+										<c:choose>
+											<c:when test="${member.r_no == '1'}">보드대마왕</c:when>
+											<c:when test="${member.r_no == '2'}">보드마스터</c:when>
+											<c:when test="${member.r_no == '3'}">보드게이머</c:when>
+											<c:when test="${member.r_no == '4'}">표류자</c:when>
+										</c:choose>
+									</td>
+									<td class="cell">${member.m_point}</td>
+									<td class="cell">${member.m_email}</td>
+									<td class="cell">${member.m_indate}</td>
+									<td class="cell"><button type="button" class="btn" onclick="location='user_view?m_no=${member.m_no}'">수정</button></td>
+									<td class="cell"><button type="button" class="btn" >탈퇴</button></td> <!-- 정말 탈퇴???? 한번더 묻기  -->
+								</tr>
+							</c:forEach>
 						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
-						
-						<tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><input type="checkbox" value="0"></td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td>
-						</tr>
 
 					</table>
 					</div>

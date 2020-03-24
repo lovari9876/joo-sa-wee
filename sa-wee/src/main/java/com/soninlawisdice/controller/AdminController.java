@@ -14,6 +14,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.soninlawisdice.controller.AdminController;
+import com.soninlawisdice.service.AdminService;
+import com.soninlawisdice.service.AdminServiceImpl;
+import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.MemberVO;
+import com.soninlawisdice.vo.PageMaker;
+import com.soninlawisdice.vo.ReportVO;
+import com.soninlawisdice.vo.SearchCriteria;
+import com.soninlawisdice.vo.StatisticsVO;
+
 
 /**
  * Handles requests for the application home page.
@@ -24,100 +34,118 @@ public class AdminController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
-	/*
-	 * @Autowired private AdminService adminService;
-	 */
+	@Autowired
+	private AdminServiceImpl adminService;
+
 	@RequestMapping("/index")
 	public String index() {
 
 		return "admin/index";
 	}
 
-	
 	@RequestMapping("/user_list")
 	public String user_list() {
 
 		return "admin/user_list";
 	}
 
-	////////////////////////////////////////////////////////////////////////////
-
+	
 	/*
-	 * @RequestMapping("/report_list") public String report_list(Model model) throws
-	 * Exception {
+	 * @RequestMapping("/user_view") public String user_view() {
 	 * 
-	 * List<AdminVO> list = adminService.selectAdminList();
-	 * model.addAttribute("report_list", list);
-	 * 
-	 * return "report_list"; }
-	 * 
-	 * @RequestMapping("/report_view") public String report_view(AdminVO adminVO,
-	 * Model model) throws Exception { int id = adminVO.getSt_no(); AdminVO view =
-	 * adminService.selectAdminView(id); model.addAttribute("report_view", view);
-	 * 
-	 * return "report_view"; }
-	 * 
-	 * ////////////////////////////////////////////////////////////////////////////
-	 * 
-	 * // 페이징처리
-	 * 
-	 * @RequestMapping(value = "/report_list2", method = RequestMethod.GET) public
-	 * String report_list2(Model model, @ModelAttribute("scri") SearchCriteria scri)
-	 * throws Exception {
-	 * 
-	 * model.addAttribute("report_list2", adminService.list(scri)); PageMaker
-	 * pageMaker = new PageMaker(); pageMaker.setCri(scri);
-	 * pageMaker.setTotalCount(adminService.listCount(scri));
-	 * 
-	 * model.addAttribute("pageMaker", pageMaker);
-	 * 
-	 * return "report_list2"; }
-	 * 
-	 * // 게시글 선택삭제
-	 * 
-	 * @RequestMapping(value = "/board_list2", method = RequestMethod.GET) public
-	 * String board_list2(Model model, @ModelAttribute("scri") SearchCriteria scri)
-	 * throws Exception {
-	 * 
-	 * model.addAttribute("board_list2", adminService.list(scri)); PageMaker
-	 * pageMaker = new PageMaker(); pageMaker.setCri(scri);
-	 * pageMaker.setTotalCount(adminService.listCount(scri));
-	 * 
-	 * model.addAttribute("pageMaker", pageMaker);
-	 * 
-	 * return "board_list2"; }
-	 * 
-	 * //json 객체로 변환해서 값을 보내야함, 안그러면 형변환 관련 오류뜸
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/deleteBoard", method = RequestMethod.POST) public
-	 * int deleteBoard(AdminVO adminVO, @RequestParam(value = "chbox[]")
-	 * List<String> chArr) throws Exception { int st_no = 0; int result = 0;//나중에
-	 * 로그인여부, 관리자인지 여부를 확인하기 위함
-	 * 
-	 * //매개변수로 member정보도 추가해야함, //if(member != null){ //
-	 * adminVO.setUserId(userId);//delete 삭제 구문에 id 값 확인하는 부분이 추가되어야함 (and userId
-	 * =#{}) for (String i : chArr) { st_no = Integer.parseInt(i);
-	 * adminVO.setSt_no(st_no); adminService.selectDelete(adminVO); } result = 1;
-	 * //성공!
-	 * 
-	 * //} return result; }
+	 * return "user_view"; }
 	 */
 	////////////////////////////////////////////////////////////////////////////
 
+
+	@RequestMapping("/report_view")
+	public String report_view(ReportVO reportVO, Model model) throws Exception {
+		int id = reportVO.getR_no();
+		ReportVO view = adminService.selectReportView(id);
+		model.addAttribute("report_view", view);
+
+		return "admin/report_view";
+	}
 	
-	@RequestMapping("/report_list")
-	public String report_list() {
+	
+	@RequestMapping("/user_view")
+	public String user_view(MemberVO memberVO, Model model) throws Exception {
+		int id = memberVO.getM_no();
+		MemberVO view = adminService.selectMemberView(id);
+		model.addAttribute("user_view", view);
+
+		return "admin/user_view";
+	}
+	
+	
+	////////////////////////////////////////////////////////////////////////////
+
+	// 페이징 처리 된 목록
+	@RequestMapping(value = "/report_list", method = RequestMethod.GET)
+	public String report_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+
+		model.addAttribute("report_list", adminService.reportList(scri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.report_listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
 
 		return "admin/report_list";
 	}
 	
+	@RequestMapping(value = "/user_list", method = RequestMethod.GET)
+	public String user_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+
+		model.addAttribute("user_list", adminService.memberList(scri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.member_listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "admin/user_list";
+	}
+	
+	
+	@RequestMapping(value = "/board_list", method = RequestMethod.GET)
+	public String board_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+
+		model.addAttribute("board_list", adminService.boardList(scri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.board_listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "admin/board_list";
+	}
 	
 	
 	
-	
-	
+	//선택한 글 삭제 ! !  json 객체로 변환해서 값을 보내야함, 안그러면 형변환 관련 오류뜸
+	@ResponseBody
+	@RequestMapping(value = "/deleteBoard", method = RequestMethod.POST)
+	public int deleteBoard(Board_writeVO boardVO, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+		int bw_no = 0;
+		int result = 0;//나중에 로그인여부, 관리자인지 여부를 확인하기 위함
+		
+		//매개변수로 member정보도 추가해야함, 
+		//if(member != null){
+		//	adminVO.setUserId(userId);//delete 삭제 구문에 id 값 확인하는 부분이 추가되어야함 (and userId =#{})
+		for (String i : chArr) {
+			bw_no = Integer.parseInt(i);
+			boardVO.setBw_no(bw_no);
+			adminService.selectDelete(boardVO);
+		}
+		result = 1; //성공!
+		
+		//}
+		return result;
+	}
+
+	////////////////////////////////////////////////////////////////////////////
+
 	// ajax
 	@RequestMapping("/report_view2")
 	public String report_view2() {
@@ -137,12 +165,6 @@ public class AdminController {
 		return "admin/notice_write";
 	}
 
-	@RequestMapping("/board_list")
-	public String board_list() {
-
-		return "admin/board_list";
-	}
-
 	@RequestMapping("/notice_view")
 	public String notice_view() {
 
@@ -152,7 +174,7 @@ public class AdminController {
 	@RequestMapping("/faq")
 	public String faq() {
 
-		return "faq";
+		return "admin/faq";
 	}
 
 	@RequestMapping("/faq_list")
@@ -177,6 +199,12 @@ public class AdminController {
 	public String ask_list() {
 
 		return "admin/ask_list";
+	}
+	
+	@RequestMapping("/island_list")
+	public String island_list() {
+
+		return "admin/island_list";
 	}
 
 	@RequestMapping("/cafe_write")
@@ -236,13 +264,13 @@ public class AdminController {
 	@RequestMapping("/search")
 	public String search() {
 
-		return "search";
+		return "admin/search";
 	}
 
 	@RequestMapping("/footer")
 	public String footer() {
 
-		return "footer";
+		return "admin/footer";
 	}
 
 }
