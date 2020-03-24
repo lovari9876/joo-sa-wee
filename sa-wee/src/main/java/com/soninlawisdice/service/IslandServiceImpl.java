@@ -14,18 +14,25 @@ import com.soninlawisdice.vo.TradeVO;
 public class IslandServiceImpl implements IslandService {
 
 	@Autowired
-	IslandMapper islandMapper;
+	private IslandMapper islandMapper;
 	
 	
 	ArrayList<TradeVO> tList;
 	ArrayList<Board_writeVO> bwList;
 	
+	// 생성자
+	public IslandServiceImpl() {}
 	
+	public IslandServiceImpl(IslandMapper islandMapper) {
+		super();
+		this.islandMapper = islandMapper;
+	}
+
 	// 보부상에서 가져오기
 	@Override
 	public ArrayList<TradeVO> selectTradeIslandList() {
 		tList = islandMapper.selectTradeIslandList();
-		return tList;
+		return islandMapper.selectTradeIslandList();
 	}
 
 	// 게시글에서 가져오기
