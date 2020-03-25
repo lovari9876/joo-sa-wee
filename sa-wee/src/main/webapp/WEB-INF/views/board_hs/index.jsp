@@ -35,6 +35,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
 <link rel="stylesheet" href="css/board_hs/style.css" />
+<link rel="stylesheet" href="css/css_header/header_hyesoo.css">
 <link rel="stylesheet" href="css/board_hs/home-liststyle.css" />
 
 
@@ -52,65 +53,9 @@
 
 
 	<!-- 상단바 전체 -->
-	<!-- Header section -->
-	<header class="header-section">
-		<div class="dice">내 사위는 주사위</div>
-		<div class="header-warp">
-			<div class="header-bar-warp d-flex">
-				<nav class="top-nav-area w-100" id="nav">
-					
-					<ul class="main-menu primary-menu" id="head">
-						<li><a href="home">HOME</a></li>
-						<li><a class="gameinfo" href="">보드게임 정보</a>
-							<ul class="sub-menu">
-								<li><a href="">당신의 보드게임</a></li>
-								<li><a href="">보드게임 리스트</a></li>
-							</ul></li>
-						<li><a class="comm" href="list_home">커뮤니티</a>
-							<ul class="sub-menu">
-								<li><a href="list">보드이야기</a></li>
-								<li><a href="list">개봉기 및 리뷰</a></li>
-								<li><a href="list">보드게임 모임</a></li>
-								<li><a href="list">보드 뉴스</a></li>
-								<li><a href="list">질문 & 답변</a></li>
-								<li><a href="list">창작 보드게임</a></li>
-							</ul></li>
-						<li><a href="cafe_map">보드게임카페</a></li>
-						<li><a href="blog">보부상</a></li>
-						<li><a class="help" href="contact">헬프데스크</a>
-							<ul class="sub-menu">
-								<li><a href="">자주하는 질문</a></li>
-								<li><a href="question_list">1 : 1 문의 </a></li>
-								<li><a href="">무인도 </a></li>
-							</ul></li>
-						<!-- 검색창  -->
-						<li>
-							<div class="mysearch">
-								<span class="lnr lnr-magnifier"></span>
-								<form action="#" class="mysearch-field">
-									<input type="text" placeholder="Search here"
-										onfocus="this.placeholder = ''"
-										onblur="this.placeholder = 'Search here'">
-									<button class="mysearch-submit">
-										<span class="lnr lnr-magnifier"></span>
-									</button>
-								</form>
-							</div>
-						</li>
-
-						<!-- 사람모양 아이콘  -->
-						<li><a class="fas fa-user" href="#"></a>
-							<ul class="sub-menu">
-								<li><a href="gameSingle">로그인</a></li>
-								<li><a href="gameSingle">회원가입</a></li>
-
-							</ul> 
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-	</header>
+	<!-- header include start -->
+	<%@ include file="/WEB-INF/views/share/header.jsp" %>
+	<!-- header include end -->
 
 
 	<!-- Header section end -->
@@ -169,7 +114,7 @@
 									<div class="carousel-item active">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/">
-											<img class="d-block w-100 " src="images/img-hyesoo/jumanji.png">
+											<img class="d-block w-100 " src="images/board_hs/jumanji.png">
 										</a>
 										<div class="carousel-caption">첫번째</div>
 									</div>
@@ -177,14 +122,14 @@
 									<div id="target" class="carousel-item ">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
-											class="d-block w-100" src="images/img-hyesoo/jumanji.png"></a>
+											class="d-block w-100" src="images/board_hs/jumanji.png"></a>
 										<div class="carousel-caption">두번째</div>
 									</div>
 
 									<div class="carousel-item">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
-											class="d-block w-100" src="images/img-hyesoo/jumanji.png"></a>
+											class="d-block w-100" src="images/board_hs/jumanji.png"></a>
 										<div class="carousel-caption">세번째</div>
 									</div>
 
@@ -217,7 +162,7 @@
 						<div class="advertise-image">
 
 							<a target="_blank" href="https://www.naver.com"><img
-								src="images/img-hyesoo/age.png"></a>
+								src="images/board_hs/age.png"></a>
 							<div class="content">
 								<h3>이벤트입니다</h3>
 							</div>
@@ -233,19 +178,19 @@
 				<!-- <h3>오늘의 랭킹</h3> -->
 
 				<div class="rank medal">
-					<img src="images/img-hyesoo/gold-medal128.png">
+					<img src="images/board_hs/gold-medal128.png">
 					<div class="rank-name">어쩌고 1위</div>
 					<div class="rank-name">누구</div>
 				</div>
 
 				<div class="rank shield">
-					<img src="images/img-hyesoo/shield128.png">
+					<img src="images/board_hs/shield128.png">
 					<div class="rank-name">어쩌고 1위</div>
 					<div class="rank-name">누구</div>
 				</div>
 
 				<div class="rank siren">
-					<img src="images/img-hyesoo/alert.png">
+					<img src="images/board_hs/alert.png">
 					<div class="rank-name">어쩌고 1위</div>
 					<div class="rank-name">누구</div>
 					

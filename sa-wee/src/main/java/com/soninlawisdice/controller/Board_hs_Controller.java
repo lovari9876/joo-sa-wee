@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Handles requests for the application home page.
  */
 @Controller
-public class HyesooController {
+public class Board_hs_Controller {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HyesooController.class);
+	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -26,7 +26,7 @@ public class HyesooController {
 	public String home(Locale locale, Model model) {
 		logger.info("home");
 		
-		return "index";
+		return "board_hs/index";
 	}
 	
 	
@@ -35,7 +35,7 @@ public class HyesooController {
 	public String cafe_review_write(Model model) {
 		logger.info("review");
 		
-		return "cafe_review_write";
+		return "board_hs/cafe_review_write";
 	}
 	
 	
@@ -44,28 +44,28 @@ public class HyesooController {
 	public String list_home(Model model) {
 		logger.info("review");
 		
-		return "list_home";
+		return "board_hs/list_home";
 	}
 	
 	@RequestMapping(value = "/modify_view", method = RequestMethod.GET)
 	public String modify_view(Model model) {
 		logger.info("review");
 		
-		return "modify_view";
+		return "board_hs/modify_view";
 	}
 	
 	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
 	public String question_list(Model model) {
 		logger.info("review");
 		
-		return "question_list";
+		return "board_hs/question_list";
 	}
 	
 	@RequestMapping(value = "/question_write_view", method = RequestMethod.GET)
 	public String question_write_view(Model model) {
 		logger.info("review");
 		
-		return "question_write_view";
+		return "board_hs/question_write_view";
 	}
 	
 	
@@ -73,7 +73,7 @@ public class HyesooController {
 	public String cafe_map(Model model) {
 		logger.info("review");
 		
-		return "cafe_map";
+		return "board_hs/cafe_map";
 	}
 	
 	
@@ -83,21 +83,57 @@ public class HyesooController {
 	public String cafe_content_view(Model model) {
 		logger.info("review");
 		
-		return "cafe_content_view";
+		return "board_hs/cafe_content_view";
 	}
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Locale locale, Model model) {
-		logger.info("home");
-		
-		return "list";
-	}
 	
 	@RequestMapping(value = "/write_view", method = RequestMethod.GET)
 	public String write_view(Locale locale, Model model) {
 		logger.info("home");
 		
-		return "write_view";
+		return "board_hs/write_view";
+	}
+	
+	@RequestMapping(value = "/board_story", method = RequestMethod.GET)
+	public String board_story(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_story";
+	}
+	
+	@RequestMapping(value = "/board_open_review", method = RequestMethod.GET)
+	public String board_open_review(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_open_review";
+	}
+	
+	@RequestMapping(value = "/board_meet", method = RequestMethod.GET)
+	public String board_meet(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_meet";
+	}
+	
+	@RequestMapping(value = "/board_news", method = RequestMethod.GET)
+	public String board_news(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_news";
+	}
+	
+	@RequestMapping(value = "/board_qna", method = RequestMethod.GET)
+	public String board_qna(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_qna";
+	}
+	
+	@RequestMapping(value = "/board_creation", method = RequestMethod.GET)
+	public String board_creation(Locale locale, Model model) {
+		logger.info("home");
+		
+		return "board_hs/board_creation";
 	}
 	
 	
