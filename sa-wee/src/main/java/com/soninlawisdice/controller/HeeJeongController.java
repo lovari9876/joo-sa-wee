@@ -44,6 +44,9 @@ public class HeeJeongController {
 		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
 		model.addAttribute("memberVO", board_writeVO.getMemberVO());
 		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+		
+		// 게시글 조회수
+		contentService.upHitContent(bw_no);
 
 		return "content/content_view";
 	}

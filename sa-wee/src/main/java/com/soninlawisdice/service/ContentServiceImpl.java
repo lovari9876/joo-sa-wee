@@ -33,4 +33,12 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.deleteContent(board_writeVO);
 	}
 
+	// 게시글 조회수
+	@Override
+	public void upHitContent(String bw_no) {
+		
+		contentMapper.upHitContent(bw_no);
+		
+	}
+
 }

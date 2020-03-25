@@ -41,6 +41,7 @@
 	</resultMap>
 	
 	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 없애도 됨. --> <!-- #{bw_no, jdbcType=INTEGER} -->
+	<!-- 게시글 보기(content_view) -->
 	<select id="selectContentOne" parameterType="int" resultMap="Board_writeVO">
 		select bw.bw_no, bw.bw_title, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_hit, bw.bw_recommend_num, bw.bw_report_num, bw.bw_island, bw.bw_secret,
 		m.m_name, bt.bt_name, s.s_content from board_write bw, member m, board_type bt, subject s 
@@ -48,9 +49,15 @@
 	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
 	
 	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 없애도 됨. -->
+	<!-- 게시글 삭제 -->
 	<delete id="deleteContent">
 		delete from board_write where bw_no = 42
 	</delete>
+	
+	<!-- 게시글 조회수 -->
+	<update id="upHitContent">
+		update board_write set bw_hit = bw_hit + 1 where bw_no = 42
+	</update>
 
 	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면  -->
 	<!-- 자동으로 현재시간이 입력된다. -->
