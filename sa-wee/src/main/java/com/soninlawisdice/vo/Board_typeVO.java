@@ -2,10 +2,10 @@ package com.soninlawisdice.vo;
 
 // 게시판 (분류)
 public class Board_typeVO {
-	int bt_no; // 게시판번호
-	String bt_name; // 게시판이름
-	String bt_info; // 설명
-	String bt_extra; // 비고
+	private int bt_no; // 게시판번호
+	private String bt_name; // 게시판이름
+	private String bt_info; // 설명
+	private String bt_extra; // 비고
 
 	public Board_typeVO() {
 	}

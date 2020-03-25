@@ -4,20 +4,26 @@ import java.sql.Timestamp;
 
 // 게시글
 public class Board_writeVO {
-	int bw_no; // 게시글번호
-	int bt_no; // 게시판번호
-	int s_no; // 말머리번호
-	int m_no; // 회원번호
-	String bw_title; // 글 제목
-	String bw_content; // 글 내용
-	Timestamp bw_written_date; // 작성일
-	Timestamp bw_updated_date; // 수정일
-	int bw_hit; // 조회수
-	int bw_recommend_num; // 추천수
-	int bw_report_num; // 신고수
-	String bw_island; // 무인도여부
-	String bw_secret; // 비밀글여부
+	private int bw_no; // 게시글번호
+	private int bt_no; // 게시판번호
+	private int s_no; // 말머리번호
+	private int m_no; // 회원번호
+	private String bw_title; // 글 제목
+	private String bw_content; // 글 내용
+	private Timestamp bw_written_date; // 작성일
+	private Timestamp bw_updated_date; // 수정일
+	private int bw_hit; // 조회수
+	private int bw_recommend_num; // 추천수
+	private int bw_report_num; // 신고수
+	private String bw_island; // 무인도여부
+	private String bw_secret; // 비밀글여부
 
+	// 무인도 게시판을 위해 작성일 가져오는 메서드
+	public Timestamp getWrittenDate() {
+		return bw_written_date;
+	}
+	
+	// 생성자
 	public Board_writeVO() {
 	}
 

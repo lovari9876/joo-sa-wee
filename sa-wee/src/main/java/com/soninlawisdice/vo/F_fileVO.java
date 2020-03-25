@@ -2,11 +2,11 @@ package com.soninlawisdice.vo;
 
 // 파일
 public class F_fileVO {
-	int f_no; // 파일번호
-	String f_name; // 파일이름
-	String f_type; // 파일타입
-	String f_path; // 경로
-	String f_use; // 용도
+	private int f_no; // 파일번호
+	private String f_name; // 파일이름
+	private String f_type; // 파일타입
+	private String f_path; // 경로
+	private String f_use; // 용도
 
 	public F_fileVO() {
 	}
