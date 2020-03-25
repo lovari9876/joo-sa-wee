@@ -25,7 +25,7 @@
 
 		<c:forEach items="${tlist}" var="tradevo">
 			<tr>
-				<td>${tradeVO.t_no}</td>
+				<td>${iList.t_no}</td>
 				<td>${tradeVO.m_no}</td>
 				<td>${tradeVO.s_no}</td>
 				<td>${tradeVO.t_title}</td>
