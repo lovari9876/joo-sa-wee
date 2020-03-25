@@ -46,7 +46,6 @@
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
 	<!-- header include end -->
 
-
 	<!-- HOME -->
 	<section class="section-hero overlay inner-page bg-image"
 		style="background-image: url('images/board_hj/lavender_dot.png');" id="home-section">
@@ -55,12 +54,12 @@
 				<div class="col-md-12">
 					<div class="custom-breadcrumbs mb-0">
 						<!-- 게시판이름과 게시글 작성자 -->
-						<h4 id="community">${content_view.bt_no}</h4><br/>
+						<h4 id="community">${board_typeVO.bt_name}</h4><br/>
 						<div class="title">
 							<div class="title_item frist">
-								<span class="slash">${content_view.s_no}</span>
+								<span class="slash">${subjectVO.s_content}</span>
 								<span class="slash">&bullet;</span> 
-								<span class="slash">${content_view.m_no}</span>
+								<span class="slash">${memberVO.m_name}</span>
 								<span class="slash">&bullet;</span> 
 								<span class="text-white">${content_view.bw_written_date}</span>
 								<span class="slash">&bullet;</span>
@@ -95,10 +94,9 @@
 						<img src="images/board_hj/job_single_img_1.jpg" alt="Image"
 							class="img-fluid rounded">
 					</p>
+					
 					<p>${content_view.bw_content}</p>
-					<p>${content_view.bw_island}</p>
-					<p>${content_view.bw_secret}</p>
-
+					
 					<blockquote>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 							Provident vero tempora aliquam excepturi labore, ad soluta

@@ -9,17 +9,47 @@
 	<!-- id를 service의 함수명과 맞춰주기 -->
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
 	
+	<resultMap type="com.soninlawisdice.vo.Board_writeVO" id="Board_writeVO">
+		<id column="bw_no" property="bw_no"/>
+		<result column="bt_no" property="bt_no"/>
+		<result column="m_no" property="m_no"/>
+		<result column="s_no" property="s_no"/>
+		<result column="bw_title" property="bw_title"/>
+		<result column="bw_content" property="bw_content"/>
+		<result column="bw_written_date" property="bw_written_date"/>
+		<result column="bw_updated_date" property="bw_updated_date"/>
+		<result column="bw_hit" property="bw_hit"/>
+		<result column="bw_recommend_num" property="bw_recommend_num"/>
+		<result column="bw_report_num" property="bw_report_num"/>
+		<result column="bw_island" property="bw_island"/>
+		<result column="bw_secret" property="bw_secret"/>
+		
+		<collection javaType="com.soninlawisdice.vo.Board_typeVO" property="board_typeVO">
+			<id column="bt_no" property="bt_no" />
+			<result column="bt_name" property="bt_name"/>
+		</collection>
+		
+		<collection javaType="com.soninlawisdice.vo.MemberVO" property="memberVO">
+			<id column="m_no" property="m_no" />
+			<result column="m_name" property="m_name"/>
+		</collection>
+		
+		<collection javaType="com.soninlawisdice.vo.SubjectVO" property="subjectVO">
+			<id column="s_no" property="s_no" />
+			<result column="s_content" property="s_content"/>
+		</collection>
+	</resultMap>
+	
 	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 없애도 됨. --> <!-- #{bw_no, jdbcType=INTEGER} -->
-	<select id="selectContentOne"
-		resultType="com.soninlawisdice.vo.Board_writeVO">
+	<select id="selectContentOne" parameterType="int" resultMap="Board_writeVO">
 		select bw.bw_no, bw.bw_title, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_hit, bw.bw_recommend_num, bw.bw_report_num, bw.bw_island, bw.bw_secret,
 		m.m_name, bt.bt_name, s.s_content from board_write bw, member m, board_type bt, subject s 
-		where bw.m_no = m.m_no and bw.bt_no = bt.bt_no and bw.s_no = s.s_no and bw.bw_no = 41
+		where bw.m_no = m.m_no and bw.bt_no = bt.bt_no and bw.s_no = s.s_no and bw.bw_no = 42
 	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
 	
 	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 없애도 됨. -->
 	<delete id="deleteContent">
-		delete from board_write where bw_no = 41
+		delete from board_write where bw_no = 42
 	</delete>
 
 	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면  -->

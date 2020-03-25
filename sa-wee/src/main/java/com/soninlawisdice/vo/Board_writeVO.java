@@ -17,14 +17,18 @@ public class Board_writeVO {
 	int bw_report_num; // 신고수
 	String bw_island; // 무인도여부
 	String bw_secret; // 비밀글여부
+	
+	// resultMap을 사용하기 위해서
+	Board_typeVO board_typeVO;
+	MemberVO memberVO;
+	SubjectVO subjectVO;
 
 	public Board_writeVO() {
 	}
 
 	public Board_writeVO(int bw_no, int bt_no, int s_no, int m_no, String bw_title, String bw_content,
 			Timestamp bw_written_date, Timestamp bw_updated_date, int bw_hit, int bw_recommend_num, int bw_report_num,
-			String bw_island, String bw_secret) {
-		super();
+			String bw_island, String bw_secret, Board_typeVO board_typeVO, MemberVO memberVO, SubjectVO subjectVO) {
 		this.bw_no = bw_no;
 		this.bt_no = bt_no;
 		this.s_no = s_no;
@@ -38,7 +42,12 @@ public class Board_writeVO {
 		this.bw_report_num = bw_report_num;
 		this.bw_island = bw_island;
 		this.bw_secret = bw_secret;
+		this.board_typeVO = board_typeVO;
+		this.memberVO = memberVO;
+		this.subjectVO = subjectVO;
 	}
+
+
 
 	public int getBw_no() {
 		return bw_no;
@@ -143,5 +152,31 @@ public class Board_writeVO {
 	public void setBw_secret(String bw_secret) {
 		this.bw_secret = bw_secret;
 	}
+
+	public Board_typeVO getBoard_typeVO() {
+		return board_typeVO;
+	}
+
+	public void setBoard_typeVO(Board_typeVO board_typeVO) {
+		this.board_typeVO = board_typeVO;
+	}
+
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
+
+	public SubjectVO getSubjectVO() {
+		return subjectVO;
+	}
+
+	public void setSubjectVO(SubjectVO subjectVO) {
+		this.subjectVO = subjectVO;
+	}
+	
+	
 
 }

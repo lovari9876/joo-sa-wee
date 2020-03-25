@@ -37,7 +37,13 @@ public class HeeJeongController {
 		logger.info("content_view");
 		
 		String bw_no = request.getParameter("bw_no");
-		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
+		
+		Board_writeVO board_writeVO = contentService.selectContentOne(bw_no);
+		
+		model.addAttribute("content_view", board_writeVO);
+		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
+		model.addAttribute("memberVO", board_writeVO.getMemberVO());
+		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
 
 		return "content/content_view";
 	}
