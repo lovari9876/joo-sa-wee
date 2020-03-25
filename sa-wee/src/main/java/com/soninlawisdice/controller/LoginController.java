@@ -23,12 +23,11 @@ public class LoginController {
 
 	@RequestMapping(value = "/login_check", method = RequestMethod.GET)
 	public String login_check(Locale locale, Model model) {
-		System.out.println("login_check()");		
-		
-		
+		System.out.println("login_check()");
+
 		return "login/login";
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest req, RedirectAttributes rttr, MemberVO memberVO) throws Exception {
 		System.out.println("POST login()");
@@ -39,7 +38,7 @@ public class LoginController {
 		System.out.println(m_id);
 		String m_pw = req.getParameter("m_pw");
 		System.out.println(m_pw);
-		
+
 		MemberVO login = loginService.login(m_id, m_pw);
 		System.out.println("loginService()");
 
@@ -54,6 +53,15 @@ public class LoginController {
 		}
 
 		return "redirect:/login_check";
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		System.out.println("logout()");
+		
+		session.invalidate();
+		
+		return "login/login";
 	}
 
 	@RequestMapping(value = "/forgot_id", method = RequestMethod.GET)

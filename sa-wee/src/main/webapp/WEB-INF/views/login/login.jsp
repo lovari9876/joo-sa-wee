@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <html>
 <head>
 <title>SON-IN-RAW IS DICE - LOGIN</title>
@@ -95,7 +94,10 @@
 			</c:if>
 			
 			<c:if test="${member != null}">
-				<p>${member.m_id}님 환영합니다</p>
+				<div class="text-center p-t-37 p-b-30">
+						<span class="txt1"> ${member.m_id}님 환영합니다 </span>
+					</div>
+				<a href="/logout" class="txt3 hov1"> 로그아웃 </a>
 			</c:if>
 			
 
