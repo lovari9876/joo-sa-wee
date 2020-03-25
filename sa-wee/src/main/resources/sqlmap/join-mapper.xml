@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper 태그 내부에 sql문을 넣으면 mybatis가 알아서 해준다.. -->
+<mapper namespace="com.soninlawisdice.mapper.JoinMapper">
+
+	<insert id="join">
+		INSERT INTO member (m_no, m_id, m_pw, m_name, m_birth, m_nick,
+			m_gender, m_point, m_phone, m_email, m_post, m_addr1, m_addr2,
+			r_no, m_re_sms, m_re_notice, m_re_message, m_info, m_self,
+			m_indate, m_outdate, m_out, m_report_num, m_extra, f_no)
+			
+		VALUES (member_seq.nextval, #{m_id}, #{m_pw}, #{m_name}, 
+		 #{m_birth}, #{m_nick}, #{m_gender}, 0, #{m_phone}, #{m_email}, 
+		 #{m_post}, #{m_addr1}, #{m_addr2}, 3, #{m_re_sms}, #{m_re_notice},
+		  #{m_re_message}, #{m_info}, #{m_self}, sysdate, '', 'n', 0, 0, 0)
+	</insert>
+	
+</mapper>

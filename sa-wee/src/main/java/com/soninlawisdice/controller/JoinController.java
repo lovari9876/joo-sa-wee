@@ -11,12 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class JoinController {
 	
-	@RequestMapping(value = "/join_test", method = RequestMethod.GET)
-	public String join_test() {
-		System.out.println("join() 성공");
-
-		return "join/join_test";
-	}
 	
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join() {
