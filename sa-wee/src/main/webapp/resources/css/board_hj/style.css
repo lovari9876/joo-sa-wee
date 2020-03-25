@@ -1031,6 +1031,7 @@ a:hover {color: #400186;}
 .good {
 	width: 50px;
 	height: auto;
+	outline: none;
 }
 
 /* 목록보기, 수정, 삭제, 신고 */
@@ -1188,7 +1189,7 @@ a:hover {color: #400186;}
 	
 }
 
-.test_item.rec {
+.test_item.reco {
 	width:75%;
 	text-align: right;
 }
@@ -1203,7 +1204,7 @@ a:hover {color: #400186;}
 	
 }
 
-.test_item.rec {
+.test_item.reco {
 	width:65%;
 	text-align: right;
 } }
@@ -1218,7 +1219,7 @@ a:hover {color: #400186;}
 	
 }
 
-.test_item.rec {
+.test_item.reco {
 	width:70%;
 	text-align: right;
 } }
@@ -1233,7 +1234,7 @@ a:hover {color: #400186;}
 	
 }
 
-.test_item.rec {
+.test_item.reco {
 	width:65%;
 	text-align: right;
 } }
@@ -2179,6 +2180,7 @@ The Close Button
     width: 85px;
     height: 25px;
     padding-left: 1px;
+    outline: none;
 }
 
 .comment-form-wrap {

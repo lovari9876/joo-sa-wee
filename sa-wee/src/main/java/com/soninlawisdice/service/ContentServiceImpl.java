@@ -41,4 +41,19 @@ public class ContentServiceImpl implements ContentService {
 		
 	}
 
+	// 게시글 추천수 증가
+	@Override
+	public void upRecommendContent(String bw_no) {
+		
+		contentMapper.upRecommendContent(bw_no);
+		
+	}
+
+	// 게시글 추천수 증가하는 거 받아옴
+	@Override
+	public String selectRecommendContent(String bw_no) {
+		
+		return contentMapper.selectRecommendContent(bw_no);
+	}
+
 }

@@ -9,4 +9,8 @@ public interface ContentMapper {
 	public void deleteContent(Board_writeVO board_writeVO); // 게시글 삭제
 	
 	public void upHitContent(String bw_no); // 게시글 조회수
+	
+	public void upRecommendContent(String bw_no); // 게시글 추천수 증가
+	
+	public String selectRecommendContent(String bw_no); // 게시글 추천수 증가하는 거 받아옴
 }

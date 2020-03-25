@@ -66,7 +66,7 @@
 								<span class="text-white">${content_view.bw_updated_date}</span>
 							</div>
 							<div class="title_item second">
-								<span class="slash">추천수(${content_view.bw_recommend_num})</span>
+								<span class="slash">추천수(</span><span class="slash rec">${content_view.bw_recommend_num}</span><span class="slash">)</span>
 								<span class="slash">&bullet;</span> 
 								<span class="slash">조회수(${content_view.bw_hit})</span>
 							</div>
@@ -143,18 +143,18 @@
 
 					<!-- 추천 -->
 					<br /> <br />
-					<form action="#" method="get">
 						<div align="center" class="tooltip-purple">
 							<input class="good" type="image" src="images/board_hj/good.png"
-								name="submit" value="submit" alt="Image Good"
-								data-toggle="tooltip" data-container=".tooltip-purple"
-								data-placement="top" title="추천 +1">
-							<p>(숫자)</p>
+								name="button" id="rec_btn" value="${content_view.bw_no}" data-toggle="tooltip" 
+								data-container=".tooltip-purple" data-placement="top" title="추천 +1">
+							<p>
+							<span>(</span><span class="rec">${content_view.bw_recommend_num}</span><span>)</span>
+							</p>
 						</div>
-					</form>
-
+					
+					<br /><br />
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="#" method="get">
+					<form action="/list" method="get">
 						<div class="test">
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
@@ -214,6 +214,7 @@
 	<script src="js/board_hj/main.js"></script>
 	
 	<script src="js/board_hj/tooltip.js"></script>
+	<script src="js/board_hj/recommed.js"></script>
 	<script src="js/board_hj/popover.js"></script>
 	
 	<!-- Java Script for header

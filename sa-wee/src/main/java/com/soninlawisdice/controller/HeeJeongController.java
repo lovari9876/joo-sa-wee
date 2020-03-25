@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.ContentServiceImpl;
@@ -58,6 +59,17 @@ public class HeeJeongController {
 		contentService.deleteContent(board_writeVO);
 
 		return "redirect:list";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/rec", method = RequestMethod.GET)
+	public String recommend(String bw_no, Model model) {
+		logger.info("recommend");
+		
+		// 게시글 추천수 증가
+		contentService.upRecommendContent(bw_no);
+
+		return contentService.selectRecommendContent(bw_no);
 	}
 	
 	@RequestMapping(value = "/comment_view", method = RequestMethod.GET)
