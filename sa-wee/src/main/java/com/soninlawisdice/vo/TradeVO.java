@@ -4,19 +4,25 @@ import java.sql.Timestamp;
 
 // 보부상(중고거래 게시판)
 public class TradeVO {
-	int t_no; // 게시글번호
-	int m_no; // 말머리번호
-	int s_no; // 회원 번호
-	String t_title; // 글 제목
-	String t_content; // 글 내용
-	Timestamp t_written_date; // 작성일 
-	Timestamp t_updated_date; // 수정일
-	int t_hit; // 조회수
-	int t_recommend_num; // 추천수
-	int t_report_num; // 신고수
-	String t_island; // 무인도 여부
-	int t_price; // 가격
+	private int t_no; // 게시글번호
+	private int m_no; // 말머리번호
+	private int s_no; // 회원 번호
+	private String t_title; // 글 제목
+	private String t_content; // 글 내용
+	private Timestamp t_written_date; // 작성일
+	private Timestamp t_updated_date; // 수정일
+	private int t_hit; // 조회수
+	private int t_recommend_num; // 추천수
+	private int t_report_num; // 신고수
+	private String t_island; // 무인도 여부
+	private int t_price; // 가격
 
+	// 무인도 게시판을 위해 작성일 가져오는 메서드
+	public Timestamp getWrittenDate() {
+		return t_written_date;
+	}
+	
+	// 생성자
 	public TradeVO() {
 	}
 

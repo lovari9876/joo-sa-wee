@@ -2,8 +2,8 @@ package com.soninlawisdice.vo;
 
 // 회원등급
 public class RankVO {
-	int r_no; // 등급 번호
-	String r_name; // 등급 이름
+	private int r_no; // 등급 번호
+	private String r_name; // 등급 이름
 
 	public RankVO() {
 	}
@@ -28,6 +28,6 @@ public class RankVO {
 
 	public void setR_name(String r_name) {
 		this.r_name = r_name;
-	}	
+	}
 
 }

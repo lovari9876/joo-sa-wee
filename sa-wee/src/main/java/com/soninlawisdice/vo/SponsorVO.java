@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 
 // 후원
 public class SponsorVO {
-	int sp_no; // 후원번호
-	int m_no; // 회원번호
-	int sp_money; // 후원금액
-	Timestamp sp_date; // 후원일
+	private int sp_no; // 후원번호
+	private int m_no; // 회원번호
+	private int sp_money; // 후원금액
+	private Timestamp sp_date; // 후원일
 
 	public SponsorVO() {
 	}

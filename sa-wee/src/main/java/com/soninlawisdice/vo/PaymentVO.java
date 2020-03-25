@@ -4,14 +4,14 @@ import java.sql.Timestamp;
 
 // 결제
 public class PaymentVO {
-	int p_no; // 결제번호
-	int t_no; // 게시글번호
-	int m_sno; // 판매자회원번호
-	int m_bno; // 구매자회원번호
-	int p_price; // 거래금액
-	String p_status; // 상태
-	Timestamp p_order_date; // 주문일시
-	Timestamp p_payment_date; // 결제일시
+	private int p_no; // 결제번호
+	private int t_no; // 게시글번호
+	private int m_sno; // 판매자회원번호
+	private int m_bno; // 구매자회원번호
+	private int p_price; // 거래금액
+	private String p_status; // 상태
+	private Timestamp p_order_date; // 주문일시
+	private Timestamp p_payment_date; // 결제일시
 
 	public PaymentVO() {
 	}

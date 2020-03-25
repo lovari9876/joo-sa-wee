@@ -4,31 +4,31 @@ import java.sql.Timestamp;
 
 // 회원
 public class MemberVO {
-	int m_no; // 회원번호
-	String m_id; // 아이디
-	String m_pw; // 비밀번호
-	String m_name; // 이름
-	Timestamp m_birth; // 생년월일
-	String m_nick; // 닉네임
-	String m_gender; // 성별
-	int m_point; // 포인트
-	String m_phone; // 핸드폰
-	String m_email; // 이메일
-	int m_post; // 우편번호
-	String m_addr1; // 주소
-	String m_addr2; // 상세주소
-	int r_no; // 등급
-	String m_re_sms; // SMS수신여부
-	String m_re_notice; // 공지메일수신여부
-	String m_re_message; // 쪽지수신여부
-	String m_info; // 회원정보공개여부
-	String m_self; // 자기소개
-	Timestamp m_indate; // 가입일
-	Timestamp m_outdate; // 탈퇴일
-	String m_out; // 탈퇴여부
-	int m_report_num; // 파일번호
-	String m_extra; // 신고수
-	int f_no; // 비고
+	private int m_no; // 회원번호
+	private String m_id; // 아이디
+	private String m_pw; // 비밀번호
+	private String m_name; // 이름
+	private Timestamp m_birth; // 생년월일
+	private String m_nick; // 닉네임
+	private String m_gender; // 성별
+	private int m_point; // 포인트
+	private String m_phone; // 핸드폰
+	private String m_email; // 이메일
+	private int m_post; // 우편번호
+	private String m_addr1; // 주소
+	private String m_addr2; // 상세주소
+	private int r_no; // 등급
+	private String m_re_sms; // SMS수신여부
+	private String m_re_notice; // 공지메일수신여부
+	private String m_re_message; // 쪽지수신여부
+	private String m_info; // 회원정보공개여부
+	private String m_self; // 자기소개
+	private Timestamp m_indate; // 가입일
+	private Timestamp m_outdate; // 탈퇴일
+	private String m_out; // 탈퇴여부
+	private int m_report_num; // 파일번호
+	private String m_extra; // 신고수
+	private int f_no; // 비고
 
 	public MemberVO() {
 
