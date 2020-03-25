@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.WD_recordVO;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
@@ -27,6 +28,9 @@ public interface AdminMapper {
 	
 	public List<ReportVO> reportList(SearchCriteria scri);
 	public int report_listCount(SearchCriteria scri);
+	
+	public List<WD_recordVO> wd_recordList(SearchCriteria scri);
+	public int wd_record_listCount(SearchCriteria scri);
 	
 
 

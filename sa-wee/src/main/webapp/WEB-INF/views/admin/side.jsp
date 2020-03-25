@@ -112,7 +112,7 @@
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>통계 </a>
                                     <ul id="togglePages" class="collapse unstyled">
-                                        <li><a href="chart2"><i class="icon-time"></i> 탈퇴사유 </a></li>
+                                        <li><a href="withdrawer_list"><i class="icon-time"></i> 탈퇴사유 </a></li>
                                         <li><a href="chart"><i class="icon-group"></i> 접속자  </a></li>
                                         <li><a href="chart"><i class="icon-list-ul"></i> 게시글 </a></li>
                                         <li><a href="chart"><i class="icon-comments"></i> 댓글 </a></li>

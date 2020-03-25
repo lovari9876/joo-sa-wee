@@ -134,7 +134,7 @@
 										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
 										<fmt:formatDate value="${board.bw_written_date}" pattern="yyyy.MM.dd" var="date"/>
 										<c:choose>
-											<c:when test="${now ne date}">${now}</c:when>
+											<c:when test="${now ne date}">${date}</c:when>
 											<c:otherwise>
 												<fmt:formatDate value="${board.bw_written_date}" pattern="HH:mm:ss"/>
 											</c:otherwise>

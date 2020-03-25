@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.AdminMapper;
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.WD_recordVO;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
@@ -42,6 +43,8 @@ public class AdminServiceImpl implements AdminService {
 //		return adminMapper.list(scri);
 //	}
 	
+	
+	
 	@Override
 	public List<MemberVO> memberList(SearchCriteria scri){
 		return adminMapper.memberList(scri);
@@ -61,6 +64,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.report_listCount(scri);
 	}
 	
+	
 	@Override
 	public List<Board_writeVO> boardList(SearchCriteria scri){
 		return adminMapper.boardList(scri);
@@ -68,6 +72,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int board_listCount(SearchCriteria scri){
 		return adminMapper.board_listCount(scri);
+	}
+	
+	
+	@Override
+	public List<WD_recordVO> wd_recordList(SearchCriteria scri){
+		return adminMapper.wd_recordList(scri);
+	}
+	@Override
+	public int wd_record_listCount(SearchCriteria scri){
+		return adminMapper.wd_record_listCount(scri);
 	}
 	
 	
