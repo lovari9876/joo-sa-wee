@@ -36,8 +36,12 @@ public interface AdminService {
 	
 	
 
-	// 차트 데이터
+	// 차트 데이터 
 	public List<StatisticsVO> chartData();
+	
+	// 차트 데이터 ( 탈퇴사유 )
+	public List<WD_recordVO> wdData();
+	
 
 	// 탭구현을 위한 ajax json 변환
 	public List<ReportVO> reportTab();

@@ -11,6 +11,7 @@
 		<result column="m_no" property="m_no"/>
 		<result column="w_no" property="w_no"/>
 		<result column="wr_reason" property="wr_reason"/>
+		<result column="w_no_count" property="w_no_count"/>
 		
 		<collection javaType="com.soninlawisdice.vo.MemberVO" property="memberVO">
 			<id column="m_no" property="m_no"/>
@@ -103,16 +104,28 @@
          SELECT  m.m_no, m.m_id, m.m_outdate, w.w_no, w.w_reason, wr.wr_reason,
 		               ROW_NUMBER() OVER(ORDER BY m.m_no DESC) AS RNUM
 		         FROM wd_record wr, member m, withdrawal w 
-		         WHERE m.m_no = wr.m_no and w.w_no = wr.w_no
+		         WHERE m.m_no = wr.m_no and w.w_no = wr.w_no and w.w_no = 5
 		         <include refid="withdrawer_search"></include>
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		<!-- ORDER BY m_no DESC -->
 
 	</select>
+	<!-- 탈퇴 사유 w_no중 5(주관적사유,기타)를 고른 항목만 출력 -->
 	
 	
-	<!-- =============================================== 페이징 처리 & 검색 ====================================================== -->
+	
+	
+	
+	<!-- =============================================== 탈퇴 사유 통계 ====================================================== -->	
+	
+	<select id="wdData" resultType="com.soninlawisdice.vo.WD_recordVO" resultMap="WD_recordVO">
+		select  w.w_reason ,w.w_no, count(*) as w_no_count FROM wd_record wr, withdrawal w 
+		         WHERE w.w_no = wr.w_no group by w.w_no, w.w_reason
+	</select>
+	
+	
+	
 	
 	<select id="board_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
@@ -179,18 +192,17 @@
 	
 	<select id="wd_record_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
-		SELECT COUNT(m_no)
-		  FROM WD_record
-		 WHERE 1=1
-		 <include refid="withdrawer_search"></include>	
-		 AND m_no > 0
+		 SELECT  COUNT (w.w_no) FROM wd_record wr, member m, withdrawal w 
+		         WHERE m.m_no = wr.m_no and w.w_no = wr.w_no and w.w_no = 5
+		 <include refid="withdrawer_search"></include>
+		 		 AND w.w_no > 0
 
 	</select>
 	
 	<sql id="withdrawer_search">
 		<if test="searchType != null">
-			<if test="searchType == 'a'.toString()">AND m_no LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'b'.toString()">AND wr_reason LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'a'.toString()">AND m.m_id LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'b'.toString()">AND wr.wr_reason LIKE '%' || #{keyword} || '%'</if>
 		</if>
 	</sql>
 	

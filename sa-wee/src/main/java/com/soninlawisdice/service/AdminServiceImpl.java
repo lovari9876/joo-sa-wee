@@ -92,6 +92,15 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.chartData();
 	}
 	
+	@Override
+	public List<WD_recordVO> wdData() {
+		return adminMapper.wdData();
+	}
+	
+	
+	
+	
+	
 	//ajax json
 	@Override
 	public List<ReportVO> reportTab() {

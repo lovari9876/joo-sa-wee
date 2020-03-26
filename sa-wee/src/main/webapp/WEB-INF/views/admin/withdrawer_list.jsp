@@ -67,26 +67,31 @@
 
 							<div class="controls">
 								<div class="dropdown">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">전체보기 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">회원아이디</a></li>
-										<li><a href="#">탈퇴사유</a></li>
 									
-									</ul>
+										<select name="searchType" class="span2">
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>아이디</option><!-- memberVO랑 JOIN 한 값..!! -->
+											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>탈퇴 사유</option>
+										</select>
 								
-									
 								</div>
-									<div class="input-append pull-left">
-									<input type="text" class="span3"
-										placeholder="검색을 해라">
-									<button type="submit" class="btn">
+							
+								<div class="input-append pull-left">
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span3" placeholder="검색을 해라">
+									<button type="submit" class="btn" id="serchBtn">
 										<i class="icon-search"></i>
 									</button>
+									
+									<script>
+								      $(function(){
+								        $('#searchBtn').click(function() {
+								          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+								        });
+								      });   
+								    </script>
 								</div>
-								
-								
+
+
 							</div>
 						</div>
 

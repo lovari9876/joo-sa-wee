@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.AdminServiceImpl;
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.WD_recordVO;
 import com.soninlawisdice.vo.ReportVO;
 
 /**
@@ -48,6 +49,15 @@ public class AdminRestController {
 		//return 값은 String이 아닌 객체로 
 	}
 	
+	
+	@RequestMapping("/wd_data")
+	public List<WD_recordVO> wd_data(Model model) throws Exception {
+		
+		List<WD_recordVO> list = adminService.wdData();
+		model.addAttribute("wd_data", list);
+		return adminService.wdData();
+		//return 값은 String이 아닌 객체로 
+	}
 	
 //	@RequestMapping("/report_view")
 //	public String report_view(StatisticsVO statisticsVO, Model model) throws Exception {
