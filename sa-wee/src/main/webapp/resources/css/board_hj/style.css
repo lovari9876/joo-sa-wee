@@ -870,11 +870,12 @@ h1, h2, h3, h4 {
   min-height: auto;
   padding-top: 5em;
   padding-bottom: 3em;
-  padding-left: 9em; }
+  padding-left: 7em; }
 
 /* 보드 이야기 같이 커뮤니티 이름 달리 폰트 적용 한거 */
 #community {
 	font-family: Sam3KRFont !important;
+	display: inline-block;
 }
   
 @media (max-width: 1199.98px) {
@@ -1031,6 +1032,7 @@ a:hover {color: #400186;}
 .good {
 	width: 50px;
 	height: auto;
+	outline: none;
 }
 
 /* 목록보기, 수정, 삭제, 신고 */
@@ -1188,7 +1190,7 @@ a:hover {color: #400186;}
 	
 }
 
-.test_item.rec {
+.test_item.reco {
 	width:75%;
 	text-align: right;
 }
@@ -1203,7 +1205,7 @@ a:hover {color: #400186;}
 	
 }
 
-.test_item.rec {
+.test_item.reco {
 	width:65%;
 	text-align: right;
 } }
@@ -1218,7 +1220,7 @@ a:hover {color: #400186;}
 	
 }
 
-.test_item.rec {
+.test_item.reco {
 	width:70%;
 	text-align: right;
 } }
@@ -1233,7 +1235,7 @@ a:hover {color: #400186;}
 	
 }
 
-.test_item.rec {
+.test_item.reco {
 	width:65%;
 	text-align: right;
 } }
@@ -2179,6 +2181,7 @@ The Close Button
     width: 85px;
     height: 25px;
     padding-left: 1px;
+    outline: none;
 }
 
 .comment-form-wrap {

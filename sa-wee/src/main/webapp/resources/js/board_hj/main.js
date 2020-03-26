@@ -22,11 +22,11 @@
 	/*------------------
 		Navigation
 	--------------------*/
-	$('.primary-menu').slicknav({
-		appendTo:'.header-warp',
-		closedSymbol: '<i class="fa fa-angle-down"></i>',
-		openedSymbol: '<i class="fa fa-angle-up"></i>'
-	});
+//	$('.primary-menu').slicknav({
+//		appendTo:'.header-warp',
+//		closedSymbol: '<i class="fa fa-angle-down"></i>',
+//		openedSymbol: '<i class="fa fa-angle-up"></i>'
+//	});
 
 
 	/*------------------

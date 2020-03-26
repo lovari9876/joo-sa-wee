@@ -12,6 +12,13 @@ public class ContentServiceImpl implements ContentService {
 	@Autowired
 	ContentMapper contentMapper;
 	
+	
+	public ContentServiceImpl() {}
+
+	public ContentServiceImpl(ContentMapper contentMapper) {
+		this.contentMapper = contentMapper;
+	}
+
 	// 게시글 보기(content_view)
 	@Override
 	public Board_writeVO selectContentOne(String bw_no) {
@@ -24,6 +31,29 @@ public class ContentServiceImpl implements ContentService {
 	public void deleteContent(Board_writeVO board_writeVO) {
 		
 		contentMapper.deleteContent(board_writeVO);
+	}
+
+	// 게시글 조회수
+	@Override
+	public void upHitContent(String bw_no) {
+		
+		contentMapper.upHitContent(bw_no);
+		
+	}
+
+	// 게시글 추천수 증가
+	@Override
+	public void upRecommendContent(String bw_no) {
+		
+		contentMapper.upRecommendContent(bw_no);
+		
+	}
+
+	// 게시글 추천수 증가하는 거 받아옴
+	@Override
+	public String selectRecommendContent(String bw_no) {
+		
+		return contentMapper.selectRecommendContent(bw_no);
 	}
 
 }

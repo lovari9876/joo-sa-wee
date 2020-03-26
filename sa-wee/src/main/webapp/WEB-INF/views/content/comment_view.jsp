@@ -61,7 +61,7 @@
 										Smith</h3></span>
 							</div>
 							<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
-							<div class="test_item rec tooltip-purple">
+							<div class="test_item reco tooltip-purple">
 								<a class="far fa-thumbs-up fa-2x no-text-deco" href="#"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="추천"></a><a class="text_items">(숫자)</a>

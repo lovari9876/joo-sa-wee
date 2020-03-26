@@ -616,7 +616,7 @@
 	<script src="js/board_hj/jquery.waypoints.min.js"></script>
 	<script src="js/board_hj/jquery.animateNumber.min.js"></script>
 
-	<script src="js/board_hj/jquery.slicknav.min.js"></script>
+	<!-- <script src="js/board_hj/jquery.slicknav.min.js"></script> -->
 
 	<script src="js/board_hj/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hj/jquery.sticky-sidebar.min.js"></script>
@@ -640,8 +640,8 @@
 	
 	<!-- Java Script for header
     ================================================== -->   
-    <!-- <script src="js/header/jquery.slicknav.min.js"></script> -->
-	<!-- <script src="js/header/header_hyesoo.js"></script> -->
+    <script src="js/header/jquery.slicknav.min.js"></script>
+	<script src="js/header/header_hyesoo.js"></script>
 	<!-- 이미 가지고 있음 js/board_hj/main.js -->
 	<script src="js/header/scroll.js"></script>
 	
