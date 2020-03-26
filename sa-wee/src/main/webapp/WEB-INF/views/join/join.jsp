@@ -25,8 +25,6 @@
 
 <link rel="stylesheet" href="resources/css/join/style.css" />
 <link rel="stylesheet" href="resources/css/join/main.css" />
-
-
 </head>
 <body>
 
@@ -39,7 +37,7 @@
 						alt="son-in-low_is_dice">
 					</a>
 				</div>
-				<form class="form-register" action="join_success" method="post">
+				<form class="form-register" action="/join" method="post">
 					<div id="form-total">
 						<h2>
 							<span class="step-icon"><i class="zmdi zmdi-account"></i></span>
@@ -69,7 +67,7 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="password"
-											name="password_1" id="password_1" class="form-control"
+											name="m_pw" id="m_pw" class="form-control"
 											required> <span class="label">비밀번호</span> <span
 											class="border"></span>
 										</label>
@@ -78,7 +76,7 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="password"
-											name="comfirm_password_1" id="comfirm_password_1"
+											name="comfirm_password" id="comfirm_password"
 											class="form-control" required> <span class="label">비밀번호
 												확인</span> <span class="border"></span>
 										</label>
@@ -109,28 +107,14 @@
 											type="radio" name="m_gender" value="male"> Male
 									</div>
 								</div>
-								<div class="form-row form-row-date">
+								<div class="form-row">
 									<div class="form-holder form-holder-2">
-										<label for="date" class="special-label">생년월일:</label> <select
-											name="date" id="date">
-											<option value="Day" disabled selected>Day</option>
-											<c:forEach var="feach" begin="1" end="31" step="1">
-												<option value="${feach}">${feach}</option>
-											</c:forEach>
-										</select> <select name="month" id="month">
-											<option value="Month" disabled selected>Month</option>
-											<c:forEach var="feach" begin="1" end="12" step="1">
-												<option value="${feach}">${feach}</option>
-											</c:forEach>
-										</select> <select name="year" id="year">
-											<option value="Year" disabled selected>Year</option>
-											<c:forEach var="feach" begin="1930" end="2020" step="1">
-												<option value="${feach}">${feach}</option>
-											</c:forEach>
-										</select>
+										<label class="form-row-inner"> <input type="text"
+											class="form-control" id="m_birth" name="m_birth" required>
+											<span class="label">생년월일</span> <span class="border"></span>
+										</label>
 									</div>
 								</div>
-
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="text"
@@ -216,7 +200,9 @@
 									<div class="form-holder form-holder-1">
 										<label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_self" name="m_self" required>
-											<span class="label">자기소개</span> <span class="border"></span>
+											<span class="label">자기소개</span> <textarea rows="10"
+												style="width: 100%;" class="border"> </textarea>
+											<!--  <span class="border"></span> -->
 										</label>
 									</div>
 								</div>
@@ -294,8 +280,11 @@
 									</table>
 								</div>
 							</div>
+							
+							
 						</section>
 					</div>
+					
 				</form>
 
 

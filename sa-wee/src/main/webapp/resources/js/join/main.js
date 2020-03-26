@@ -66,15 +66,70 @@ $(function() {
 						},
 
 						onFinished : function(event, currentIndex) {
+
+							if ($("#m_id").val() == "") {
+								alert("아이디를 입력해주세요.");
+								$("#m_id").focus();
+								return false;
+							}
+							if ($("#m_nick").val() == "") {
+								alert("닉네임을 입력해주세요.");
+								$("#m_nick").focus();
+								return false;
+							}
+							if ($("#m_pw").val() == "") {
+								alert("비밀번호를 입력해주세요.");
+								$("#m_pw").focus();
+								return false;
+							}
+							if ($("#comfirm_password").val() == "") {
+								alert("비밀번호를 입력해주세요.");
+								$("#comfirm_password").focus();
+								return false;
+							}
+
+							if ($("#m_name").val() == "") {
+								alert("이름을 입력해주세요.");
+								$("#m_name").focus();
+								return false;
+							}
+
+							if ($("#m_birth").val() == "") {
+								alert("생일을 입력해주세요.");
+								$("#m_birth").focus();
+								return false;
+							}
+
+							if ($("#m_phone").val() == "") {
+								alert("핸드폰 번호를 입력해주세요.");
+								$("#m_phone").focus();
+								return false;
+							}
+							if ($("#m_email").val() == "") {
+								alert("이메일을 입력해주세요.");
+								$("#m_email").focus();
+								return false;
+							}
+							if ($("#m_post").val() == "") {
+								alert("우편번호를 입력해주세요.");
+								$("#m_post").focus();
+								return false;
+							}
+							if ($("#m_addr1").val() == "") {
+								alert("주소를 입력해주세요.");
+								$("#m_addr1").focus();
+								return false;
+							}
+							if ($("#m_addr2").val() == "") {
+								alert("상세주소를 입력해주세요.");
+								$("#m_addr2").focus();
+								return false;
+							}
+
 							alert("Submitted!");
-							location.href="join_success";							
+							location.href = "/join";
 						}
 
 					});
 
-	$("#date").datepicker({
-		dateFormat : "MM - DD - yy",
-		showOn : "both",
-		buttonText : '<i class="zmdi zmdi-chevron-down"></i>',
-	});
 });
