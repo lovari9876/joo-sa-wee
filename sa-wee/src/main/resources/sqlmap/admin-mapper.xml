@@ -122,6 +122,7 @@
 	<select id="wdData" resultType="com.soninlawisdice.vo.WD_recordVO" resultMap="WD_recordVO">
 		select  w.w_reason ,w.w_no, count(*) as w_no_count FROM wd_record wr, withdrawal w 
 		         WHERE w.w_no = wr.w_no group by w.w_no, w.w_reason
+	
 	</select>
 	
 	

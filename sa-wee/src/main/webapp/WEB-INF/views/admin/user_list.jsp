@@ -103,8 +103,7 @@
 						<c:forEach items="${user_list}" var="member">
 								<tr class="trow">
 									<td class="cell">${member.m_id}</td><!-- 해당 tr 클릭하면 메인사이트 회원정보 화면으로 이동  -->
-									<td class="cell"><a
-										href="report_view?st_no=${report.st_no}">${member.m_name}</a></td>
+									<td class="cell">${member.m_name}</td>
 									<td class="cell">${member.m_nick}</td>
 									<td class="cell">
 										<c:choose>

@@ -5,12 +5,18 @@ import java.sql.Timestamp;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ReportVO {
-	private int r_no;
-	private int m_no;
-	private String r_type;
-	private int r_type_no;
-	private String r_content;
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy.MM.dd", timezone = "Asia/Seoul")	private Timestamp r_report_date;
+	int r_no;
+	int m_no;
+	String r_type;
+	int r_type_no;
+	String r_content;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy.MM.dd", timezone = "Asia/Seoul")	
+	Timestamp r_report_date;
+	
+	MemberVO memberVO;
+	Board_writeVO board_writeVO;
+	
+	
 	
 	
 	public ReportVO() {}
