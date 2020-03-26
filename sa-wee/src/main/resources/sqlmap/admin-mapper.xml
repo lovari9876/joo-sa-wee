@@ -6,6 +6,28 @@
 	<mapper namespace="com.soninlawisdice.mapper.AdminMapper">
 
 
+
+	<resultMap type="com.soninlawisdice.vo.WD_recordVO" id="WD_recordVO">
+		<result column="m_no" property="m_no"/>
+		<result column="w_no" property="w_no"/>
+		<result column="wr_reason" property="wr_reason"/>
+		<result column="w_no_count" property="w_no_count"/>
+		
+		<collection javaType="com.soninlawisdice.vo.MemberVO" property="memberVO">
+			<id column="m_no" property="m_no"/>
+			<result column="m_id" property="m_id"/>			
+			<result column="m_outdate" property="m_outdate"/>	
+		</collection>	
+		
+		<collection javaType="com.soninlawisdice.vo.WithdrawalVO" property="withdrawalVO">
+			<id column="w_no" property="w_no"/>
+			<result column="w_reason" property="w_reason"/>			
+		</collection>		
+	</resultMap>
+
+
+
+
 	<!-- ================================================List 출력====================================================== -->
 <!--     <select id="statisticsList" resultType="com.soninlawisdice.vo.StatisticsVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
 
@@ -65,7 +87,7 @@
 	SELECT * FROM
 	(
          SELECT bw_no,m_no,bt_no,s_no,bw_title,bw_content,bw_written_date,bw_updated_date,bw_hit,bw_recommend_num,bw_report_num,bw_island,bw_secret,
-		               ROW_NUMBER() OVER(ORDER BY m_no DESC) AS RNUM
+		               ROW_NUMBER() OVER(ORDER BY bw_no DESC) AS RNUM
 		         FROM board_write
 		         WHERE 1=1
 		         <include refid="board_search"></include>
@@ -75,8 +97,36 @@
 
 	</select>
 	
+	<select id="wd_recordList" resultType="com.soninlawisdice.vo.WD_recordVO" resultMap="WD_recordVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
+
+	SELECT * FROM
+	(
+         SELECT  m.m_no, m.m_id, m.m_outdate, w.w_no, w.w_reason, wr.wr_reason,
+		               ROW_NUMBER() OVER(ORDER BY m.m_no DESC) AS RNUM
+		         FROM wd_record wr, member m, withdrawal w 
+		         WHERE m.m_no = wr.m_no and w.w_no = wr.w_no and w.w_no = 5
+		         <include refid="withdrawer_search"></include>
+		                       ) MP
+		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		<!-- ORDER BY m_no DESC -->
+
+	</select>
+	<!-- 탈퇴 사유 w_no중 5(주관적사유,기타)를 고른 항목만 출력 -->
 	
-	<!-- =============================================== 페이징 처리 & 검색 ====================================================== -->
+	
+	
+	
+	
+	<!-- =============================================== 탈퇴 사유 통계 ====================================================== -->	
+	
+	<select id="wdData" resultType="com.soninlawisdice.vo.WD_recordVO" resultMap="WD_recordVO">
+		select  w.w_reason ,w.w_no, count(*) as w_no_count FROM wd_record wr, withdrawal w 
+		         WHERE w.w_no = wr.w_no group by w.w_no, w.w_reason
+	
+	</select>
+	
+	
+	
 	
 	<select id="board_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
@@ -101,7 +151,6 @@
 	
 	
 	<select id="member_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
-
 		SELECT COUNT(m_no)
 		  FROM member
 		 WHERE 1=1
@@ -126,7 +175,7 @@
 		SELECT COUNT(r_no)
 		  FROM report
 		 WHERE 1=1
-		 <include refid="board_search"></include>	
+		 <include refid="report_search"></include>	
 		 AND r_no > 0
 
 	</select>
@@ -142,7 +191,21 @@
 	
 	
 	
+	<select id="wd_record_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
+
+		 SELECT  COUNT (w.w_no) FROM wd_record wr, member m, withdrawal w 
+		         WHERE m.m_no = wr.m_no and w.w_no = wr.w_no and w.w_no = 5
+		 <include refid="withdrawer_search"></include>
+		 		 AND w.w_no > 0
+
+	</select>
 	
+	<sql id="withdrawer_search">
+		<if test="searchType != null">
+			<if test="searchType == 'a'.toString()">AND m.m_id LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'b'.toString()">AND wr.wr_reason LIKE '%' || #{keyword} || '%'</if>
+		</if>
+	</sql>
 	
 	
 </mapper>

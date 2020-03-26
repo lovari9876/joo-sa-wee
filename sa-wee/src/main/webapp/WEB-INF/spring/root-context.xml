@@ -64,4 +64,5 @@
 	<!-- invalid bound statement (not found): service 에러 이후로 인식하라고 끼워준 것; namespace 체크 필요 -->
 	<context:component-scan base-package="com.soninlawisdice.service" /> 
 
+
 </beans>

@@ -467,6 +467,14 @@ transition: all .2s ease-in-out;
 	-ms-user-select: none;
 	user-select: none
 }
+
+/* 신고 테이블 수정, 탈퇴 버튼 글자크기 */
+.cell .user_list {
+	font-size: 11px;
+}
+
+
+
 .btn.active:focus, .btn:active:focus, .btn:focus {
 	outline: thin dotted;
 	outline: 5px auto -webkit-focus-ring-color;

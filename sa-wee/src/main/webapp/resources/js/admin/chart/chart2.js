@@ -17,9 +17,9 @@ $(document).ready(function chart1() {
 						}
 					} ]
 				}, */
-				/*legend: {
-		            display: false //라벨가리기
-		          }*/
+				legend: {
+		            position: 'right'
+		          }
 			}
 		});
 		
@@ -27,7 +27,7 @@ $(document).ready(function chart1() {
 
 	// json 데이터 가져오기
 	$.ajax({
-		url : "http://localhost:8282/ex/rest/report_list",
+		url : "http://localhost:8282/rest/wd_data",
 		type : "post",
 		cache : false,
 		dataType : "json",
@@ -36,15 +36,12 @@ $(document).ready(function chart1() {
 		success : function(data) {
 			$.each(data, function(key, value) {
 				
-				chartLabels.push(value.st_date);
-				chartData.push(value.st_post_num);
+				chartLabels.push(value.withdrawalVO.w_reason);
+				chartData.push(value.w_no_count);
 				
 				
 			});
-			
-			//최근 값 7개가 최근순으로 불러와지므로 reverse를 이용해 역순으로 바꿔줌
-			chartLabels.reverse();
-			chartData.reverse();
+		
 			// ajax로 불러온 데이터 콘솔에 출력해서 확인
 			console.log(chartLabels);
 			console.log(chartData);
