@@ -59,7 +59,7 @@
 									</tr>
 									
 									<tr class="row">
-										<td class="cell">신고 대상</td>
+										<td class="cell">신고 대상</td><!-- 그 대상의 신고 받은 횟수  -->
 										<td class="cell">${report_view.r_type_no}</td>
 										<td class="cell">신고일</td>
 										<td class="cell">${report_view.r_report_date}</td>

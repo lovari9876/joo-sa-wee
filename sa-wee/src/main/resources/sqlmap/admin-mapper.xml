@@ -7,7 +7,7 @@
 
 
 
-	<resultMap type="com.soninlawisdice.vo.WD_recordVO" id="WD_recordVO">
+	<resultMap id="WD_recordVO" type="com.soninlawisdice.vo.WD_recordVO">
 		<result column="m_no" property="m_no"/>
 		<result column="w_no" property="w_no"/>
 		<result column="wr_reason" property="wr_reason"/>
@@ -25,7 +25,32 @@
 		</collection>		
 	</resultMap>
 
-
+	<resultMap id="reportVO" type="com.soninlawisdice.vo.ReportVO" >
+		<id column="r_no" property="m_no"/>
+		<result column="m_no" property="m_no"/>
+		<result column="r_type" property="r_type"/>
+		<result column="r_type_no" property="r_type_no"/>
+		<result column="r_content" property="r_content"/>
+		<result column="r_report_date" property="r_report_date"/>
+		
+		<collection javaType="com.soninlawisdice.vo.MemberVO" property="memberVO">
+			<id column="m_no" property="m_no"/>
+			<result column="m_id" property="m_id"/>			
+			<result column="m_report_num" property="m_report_num"/>	
+		</collection>	
+		
+		<collection javaType="com.soninlawisdice.vo.Board_writeVO" property="board_writeVO">
+			<id column="bw_no" property="bw_no"/>
+			<result column="bw_report_num" property="bw_report_num"/>			
+		</collection>
+		
+		<collection javaType="com.soninlawisdice.vo.CM_commentVO" property="cm_commentVO">
+			<id column="cm_no" property="cm_no"/>
+			<result column="cm_type" property="cm_type"/>	
+			<result column="cm_no2" property="cm_no2"/>		
+		</collection>
+				
+	</resultMap>
 
 
 	<!-- ================================================List 출력====================================================== -->

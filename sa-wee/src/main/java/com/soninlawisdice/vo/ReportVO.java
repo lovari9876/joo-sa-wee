@@ -15,14 +15,15 @@ public class ReportVO {
 	
 	MemberVO memberVO;
 	Board_writeVO board_writeVO;
-	
+	CM_commentVO cm_commentVO;
 	
 	
 	
 	public ReportVO() {}
 	
 	
-	public ReportVO(int r_no, int m_no, String r_type, int r_type_no, String r_content, Timestamp r_report_date) {
+	public ReportVO(int r_no, int m_no, String r_type, int r_type_no, String r_content, Timestamp r_report_date,
+			MemberVO memberVO, Board_writeVO board_writeVO, CM_commentVO cm_commentVO) {
 		super();
 		this.r_no = r_no;
 		this.m_no = m_no;
@@ -30,8 +31,14 @@ public class ReportVO {
 		this.r_type_no = r_type_no;
 		this.r_content = r_content;
 		this.r_report_date = r_report_date;
+		this.memberVO = memberVO;
+		this.board_writeVO = board_writeVO;
+		this.cm_commentVO = cm_commentVO;
 	}
-	
+
+
+
+
 	public int getR_no() {
 		return r_no;
 	}
@@ -67,6 +74,33 @@ public class ReportVO {
 	}
 	public void setR_report_date(Timestamp r_report_date) {
 		this.r_report_date = r_report_date;
+	}
+
+
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
+
+	public Board_writeVO getBoard_writeVO() {
+		return board_writeVO;
+	}
+
+
+	public void setBoard_writeVO(Board_writeVO board_writeVO) {
+		this.board_writeVO = board_writeVO;
+	}
+
+
+	public CM_commentVO getCm_commentVO() {
+		return cm_commentVO;
+	}
+
+	public void setCm_commentVO(CM_commentVO cm_commentVO) {
+		this.cm_commentVO = cm_commentVO;
 	}
 	
 	
