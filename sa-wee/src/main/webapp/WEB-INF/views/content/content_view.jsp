@@ -45,7 +45,7 @@
 <body id="top">
 
 	<!-- header include start -->
-	<%@ include file="/WEB-INF/views/share/header.jsp"%>
+	<%@ include file="/WEB-INF/views/share/header.jsp" %>
 	<!-- header include end -->
 
 	<!-- HOME -->
@@ -181,14 +181,14 @@
 					</form>
 
 					<!-- 댓글부분 -->
-					<%@ include file="/WEB-INF/views/content/comment_view.jsp"%>
+					<%@ include file="/WEB-INF/views/content/comment_view.jsp" %>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- footer include start -->
-	<%@ include file="/WEB-INF/views/share/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
 	<!-- footer include end -->
 
 	<!-- SCRIPTS -->
@@ -200,7 +200,7 @@
 	<script src="js/board_hj/jquery.waypoints.min.js"></script>
 	<script src="js/board_hj/jquery.animateNumber.min.js"></script>
 
-	<script src="js/board_hj/jquery.slicknav.min.js"></script>
+	<!-- <script src="js/board_hj/jquery.slicknav.min.js"></script> -->
 
 	<script src="js/board_hj/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hj/jquery.sticky-sidebar.min.js"></script>
@@ -214,7 +214,6 @@
 	<script src="js/board_hj/owl.carousel.min.js"></script>
 	<script src="js/board_hj/quill.min.js"></script>
 
-
 	<script src="js/board_hj/bootstrap-select.min.js"></script>
 
 	<script src="js/board_hj/custom.js"></script>
@@ -227,8 +226,8 @@
 
 	<!-- Java Script for header
     ================================================== -->
-	<!-- <script src="js/header/jquery.slicknav.min.js"></script> -->
-	<!-- <script src="js/header/header_hyesoo.js"></script> -->
+	<script src="js/header/jquery.slicknav.min.js"></script>
+	<script src="js/header/header_hyesoo.js"></script>
 	<!-- 이미 가지고 있음 js/board_hj/main.js -->
 	<script src="js/header/scroll.js"></script>
 
