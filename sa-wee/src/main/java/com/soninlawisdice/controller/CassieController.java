@@ -1,6 +1,6 @@
 package com.soninlawisdice.controller;
 
-import javax.inject.Inject;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,44 +11,46 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.soninlawisdice.service.IslandService;
-import com.soninlawisdice.service.IslandServiceImpl;
-
+import com.soninlawisdice.vo.IslandVO;
 
 @Controller
 public class CassieController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(CassieController.class);
-	
+
 	@Autowired
 	private IslandService islandService;
-	
+
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
 	public String tlist(Model model) {
 		logger.info("tlist");
-		
+
 		return "secondhand/tlist";
 	}
-	
+
 	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
 	public String island_list(Model model) {
 		logger.info("island_list");
-		
+
 		model.addAttribute("tlist", islandService.selectTradeIslandList());
-		
+
 		return "island/island_list";
 	}
-	
+
 	@RequestMapping(value = "/island/list", method = RequestMethod.GET)
 	public String list(Model model) {
-		logger.info("list");
+		logger.info("islandList");
+
+		ArrayList<IslandVO> iList = islandService.getIslandList();
 		
-		model.addAttribute("tlist", islandService.selectTradeIslandList());
-		
+		// 사이즈 찍어보기
+		System.out.println(iList.size());
+
+		model.addAttribute("iList", iList);
+
 		return "island/list";
 	}
-	
-	
-	
+
 //	@Autowired
 //	private EmpService empService;
 //	
@@ -83,10 +85,5 @@ public class CassieController {
 //		
 //		return "/list";
 //	}
-	
-	
-	
-	
-		
-	
+
 }

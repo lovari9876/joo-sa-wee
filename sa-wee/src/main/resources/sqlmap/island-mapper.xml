@@ -17,8 +17,15 @@
 	<select id="selectBoard_writeIslandList"
 		resultType="com.soninlawisdice.vo.Board_writeVO">
 		SELECT BOARD_WRITE.* FROM BOARD_WRITE 
-		WHERE bw_island != 0 
+		WHERE BW_ISLAND != 0 
 		ORDER BY BW_WRITTEN_DATE DESC
+	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
+	
+	<select id="selectCafe_reviewIslandList"
+		resultType="com.soninlawisdice.vo.Cafe_reviewVO">
+		SELECT CAFE_REVIEW.* FROM CAFE_REVIEW 
+		WHERE CR_ISLAND != 0 
+		ORDER BY CR_WRITTEN_DATE DESC
 	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
 
 

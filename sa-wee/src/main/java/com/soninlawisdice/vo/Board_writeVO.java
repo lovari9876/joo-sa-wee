@@ -16,7 +16,7 @@ public class Board_writeVO {
 	private int bw_hit; // 조회수
 	private int bw_recommend_num; // 추천수
 	private int bw_report_num; // 신고수
-	private String bw_island; // 무인도여부
+	private int bw_island; // 무인도여부
 	private String bw_secret; // 비밀글여부
 
 	// resultMap을 사용하기 위해서
@@ -35,7 +35,8 @@ public class Board_writeVO {
 
 	public Board_writeVO(int bw_no, int bt_no, int s_no, int m_no, String bw_title, String bw_content,
 			Timestamp bw_written_date, Timestamp bw_updated_date, int bw_hit, int bw_recommend_num, int bw_report_num,
-			String bw_island, String bw_secret, Board_typeVO board_typeVO, MemberVO memberVO, SubjectVO subjectVO) {
+			int bw_island, String bw_secret, Board_typeVO board_typeVO, MemberVO memberVO, SubjectVO subjectVO) {
+		super();
 		this.bw_no = bw_no;
 		this.bt_no = bt_no;
 		this.s_no = s_no;
@@ -142,11 +143,11 @@ public class Board_writeVO {
 		this.bw_report_num = bw_report_num;
 	}
 
-	public String getBw_island() {
+	public int getBw_island() {
 		return bw_island;
 	}
 
-	public void setBw_island(String bw_island) {
+	public void setBw_island(int bw_island) {
 		this.bw_island = bw_island;
 	}
 
