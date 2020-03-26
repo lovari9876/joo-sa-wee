@@ -4,19 +4,19 @@ import java.sql.Timestamp;
 
 public class CM_commentVO {
 	
-	int cm_no; // 댓글 번호
-	int m_no; // 회원 번호
-	String cm_content; // 댓글 내용
-	Timestamp cm_written_date; // 작성일
-	Timestamp cm_updated_date; // 수정일
-	String cm_type; // 게시글 타입, 조건문으로 찾음(자유게시판 'free' 이런식으로)
-	int cm_no2; // 게시글 번호, 조건문으로 찾음(게시글 번호 '1' 이런식으로)
-	int cm_recommend_num; // 추천수
-	int cm_report_num; // 신고수
-	int cm_rating; // 평점, 카페리뷰에 필요한 거
-	int cm_group; // group
-	int cm_step; // step
-	int cm_indent; // indent
+	private int cm_no; // 댓글 번호
+	private int m_no; // 회원 번호
+	private String cm_content; // 댓글 내용
+	private Timestamp cm_written_date; // 작성일
+	private Timestamp cm_updated_date; // 수정일
+	private String cm_type; // 게시글 타입, 조건문으로 찾음(자유게시판 'free' 이런식으로)
+	private int cm_no2; // 게시글 번호, 조건문으로 찾음(게시글 번호 '1' 이런식으로)
+	private int cm_recommend_num; // 추천수
+	private int cm_report_num; // 신고수
+	private int cm_rating; // 평점, 카페리뷰에 필요한 거
+	private int cm_group; // group
+	private int cm_step; // step
+	private int cm_indent; // indent
 	
 	public CM_commentVO() {}
 
