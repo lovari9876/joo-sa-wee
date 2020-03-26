@@ -25,7 +25,7 @@ $(document).ready(function chart1() {
 
 	// json 데이터 가져오기
 	$.ajax({
-		url : "http://localhost:8282/ex/rest/report_list",
+		url : "http://localhost:8282/rest/chart_data",
 		type : "post",
 		cache : false,
 		dataType : "json",

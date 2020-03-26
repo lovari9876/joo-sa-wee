@@ -2,6 +2,7 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,9 +44,8 @@
 										</select>
 								</div>
 									<div class="input-append pull-left">
-									<input type="text" class="span3"
-										placeholder="검색을해라">
-									<button type="submit" class="btn">
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span3" placeholder="검색을 해라">
+									<button type="submit" class="btn" id="serchBtn">
 										<i class="icon-search"></i>
 									</button>
 								</div>
@@ -79,10 +79,10 @@
 							<td class="cell">닉네임</td>
 							<td class="cell">등급</td>
 							<td class="cell">포인트</td>
-							<td class="cell">이메일</td>
+							<td class="cell span2">이메일</td>
 							<td class="cell">가입일</td>
-							<td class="cell">수정</td>
-							<td class="cell">탈퇴</td>
+							<td class="cell span1">수정</td>
+							<td class="cell span1">탈퇴</td>
 							
 						</tr>
 
@@ -103,8 +103,7 @@
 						<c:forEach items="${user_list}" var="member">
 								<tr class="trow">
 									<td class="cell">${member.m_id}</td><!-- 해당 tr 클릭하면 메인사이트 회원정보 화면으로 이동  -->
-									<td class="cell"><a
-										href="report_view?st_no=${report.st_no}">${member.m_name}</a></td>
+									<td class="cell">${member.m_name}</td>
 									<td class="cell">${member.m_nick}</td>
 									<td class="cell">
 										<c:choose>
@@ -116,9 +115,9 @@
 									</td>
 									<td class="cell">${member.m_point}</td>
 									<td class="cell">${member.m_email}</td>
-									<td class="cell">${member.m_indate}</td>
-									<td class="cell"><button type="button" class="btn" onclick="location='user_view?m_no=${member.m_no}'">수정</button></td>
-									<td class="cell"><button type="button" class="btn" >탈퇴</button></td> <!-- 정말 탈퇴???? 한번더 묻기  -->
+									<td class="cell"><fmt:formatDate value="${member.m_indate}" pattern="yyyy.MM.dd"/></td>
+									<td class="cell"><button type="button" class="btn user_list" onclick="location='user_view?m_no=${member.m_no}'">수정</button></td>
+									<td class="cell"><button type="button" class="btn user_list" >탈퇴</button></td> <!-- 정말 탈퇴???? 한번더 묻기  -->
 								</tr>
 							</c:forEach>
 						
@@ -128,11 +127,22 @@
 
 					<div class="pagination pagination-centered">
 						<ul>
-							<li><a href="#"><i class="icon-double-angle-left"></i></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"></i></a></li>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="user_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="user_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="user_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 			</div>
@@ -166,6 +176,5 @@
 	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
-	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script> <script src="js/datatables/jquery.dataTables.js" type="text/javascript"></script>
-</body>
+	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script> 
 </html>

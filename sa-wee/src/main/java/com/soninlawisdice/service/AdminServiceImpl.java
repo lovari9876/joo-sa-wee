@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.AdminMapper;
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.WD_recordVO;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
@@ -18,6 +19,17 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminMapper adminMapper;
+	
+	
+	//생성자
+	public AdminServiceImpl(AdminMapper adminMapper) {
+		super();
+		this.adminMapper = adminMapper;
+	}
+	
+	public AdminServiceImpl() {}
+	
+	
 
 	// 목록
 //	@Override
@@ -30,6 +42,8 @@ public class AdminServiceImpl implements AdminService {
 //	public List<StatisticsVO> statisticsList(SearchCriteria scri){
 //		return adminMapper.list(scri);
 //	}
+	
+	
 	
 	@Override
 	public List<MemberVO> memberList(SearchCriteria scri){
@@ -50,6 +64,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.report_listCount(scri);
 	}
 	
+	
 	@Override
 	public List<Board_writeVO> boardList(SearchCriteria scri){
 		return adminMapper.boardList(scri);
@@ -60,12 +75,31 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	
+	@Override
+	public List<WD_recordVO> wd_recordList(SearchCriteria scri){
+		return adminMapper.wd_recordList(scri);
+	}
+	@Override
+	public int wd_record_listCount(SearchCriteria scri){
+		return adminMapper.wd_record_listCount(scri);
+	}
+	
+	
 
 	// 차트 데이터
 	@Override
 	public List<StatisticsVO> chartData() {
 		return adminMapper.chartData();
 	}
+	
+	@Override
+	public List<WD_recordVO> wdData() {
+		return adminMapper.wdData();
+	}
+	
+	
+	
+	
 	
 	//ajax json
 	@Override

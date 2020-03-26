@@ -2,6 +2,7 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -101,7 +102,10 @@
 									<td class="cell">${report.r_no}</td>
 									<td class="cell">${report.r_type}</td>
 									<td class="cell title">${report.r_content}</td>
-									<td class="cell">${report.r_report_date}</td>
+									<td class="cell">
+									<!-- 신고는 귀찮으니가 걍 날짜로 통일.. 일단은 .. -->
+										<fmt:formatDate value="${report.r_report_date}" pattern="yyyy.MM.dd"/>
+									</td>
 								</tr>
 							</c:forEach>
 							</tbody>			
@@ -111,18 +115,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="report_list2${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="report_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="report_list2${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li><a href="report_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="report_list2${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="report_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

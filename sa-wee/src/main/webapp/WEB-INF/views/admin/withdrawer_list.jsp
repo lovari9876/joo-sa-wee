@@ -2,36 +2,63 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<html>
 <head>
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edmin</title>
-<link type="text/css" href="css/admin/bootstrap.min.css"rel="stylesheet">
-<link type="text/css" href="css/admin/bootstrap-responsive.min.css"rel="stylesheet">
+<title>Admin</title>
+<link type="text/css" href="css/admin/bootstrap.min.css"
+	rel="stylesheet">
+<link type="text/css" href="css/admin/bootstrap-responsive.min.css"
+	rel="stylesheet">
 <link type="text/css" href="css/admin/theme.css" rel="stylesheet">
-<link type="text/css" href="images/admin/icons/css/font-awesome.css"rel="stylesheet">
-<link type="text/css"href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'rel='stylesheet'>
-<!-- <link rel="stylesheet" href="css/liststyle.css" /> -->
+<link type="text/css" href="images/admin/icons/css/font-awesome.css"
+	rel="stylesheet">
+<!--         <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
+            rel='stylesheet'> -->
 </head>
-
-
 <body>
-
 	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/admin/fetchPage.js" type="text/javascript"></script>
-	
+	<script src="js/admin/chart/tab.js" type="text/javascript"></script>
+	<!-- 차트 Chart.js -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+	<script src="js/admin/chart/chart2.js" type="text/javascript"></script>
+
+
+
 
 	<%@include file="side.jsp"%>
 
-
-	<!-- content -->
-
+	<!--/.span3-->
 	<div class="span9">
 		<div class="content">
 			<div class="module">
+
 				<div class="module-head">
-					<h3>탈퇴사유</h3>
+					<h3>탈퇴사유 - 객관적</h3>
+				</div>
+
+
+				<div class="module-body">
+					
+						<div class="chart">
+							<canvas id="myChart"></canvas>
+						</div>
+
+				</div>
+				
+				
+
+
+
+			</div>
+			
+			
+			<div class="module">
+				<div class="module-head">
+					<h3>탈퇴사유 - 주관적 </h3>
 				</div>
 				<div class="module-option clearfix">
 					<form>
@@ -40,26 +67,31 @@
 
 							<div class="controls">
 								<div class="dropdown">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">전체보기 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">회원아이디</a></li>
-										<li><a href="#">탈퇴사유</a></li>
 									
-									</ul>
+										<select name="searchType" class="span2">
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>아이디</option><!-- memberVO랑 JOIN 한 값..!! -->
+											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>탈퇴 사유</option>
+										</select>
 								
-									
 								</div>
-									<div class="input-append pull-left">
-									<input type="text" class="span3"
-										placeholder="검색을 해라">
-									<button type="submit" class="btn">
+							
+								<div class="input-append pull-left">
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span3" placeholder="검색을 해라">
+									<button type="submit" class="btn" id="serchBtn">
 										<i class="icon-search"></i>
 									</button>
+									
+									<script>
+								      $(function(){
+								        $('#searchBtn').click(function() {
+								          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+								        });
+								      });   
+								    </script>
 								</div>
-								
-								
+
+
 							</div>
 						</div>
 
@@ -84,75 +116,76 @@
 					<div class = "table_mobile">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell">탈퇴 번호</td>
 							<td class="cell">회원 아이디</td>
 							<td class="cell">탈퇴 사유</td> 
-							<!-- 미리보기! 길면 ...으로 표시 ! 목록에서 선택시 content_view 페이지로 이동,  
-								 신고한 회원과, 신고당한 대상 이름, 내용 등 표시 -->
 							<td class="cell">탈퇴일</td>
+							
 						</tr>
 
+						<c:forEach var="wd" items="${withdrawer_list}">
 						<tr class="trow">
-							<td class="cell">1</td>
-							<td class="cell"><a onclick="fetchPage('report_view2')">회원</a></td> <!-- ajax로 구현 -->
-							<td class="cell"><a href="report_view">신고내용 내용 내용 </a></td><!-- 링크이동 -->
-							<td class="cell">2020-02-20</td>
-						</tr>
-						
-						<c:forEach items="${report_list}" var="report">
-						
-						
-						<tr class="trow">
-							<td class="cell">${report.st_no}</td>
-							<td class="cell"><a href = "report_view?st_no=${report.st_no}">${report.st_comment_num}</a></td>
-							<td class="cell">${report.st_trade_num}</td>
-							<td class="cell">${report.st_date}</td>
+							<td class="cell">${wd.memberVO.m_id}</td>
+							<td class="cell">${wd.wr_reason}</td><!-- view 따로 만들지 않고 내용 목록에서 다 볼 수 있도록 -->
+							<td class="cell">${wd.memberVO.m_outdate}</td>
 						</tr>
 						
 						
 						</c:forEach>
+						
+						
+							
+						
+						
 					</table>
 					</div>
 					<div class="pagination pagination-centered">
 						<ul>
-							<li><a href="#"><i class="icon-double-angle-left"></i></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"></i></a></li>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="withdrawer_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="withdrawer_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="withdrawer_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 			</div>
+
 		</div>
-	</div>
-
-	</section>
 
 
-
-	</div>
 	</div>
 	<!--/.content-->
 	</div>
 	<!--/.span9-->
-	<!-- 		</div>
-		</div> -->
+	</div>
+	</div>
 	<!--/.container-->
-	<!-- 	</div> -->
+	</div>
 	<!--/.wrapper-->
-
 	<div class="footer">
 		<div class="container">
-
-
-			<b class="copyright">&copy; 2014 Edmin - EGrappler.com </b> All
-			rights reserved.
+			<b class="copyright">&copy; 2014 Edmin - EGrappler.com </b>All rights
+			reserved.
 		</div>
 	</div>
 
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+
+
+
+
+
 </body>
 </html>

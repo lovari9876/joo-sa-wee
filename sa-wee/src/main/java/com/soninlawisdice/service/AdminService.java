@@ -7,15 +7,15 @@ import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.WD_recordVO;
 
 public interface AdminService {
 
-	// 목록
+//  목록
 //	public List<StatisticsVO> selectAdminList();
 
 	
 	// 페이징 처리 + 검색  List
-
 	public List<Board_writeVO> boardList(SearchCriteria scri);
 	public int board_listCount(SearchCriteria scri);
 	
@@ -24,6 +24,10 @@ public interface AdminService {
 	
 	public List<ReportVO> reportList(SearchCriteria scri);
 	public int report_listCount(SearchCriteria scri);
+	
+	public List<WD_recordVO> wd_recordList(SearchCriteria scri);
+	public int wd_record_listCount(SearchCriteria scri);	
+	
 
 //	public List<StatisticsVO> statisticsList(SearchCriteria scri);
 //	public int statistics_listCount(SearchCriteria scri);
@@ -32,8 +36,12 @@ public interface AdminService {
 	
 	
 
-	// 차트 데이터
+	// 차트 데이터 
 	public List<StatisticsVO> chartData();
+	
+	// 차트 데이터 ( 탈퇴사유 )
+	public List<WD_recordVO> wdData();
+	
 
 	// 탭구현을 위한 ajax json 변환
 	public List<ReportVO> reportTab();

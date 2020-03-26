@@ -59,7 +59,7 @@
 									</tr>
 									
 									<tr class="row">
-										<td class="cell">신고 대상</td>
+										<td class="cell">신고 대상</td><!-- 그 대상의 신고 받은 횟수  -->
 										<td class="cell">${report_view.r_type_no}</td>
 										<td class="cell">신고일</td>
 										<td class="cell">${report_view.r_report_date}</td>
@@ -77,7 +77,12 @@
 										<div class="controls">
 											<button type="button" class="btn  pull-left"
 												onclick="location='report_list'">목록</button>
-											<button type="submit" class="btn  pull-right">수정</button>
+												<!-- 댓글의 경우 무인도 행 없이 바로 삭제이므로 무인도행 버튼 출력안함 
+												해당 신고당한 대상의 타입을 받아와 댓글이라면 출력 하지 않는다! ㄴ-->
+												<c:if test="${report_view.r_type != '댓글'}">
+													<button type="submit" class="btn  pull-right">무인도행</button>
+												</c:if>
+											<button type="submit" class="btn  pull-right">삭제 / 탈퇴</button>
 
 										</div>
 									</div>

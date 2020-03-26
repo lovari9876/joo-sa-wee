@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soninlawisdice.controller.AdminController;
 import com.soninlawisdice.service.AdminService;
-import com.soninlawisdice.service.AdminServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.WD_recordVO;
 
 
 /**
@@ -35,7 +35,7 @@ public class AdminController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	@Autowired
-	private AdminServiceImpl adminService;
+	private AdminService adminService;
 
 	@RequestMapping("/index")
 	public String index() {
@@ -120,6 +120,25 @@ public class AdminController {
 
 		return "admin/board_list";
 	}
+	
+	
+	@RequestMapping(value = "/withdrawer_list", method = RequestMethod.GET)
+	public String withdrawer_list(Model model, WD_recordVO wd_recordVO, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+
+		
+		model.addAttribute("withdrawer_list", adminService.wd_recordList(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.wd_record_listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "admin/withdrawer_list";
+	}
+	
+	
+	
 	
 	
 	
@@ -253,12 +272,6 @@ public class AdminController {
 	public String chart() {
 
 		return "admin/chart";
-	}
-
-	@RequestMapping("/chart2")
-	public String chart2() {
-
-		return "admin/chart2";
 	}
 
 	@RequestMapping("/search")

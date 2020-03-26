@@ -13,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.ContentServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
 
@@ -24,7 +26,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 public class HeeJeongController {
 	
 	@Autowired
-	ContentServiceImpl contentServiceImpl;
+	ContentService contentService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HeeJeongController.class);
 	
@@ -36,7 +38,16 @@ public class HeeJeongController {
 		logger.info("content_view");
 		
 		String bw_no = request.getParameter("bw_no");
-		model.addAttribute("content_view", contentServiceImpl.selectContentOne(bw_no));
+		
+		Board_writeVO board_writeVO = contentService.selectContentOne(bw_no);
+		
+		model.addAttribute("content_view", board_writeVO);
+		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
+		model.addAttribute("memberVO", board_writeVO.getMemberVO());
+		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+		
+		// 게시글 조회수
+		contentService.upHitContent(bw_no);
 
 		return "content/content_view";
 	}
@@ -45,9 +56,20 @@ public class HeeJeongController {
 	public String delete(Board_writeVO board_writeVO, Model model) {
 		logger.info("delete");
 		
-		contentServiceImpl.deleteContent(board_writeVO);
+		contentService.deleteContent(board_writeVO);
 
 		return "redirect:list";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/rec", method = RequestMethod.GET)
+	public String recommend(String bw_no, Model model) {
+		logger.info("recommend");
+		
+		// 게시글 추천수 증가
+		contentService.upRecommendContent(bw_no);
+
+		return contentService.selectRecommendContent(bw_no);
 	}
 	
 	@RequestMapping(value = "/comment_view", method = RequestMethod.GET)

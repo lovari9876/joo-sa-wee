@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Select;
 
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.WD_recordVO;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
@@ -28,6 +29,9 @@ public interface AdminMapper {
 	public List<ReportVO> reportList(SearchCriteria scri);
 	public int report_listCount(SearchCriteria scri);
 	
+	public List<WD_recordVO> wd_recordList(SearchCriteria scri);
+	public int wd_record_listCount(SearchCriteria scri);
+	
 
 
 
@@ -42,6 +46,9 @@ public interface AdminMapper {
 	@Select("select * from (select st_no, st_post_num, st_date, st_comment_num, st_trade_num from statistics order by st_no desc)" + 
 			"where rownum <= 7")
 	public List<StatisticsVO> chartData();
+	
+	// 차트 : 탈퇴사유
+	public List<WD_recordVO> wdData();
 
 	
 	//ajax json tab 

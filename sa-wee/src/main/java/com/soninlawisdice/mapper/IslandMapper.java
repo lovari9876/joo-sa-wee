@@ -1,9 +1,6 @@
 package com.soninlawisdice.mapper;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.apache.ibatis.annotations.Mapper;
 
 import com.soninlawisdice.vo.*;
 
@@ -15,9 +12,7 @@ public interface IslandMapper {
 
 	public ArrayList<TradeVO> selectTradeIslandList(); // 보부상
 	public ArrayList<Board_writeVO> selectBoard_writeIslandList(); // 게시글
-	
-	// 카페 리뷰 게시판 하나만 더 추가하면 무인도행 애들은 끝!
-	
+	public ArrayList<Cafe_reviewVO> selectCafe_reviewIslandList(); // 카페리뷰
 	
 	
 // 참고	
