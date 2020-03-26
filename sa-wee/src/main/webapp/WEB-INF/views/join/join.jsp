@@ -37,7 +37,7 @@
 						alt="son-in-low_is_dice">
 					</a>
 				</div>
-				<form id="join_form" class="form-register" action="/join" method="post">
+				<form class="form-register" action="/join" method="post">
 					<div id="form-total">
 						<h2>
 							<span class="step-icon"><i class="zmdi zmdi-account"></i></span>
@@ -67,8 +67,9 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="password"
-											name="m_pw" id="m_pw" class="form-control" required>
-											<span class="label">비밀번호</span> <span class="border"></span>
+											name="m_pw" id="m_pw" class="form-control"
+											required> <span class="label">비밀번호</span> <span
+											class="border"></span>
 										</label>
 									</div>
 								</div>
@@ -102,8 +103,8 @@
 								<div class="form-row">
 									<div id="radio">
 										<label>성별:</label> <input type="radio" name="m_gender"
-											value="f" checked class="radio-1"> Female <input
-											type="radio" name="m_gender" value="m"> Male
+											value="female" checked class="radio-1"> Female <input
+											type="radio" name="m_gender" value="male"> Male
 									</div>
 								</div>
 								<div class="form-row">
@@ -200,7 +201,8 @@
 										<label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_self" name="m_self" required>
 											<span class="label">자기소개</span> <textarea rows="10"
-												style="width: 100%;" class="border"> </textarea> <!--  <span class="border"></span> -->
+												style="width: 100%;" class="border"> </textarea>
+											<!--  <span class="border"></span> -->
 										</label>
 									</div>
 								</div>
@@ -278,9 +280,11 @@
 									</table>
 								</div>
 							</div>
+							
+							
 						</section>
 					</div>
-
+					
 				</form>
 
 

@@ -5,6 +5,6 @@ import com.soninlawisdice.vo.MemberVO;
 public interface JoinMapper {
 
 
-  	public void join(MemberVO memberVO);
+  	public MemberVO join(MemberVO memberVO);
 
 }

@@ -4,5 +4,5 @@ import com.soninlawisdice.vo.MemberVO;
 
 public interface JoinService {
 	
-	public void join(MemberVO memberVO) throws Exception;
+	public MemberVO join(MemberVO memberVO) throws Exception;
 }

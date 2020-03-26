@@ -18,10 +18,9 @@ $(function() {
 						},
 
 						onStepChanging : function(event, currentIndex, newIndex) {
-
+							var m_name = $('#m_name').val();
 							var m_id = $('#m_id').val();
 							var m_nick = $('#m_nick').val();
-							var m_name = $('#m_name').val();
 							var gender = $(
 									':input:radio[name=m_gender]:checked')
 									.val();
@@ -46,9 +45,9 @@ $(function() {
 
 							var m_self = $('#m_self').val();
 
+							$('#m_name-val').text(m_name);
 							$('#m_id-val').text(m_id);
 							$('#m_nick-val').text(m_nick);
-							$('#m_name-val').text(m_name);
 							$('#m_gender-val').text(gender);
 
 							$('#m_phone-val').text(m_phone);
@@ -128,8 +127,7 @@ $(function() {
 							}
 
 							alert("Submitted!");
-							$('#join_form').submit();
-
+							location.href = "/join";
 						}
 
 					});

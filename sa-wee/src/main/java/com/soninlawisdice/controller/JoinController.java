@@ -37,7 +37,7 @@ public class JoinController {
 		
 		
 		joinService.join(memberVO);
-		return "join/join_success";
+		return null;
 	}
 	
 	@RequestMapping(value = "/join_success", method = RequestMethod.GET)

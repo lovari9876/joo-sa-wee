@@ -22,8 +22,8 @@ public class JoinServiceImpl implements JoinService{
 	}
 
 	@Override
-	public void join(MemberVO memberVO) throws Exception{
-		joinMapper.join(memberVO);
+	public MemberVO join(MemberVO memberVO) throws Exception{
+		return joinMapper.join(memberVO);
 	}
 
 }
