@@ -870,11 +870,12 @@ h1, h2, h3, h4 {
   min-height: auto;
   padding-top: 5em;
   padding-bottom: 3em;
-  padding-left: 9em; }
+  padding-left: 7em; }
 
 /* 보드 이야기 같이 커뮤니티 이름 달리 폰트 적용 한거 */
 #community {
 	font-family: Sam3KRFont !important;
+	display: inline-block;
 }
   
 @media (max-width: 1199.98px) {
