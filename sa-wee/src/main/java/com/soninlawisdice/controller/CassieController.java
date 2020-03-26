@@ -40,9 +40,9 @@ public class CassieController {
 	
 	@RequestMapping(value = "/island/list", method = RequestMethod.GET)
 	public String list(Model model) {
-		logger.info("islandList");
+		logger.info("list");
 		
-		model.addAttribute("iList", islandService.getIslandList());
+		model.addAttribute("tlist", islandService.selectTradeIslandList());
 		
 		return "island/list";
 	}
