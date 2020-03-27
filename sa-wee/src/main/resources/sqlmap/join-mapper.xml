@@ -34,6 +34,9 @@
 		WHERE m_id = #{m_id}
 	</select>
 	
-	
+	<select id="login" resultType="com.soninlawisdice.vo.MemberVO">
+		select * from member 
+		where m_id = #{m_id} and m_pw = #{m_pw}
+	</select>
 	
 </mapper>

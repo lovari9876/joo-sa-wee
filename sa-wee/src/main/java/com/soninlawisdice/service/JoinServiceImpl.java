@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.JoinMapper;
-import com.soninlawisdice.mapper.LoginMapper;
 import com.soninlawisdice.vo.MemberVO;
 
 @Service
@@ -40,6 +39,11 @@ public class JoinServiceImpl implements JoinService {
 	public int idCheck(MemberVO memberVO) throws Exception {
 		int result = joinMapper.idCheck(memberVO);
 		return result;
+	}
+	// 로그인
+	@Override
+	public MemberVO login(String m_id, String m_pw) throws Exception{
+		return joinMapper.login(m_id, m_pw);
 	}
 	
 }
