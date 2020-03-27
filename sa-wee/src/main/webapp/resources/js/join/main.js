@@ -1,3 +1,26 @@
+function fn_idCheck() {
+	$.ajax({
+		url : "/idCheck",
+		type : "post",
+		dataType : "json",
+		data : {
+			"m_id" : $("#m_id").val()
+		},
+
+		success : function(data) {
+			var m_id = $("#m_id").val();
+			console.log(m_id);
+
+			if (data == 1) {
+				alert("중복된 아이디입니다.");
+			} else if (data == 0) {
+				$("#idCheck").attr("value", "Y");
+				alert("사용가능한 아이디입니다.");
+			}
+		}
+	})
+}
+
 $(function() {
 
 	$("#form-total")
@@ -72,6 +95,7 @@ $(function() {
 								$("#m_id").focus();
 								return false;
 							}
+
 							if ($("#m_nick").val() == "") {
 								alert("닉네임을 입력해주세요.");
 								$("#m_nick").focus();
@@ -125,9 +149,15 @@ $(function() {
 								$("#m_addr2").focus();
 								return false;
 							}
+							var idCheckVal = $("#idCheck").val();
+							if (idCheckVal == "N") {
+								alert("중복확인 버튼을 눌러주세요.");
+								return false;
+							} else if (idCheckVal == "Y") {
+								alert("Submitted!");
+								$("#form-register").submit();
+							}
 
-							alert("Submitted!");
-							location.href = "/join";
 						}
 
 					});

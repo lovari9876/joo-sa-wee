@@ -7,15 +7,33 @@
 <mapper namespace="com.soninlawisdice.mapper.JoinMapper">
 
 	<insert id="join">
-		INSERT INTO member (m_no, m_id, m_pw, m_name, m_birth, m_nick,
-			m_gender, m_point, m_phone, m_email, m_post, m_addr1, m_addr2,
-			r_no, m_re_sms, m_re_notice, m_re_message, m_info, m_self,
-			m_indate, m_outdate, m_out, m_report_num, m_extra, f_no)
-			
-		VALUES (member_seq.nextval, #{m_id}, #{m_pw}, #{m_name}, 
-		 #{m_birth}, #{m_nick}, #{m_gender}, 0, #{m_phone}, #{m_email}, 
-		 #{m_post}, #{m_addr1}, #{m_addr2}, 3, #{m_re_sms}, #{m_re_notice},
-		  #{m_re_message}, #{m_info}, #{m_self}, sysdate, '1994/06/15', 'n', 0, 0, 1)
+		INSERT INTO member (m_no, m_id, m_pw, m_name,
+		m_birth, m_nick,
+		m_gender, m_point, m_phone, m_email, m_post, m_addr1, m_addr2,
+		r_no, m_re_sms, m_re_notice, m_re_message, m_info, m_self,
+		m_indate, m_outdate, m_out, m_report_num, m_extra, f_no)
+
+		VALUES (member_seq.nextval, #{m_id}, #{m_pw}, #{m_name},
+		#{m_birth}, #{m_nick}, #{m_gender}, 0, #{m_phone}, #{m_email},
+		#{m_post}, #{m_addr1}, #{m_addr2}, 3, #{m_re_sms}, #{m_re_notice},
+		#{m_re_message}, #{m_info}, #{m_self}, sysdate, #{m_outdate, jdbcType=VARCHAR}, 'n', 0,
+		0, 1)
 	</insert>
+
+
+	<!-- 패스워드 체크 -->
+	<select id="pwCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE m_id = #{m_id}
+		AND m_pw = #{m_pw}
+	</select>
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE m_id = #{m_id}
+	</select>
+	
+	
 	
 </mapper>

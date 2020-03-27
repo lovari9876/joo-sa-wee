@@ -25,6 +25,7 @@
 
 <link rel="stylesheet" href="resources/css/join/style.css" />
 <link rel="stylesheet" href="resources/css/join/main.css" />
+
 </head>
 <body>
 
@@ -37,7 +38,8 @@
 						alt="son-in-low_is_dice">
 					</a>
 				</div>
-				<form class="form-register" action="/join" method="post">
+				<form id="form-register" class="form-register" action="/join"
+					method="post">
 					<div id="form-total">
 						<h2>
 							<span class="step-icon"><i class="zmdi zmdi-account"></i></span>
@@ -52,7 +54,10 @@
 											name="m_id" id="m_id" class="form-control" required>
 											<span class="label">아이디</span> <span class="border"></span>
 										</label>
-										<div class="check_font" id="id_check"></div>
+										<div class="check_font" id="id_check">
+											<button class="idCheck" type="button" id="idCheck"
+												onclick="fn_idCheck();" value="N">중복확인</button>
+										</div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -67,9 +72,8 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="password"
-											name="m_pw" id="m_pw" class="form-control"
-											required> <span class="label">비밀번호</span> <span
-											class="border"></span>
+											name="m_pw" id="m_pw" class="form-control" required>
+											<span class="label">비밀번호</span> <span class="border"></span>
 										</label>
 									</div>
 								</div>
@@ -103,8 +107,8 @@
 								<div class="form-row">
 									<div id="radio">
 										<label>성별:</label> <input type="radio" name="m_gender"
-											value="female" checked class="radio-1"> Female <input
-											type="radio" name="m_gender" value="male"> Male
+											value="f" checked class="radio-1"> Female <input
+											type="radio" name="m_gender" value="m"> Male
 									</div>
 								</div>
 								<div class="form-row">
@@ -201,8 +205,7 @@
 										<label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_self" name="m_self" required>
 											<span class="label">자기소개</span> <textarea rows="10"
-												style="width: 100%;" class="border"> </textarea>
-											<!--  <span class="border"></span> -->
+												style="width: 100%;" class="border"> </textarea> <!--  <span class="border"></span> -->
 										</label>
 									</div>
 								</div>
@@ -280,11 +283,11 @@
 									</table>
 								</div>
 							</div>
-							
-							
+
+
 						</section>
 					</div>
-					
+
 				</form>
 
 
@@ -295,6 +298,8 @@
 	<script src="resources/js/join/jquery.steps.js"></script>
 	<script src="resources/js/join/jquery-ui.min.js"></script>
 	<script src="resources/js/join/main.js"></script>
+	<!-- <script src="resources/js/join/check.js"></script> -->
+
 
 	<script async
 		src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
