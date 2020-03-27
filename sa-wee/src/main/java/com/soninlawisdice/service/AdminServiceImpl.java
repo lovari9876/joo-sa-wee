@@ -120,8 +120,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public ReportVO selectReportView(int r_no) {
-		return adminMapper.selectReportView(r_no);
+	public ReportVO selectReportView(int r_no, String r_type) {
+		return adminMapper.selectReportView(r_no, r_type);
 	}
 	
 //	public RankVO selectRankView(int m_no) {

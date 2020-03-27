@@ -85,7 +85,8 @@ public class AdminRestController {
 	@RequestMapping("/report_view")
 	public String report_view(ReportVO reportVO, Model model) throws Exception {
 		int id = reportVO.getR_no();
-		ReportVO view = adminService.selectReportView(id);
+		String type = reportVO.getR_type();
+		ReportVO view = adminService.selectReportView(id, type);
 		model.addAttribute("report_view", view);
 		
 		return "report_view";

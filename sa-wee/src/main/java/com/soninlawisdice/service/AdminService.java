@@ -53,7 +53,7 @@ public interface AdminService {
 
 	public MemberVO selectMemberView(int m_no);
 
-	public ReportVO selectReportView(int r_no);
+	public ReportVO selectReportView(int r_no, String r_type);
 
 	
 	

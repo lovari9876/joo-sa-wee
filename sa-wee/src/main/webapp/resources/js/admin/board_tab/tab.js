@@ -26,13 +26,14 @@
     					tag += "<tr class='trow'>";
         				tag += "<tr class='trow'> <td class='cell'>" + value.r_no + "</td>";
         				tag += "<td class='cell'>" + value.r_type + "</a></td>";
-        				tag += "<td class='cell title'><a href='report_view?r_no=" + value.r_no + "'>" + value.r_content + "</td>";
+        				tag += "<td class='cell title'><a href='report_view?r_no=" + value.r_no + "&r_type=" + value.r_type + "'>" + value.r_content + "</td>";
+        				
         				tag += "<td class='cell'>" + value.r_report_date + "</td></tr>";
     				}else if(category == ""){
     					tag += "<tr class='trow'>";
         				tag += "<tr class='trow'> <td class='cell'>" + value.r_no + "</td>";
         				tag += "<td class='cell'>" + value.r_type + "</a></td>";
-        				tag += "<td class='cell title'><a href='report_view?r_no=" + value.r_no + "'>" + value.r_content + "</td>";
+        				tag += "<td class='cell title'><a href='report_view?r_no=" + value.r_no + "&r_type=" + value.r_type + "'>" + value.r_content + "</td>";
         				tag += "<td class='cell'>" + value.r_report_date + "</td></tr>";
     				}
     				

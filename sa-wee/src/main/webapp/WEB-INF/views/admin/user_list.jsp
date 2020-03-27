@@ -75,14 +75,15 @@
 					<table class="table user_list">
 						<tr class="trow header">
 							<td class="cell">아이디</td><!-- 아이디 클릭시 회원정보 보기 링크 걸기 -->
-							<td class="cell">이름</td>
+							<!-- <td class="cell">이름</td> -->
 							<td class="cell">닉네임</td>
 							<td class="cell">등급</td>
 							<td class="cell">포인트</td>
 							<td class="cell span2">이메일</td>
 							<td class="cell">가입일</td>
-							<td class="cell span1">수정</td>
 							<td class="cell span1">탈퇴</td>
+							<td class="cell span1">수정</td>
+							<!-- <td class="cell span1">탈퇴</td> -->
 							
 						</tr>
 
@@ -103,7 +104,7 @@
 						<c:forEach items="${user_list}" var="member">
 								<tr class="trow">
 									<td class="cell">${member.m_id}</td><!-- 해당 tr 클릭하면 메인사이트 회원정보 화면으로 이동  -->
-									<td class="cell">${member.m_name}</td>
+									<%-- <td class="cell">${member.m_name}</td> --%>
 									<td class="cell">${member.m_nick}</td>
 									<td class="cell">
 										<c:choose>
@@ -115,9 +116,12 @@
 									</td>
 									<td class="cell">${member.m_point}</td>
 									<td class="cell">${member.m_email}</td>
+									
 									<td class="cell"><fmt:formatDate value="${member.m_indate}" pattern="yyyy.MM.dd"/></td>
+									
+									<td class="cell">${member.m_out}</td>
 									<td class="cell"><button type="button" class="btn user_list" onclick="location='user_view?m_no=${member.m_no}'">수정</button></td>
-									<td class="cell"><button type="button" class="btn user_list" >탈퇴</button></td> <!-- 정말 탈퇴???? 한번더 묻기  -->
+									<!-- <td class="cell"><button type="button" class="btn user_list" >탈퇴</button></td> --> <!-- 정말 탈퇴???? 한번더 묻기  -->
 								</tr>
 							</c:forEach>
 						

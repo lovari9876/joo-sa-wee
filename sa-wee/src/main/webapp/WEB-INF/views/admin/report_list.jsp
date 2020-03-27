@@ -17,9 +17,7 @@
 
 
 <body>
-
 	
-
 	<%@include file="side.jsp"%>
 
 
@@ -54,13 +52,13 @@
 										<i class="icon-search"></i>
 									</button>
 									
-									<script>
+							<!-- 		<script>
 								      $(function(){
 								        $('#searchBtn').click(function() {
 								          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 								        });
 								      });   
-								    </script>
+								    </script> -->
 								</div>
 
 
@@ -98,10 +96,10 @@
 							</tr>
 								<tbody id="ajax_test"> 
 							<c:forEach items="${report_list}" var="report">
-								<tr class="trow" onClick="location.href='report_view?r_no=${report.r_no}'">
+								<tr class="trow">
 									<td class="cell">${report.r_no}</td>
 									<td class="cell">${report.r_type}</td>
-									<td class="cell title">${report.r_content}</td>
+									<td class="cell title"><a href="report_view?r_no=${report.r_no}&r_type=${report.r_type}">${report.r_content}</a></td>
 									<td class="cell">
 									<!-- 신고는 귀찮으니가 걍 날짜로 통일.. 일단은 .. -->
 										<fmt:formatDate value="${report.r_report_date}" pattern="yyyy.MM.dd"/>

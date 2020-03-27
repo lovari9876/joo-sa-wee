@@ -48,22 +48,41 @@
 
 						<div class="content-view">
 
-							 <form action="" method = "post" enctype="multipart/form-data">
+							 <form action="" method = "get" enctype="multipart/form-data">
 							 <input type = "hidden" name = "r_no" value = "${report_view.r_no}">
 								<table class="table" >
 									<tr class="row">
 										<td class="cell span2">신고한 회원</td>
-										<td class="cell span3">${report_view.m_no}</td>
+										<td class="cell span3">${report_view.memberVO.m_id}</td>
 										<td class="cell span2">신고 타입</td>
 										<td class="cell span3">${report_view.r_type}</td>
 									</tr>
 									
 									<tr class="row">
-										<td class="cell">신고 대상</td><!-- 그 대상의 신고 받은 횟수  -->
-										<td class="cell">${report_view.r_type_no}</td>
+										<td class="cell">신고 대상</td>
+										<td class="cell" colspan= "3">
+											<c:choose>
+												<c:when test="${report_view.r_type == '회원'}">${report_view.r_id}</c:when>
+												<c:when test="${report_view.r_type == '댓글'}">${report_view.cm_commentVO.cm_content}</c:when>
+												<c:when test="${report_view.r_type == '게시글'}">${report_view.board_writeVO.bw_title}</c:when>
+											</c:choose>
+										</td>
+									</tr>
+									
+									<tr class="row">
+										<td class="cell">신고 받은 횟수</td>
+										<td class="cell">
+											<c:choose>
+												<c:when test="${report_view.r_type == '회원'}">${report_view.memberVO.m_report_num}</c:when>
+												<c:when test="${report_view.r_type == '댓글'}">${report_view.cm_commentVO.cm_report_num}</c:when>
+												<c:when test="${report_view.r_type == '게시글'}">${report_view.board_writeVO.bw_report_num}</c:when>
+											</c:choose>	
+											
+										</td>
 										<td class="cell">신고일</td>
 										<td class="cell">${report_view.r_report_date}</td>
 									</tr>
+
 
 									<tr class="row">
 										<td class = "cell span1">신고 내용</td>

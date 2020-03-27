@@ -137,6 +137,7 @@
 											<button type="button" class="btn  pull-left"
 												onclick="location='user_list'">목록</button>
 											<button type="submit" class="btn  pull-right">수정</button>
+											<button type="submit" class="btn  pull-right">탈퇴</button>
 
 										</div>
 									</div>
