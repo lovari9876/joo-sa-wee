@@ -60,7 +60,7 @@
         
         <!-- 검색 -->
 		<div class="search--bar search--row">
-		  <div class="col-lg-8 mx-auto">
+		  <div class="mx-auto">
 		
 		    <div class="search--box rounded">
 		
