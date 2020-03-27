@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false" %>
 
 <!DOCTYPE html>
@@ -70,7 +71,7 @@
         
          <!-- 검색 -->
 		<div class="search--bar row search--island">
-		  <div class="col-lg-8 mx-auto">
+		  <div class=" mx-auto">
 		
 		    <div class="search--box rounded">
 		
@@ -99,82 +100,61 @@
         <div class="row add-bottom">
 
             <div class="col-twelve">
-
-                <h3>Tables</h3>
-                <p>돌아가고 싶다면.... 얼른 수정하십시오....</p>
+        
+                <!-- <p>돌아가고 싶다면.... 얼른 수정하십시오....</p> -->
 
                 <div class="table-responsive">
 
                     <table class="island--table">
                             <thead>
-	                            <tr class="table-header">
-	                                <th>글 번호</th>
-	                                <th>글 제목</th>
+	                            <tr class="table-header">	                                
+	                                <th>원글 번호</th>
+	                                <th>게시판</th>
 	                                <th>작성자</th>
-	                                <th>수정상태</th>
+	                                <th>제목</th>
+	                                <th>작성일</th>
+	                                <th>조회수</th>
+	                                <th>추천수</th>
+	                                <th>신고수</th>	                               
 	                            </tr>
                             </thead>
                             <tbody>
-	                            <tr>
-	                                <td>Naruto Uzumaki</td>
-	                                <td>16</td>
-	                                <td>Male</td>
-	                                <td>Konoha</td>
-	                            </tr>
-	                            <tr>
-	                                <td>Sakura Haruno</td>
-	                                <td>16</td>
-	                                <td>Female</td>
-	                                <td>Konoha</td>
-	                            </tr>
-	                            <tr>
-	                                <td>Sakura Haruno</td>
-	                                <td>16</td>
-	                                <td>Female</td>
-	                                <td>Konoha</td>
-	                            </tr>
-	                            <tr>
-	                                <td>Sakura Haruno</td>
-	                                <td>16</td>
-	                                <td>Female</td>
-	                                <td>Konoha</td>
-	                            </tr>
-	                            <tr>
-	                                <td>Sakura Haruno</td>
-	                                <td>16</td>
-	                                <td>Female</td>
-	                                <td>Konoha</td>
-	                            </tr>
-	                            <tr>
-	                                <td>Sakura Haruno</td>
-	                                <td>16</td>
-	                                <td>Female</td>
-	                                <td>Konoha</td>
-	                            </tr>
-	                            <tr>
-	                                <td>Sakura Haruno</td>
-	                                <td>16</td>
-	                                <td>Female</td>
-	                                <td>Konoha</td>
-	                            </tr>
-	                            <tr>
-	                                <td>Sakura Haruno</td>
-	                                <td>16</td>
-	                                <td>Female</td>
-	                                <td>Konoha</td>
-	                            </tr>
-	                            <tr>
-	                                <td>Sakura Haruno</td>
-	                                <td>16</td>
-	                                <td>Female</td>
-	                                <td>Konoha</td>
-	                            </tr>
-	                            <tr>
-	                                <td>Sakura Haruno</td>
-	                                <td>16</td>
-	                                <td>Female</td>
-	                                <td>Konoha</td>
-	                            </tr>
+	              				<c:forEach items="${iList}" var="IslandVO">
+									<tr>											
+										<td>${IslandVO.i_no}</td>
+										<td>
+											<c:choose>				
+												<c:when test="${IslandVO.bt_no eq 1}">보드이야기</c:when>		
+												<c:when test="${IslandVO.bt_no eq 2}">개봉기 및 리뷰</c:when>
+												<c:when test="${IslandVO.bt_no eq 3}">보드게임 모임</c:when>
+												<c:when test="${IslandVO.bt_no eq 4}">보드 뉴스</c:when>
+												<c:when test="${IslandVO.bt_no eq 5}">질문&답변</c:when>
+												<c:when test="${IslandVO.bt_no eq 6}">창작 보드게임</c:when>
+												<c:when test="${IslandVO.bt_no eq 8}">일대일 문의</c:when>
+												<c:when test="${IslandVO.bt_no eq 9}">보부상</c:when>
+												<c:when test="${IslandVO.bt_no eq 11}">카페 리뷰</c:when>
+												<c:otherwise>불명확</c:otherwise>
+											</c:choose>
+										</td>
+										<td>${IslandVO.m_no}</td>
+										<td>${IslandVO.i_title}</td>
+										<td>
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${IslandVO.i_written_date}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${IslandVO.i_written_date}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+										<td>${IslandVO.i_hit}</td>
+										<td>${IslandVO.i_recommend_num}</td>
+										<td>${IslandVO.i_report_num}</td>	
+									</tr>
+								</c:forEach>
                             </tbody>
                     </table>
 
@@ -184,72 +164,6 @@
             
         </div> <!-- end row -->
     
-
-        <div class="row">
-
-            <div class="col-six tab-full">
-
-                <h3 class="add-bottom">Form Styles</h3>
-
-                <form>
-                    <div>
-                        <label for="sampleInput">Your email</label>
-                        <input class="full-width" type="email" placeholder="test@mailbox.com" id="sampleInput">
-                    </div>
-                    <div>
-                        <label for="sampleRecipientInput">Reason for contacting</label>
-                        <div class="cl-custom-select">
-                            <select class="full-width" id="sampleRecipientInput">
-                                <option value="Option 1">Questions</option>
-                                <option value="Option 2">Report</option>
-                                <option value="Option 3">Others</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <label for="exampleMessage">Message</label>
-                    <textarea class="full-width" placeholder="Your message" id="exampleMessage"></textarea>
-
-                    <label class="add-bottom">
-                        <input type="checkbox">
-                        <span class="label-text">Send a copy to yourself</span>
-                    </label>
-                    
-                    <input class="btn--primary full-width" type="submit" value="Submit">
-
-                </form>
-
-            </div>
-
-            <div class="col-six tab-full">
-
-                <h3 class="add-bottom">Alert Boxes</h3>
-
-                
-                <div class="alert-box alert-box--error hideit">
-                    <p>Error Message. Your Message Goes Here.</p>
-                    <i class="fa fa-times alert-box__close"></i>
-                </div> <!-- end error -->
-                        
-                <div class="alert-box alert-box--success hideit">
-                    <p>Success Message. Your Message Goes Here.</p>
-                    <i class="fa fa-times alert-box__close"></i>
-                </div> <!-- end success -->
-                        
-                <div class="alert-box alert-box--info hideit">
-                    <p>Info Message. Your Message Goes Here.</p>
-                    <i class="fa fa-times alert-box__close"></i>
-                </div> <!-- end info -->
-                        
-                <div class="alert-box alert-box--notice hideit">
-                    <p>Notice Message. Your Message Goes Here.</p>
-                    <i class="fa fa-times alert-box__close"></i>
-                </div> <!-- end notice -->
-            
-            </div>
-
-        </div> <!-- end row -->
-
     </section> <!-- end styles -->
 
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page session="false" %>
 
 <html class="no-js" lang="UTF-8">
@@ -88,42 +89,88 @@
             <div class="masonry">
             
                 <div class="grid-sizer"></div>
+				
+				<!-- 자바스크립트로 조건 2가지 넣어줘야 masonry가 예쁘게 작동! -->
+				<!-- 1. 사진이 있다면 넣고, 사진 없으면 이미지 부분 태그 통으로 빼서 벽돌리스트 이쁘게 해야함 -->
+				<!-- 2. data-aos="fade-up"을 세번째 아이템에게 넣어줘야함; list[2]에 article param으로 넣을것!!-->
+				<c:forEach items="${tList}" var="tItem">
+				<c:if test="${tItem eq tList[0]}">
+					<article class="masonry__brick entry format-standard" >	                 
+	    
+	                    <div class="entry__text">
+	                        <div class="entry__header">
+	                            
+	                            <div class="entry__date">
+	                                <a href="single-standard.html">
+	                                	<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+										<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+										<fmt:formatDate value="${tItem.t_written_date}" pattern="yyyy.MM.dd" var="date"/>
+										<c:choose>
+											<c:when test="${now ne date}">${date}</c:when> 
+											<c:otherwise>
+												<fmt:formatDate value="${tItem.t_written_date}" pattern="HH:mm"/>
+											</c:otherwise>
+										</c:choose>
+	                                </a>
+	                            </div>
+	                            <h1 class="entry__title"><a href="single-standard.html">${tItem.t_no}  ${tItem.t_title}</a></h1>
+	                            
+	                        </div>
+	                        <div class="entry__excerpt">
+	                            <p>${tItem.t_content}</p>
+	                        </div>
+	                        <div class="entry__meta">
+	                            <span class="entry__meta-links">
+	                                <a href="category.html">Design</a> 
+	                                <a href="category.html">Photography</a>
+	                            </span>
+	                        </div>
+	                    </div>
+	    
+	                </article> <!-- end article -->
+				</c:if>
+	                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+	                        
+	                    <div class="entry__thumb">
+	                        <a href="single-standard.html" class="entry__thumb-link">
+	                            <img src="images/cassie/thumbs/masonry/lamp-400.jpg" 
+	                                 srcset="images/cassie/thumbs/masonry/lamp-400.jpg 1x, images/cassie/thumbs/masonry/lamp-800.jpg 2x" alt="">
+	                        </a>
+	                    </div>
+	    
+	                    <div class="entry__text">
+	                        <div class="entry__header">
+	                            
+	                            <div class="entry__date">
+	                                <a href="single-standard.html">
+										<c:choose>
+											<c:when test="${now ne date}">${date}</c:when> 
+											<c:otherwise>
+												<fmt:formatDate value="${tItem.t_written_date}" pattern="HH:mm"/>
+											</c:otherwise>
+										</c:choose>
+	                                </a>
+	                            </div>
+	                            <h1 class="entry__title"><a href="single-standard.html">${tItem.t_no}  ${tItem.t_title}</a></h1>
+	                            
+	                        </div>
+	                        <div class="entry__excerpt">
+	                            <p>${tItem.t_content}</p>
+	                        </div>
+	                        <div class="entry__meta">
+	                            <span class="entry__meta-links">
+	                                <a href="category.html">Design</a> 
+	                                <a href="category.html">Photography</a>
+	                            </span>
+	                        </div>
+	                    </div>
+	    
+	                </article> <!-- end article -->
+                </c:forEach>
 
-                <article class="masonry__brick entry format-standard" data-aos="fade-up">
-                        
-                    <div class="entry__thumb">
-                        <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/cassie/thumbs/masonry/lamp-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/lamp-400.jpg 1x, images/cassie/thumbs/masonry/lamp-800.jpg 2x" alt="">
-                        </a>
-                    </div>
-    
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-standard.html">December 15, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-standard.html">보부상 게시글그르글</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>보부상은 중고거래 게시판입니다. 
-                				<br>당신은 어떤 보드게임을 원하시나요? 당신이 원하던 그것. 바로 이 곳에 있습니다.
-                				<br>당신의 소망이 현실이 되는 곳, 보부상.
-                			</p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Design</a> 
-                                <a href="category.html">Photography</a>
-                            </span>
-                        </div>
-                    </div>
-    
-                </article> <!-- end article -->
 
-                <article class="masonry__brick entry format-quote" data-aos="fade-up">
+                <%-- <article class="masonry__brick entry format-quote" data-aos="fade-up">
                         
                     <div class="entry__thumb">
                         <blockquote>
@@ -488,7 +535,7 @@
                         </div>
                     </div>
 
-                </article> <!-- end article -->
+                </article> <!-- end article --> --%>
 
             </div> <!-- end masonry -->
         </div> <!-- end masonry-wrap -->

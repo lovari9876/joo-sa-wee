@@ -1,6 +1,7 @@
 package com.soninlawisdice.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.soninlawisdice.service.IslandService;
+import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.IslandVO;
+import com.soninlawisdice.vo.TradeVO;
 
 @Controller
 public class CassieController {
@@ -20,10 +23,16 @@ public class CassieController {
 
 	@Autowired
 	private IslandService islandService;
+	@Autowired
+	private SecondhandService secondhandService;
 
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
 	public String tlist(Model model) {
 		logger.info("tlist");
+
+		ArrayList<TradeVO> tList = secondhandService.selectTradeList();
+
+		model.addAttribute("tList", tList);
 
 		return "secondhand/tlist";
 	}
@@ -32,7 +41,12 @@ public class CassieController {
 	public String island_list(Model model) {
 		logger.info("island_list");
 
-		model.addAttribute("tlist", islandService.selectTradeIslandList());
+		ArrayList<IslandVO> iList = islandService.getIslandList();
+
+		// 사이즈 찍어보기
+		System.out.println(iList.size());
+
+		model.addAttribute("iList", iList);
 
 		return "island/island_list";
 	}
@@ -42,7 +56,7 @@ public class CassieController {
 		logger.info("islandList");
 
 		ArrayList<IslandVO> iList = islandService.getIslandList();
-		
+
 		// 사이즈 찍어보기
 		System.out.println(iList.size());
 
