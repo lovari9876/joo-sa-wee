@@ -8,6 +8,7 @@ public class IslandVO implements Comparable<IslandVO> {
 	private int bt_no; // 게시판번호
 	private int s_no; // 말머리번호
 	private int m_no; // 회원번호
+	private String m_nick;
 	private String i_title; // 글 제목
 	private String i_content; // 글 내용
 	private Timestamp i_written_date; // 작성일
@@ -30,16 +31,17 @@ public class IslandVO implements Comparable<IslandVO> {
 
 	// constructors
 	public IslandVO() {
-	}	
+	}
 
-	public IslandVO(int i_no, int bt_no, int s_no, int m_no, String i_title, String i_content, Timestamp i_written_date,
-			Timestamp i_updated_date, int i_hit, int i_recommend_num, int i_report_num, int i_island,
-			Board_typeVO board_typeVO, SubjectVO subjectVO, MemberVO memberVO) {
+	public IslandVO(int i_no, int bt_no, int s_no, int m_no, String m_nick, String i_title, String i_content,
+			Timestamp i_written_date, Timestamp i_updated_date, int i_hit, int i_recommend_num, int i_report_num,
+			int i_island, Board_typeVO board_typeVO, SubjectVO subjectVO, MemberVO memberVO) {
 		super();
 		this.i_no = i_no;
 		this.bt_no = bt_no;
 		this.s_no = s_no;
 		this.m_no = m_no;
+		this.m_nick = m_nick;
 		this.i_title = i_title;
 		this.i_content = i_content;
 		this.i_written_date = i_written_date;
@@ -84,6 +86,14 @@ public class IslandVO implements Comparable<IslandVO> {
 
 	public void setM_no(int m_no) {
 		this.m_no = m_no;
+	}
+
+	public String getM_nick() {
+		return m_nick;
+	}
+
+	public void setM_nick(String m_nick) {
+		this.m_nick = m_nick;
 	}
 
 	public String getI_title() {
@@ -173,7 +183,6 @@ public class IslandVO implements Comparable<IslandVO> {
 	public void setMemberVO(MemberVO memberVO) {
 		this.memberVO = memberVO;
 	}
-
 
 }
 

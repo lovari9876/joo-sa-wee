@@ -19,10 +19,10 @@ public class Board_writeVO {
 	private int bw_island; // 무인도여부
 	private String bw_secret; // 비밀글여부
 
-	// resultMap을 사용하기 위해서
-	Board_typeVO board_typeVO;
-	MemberVO memberVO;
-	SubjectVO subjectVO;
+	// for resultMap
+	private Board_typeVO board_typeVO;
+	private MemberVO memberVO;
+	private SubjectVO subjectVO;
 
 	// 무인도 게시판을 위해 작성일 가져오는 메서드
 	public Timestamp getWrittenDate() {

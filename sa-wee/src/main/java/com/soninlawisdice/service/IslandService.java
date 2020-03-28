@@ -1,6 +1,7 @@
 package com.soninlawisdice.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
@@ -20,5 +21,7 @@ public interface IslandService {
 
 	// 무인도리스트 최근 글 순으로 정렬하여 합치는 메서드
 	public ArrayList<IslandVO> getIslandList();
+	
+	public ArrayList<HashMap<String,Object>> selectIslandList();
 
 }

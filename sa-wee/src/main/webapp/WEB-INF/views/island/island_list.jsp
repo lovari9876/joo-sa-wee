@@ -115,44 +115,51 @@
 	                                <th>작성일</th>
 	                                <th>조회수</th>
 	                                <th>추천수</th>
-	                                <th>신고수</th>	                               
+	                                <th>신고수</th>	
+	                                <th>신고수</th>	                                                               
 	                            </tr>
                             </thead>
                             <tbody>
-	              				<c:forEach items="${iList}" var="IslandVO">
+	              				<c:forEach items="${iList}" var="IMap">
 									<tr>											
-										<td>${IslandVO.i_no}</td>
+										<td>${IMap['RNUM']}</td>
 										<td>
 											<c:choose>				
-												<c:when test="${IslandVO.bt_no eq 1}">보드이야기</c:when>		
-												<c:when test="${IslandVO.bt_no eq 2}">개봉기 및 리뷰</c:when>
-												<c:when test="${IslandVO.bt_no eq 3}">보드게임 모임</c:when>
-												<c:when test="${IslandVO.bt_no eq 4}">보드 뉴스</c:when>
-												<c:when test="${IslandVO.bt_no eq 5}">질문&답변</c:when>
-												<c:when test="${IslandVO.bt_no eq 6}">창작 보드게임</c:when>
-												<c:when test="${IslandVO.bt_no eq 8}">일대일 문의</c:when>
-												<c:when test="${IslandVO.bt_no eq 9}">보부상</c:when>
-												<c:when test="${IslandVO.bt_no eq 11}">카페 리뷰</c:when>
+												<c:when test="${IMap['BT_NO'] eq 1}">보드이야기</c:when>		
+												<c:when test="${IMap['BT_NO'] eq 2}">개봉기 및 리뷰</c:when>
+												<c:when test="${IMap['BT_NO'] eq 3}">보드게임 모임</c:when>
+												<c:when test="${IMap['BT_NO'] eq 4}">보드 뉴스</c:when>
+												<c:when test="${IMap['BT_NO'] eq 5}">질문&답변</c:when>
+												<c:when test="${IMap['BT_NO'] eq 6}">창작 보드게임</c:when>
+												<c:when test="${IMap['BT_NO'] eq 8}">일대일 문의</c:when>
+												<c:when test="${IMap['BT_NO'] eq 9}">보부상</c:when>
+												<c:when test="${IMap['BT_NO'] eq 11}">카페 리뷰</c:when>
 												<c:otherwise>불명확</c:otherwise>
 											</c:choose>
 										</td>
-										<td>${IslandVO.m_no}</td>
-										<td>${IslandVO.i_title}</td>
+										<td>${IMap['M_NICK']}</td>
+										<td>${IMap['I_TITLE']}</td>
 										<td>
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
 											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-											<fmt:formatDate value="${IslandVO.i_written_date}" pattern="yyyy.MM.dd" var="date"/>
+											<fmt:formatDate value="${IMap['I_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 											<c:choose>
 												<c:when test="${now ne date}">${date}</c:when> 
 												<c:otherwise>
-													<fmt:formatDate value="${IslandVO.i_written_date}" pattern="HH:mm"/>
+													<fmt:formatDate value="${IMap['I_WRITTEN_DATE']}" pattern="HH:mm"/>
 												</c:otherwise>
 											</c:choose>
 										</td>
-										<td>${IslandVO.i_hit}</td>
-										<td>${IslandVO.i_recommend_num}</td>
-										<td>${IslandVO.i_report_num}</td>	
+										<td>${IMap['I_HIT']}</td>
+										<td>${IMap['I_RECOMMEND_NUM']}</td>
+										<td>${IMap['I_REPORT_NUM']}</td>	
+										
+										<!-- 관리자가 상태 보려면 이거 추가 -->
+										<td>
+											<c:if test="${IMap['I_ISLAND'] eq 2}">수정 완료</c:if>
+											<c:if test="${IMap['I_ISLAND'] eq 1}">수정 전</c:if>
+										</td>																		
 									</tr>
 								</c:forEach>
                             </tbody>

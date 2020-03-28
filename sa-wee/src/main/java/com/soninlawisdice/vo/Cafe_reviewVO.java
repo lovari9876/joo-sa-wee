@@ -17,13 +17,18 @@ public class Cafe_reviewVO {
 	private int cr_report_num; // 신고수
 	private int cr_island; // 무인도여부
 
+	// for resultMap
+	private Board_typeVO board_typeVO;
+	private MemberVO memberVO;
+	// cafeVO 추가할 것
+
 	// constructors
 	public Cafe_reviewVO() {
 	}
 
 	public Cafe_reviewVO(int cr_no, int bt_no, int c_no, int m_no, String cr_title, String cr_content,
 			Timestamp cr_written_date, Timestamp cr_updated_date, int cr_hit, int cr_recommend_num, int cr_report_num,
-			int cr_island) {
+			int cr_island, Board_typeVO board_typeVO, MemberVO memberVO) {
 		super();
 		this.cr_no = cr_no;
 		this.bt_no = bt_no;
@@ -37,6 +42,8 @@ public class Cafe_reviewVO {
 		this.cr_recommend_num = cr_recommend_num;
 		this.cr_report_num = cr_report_num;
 		this.cr_island = cr_island;
+		this.board_typeVO = board_typeVO;
+		this.memberVO = memberVO;
 	}
 
 	// getters and setters
@@ -134,6 +141,22 @@ public class Cafe_reviewVO {
 
 	public void setCr_island(int cr_island) {
 		this.cr_island = cr_island;
+	}
+
+	public Board_typeVO getBoard_typeVO() {
+		return board_typeVO;
+	}
+
+	public void setBoard_typeVO(Board_typeVO board_typeVO) {
+		this.board_typeVO = board_typeVO;
+	}
+
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.soninlawisdice.mapper;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.soninlawisdice.vo.*;
 
@@ -13,6 +14,7 @@ public interface IslandMapper {
 	public ArrayList<TradeVO> selectTradeIslandList(); // 보부상
 	public ArrayList<Board_writeVO> selectBoard_writeIslandList(); // 게시글
 	public ArrayList<Cafe_reviewVO> selectCafe_reviewIslandList(); // 카페리뷰
+	public ArrayList<HashMap<String,Object>> selectIslandList();
 	
 	
 // 참고	

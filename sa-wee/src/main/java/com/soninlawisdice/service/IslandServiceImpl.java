@@ -2,6 +2,7 @@ package com.soninlawisdice.service;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,7 +51,11 @@ public class IslandServiceImpl implements IslandService {
 	public ArrayList<Cafe_reviewVO> selectCafe_reviewIslandList() {
 		return islandMapper.selectCafe_reviewIslandList();
 	}
-
+	@Override
+	public ArrayList<HashMap<String,Object>> selectIslandList() {
+		return islandMapper.selectIslandList();		
+	}
+	
 	// iList 만들어서 3개의 게시판 글 하나로 모으기 다시.......................
 	@Override
 	public ArrayList<IslandVO> getIslandList() {
@@ -64,11 +69,12 @@ public class IslandServiceImpl implements IslandService {
 			for (int i = 0; i < tList.size(); i++) {
 				IslandVO islandVO = new IslandVO();
 
-				// iListVO에 TradeVO넣기
+				// islandVO에 TradeVO넣기
 				islandVO.setI_no(tList.get(i).getT_no());
 				islandVO.setBt_no(tList.get(i).getBt_no());
 				islandVO.setS_no(tList.get(i).getS_no());
 				islandVO.setM_no(tList.get(i).getM_no());
+				islandVO.setM_nick(tList.get(i).getMemberVO().getM_nick());
 				islandVO.setI_title(tList.get(i).getT_title());
 				islandVO.setI_content(tList.get(i).getT_content());
 				islandVO.setI_written_date(tList.get(i).getT_written_date());
@@ -82,43 +88,44 @@ public class IslandServiceImpl implements IslandService {
 			}
 
 			for (int i = 0; i < bwList.size(); i++) {
-				IslandVO iListVO = new IslandVO();
+				IslandVO islandVO = new IslandVO();
 
-				// iListVO에 Board_writeVO넣기
-				iListVO.setI_no(bwList.get(i).getBw_no());
-				iListVO.setBt_no(bwList.get(i).getBt_no());
-				iListVO.setS_no(bwList.get(i).getS_no());
-				iListVO.setM_no(bwList.get(i).getM_no());
-				iListVO.setI_title(bwList.get(i).getBw_title());
-				iListVO.setI_content(bwList.get(i).getBw_content());
-				iListVO.setI_written_date(bwList.get(i).getBw_written_date());
-				iListVO.setI_updated_date(bwList.get(i).getBw_updated_date());
-				iListVO.setI_hit(bwList.get(i).getBw_hit());
-				iListVO.setI_recommend_num(bwList.get(i).getBw_recommend_num());
-				iListVO.setI_report_num(bwList.get(i).getBw_report_num());
-				iListVO.setI_island(bwList.get(i).getBw_island());
+				// islandVO에 Board_writeVO넣기
+				islandVO.setI_no(bwList.get(i).getBw_no());
+				islandVO.setBt_no(bwList.get(i).getBt_no());
+				islandVO.setS_no(bwList.get(i).getS_no());
+				islandVO.setM_no(bwList.get(i).getM_no());
+				islandVO.setM_nick(tList.get(i).getMemberVO().getM_nick());
+				islandVO.setI_title(bwList.get(i).getBw_title());
+				islandVO.setI_content(bwList.get(i).getBw_content());
+				islandVO.setI_written_date(bwList.get(i).getBw_written_date());
+				islandVO.setI_updated_date(bwList.get(i).getBw_updated_date());
+				islandVO.setI_hit(bwList.get(i).getBw_hit());
+				islandVO.setI_recommend_num(bwList.get(i).getBw_recommend_num());
+				islandVO.setI_report_num(bwList.get(i).getBw_report_num());
+				islandVO.setI_island(bwList.get(i).getBw_island());
 
-				iList.add(iListVO);
+				iList.add(islandVO);
 			}
 
 			for (int i = 0; i < crList.size(); i++) {
-				IslandVO iListVO = new IslandVO();
+				IslandVO islandVO = new IslandVO();
 
-				// iListVO에 Cafe_reviewVO넣기
-				iListVO.setI_no(crList.get(i).getCr_no());
-				iListVO.setBt_no(crList.get(i).getBt_no());
-				iListVO.setS_no(0); // 말머리가 없으므로, 임의로 0 넣는다.
-				iListVO.setM_no(crList.get(i).getM_no());
-				iListVO.setI_title(crList.get(i).getCr_title());
-				iListVO.setI_content(crList.get(i).getCr_content());
-				iListVO.setI_written_date(crList.get(i).getCr_written_date());
-				iListVO.setI_updated_date(crList.get(i).getCr_updated_date());
-				iListVO.setI_hit(crList.get(i).getCr_hit());
-				iListVO.setI_recommend_num(crList.get(i).getCr_recommend_num());
-				iListVO.setI_report_num(crList.get(i).getCr_report_num());
-				iListVO.setI_island(crList.get(i).getCr_island());
+				// islandVO에 Cafe_reviewVO넣기
+				islandVO.setI_no(crList.get(i).getCr_no());
+				islandVO.setBt_no(crList.get(i).getBt_no());
+				islandVO.setS_no(0); // 말머리가 없으므로, 임의로 0 넣는다.
+				islandVO.setM_no(crList.get(i).getM_no());
+				islandVO.setI_title(crList.get(i).getCr_title());
+				islandVO.setI_content(crList.get(i).getCr_content());
+				islandVO.setI_written_date(crList.get(i).getCr_written_date());
+				islandVO.setI_updated_date(crList.get(i).getCr_updated_date());
+				islandVO.setI_hit(crList.get(i).getCr_hit());
+				islandVO.setI_recommend_num(crList.get(i).getCr_recommend_num());
+				islandVO.setI_report_num(crList.get(i).getCr_report_num());
+				islandVO.setI_island(crList.get(i).getCr_island());
 
-				iList.add(iListVO);
+				iList.add(islandVO);
 			}
 
 			// 정렬 로직
