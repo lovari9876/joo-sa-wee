@@ -7,30 +7,104 @@
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
 	
 	<!-- ========== for island list =========== -->
-	<resultMap type="com.soninlawisdice.vo.MemberVO" id="MemberVO">
-	
+	<resultMap id="MemberResultMap" type="java.util.HashMap" >
+		<id property="" column="" />
+		<result property="" column="" />
+		<result property="" column="" />
 	</resultMap>
 	
-	<select id="selectTradeIslandList"
-		resultType="com.soninlawisdice.vo.TradeVO">
-		SELECT TRADE.* FROM TRADE 
+	<resultMap type="com.soninlawisdice.vo.MemberVO" id="MemberVO">
+		<id property="" column="" />
+		<result property="" column="" />
+		<result property="" column="" />
+		<collection property="" column="" />
+	</resultMap>
+	
+<!-- 	<resultMap id="bbsAttachResultMap" type="java.util.HashMap">
+	    <id property="attach_id" column="attach_id"/>
+	    <result property="file_name" column="file_name"/>
+	    <result property="file_size" column="file_size"/>
+	</resultMap>  -->
+	
+	<select id="selectTradeIslandList" resultType="com.soninlawisdice.vo.TradeVO">
+		SELECT T.*, M.M_NICK 
+		FROM TRADE T LEFT JOIN MEMBER M 
+		ON T.M_NO = M.M_NO
 		WHERE T_ISLAND != 0 
 		ORDER BY T_WRITTEN_DATE DESC
 	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
 
-	<select id="selectBoard_writeIslandList"
-		resultType="com.soninlawisdice.vo.Board_writeVO">
-		SELECT BOARD_WRITE.* FROM BOARD_WRITE 
+	<select id="selectBoard_writeIslandList" resultType="com.soninlawisdice.vo.Board_writeVO">
+		SELECT BW.*, M.M_NICK
+        FROM BOARD_WRITE BW
+        LEFT JOIN MEMBER M
+        ON BW.M_NO = M.M_NO
 		WHERE BW_ISLAND != 0 
 		ORDER BY BW_WRITTEN_DATE DESC
-	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
+	</select> 
 	
-	<select id="selectCafe_reviewIslandList"
-		resultType="com.soninlawisdice.vo.Cafe_reviewVO">
-		SELECT CAFE_REVIEW.* FROM CAFE_REVIEW 
+	<select id="selectCafe_reviewIslandList" resultType="com.soninlawisdice.vo.Cafe_reviewVO">
+        SELECT CR.*, M.M_NICK
+        FROM CAFE_REVIEW CR
+        LEFT JOIN MEMBER M
+        ON CR.M_NO = M.M_NO
 		WHERE CR_ISLAND != 0 
 		ORDER BY CR_WRITTEN_DATE DESC
-	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
+	</select> 
+	
+	<select id="selectIslandList" resultType="java.util.HashMap">
+		SELECT
+				ROW_NUMBER() OVER(ORDER BY I_WRITTEN_DATE) AS RNUM, 
+		        I_NO, BT_NO, S_NO, M_NO, M_NICK, I_TITLE, I_CONTENT,
+		        I_WRITTEN_DATE, I_UPDATED_DATE, 
+		        I_HIT, I_RECOMMEND_NUM, I_REPORT_NUM,I_ISLAND
+		FROM
+			(
+			        (SELECT 
+			        		T.T_NO AS I_NO, T.BT_NO, T.S_NO, T.M_NO, M.M_NICK, T.T_TITLE AS I_TITLE, T.T_CONTENT AS I_CONTENT, 
+			                T.T_WRITTEN_DATE AS I_WRITTEN_DATE, T.T_UPDATED_DATE AS I_UPDATED_DATE, 
+			                T.T_HIT AS I_HIT, T.T_RECOMMEND_NUM AS I_RECOMMEND_NUM, T.T_REPORT_NUM AS I_REPORT_NUM, T.T_ISLAND AS I_ISLAND 
+			        FROM 	
+			        		TRADE T 
+			        LEFT JOIN 
+			        		MEMBER M 
+			        ON 		
+			        		T.M_NO = M.M_NO
+			        WHERE 	
+			        		T_ISLAND != 0 ) 
+			
+			UNION
+			
+					(SELECT 
+							BW.BW_NO AS I_NO, BW.BT_NO, BW.S_NO, BW.M_NO, M.M_NICK, BW.BW_TITLE  AS I_TITLE, BW.BW_CONTENT AS I_CONTENT, 
+							BW.BW_WRITTEN_DATE AS I_WRITTEN_DATE, BW.BW_UPDATED_DATE AS I_UPDATED_DATE, 
+			                BW.BW_HIT AS I_HIT, BW.BW_RECOMMEND_NUM AS I_RECOMMEND_NUM, BW.BW_REPORT_NUM AS I_REPORT_NUM, BW.BW_ISLAND AS I_ISLAND 
+			        FROM 
+			        		BOARD_WRITE BW
+			        LEFT JOIN 
+			        		MEMBER M
+			        ON 
+			        		BW.M_NO = M.M_NO
+					WHERE 
+							BW_ISLAND != 0 ) 
+			
+			UNION
+			
+			        (SELECT 
+			        		CR.CR_NO AS I_NO, CR.BT_NO, NULL, CR.M_NO, M.M_NICK, CR.CR_TITLE AS I_TITLE, CR.CR_CONTENT AS I_CONTENT, 
+		                    CR.CR_WRITTEN_DATE AS I_WRITTEN_DATE, CR.CR_UPDATED_DATE AS I_UPDATED_DATE, 
+		                    CR.CR_HIT AS I_HIT, CR.CR_RECOMMEND_NUM AS I_RECOMMEND_NUM, CR.CR_REPORT_NUM AS I_REPORT_NUM, CR.CR_ISLAND AS I_ISLAND
+			        FROM 
+			        		CAFE_REVIEW CR
+			        LEFT JOIN 
+			        		MEMBER M
+			        ON 
+			        		CR.M_NO = M.M_NO
+					WHERE 
+							CR_ISLAND != 0 ) 
+			)
+		ORDER BY I_WRITTEN_DATE DESC
+	</select>
 
 
 <!-- SELECT T.*, M.M_NICK FROM TRADE T, MEMBER M 

@@ -18,6 +18,11 @@ public class TradeVO {
 	private int t_island; // 무인도 여부
 	private int t_price; // 가격
 
+	// for resultMap
+	private Board_typeVO board_typeVO;
+	private MemberVO memberVO;
+	private SubjectVO subjectVO;
+
 	// 무인도 게시판을 위해 작성일 가져오는 메서드
 	public Timestamp getWrittenDate() {
 		return t_written_date;
@@ -28,7 +33,8 @@ public class TradeVO {
 	}
 
 	public TradeVO(int t_no, int bt_no, int s_no, int m_no, String t_title, String t_content, Timestamp t_written_date,
-			Timestamp t_updated_date, int t_hit, int t_recommend_num, int t_report_num, int t_island, int t_price) {
+			Timestamp t_updated_date, int t_hit, int t_recommend_num, int t_report_num, int t_island, int t_price,
+			Board_typeVO board_typeVO, MemberVO memberVO, SubjectVO subjectVO) {
 		super();
 		this.t_no = t_no;
 		this.bt_no = bt_no;
@@ -43,6 +49,9 @@ public class TradeVO {
 		this.t_report_num = t_report_num;
 		this.t_island = t_island;
 		this.t_price = t_price;
+		this.board_typeVO = board_typeVO;
+		this.memberVO = memberVO;
+		this.subjectVO = subjectVO;
 	}
 
 	// getters and setters
@@ -148,6 +157,30 @@ public class TradeVO {
 
 	public void setT_price(int t_price) {
 		this.t_price = t_price;
+	}
+
+	public Board_typeVO getBoard_typeVO() {
+		return board_typeVO;
+	}
+
+	public void setBoard_typeVO(Board_typeVO board_typeVO) {
+		this.board_typeVO = board_typeVO;
+	}
+
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
+
+	public SubjectVO getSubjectVO() {
+		return subjectVO;
+	}
+
+	public void setSubjectVO(SubjectVO subjectVO) {
+		this.subjectVO = subjectVO;
 	}
 
 }

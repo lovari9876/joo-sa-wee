@@ -2,6 +2,7 @@ package com.soninlawisdice.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
-import com.soninlawisdice.vo.IslandVO;
 import com.soninlawisdice.vo.TradeVO;
 
 @Controller
@@ -41,10 +41,11 @@ public class CassieController {
 	public String island_list(Model model) {
 		logger.info("island_list");
 
-		ArrayList<IslandVO> iList = islandService.getIslandList();
+		ArrayList<HashMap<String, Object>> iList = islandService.selectIslandList();
 
 		// 사이즈 찍어보기
 		System.out.println(iList.size());
+		System.out.println(iList.get(0).toString()); // String key가 대문자임..
 
 		model.addAttribute("iList", iList);
 
@@ -55,10 +56,11 @@ public class CassieController {
 	public String list(Model model) {
 		logger.info("islandList");
 
-		ArrayList<IslandVO> iList = islandService.getIslandList();
+		ArrayList<HashMap<String, Object>> iList = islandService.selectIslandList();
 
 		// 사이즈 찍어보기
 		System.out.println(iList.size());
+		System.out.println(iList.get(0).toString()); // String key가 대문자임..
 
 		model.addAttribute("iList", iList);
 
