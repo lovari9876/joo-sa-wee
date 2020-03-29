@@ -7,7 +7,7 @@ $(document).ready(function(){
 		console.log(category);
 		
 		$.ajax({
-			url : "http://localhost:8282/ex/list_mal",
+			url : "http://localhost:8282/ex/list_sub",
 			type : "get",
 			cache : false,
 			dataType : "json",
