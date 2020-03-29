@@ -85,6 +85,47 @@
 		BW_RECOMMEND_NUM FROM BOARD_WRITE WHERE BW_NO = 42
 	</select>
 
+	<!-- 게시글 신고글 쓰기 -->
+	<resultMap type="com.soninlawisdice.vo.ReportVO"
+		id="ReportVO">
+		<id column="r_no" property="r_no" />
+		<result column="m_no" property="m_no" />
+		<result column="r_type" property="r_type" />
+		<result column="r_type_no" property="r_type_no" />
+		<result column="r_content" property="r_content" />
+		<result column="r_report_date" property="r_report_date" />
+
+		<collection javaType="com.soninlawisdice.vo.Board_writeVO"
+			property="board_writeVO">
+			<id column="bw_no" property="bw_no" />
+		</collection>
+
+		<collection javaType="com.soninlawisdice.vo.MemberVO"
+			property="memberVO">
+			<id column="m_no" property="m_no" />
+		</collection>
+
+		<collection javaType="com.soninlawisdice.vo.CM_commentVO"
+			property="cm_commentVO">
+			<id column="cm_no" property="cm_no" />
+		</collection>
+	</resultMap>
+	
+	<!-- <select id="selectReportBW" parameterType="int"
+		resultMap="ReportVO">
+		SELECT R.R_NO, R.M_NO, R.R_TYPE, R.R_TYPE_NO,
+		R.R_CONTENT, R.R_REPORT_DATE
+		FROM REPORT R, MEMBER M, BOARD_WRITE BW
+		WHERE R.M_NO = M.M_NO AND R.R_TYPE_NO = BW.BW_NO AND BW_NO = 42
+	</select> -->
+	
+	<insert id="insertReportBW">
+		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
+		R_CONTENT, R_REPORT_DATE)
+		VALUES (REPORT_SEQ.NEXTVAL, 5, '게시글', #{R_TYPE_NO}, #{R_CONTENT},
+		SYSDATE)
+	</insert>
+
 	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면 -->
 	<!-- 자동으로 현재시간이 입력된다. -->
 	<!-- <insert id="insertBoard"> insert into mvc_board (bId, bName, bTitle, 

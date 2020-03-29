@@ -43,6 +43,7 @@
 
 </head>
 <body id="top">
+	<input type="hidden" name="bw_no" value="${content_view.bw_no}">
 
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
@@ -174,7 +175,7 @@
 								<a href="delete?bw_no=${content_view.bw_no}">삭제</a>
 							</div>
 							<div class="test_item fourth">
-								<a href="report"
+								<a href="report_view_bw?bw_no=${content_view.bw_no}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 							</div>
 						</div>
@@ -228,7 +229,6 @@
     ================================================== -->
 	<script src="js/header/jquery.slicknav.min.js"></script>
 	<script src="js/header/header_hyesoo.js"></script>
-	<!-- 이미 가지고 있음 js/board_hj/main.js -->
 	<script src="js/header/scroll.js"></script>
 
 	<!-- Java Script for footer
