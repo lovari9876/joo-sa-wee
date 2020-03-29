@@ -8,7 +8,7 @@ public class MemberVO {
 	private String m_id; // 아이디
 	private String m_pw; // 비밀번호
 	private String m_name; // 이름
-	private Timestamp m_birth; // 생년월일
+	private int m_birth; // 생년월일
 	private String m_nick; // 닉네임
 	private String m_gender; // 성별
 	private int m_point; // 포인트
@@ -32,7 +32,7 @@ public class MemberVO {
 
 	public MemberVO() {}
 
-	public MemberVO(int m_no, String m_id, String m_pw, String m_name, Timestamp m_birth, String m_nick,
+	public MemberVO(int m_no, String m_id, String m_pw, String m_name, int m_birth, String m_nick,
 			String m_gender, int m_point, String m_phone, String m_email, int m_post, String m_addr1, String m_addr2,
 			int r_no, String m_re_sms, String m_re_notice, String m_re_message, String m_info, String m_self,
 			Timestamp m_indate, Timestamp m_outdate, String m_out, int m_report_num, String m_extra, int f_no) {
@@ -96,11 +96,11 @@ public class MemberVO {
 		this.m_name = m_name;
 	}
 
-	public Timestamp getM_birth() {
+	public int getM_birth() {
 		return m_birth;
 	}
 
-	public void setM_birth(Timestamp m_birth) {
+	public void setM_birth(int m_birth) {
 		this.m_birth = m_birth;
 	}
 
