@@ -5,25 +5,58 @@
 <!-- mapper 태그 내부에 sql문을 넣으면 mybatis가 알아서 해준다.. -->
 <mapper namespace="com.soninlawisdice.mapper.BoardMapper">
 	
+	<resultMap type="com.soninlawisdice.vo.Board_writeVO" 
+		id="Board_writeVO">
+		<result column="bw_no" property="bw_no" />
+		<result column="bt_no" property="bt_no" />
+		<result column="m_no" property="m_no" />
+		<result column="s_no" property="s_no" />
+		<result column="bw_title" property="bw_title" />
+		<result column="bw_content" property="bw_content" />
+		<result column="bw_written_date" property="bw_written_date" />
+		<result column="bw_updated_date" property="bw_updated_date" />
+		<result column="bw_hit" property="bw_hit" />
+		<result column="bw_recommend_num" property="bw_recommend_num" />
+		<result column="bw_report_num" property="bw_report_num" />
+		<result column="bw_island" property="bw_island" />
+		<result column="bw_secret" property="bw_secret" />
+		
+		<collection javaType="com.soninlawisdice.vo.MemberVO"
+			property="memberVO">
+			<id column="m_no" property="m_no" />
+			<result column="m_nick" property="m_nick" />
+		</collection>
+		<collection javaType="com.soninlawisdice.vo.SubjectVO"
+			property="subjectVO">
+			<id column="s_no" property="s_no" />
+			<result column="s_content" property="s_content" />
+		</collection>
+		<collection javaType="com.soninlawisdice.vo.Board_typeVO"
+			property="board_typeVO">
+			<id column="bt_no" property="bt_no" />
+			<result column="bt_name" property="bt_name" />
+		</collection>
+	
+	</resultMap>
 	
 	<!-- 메인 핫이슈, 베스트 부분 -->
 	<!-- 핫이슈  : 조회순-->
-	<select id="selectHotList" resultType = "com.soninlawisdice.vo.Board_writeVO">
+	<select id="selectHotList" resultMap = "Board_writeVO">
 		<![CDATA[ select * from (select * from board_write order by bw_hit desc) where rownum <= 10 ]]>
 	</select>
 	 
 	<!-- 베스트 : 추천순 -->
-	<select id = "selectBestList" resultType = "com.soninlawisdice.vo.Board_writeVO">
+	<select id = "selectBestList" resultMap = "Board_writeVO">
 		<![CDATA[ select * from (select * from board_write order by bw_recommend_num desc) where rownum <= 10 ]]>
 	</select>
 	
 	
 	<!-- 커뮤니티 부분 -->
 	
-	<!-- 여기 조인해서 회원 이름으로 가져오는거 필요함. -->
+	
 	
 	<!-- 커뮤니티 전체보기 -->
-	<select id = "selectBoardList" resultType = "com.soninlawisdice.vo.Board_writeVO">
+	<select id = "selectBoardList" resultMap = "Board_writeVO">
 		select bw.bw_no, m.m_name, bw.s_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
 		from board_write bw, member m where bw.m_no = m.m_no 
 		and bw_island = 0  
@@ -31,55 +64,60 @@
 	</select>
 	
 	<!-- 보드이야기 전체 보기 -->
-	<select id = "selectBoard_Story" resultType = "com.soninlawisdice.vo.Board_writeVO">
-		select bw.*, m.m_nick
-		from board_write bw
-		left join member m
-		on bw.m_no = m.m_no
-		where bw_island = 0
-		order by bw_no desc
+	<select id = "selectBoard_Story" resultMap = "Board_writeVO">
+		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
+		from board_write bw, member m, subject s
+		where bw.m_no = m.m_no and bw.s_no = s.s_no
+		and bw.bw_island = 0
+		and bw.bt_no = 1 
+		order by bw.bw_no desc
 	</select>
 	
 	<!-- 개봉기 및 리뷰 전체보기  -->
-	<select id = "selectBoard_Open" resultType = "com.soninlawisdice.vo.Board_writeVO">
-		select bw.bw_no, m.m_name, bw.s_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m where bw.m_no = m.m_no 
+	<select id = "selectBoard_Open" resultMap = "Board_writeVO">
+		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
+		from board_write bw, member m, subject s
+		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bw_island = 0
 		and bw.bt_no = 2 
 		order by bw.bw_no desc
 	</select>
 	
 	<!-- 보드게임 모임 전체보기  -->
-	<select id = "selectBoard_Meet" resultType = "com.soninlawisdice.vo.Board_writeVO">
-		select bw.bw_no, m.m_name, bw.s_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m where bw.m_no = m.m_no 
+	<select id = "selectBoard_Meet" resultMap = "Board_writeVO">
+		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
+		from board_write bw, member m, subject s
+		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bw_island = 0
-		and bw.bt_no = 3 
+		and bw.bt_no = 3
 		order by bw.bw_no desc
 	</select>
 	
 	<!-- 보드 뉴스 전체 보기  -->
-	<select id = "selectBoard_News" resultType = "com.soninlawisdice.vo.Board_writeVO">
-		select bw.bw_no, m.m_name, bw.s_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m where bw.m_no = m.m_no 
+	<select id = "selectBoard_News" resultMap = "Board_writeVO">
+		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
+		from board_write bw, member m, subject s
+		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bw_island = 0
 		and bw.bt_no = 4 
 		order by bw.bw_no desc
 	</select>
 	
 	<!-- 질문과 답변 전체보기  -->
-	<select id = "selectBoard_Qna" resultType = "com.soninlawisdice.vo.Board_writeVO">
-		select bw.bw_no, m.m_name, bw.s_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m where bw.m_no = m.m_no 
+	<select id = "selectBoard_Qna" resultMap = "Board_writeVO">
+		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
+		from board_write bw, member m, subject s
+		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bw_island = 0
 		and bw.bt_no = 5 
 		order by bw.bw_no desc
 	</select>
 	
 	<!-- 창작 보드게임 전체보기  -->
-	<select id = "selectBoard_Creation" resultType = "com.soninlawisdice.vo.Board_writeVO">
-		select bw.bw_no, m.m_name, bw.s_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m where bw.m_no = m.m_no 
+	<select id = "selectBoard_Creation" resultMap = "Board_writeVO">
+		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
+		from board_write bw, member m, subject s
+		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bw_island = 0
 		and bw.bt_no = 6 
 		order by bw.bw_no desc
@@ -92,14 +130,14 @@
 	<!--비밀글 여부도  -->
 	<!-- seq 테이블 만들어서 bw_no  -->
 	<insert id="insertBoard" parameterType="com.soninlawisdice.vo.Board_writeVO">
-		insert into board (bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
-		values ( board_seq.nextval, 20, #{board_wirteVO.bt_no}, #{board_wirteVO.s_no},  #{board_wirteVO.bw_title}, #{board_wirteVO.bw_content},#{board_wirteVO.bName}, 0, 0, 0, 0, n ) 
+		insert into board_write (bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
+		values ( board_write_seq.nextval, 11, #{board_writeVO.bt_no}, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
 	</insert>
 	
 	
 	<!-- 글 수정하기 -->
 	<update id="modify">
-		update board_write set bt_no = #{board_write.bt_no}, s_no = #{board_wirteVO.s_no}, bw_title = #{board_wirteVO.bw_title}, bw_content = #{board_wirteVO.bw_content}, bw_secret = secret where bw_no = #{board_wirteVO.bw_no}
+		update board_write set bt_no = #{board_write.bt_no}, s_no = #{board_writeVO.s_no}, bw_title = #{board_writeVO.bw_title}, bw_content = #{board_writeVO.bw_content} where bw_no = #{board_writeVO.bw_no}
 	</update>
 	
 	

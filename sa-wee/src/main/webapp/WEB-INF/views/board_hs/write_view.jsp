@@ -72,12 +72,12 @@
 				
 				
 				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
-				<form action="" enctype="multipart/form-data">
+				<form action="write" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
 						<tr class = "row">
 							<td class = "cell">
-								<select id = "board" name = "board_no" ></select> 
-								<select id = "sub" name = "board_no2"></select>
+								<select id = "board" name = "bt_no" ></select> 
+								<select id = "sub" name = "s_no"></select>
 							</td>
 							
 						</tr>
@@ -86,11 +86,11 @@
 						
 						<!-- 입력창 -->
 						<tr class="row">
-							<td class="cell"><input type="text" name="bwTitle" placeholder = "제목을 입력하세요"></td>
+							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요"></td>
 						</tr>
 
 						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="bContent" placeholder = "내용을 입력하세요"></textarea></td>
+							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요"></textarea></td>
 						</tr>
 
 
@@ -133,7 +133,7 @@
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	<script src="js/board_hs/category.js"></script>
-	<script src="js/js_footer/footer_hee.js"></script>
+	<script src="js/footer/footer_hee.js"></script>
 	
 	
 	<!-- ckEditor 관련 -->
