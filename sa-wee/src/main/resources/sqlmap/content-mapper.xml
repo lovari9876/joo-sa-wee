@@ -8,7 +8,8 @@
 	<!-- namespace를 만든 인터페이스와 맞춰주기 -->
 	<!-- id를 service의 함수명과 맞춰주기 -->
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
-
+	
+	<!-- Board_writeVO resultMap -->
 	<resultMap type="com.soninlawisdice.vo.Board_writeVO"
 		id="Board_writeVO">
 		<id column="bw_no" property="bw_no" />
@@ -85,7 +86,7 @@
 		BW_RECOMMEND_NUM FROM BOARD_WRITE WHERE BW_NO = 42
 	</select>
 
-	<!-- 게시글 신고글 쓰기 -->
+	<!-- ReportVO resultMap -->
 	<resultMap type="com.soninlawisdice.vo.ReportVO"
 		id="ReportVO">
 		<id column="r_no" property="r_no" />
@@ -111,18 +112,19 @@
 		</collection>
 	</resultMap>
 	
-	<!-- <select id="selectReportBW" parameterType="int"
-		resultMap="ReportVO">
-		SELECT R.R_NO, R.M_NO, R.R_TYPE, R.R_TYPE_NO,
-		R.R_CONTENT, R.R_REPORT_DATE
-		FROM REPORT R, MEMBER M, BOARD_WRITE BW
-		WHERE R.M_NO = M.M_NO AND R.R_TYPE_NO = BW.BW_NO AND BW_NO = 42
-	</select> -->
-	
+	<!-- 게시글 신고글 쓰기 -->
 	<insert id="insertReportBW">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, 5, '게시글', #{R_TYPE_NO}, #{R_CONTENT},
+		VALUES (REPORT_SEQ.NEXTVAL, 5, '게시글', #{r_type_no}, #{r_content},
+		SYSDATE)
+	</insert>
+	
+	<!-- 회원 신고글 쓰기 -->
+	<insert id="insertReportM">
+		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
+		R_CONTENT, R_REPORT_DATE)
+		VALUES (REPORT_SEQ.NEXTVAL, 5, '회원', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
 

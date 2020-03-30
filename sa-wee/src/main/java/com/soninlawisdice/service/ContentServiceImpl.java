@@ -57,12 +57,6 @@ public class ContentServiceImpl implements ContentService {
 		return contentMapper.selectRecommendContent(bw_no);
 	}
 	
-	// 어떤 게시글을 신고했는지
-//	@Override
-//	public ReportVO selectReportBW(String r_type_no) {
-//		
-//		return contentMapper.selectReportBW(r_type_no);
-//	}
 	
 	// 게시글 신고글 쓰기
 	@Override
@@ -72,6 +66,15 @@ public class ContentServiceImpl implements ContentService {
 		
 	}
 
+	// 회원 신고글 쓰기
+	@Override
+	public void insertReportM(ReportVO reportVO) {
+		
+		contentMapper.insertReportM(reportVO);
+		
+	}
+	
+	
 	
 
 }

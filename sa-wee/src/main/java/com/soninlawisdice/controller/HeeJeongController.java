@@ -36,7 +36,7 @@ public class HeeJeongController {
 	 */
 	@RequestMapping(value = "/content_view", method = RequestMethod.GET)
 	public String content(HttpServletRequest request, Model model) {
-		logger.info("content_view");
+		System.out.println("content_view");
 
 		String bw_no = request.getParameter("bw_no");
 
@@ -55,7 +55,7 @@ public class HeeJeongController {
 
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(Board_writeVO board_writeVO, Model model) {
-		logger.info("delete");
+		System.out.println("delete");
 
 		contentService.deleteContent(board_writeVO);
 
@@ -65,7 +65,7 @@ public class HeeJeongController {
 	@ResponseBody
 	@RequestMapping(value = "/rec", method = RequestMethod.GET)
 	public String recommend(String bw_no, Model model) {
-		logger.info("recommend");
+		System.out.println("recommend");
 
 		// 게시글 추천수 증가
 		contentService.upRecommendContent(bw_no);
@@ -75,7 +75,7 @@ public class HeeJeongController {
 
 	@RequestMapping(value = "/comment_view", method = RequestMethod.GET)
 	public String comment_view(Locale locale, Model model) {
-		logger.info("comment_view");
+		System.out.println("comment_view");
 
 		return "content/comment_view";
 	}
@@ -90,11 +90,13 @@ public class HeeJeongController {
 	// 게시글 신고글 view
 	@RequestMapping(value = "/report_view_bw", method = RequestMethod.GET)
 	public String report_view_bw(HttpServletRequest request, Model model) {
-		logger.info("report_view_bw");
+		System.out.println("report_view_bw");
 
 		String bw_no = request.getParameter("bw_no");
 
 		Board_writeVO board_writeVO = contentService.selectContentOne(bw_no);
+		
+		System.out.println(bw_no);
 
 		model.addAttribute("content_view", board_writeVO);
 		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
@@ -106,42 +108,64 @@ public class HeeJeongController {
 	
 	// 게시글 신고글 쓰기
 	@RequestMapping(value = "/report_bw", method = RequestMethod.GET)
-	public String report_bw(ReportVO reportVO, Model model, HttpServletRequest request) {
-		logger.info("report_bw");
+	public String report_bw(ReportVO reportVO, Model model) {
+		System.out.println("report_bw");
+
+		System.out.println(reportVO.getR_type_no());
+		
+		contentService.insertReportBW(reportVO);
+
+		return "content/report_success";
+	}
+	
+	// 회원 신고글 view
+	@RequestMapping(value = "/report_view_m", method = RequestMethod.GET)
+	public String report_view_m(HttpServletRequest request, Model model) {
+		System.out.println("report_view_m");
 		
 		String bw_no = request.getParameter("bw_no");
-		
-		System.out.println("bw_no");
-		
+
 		Board_writeVO board_writeVO = contentService.selectContentOne(bw_no);
+			
+		System.out.println(bw_no);
 
 		model.addAttribute("content_view", board_writeVO);
 		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
 		model.addAttribute("memberVO", board_writeVO.getMemberVO());
 		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+
+		return "content/report_view_m";
+	}
 		
-		contentService.insertReportBW(reportVO); // 게시글 신고글 쓰기
+	// 회원 신고글 쓰기
+	@RequestMapping(value = "/report_m", method = RequestMethod.GET)
+	public String report_m(ReportVO reportVO, Model model) {
+		System.out.println("report_m");
+
+		System.out.println(reportVO.getR_type_no());
+			
+		contentService.insertReportBW(reportVO);
 
 		return "content/report_success";
 	}
 
 	@RequestMapping(value = "/report_success", method = RequestMethod.GET)
 	public String report_success(Locale locale, Model model) {
-		logger.info("report_success");
+		System.out.println("report_success");
 
 		return "content/report_success";
 	}
 
 	@RequestMapping(value = "/game_info", method = RequestMethod.GET)
 	public String game_info(Locale locale, Model model) {
-		logger.info("game_info");
+		System.out.println("game_info");
 
 		return "game_info/game_info";
 	}
 
 	@RequestMapping(value = "/game_detail", method = RequestMethod.GET)
 	public String game_detail(Locale locale, Model model) {
-		logger.info("game_detail");
+		System.out.println("game_detail");
 
 		return "game_detail/game_detail";
 	}
