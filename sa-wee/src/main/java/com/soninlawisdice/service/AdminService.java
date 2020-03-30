@@ -47,15 +47,16 @@ public interface AdminService {
 	public List<ReportVO> reportTab();
 	
 	
+	public void updateMember(MemberVO memberVO);
+	
 
 	// 글보기
 	public StatisticsVO selectAdminView(int st_no);
 
 	public MemberVO selectMemberView(int m_no);
 
-	public ReportVO selectReportView(int r_no);
+	public ReportVO selectReportView(int r_no, String r_type);
 
-	
 	
 	
 	// 글삭제

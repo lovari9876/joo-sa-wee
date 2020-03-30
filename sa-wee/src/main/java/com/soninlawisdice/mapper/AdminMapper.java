@@ -3,6 +3,7 @@ package com.soninlawisdice.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.soninlawisdice.vo.StatisticsVO;
@@ -56,6 +57,9 @@ public interface AdminMapper {
 	public List<ReportVO> reportTab();
 	
 	
+	// 수정 : 회원정보 수정
+	public void updateMember(@Param("memberVO")MemberVO memberVO);
+	
 	
 	// 삭제
 	@Delete("delete board_write where bw_no = #{bw_no}")
@@ -69,8 +73,8 @@ public interface AdminMapper {
 	@Select("select * from member where m_no=#{m_no}")
 	public MemberVO selectMemberView(int m_no);
 
-	@Select("select * from report where r_no=#{r_no}")
-	public ReportVO selectReportView(int r_no);
+	/* @Select("select * from report where r_no=#{r_no}") */
+	public ReportVO selectReportView(@Param("r_no") int r_no, @Param("r_type")String r_type);
 
 
 	

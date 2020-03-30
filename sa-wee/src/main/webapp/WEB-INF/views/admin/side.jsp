@@ -73,8 +73,17 @@
                                 </li>
                                 <li><a href="report_list"><i class="menu-icon icon-wrench"></i>신고관리 <!-- <b class="label green pull-right"> 알림 버튼
                                     11</b> --> </a></li>
-                                <li><a href="board_list"><i class="menu-icon icon-tasks"></i>게시글관리 <!-- <b class="label orange pull-right">
-                                    19</b> --> </a></li>
+                                <li><a class="collapsed" data-toggle="collapse" href="#togglePagess"><i class="menu-icon icon-tasks">
+                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                </i>게시글관리  </a>
+                                    <ul id="togglePagess" class="collapse unstyled">
+                                        <li><a href="board_list"><i class="icon-cloud"></i> 커뮤니티  </a></li>
+                                        <li><a href="board_list_trade"><i class="icon-key"></i> 보부상</a></li>
+                                        <li><a href="board_list_cafe"><i class="icon-picture"></i> 카페리뷰</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="island_list"><i class="menu-icon icon-flag"></i>무인도관리 </a><!-- icon-leaf -->
+                                </li>
                             </ul>
                             <!--/.widget-nav-->
                             

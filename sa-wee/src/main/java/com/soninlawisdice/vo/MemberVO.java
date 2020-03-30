@@ -30,6 +30,8 @@ public class MemberVO {
 	private String m_extra; // 신고수
 	private int f_no; // 비고
 
+	
+	
 	public MemberVO() {}
 
 	public MemberVO(int m_no, String m_id, String m_pw, String m_name, int m_birth, String m_nick,

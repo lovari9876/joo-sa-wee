@@ -120,14 +120,23 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public ReportVO selectReportView(int r_no) {
-		return adminMapper.selectReportView(r_no);
+	public ReportVO selectReportView(int r_no, String r_type) {
+		return adminMapper.selectReportView(r_no, r_type);
 	}
 	
 //	public RankVO selectRankView(int m_no) {
 //		return adminMapper.selectRankView(m_no);
 //	}
 
+	// 수정 : 회원정보
+	public void updateMember(MemberVO memberVO) {
+		adminMapper.updateMember(memberVO);
+	}
+		
+	
+	
+	
+	
 	// 글삭제
 	@Override
 	public void selectDelete(Board_writeVO boardVO) {

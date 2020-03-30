@@ -32,15 +32,17 @@
 		<result column="r_type_no" property="r_type_no"/>
 		<result column="r_content" property="r_content"/>
 		<result column="r_report_date" property="r_report_date"/>
+		<result column="r_id" property="r_id"/>
 		
 		<collection javaType="com.soninlawisdice.vo.MemberVO" property="memberVO">
 			<id column="m_no" property="m_no"/>
-			<result column="m_id" property="m_id"/>			
+			<result column="m_id" property="m_id"/>				
 			<result column="m_report_num" property="m_report_num"/>	
 		</collection>	
 		
 		<collection javaType="com.soninlawisdice.vo.Board_writeVO" property="board_writeVO">
 			<id column="bw_no" property="bw_no"/>
+			<result column="bw_title" property="bw_title"/>	
 			<result column="bw_report_num" property="bw_report_num"/>			
 		</collection>
 		
@@ -48,6 +50,8 @@
 			<id column="cm_no" property="cm_no"/>
 			<result column="cm_type" property="cm_type"/>	
 			<result column="cm_no2" property="cm_no2"/>		
+			<result column="cm_content" property="cm_content"/>	
+			<result column="cm_report_num" property="cm_report_num"/>	
 		</collection>
 				
 	</resultMap>
@@ -89,7 +93,7 @@
 	</select>
 	
 	
-	<select id="reportList" resultType="com.soninlawisdice.vo.ReportVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
+	<select id="reportList" resultMap="reportVO" resultType="com.soninlawisdice.vo.ReportVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
 
 	SELECT * FROM
 	(
@@ -232,5 +236,57 @@
 		</if>
 	</sql>
 	
+	
+	
+	
+<!-- =============================================== 신고게시판 글 보기 타입분류 ====================================================== -->	
+	
+	<select id="selectReportView" resultType="com.soninlawisdice.vo.ReportVO" resultMap="reportVO">
+
+		<!--  select  r.r_no, r.m_no, r.r_type, r.r_type_no, r.r_content, r.r_report_date, m.m_id
+			from report r,member m
+				where r.m_no=m.m_no and r.r_no=#{r.r_no} -->
+		                           
+		<!-- select r.r_no, r.m_no, m.m_id, r.r_content, r.r_report_date, bw.bw_title, cm.cm_content, r.r_type, r.r_type_no, bw.bw_title, bw.bw_report_num
+		from report r,member m, board_write bw, cm_comment cm 
+		where r.m_no=m.m_no and r.r_type_no=cm.cm_no and r.r_type_no=bw.bw_no and r.r_no=#{r_no} and r.r_type=#{r_type} 		
+		 -->		
+		 
+		 <choose>
+			<when test="r_type == '게시글'">
+				select r.r_no, r.m_no, m.m_id, r.r_content, r.r_report_date, r.r_type, r.r_type_no,
+				bw.bw_title, bw.bw_report_num
+				from report r, board_write bw, member m
+				where  r.m_no= m.m_no and r.r_type_no = bw.bw_no 	and 
+			</when>
+			<when test="r_type == '댓글'">
+				select r.r_no, r.m_no, m.m_id, r.r_content, r.r_report_date, r.r_type, r.r_type_no,
+				cm.cm_content, cm.cm_report_num
+				from report r, cm_comment cm, member m
+				where r.m_no= m.m_no and r.r_type_no = cm.cm_no and 
+			</when>
+			<when test="r_type == '회원'">
+				SELECT r.r_no, r.m_no, m1.m_id as m_id, r.r_content, r.r_report_date, r.r_type, r.r_type_no, m2.m_id as r_id, m1.m_report_num
+				FROM report r
+				LEFT JOIN member m1
+				ON r.m_no=m1.m_no
+				LEFT JOIN member m2
+				ON r.r_type_no= m2.m_no	where
+			</when>
+	
+		
+		</choose>
+		
+			 r.r_no=#{r_no} 		
+
+	</select>
+	
+	<update id="updateMember" parameterType="com.soninlawisdice.vo.MemberVO" >
+		update member 
+		set m_nick = #{memberVO.m_nick}, m_extra = #{memberVO.m_extra}, m_self = #{memberVO.m_self} 
+		where m_no = #{memberVO.m_no}
+	</update>
+	
+
 	
 </mapper>

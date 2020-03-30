@@ -10,6 +10,7 @@
 	</settings>
 
 	<!-- sql mapper 설정 -->
+
 	<mappers>
 
 		<mapper resource="sqlmap/admin-mapper.xml" />
