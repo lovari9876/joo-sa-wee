@@ -3,10 +3,12 @@ package com.soninlawisdice.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.BoardMapper;
 import com.soninlawisdice.vo.Board_writeVO;
 
+@Service
 public class BoardServiceImpl  implements BoardService{
 
 	

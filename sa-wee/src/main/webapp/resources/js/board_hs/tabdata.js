@@ -7,7 +7,7 @@ $(document).ready(function(){
 		console.log(category);
 		
 		$.ajax({
-			url : "http://localhost:8282/ex/list_sub",
+			url : "http://localhost:8282/list_sub",
 			type : "get",
 			cache : false,
 			dataType : "json",
@@ -18,16 +18,16 @@ $(document).ready(function(){
 				$.each(data, function(key,value){
 					
 					//button 의 value 값이랑 board_no2 의 값이 같을 경우.
-					if(category == value.board_no2){
+					if(category == value.s_no){
 						
-						console.log(value.board_no2, value.bDate);
+						console.log(value.s_no, value.bw_written_date);
 						tag += "<tr class = 'row'>"
-						tag += "<td class = 'cell'>"+value.bId+"</td>";
-						tag += "<td class = 'cell'><a href = 'content_view?bId="+value.bId+"'>"+value.bTitle+"</td>";
-						tag += "<td class = 'cell'>"+value.bName+"</td>";
-						tag += "<td class = 'cell'>"+value.bDate+"</td>";
-						tag += "<td class = 'cell'>"+value.bHit+"</td>";
-						tag += "<td class = 'cell'>"+value.bCo+"</td>";
+						tag += "<td class = 'cell'>"+value.bw_no+"</td>";
+						tag += "<td class = 'cell'><a href = 'content_view?bw_no="+value.bw_no+"'>"+value.bw_title+"</td>";
+						tag += "<td class = 'cell'>"+value.m_no+"</td>";
+						tag += "<td class = 'cell'>"+value.bw_written_date+"</td>";
+						tag += "<td class = 'cell'>"+value.bw_hit+"</td>";
+						tag += "<td class = 'cell'>"+value.bw_recommend_num+"</td>";
 						tag += "</tr>";
 						/*console.log(tag);*/
 					}

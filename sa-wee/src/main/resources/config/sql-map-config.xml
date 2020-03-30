@@ -7,6 +7,6 @@
 	<mappers>
 		<mapper resource="sqlmap/island-mapper.xml" />
 		<mapper resource="sqlmap/login-mapper.xml" />
-		
+		<mapper resource="sqlmap/board-mapper.xml"/>
 	</mappers>
 </configuration>

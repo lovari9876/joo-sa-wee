@@ -118,12 +118,12 @@
 						<tbody class = "tbody">
 							<c:forEach items="${list}" var="dto">
 							<tr class="row">
-								<td class = "cell">${dto.bId}</td>
-								<td class = "cell"><a href="content_view?bId=${dto.bId}">${dto.bTitle}</a></td>
-								<td class = "cell">${dto.bName}</td>
-								<td class = "cell">${dto.bDate}</td>
-								<td class = "cell">${dto.bHit}</td>
-								<td class = "cell">${dto.bCo}</td>
+								<td class = "cell">${dto.bw_no}</td>
+								<td class = "cell"><a href="content_view?bId=${dto.bw_no}">${dto.bw_title}</a></td>
+								<td class = "cell">${dto.m_nick}</td>
+								<td class = "cell">${dto.bw_written_date}</td>
+								<td class = "cell">${dto.bw_hit}</td>
+								<td class = "cell">${dto.bw_recommend_num}</td>
 							</tr>
 							</c:forEach>
 						</tbody>

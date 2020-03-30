@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.soninlawisdice.service.BoardService;
+import com.soninlawisdice.service.BoardServiceImpl;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.vo.Board_writeVO;
 
@@ -38,8 +39,9 @@ public class Board_hs_Controller {
 	@Autowired
 	private BoardService boardService;
 	
-	@Autowired
-	private ContentService contentService;
+	
+	@Autowired private ContentService contentService;
+	 
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
@@ -228,7 +230,7 @@ public class Board_hs_Controller {
 	
 	
 	
-	
+	////////////////////////게시물 작성 시 파일 업로드 부분(DB에 넣는거 X)///////////////////
 	
 	/**
 	 * ck에디터 파일업로드 이벤트 발생 시 처리
@@ -255,7 +257,7 @@ public class Board_hs_Controller {
 		String fuploadPath = req.getSession().getServletContext().getRealPath("/resources/files/img/");
 //		String fuploadPath = req.getSession().getServletContext().getRealPath("/upload/editor");
 
-		//http://localhost:8080/encare/resources/files/attach/
+		
 		
 		System.out.println(req.getSession().getServletContext().getRealPath("/"));
 		System.out.println(fuploadPath);
