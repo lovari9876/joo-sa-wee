@@ -212,6 +212,9 @@ public class Board_hs_Controller {
 	}
 	
 	
+	
+	
+	
 	@RequestMapping(value = "/cafe_map", method = RequestMethod.GET)
 	public String cafe_map(Model model) {
 		logger.info("review");
@@ -303,10 +306,7 @@ public class Board_hs_Controller {
 		
 			return "{ \"uploaded\" : true, \"url\" : \"http://localhost:8282/resources/files/img/"+ newfilename + "\" }";
 			//return "{ \"uploaded\" : true, \"url\" : \"c://sa-wee/file/"+ newfilename + "\" }";
-		
 			
-			
-//			return "{ \"uploaded\" : true, \"url\" : \"http://localhost:8282/upload/editor/" +newfilename + "\" }";
 			
 			
 		} catch (IOException e) {
