@@ -20,7 +20,7 @@ public class Cafe_reviewVO {
 	// for resultMap
 	private Board_typeVO board_typeVO;
 	private MemberVO memberVO;
-	// cafeVO 추가할 것
+	private CafeVO cafeVO;
 
 	// constructors
 	public Cafe_reviewVO() {
@@ -28,7 +28,7 @@ public class Cafe_reviewVO {
 
 	public Cafe_reviewVO(int cr_no, int bt_no, int c_no, int m_no, String cr_title, String cr_content,
 			Timestamp cr_written_date, Timestamp cr_updated_date, int cr_hit, int cr_recommend_num, int cr_report_num,
-			int cr_island, Board_typeVO board_typeVO, MemberVO memberVO) {
+			int cr_island, Board_typeVO board_typeVO, MemberVO memberVO, CafeVO cafeVO) {
 		super();
 		this.cr_no = cr_no;
 		this.bt_no = bt_no;
@@ -44,6 +44,7 @@ public class Cafe_reviewVO {
 		this.cr_island = cr_island;
 		this.board_typeVO = board_typeVO;
 		this.memberVO = memberVO;
+		this.cafeVO = cafeVO;
 	}
 
 	// getters and setters
@@ -157,6 +158,14 @@ public class Cafe_reviewVO {
 
 	public void setMemberVO(MemberVO memberVO) {
 		this.memberVO = memberVO;
+	}
+
+	public CafeVO getCafeVO() {
+		return cafeVO;
+	}
+
+	public void setCafeVO(CafeVO cafeVO) {
+		this.cafeVO = cafeVO;
 	}
 
 }

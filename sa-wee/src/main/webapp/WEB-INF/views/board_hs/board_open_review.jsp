@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -88,18 +89,20 @@
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
-						<li class="current" data-tab="tab1"><a href="#">전체보기</a></li>
-						<li data-tab="tab2"><a href="#">말머리1</a></li>
-						<li data-tab="tab3"><a href="#">말머리2</a></li>
-						<li data-tab="tab4"><a href="#">말머리3</a></li>
-
+						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
+						<li data-tab="tab2"><button type = "button" value = "4" class = "select">개봉기</button></li>
+						<li data-tab="tab3"><button type = "button" value = "5" class= "select">일(一)리뷰</button></li>
+						<li data-tab="tab4"><button type = "button" value = "6" class = "select">다(多)리뷰</button></li>
 					</ul>
-					
-						
+
 
 					<!-- 테이블  -->
 					<div id="tab1" class="tabcontent current">
-
+						<div class="orderby">
+							<button class ="orderbutton">최신순</button>
+							<button class ="orderbutton">조회순</button>
+							<button class ="orderbutton">추천순</button>
+						</div>
 						<table class="table">
 
 
@@ -112,150 +115,37 @@
 								<td class="cell">추천수</td>
 							</tr>
 
+						<tbody class = "tbody">
+							<c:forEach items="${list}" var="dto">
 							<tr class="row">
-								<td class="cell">1</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
+								<td class = "cell">${dto.bw_no}</td>
+								<td class = "cell"><a href="content_view?bId=${dto.bw_no}">${dto.bw_title}</a></td>
+								<td class = "cell">${dto.m_no}</td>
+								<td class = "cell">${dto.bw_written_date}</td>
+								<td class = "cell">${dto.bw_hit}</td>
+								<td class = "cell">${dto.bw_recommend_num}</td>
 							</tr>
-
-							<tr class="row">
-								<td class="cell">2</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">3</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">4</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">5</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">6</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">7</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">8</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">9</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">10</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">11</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">12</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">13</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">14</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">15</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
+							</c:forEach>
+						</tbody>
 
 						</table>
 
 					</div>
 
+					
+					<!-- 여기서부터는 말머리 선택 부분이라  -->
 					<div id="tab2" class="tabcontent">
-
+						
+						<div class="orderby">
+							<button class ="orderbutton">최신순</button>
+							<button class ="orderbutton">조회순</button>
+							<button class ="orderbutton">추천순</button>
+						</div>
+						
+						
 						<table class="table">
 
-
+							
 							<tr class="row header">
 								<td class="cell">글 번호</td>
 								<td class="cell">글 제목</td>
@@ -264,300 +154,26 @@
 								<td class="cell">조회수</td>
 								<td class="cell">추천수</td>
 							</tr>
-
-							<tr class="row">
-								<td class="cell">1</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">V아니아니liamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">2</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">3</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">4</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">5</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">6</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">7</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">8</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">9</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">10</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">11</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">12</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">13</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">14</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">15</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
+							
+							<tbody class = "tbody test">
+							
+						</tbody>
+							
+							
 
 						</table>
 
 					</div>
 
 					<div id="tab3" class="tabcontent">
-
-						<table class="table">
-
-
-						<tr class="row header">
-								<td class="cell">글 번호</td>
-								<td class="cell">글 제목</td>
-								<td class="cell">작성자</td>
-								<td class="cell">작성일</td>
-								<td class="cell">조회수</td>
-								<td class="cell">추천수</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">1</td>
-								<td class="cell">Vi에이이이이아야야ㅑㅏㅏon</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">2</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">3</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">4</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">5</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">6</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">7</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">8</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">9</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">10</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">11</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">12</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">13</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">14</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">15</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-						</table>
-
-					</div>
-
-					<div id="tab4" class="tabcontent">
-
+						
+						<div class="orderby">
+							<button class ="orderbutton">최신순</button>
+							<button class ="orderbutton">조회순</button>
+							<button class ="orderbutton">추천순</button>
+						</div>
+						
+						
 						<table class="table">
 
 
@@ -570,143 +186,44 @@
 								<td class="cell">추천수</td>
 							</tr>
 
-							<tr class="row">
-								<td class="cell">1</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vinc아니아니아니어어어어어</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-								<tr class="row">
-								<td class="cell">2</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">3</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">4</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">5</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">6</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">7</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">8</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">9</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">10</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">11</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">12</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">13</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">14</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">15</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent </td>
-								<td class="cell">Vincent</td>
-							</tr>
+							<tbody class = "tbody test">
+							
+						</tbody>
+							
 						</table>
+
 					</div>
 
+					<div id="tab4" class="tabcontent">
+						
+						<div class="orderby">
+							<button class ="orderbutton">최신순</button>
+							<button class ="orderbutton">조회순</button>
+							<button class ="orderbutton">추천순</button>
+						</div>
+						
+						
+						<table class="table">
+
+
+							<tr class="row header">
+								<td class="cell">글 번호</td>
+								<td class="cell">글 제목</td>
+								<td class="cell">작성자</td>
+								<td class="cell">작성일</td>
+								<td class="cell">조회수</td>
+								<td class="cell">추천수</td>
+							</tr>
+
+						
+							<tbody class = "tbody test">
+							
+						</tbody>
+							
+							
+						</table>
+					</div>
+					
 				</div>
 
 				<!-- 버튼에 링크 걸기 -->
@@ -736,12 +253,13 @@
 	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
-	<script src="js/js_header/scroll.js"></script>
+	<script src="js/header/scroll.js"></script>
 	<script src="js/board_hs/tab.js"></script>
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	<script src="js/js_footer/footer_hee.js"></script>
+	<script src="js/board_hs/tabdata.js" type="text/javascript"></script>
+	<script src="js/footer/footer_hee.js"></script>
 
 </body>
 </html>

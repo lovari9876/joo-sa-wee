@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -223,85 +224,22 @@
 
 							<table class="table">
 								<tr class="row header">
-									<td class="cell">글 번호</td>
-									<td class="cell">글 제목</td>
-									<td class="cell">작성자</td>
+									<td class="cell">순위</td>
+									<td class="cell">게시판</td>
+									<td class="cell">제목</td>
 									<td class="cell">작성일</td>
 								</tr>
-
+							<c:forEach items = "${hot}" var = "hot">
 								<tr class="row">
+								<!-- 이거 1부터 10까지  -->
 									<td class="cell">1</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
+									<!-- 게시판 이름 어찌 가져오냐..... -->
+									<td class="cell">${hot.bw_title}</td>
+									<td class="cell">${hot.bw_title}</td>
+									<td class="cell">${hot.bw_written_date}</td>
 								</tr>
-
-								<tr class="row">
-									<td class="cell">2</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">3</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">4</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">5</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">6</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">7</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">8</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">9</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">10</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-
-
-
+							</c:forEach>
+								
 							</table>
 						</div>
 					</div>
@@ -310,7 +248,7 @@
 
 			</div>
 		</div>
-		<!-- </div> -->
+		
 	</section>
 	<!-- Blog section end -->
 
@@ -339,75 +277,16 @@
 									<td class="cell">작성일</td>
 								</tr>
 
+							<c:forEach items = "${best}" var = "best">
 								<tr class="row">
+								<!-- 이거 1부터 10까지  -->
 									<td class="cell">1</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
+									<!-- 게시판 이름 어찌 가져오냐..... -->
+									<td class="cell">${best.bw_title}</td>
+									<td class="cell">${best.bw_title}</td>
+									<td class="cell">${best.bw_written_date}</td>
 								</tr>
-
-								<tr class="row">
-									<td class="cell">2</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">3</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">4</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">5</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">6</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">7</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">8</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">9</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
-
-								<tr class="row">
-									<td class="cell">10</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-									<td class="cell">Vincent Williamson</td>
-								</tr>
+							</c:forEach>
 
 							</table>
 						</div>
@@ -417,7 +296,7 @@
 
 			</div>
 		</div>
-		<!-- </div> -->
+		
 	</section>
 
 
@@ -433,15 +312,7 @@
 				<h2>커피 한잔 사주실래요</h2>
 			</div>
 			<button class="site-btn">후원하기</button>
-
-
-			<!-- <form class="newsletter-form">
-				<input type="text" placeholder="ENTER YOUR E-MAIL">
-				<button class="site-btn">subscribe  <img src="img/icons/double-arrow.png" alt="#"/></button>
-			</form> -->
 		</div>
-
-
 	</section>
 	<!-- Newsletter section end -->
 

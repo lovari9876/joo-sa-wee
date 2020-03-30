@@ -235,7 +235,7 @@
 
 .row .cell:nth-child(1) {
 	width: 150px;
-	text-align: center;
+	/* text-align: center; */
 	padding-top: 10px;
 	padding-bottom: 10px;
 	/* padding-left : 50px;
@@ -323,5 +323,20 @@
 }
 
 input:focus, select:focus, button:focus, textarea:focus {
-	outline: none;
+	outline: none!important; 
 }
+
+/* ckEditor 부분 */
+
+.ck.ck-editor{
+	max-width : 1000px;
+}
+
+.ck-editor__editable{
+	min-height : 500px;
+}
+
+
+.ck.ck-toolbar {
+	background : #fff!important;
+	}
