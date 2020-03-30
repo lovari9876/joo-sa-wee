@@ -83,6 +83,13 @@ public class HeeJeongController {
 
 		return "content/comment_view";
 	}
+	
+	@RequestMapping(value = "/comment_write", method = RequestMethod.GET)
+	public String comment_wirte(Locale locale, Model model) {
+		System.out.println("comment_write");
+
+		return "content/comment_write";
+	}
 
 	@RequestMapping(value = "/reply", method = RequestMethod.GET)
 	public String reply(Locale locale, Model model) {

@@ -188,20 +188,10 @@
 			</li>
 		</ul>
 		<!-- END comment-list -->
-
+		
 		<!-- 댓글 쓰기 -->
 		<div class="comment-form-wrap pt-5">
-			<h3 class="mb-5">Leave a comment</h3>
-			<form action="#" method="get">
-				<div class="form-group">
-					<label for="message">Comment</label>
-					<textarea name="" id="message" cols="30" rows="10"
-						class="form-control" placeholder="댓글을 입력하세요."></textarea>
-				</div>
-				<div class="form-group">
-					<input type="submit" value="작성" class="btn btn-lavender btn-md">
-				</div>
-			</form>
+			<%@ include file="/WEB-INF/views/content/comment_write.jsp" %>
 		</div>
 	</div>
 
