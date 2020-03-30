@@ -36,5 +36,7 @@ public interface ContentService {
 	public Cafe_reviewVO selectContentCR(String cr_no); // cr_no를 가져오기 위해
 	
 	public void insertReportCR(ReportVO reportVO); // 카페리뷰 신고글 쓰기
+	
+	public void insertCommentOne(CM_commentVO cm_commentVO); // 댓글 쓰기
 
 }

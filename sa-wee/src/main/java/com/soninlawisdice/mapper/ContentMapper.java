@@ -37,4 +37,6 @@ public interface ContentMapper {
 	
 	public void insertReportCR(ReportVO reportVO); // 카페리뷰 신고글 쓰기
 	
+	public void insertCommentOne(CM_commentVO cm_commentVO); // 댓글 쓰기
+	
 }

@@ -171,6 +171,8 @@
 		VALUES (REPORT_SEQ.NEXTVAL, 5, '카페리뷰', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+	
+	
 
 	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면 -->
 	<!-- 자동으로 현재시간이 입력된다. -->

@@ -129,6 +129,14 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.insertReportCR(reportVO);
 		
 	}
+	
+	// 댓글 쓰기
+	@Override
+	public void insertCommentOne(CM_commentVO cm_commentVO) {
+		
+		contentMapper.insertCommentOne(cm_commentVO);
+		
+	}
 
 	
 	
