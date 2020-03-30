@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.ContentMapper;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
@@ -79,6 +80,21 @@ public class ContentServiceImpl implements ContentService {
 	public void insertReportM(ReportVO reportVO) {
 		
 		contentMapper.insertReportM(reportVO);
+		
+	}
+	
+	// cm_no를 가져오기 위해
+	@Override
+	public CM_commentVO selectContentCM(String cm_no) {
+		
+		return contentMapper.selectContentCM(cm_no);
+	}
+	
+	// 댓글 신고글 쓰기
+	@Override
+	public void insertReportCM(ReportVO reportVO) {
+		
+		contentMapper.insertReportCM(reportVO);
 		
 	}
 

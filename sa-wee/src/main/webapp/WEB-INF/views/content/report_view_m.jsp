@@ -39,7 +39,7 @@
 				<form action="report_m" method="get">
 					<input type="hidden" name="r_type_no" value="${member_view.m_no}">
 					<div class="form-group">
-						<label for="message">신고할 상대 이름</label>
+						<label for="message">신고하기</label>
 						<textarea name="r_content" id="message" cols="30" rows="10"
 							class="form-control" placeholder="신고할 내용을 입력하세요."></textarea>
 					</div>

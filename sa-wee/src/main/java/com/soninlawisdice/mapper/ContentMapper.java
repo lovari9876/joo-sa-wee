@@ -1,6 +1,7 @@
 package com.soninlawisdice.mapper;
 
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
@@ -21,5 +22,9 @@ public interface ContentMapper {
 	public MemberVO selectContentM(String m_no); // m_no를 가져오기 위해
 	
 	public void insertReportM(ReportVO reportVO); // 회원 신고글 쓰기
+	
+	public CM_commentVO selectContentCM(String cm_no); // cm_no를 가져오기 위해
+	
+	public void insertReportCM(ReportVO reportVO); // 댓글 신고글 쓰기
 	
 }

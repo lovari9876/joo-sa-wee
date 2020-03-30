@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.ContentServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
@@ -148,6 +149,39 @@ public class HeeJeongController {
 		System.out.println(reportVO.getR_type_no());
 			
 		contentService.insertReportM(reportVO);
+
+		return "redirect:content_view";
+	}
+	
+	// 댓글 신고글 view
+	@RequestMapping(value = "/report_view_cm", method = RequestMethod.GET)
+	public String report_view_cm(HttpServletRequest request, Model model) {
+		System.out.println("report_view_cm");
+			
+		String cm_no = request.getParameter("cm_no");
+
+		CM_commentVO cm_commentVO = contentService.selectContentCM(cm_no);
+				
+		System.out.println(cm_no);
+
+		model.addAttribute("comment_view", cm_commentVO);
+		/*
+		 * model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
+		 * model.addAttribute("memberVO", board_writeVO.getMemberVO());
+		 * model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+		 */
+
+		return "content/report_view_cm";
+	}
+			
+	// 댓글 신고글 쓰기
+	@RequestMapping(value = "/report_cm", method = RequestMethod.GET)
+	public String report_cm(ReportVO reportVO, Model model) {
+		System.out.println("report_cm");
+
+		System.out.println(reportVO.getR_type_no());
+				
+		contentService.insertReportCM(reportVO);
 
 		return "content/report_success";
 	}

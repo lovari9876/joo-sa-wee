@@ -93,7 +93,7 @@
 									data-placement="top" title="삭제"></a>
 							</div>
 							<div class="test_item rep tooltip-purple">
-								<a class="fas fa-skull fa-lg no-text-deco" href="report"
+								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_view.cm_no}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="신고"> </a>

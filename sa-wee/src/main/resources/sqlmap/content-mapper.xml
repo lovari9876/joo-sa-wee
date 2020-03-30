@@ -120,7 +120,7 @@
 		SYSDATE)
 	</insert>
 	
-	<!-- m_no 을 가져오기 위해 -->
+	<!-- m_no를 가져오기 위해 -->
 	<select id="selectContentM" resultType="com.soninlawisdice.vo.MemberVO">
 		SELECT M_NO FROM MEMBER WHERE M_NO = 10
 	</select>
@@ -130,6 +130,19 @@
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
 		VALUES (REPORT_SEQ.NEXTVAL, 5, '회원', #{r_type_no}, #{r_content},
+		SYSDATE)
+	</insert>
+	
+	<!-- cm_no를 가져오기 위해 -->
+	<select id="selectContentCM" resultType="com.soninlawisdice.vo.CM_commentVO">
+		SELECT CM_NO FROM CM_COMMENT WHERE CM_NO = 1
+	</select>
+	
+	<!-- 댓글 신고글 쓰기 -->
+	<insert id="insertReportCM">
+		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
+		R_CONTENT, R_REPORT_DATE)
+		VALUES (REPORT_SEQ.NEXTVAL, 5, '댓글', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
 
