@@ -145,6 +145,19 @@
 		VALUES (REPORT_SEQ.NEXTVAL, 5, '댓글', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+	
+	<!-- t_no를 가져오기 위해 -->
+	<select id="selectContentCM" resultType="com.soninlawisdice.vo.TradeVO">
+		SELECT T_NO FROM Trade WHERE T_NO = 1
+	</select>
+	
+	<!-- 중고거래 신고글 쓰기 -->
+	<insert id="insertReportCM">
+		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
+		R_CONTENT, R_REPORT_DATE)
+		VALUES (REPORT_SEQ.NEXTVAL, 5, '중고거래', #{r_type_no}, #{r_content},
+		SYSDATE)
+	</insert>
 
 	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면 -->
 	<!-- 자동으로 현재시간이 입력된다. -->

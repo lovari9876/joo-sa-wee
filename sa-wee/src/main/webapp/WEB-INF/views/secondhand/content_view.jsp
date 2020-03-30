@@ -174,7 +174,7 @@
 								<a href="delete?bw_no=${content_view.bw_no}">삭제</a>
 							</div>
 							<div class="test_item fourth">
-								<a href="report"
+								<a href="content/report_view_t?t_no=${trade.t_no}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 							</div>
 						</div>

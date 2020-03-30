@@ -8,6 +8,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
+import com.soninlawisdice.vo.TradeVO;
 
 @Service("ContentService")
 public class ContentServiceImpl implements ContentService {
@@ -95,6 +96,21 @@ public class ContentServiceImpl implements ContentService {
 	public void insertReportCM(ReportVO reportVO) {
 		
 		contentMapper.insertReportCM(reportVO);
+		
+	}
+	
+	// t_no를 가져오기 위해
+	@Override
+	public TradeVO selectContentT(String t_no) {
+
+		return contentMapper.selectContentT(t_no);
+	}
+	
+	// 중고거래 신고글 쓰기
+	@Override
+	public void insertReportT(ReportVO reportVO) {
+		
+		contentMapper.insertReportT(reportVO);
 		
 	}
 

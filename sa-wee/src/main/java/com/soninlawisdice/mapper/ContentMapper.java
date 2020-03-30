@@ -4,6 +4,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
+import com.soninlawisdice.vo.TradeVO;
 
 public interface ContentMapper {
 	
@@ -26,5 +27,9 @@ public interface ContentMapper {
 	public CM_commentVO selectContentCM(String cm_no); // cm_no를 가져오기 위해
 	
 	public void insertReportCM(ReportVO reportVO); // 댓글 신고글 쓰기
+	
+	public TradeVO selectContentT(String t_no); // t_no를 가져오기 위해
+	
+	public void insertReportT(ReportVO reportVO); // 중고거래 신고글 쓰기
 	
 }
