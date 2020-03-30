@@ -103,6 +103,7 @@
 					WHERE 
 							CR_ISLAND != 0 ) 
 			)
+		WHERE RNUM BETWEEN #{ROWSTART} AND #{ROWEND}
 		ORDER BY I_WRITTEN_DATE DESC
 	</select>
 
