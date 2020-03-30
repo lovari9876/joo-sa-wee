@@ -4,20 +4,20 @@ import java.sql.Timestamp;
 
 public class CafeVO {
 	
-	int c_no;	//게시글 번호(카페 번호)
-	int bt_no;	//게시판 번호
-	String c_title;	//글제목(카페이름)
-	String c_add;	//카페 주소
-	String c_phone;	//카페 전화번호
-	int c_people;	//수용인원
-	int c_table;	//테이블 개수
-	int c_chair;	//의자 개수
-	String c_open;	//오픈 시간
-	String c_close;	//마감 시간
-	String c_rest;	//휴일
-	Timestamp c_written_date;	//작성일
-	Timestamp c_updated_date;	//수정일
-	int c_hit;		//조회수
+	private int c_no;	//게시글 번호(카페 번호)
+	private int bt_no;	//게시판 번호
+	private String c_title;	//글제목(카페이름)
+	private String c_add;	//카페 주소
+	private String c_phone;	//카페 전화번호
+	private int c_people;	//수용인원
+	private int c_table;	//테이블 개수
+	private int c_chair;	//의자 개수
+	private String c_open;	//오픈 시간
+	private String c_close;	//마감 시간
+	private String c_rest;	//휴일
+	private Timestamp c_written_date;	//작성일
+	private Timestamp c_updated_date;	//수정일
+	private int c_hit;		//조회수
 	
 	
 	public CafeVO() {

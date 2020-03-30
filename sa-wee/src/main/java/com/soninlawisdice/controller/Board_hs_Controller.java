@@ -47,7 +47,7 @@ public class Board_hs_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
 	
 	//베스트 + 핫이슈 + 홈화면
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		
 		model.addAttribute("hot", boardService.selectHotList());
@@ -129,10 +129,29 @@ public class Board_hs_Controller {
 	}
 	
 	//글 작성
-	@RequestMapping("/write")
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(Board_writeVO board_writeVO) {
 		boardService.insertBoard(board_writeVO);
-		return "redirect:list";
+		
+		int bt_no = board_writeVO.getBt_no();
+		
+		System.out.println(bt_no);
+		
+		if(bt_no == 1) {
+			return "redirect:board_story";
+		}else if (bt_no == 2) {
+			return "redirect:board_open_review";
+		}else if(bt_no == 3) {
+			return "redirect:board_meet";
+		}else if(bt_no == 4) {
+			return "redirect:board_news";
+		}else if(bt_no == 5) {
+			return "redirect:board_qna";
+		}else {
+			return "redirect:board_creation";
+		}
+		
+		
 	}
 	
 	
@@ -140,19 +159,20 @@ public class Board_hs_Controller {
 	@RequestMapping(value = "/modify_view", method = RequestMethod.GET)
 	public String modify_view(Model model, String bw_no) {
 		model.addAttribute("content_view",contentService.selectContentOne(bw_no));
+		
 		return "board_hs/modify_view";
 	}
 	
 	
 	
-	@RequestMapping("/modify")
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modify(Board_writeVO board_writeVO, Model model) {
 
 		System.out.println("modify()");
 
 		boardService.modify(board_writeVO);
 
-		return "redirect:list";
+		return "redirect:board_story";
 	}
 
 	
@@ -255,8 +275,8 @@ public class Board_hs_Controller {
 		// upload 경로 설정(tomcat realpath)
 	
 		String fuploadPath = req.getSession().getServletContext().getRealPath("/resources/files/img/");
-//		String fuploadPath = req.getSession().getServletContext().getRealPath("/upload/editor");
 
+		//String fuploadPath = "c://sa-wee/file";
 		
 		
 		System.out.println(req.getSession().getServletContext().getRealPath("/"));
@@ -280,9 +300,9 @@ public class Board_hs_Controller {
 			
 			FileUtils.writeByteArrayToFile(file, fileload.getBytes());
 			System.out.println(file);
-			// return "{ \"uploaded\" : true, \"url\" : \"http://112.169.197.59:18080/upload/editor/" + newfilename + "\" }";
+		
 			return "{ \"uploaded\" : true, \"url\" : \"http://localhost:8282/resources/files/img/"+ newfilename + "\" }";
-			
+			//return "{ \"uploaded\" : true, \"url\" : \"c://sa-wee/file/"+ newfilename + "\" }";
 		
 			
 			

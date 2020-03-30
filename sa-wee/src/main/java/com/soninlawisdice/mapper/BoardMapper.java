@@ -40,10 +40,10 @@ public interface BoardMapper {
 	public List<Board_writeVO> selectBoard_Creation();
 	
 	//게시글 작성하기
-	public void insertBoard(@Param("board_wirteVO") Board_writeVO board_writeVO);
+	public void insertBoard(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
 	//글 수정하기
-	public void modify(@Param("board_wirteVO") Board_writeVO board_writeVO);
+	public void modify(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
 	
 	
