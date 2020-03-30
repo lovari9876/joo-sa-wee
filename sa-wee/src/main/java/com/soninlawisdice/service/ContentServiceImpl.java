@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.ContentMapper;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
 @Service("ContentService")
@@ -57,12 +59,6 @@ public class ContentServiceImpl implements ContentService {
 		return contentMapper.selectRecommendContent(bw_no);
 	}
 	
-	// 어떤 게시글을 신고했는지
-//	@Override
-//	public ReportVO selectReportBW(String r_type_no) {
-//		
-//		return contentMapper.selectReportBW(r_type_no);
-//	}
 	
 	// 게시글 신고글 쓰기
 	@Override
@@ -71,7 +67,39 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.insertReportBW(reportVO);
 		
 	}
+	
+	// m_no를 가져오기 위해
+	@Override
+	public MemberVO selectContentM(String m_no) {
+		
+		return contentMapper.selectContentM(m_no);
+	}
 
+	// 회원 신고글 쓰기
+	@Override
+	public void insertReportM(ReportVO reportVO) {
+		
+		contentMapper.insertReportM(reportVO);
+		
+	}
+	
+	// cm_no를 가져오기 위해
+	@Override
+	public CM_commentVO selectContentCM(String cm_no) {
+		
+		return contentMapper.selectContentCM(cm_no);
+	}
+	
+	// 댓글 신고글 쓰기
+	@Override
+	public void insertReportCM(ReportVO reportVO) {
+		
+		contentMapper.insertReportCM(reportVO);
+		
+	}
+
+	
+	
 	
 
 }

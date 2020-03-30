@@ -1,6 +1,8 @@
 package com.soninlawisdice.mapper;
 
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
 public interface ContentMapper {
@@ -15,7 +17,14 @@ public interface ContentMapper {
 	
 	public String selectRecommendContent(String bw_no); // 게시글 추천수 증가하는 거 받아옴
 	
-	/* public ReportVO selectReportBW(String r_type_no); */ // 어떤 게시글을 신고했는지
-	
 	public void insertReportBW(ReportVO reportVO); // 게시글 신고글 쓰기
+	
+	public MemberVO selectContentM(String m_no); // m_no를 가져오기 위해
+	
+	public void insertReportM(ReportVO reportVO); // 회원 신고글 쓰기
+	
+	public CM_commentVO selectContentCM(String cm_no); // cm_no를 가져오기 위해
+	
+	public void insertReportCM(ReportVO reportVO); // 댓글 신고글 쓰기
+	
 }

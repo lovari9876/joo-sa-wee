@@ -36,10 +36,11 @@
 		<div class="pt-5">
 			<div class="comment-form-wrap pt-5">
 				<h3 class="mb-5">신고</h3>
-				<form action="report_success" method="get">
+				<form action="report_cm" method="get">
+					<input type="hidden" name="r_type_no" value="${comment_view.cm_no}">
 					<div class="form-group">
-						<label for="message">신고할 상대 이름</label>
-						<textarea name="" id="message" cols="30" rows="10"
+						<label for="message">신고하기</label>
+						<textarea name="r_content" id="message" cols="30" rows="10"
 							class="form-control" placeholder="신고할 내용을 입력하세요."></textarea>
 					</div>
 					<div class="form-group">
