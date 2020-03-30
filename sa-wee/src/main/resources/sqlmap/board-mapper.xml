@@ -152,6 +152,8 @@
 	
 	<!-- 카페 리뷰 테이블 -->
 	
+	<!-- 카페리뷰 리스트 -->
+	
 	<!-- 추천하기 눌렀을때 cr_recommend_num 증가하는 -->
 	<update id = "cafe_recommend">
 		update cafe_review set cr_recommend_num = cr_recommend_num+1 where cr_no = #{cr_no}
