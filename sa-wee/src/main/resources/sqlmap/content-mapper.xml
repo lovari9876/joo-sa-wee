@@ -120,6 +120,11 @@
 		SYSDATE)
 	</insert>
 	
+	<!-- m_no 을 가져오기 위해 -->
+	<select id="selectContentM" resultType="com.soninlawisdice.vo.MemberVO">
+		SELECT M_NO FROM MEMBER WHERE M_NO = 10
+	</select>
+	
 	<!-- 회원 신고글 쓰기 -->
 	<insert id="insertReportM">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,

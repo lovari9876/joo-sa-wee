@@ -57,7 +57,7 @@
 							<div class="test_item name" id="pop">
 								<span role="button" class="pop_btn popovers"
 									data-toggle="popover"
-									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report'>신고하기</a>"><h3>Jacob
+									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${member_view.m_no}'>신고하기</a>"><h3>Jacob
 										Smith</h3></span>
 							</div>
 							<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->

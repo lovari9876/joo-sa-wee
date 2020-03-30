@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.ContentServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
 /**
@@ -123,16 +124,18 @@ public class HeeJeongController {
 	public String report_view_m(HttpServletRequest request, Model model) {
 		System.out.println("report_view_m");
 		
-		String bw_no = request.getParameter("bw_no");
+		String m_no = request.getParameter("m_no");
 
-		Board_writeVO board_writeVO = contentService.selectContentOne(bw_no);
+		MemberVO memberVO = contentService.selectContentM(m_no);
 			
-		System.out.println(bw_no);
+		System.out.println(m_no);
 
-		model.addAttribute("content_view", board_writeVO);
-		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
-		model.addAttribute("memberVO", board_writeVO.getMemberVO());
-		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+		model.addAttribute("member_view", memberVO);
+		/*
+		 * model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
+		 * model.addAttribute("memberVO", board_writeVO.getMemberVO());
+		 * model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+		 */
 
 		return "content/report_view_m";
 	}
@@ -144,7 +147,7 @@ public class HeeJeongController {
 
 		System.out.println(reportVO.getR_type_no());
 			
-		contentService.insertReportBW(reportVO);
+		contentService.insertReportM(reportVO);
 
 		return "content/report_success";
 	}
