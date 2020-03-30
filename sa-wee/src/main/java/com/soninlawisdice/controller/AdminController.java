@@ -64,8 +64,8 @@ public class AdminController {
 		String type = reportVO.getR_type(); 
 		//type을 받아와 type에 따라 글 제목, 댓글 내용, 아이디를 각각 출력한다 
 		
-		ReportVO view = adminService.selectReportView(id, type);
-		model.addAttribute("report_view", view);
+		//ReportVO view = adminService.selectReportView(id, type);
+		model.addAttribute("report_view", adminService.selectReportView(id, type));
 
 		return "admin/report_view";
 	}
@@ -154,8 +154,8 @@ public class AdminController {
 	public String withdrawer_list(Model model, WD_recordVO wd_recordVO, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
 		
+		//model.addAttribute("withdrawer_list", adminService.wd_recordList(scri));
 		model.addAttribute("withdrawer_list", adminService.wd_recordList(scri));
-		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(adminService.wd_record_listCount(scri));

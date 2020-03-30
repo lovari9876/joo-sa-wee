@@ -17,8 +17,6 @@ public class ReportVO {
 	Board_writeVO board_writeVO;
 	CM_commentVO cm_commentVO;
 	
-	String r_id;
-	
 	public ReportVO() {}
 	
 	
@@ -37,16 +35,6 @@ public class ReportVO {
 	}
 
 
-
-
-	public String getR_id() {
-		return r_id;
-	}
-
-
-	public void setR_id(String r_id) {
-		this.r_id = r_id;
-	}
 
 
 	public int getR_no() {

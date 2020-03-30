@@ -1,5 +1,7 @@
 package com.soninlawisdice.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -51,9 +53,9 @@ public class AdminRestController {
 	
 	
 	@RequestMapping("/wd_data")
-	public List<WD_recordVO> wd_data(Model model) throws Exception {
+	public ArrayList<HashMap<String, Object>> wd_data(Model model) throws Exception {
 		
-		List<WD_recordVO> list = adminService.wdData();
+		ArrayList<HashMap<String, Object>> list = adminService.wdData();
 		model.addAttribute("wd_data", list);
 		return adminService.wdData();
 		//return 값은 String이 아닌 객체로 
@@ -86,8 +88,8 @@ public class AdminRestController {
 	public String report_view(ReportVO reportVO, Model model) throws Exception {
 		int id = reportVO.getR_no();
 		String type = reportVO.getR_type();
-		ReportVO view = adminService.selectReportView(id, type);
-		model.addAttribute("report_view", view);
+		
+		model.addAttribute("report_view", adminService.selectReportView(id, type));
 		
 		return "report_view";
 	}

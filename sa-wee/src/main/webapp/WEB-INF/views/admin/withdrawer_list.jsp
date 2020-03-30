@@ -124,9 +124,9 @@
 
 						<c:forEach var="wd" items="${withdrawer_list}">
 						<tr class="trow">
-							<td class="cell">${wd.memberVO.m_id}</td>
-							<td class="cell">${wd.wr_reason}</td><!-- view 따로 만들지 않고 내용 목록에서 다 볼 수 있도록 -->
-							<td class="cell">${wd.memberVO.m_outdate}</td>
+							<td class="cell">${wd['M_ID']}</td>
+							<td class="cell">${wd['WR_REASON']}</td><!-- view 따로 만들지 않고 내용 목록에서 다 볼 수 있도록 -->
+							<td class="cell">${wd['M_OUTDATE']}</td>
 						</tr>
 						
 						
