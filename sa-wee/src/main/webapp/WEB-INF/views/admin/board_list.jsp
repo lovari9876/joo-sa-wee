@@ -119,30 +119,30 @@
 						
 						<c:forEach items="${board_list}" var="board">
 								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${board.bw_no}"></td>
-									<td class="cell">${board.bw_no}</td>
-									<td class="cell">${board.bt_no}</td>
-									<td class="cell">${board.s_no}</td>
+									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${board[BW_NO]}"></td>
+									<td class="cell">${board['BW_NO']}</td>
+									<td class="cell">${board['BT_NAME']}</td>
+									<td class="cell">${board['S_CONTENT']}</td>
 									<td class="cell"><a
-										href="board_view?st_no=${board.bw_no}">${board.bw_title}</a></td>
-									<td class="cell">${board.m_no}</td>
+										href="board_view?st_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
+									<td class="cell">${board['M_ID']}</td>
 									<td class="cell"> 
 									
 									
 										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 										<jsp:useBean id="today" class="java.util.Date" />
 										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${board.bw_written_date}" pattern="yyyy.MM.dd" var="date"/>
+										<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 										<c:choose>
 											<c:when test="${now ne date}">${date}</c:when>
 											<c:otherwise>
-												<fmt:formatDate value="${board.bw_written_date}" pattern="HH:mm:ss"/>
+												<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
 											</c:otherwise>
 										</c:choose>
 										
 										
 									</td>
-									<td class="cell">${board.bw_report_num}</td>
+									<td class="cell">${board['BW_REPORT_NUM']}</td>
 								</tr>
 							</c:forEach>
 

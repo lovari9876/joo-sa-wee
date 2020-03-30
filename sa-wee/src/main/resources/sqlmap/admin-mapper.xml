@@ -101,6 +101,13 @@
 		               ROW_NUMBER() OVER(ORDER BY m_no DESC) AS RNUM
 		         FROM report 
 		         WHERE 1=1
+		       <!--   <choose>
+		         	<when test="r_type == '회원'">
+		         		r_type 
+		         	</when>
+		         
+		         </choose> -->
+		         
 		         <include refid="report_search"></include>
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
@@ -111,14 +118,19 @@
 	
 	
 	
-	<select id="boardList" resultType="com.soninlawisdice.vo.Board_writeVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
+	<select id="boardList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
 
 	SELECT * FROM
 	(
-         SELECT bw_no,m_no,bt_no,s_no,bw_title,bw_content,bw_written_date,bw_updated_date,bw_hit,bw_recommend_num,bw_report_num,bw_island,bw_secret,
-		               ROW_NUMBER() OVER(ORDER BY bw_no DESC) AS RNUM
-		         FROM board_write
-		         WHERE 1=1
+         SELECT bw.bw_no, m.m_id, bt.bt_name, s.s_content , bw.bw_title, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island,
+		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM
+		          FROM board_write bw
+                 INNER JOIN subject s
+                 ON bw.s_no=s.s_no
+                 INNER JOIN board_type bt
+                 ON bw.bt_no = bt.bt_no
+                INNER JOIN member m
+                ON bw.m_no=m.m_no
 		         <include refid="board_search"></include>
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
@@ -273,8 +285,6 @@
 				LEFT JOIN member m2
 				ON r.r_type_no= m2.m_no	where
 			</when>
-	
-		
 		</choose>
 		
 			 r.r_no=#{r_no} 		

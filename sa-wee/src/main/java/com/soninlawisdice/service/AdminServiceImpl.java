@@ -68,7 +68,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public List<Board_writeVO> boardList(SearchCriteria scri){
+	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri){
 		return adminMapper.boardList(scri);
 	}
 	@Override
