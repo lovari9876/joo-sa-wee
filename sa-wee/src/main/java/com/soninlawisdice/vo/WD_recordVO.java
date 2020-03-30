@@ -8,19 +8,6 @@ public class WD_recordVO {
 	MemberVO memberVO;
 	WithdrawalVO withdrawalVO;
 	
-	//탈퇴 객관적 사유 통계
-	int w_no_count;
-	
-	
-	public int getW_no_count() {
-		return w_no_count;
-	}
-
-
-
-	public void setW_no_count(int w_no_count) {
-		this.w_no_count = w_no_count;
-	}
 
 
 
@@ -28,18 +15,14 @@ public class WD_recordVO {
 	
 	
 
-	
 
-
-	public WD_recordVO(int m_no, int w_no, String wr_reason, MemberVO memberVO, WithdrawalVO withdrawalVO,
-			int w_no_count) {
+	public WD_recordVO(int m_no, int w_no, String wr_reason, MemberVO memberVO, WithdrawalVO withdrawalVO) {
 		super();
 		this.m_no = m_no;
 		this.w_no = w_no;
 		this.wr_reason = wr_reason;
 		this.memberVO = memberVO;
 		this.withdrawalVO = withdrawalVO;
-		this.w_no_count = w_no_count;
 	}
 
 

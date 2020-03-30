@@ -36,8 +36,8 @@ $(document).ready(function chart1() {
 		success : function(data) {
 			$.each(data, function(key, value) {
 				
-				chartLabels.push(value.withdrawalVO.w_reason);
-				chartData.push(value.w_no_count);
+				chartLabels.push(value.W_REASON);
+				chartData.push(value.W_NO_COUNT);
 				
 				
 			});

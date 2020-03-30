@@ -1,5 +1,7 @@
 package com.soninlawisdice.mapper;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -21,16 +23,16 @@ public interface AdminMapper {
 	
 
 	// 페이징 처리 + 검색  List
-	public List<Board_writeVO> boardList(SearchCriteria scri);
+	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri);
 	public int board_listCount(SearchCriteria scri);
 	
 	public List<MemberVO> memberList(SearchCriteria scri);
 	public int member_listCount(SearchCriteria scri);
 	
-	public List<ReportVO> reportList(SearchCriteria scri);
+	public ArrayList<HashMap<String, Object>> reportList(SearchCriteria scri);
 	public int report_listCount(SearchCriteria scri);
 	
-	public List<WD_recordVO> wd_recordList(SearchCriteria scri);
+	public  ArrayList<HashMap<String, Object>> wd_recordList(SearchCriteria scri);
 	public int wd_record_listCount(SearchCriteria scri);
 	
 
@@ -49,7 +51,7 @@ public interface AdminMapper {
 	public List<StatisticsVO> chartData();
 	
 	// 차트 : 탈퇴사유
-	public List<WD_recordVO> wdData();
+	public ArrayList<HashMap<String, Object>> wdData();
 
 	
 	//ajax json tab 
@@ -74,7 +76,7 @@ public interface AdminMapper {
 	public MemberVO selectMemberView(int m_no);
 
 	/* @Select("select * from report where r_no=#{r_no}") */
-	public ReportVO selectReportView(@Param("r_no") int r_no, @Param("r_type")String r_type);
+	public HashMap<String, Object> selectReportView(@Param("r_no") int r_no, @Param("r_type")String r_type);
 
 
 	

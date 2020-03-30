@@ -1,5 +1,7 @@
 package com.soninlawisdice.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +58,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public List<ReportVO> reportList(SearchCriteria scri){
+	public ArrayList<HashMap<String, Object>> reportList(SearchCriteria scri){
 		return adminMapper.reportList(scri);
 	}
 	@Override
@@ -66,7 +68,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public List<Board_writeVO> boardList(SearchCriteria scri){
+	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri){
 		return adminMapper.boardList(scri);
 	}
 	@Override
@@ -76,7 +78,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public List<WD_recordVO> wd_recordList(SearchCriteria scri){
+	public ArrayList<HashMap<String, Object>> wd_recordList(SearchCriteria scri){
 		return adminMapper.wd_recordList(scri);
 	}
 	@Override
@@ -93,7 +95,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<WD_recordVO> wdData() {
+	public ArrayList<HashMap<String, Object>> wdData() {
 		return adminMapper.wdData();
 	}
 	
@@ -120,7 +122,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public ReportVO selectReportView(int r_no, String r_type) {
+	public HashMap<String, Object> selectReportView(int r_no, String r_type) {
 		return adminMapper.selectReportView(r_no, r_type);
 	}
 	
