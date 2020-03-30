@@ -97,12 +97,12 @@
 								<tbody id="ajax_test"> 
 							<c:forEach items="${report_list}" var="report">
 								<tr class="trow">
-									<td class="cell">${report.r_no}</td>
-									<td class="cell">${report.r_type}</td>
-									<td class="cell title"><a href="report_view?r_no=${report.r_no}&r_type=${report.r_type}">${report.r_content}</a></td>
+									<td class="cell">${report['R_NO']}</td>
+									<td class="cell">${report['R_TYPE']}</td>
+									<td class="cell title"><a href="report_view?r_no=${report['R_NO']}&r_type=${report['R_TYPE']}">${report['R_CONTENT']}</a></td>
 									<td class="cell">
 									<!-- 신고는 귀찮으니가 걍 날짜로 통일.. 일단은 .. -->
-										<fmt:formatDate value="${report.r_report_date}" pattern="yyyy.MM.dd"/>
+										<fmt:formatDate value="${report['R_REPORT_DATE']}" pattern="yyyy.MM.dd"/>
 									</td>
 								</tr>
 							</c:forEach>
