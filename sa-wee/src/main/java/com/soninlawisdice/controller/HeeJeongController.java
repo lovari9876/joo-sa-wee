@@ -21,6 +21,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
+import com.soninlawisdice.vo.TradeVO;
 
 /**
  * Handles requests for the application home page.
@@ -185,7 +186,41 @@ public class HeeJeongController {
 
 		return "content/report_success";
 	}
+	
+	// 중고거래 신고글 view
+	@RequestMapping(value = "/report_view_t", method = RequestMethod.GET)
+	public String report_view_t(HttpServletRequest request, Model model) {
+		System.out.println("report_view_t");
+				
+		String t_no = request.getParameter("t_no");
 
+		TradeVO tradeVO = contentService.selectContentT(t_no);
+					
+		System.out.println(t_no);
+
+		model.addAttribute("trade_view", tradeVO);
+		/*
+		 * model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
+		 * model.addAttribute("memberVO", board_writeVO.getMemberVO());
+		 * model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+		 */
+
+		return "content/report_view_t";
+	}
+				
+	// 중고거래 신고글 쓰기
+	@RequestMapping(value = "/report_t", method = RequestMethod.GET)
+	public String report_t(ReportVO reportVO, Model model) {
+		System.out.println("report_t");
+
+		System.out.println(reportVO.getR_type_no());
+					
+		contentService.insertReportT(reportVO);
+
+		return "content/report_success";
+	}
+	
+	// 신고글 완료 메세지
 	@RequestMapping(value = "/report_success", method = RequestMethod.GET)
 	public String report_success(Locale locale, Model model) {
 		System.out.println("report_success");
