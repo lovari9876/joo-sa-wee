@@ -36,8 +36,8 @@
 		<div class="pt-5">
 			<div class="comment-form-wrap pt-5">
 				<h3 class="mb-5">신고</h3>
-				<form action="report_t" method="get">
-					<input type="hidden" name="r_type_no" value="${trade_view.t_no}">
+				<form action="report_cr" method="get">
+					<input type="hidden" name="r_type_no" value="${cafe_review_view.cr_no}">
 					<div class="form-group">
 						<label for="message">신고하기</label>
 						<textarea name="r_content" id="message" cols="30" rows="10"

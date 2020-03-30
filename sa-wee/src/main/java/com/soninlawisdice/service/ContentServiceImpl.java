@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.soninlawisdice.mapper.ContentMapper;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.TradeVO;
@@ -111,6 +112,21 @@ public class ContentServiceImpl implements ContentService {
 	public void insertReportT(ReportVO reportVO) {
 		
 		contentMapper.insertReportT(reportVO);
+		
+	}
+	
+	// cr_no를 가져오기 위해
+	@Override
+	public Cafe_reviewVO selectContentCR(String cr_no) {
+		
+		return contentMapper.selectContentCR(cr_no);
+	}
+	
+	// 카페리뷰 신고글 쓰기
+	@Override
+	public void insertReportCR(ReportVO reportVO) {
+		
+		contentMapper.insertReportCR(reportVO);
 		
 	}
 

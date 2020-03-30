@@ -2,6 +2,7 @@ package com.soninlawisdice.mapper;
 
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.TradeVO;
@@ -31,5 +32,9 @@ public interface ContentMapper {
 	public TradeVO selectContentT(String t_no); // t_no를 가져오기 위해
 	
 	public void insertReportT(ReportVO reportVO); // 중고거래 신고글 쓰기
+	
+	public Cafe_reviewVO selectContentCR(String cr_no); // cr_no를 가져오기 위해
+	
+	public void insertReportCR(ReportVO reportVO); // 카페리뷰 신고글 쓰기
 	
 }

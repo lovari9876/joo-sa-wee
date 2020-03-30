@@ -19,6 +19,7 @@ import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.ContentServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.TradeVO;
@@ -133,11 +134,6 @@ public class HeeJeongController {
 		System.out.println(m_no);
 
 		model.addAttribute("member_view", memberVO);
-		/*
-		 * model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
-		 * model.addAttribute("memberVO", board_writeVO.getMemberVO());
-		 * model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
-		 */
 
 		return "content/report_view_m";
 	}
@@ -166,11 +162,6 @@ public class HeeJeongController {
 		System.out.println(cm_no);
 
 		model.addAttribute("comment_view", cm_commentVO);
-		/*
-		 * model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
-		 * model.addAttribute("memberVO", board_writeVO.getMemberVO());
-		 * model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
-		 */
 
 		return "content/report_view_cm";
 	}
@@ -199,11 +190,6 @@ public class HeeJeongController {
 		System.out.println(t_no);
 
 		model.addAttribute("trade_view", tradeVO);
-		/*
-		 * model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
-		 * model.addAttribute("memberVO", board_writeVO.getMemberVO());
-		 * model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
-		 */
 
 		return "content/report_view_t";
 	}
@@ -216,6 +202,34 @@ public class HeeJeongController {
 		System.out.println(reportVO.getR_type_no());
 					
 		contentService.insertReportT(reportVO);
+
+		return "content/report_success";
+	}
+	
+	// 카페리뷰 신고글 view
+	@RequestMapping(value = "/report_view_cr", method = RequestMethod.GET)
+	public String report_view_cr(HttpServletRequest request, Model model) {
+		System.out.println("report_view_cr");
+					
+		String cr_no = request.getParameter("cr_no");
+
+		Cafe_reviewVO cafe_reviewVO = contentService.selectContentCR(cr_no);
+						
+		System.out.println(cr_no);
+
+		model.addAttribute("cafe_review_view", cafe_reviewVO);
+
+		return "content/report_view_cr";
+	}
+					
+	// 카페리뷰 신고글 쓰기
+	@RequestMapping(value = "/report_cr", method = RequestMethod.GET)
+	public String report_cr(ReportVO reportVO, Model model) {
+		System.out.println("report_cr");
+
+		System.out.println(reportVO.getR_type_no());
+						
+		contentService.insertReportCR(reportVO);
 
 		return "content/report_success";
 	}

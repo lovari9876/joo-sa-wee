@@ -175,7 +175,7 @@
 								<a href="delete?bw_no=${cafe_review.bw_no}">삭제</a>
 							</div>
 							<div class="test_item fourth">
-								<a href="report_view_bw?cr_no=${cafe_review.cr_no}"
+								<a href="content/report_view_cr?cr_no=${cafe_review_view.cr_no}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 							</div>
 						</div>

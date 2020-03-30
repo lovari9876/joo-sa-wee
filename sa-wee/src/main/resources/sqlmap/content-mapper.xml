@@ -147,15 +147,28 @@
 	</insert>
 	
 	<!-- t_no를 가져오기 위해 -->
-	<select id="selectContentCM" resultType="com.soninlawisdice.vo.TradeVO">
-		SELECT T_NO FROM Trade WHERE T_NO = 1
+	<select id="selectContentT" resultType="com.soninlawisdice.vo.TradeVO">
+		SELECT T_NO FROM TRADE WHERE T_NO = 1
 	</select>
 	
 	<!-- 중고거래 신고글 쓰기 -->
-	<insert id="insertReportCM">
+	<insert id="insertReportT">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
 		VALUES (REPORT_SEQ.NEXTVAL, 5, '중고거래', #{r_type_no}, #{r_content},
+		SYSDATE)
+	</insert>
+	
+	<!-- cr_no를 가져오기 위해 -->
+	<select id="selectContentCR" resultType="com.soninlawisdice.vo.Cafe_reviewVO">
+		SELECT CR_NO FROM CAFE_REVIEW WHERE CR_NO = 1
+	</select>
+	
+	<!-- 카페리뷰 신고글 쓰기 -->
+	<insert id="insertReportCR">
+		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
+		R_CONTENT, R_REPORT_DATE)
+		VALUES (REPORT_SEQ.NEXTVAL, 5, '카페리뷰', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
 
