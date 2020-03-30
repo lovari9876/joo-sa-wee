@@ -128,6 +128,15 @@ public class AdminServiceImpl implements AdminService {
 //		return adminMapper.selectRankView(m_no);
 //	}
 
+	// 수정 : 회원정보
+	public void updateMember(MemberVO memberVO) {
+		adminMapper.updateMember(memberVO);
+	}
+		
+	
+	
+	
+	
 	// 글삭제
 	@Override
 	public void selectDelete(Board_writeVO boardVO) {

@@ -57,6 +57,9 @@ public interface AdminMapper {
 	public List<ReportVO> reportTab();
 	
 	
+	// 수정 : 회원정보 수정
+	public void updateMember(@Param("memberVO")MemberVO memberVO);
+	
 	
 	// 삭제
 	@Delete("delete board_write where bw_no = #{bw_no}")

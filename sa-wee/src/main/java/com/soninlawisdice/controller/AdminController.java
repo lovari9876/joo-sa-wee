@@ -62,6 +62,7 @@ public class AdminController {
 	public String report_view(ReportVO reportVO, Model model) throws Exception {
 		int id = reportVO.getR_no();
 		String type = reportVO.getR_type(); 
+		//type을 받아와 type에 따라 글 제목, 댓글 내용, 아이디를 각각 출력한다 
 		
 		ReportVO view = adminService.selectReportView(id, type);
 		model.addAttribute("report_view", view);
@@ -78,6 +79,31 @@ public class AdminController {
 
 		return "admin/user_view";
 	}
+	
+	
+	////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
+	public String updateMember(MemberVO memberVO) throws Exception {
+		
+//		int result = 0;
+		
+//		int id = memberVO.getM_no();
+		
+		String nick = memberVO.getM_nick();
+		System.out.println("updateMember()");
+		System.out.println(nick);
+		 
+		adminService.updateMember(memberVO);
+		
+//		result = 1; //성공!
+		
+		//}
+		
+	
+		return "redirect:user_list";
+	}
+	
 	
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -167,6 +193,7 @@ public class AdminController {
 
 	////////////////////////////////////////////////////////////////////////////
 
+	
 	// ajax
 	@RequestMapping("/report_view2")
 	public String report_view2() {
@@ -174,6 +201,20 @@ public class AdminController {
 		return "admin/report_view2";
 	}
 
+	@RequestMapping("/board_list_trade")
+	public String board_list_trade() {
+
+		return "admin/board_list_trade";
+	}
+	
+	
+	@RequestMapping("/board_list_cafe")
+	public String board_list_cafe() {
+
+		return "admin/board_list_cafe";
+	}
+	
+	
 	@RequestMapping("/notice_list")
 	public String notice_list() {
 

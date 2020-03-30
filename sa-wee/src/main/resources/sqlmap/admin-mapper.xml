@@ -281,7 +281,11 @@
 
 	</select>
 	
-
+	<update id="updateMember" parameterType="com.soninlawisdice.vo.MemberVO" >
+		update member 
+		set m_nick = #{memberVO.m_nick}, m_extra = #{memberVO.m_extra}, m_self = #{memberVO.m_self} 
+		where m_no = #{memberVO.m_no}
+	</update>
 	
 
 	

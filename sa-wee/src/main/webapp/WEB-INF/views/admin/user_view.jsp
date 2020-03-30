@@ -17,7 +17,7 @@
 
 <body>
 
-
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<%@include file="side.jsp"%>
 
 
@@ -40,7 +40,7 @@
 
 						<div class="content-view">
 
-							 <form action="" method = "post" enctype="multipart/form-data">
+							 <form id="viewForm" method="post">
 							 <input type = "hidden" name = "m_no" value = "${user_view.m_no}">
 								<table class="table user_view" >
 									<tr class="row ">
@@ -57,7 +57,7 @@
 									
 									<tr class="row">
 										<td class="cell">닉네임</td>
-										<td class="cell"><input type="text" class="span2" value="${user_view.m_nick}"></td>
+										<td class="cell"><input type="text" name="m_nick" class="span2" value="${user_view.m_nick}"></td>
 									</tr>
 									
 									<tr class="row">
@@ -120,13 +120,13 @@
 									<tr class="row">
 										<td class = "cell span1">비고</td>
 										<td colspan= "3" class="cell span8">
-											<textarea name = "introduce" class="span5" rows="5"><c:if test="${user_view.m_extra != 'n'}">${user_view.m_extra}</c:if></textarea></td>
+											<textarea name = "m_extra" class="span5" rows="5"><c:if test="${user_view.m_extra != 'n'}">${user_view.m_extra}</c:if></textarea></td>
 									</tr> <!-- default값이 n임 : n이면 안뜨게  -->
 
 									<tr class="row">
 										<td class = "cell span1">자기소개</td>
 										<td colspan= "3" class="cell span8">
-											<textarea name = "introduce" class="span5" rows="10">${user_view.m_self}</textarea></td>
+											<textarea name = "m_self" class="span5" rows="10">${user_view.m_self}</textarea></td>
 									</tr>
 
 
@@ -136,16 +136,22 @@
 										<div class="controls">
 											<button type="button" class="btn  pull-left"
 												onclick="location='user_list'">목록</button>
-											<button type="submit" class="btn  pull-right">수정</button>
+											<button class="btn  pull-right" onclick='m_update()'>수정</button>
 											<button type="submit" class="btn  pull-right">탈퇴</button>
 
 										</div>
 									</div>
 								</div>
-
-
 							</form> 
-
+							<script>
+								function m_update(){
+									var modify = document.getElementById("viewForm");
+									modify.action="<c:url value='/admin/updateMember'/>";
+									/* modify.setUrl("<c:url value='/admin/updateMember'/>"); */
+									modify.submit();
+									console.log("modify");
+								}
+							</script>
 
 
 
@@ -167,8 +173,6 @@
 
 	<div class="footer">
 		<div class="container">
-
-
 			<b class="copyright">&copy; 2014 Edmin - EGrappler.com </b> All
 			rights reserved.
 		</div>
@@ -176,10 +180,10 @@
 
 	<!-- <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script> -->
 	
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
+	
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
-	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script> <script src="js/datatables/jquery.dataTables.js" type="text/javascript"></script>
+	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
 
 </body>
 </html>
