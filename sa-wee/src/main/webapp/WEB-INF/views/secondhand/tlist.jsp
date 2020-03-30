@@ -68,10 +68,20 @@
 		      <form action="">		
 		      
 		        <div class="search--div p-1 bg-white rounded rounded-pill shadow-sm mb-4">
-		          <div class="input-group">
+		          <div class="input-group">	  
 		            <div class="input-group-prepend">
 		              <button type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
-		            </div>
+		            </div>		            
+		            <div class="custom-select">
+		              <select><!-- data-trigger="" name="choices-single-defaul" -->
+		                <option placeholder="">선택하세요</option>
+		                <option >작성자</option>
+		                <option >제목</option>
+		                <option >제목+내용</option>
+		                <option>내용</option>
+		                <option>말머리</option>
+		              </select>
+		            </div>			        		           
 		            <input type="search" placeholder="검색어를 입력하세요" aria-describedby="button-addon2" class="form-control border-0 ">
 		          </div>
 		        </div>
@@ -692,13 +702,17 @@
     <script src="js/cassie/jquery-3.2.1.min.js"></script>
     <script src="js/cassie/plugins.js"></script>
     <script src="js/cassie/main.js"></script>
+    
     <!-- header -->
     <script src="js/header/jquery.slicknav.min.js"></script>
 	<script src="js/header/header_hyesoo.js"></script>
 	<script src="js/header/scroll.js"></script>
 	<!-- footer -->
 	<!-- <script src="js/footer/footer_hee.js"></script> --> <!-- scroll to top 이미 있음 -->
-
+	
+	<!-- search -->
+    <script src="js/cassie/search-select.js"></script>
+	
 </body>
 
 </html>

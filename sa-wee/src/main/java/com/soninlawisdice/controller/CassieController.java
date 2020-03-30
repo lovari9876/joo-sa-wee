@@ -45,7 +45,7 @@ public class CassieController {
 
 		// 사이즈 찍어보기
 		System.out.println(iList.size());
-		System.out.println(iList.get(0).toString()); // String key가 대문자임..
+		System.out.println(iList.get(0).toString()); // String key는 반드시 대문자로!
 
 		model.addAttribute("iList", iList);
 
