@@ -35,7 +35,7 @@
 		<collection javaType="com.soninlawisdice.vo.MemberVO"
 			property="memberVO">
 			<id column="m_no" property="m_no" />
-			<result column="m_name" property="m_name" />
+			<result column="m_nick" property="m_nick" />
 		</collection>
 
 		<collection javaType="com.soninlawisdice.vo.SubjectVO"
@@ -48,42 +48,42 @@
 	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 
 		없애도 됨. --> <!-- #{bw_no, jdbcType=INTEGER} -->
 	<!-- 게시글 보기(content_view) -->
-	<select id="selectContentOne" parameterType="int"
+	<select id="selectContentOne" parameterType="String"
 		resultMap="Board_writeVO">
 		SELECT BW.BW_NO, BW.BW_TITLE, BW.BW_CONTENT,
 		BW.BW_WRITTEN_DATE, BW.BW_UPDATED_DATE, BW.BW_HIT,
 		BW.BW_RECOMMEND_NUM, BW.BW_REPORT_NUM, BW.BW_ISLAND, BW.BW_SECRET,
-		M.M_NAME, BT.BT_NAME, S.S_CONTENT
+		M.M_NICK, BT.BT_NAME, S.S_CONTENT
 		FROM BOARD_WRITE BW, MEMBER M,
 		BOARD_TYPE BT, SUBJECT S
 		WHERE BW.M_NO = M.M_NO AND BW.BT_NO = BT.BT_NO
 		AND BW.S_NO = S.S_NO AND
-		BW.BW_NO = 42
+		BW.BW_NO = #{bw_no}
 	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
 
 	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 
 		없애도 됨. -->
 	<!-- 게시글 삭제 -->
 	<delete id="deleteContent">
-		DELETE FROM BOARD_WRITE WHERE BW_NO = 42
+		DELETE FROM BOARD_WRITE WHERE BW_NO = #{bw_no}
 	</delete>
 
 	<!-- 게시글 조회수 -->
 	<update id="upHitContent">
 		UPDATE BOARD_WRITE SET BW_HIT = BW_HIT + 1 WHERE
-		BW_NO = 42
+		BW_NO = #{bw_no}
 	</update>
 
 	<!-- 게시글 추천수 증가 -->
 	<update id="upRecommendContent">
 		UPDATE BOARD_WRITE SET BW_RECOMMEND_NUM =
-		BW_RECOMMEND_NUM +1 WHERE BW_NO = 42
+		BW_RECOMMEND_NUM +1 WHERE BW_NO = #{bw_no}
 	</update>
 
 	<!-- 게시글 추천수 증가하는 거 받아옴 -->
 	<select id="selectRecommendContent" resultType="String">
 		SELECT
-		BW_RECOMMEND_NUM FROM BOARD_WRITE WHERE BW_NO = 42
+		BW_RECOMMEND_NUM FROM BOARD_WRITE WHERE BW_NO = #{bw_no}
 	</select>
 
 	<!-- ReportVO resultMap -->
@@ -116,59 +116,59 @@
 	<insert id="insertReportBW">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, 5, '게시글', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '게시글', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
 	
 	<!-- m_no를 가져오기 위해 -->
 	<select id="selectContentM" resultType="com.soninlawisdice.vo.MemberVO">
-		SELECT M_NO FROM MEMBER WHERE M_NO = 10
+		SELECT M_NO FROM MEMBER WHERE M_NO = #{m_no}
 	</select>
 	
 	<!-- 회원 신고글 쓰기 -->
 	<insert id="insertReportM">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, 5, '회원', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '회원', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
 	
 	<!-- cm_no를 가져오기 위해 -->
 	<select id="selectContentCM" resultType="com.soninlawisdice.vo.CM_commentVO">
-		SELECT CM_NO FROM CM_COMMENT WHERE CM_NO = 1
+		SELECT CM_NO FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
 	
 	<!-- 댓글 신고글 쓰기 -->
 	<insert id="insertReportCM">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, 5, '댓글', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '댓글', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
 	
 	<!-- t_no를 가져오기 위해 -->
 	<select id="selectContentT" resultType="com.soninlawisdice.vo.TradeVO">
-		SELECT T_NO FROM TRADE WHERE T_NO = 1
+		SELECT T_NO FROM TRADE WHERE T_NO = #{t_no}
 	</select>
 	
 	<!-- 중고거래 신고글 쓰기 -->
 	<insert id="insertReportT">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, 5, '중고거래', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '중고거래', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
 	
 	<!-- cr_no를 가져오기 위해 -->
 	<select id="selectContentCR" resultType="com.soninlawisdice.vo.Cafe_reviewVO">
-		SELECT CR_NO FROM CAFE_REVIEW WHERE CR_NO = 1
+		SELECT CR_NO FROM CAFE_REVIEW WHERE CR_NO = #{cr_no}
 	</select>
 	
 	<!-- 카페리뷰 신고글 쓰기 -->
 	<insert id="insertReportCR">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, 5, '카페리뷰', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '카페리뷰', #{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
 	

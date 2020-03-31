@@ -39,10 +39,10 @@ public class HeeJeongController {
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/content_view", method = RequestMethod.GET)
-	public String content(HttpServletRequest request, Model model) {
+	public String content(HttpServletRequest request, Model model, String bw_no) {
 		System.out.println("content_view");
 
-		String bw_no = request.getParameter("bw_no");
+//		String bw_no = request.getParameter("bw_no");
 
 		Board_writeVO board_writeVO = contentService.selectContentOne(bw_no);
 

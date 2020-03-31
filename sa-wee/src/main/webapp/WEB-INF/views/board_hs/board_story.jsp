@@ -121,7 +121,7 @@
 							<tr class="row">
 								<td class = "cell">${dto.bw_no}</td>
 								<td class = "cell">${dto.subjectVO.s_content}</td>
-								<td class = "cell"><a href="content_view?bId=${dto.bw_no}">${dto.bw_title}</a></td>
+								<td class = "cell"><a href="content_view?bw_no=${dto.bw_no}">${dto.bw_title}</a></td>
 								<td class = "cell">${dto.memberVO.m_nick}</td>
 								<td class = "cell">${dto.bw_written_date}</td>
 								<td class = "cell">${dto.bw_hit}</td>

@@ -71,7 +71,7 @@
 							</div>
 						</div>
 						<div>
-							<span class="text-white">작성자 ${memberVO.m_name}</span>
+							<span class="text-white">작성자 ${memberVO.m_nick}</span>
 							<span class="slash">&bullet;</span> 
 							<span class="text-white">작성일 ${content_view.bw_written_date}</span> 
 							<span class="slash">&bullet;</span>
@@ -163,7 +163,7 @@
 					<br />
 					<br />
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="/list" method="get">
+					<form action="/" method="get">
 						<div class="test">
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
