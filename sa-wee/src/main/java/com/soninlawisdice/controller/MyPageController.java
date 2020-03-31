@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.soninlawisdice.service.MyPageService;
-import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 
 
@@ -22,7 +21,7 @@ public class MyPageController {
 	private MyPageService myPageService;
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(HttpSession session, Model model, MemberVO memberVO, CM_commentVO commentVO) throws Exception {
+	public String mypage(HttpSession session, Model model, MemberVO memberVO) throws Exception {
 		System.out.println("mypage()");
 		
 		memberVO = (MemberVO) session.getAttribute("member");
