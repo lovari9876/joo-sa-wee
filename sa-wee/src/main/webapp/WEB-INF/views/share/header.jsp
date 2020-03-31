@@ -49,8 +49,8 @@
 								<li><a href="board_creation">창작 보드게임</a></li>
 							</ul>
 						</li>
-						<li><a href="cafe_map">보드게임카페</a>
-							<ul>
+						<li><a class ="cafe" href="cafe_map">보드게임카페</a>
+							<ul class = "sub-menu">
 								<li><a href="cafe_map">보드게임 카페</a></li>
 								<li><a href="selectAllReviewList">카페리뷰 리스트</a></li>
 							</ul>

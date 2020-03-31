@@ -266,6 +266,18 @@ button span.lnr-magnifier {
 	background-position: right center;
 }
 
+.main-menu .cafe:after {
+	position: absolute;
+	content: "";
+	width: 20px;
+	height: 20px;
+	right: 0;
+	top: 1px;
+	background-image: url("../../images/header/icons/arrow-down.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
 /* 안씀 */
 .main-menu li a i {
 	color: #928d92;
