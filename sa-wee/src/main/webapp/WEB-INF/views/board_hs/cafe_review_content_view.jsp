@@ -25,6 +25,10 @@
 <link rel="stylesheet" href="css/board_hj/magnific-popup.css">
 <link rel="stylesheet" href="css/board_hj/bootstrap.min.css" />
 
+<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
+
 <!-- tooltip, popover -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -43,7 +47,7 @@
 
 </head>
 <body id="top">
-	<input type="hidden" name="bw_no" value="${cafe_review.cr_no}">
+	<input type="hidden" name="cr_no" value="${cafe_review.cr_no}">
 
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
@@ -60,7 +64,7 @@
 						<!-- 게시판이름과 게시글 작성자 -->
 						<div class="title">
 							<div class="title_item frist">
-								<h4 id="community">${cafeVO.c_title}</h4>
+								<h4 id="community">${cafe_review.cafeVO.c_title}</h4>
 								<span class="slash">&bullet;</span> 
 								
 							</div>
@@ -71,7 +75,7 @@
 							</div>
 						</div>
 						<div>
-							<span class="text-white">작성자 ${memberVO.m_nick}</span>
+							<span class="text-white">작성자 ${cafe_review.memberVO.m_nick}</span>
 							<span class="slash">&bullet;</span> 
 							<span class="text-white">작성일 ${cafe_review.cr_written_date}</span> 
 							<span class="slash">&bullet;</span>
@@ -156,14 +160,14 @@
 							data-toggle="tooltip" data-container=".tooltip-purple"
 							data-placement="top" title="추천 +1">
 						<p>
-							<span>(</span><span class="rec">${cafe_view.cr_recommend_num}</span><span>)</span>
+							<span>(</span><span class="rec">${cafe_review.cr_recommend_num}</span><span>)</span>
 						</p>
 					</div>
 
 					<br />
 					<br />
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="/list" method="get">
+					<form action="" method="get">
 						<div class="test">
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
@@ -222,7 +226,7 @@
 	<script src="js/board_hj/main.js"></script>
 
 	<script src="js/board_hj/tooltip.js"></script>
-	<script src="js/board_hj/recommed.js"></script>
+	<script src="js/board_hs/review_recommend.js"></script>
 	<script src="js/board_hj/popover.js"></script>
 
 	<!-- Java Script for header

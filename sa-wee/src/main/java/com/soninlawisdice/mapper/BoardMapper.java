@@ -64,10 +64,22 @@ public interface BoardMapper {
 	//카페정보 가져오기
 	public CafeVO selectCafeInfo(@Param("c_no")String c_no);
 	
+	//카페 리뷰 조회수 올리기
+	public void review_uphit(@Param("cr_no")String cr_no);
+	
 	//카페 리뷰 추천수 올리기
-	public void cafe_recommend(@Param("cr_no")String cr_no);
+	public void review_recommend(@Param("cr_no")String cr_no);
 	
 	//올라간 추천수 가져오기
-	public String cafe_rec(@Param("cr_no")String cr_no);
+	public String review_rec(@Param("cr_no")String cr_no);
+	
+	//카페 번호로 카페 이름 가져오기
+	public String get_CafeName(@Param("c_no") String c_no);
+	
+	//리뷰 작성하기
+	public void insertReview(@Param("cafe_reviewVO") Cafe_reviewVO cafe_reviewVO);
+	
+	//리뷰 수정하기
+	public void review_modify(@Param("cafe_reivewVO")Cafe_reviewVO cafe_reviewVO);
 	
 }

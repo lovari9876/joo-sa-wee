@@ -9,6 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="img/favicon.ico" rel="shortcut icon" />
 
+<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
+
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i,900,900i"
@@ -230,7 +234,7 @@
 
 				<!-- 버튼에 링크 걸기 -->
 				<button class="write-view-btn" type="button"
-					onclick="location.href='write_view'">글쓰기</button>
+					onclick="location.href='write_view?bt_no=1'">글쓰기</button>
 
 
 			</div>

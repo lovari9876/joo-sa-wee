@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,10 @@
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="img/favicon.ico" rel="shortcut icon" />
+
+<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
 
 <!-- Google Font -->
 <link
@@ -87,7 +92,7 @@
 				<div class = "cafe">
 				<!-- 카페 이름 -->
 				<div class="cafe-name" id = "cafe-name">
-					<h4>레드버튼 신촌점</h4>
+					<h4>${cafe_info.c_title}</h4>
 				</div>
 
 				<!-- 카페 사진 -->
@@ -372,11 +377,20 @@
 						
 						<div class = "review-table">
 							<table class="table">
+								
+								<tr class="row header">
+									<td class="cell">글 번호</td>
+									<td class="cell">글 제목</td>
+									<td class="cell">작성자</td>
+									<td class="cell">작성일</td>
+									<td class="cell">조회수</td>
+									<td class="cell">추천수</td>
+								</tr>
+							
 								<c:forEach items="${list}" var="list">
 									<tr class="row">
 										<td class = "cell">${list.cr_no}</td>
-										<td class = "cell">${list.cafeVO.c_title}</td>
-										<td class = "cell"><a href="cafe_review?cr_no=${list.cr_no}">${list.cr_title}</a></td>
+										<td class = "cell"><a href="selectReviewOne?cr_no=${list.cr_no}">${list.cr_title}</a></td>
 										<td class = "cell">${list.memberVO.m_nick}</td>
 										<td class = "cell">${list.cr_written_date}</td>
 										<td class = "cell">${list.cr_hit}</td>
@@ -386,7 +400,7 @@
 	
 								</table>	
 							</div>
-									<button class="write-btn" type="button" onclick="location.href='cafe_review_write'">글쓰기</button>
+									<button class="write-btn" type="button" onclick="location.href='cafe_review_write?c_no='+${cafe_info.c_no}">글쓰기</button>
 						</div>
 									
 				</div>

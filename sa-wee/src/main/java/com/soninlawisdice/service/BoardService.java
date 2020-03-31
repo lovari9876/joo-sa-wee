@@ -64,10 +64,23 @@ public interface BoardService {
 	//카페정보 가져오기
 	public CafeVO selectCafeInfo(String c_no);
 
+	//카페 리뷰 조회수 올리기
+	public void review_uphit(String cr_no);
+	
 	// 카페 리뷰 추천수 올리기
-	public void cafe_recommend(String cr_no);
+	public void review_recommend(String cr_no);
 
 	// 올라간 추천수 가져오기
-	public String cafe_rec(String cr_no);
+	public String review_rec(String cr_no);
+	
+	//카페 번호로 카페 이름 가져오기
+	public String get_CafeName(String c_no);
+	
+	//리뷰 작성하기
+	public void insertReview(Cafe_reviewVO cafe_reviewVO);
+		
+	//리뷰 수정하기
+	public void review_modify(Cafe_reviewVO cafe_reviewVO);
+		
 
 }

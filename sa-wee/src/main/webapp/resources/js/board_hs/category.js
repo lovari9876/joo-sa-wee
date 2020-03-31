@@ -15,6 +15,7 @@ $(document).ready(function(){
 		//Jackson 이용 List<VO> or List<Map<String,String>> 형태 JSON
 
 		var ARR = [
+					{"sub":"선택하세요","board":"선택하세요"},
 					{"sub":"잡담","board":"보드이야기"},
 					{"sub":"노하우","board":"보드이야기"},
 					{"sub":"토론","board":"보드이야기"},
@@ -91,7 +92,7 @@ $(document).ready(function(){
 
 		for(var i=0;i<ARR_TEMP.length;i++){
 
-			appendYear+="<option value='"+(i+1)+"'>"+ARR_TEMP[i]+"</option>";
+			appendYear+="<option value='"+(i)+"'>"+ARR_TEMP[i]+"</option>";
 		}
 		
 		$("#board").empty().append(appendYear);
@@ -138,6 +139,8 @@ $(document).ready(function(){
 				appendMonth+="<option value='"+(i+14)+"'>"+ARR_TEMP[i]+"</option>";
 			}else if(firstSelect == 6){
 				appendMonth+="<option value='"+(i+17)+"'>"+ARR_TEMP[i]+"</option>";
+			}else if(firstSelect == 0){
+				appendMonth = "<option value='"+(i)+"'>"+ARR_TEMP[i]+"</option>"
 			}
 						
 		}

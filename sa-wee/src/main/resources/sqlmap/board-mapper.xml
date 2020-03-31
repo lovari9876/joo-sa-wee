@@ -205,26 +205,46 @@
 		select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_hit, cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
 		from cafe_review cr, member m, cafe c 
 		where cr.m_no = m.m_no and cr.c_no = c.c_no
-		and cr.c_no = #{c_no}
+		and cr.c_no = 1 <!-- #{c_no} -->
 		order by cr.cr_no desc
 	</select>
 	
 	<!-- 카페 정보 가져오기 -->
 	<select id = "selectCafeInfo" resultType = "com.soninlawisdice.vo.CafeVO">
-		select * from cafe where c_no = #{c_no}
+		select * from cafe where c_no = 1 <!-- #{c_no} -->
 	</select>
 	
+	<!-- 카페 리뷰 조회수 올리기 -->
+	<update id = "review_uphit">
+		update cafe_review set cr_hit = cr_hit+1 where cr_no = #{cr_no}
+	</update>
 	
 	<!-- 추천하기 눌렀을때 cr_recommend_num 증가하는 -->
-	<update id = "cafe_recommend">
+	<update id = "review_recommend">
 		update cafe_review set cr_recommend_num = cr_recommend_num+1 where cr_no = #{cr_no}
 	</update>
 	
 	<!-- 추천하기 후 숫자 올라가는거 ajax 로 하기위한.  -->
-	<select id="cafe_rec" resultType = "string">
+	<select id="review_rec" resultType = "string">
 		select cr_recommend_num from cafe_review where cr_no = #{cr_no}
 	</select>
 	
+	<!-- 카페 번호로 카페 이름만 가져오기 -->
+	<select id = "get_CafeName" resultType = "string">
+		select c_title from cafe where c_no = #{c_no}
+	</select>
+	
+	<!-- 회원번호:임시 -->
+	<!-- 카페 리뷰 작성하기 -->
+	<insert id="insertReview" parameterType="com.soninlawisdice.vo.Cafe_reviewVO">
+		insert into cafe_review (cr_no, m_no, bt_no, c_no,  cr_title, cr_content, cr_hit, cr_recommend_num, cr_report_num, cr_island) 
+		values ( cafe_review_seq.nextval, 5, 11, #{cafe_reviewVO.c_no}, #{cafe_reviewVO.cr_title}, #{cafe_reviewVO.cr_content}, 0, 0, 0, 0 ) 
+	</insert>
+	
+	<!--리뷰 수정하기  -->
+	<update id="review_modify">
+		update cafe_review set cr_title = #{cafe_reivewVO.cr_title}, bw_content = #{cafe_reivewVO.cr_content} where cr_no = #{cafe_reivewVO.cr_no}
+	</update>
 	
 	
 	

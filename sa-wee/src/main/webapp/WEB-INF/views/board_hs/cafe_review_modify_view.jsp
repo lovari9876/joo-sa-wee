@@ -40,7 +40,7 @@
 
 <link rel="stylesheet" href="css/board_hs/writestyle.css" />
 
-
+<script src = "js/board_hs/ckeditor.js" ></script>
 
 </head>
 <body id = "top">
@@ -56,7 +56,6 @@
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
 	<!-- header include end -->
 	
-	
 
 
 	<div class="write-section">
@@ -66,32 +65,38 @@
 			<div class="write-view">
 
 				<div class="writeName">
-					<h3>리뷰 작성하기</h3>
+					<h3>리뷰 수정하기</h3>
 				</div>
-				<div class = "cafe-square"></div>
+				<div class = "square"></div>
 				
+				<!-- -->
+				<!-- 수정하는 부분의 각각 value 를 ex) ${detail.TITLE} 이런식으로 받아와야함-->
+				<!--  -->
 				
-				<form action="insertReview" enctype="multipart/form-data">
+				<form action="modify" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
-						
-						<input type = "hidden" name = "c_no" value = "${c_no}">
-						
-						<!-- 입력창 -->
+						<input type="hidden" name="bId" value="${content_view.bw_no}"/>
 						<tr class = "row">
-							<td class = "cell">${c_title}</td>
+							<td class = "cell">
+								<select id = "board" name = "board_no" ></select> 
+								<select id = "sub" name = "board_no2"></select>
+							</td>
 						</tr>
+
+						<tr class="row">
+							<td class="cell"><input type="text" name="bw_title" value = "${content_view.bw_title}"  placeholder = "제목을 입력하세요"></td>
+							
+						</tr>
+
+						<tr class="row">
+							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요">${content_view.bw_content}</textarea></td>
+							<%-- <td class="cell"><textarea name="bwTitle" placeholder = "내용을 입력하세요">이건 여기에 ${detail.CONTENTS } 이런식으로</textarea></td> --%>
+						</tr>
+
 						
-						<tr class="row">
-							<td class="cell"><input type="text" name="cr_title" placeholder = "제목을 입력하세요"></td>
-						</tr>
-
-						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="cr_content" placeholder = "내용을 입력하세요"></textarea></td>
-						</tr>
-
 					</table>
 					<button class = "list" type="button" onclick="location.href='list'">목록</button>
-					<button class = "write-btn" type = "submit">작성완료</button>
+					<button class = "modify-btn" type = "submit">수정 완료</button>
 				</form>
 
 
@@ -101,12 +106,14 @@
 		</div>
 	</div>
 
-		<!-- footer 부분 -->
-		<!-- footer include start -->
-			<%@ include file="/WEB-INF/views/share/footer.jsp" %>
-		<!-- footer include end -->
-
-
+	
+	
+	
+	<!-- footer 부분 -->
+	<!-- footer include start -->
+	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
+	<!-- footer include end -->
+	
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
@@ -122,7 +129,48 @@
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	
+	<script src="js/board_hs/category.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
+	
+	
+	
+	<!-- ckEditor 관련 -->
+	
+	<script type="text/javascript">
+			var myEditor;
+			ClassicEditor
+				.create( document.querySelector( '#editor' ), {
+					
+					
+					
+					
+					ckfinder: {
+				        uploadUrl: '${pageContext.request.contextPath}/fileupload' // 내가 지정한 업로드 url (post로 요청감)
+				       
+					},
+					
+					toolbar: [ 'heading', '|',  'bold', 'italic','fontSize','fontColor', 'fontFamily', 'alignment:left', 'alignment:center', 'alignment:right','link', 'bulletedList', 'numberedList', 'blockQuote','insertTable',  'imageUpload', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
+
+					image : {
+						styles : ['full', 'alignLeft', 'alignRight']
+					},
+					
+					uiClor : '#FFFFFF',
+					
+					removePlugins: [ 'ImageCaption' ],
+					
+					alignment: {
+			            options: [ 'left', 'center', 'right' ]
+			        }
+				} )
+				.then( editor => {
+			        console.log( 'Editor was initialized', editor );
+			        myEditor = editor;
+		    } )
+			.catch( error => {
+			    console.error( error );
+			} );
+		</script>
+
 </body>
 </html>

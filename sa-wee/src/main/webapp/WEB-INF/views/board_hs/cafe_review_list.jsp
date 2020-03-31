@@ -15,6 +15,10 @@
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,600"
 	rel="stylesheet">
+	
+	<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="css/board_hs/bootstrap.min.css" />
@@ -110,15 +114,15 @@
 							</tr>
 
 						<tbody class = "tbody">
-							<c:forEach items="${list}" var="dto">
+							<c:forEach items="${list}" var="list">
 							<tr class="row">
-								<td class = "cell">${dto.cr_no}</td>
-								<td class = "cell">${dto.c_title}</td>
-								<td class = "cell"><a href="cafe_review?cr_no=${dto.cr_no}">${dto.cr_title}</a></td>
-								<td class = "cell">${dto.m_nick}</td>
-								<td class = "cell">${dto.cr_written_date}</td>
-								<td class = "cell">${dto.cr_hit}</td>
-								<td class = "cell">${dto.cr_recommend_num}</td>
+								<td class = "cell">${list.cr_no}</td>
+								<td class = "cell">${list.cafeVO.c_title}</td>
+								<td class = "cell"><a href="selectReviewOne?cr_no=${list.cr_no}">${list.cr_title}</a></td>
+								<td class = "cell">${list.memberVO.m_nick}</td>
+								<td class = "cell">${list.cr_written_date}</td>
+								<td class = "cell">${list.cr_hit}</td>
+								<td class = "cell">${list.cr_recommend_num}</td>
 							</tr>
 							</c:forEach>
 						</tbody>

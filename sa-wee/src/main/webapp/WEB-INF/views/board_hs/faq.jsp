@@ -8,6 +8,9 @@
 	document.getElementsByTagName("html")[0].className += " js";
 </script>
 <link rel="stylesheet" href="css/faq/style_faq.css">
+<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
 <title>FAQ</title>
 
 </head>

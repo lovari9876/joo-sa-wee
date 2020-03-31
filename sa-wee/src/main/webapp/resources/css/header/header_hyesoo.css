@@ -266,7 +266,7 @@ button span.lnr-magnifier {
 	background-position: right center;
 }
 
-.main-menu .cafe:after {
+.main-menu .board_cafe:after {
 	position: absolute;
 	content: "";
 	width: 20px;

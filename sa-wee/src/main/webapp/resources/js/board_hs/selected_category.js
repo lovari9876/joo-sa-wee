@@ -1,6 +1,17 @@
 $(document).ready(function(){
 
 	
+	$(function(){
+	
+		
+		
+		
+		
+		
+		
+		
+	})
+	
 	
 
 });
