@@ -53,8 +53,8 @@
 						</div>
 						<div class="col-md-4 eml-mob">
 							<ul>
-								<li>작성글 수 : </li>
-								<li>댓글 수 : </li>
+								<li>작성글 수 : ${myWriteCount}</li>
+								<li>댓글 수 : ${myReplyCount}</li>
 							</ul>
 						</div>
 						<div class="col-md-4 eml-mob">
