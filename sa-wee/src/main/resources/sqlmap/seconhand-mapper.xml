@@ -10,28 +10,54 @@
 	
 	<!-- ========== for island list =========== -->
 
+	<resultMap id="memberMap" type="com.soninlawisdice.vo.MemberVO" >
+			<id column="m_no" property="m_no"/>
+			<result column="m_id" property="m_id"/>	
+			<result column="m_nick" property="m_nick"/>
+			<result column="m_id" property="m_id"/>
+	</resultMap>
 	
-	<select id="selectTradeList" resultType="com.soninlawisdice.vo.TradeVO">
+	<select id="selectTradeList" resultType="com.soninlawisdice.vo.TradeVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
+	
 		SELECT 
-			T.*, M.M_NICK 
-		FROM
-			TRADE T 
-		left join 
-			MEMBER M
-		on
-			T.M_NO = M.M_NO
+			T.*
+		FROM (
+				SELECT 
+					T.*, M.M_NICK, ROW_NUMBER() OVER(ORDER BY T_NO DESC) AS RNUM 
+				FROM
+					TRADE T
+				LEFT JOIN
+					MEMBER M
+				ON T.M_NO = M.M_NO
+				WHERE 
+					1=1 <include refid="search"></include>
+				ORDER BY
+					T_WRITTEN_DATE DESC
+			) T
 		ORDER BY
-			T_WRITTEN_DATE DESC
+				T_WRITTEN_DATE DESC
+				
+	</select> <!-- 1=1 조건 달아야, 처음에 검색어 없이 호출시에도, WHERE 하나만 남아서 BadGrammarException이 뜨지 않는다.. -->
+	
+	<select id="tradeListCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType="int">
+
+			SELECT 
+				COUNT(T_NO)
+			FROM 
+				TRADE
+			WHERE 
+				1=1 <include refid="search"></include>	
+			AND T_NO > 0
+
 	</select>
-
-<!-- SELECT T.*, M.M_NICK FROM TRADE T, MEMBER M 
-WHERE T_ISLAND != 0 AND T.M_NO = M.M_NO
-ORDER BY T_WRITTEN_DATE DESC;  
-
-SELECT T.*, M.M_NICK FROM TRADE T left join MEMBER M 
-on T.M_NO = M.M_NO
-WHERE T_ISLAND != 0 
-ORDER BY T_WRITTEN_DATE DESC; -->
-
+	
+	<sql id="search">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND T_TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND T_CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND M_NICK LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">AND (T_TITLE LIKE '%' || #{keyword} || '%') or (T_CONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
 
 </mapper>

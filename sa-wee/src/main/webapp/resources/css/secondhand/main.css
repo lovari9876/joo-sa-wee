@@ -484,215 +484,6 @@ input, textarea, select, pre, blockquote, figure, table, p, ul, ol, dl,
 	margin-bottom: 3rem;
 }
 
-/* ------------------------------------------------------------------- 
- * ## pace.js styles - minimal
- * ------------------------------------------------------------------- */
-.pace {
-	-webkit-pointer-events: none;
-	pointer-events: none;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
-}
-
-.pace-inactive {
-	display: none;
-}
-
-.pace .pace-progress {
-	background: #FFFFFF;
-	position: fixed;
-	z-index: 900;
-	top: 0;
-	right: 100%;
-	width: 100%;
-	height: 4px;
-}
-
-.oldie .pace {
-	display: none;
-}
-
-/* ===================================================================
- * # preloader (line scale)
- *
- * ------------------------------------------------------------------- */
-#preloader {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background: #050505;
-	z-index: 800;
-	height: 100%;
-	width: 100%;
-	display: table;
-}
-
-.no-js #preloader, .oldie #preloader {
-	display: none;
-}
-
-#loader {
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
-}
-
-.line-scale>div:nth-child(1) {
-	-webkit-animation: line-scale 1s -0.4s infinite
-		cubic-bezier(0.2, 0.68, 0.18, 1.08);
-	animation: line-scale 1s -0.4s infinite
-		cubic-bezier(0.2, 0.68, 0.18, 1.08);
-}
-
-.line-scale>div:nth-child(2) {
-	-webkit-animation: line-scale 1s -0.3s infinite
-		cubic-bezier(0.2, 0.68, 0.18, 1.08);
-	animation: line-scale 1s -0.3s infinite
-		cubic-bezier(0.2, 0.68, 0.18, 1.08);
-}
-
-.line-scale>div:nth-child(3) {
-	-webkit-animation: line-scale 1s -0.2s infinite
-		cubic-bezier(0.2, 0.68, 0.18, 1.08);
-	animation: line-scale 1s -0.2s infinite
-		cubic-bezier(0.2, 0.68, 0.18, 1.08);
-}
-
-.line-scale>div:nth-child(4) {
-	-webkit-animation: line-scale 1s -0.1s infinite
-		cubic-bezier(0.2, 0.68, 0.18, 1.08);
-	animation: line-scale 1s -0.1s infinite
-		cubic-bezier(0.2, 0.68, 0.18, 1.08);
-}
-
-.line-scale>div:nth-child(5) {
-	-webkit-animation: line-scale 1s 0s infinite
-		cubic-bezier(0.2, 0.68, 0.18, 1.08);
-	animation: line-scale 1s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
-}
-
-.line-scale>div {
-	background-color: #fff;
-	width: 4px;
-	height: 35px;
-	border-radius: 2px;
-	margin: 2px;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-	display: inline-block;
-}
-
-@-webkit-keyframes line-scale { 0% {
-	-webkit-transform: scaley(1);
-	transform: scaley(1);
-}
-
-50% {
--webkit-transform: scaley(0.4);
-transform: scaley
-
-
-(0
-.4
-
-
-);
-}
-100%
-{
--webkit-transform
-
-
-:
-
- 
-
-scaley
-
-
-(1);
-transform
-
-
-:
-
- 
-
-scaley
-
-
-(1);
-}
-}
-@
-keyframes line-scale { 0% {
-	-webkit-transform: scaley(1);
-	transform: scaley(1);
-}
-
-50%
-{
--webkit-transform
-
-
-:
-
- 
-
-scaley
-
-
-(0
-.4
-
-
-);
-transform
-
-
-:
-
- 
-
-scaley
-
-
-(0
-.4
-
-
-);
-}
-100%
-{
--webkit-transform
-
-
-:
-
- 
-
-scaley
-
-
-(1);
-transform
-
-
-:
-
- 
-
-scaley
-
-
-(1);
-}
-}
-
 /* ===================================================================
  * # forms
  *
@@ -2863,66 +2654,6 @@ to {
 }
 
 
-/* ===================================================================
- * # s-styles : 무인도 게시판 ~~!!
- *
- * ------------------------------------------------------------------- */
- 
- .s-styles { 	
-	/* background-color: #948E99;
-	background-image: url('../../images/cassie/Talking-To-Mice-Elf.jpg');
-	background-repeat: no-repeat;
-	*/
-	background: #948E99;  /* fallback for old browsers */
-	background: -webkit-linear-gradient(to bottom, #2E1437, #948E99, #B9B0C1, #E5E2E8, #E5E2E8, #E5E2E8, #E5E2E8, #E5E2E8);  /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(to bottom, #2E1437, #948E99, #B9B0C1, #E5E2E8, #E5E2E8, #E5E2E8, #E5E2E8, #E5E2E8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-		
-	padding-top: 12rem;
-	padding-bottom: 12rem;
-}
-
-.s-styles .section-intro h1 {
-    margin-top: 0;
-}
-
-.s-styles h1 {
-	font-family: 'ONsongganggasaB';
-	font-size: 10rem;
-}
-
-.s-styles .lead {
-	font-family: 'ONsongganggasaB';
-	font-weight: 800;
-	color: rgba(0, 0, 0, 0.5);
-}
-
-.island--table {
-    display: table;
-    border-collapse: collapse; /* seperate로 하면 선이 끊어진다! */
-    white-space: normal;
-    line-height: normal;
-    font-weight: normal;
-    font-size: medium;
-    font-style: normal;
-    text-align: start;
-    border-spacing: 2px;
-    border-color: #a593bb ;
-    font-variant: normal;
-}
-
-.island--table th, .island--table td {
-	border-color: #a593bb ;
-	border-spacing: 0;
-	border-collapse: collapse ;
-}
-
-.island--table tr:not(.table-header):hover {
-	background-color: #564569;
-	cursor: pointer;
-	color: white;
-}
-
-
 /* ------------------------------------------------------------------- 
  * 검색창! 개별 속성 및 부트스트랩 가져옴!
  * .search--bar 이하로 속성 부여
@@ -2936,6 +2667,12 @@ to {
   border-bottom-width: 1px;
   border-radius: 0;
   padding-left: 0;
+}
+
+.search--div input[type="email"], input[type="number"], input[type="search"], input[type="text"],
+	input[type="tel"], input[type="url"], input[type="password"], textarea,
+	select {
+	font-size: 13px !important;
 }
 
 .search--bar {
@@ -3016,7 +2753,7 @@ to {
     border: .2rem hidden #c5c5c5;
     margin-bottom: 0;
     height: 4rem;
-    padding: 0 2.5rem 0 2rem;
+    padding: 0 1.5rem 0 2rem;
 }
 
 /* 돋보기 친구 */
@@ -3048,19 +2785,74 @@ to {
 	border: 0 !important
 }
 
-/* 검색창 for 무인도 게시판 */
-.search--island .fa {
-	color: #535353;
+.search--div input[type="search"] {
+	margin-left: 1.3rem;
 }
 
-.search--island .bg-island {
-	background-color: #B4AFB5;
+/* ============ search--select ============== */
+/*the container must be positioned relative:*/
+.search--div .custom-select {
+  position: relative;
+  font-family: Arial;
+  width: 110px;
+  font-size: 13px;
 }
 
-.search--island .shadow-sm {
-	box-shadow: 0 .170rem .50rem rgba(65, 41, 73, 0.4) !important;
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
 }
 
+.select-selected {
+  background-color: white;
+  font-color: #272727;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after { 
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #9575df transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #9575df transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #272727;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: white;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: #dacff3;
+}
 
 
 /* -------------------------------------------------------------------

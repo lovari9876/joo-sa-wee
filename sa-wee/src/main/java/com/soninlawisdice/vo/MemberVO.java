@@ -26,13 +26,13 @@ public class MemberVO {
 	private Timestamp m_indate; // 가입일
 	private Timestamp m_outdate; // 탈퇴일
 	private String m_out; // 탈퇴여부
-	private int m_report_num; // 신고수
-	private String m_extra; // 비고
-	private int f_no; // 파일번호
+	private int m_report_num; // 파일번호
+	private String m_extra; // 신고수
+	private int f_no; // 비고
 
-	
-	
-	public MemberVO() {}
+
+	public MemberVO() {
+	}
 
 	public MemberVO(int m_no, String m_id, String m_pw, String m_name, int m_birth, String m_nick,
 			String m_gender, int m_point, String m_phone, String m_email, int m_post, String m_addr1, String m_addr2,
