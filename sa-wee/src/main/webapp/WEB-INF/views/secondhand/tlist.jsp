@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page session="false" %>
 
 <html class="no-js" lang="UTF-8">
 <head>
@@ -65,24 +64,25 @@
 		    <div class="search--box rounded">
 		
 		      <!-- Custom rounded search bars with input group -->
-		      <form action="">		
+		      <form role="form">		
 		      
 		        <div class="search--div p-1 bg-white rounded rounded-pill shadow-sm mb-4">
 		          <div class="input-group">	  
 		            <div class="input-group-prepend">
-		              <button type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
+		              <button id="searchBtn" type="button" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
 		            </div>		            
 		            <div class="custom-select">
 		              <select><!-- data-trigger="" name="choices-single-defaul" -->
-		                <option placeholder="">선택하세요</option>
-		                <option >작성자</option>
-		                <option >제목</option>
-		                <option >제목+내용</option>
-		                <option>내용</option>
+		                <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
+		                <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+		                <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/> >제목</option>
+		                <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+		                <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 		                <option>말머리</option>
 		              </select>
 		            </div>			        		           
-		            <input type="search" placeholder="검색어를 입력하세요" aria-describedby="button-addon2" class="form-control border-0 ">
+		            <input type="search" name="keyword" id="keywordInput" value="${scri.keyword}" placeholder="검색어를 입력하세요"
+		           		   aria-describedby="button-addon2" class="form-control border-0 ">
 		          </div>
 		        </div>
 		        		
@@ -128,7 +128,7 @@
 	                            
 	                        </div>
 	                        <div class="entry__excerpt">
-	                            <p>${tItem.t_content}</p>
+	                            <p>${tItem.m_nick}</p>
 	                        </div>
 	                        <div class="entry__meta">
 	                            <span class="entry__meta-links">
@@ -166,7 +166,7 @@
 	                            
 	                        </div>
 	                        <div class="entry__excerpt">
-	                            <p>${tItem.t_content}</p>
+	                            <p>${tItem.m_nick}</p>
 	                        </div>
 	                        <div class="entry__meta">
 	                            <span class="entry__meta-links">

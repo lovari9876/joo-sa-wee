@@ -3,17 +3,21 @@ package com.soninlawisdice.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
+import com.soninlawisdice.vo.PageMaker;
+import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 
 @Controller
@@ -27,15 +31,28 @@ public class CassieController {
 	private SecondhandService secondhandService;
 
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
-	public String tlist(Model model) {
+	public String tlist(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		// 스프링 컨테이너가 
+		// 	SearchCriteria scri = new SearchCriteria();
+		// 	model.attribute("scri", scri)
+		// 를 자동으로 해준다.
+	
 		logger.info("tlist");
-
-		ArrayList<TradeVO> tList = secondhandService.selectTradeList();
-
+		
+		scri.setPerPageNum(20);
+		
+		List<TradeVO> tList = secondhandService.selectTradeList(scri);
 		model.addAttribute("tList", tList);
 
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(secondhandService.tradeListCount(scri));
+		
+		model.addAttribute("pageMager", pageMaker );
+		
 		return "secondhand/tlist";
 	}
+
 
 	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
 	public String island_list(Model model) {
@@ -52,6 +69,7 @@ public class CassieController {
 		return "island/island_list";
 	}
 
+	
 	@RequestMapping(value = "/island/list", method = RequestMethod.GET)
 	public String list(Model model) {
 		logger.info("islandList");
