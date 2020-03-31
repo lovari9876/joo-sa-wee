@@ -16,4 +16,5 @@ public interface JoinService {
 	// 로그인
 	public MemberVO login(String m_id, String m_pw) throws Exception;
 
+	
 }

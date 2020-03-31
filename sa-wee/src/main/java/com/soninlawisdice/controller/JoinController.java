@@ -24,9 +24,12 @@ public class JoinController {
 
 	// 회원가입
 	@RequestMapping(value = "/join_check", method = RequestMethod.GET)
-	public String Join() throws Exception {
+	public String Join(MemberVO memberVO) throws Exception {
 		System.out.println("join_check() 성공");
 
+		System.out.println(memberVO.getM_id());
+
+		
 		return "join/join";
 	}
 
@@ -80,8 +83,10 @@ public class JoinController {
 
 	
 	@RequestMapping(value = "/login_check", method = RequestMethod.GET)
-	public String login_check(Locale locale, Model model) {
+	public String login_check(MemberVO memberVO, Model model) throws Exception{
 		System.out.println("login_check()");
+
+		System.out.println(memberVO.getM_id());
 
 		return "login/login";
 	}
@@ -112,9 +117,10 @@ public class JoinController {
 
 		return "redirect:/login_check";
 	}
-
+	
+	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session) throws Exception{
 		System.out.println("logout()");
 		
 		session.invalidate();

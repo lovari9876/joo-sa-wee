@@ -16,12 +16,12 @@ public class JoinServiceImpl implements JoinService {
 	public JoinServiceImpl() {
 	}
 
-	// 회원가입
 	public JoinServiceImpl(JoinMapper joinMapper) {
 		super();
 		this.joinMapper = joinMapper;
 	}
 
+	// 회원가입
 	@Override
 	public void join(MemberVO memberVO) throws Exception {
 		joinMapper.join(memberVO);
@@ -45,5 +45,7 @@ public class JoinServiceImpl implements JoinService {
 	public MemberVO login(String m_id, String m_pw) throws Exception{
 		return joinMapper.login(m_id, m_pw);
 	}
+	
+
 	
 }

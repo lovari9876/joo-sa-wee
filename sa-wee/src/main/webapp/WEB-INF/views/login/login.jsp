@@ -97,7 +97,9 @@
 				<div class="text-center p-t-37 p-b-30">
 						<span class="txt1"> ${member.m_id}님 환영합니다 </span>
 					</div>
-				<a href="/logout" class="txt3 hov1"> 로그아웃 </a>
+				<a href="/logout" class="txt3 hov1">로그아웃</a>
+			
+				<a href="/mypage" class="txt3 hov1">마이페이지</a>
 			</c:if>
 			
 

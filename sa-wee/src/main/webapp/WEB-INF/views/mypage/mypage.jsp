@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <html>
 <head>
 <meta charset="utf-8">
@@ -34,22 +33,34 @@
 									<img src="images/bl_share/icons/login/wolf_logo.png" alt="">
 								</div>
 								<div class="pd">
-									<h2>닉네임</h2>
-									<p>랭크</p>
+									<h2>${member.m_nick}</h2>
+									<p>
+										<c:if test="${member.r_no == 1}">
+										보드대마왕
+										</c:if>
+										<c:if test="${member.r_no == 2}">
+										보드마스터
+										</c:if>
+										<c:if test="${member.r_no == 3}">
+										보드게이머
+										</c:if>
+										<c:if test="${member.r_no == 4}">
+										표류자
+										</c:if>
+									</p>
 								</div>
-
 							</div>
 						</div>
 						<div class="col-md-4 eml-mob">
 							<ul>
-								<li>작성글 수 :</li>
-								<li>댓글 수 :</li>
+								<li>작성글 수 : </li>
+								<li>댓글 수 : </li>
 							</ul>
 						</div>
 						<div class="col-md-4 eml-mob">
 							<ul>
-								<li>포인트 :</li>
-								<li>안 본 쪽지 :</li>
+								<li>포인트 : ${member.m_point} </li>
+								<li>안 본 쪽지 : </li>
 							</ul>
 						</div>
 					</div>
@@ -80,24 +91,24 @@
 								<div class="row no-margin home-det">
 									<div class="col-md-4 eml-mob">
 										<ul>
-											<li>아이디 :</li>
+											<li>아이디 : ${member.m_id}</li>
 											<br />
-											<li>이메일 :</li>
+											<li>이메일 : ${member.m_email}</li>
 											<br />
-											<li>핸드폰 :</li>
+											<li>핸드폰 : ${member.m_phone}</li>
 											<br />
-											<li>주소 :</li>
+											<li>주소 : ${member.m_addr1} ${member.m_addr2}</li>
 											<br />
-											<li>가입일 :</li>
+											<li>가입일 : ${member.m_indate}</li>
 											<br />
-											<li>신고당한 수 :</li>
+											<li>신고당한 수 : ${member.m_report_num}</li>
 											<br />
 										</ul>
 									</div>
 									<div class="col-md-8 home-dat">
 										<div class="detal-jumbo">
 											<h3>자기소개</h3>
-											<p>안녕 민이라고 해~</p>
+											<p> ${member.m_self}</p>
 											<br /> <br /> <br /> <br /> <br />
 										</div>
 
@@ -109,11 +120,11 @@
 														<tbody>
 															<tr>
 																<th>sms수신여부</th>
-																<td>Y</td>
+																<td>${member.m_re_sms}</td>
 															</tr>
 															<tr>
 																<th>메일수신여부</th>
-																<td>Y</td>
+																<td> ${member.m_re_notice}</td>
 															</tr>
 														</tbody>
 													</table>
@@ -124,11 +135,11 @@
 														<tbody>
 															<tr>
 																<th>쪽지수신여부</th>
-																<td>Y</td>
+																<td> ${member.m_re_message}</td>
 															</tr>
 															<tr>
 																<th>회원정보공개여부</th>
-																<td>Y</td>
+																<td> ${member.m_info}</td>
 															</tr>
 														</tbody>
 													</table>
@@ -481,7 +492,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 </body>
 
 <script src="js/mypage/jquery-3.2.1.min.js"></script>
@@ -494,7 +505,9 @@
 <script src="/js/header/header_hyesoo.js"></script>
 <!-- header 200317 새로 추가해야할 js -->
 <script src="/js/header/scroll.js"></script>
-<script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js" integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js"
+	integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8="
+	crossorigin="anonymous"></script>
 
 
 

@@ -18,5 +18,4 @@ public interface JoinMapper {
  	// 로그인
   	public MemberVO login(@Param("m_id")String m_id, @Param("m_pw")String m_pw) throws Exception;
 
-
 }
