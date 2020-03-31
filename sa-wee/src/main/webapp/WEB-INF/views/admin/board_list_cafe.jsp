@@ -2,6 +2,7 @@
 <%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,10 +70,11 @@
 								  <div class="dropdown pull-right">
 										<select name="searchType" class="span2">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
-											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>카페이름</option>
+											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>리뷰제목</option>
 											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+											<option value = "d" class="btn" <c:out value="${scri.searchType eq 'd' ? 'selected' : ''}"/>>작성자</option>
+											<option value = "bc" class="btn" <c:out value="${scri.searchType eq 'bc' ? 'selected' : ''}"/>>제목+내용</option>
 										</select>
 								</div> 
 							</div>
@@ -105,26 +107,36 @@
 						<tr class="trow header">
 							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
 							<td class="cell">글 번호</td>
-							<td class="cell">말머리</td>
-							<td class="cell">게시판</td>
-							<td class="cell">글 제목</td>
+							<td class="cell">카페 이름</td>
+							<td class="cell span4">리뷰 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
 							<td class="cell">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						
-						<c:forEach items="${board_list}" var="report">
+						<c:forEach items="${board_list_cafe}" var="cr">
 								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${report.st_no}"></td>
-									<td class="cell">${report.st_no}</td>
+									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${cr[CR_NO]}"></td>
+									<td class="cell">${cr['CR_NO']}</td>
+									<td class="cell">${cr['C_TITLE']}</td>
 									<td class="cell"><a
-										href="report_view?st_no=${report.st_no}">${report.st_comment_num}</a></td>
-									<td class="cell">${report.st_trade_num}</td>
-									<td class="cell">${report.st_trade_num}</td>
-									<td class="cell">${report.st_trade_num}</td>
-									<td class="cell">${report.st_visitor_num}</td>
-									<td class="cell">${report.st_date}</td>
+										href="/selectReviewOne?cr_no=${cr['CR_NO']}">${cr['CR_TITLE']}</a></td>
+									<td class="cell">${cr['M_ID']}</td>
+									<td class="cell"> 
+										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+										<jsp:useBean id="today" class="java.util.Date" />
+										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+										<fmt:formatDate value="${cr['CR_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+										<c:choose>
+											<c:when test="${now ne date}">${date}</c:when>
+											<c:otherwise>
+												<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+											</c:otherwise>
+										</c:choose>
+										
+									</td>
+									<td class="cell">${cr['CR_REPORT_NUM']}</td>
 								</tr>
 							</c:forEach>
 

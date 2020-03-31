@@ -35,6 +35,9 @@ public interface AdminMapper {
 	public  ArrayList<HashMap<String, Object>> wd_recordList(SearchCriteria scri);
 	public int wd_record_listCount(SearchCriteria scri);
 	
+	public ArrayList<HashMap<String, Object>> cafe_reviewList(SearchCriteria scri);
+	public int cafe_review_listCount(SearchCriteria scri);
+	
 
 
 

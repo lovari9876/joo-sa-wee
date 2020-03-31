@@ -124,7 +124,7 @@
 									<td class="cell">${board['BT_NAME']}</td>
 									<td class="cell">${board['S_CONTENT']}</td>
 									<td class="cell"><a
-										href="board_view?st_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
+										href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
 									<td class="cell">${board['M_ID']}</td>
 									<td class="cell"> 
 									
