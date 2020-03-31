@@ -204,7 +204,7 @@
 
 				<!-- 버튼에 링크 걸기 -->
 				<button class="write-view-btn" type="button"
-					onclick="location.href='write_view'">글쓰기</button>
+					onclick="location.href='write_view?bt_no=3'">글쓰기</button>
 
 
 			</div>
