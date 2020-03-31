@@ -77,15 +77,4 @@ function closeAllSelect(elmnt) {
 then close all select boxes:*/
 document.addEventListener("click", closeAllSelect);
 
-///////////////////////
-$(function(){
-    $('#searchBtn').click(function() {
-      self.location = "list" 
-    	  			+ '${pageMaker.makeQuery(1)}' 
-    	  			+ "&searchType=" 
-    	  			+ $("select option:selected").val() 
-    	  			+ "&keyword=" 
-    	  			+ encodeURIComponent($('#keywordInput').val());
-    });
-  }); 
-
+ 

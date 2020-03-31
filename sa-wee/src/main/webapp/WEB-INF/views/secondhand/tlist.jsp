@@ -25,12 +25,12 @@
 
     <!-- script
     ================================================== -->
-    <script src="js/cassie/modernizr.js"></script>
+    <script src="js/cassie/modernizr.js"></script>    
+    <script src="js/cassie/jquery-3.2.1.min.js"></script>
 
     <!-- favicons
     ================================================== -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" type="image/png" href="resources/images/share/wolf_logo.ico" />
 
 </head>
 
@@ -69,15 +69,29 @@
 		        <div class="search--div p-1 bg-white rounded rounded-pill shadow-sm mb-4">
 		          <div class="input-group">	  
 		            <div class="input-group-prepend">
-		              <button id="searchBtn" type="button" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
+		              <button id="searchBtn" type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
+		              
+<!-- 	            		<script>
+					      $(function(){
+					        $('#searchBtn').click(function() {
+					          self.location = "tlist" 
+					          				+ '${pageMaker.makeQuery(1)}' 
+					          				+ "&searchType=" 
+					          				+ $("select option:selected").val() 
+					          				+ "&keyword=" 
+					          				+ encodeURIComponent($('#keywordInput').val());
+					        });
+					      });   
+					    </script>  --> 
+		              
 		            </div>		            
 		            <div class="custom-select">
 		              <select><!-- data-trigger="" name="choices-single-defaul" -->
-		                <option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
-		                <option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-		                <option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/> >제목</option>
-		                <option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-		                <option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+		                <option value="n">선택하세요</option>
+		                <option value="w">작성자</option>
+		                <option value="t">제목</option>
+		                <option value="tc">제목+내용</option>
+		                <option value="c">내용</option>
 		                <option>말머리</option>
 		              </select>
 		            </div>			        		           
@@ -101,34 +115,35 @@
                 <div class="grid-sizer"></div>
 				
 				<!-- 자바스크립트로 조건 2가지 넣어줘야 masonry가 예쁘게 작동! -->
-				<!-- 1. 사진이 있다면 넣고, 사진 없으면 이미지 부분 태그 통으로 빼서 벽돌리스트 이쁘게 해야함 -->
+				<!-- 1. 사진이 2장 이상이면 갤러리 타입, 사진 1장: standard 타입, 사진 없으면 이미지 부분 태그 통으로 빼서 벽돌리스트 이쁘게 해야함 -->
 				<!-- 2. data-aos="fade-up"을 세번째 아이템에게 넣어줘야함; list[2]에 article param으로 넣을것!!-->
 				<c:forEach items="${tList}" var="tItem">
-				<c:if test="${tItem eq tList[0]}">
+				<c:choose>
+				<c:when test="${tItem eq tList[0]}">
 					<article class="masonry__brick entry format-standard" >	                 
 	    
 	                    <div class="entry__text">
 	                        <div class="entry__header">
-	                            
+	                        	<div class="entry__excerpt">${tItem['T_NO']}</div>
 	                            <div class="entry__date">
 	                                <a href="single-standard.html">
 	                                	<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 										<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
 										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${tItem.t_written_date}" pattern="yyyy.MM.dd" var="date"/>
+										<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 										<c:choose>
 											<c:when test="${now ne date}">${date}</c:when> 
 											<c:otherwise>
-												<fmt:formatDate value="${tItem.t_written_date}" pattern="HH:mm"/>
+												<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="HH:mm"/>
 											</c:otherwise>
 										</c:choose>
 	                                </a>
 	                            </div>
-	                            <h1 class="entry__title"><a href="single-standard.html">${tItem.t_no}  ${tItem.t_title}</a></h1>
+	                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
 	                            
 	                        </div>
 	                        <div class="entry__excerpt">
-	                            <p>${tItem.m_nick}</p>
+	                            <p>${tItem['M_NICK']}</p>
 	                        </div>
 	                        <div class="entry__meta">
 	                            <span class="entry__meta-links">
@@ -139,8 +154,9 @@
 	                    </div>
 	    
 	                </article> <!-- end article -->
-				</c:if>
-	                <article class="masonry__brick entry format-standard" data-aos="fade-up">
+				</c:when>
+				<c:otherwise>
+	                <article class="masonry__brick entry format-standard" >
 	                        
 	                    <div class="entry__thumb">
 	                        <a href="single-standard.html" class="entry__thumb-link">
@@ -151,22 +167,22 @@
 	    
 	                    <div class="entry__text">
 	                        <div class="entry__header">
-	                            
+	                            <div class="entry__excerpt">${tItem['T_NO']}</div>
 	                            <div class="entry__date">
 	                                <a href="single-standard.html">
 										<c:choose>
 											<c:when test="${now ne date}">${date}</c:when> 
 											<c:otherwise>
-												<fmt:formatDate value="${tItem.t_written_date}" pattern="HH:mm"/>
+												<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="HH:mm"/>
 											</c:otherwise>
 										</c:choose>
 	                                </a>
 	                            </div>
-	                            <h1 class="entry__title"><a href="single-standard.html">${tItem.t_no}  ${tItem.t_title}</a></h1>
+	                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
 	                            
 	                        </div>
 	                        <div class="entry__excerpt">
-	                            <p>${tItem.m_nick}</p>
+	                            <p>${tItem['M_NICK']}</p>
 	                        </div>
 	                        <div class="entry__meta">
 	                            <span class="entry__meta-links">
@@ -177,6 +193,8 @@
 	                    </div>
 	    
 	                </article> <!-- end article -->
+	                </c:otherwise>
+	                </c:choose>
                 </c:forEach>
 
 
@@ -189,104 +207,6 @@
                                 <cite>Dieter Rams</cite>
                         </blockquote>
                     </div>   
-    
-                </article> <!-- end article -->
-
-                <article class="masonry__brick entry format-standard">
-                        
-                    <div class="entry__thumb">
-                        <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/cassie/thumbs/masonry/tulips-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/tulips-400.jpg 1x, images/cassie/thumbs/masonry/tulips-800.jpg 2x" alt="">
-                        </a>
-                    </div>
-    
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-standard.html">December 15, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-standard.html">10 Interesting Facts About Caffeine.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Health</a>
-                            </span>
-                        </div>
-                    </div>
-    
-                </article> <!-- end article -->
-
-                <article class="masonry__brick entry format-standard" data-aos="fade-up">
-
-                    <div class="entry__thumb">
-                        <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/cassie/thumbs/masonry/cookies-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/cookies-400.jpg 1x, images/cassie/thumbs/masonry/cookies-800.jpg 2x" alt="">
-                        </a>
-                    </div>
-    
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-standard.html">December 10, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-standard.html">No Sugar Oatmeal Cookies.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Cooking</a>
-                                <a href="category.html">Health</a>
-                            </span>
-                        </div>
-                    </div>
-    
-                </article> <!-- end article -->
-
-                <article class="masonry__brick entry format-standard" data-aos="fade-up">
-
-                    <div class="entry__thumb">
-                        <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/cassie/thumbs/masonry/wheel-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/wheel-400.jpg 1x, images/cassie/thumbs/masonry/wheel-800.jpg 2x" alt="">
-                        </a>
-                    </div>
-    
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-standard.html">December 10, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-standard.html">Visiting Theme Parks Improves Your Health.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="#">Health</a> 
-                                <a href="#">Lifestyle</a>
-                            </span>
-                        </div>
-                    </div>
     
                 </article> <!-- end article -->
 
@@ -416,136 +336,7 @@
                     
                 </article> <!-- end article -->
 
-                <article class="masonry__brick entry format-standard" data-aos="fade-up">
-
-                    <div class="entry__thumb">
-                        <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/cassie/thumbs/masonry/jump-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/jump-400.jpg 1x, images/cassie/thumbs/masonry/jump-800.jpg 2x" alt="">
-                        </a>
-                    </div>
-
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-standard.html">December 10, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-standard.html">Create Meaningful Family Moments.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Family</a>
-                                <a href="category.html">Relationship</a>
-                            </span>
-                        </div>
-                    </div>
-
-                </article> <!-- end article -->
-
-                <article class="masonry__brick entry format-standard" data-aos="fade-up">
-
-                    <div class="entry__thumb">
-                        <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/cassie/thumbs/masonry/beetle-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/beetle-400.jpg 1x, images/cassie/thumbs/masonry/beetle-800.jpg 2x" alt="">
-                        </a>
-                    </div>
-
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-standard.html">December 10, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-standard.html">Throwback To The Good Old Days.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Lifestyle</a>
-                            </span>
-                        </div>
-                    </div>
-
-                </article> <!-- end article -->
-
-                <article class="masonry__brick entry format-standard" data-aos="fade-up">
-
-                    <div class="entry__thumb">
-                        <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/cassie/thumbs/masonry/fuji-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/fuji-400.jpg 1x, images/cassie/thumbs/masonry/fuji-800.jpg 2x" alt="">
-                        </a>
-                    </div>
-
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-standard.html">December 10, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-standard.html">Just Another  Standard Format Post.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Design</a> 
-                                <a href="category.html">Photography</a>
-                            </span>
-                        </div>
-                    </div>
-
-                </article> <!-- end article -->
-
-                <article class="masonry__brick entry format-standard" data-aos="fade-up">
-
-                    <div class="entry__thumb">
-                        <a href="single-standard.html" class="entry__thumb-link">
-                            <img src="images/cassie/thumbs/masonry/sydney-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/sydney-400.jpg 1x, images/cassie/thumbs/masonry/sydney-800.jpg 2x" alt="">
-                        </a>
-                    </div>
-
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-standard.html">December 10, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-standard.html">Planning Your First Trip to Sydney.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Travel</a> 
-                                <a href="category.html">Vacation</a>
-                            </span>
-                        </div>
-                    </div>
-
-                </article> <!-- end article --> --%>
+                 --%>
 
             </div> <!-- end masonry -->
         </div> <!-- end masonry-wrap -->
@@ -553,7 +344,7 @@
         <div class="row">
             <div class="col-full">
                 <nav class="pgn">
-                    <ul>
+                   <!-- <ul>
                         <li><a class="pgn__prev" href="#0">Prev</a></li>
                         <li><a class="pgn__num" href="#0">1</a></li>
                         <li><span class="pgn__num current">2</span></li>
@@ -563,12 +354,45 @@
                         <li><span class="pgn__num dots">…</span></li>
                         <li><a class="pgn__num" href="#0">8</a></li>
                         <li><a class="pgn__next" href="#0">Next</a></li>
-                    </ul>
+                    </ul>  --> 
+                    <ul class="pagination">
+					    <!-- 검색 결과에 대해 페이징 처리된 페이지 번호 목록 -->
+					    <c:if test="${pageMaker.prev}">
+					        <li>
+					            <a class="pgn__prev" href="tlist${pageMaker.makeSearch(pageMaker.startPage - 1)}">
+					                &laquo;
+					            </a>
+					        </li>
+					    </c:if>
+					 
+					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+					        <li>
+					        	<c:choose>
+					        		<c:when test="${pageMaker.cri.page == idx}">
+					        			<span class="pgn__num current">${idx}</span>
+					        		</c:when>
+					        		<c:otherwise>
+					        			<a class="pgn__num" href="tlist${pageMaker.makeSearch(idx)}">${idx}</a>
+					        		</c:otherwise>					        
+					        	</c:choose>
+					        </li>
+					    </c:forEach>
+					 
+					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					        <li>
+					            <a class="pgn__next" href="tlist${pageMaker.makeSearch(pageMaker.endPage +1)}">
+					                &raquo;
+					            </a>
+					        </li>
+					    </c:if>					   
+					</ul>
+					<button class="btn btn-primary">글쓰기</button>
                 </nav>
             </div>
         </div>
 
-    </section> <!-- s-content -->
+    </section> <!-- s-content --> 
+
     
 
     <!-- s-extra
@@ -699,7 +523,6 @@
 
     <!-- Java Script
     ================================================== -->
-    <script src="js/cassie/jquery-3.2.1.min.js"></script>
     <script src="js/cassie/plugins.js"></script>
     <script src="js/cassie/main.js"></script>
     
@@ -712,6 +535,7 @@
 	
 	<!-- search -->
     <script src="js/cassie/search-select.js"></script>
+    <script src="js/cassie/search-paging.js"></script>
 	
 </body>
 
