@@ -155,7 +155,29 @@
 	<!-- 탈퇴 사유 w_no중 5(주관적사유,기타)를 고른 항목만 출력 -->
 	
 	
+	<select id="cafe_reviewList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
+			
+			SELECT * FROM (
+				SELECT cr.cr_no, c.c_title, m.m_id, cr.cr_title, cr.cr_content, cr.cr_written_date, cr.cr_updated_date, cr.cr_hit,
+				cr.cr_report_num, cr.cr_island, cr.bt_no,
+				ROW_NUMBER() OVER(ORDER BY m.m_no DESC) AS RNUM
+				FROM cafe_review cr
+				INNER JOIN board_type bt
+				ON cr.bt_no = bt.bt_no
+				INNER JOIN member m
+				ON cr.m_no = m.m_no
+				INNER JOIN cafe c
+				On cr.c_no = c.c_no
+				<include refid="cafe_review_search"></include>
+			)MP
+			WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+			ORDER BY cr_no DESC
+			
+			
+			
 	
+	
+	</select>
 	
 	
 	<!-- =============================================== 탈퇴 사유 통계 ====================================================== -->	
@@ -185,6 +207,27 @@
 			<if test="searchType == 'c'.toString()">AND bw_content LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'w'.toString()">AND m_no LIKE '%' || #{keyword} || '%'</if>
 			<if test="searchType == 'tc'.toString()">AND (bw_title LIKE '%' || #{keyword} || '%') or (bw_content LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
+	
+	
+	<select id="cafe_review_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
+
+		SELECT COUNT(cr.cr_no)
+		  FROM cafe_review cr
+		 WHERE 1=1
+		 <include refid="cafe_review_search"></include>	
+		 AND cr.cr_no > 0
+
+	</select>
+	
+	<sql id="cafe_review_search">
+		<if test="searchType != null">
+			<if test="searchType == 'a'.toString()">AND c.c_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'b'.toString()">AND cr.cr_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND cr.cr_content LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'd'.toString()">AND m.m_id LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'bc'.toString()">AND (cr.cr_title LIKE '%' || #{keyword} || '%') or (cr.cr_content LIKE '%' || #{keyword} || '%')</if>
 		</if>
 	</sql>
 	

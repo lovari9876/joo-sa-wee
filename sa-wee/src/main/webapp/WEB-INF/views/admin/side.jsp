@@ -102,7 +102,7 @@
                                 </li>
                                 <li><a href="notice_list"><i class="menu-icon icon-bullhorn"></i>공지사항 </a></li>
                                 <li><a href="game_list"><i class="menu-icon icon-trophy"></i>보드게임 공식정보 </a></li>
-                                <li><a href="cafe_list"><i class="menu-icon icon-beer"></i>보드게임카페 정보 </a></li>
+                                <li><a href="cafe_review_list"><i class="menu-icon icon-beer"></i>보드게임카페 정보 </a></li>
                                 
                             </ul>
                             <!--/.widget-nav-->

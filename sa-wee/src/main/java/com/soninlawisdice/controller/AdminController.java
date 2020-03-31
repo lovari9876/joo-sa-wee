@@ -83,24 +83,15 @@ public class AdminController {
 	
 	////////////////////////////////////////////////////////////////////////////
 	
+	//회원정보 수정
 	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
 	public String updateMember(MemberVO memberVO) throws Exception {
-		
-//		int result = 0;
-		
-//		int id = memberVO.getM_no();
-		
+
 		String nick = memberVO.getM_nick();
 		System.out.println("updateMember()");
 		System.out.println(nick);
 		 
 		adminService.updateMember(memberVO);
-		
-//		result = 1; //성공!
-		
-		//}
-		
-	
 		return "redirect:user_list";
 	}
 	
@@ -165,6 +156,19 @@ public class AdminController {
 		return "admin/withdrawer_list";
 	}
 	
+	
+	@RequestMapping(value = "/board_list_cafe", method = RequestMethod.GET)
+	public String board_list_cafe(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+
+		model.addAttribute("board_list_cafe", adminService.cafe_reviewList(scri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.cafe_review_listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "admin/board_list_cafe";
+	}
 	
 	
 	

@@ -87,6 +87,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	
+	@Override
+	public ArrayList<HashMap<String, Object>> cafe_reviewList(SearchCriteria scri){
+		return adminMapper.cafe_reviewList(scri);
+	}
+	@Override
+	public int cafe_review_listCount(SearchCriteria scri){
+		return adminMapper.cafe_review_listCount(scri);
+	}
+	
+	
+	
 
 	// 차트 데이터
 	@Override
