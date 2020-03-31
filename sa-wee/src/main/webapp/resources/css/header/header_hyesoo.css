@@ -16,6 +16,11 @@ html, body {
 	font-family: dunggeunmo;
 }
 
+a:hover, a:focus {
+	text-decoration: none;
+	outline: none;
+}
+
 
 /*------------------
   Header section 상단바 부분
@@ -250,6 +255,18 @@ button span.lnr-magnifier {
 }
 
 .main-menu .help:after {
+	position: absolute;
+	content: "";
+	width: 20px;
+	height: 20px;
+	right: 0;
+	top: 1px;
+	background-image: url("../../images/header/icons/arrow-down.png");
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
+.main-menu .board_cafe:after {
 	position: absolute;
 	content: "";
 	width: 20px;

@@ -15,6 +15,10 @@
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,500,600"
 	rel="stylesheet">
+	
+	<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="css/board_hs/bootstrap.min.css" />
@@ -56,8 +60,8 @@
 			<div class="wrap-table100">
 
 				<div class="listName">
-					<h3>보드 이야기</h3>
-					<p>보드이야기를 하는 곳입니다. 보드 이야기 하세요</p>
+					<h3>카페 리뷰 리스트</h3>
+					<p>카페 리뷰 리스트임</p>
 				</div>
 
 
@@ -86,14 +90,7 @@
 				<!-- 리스트 -->
 				<div class=tab-table>
 					<!-- 탭부분 -->
-					<ul class="tab">
-						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "17" class = "select">계획</button></li>
-						<li data-tab="tab3"><button type = "button" value = "18" class= "select">디자인</button></li>
-						<li data-tab="tab4"><button type = "button" value = "19" class = "select">완성</button></li>
-						<li data-tab="tab5"><button type = "button" value = "20" class = "select">공유</button></li>
-						<li data-tab="tab6"><button type = "button" value = "21" class = "select">테스트 플레이</button></li>
-					</ul>
+					
 
 
 					<!-- 테이블  -->
@@ -108,6 +105,7 @@
 
 							<tr class="row header">
 								<td class="cell">글 번호</td>
+								<td class="cell">카페 이름</td>
 								<td class="cell">글 제목</td>
 								<td class="cell">작성자</td>
 								<td class="cell">작성일</td>
@@ -116,14 +114,15 @@
 							</tr>
 
 						<tbody class = "tbody">
-							<c:forEach items="${list}" var="dto">
+							<c:forEach items="${list}" var="list">
 							<tr class="row">
-								<td class = "cell">${dto.bw_no}</td>
-								<td class = "cell"><a href="content_view?bId=${dto.bw_no}">${dto.bw_title}</a></td>
-								<td class = "cell">${dto.m_no}</td>
-								<td class = "cell">${dto.bw_written_date}</td>
-								<td class = "cell">${dto.bw_hit}</td>
-								<td class = "cell">${dto.bw_recommend_num}</td>
+								<td class = "cell">${list.cr_no}</td>
+								<td class = "cell">${list.cafeVO.c_title}</td>
+								<td class = "cell"><a href="selectReviewOne?cr_no=${list.cr_no}">${list.cr_title}</a></td>
+								<td class = "cell">${list.memberVO.m_nick}</td>
+								<td class = "cell">${list.cr_written_date}</td>
+								<td class = "cell">${list.cr_hit}</td>
+								<td class = "cell">${list.cr_recommend_num}</td>
 							</tr>
 							</c:forEach>
 						</tbody>
@@ -132,163 +131,11 @@
 
 					</div>
 
-					
-					<!-- 여기서부터는 말머리 선택 부분이라  -->
-					<div id="tab2" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
-						<table class="table">
-
-							
-							<tr class="row header">
-								<td class="cell">글 번호</td>
-								<td class="cell">글 제목</td>
-								<td class="cell">작성자</td>
-								<td class="cell">작성일</td>
-								<td class="cell">조회수</td>
-								<td class="cell">추천수</td>
-							</tr>
-							
-							<tbody class = "tbody test">
-							
-						</tbody>
-							
-							
-
-						</table>
-
-					</div>
-
-					<div id="tab3" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
-						<table class="table">
-
-
-							<tr class="row header">
-								<td class="cell">글 번호</td>
-								<td class="cell">글 제목</td>
-								<td class="cell">작성자</td>
-								<td class="cell">작성일</td>
-								<td class="cell">조회수</td>
-								<td class="cell">추천수</td>
-							</tr>
-
-							<tbody class = "tbody test">
-							
-						</tbody>
-							
-						</table>
-
-					</div>
-
-					<div id="tab4" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
-						<table class="table">
-
-
-							<tr class="row header">
-								<td class="cell">글 번호</td>
-								<td class="cell">글 제목</td>
-								<td class="cell">작성자</td>
-								<td class="cell">작성일</td>
-								<td class="cell">조회수</td>
-								<td class="cell">추천수</td>
-							</tr>
-
-						
-							<tbody class = "tbody test">
-							
-						</tbody>
-							
-							
-						</table>
-					</div>
-					
-					<div id="tab5" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
-						<table class="table">
-
-
-							<tr class="row header">
-								<td class="cell">글 번호</td>
-								<td class="cell">글 제목</td>
-								<td class="cell">작성자</td>
-								<td class="cell">작성일</td>
-								<td class="cell">조회수</td>
-								<td class="cell">추천수</td>
-							</tr>
-
-						
-							<tbody class = "tbody test">
-							
-						</tbody>
-							
-							
-						</table>
-					</div>
-					
-					<div id="tab6" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
-						<table class="table">
-
-
-							<tr class="row header">
-								<td class="cell">글 번호</td>
-								<td class="cell">글 제목</td>
-								<td class="cell">작성자</td>
-								<td class="cell">작성일</td>
-								<td class="cell">조회수</td>
-								<td class="cell">추천수</td>
-							</tr>
-
-						
-							<tbody class = "tbody test">
-							
-						</tbody>
-							
-							
-						</table>
-					</div>
-
 				</div>
 
 				<!-- 버튼에 링크 걸기 -->
 				<button class="write-view-btn" type="button"
-					onclick="location.href='write_view'">글쓰기</button>
+					onclick="location.href='cafe_review_write'">글쓰기</button>
 
 
 			</div>

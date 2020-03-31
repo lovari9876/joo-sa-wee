@@ -8,6 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="img/favicon.ico" rel="shortcut icon" />
 
+<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
+
 <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
 <!-- Google Font -->

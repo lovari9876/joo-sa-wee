@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CafeVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 
 public interface BoardMapper {
 
@@ -42,6 +44,9 @@ public interface BoardMapper {
 	//게시글 작성하기
 	public void insertBoard(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
+	//modify_view 에 불러오기
+	public Board_writeVO modify_view(@Param("bw_no")String bw_no);
+	
 	//글 수정하기
 	public void modify(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
@@ -50,10 +55,34 @@ public interface BoardMapper {
 	
 	/////////////////////카페 리뷰///////////////////////////
 	
+	//카페 리뷰 전체 리스트 보기
+	public List<Cafe_reviewVO> selectAllReviewList();
+	
+	//카페 리뷰 리스트에서 review_content_view 로
+	public Cafe_reviewVO selectReviewOne(@Param("cr_no")String cr_no);
+	
+	//카페별로 밑에 리뷰 리스트 있는거
+	public List<Cafe_reviewVO> selectCafeReviewList(@Param("c_no")String c_no);
+	
+	//카페정보 가져오기
+	public CafeVO selectCafeInfo(@Param("c_no")String c_no);
+	
+	//카페 리뷰 조회수 올리기
+	public void review_uphit(@Param("cr_no")String cr_no);
+	
 	//카페 리뷰 추천수 올리기
-	public void cafe_recommend(@Param("cr_no")String cr_no);
+	public void review_recommend(@Param("cr_no")String cr_no);
 	
 	//올라간 추천수 가져오기
-	public String cafe_rec(@Param("cr_no")String cr_no);
+	public String review_rec(@Param("cr_no")String cr_no);
+	
+	//카페 번호로 카페 이름 가져오기
+	public String get_CafeName(@Param("c_no") String c_no);
+	
+	//리뷰 작성하기
+	public void insertReview(@Param("cafe_reviewVO") Cafe_reviewVO cafe_reviewVO);
+	
+	//리뷰 수정하기
+	public void review_modify(@Param("cafe_reivewVO")Cafe_reviewVO cafe_reviewVO);
 	
 }

@@ -1,15 +1,6 @@
 $(document).ready(function(){
 
 	
-	
-	
-	
-
-
-
-
-	//다큐먼트 레디
-
 	$(function(){
 
 		//Jackson 이용 List<VO> or List<Map<String,String>> 형태 JSON
@@ -48,14 +39,19 @@ $(document).ready(function(){
 		
 		//글 작성시 게시판 bt_no 에 따라 첫번째 select box 선택되어지게 하는거.
 		var bt_no = $("#bt_no").val();
-		
-		for(i = 0; i<6; i++){
+		var s_no =  $("#s_no").val();
+		for(i = 0; i<30; i++){
 			if(bt_no == i){
 				$("#board").val(i).attr("selected", "selected");
 				var selected = $("#board option:selected").text();
 				setSecondSelect(ARR,selected);
 				
-				break;
+				
+				
+			}
+			
+			if(s_no == i){
+				$("#sub").val(i).attr("selected", "selected");
 			}
 		}
 		

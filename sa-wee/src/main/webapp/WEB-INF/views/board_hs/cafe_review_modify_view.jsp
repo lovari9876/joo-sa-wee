@@ -33,7 +33,6 @@
 	href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="fonts/fonts_cassie/icomoon/style.css">
 <!-- <script src="https://kit.fontawesome.com/4b0668ef4e.js" crossorigin="anonymous"></script> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -59,10 +58,6 @@
 	
 
 
-
-
-	<!-- 작성하는 부분 전체 -->
-
 	<div class="write-section">
 		<div class="write-container">
 
@@ -70,39 +65,38 @@
 			<div class="write-view">
 
 				<div class="writeName">
-					<h3>글 작성하기</h3>
+					<h3>리뷰 수정하기</h3>
 				</div>
 				<div class = "square"></div>
 				
+				<!-- -->
+				<!-- 수정하는 부분의 각각 value 를 ex) ${detail.TITLE} 이런식으로 받아와야함-->
+				<!--  -->
 				
-				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
-				<form action="write" method = "post" enctype="multipart/form-data">
+				<form action="modify" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
-						<input id = "bt_no" type = "hidden" name = "bt_no" value = "${bt_no}"/>
+						<input type="hidden" name="bId" value="${content_view.bw_no}"/>
 						<tr class = "row">
 							<td class = "cell">
-								<select id = "board" name = "bt_no" ></select> 
-								<select id = "sub" name = "s_no"></select>
+								<select id = "board" name = "board_no" ></select> 
+								<select id = "sub" name = "board_no2"></select>
 							</td>
+						</tr>
+
+						<tr class="row">
+							<td class="cell"><input type="text" name="bw_title" value = "${content_view.bw_title}"  placeholder = "제목을 입력하세요"></td>
 							
 						</tr>
-						
-						
-						
-						<!-- 입력창 -->
-						<tr class="row">
-							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요"></td>
-						</tr>
 
 						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요"></textarea></td>
+							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요">${content_view.bw_content}</textarea></td>
+							<%-- <td class="cell"><textarea name="bwTitle" placeholder = "내용을 입력하세요">이건 여기에 ${detail.CONTENTS } 이런식으로</textarea></td> --%>
 						</tr>
-
 
 						
 					</table>
 					<button class = "list" type="button" onclick="location.href='list'">목록</button>
-					<button class = "write-btn" type = "submit">작성완료</button>
+					<button class = "modify-btn" type = "submit">수정 완료</button>
 				</form>
 
 
@@ -114,14 +108,12 @@
 
 	
 	
+	
 	<!-- footer 부분 -->
 	<!-- footer include start -->
 	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
 	<!-- footer include end -->
 	
-
-
-
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
@@ -133,11 +125,13 @@
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
 	<script src="js/header/scroll.js"></script>
+	<!-- <script src ="js/file.js"></script> -->
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	<script src="js/board_hs/category.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
+	
 	
 	
 	<!-- ckEditor 관련 -->
@@ -177,10 +171,6 @@
 			    console.error( error );
 			} );
 		</script>
-	
-	
-	
-	
 
 </body>
 </html>

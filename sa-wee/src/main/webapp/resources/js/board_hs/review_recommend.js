@@ -2,14 +2,14 @@ $(document).ready(function(){
 	
 	
 	
-	$("#btn").click(function(){
+	$("#rec_btn").click(function(){
 		
 		var category = $(this).val();
 		console.log(category);
 		
 		
 		$.ajax({
-			url : "http://localhost:8282/cafe_rec",
+			url : "http://localhost:8282/review_rec",
 			type : "get",
 			cache : false,
 			//파라미터 넘기는 방법.(key : value 형태)

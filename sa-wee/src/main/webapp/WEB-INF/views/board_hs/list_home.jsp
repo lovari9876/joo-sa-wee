@@ -8,6 +8,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="img/favicon.ico" rel="shortcut icon" />
 
+<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
+
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i,900,900i"
@@ -271,7 +275,7 @@
 	<script src="js/board_hs/jquery.sticky-sidebar.min.js"></script>
 	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hs/main.js"></script>
-	<script src="js/js_header/scroll.js"></script>
+	<script src="js/header/scroll.js"></script>
 
 </body>
 </html>

@@ -9,6 +9,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="img/favicon.ico" rel="shortcut icon" />
 
+<!-- 파피콘 -->
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
+
 <!-- Google Font -->
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i,900,900i"
@@ -107,6 +111,7 @@
 
 							<tr class="row header">
 								<td class="cell">글 번호</td>
+								<td class="cell">말머리</td>
 								<td class="cell">글 제목</td>
 								<td class="cell">작성자</td>
 								<td class="cell">작성일</td>
@@ -118,8 +123,9 @@
 							<c:forEach items="${list}" var="dto">
 							<tr class="row">
 								<td class = "cell">${dto.bw_no}</td>
-								<td class = "cell"><a href="content_view?bId=${dto.bw_no}">${dto.bw_title}</a></td>
-								<td class = "cell">${dto.m_no}</td>
+								<td class = "cell">${dto.subjectVO.s_content}</td>
+								<td class = "cell"><a href="content_view?bw_no=${dto.bw_no}">${dto.bw_title}</a></td>
+								<td class = "cell">${dto.memberVO.m_nick}</td>
 								<td class = "cell">${dto.bw_written_date}</td>
 								<td class = "cell">${dto.bw_hit}</td>
 								<td class = "cell">${dto.bw_recommend_num}</td>
@@ -198,7 +204,7 @@
 
 				<!-- 버튼에 링크 걸기 -->
 				<button class="write-view-btn" type="button"
-					onclick="location.href='write_view'">글쓰기</button>
+					onclick="location.href='write_view?bt_no=3'">글쓰기</button>
 
 
 			</div>
