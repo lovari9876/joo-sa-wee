@@ -147,6 +147,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 		
 	
+	//무인도행
+	public void updateIsland_bw(int bw_no) {
+		adminMapper.updateIsland_bw(bw_no);
+	}
+	public void updateIsland_member(int m_no) {
+		adminMapper.updateIsland_member(m_no);
+	}
 	
 	
 	

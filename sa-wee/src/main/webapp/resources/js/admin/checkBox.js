@@ -14,12 +14,14 @@ $(".chBox").click(function() {
 });
 
 // confirm을 이용해 삭제 여부를 확인하고, 개별 선택된 체크박스들을 배열 변수 checkArr에 저장한 뒤 컨트롤러로 전송
-// 전송이 이상없이 되었다면 현재 페이지(board_list2)를 새로고침
+// 전송이 이상없이 되었다면 현재 페이지(board_list)를 새로고침
 $(".selectDelete_btn").click(function() {
 	var checkArr = new Array();
-
+	
+	
 	$("input[class='chBox']:checked").each(function() {
-		checkArr.push($(this).attr("data-Num"));
+		checkArr.push($(this).attr("data-BW"));
+		
 	});
 
 	if (checkArr == "") {
@@ -31,7 +33,7 @@ $(".selectDelete_btn").click(function() {
 			
 
 			$.ajax({
-				url : "http://localhost:8282/ex/deleteBoard",
+				url : "http://localhost:8282/admin/deleteBoard",
 				type : "post",
 				data : {
 					chbox : checkArr
@@ -39,7 +41,7 @@ $(".selectDelete_btn").click(function() {
 				success : function(result) {
 					if(result == 1) {
 						alert("삭제되었습니다.");
-						location.href = "http://localhost:8282/ex/board_list2";
+						location.href = "http://localhost:8282/admin/board_list";
 					} else {
 						alert("삭제 실패");
 					}

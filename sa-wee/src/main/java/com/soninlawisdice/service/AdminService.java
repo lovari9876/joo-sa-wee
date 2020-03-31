@@ -52,7 +52,13 @@ public interface AdminService {
 	public List<ReportVO> reportTab();
 	
 	
+	//회원정보수정
 	public void updateMember(MemberVO memberVO);
+	
+	//무인도행
+	public void updateIsland_bw(int bw_no);
+	public void updateIsland_member(int m_no);
+	
 	
 
 	// 글보기

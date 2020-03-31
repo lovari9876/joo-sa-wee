@@ -2,6 +2,7 @@ package com.soninlawisdice.controller;
 
 
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,6 +96,37 @@ public class AdminController {
 		return "redirect:user_list";
 	}
 	
+
+	//무인도행
+	@ResponseBody
+	@RequestMapping(value = "/updateIsland", method = RequestMethod.POST)
+	public int updateIsland(Board_writeVO boardVO, MemberVO memberVO, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+
+		int bw_no = 0;
+		int m_no = 0;
+		int result = 0;
+		StringTokenizer st;
+		
+		
+		for (String i : chArr) {
+			st = new StringTokenizer(i);
+			bw_no = Integer.parseInt(st.nextToken());
+			m_no = Integer.parseInt(st.nextToken());
+			
+			boardVO.setBw_no(bw_no);
+			memberVO.setM_no(m_no);
+			adminService.updateIsland_bw(bw_no);
+			adminService.updateIsland_member(m_no);
+		}
+		System.out.println(bw_no);
+		System.out.println(m_no);
+		
+		result = 1; 
+		
+		return result;
+	}
+	
+	
 	
 	
 	////////////////////////////////////////////////////////////////////////////
@@ -116,6 +148,7 @@ public class AdminController {
 	@RequestMapping(value = "/user_list", method = RequestMethod.GET)
 	public String user_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
+		scri.setPerPageNum(15);
 		model.addAttribute("user_list", adminService.memberList(scri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -130,7 +163,10 @@ public class AdminController {
 	@RequestMapping(value = "/board_list", method = RequestMethod.GET)
 	public String board_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
+
+		scri.setPerPageNum(15);
 		model.addAttribute("board_list", adminService.boardList(scri));
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(adminService.board_listCount(scri));
@@ -161,9 +197,11 @@ public class AdminController {
 	public String board_list_cafe(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
 		model.addAttribute("board_list_cafe", adminService.cafe_reviewList(scri));
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(adminService.cafe_review_listCount(scri));
+		
 
 		model.addAttribute("pageMaker", pageMaker);
 

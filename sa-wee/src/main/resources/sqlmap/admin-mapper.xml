@@ -122,7 +122,7 @@
 
 	SELECT * FROM
 	(
-         SELECT bw.bw_no, m.m_id, bt.bt_name, s.s_content , bw.bw_title, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island,
+         SELECT bw.bw_no, m.m_no, m.m_id, bt.bt_name, s.s_content , bw.bw_title, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island,
 		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM
 		          FROM board_write bw
                  INNER JOIN subject s
@@ -333,8 +333,8 @@
 			 r.r_no=#{r_no} 		
 
 	</select>
-	
-	<!-- 회원정보수정 -->
+	<!-- ===============================================  회원정보수정 ====================================================== -->	
+
 	<update id="updateMember" parameterType="com.soninlawisdice.vo.MemberVO" >
 		update member 
 		set m_nick = #{memberVO.m_nick}, m_extra = #{memberVO.m_extra}, m_self = #{memberVO.m_self} 
@@ -342,5 +342,25 @@
 	</update>
 	
 
+
+
+	<!-- ===============================================  회원정보수정 ====================================================== -->
+	
+	<update id="updateIsland_bw" parameterType="com.soninlawisdice.vo.Board_writeVO" >
+		update board_write 
+		set bw_island =  1 
+		where bw_no = #{bw_no}
+	</update>
+	
+	<update id="updateIsland_member" parameterType="com.soninlawisdice.vo.MemberVO" >
+		update member
+		set r_no =  4
+		where m_no = #{m_no}
+	</update>
+	
+	
+	
+	
+	
 	
 </mapper>

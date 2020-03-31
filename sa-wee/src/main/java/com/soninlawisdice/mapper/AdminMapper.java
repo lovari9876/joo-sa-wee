@@ -65,6 +65,9 @@ public interface AdminMapper {
 	// 수정 : 회원정보 수정
 	public void updateMember(@Param("memberVO")MemberVO memberVO);
 	
+	// 무인도 board_write , member 컬럼 변경
+	public void updateIsland_bw(int bw_no);
+	public void updateIsland_member(int m_no);
 	
 	// 삭제
 	@Delete("delete board_write where bw_no = #{bw_no}")
