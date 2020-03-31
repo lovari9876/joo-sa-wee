@@ -53,7 +53,7 @@
 										<label class="form-row-inner"> <input type="text"
 											name="m_id" id="m_id" class="form-control" required>
 											<span class="label">아이디</span> <span class="border"></span>
-										</label>
+										</label>										
 										<div class="check_font" id="id_check">
 											<button class="idCheck" type="button" id="idCheck"
 												onclick="fn_idCheck();" value="N">중복확인</button>

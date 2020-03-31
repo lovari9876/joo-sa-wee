@@ -1,3 +1,24 @@
+function checkID(m_id){
+	var reg_m_id = /^[A-Za-z]+[A-Za-z0-9_\-]{3,19}$/;
+	var match = reg_m_id(m_id);
+	
+	if(m_id == ""){
+		alert("아이디를 입력하세요.");
+		return true;
+	}
+	if(m_id.length < 4 || m_id.length > 20){
+		alert("아이디는 4자 이상 20자 이하로 입력하세요.");
+		return true;
+	}
+	if(match == null){
+		alert("아이디의 첫 글자는 영문으로 시작하고, 영문과 숫자 조합만 가능합니다.");
+		return true;
+	}
+	
+	return false;
+}
+
+
 function fn_idCheck() {
 	$.ajax({
 		url : "/idCheck",
@@ -7,6 +28,7 @@ function fn_idCheck() {
 			"m_id" : $("#m_id").val()
 		},
 
+		
 		success : function(data) {
 			var m_id = $("#m_id").val();
 			console.log(m_id);
