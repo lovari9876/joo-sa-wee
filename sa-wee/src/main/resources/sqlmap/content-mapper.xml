@@ -48,7 +48,7 @@
 	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 
 		없애도 됨. --> <!-- #{bw_no, jdbcType=INTEGER} -->
 	<!-- 게시글 보기(content_view) -->
-	<select id="selectContentOne" parameterType="int"
+	<select id="selectContentOne" parameterType="string"
 		resultMap="Board_writeVO">
 		SELECT BW.BW_NO, BW.BW_TITLE, BW.BW_CONTENT,
 		BW.BW_WRITTEN_DATE, BW.BW_UPDATED_DATE, BW.BW_HIT,
@@ -58,7 +58,7 @@
 		BOARD_TYPE BT, SUBJECT S
 		WHERE BW.M_NO = M.M_NO AND BW.BT_NO = BT.BT_NO
 		AND BW.S_NO = S.S_NO AND
-		BW.BW_NO = 42
+		BW.BW_NO = #{bw_no}
 	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
 
 	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 

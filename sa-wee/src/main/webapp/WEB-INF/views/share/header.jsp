@@ -32,12 +32,13 @@
 
 					<!-- 상단바 메뉴 -->
 					<ul class="main-menu head--ul primary-menu">
-						<li><a href="home">Home</a></li>
+						<li><a href="/">Home</a></li>
 						<li><a class="gameinfo" href="">보드게임 정보</a>
 							<ul class="sub-menu">
 								<li><a href="">당신의 보드게임</a></li>
 								<li><a href="">보드게임 리스트</a></li>
-							</ul></li>
+							</ul>
+						</li>
 						<li><a class="comm" href="list_home">커뮤니티</a>
 							<ul class="sub-menu">
 								<li><a href="board_story">보드이야기</a></li>
@@ -46,8 +47,14 @@
 								<li><a href="board_news">보드 뉴스</a></li>
 								<li><a href="board_qna">질문 & 답변</a></li>
 								<li><a href="board_creation">창작 보드게임</a></li>
-							</ul></li>
-						<li><a href="cafe_map">보드게임카페</a></li>
+							</ul>
+						</li>
+						<li><a href="cafe_map">보드게임카페</a>
+							<ul>
+								<li><a href="cafe_map">보드게임 카페</a></li>
+								<li><a href="selectAllReviewList">카페리뷰 리스트</a></li>
+							</ul>
+						</li>
 						<li><a href="blog">보부상</a></li>
 						<li><a class="help" href="contact">헬프데스크</a>
 							<ul class="sub-menu">

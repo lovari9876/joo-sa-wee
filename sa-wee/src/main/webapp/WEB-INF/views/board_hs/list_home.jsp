@@ -271,7 +271,7 @@
 	<script src="js/board_hs/jquery.sticky-sidebar.min.js"></script>
 	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hs/main.js"></script>
-	<script src="js/js_header/scroll.js"></script>
+	<script src="js/header/scroll.js"></script>
 
 </body>
 </html>

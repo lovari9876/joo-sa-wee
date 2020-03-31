@@ -139,13 +139,13 @@
 				<div class="cafe-info" id="cafe-info">
 					<div class = "info-wrap">
 						<div class="info">
-							<i class="fas fa-map-marker-alt"></i> 주소 : 서울시 서울시 서울시 <br /> <i
-								class="fas fa-phone"></i> 전화번호 : 02-1234-5678 <br /> <i
-								class="fas fa-users"></i> 수용인원 : 3명 <br /> <i
-								class="fas fa-couch"></i> 테이블 개수 : 2개 의자 개수 : 1개 <br /> <i
-								class="far fa-clock"></i> 오픈 시간 : 07 : 00 <br /> <i
-								class="fas fa-clock"></i> 마감 시간 : 08 : 00 <br /> <i
-								class="fas fa-door-closed"></i> 카페 휴일 : 월, 수, 목, 금 <br />
+							<i class="fas fa-map-marker-alt"></i> 주소 : ${cafe_info.c_add} <br /> <i
+								class="fas fa-phone"></i> 전화번호 : ${cafe_info.c_phone} <br /> <i
+								class="fas fa-users"></i> 수용인원 : ${cafe_info.c_people}명 <br /> <i
+								class="fas fa-couch"></i> 테이블 개수 : ${cafe_info.c_table}개 의자 개수 : ${cafe_info.c_chair}개 <br /> <i
+								class="far fa-clock"></i> 오픈 시간 : ${cafe_info.c_open} <br /> <i
+								class="fas fa-clock"></i> 마감 시간 : ${cafe_info.c_close} <br /> <i
+								class="fas fa-door-closed"></i> 카페 휴일 : ${cafe_info.c_rest} <br />
 						</div>
 					</div>
 				</div>
@@ -372,117 +372,17 @@
 						
 						<div class = "review-table">
 							<table class="table">
-									<tr class="row header">
-										<td class="cell">글 번호</td>
-										<td class="cell">글 제목</td>
-										<td class="cell">작성자</td>
-										<td class="cell">작성일</td>
-									</tr>
-	
+								<c:forEach items="${list}" var="list">
 									<tr class="row">
-										<td class="cell">1</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
+										<td class = "cell">${list.cr_no}</td>
+										<td class = "cell">${list.cafeVO.c_title}</td>
+										<td class = "cell"><a href="cafe_review?cr_no=${list.cr_no}">${list.cr_title}</a></td>
+										<td class = "cell">${list.memberVO.m_nick}</td>
+										<td class = "cell">${list.cr_written_date}</td>
+										<td class = "cell">${list.cr_hit}</td>
+										<td class = "cell">${list.cr_recommend_num}</td>
 									</tr>
-	
-									<tr class="row">
-										<td class="cell">2</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-	
-									<tr class="row">
-										<td class="cell">3</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-	
-									<tr class="row">
-										<td class="cell">4</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-	
-									<tr class="row">
-										<td class="cell">5</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-	
-									<tr class="row">
-										<td class="cell">6</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-	
-									<tr class="row">
-										<td class="cell">7</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-	
-									<tr class="row">
-										<td class="cell">8</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-	
-									<tr class="row">
-										<td class="cell">9</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-	
-									<tr class="row">
-										<td class="cell">10</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									
-									<tr class="row">
-										<td class="cell">11</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									
-									<tr class="row">
-										<td class="cell">12</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									
-									<tr class="row">
-										<td class="cell">13</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									
-									<tr class="row">
-										<td class="cell">14</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									
-									<tr class="row">
-										<td class="cell">15</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
+							</c:forEach>
 	
 								</table>	
 							</div>
@@ -519,12 +419,12 @@
 	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
-	<script src="js/js_header/scroll.js"></script>
+	<script src="js/header/scroll.js"></script>
 	<script src="js/board_hs/cafe-photo.js"></script>
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	<script src="js/js_footer/footer_hee.js"></script>
+	<script src="js/footer/footer_hee.js"></script>
 	
 	<!-- script 부분 -->
 	<!-- tooltip 부분 -->

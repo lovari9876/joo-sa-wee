@@ -5,6 +5,7 @@
 <!-- mapper 태그 내부에 sql문을 넣으면 mybatis가 알아서 해준다.. -->
 <mapper namespace="com.soninlawisdice.mapper.BoardMapper">
 	
+	<!-- 커뮤니티 게시판  -->
 	<resultMap type="com.soninlawisdice.vo.Board_writeVO" 
 		id="Board_writeVO">
 		<result column="bw_no" property="bw_no" />
@@ -39,6 +40,9 @@
 	
 	</resultMap>
 	
+	
+	
+	
 	<!-- 메인 핫이슈, 베스트 부분 -->
 	<!-- 핫이슈  : 조회순-->
 	<select id="selectHotList" resultMap = "Board_writeVO">
@@ -57,7 +61,7 @@
 	
 	<!-- 커뮤니티 전체보기 -->
 	<select id = "selectBoardList" resultMap = "Board_writeVO">
-		select bw.bw_no, m.m_name, bw.s_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
+		select bw.bw_no, m.m_nick, bw.s_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
 		from board_write bw, member m where bw.m_no = m.m_no 
 		and bw_island = 0  
 		order by bw_no desc
@@ -144,15 +148,72 @@
 	
 	
 	
-	
-	
-	
-	
+
 	
 	
 	<!-- 카페 리뷰 테이블 -->
 	
-	<!-- 카페리뷰 리스트 -->
+	<!-- 카페리뷰 게시판 -->
+	<resultMap type="com.soninlawisdice.vo.Cafe_reviewVO" 
+		id="Cafe_reivewVO">
+		<result column="cr_no" property="cr_no" />
+		<result column="bt_no" property="bt_no" />
+		<result column="m_no" property="m_no" />
+		<result column="c_no" property="c_no" />
+		<result column="cr_title" property="cr_title" />
+		<result column="cr_content" property="cr_content" />
+		<result column="cr_written_date" property="cr_written_date" />
+		<result column="cr_updated_date" property="cr_updated_date" />
+		<result column="cr_hit" property="cr_hit" />
+		<result column="cr_recommend_num" property="cr_recommend_num" />
+		<result column="cr_report_num" property="cr_report_num" />
+		<result column="cr_island" property="cr_island" />
+		
+		<collection javaType="com.soninlawisdice.vo.MemberVO"
+			property="memberVO">
+			<id column="m_no" property="m_no" />
+			<result column="m_nick" property="m_nick" />
+		</collection>
+		<collection javaType="com.soninlawisdice.vo.CafeVO"
+			property="cafeVO">
+			<id column="c_no" property="c_no" />
+			<result column="c_title" property="c_title" />
+		</collection>
+	
+	</resultMap>
+	
+	
+	
+	<!-- 카페리뷰 리스트 전체보기 모든 카페에 관한 리뷰들 싹다-->
+	<select id = "selectAllReviewList" resultMap = "Cafe_reivewVO">
+		select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_hit, cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
+		from cafe_review cr, member m, cafe c 
+		where cr.m_no = m.m_no and cr.c_no = c.c_no
+		order by cr.cr_no desc
+	</select>
+	
+	<!-- 카페 리뷰 리스트에서 review_content_view 로-->
+	<select id = "selectReviewOne" resultMap = "Cafe_reivewVO">
+		select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_content, cr.cr_hit, cr.cr_written_date, cr.cr_updated_date, cr.cr_recommend_num, cr.cr_hit, c.c_title 
+		from cafe_review cr, member m, cafe c
+		where cr.m_no = m.m_no and cr.c_no = c.c_no
+		and cr_no = #{cr_no}
+	</select>
+	
+	<!-- 카페별로 밑에 리뷰 리스트 있는거 -->
+	<select id = "selectCafeReviewList" resultMap = "Cafe_reivewVO">
+		select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_hit, cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
+		from cafe_review cr, member m, cafe c 
+		where cr.m_no = m.m_no and cr.c_no = c.c_no
+		and cr.c_no = #{c_no}
+		order by cr.cr_no desc
+	</select>
+	
+	<!-- 카페 정보 가져오기 -->
+	<select id = "selectCafeInfo" resultType = "com.soninlawisdice.vo.CafeVO">
+		select * from cafe where c_no = #{c_no}
+	</select>
+	
 	
 	<!-- 추천하기 눌렀을때 cr_recommend_num 증가하는 -->
 	<update id = "cafe_recommend">

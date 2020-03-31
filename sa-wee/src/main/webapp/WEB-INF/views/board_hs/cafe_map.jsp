@@ -266,7 +266,7 @@
 			kakao.maps.event.addListener(marker, 'click', function(){
 				//일단 이렇게는 해놓는데, 
 				//var url = 'https://map.kakao.com/link/map/'+position.getLat()+','+position.getLng(); 이런식으로 처리하라함
-				var url = '/cafe_content_view';
+				var url = '/cafe_info';
 				window.open(url, '_self');
 			})
 
@@ -343,12 +343,12 @@
 	
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
-	<script src="js/js_header/scroll.js"></script>
+	<script src="js/header/scroll.js"></script>
 	<script src="js/board_hs/tab.js"></script>
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	<script src="js/js_footer/footer_hee.js"></script>
+	<script src="js/footer/footer_hee.js"></script>
 
 
 

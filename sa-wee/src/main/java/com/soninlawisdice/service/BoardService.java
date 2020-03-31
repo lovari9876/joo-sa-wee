@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CafeVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 
 public interface BoardService {
 
@@ -49,11 +51,23 @@ public interface BoardService {
 	
 
 	///////////////////// 카페 리뷰///////////////////////////
+	
+	//카페 리뷰 전체 리스트 보기
+	public List<Cafe_reviewVO> selectAllReviewList();
+	
+	//카페 리뷰 리스트에서 review_content_view 로
+	public Cafe_reviewVO selectReviewOne(String cr_no);
+	
+	//카페별로 밑에 리뷰 리스트 있는거
+	public List<Cafe_reviewVO> selectCafeReviewList(String c_no);
+		
+	//카페정보 가져오기
+	public CafeVO selectCafeInfo(String c_no);
 
 	// 카페 리뷰 추천수 올리기
-	public void cafe_recommend(@Param("cr_no") String cr_no);
+	public void cafe_recommend(String cr_no);
 
 	// 올라간 추천수 가져오기
-	public String cafe_rec(@Param("cr_no") String cr_no);
+	public String cafe_rec(String cr_no);
 
 }

@@ -107,6 +107,7 @@
 
 							<tr class="row header">
 								<td class="cell">글 번호</td>
+								<td class="cell">말머리</td>
 								<td class="cell">글 제목</td>
 								<td class="cell">작성자</td>
 								<td class="cell">작성일</td>
@@ -118,8 +119,9 @@
 							<c:forEach items="${list}" var="dto">
 							<tr class="row">
 								<td class = "cell">${dto.bw_no}</td>
-								<td class = "cell"><a href="content_view?bId=${dto.bw_no}">${dto.bw_title}</a></td>
-								<td class = "cell">${dto.m_no}</td>
+								<td class = "cell">${dto.subjectVO.s_content}</td>
+								<td class = "cell"><a href="content_view?bw_no=${dto.bw_no}">${dto.bw_title}</a></td>
+								<td class = "cell">${dto.memberVO.m_nick}</td>
 								<td class = "cell">${dto.bw_written_date}</td>
 								<td class = "cell">${dto.bw_hit}</td>
 								<td class = "cell">${dto.bw_recommend_num}</td>

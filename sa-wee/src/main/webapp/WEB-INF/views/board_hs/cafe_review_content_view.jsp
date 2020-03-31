@@ -71,7 +71,7 @@
 							</div>
 						</div>
 						<div>
-							<span class="text-white">작성자 ${memberVO.m_name}</span>
+							<span class="text-white">작성자 ${memberVO.m_nick}</span>
 							<span class="slash">&bullet;</span> 
 							<span class="text-white">작성일 ${cafe_review.cr_written_date}</span> 
 							<span class="slash">&bullet;</span>
@@ -172,7 +172,7 @@
 								<a href="#">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="delete?bw_no=${cafe_review.bw_no}">삭제</a>
+								<a href="delete?cr_no=${cafe_review.cr_no}">삭제</a>
 							</div>
 							<div class="test_item fourth">
 								<a href="report_view_bw?cr_no=${cafe_review.cr_no}"

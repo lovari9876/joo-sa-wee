@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.BoardMapper;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CafeVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 
 @Service
 public class BoardServiceImpl  implements BoardService{
@@ -84,6 +86,31 @@ public class BoardServiceImpl  implements BoardService{
 
 	
 	/////////////////////카페리뷰////////////////////////
+	
+	//카페 리뷰 전체 리스트 보기
+	@Override
+	public List<Cafe_reviewVO> selectAllReviewList(){
+		return boardMapper.selectAllReviewList();
+	}
+	
+	//카페 리뷰 리스트에서 review_content_view 로
+	public Cafe_reviewVO selectReviewOne(String cr_no) {
+		return boardMapper.selectReviewOne(cr_no);
+	}
+	
+	//카페별로 밑에 리뷰 리스트 있는거
+	@Override
+	public List<Cafe_reviewVO> selectCafeReviewList(String c_no){
+		return boardMapper.selectCafeReviewList(c_no);
+	}
+			
+	//카페정보 가져오기
+	@Override
+	public CafeVO selectCafeInfo(String c_no) {
+		return boardMapper.selectCafeInfo(c_no);
+	}
+	
+		
 	
 	@Override
 	public void cafe_recommend(String cr_no) {

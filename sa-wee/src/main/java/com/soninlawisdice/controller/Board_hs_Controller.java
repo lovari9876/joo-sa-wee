@@ -187,9 +187,47 @@ public class Board_hs_Controller {
 		return "board_hs/cafe_review_write";
 	}
 	
+	//카페 리뷰 전체 리스트 보기
+	@RequestMapping(value = "/selectAllReviewList")
+	public String selectAllReviewList(Model model) {
+		model.addAttribute("list",boardService.selectAllReviewList());
+		return "cafe_review_list";
+	}
+	
+	//카페 리뷰 리스트에서 review_content_view 로
+	@RequestMapping(value = "/selectReviewOne")
+	public String selectReviewOne(Model model, String cr_no) {
+		model.addAttribute("",boardService.selectReviewOne(cr_no));
+		return "cafe_review_content_view";
+	}
 	
 	
 	
+	//지도
+	@RequestMapping(value = "/cafe_map", method = RequestMethod.GET)
+	public String cafe_map(Model model) {
+		logger.info("review");
+		
+		return "board_hs/cafe_map";
+	}
+	
+	
+
+	//마커 클릭시 카페 상세정보로 이동. 이거 url 다시 해야함.
+	@RequestMapping(value = "/cafe_info", method = RequestMethod.GET)
+	public String cafe_content_view(Model model, String c_no) {
+		logger.info("review");
+
+		//카페 정보 가져오기
+		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
+		
+		//댓글 불러오는것도 추가해야함
+		
+		//밑에 관련 리스트 가져오기
+		model.addAttribute("list", boardService.selectCafeReviewList(c_no));
+		
+		return "board_hs/cafe_info";
+	}
 	
 	
 	
@@ -214,24 +252,7 @@ public class Board_hs_Controller {
 	
 	
 	
-	
-	@RequestMapping(value = "/cafe_map", method = RequestMethod.GET)
-	public String cafe_map(Model model) {
-		logger.info("review");
-		
-		return "board_hs/cafe_map";
-	}
-	
-	
 
-	
-	@RequestMapping(value = "/cafe_content_view", method = RequestMethod.GET)
-	public String cafe_content_view(Model model) {
-		logger.info("review");
-		
-		return "board_hs/cafe_content_view";
-	}
-	
 	
 	
 	
