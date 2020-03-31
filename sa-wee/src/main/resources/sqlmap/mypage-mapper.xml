@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper 태그 내부에 sql문을 넣으면 mybatis가 알아서 해준다.. -->
+<mapper namespace="com.soninlawisdice.mapper.MyPageMapper">
+
+	<!-- 마이페이지 조회 -->
+	<select id="mypage" resultType="com.soninlawisdice.vo.MemberVO">
+		select * from member where m_id = #{m_id}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="modifyMember">
+		update member set
+				m_nick = #{m_nick},
+				m_pw = #{m_pw},
+				m_email = #{m_email},
+				m_phone = #{m_phone},
+				m_post = #{m_post},
+				m_addr1 = #{m_addr1}, 
+				m_addr2 = #{m_addr2},
+				m_self = #{m_self},
+				m_re_sms = #{m_re_sms},
+				m_re_notice = #{m_re_notice},
+				m_re_message = #{m_re_message}, 
+				m_info = #{m_info}
+						where m_id = 'test';
+	</update>
+
+</mapper>

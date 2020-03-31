@@ -18,7 +18,7 @@
 		<mapper resource="sqlmap/content-mapper.xml" />
 		<mapper resource="sqlmap/island-mapper.xml" />
 		<mapper resource="sqlmap/join-mapper.xml" />
-		<mapper resource="sqlmap/login-mapper.xml" />
+		<mapper resource="sqlmap/mypage-mapper.xml" />
 		<mapper resource="sqlmap/seconhand-mapper.xml" />
 
 	</mappers>
