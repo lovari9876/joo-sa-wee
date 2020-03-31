@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 파피콘 -->
+<link rel="icon" type="image/png" href="images/share/wolf_logo.ico" />
 <title>Admin</title>
 <link type="text/css" href="css/admin/bootstrap.min.css"rel="stylesheet">
 <link type="text/css" href="css/admin/bootstrap-responsive.min.css"rel="stylesheet">

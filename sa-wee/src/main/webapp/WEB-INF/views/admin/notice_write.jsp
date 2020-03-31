@@ -17,6 +17,8 @@
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
 	rel='stylesheet'>
 <!-- <link rel="stylesheet" href="css/liststyle.css" /> -->
+<script src = "js/board_hs/ckeditor.js" ></script>
+
 </head>
 
 
@@ -66,15 +68,15 @@
 						</tr> -->
 
 							<tr class="row">
-								<td class="cell">제목</td>
-								<td class="cell"><input type="text" name="bwTitle"
+								<td class="cell span2">제목</td>
+								<td class="cell span9"><input type="text" name="bwTitle"
 									class="span7" placeholder="제목을 입력하세요"></td>
 
 							</tr>
 
 							<tr class="row">
-								<td class="cell">내용</td>
-								<td class="cell"><textarea name="bwTitle" class="span7"
+								<td class="cell ">내용</td>
+								<td class="cell "><textarea id="editor" name="bwTitle" 
 										rows="10" placeholder="내용을 입력하세요"></textarea></td>
 							</tr>
 
@@ -131,5 +133,44 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+	
+	<!-- ckEditor 관련 -->
+	
+	<script type="text/javascript">
+			var myEditor;
+			ClassicEditor
+				.create( document.querySelector( '#editor' ), {
+					
+					
+					
+					
+					ckfinder: {
+				        uploadUrl: '${pageContext.request.contextPath}/fileupload' // 내가 지정한 업로드 url (post로 요청감)
+				       
+					},
+					
+					toolbar: [ 'heading', '|',  'bold', 'italic','fontSize','fontColor', 'fontFamily', 'alignment:left', 'alignment:center', 'alignment:right','link', 'bulletedList', 'numberedList', 'blockQuote','insertTable',  'imageUpload', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
+
+					image : {
+						styles : ['full', 'alignLeft', 'alignRight']
+					},
+					
+					uiClor : '#FFFFFF',
+					
+					removePlugins: [ 'ImageCaption' ],
+					
+					alignment: {
+			            options: [ 'left', 'center', 'right' ]
+			        }
+				} )
+				.then( editor => {
+			        console.log( 'Editor was initialized', editor );
+			        myEditor = editor;
+		    } )
+			.catch( error => {
+			    console.error( error );
+			} );
+		</script>
+	
 </body>
 </html>

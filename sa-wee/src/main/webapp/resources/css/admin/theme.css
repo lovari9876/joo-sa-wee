@@ -851,6 +851,20 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@topColor', end
 .progress .bar-danger, .progress-danger .bar {
 	border-color: #a62821
 }
+
+
+/* editor 부분!!! */
+.ck.ck-editor{
+	max-width : 1000px;
+}
+.ck-editor__editable{
+	min-height : 500px;
+}
+.ck.ck-toolbar {
+	background : #fff!important;
+	}
+
+
 .table {
 /* 	margin-top : 10;
 	margin-bottom: 10; */

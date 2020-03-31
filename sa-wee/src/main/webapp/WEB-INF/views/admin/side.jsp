@@ -73,10 +73,10 @@
                                 </li>
                                 <li><a href="report_list"><i class="menu-icon icon-wrench"></i>신고관리 <!-- <b class="label green pull-right"> 알림 버튼
                                     11</b> --> </a></li>
-                                <li><a class="collapsed" data-toggle="collapse" href="#togglePagess"><i class="menu-icon icon-tasks">
+                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages1"><i class="menu-icon icon-tasks">
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>게시글관리  </a>
-                                    <ul id="togglePagess" class="collapse unstyled">
+                                    <ul id="togglePages1" class="collapse unstyled">
                                         <li><a href="board_list"><i class="icon-cloud"></i> 커뮤니티  </a></li>
                                         <li><a href="board_list_trade"><i class="icon-key"></i> 보부상</a></li>
                                         <li><a href="board_list_cafe"><i class="icon-picture"></i> 카페리뷰</a></li>
@@ -92,10 +92,10 @@
                             
                             
                             <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#togglePagess"><i class="menu-icon icon-pencil">
+                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages2"><i class="menu-icon icon-pencil">
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>헬프데스크 </a>
-                                    <ul id="togglePagess" class="collapse unstyled">
+                                    <ul id="togglePages2" class="collapse unstyled">
                                         <li><a href="faq_list"><i class="icon-check"></i> 자주하는 질문  </a></li>
                                         <li><a href="ask_list"><i class="icon-question-sign"></i> 1:1 문의 </a></li>
                                     </ul>
@@ -117,10 +117,10 @@
                             
                             
                             <ul class="widget widget-menu unstyled">
-                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages"><i class="menu-icon icon-bar-chart">
+                                <li><a class="collapsed" data-toggle="collapse" href="#togglePages3"><i class="menu-icon icon-bar-chart">
                                 </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
                                 </i>통계 </a>
-                                    <ul id="togglePages" class="collapse unstyled">
+                                    <ul id="togglePages3" class="collapse unstyled">
                                         <li><a href="withdrawer_list"><i class="icon-time"></i> 탈퇴사유 </a></li>
                                         <li><a href="chart"><i class="icon-group"></i> 접속자  </a></li>
                                         <li><a href="chart"><i class="icon-list-ul"></i> 게시글 </a></li>
