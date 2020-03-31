@@ -75,11 +75,13 @@
 				
 				<form action="modify" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
-						<input type="hidden" name="bId" value="${content_view.bw_no}"/>
+						<input type="hidden" name="bw_no" value="${content_view.bw_no}"/>
+						<input type="hidden" id="bt_no" value="${content_view.bt_no}"/>
+						<input type="hidden" id="s_no" value="${content_view.s_no}"/>
 						<tr class = "row">
 							<td class = "cell">
-								<select id = "board" name = "board_no" ></select> 
-								<select id = "sub" name = "board_no2"></select>
+								<select id = "board" name = "bt_no" ></select> 
+								<select id = "sub" name = "s_no"></select>
 							</td>
 						</tr>
 
@@ -129,7 +131,7 @@
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	<script src="js/board_hs/category.js"></script>
+	<script src="js/board_hs/selected_category.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
 	
 	

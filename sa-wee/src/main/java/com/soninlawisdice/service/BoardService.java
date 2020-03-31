@@ -44,6 +44,9 @@ public interface BoardService {
 
 	// 게시글 작성하기
 	public void insertBoard(Board_writeVO board_writeVO);
+	
+	//modify_view 에 불러오기
+	public Board_writeVO modify_view(String bw_no);
 
 	// 글 수정하기
 	public void modify(Board_writeVO board_writeVO);

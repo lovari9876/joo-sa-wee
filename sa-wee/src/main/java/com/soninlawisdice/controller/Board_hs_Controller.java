@@ -35,9 +35,6 @@ public class Board_hs_Controller {
 	@Autowired
 	private BoardService boardService;
 
-	@Autowired
-	private ContentService contentService;
-
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
 
 	// 베스트 + 핫이슈 + 홈화면
@@ -143,14 +140,17 @@ public class Board_hs_Controller {
 
 	}
 
-	// 수정하기 view. 희정이 contentview 가지고 오는거. 위에 @Auto 두개 줘도 되는건가.
+	// 수정하기 view.
 	@RequestMapping(value = "/modify_view", method = RequestMethod.GET)
 	public String modify_view(Model model, String bw_no) {
-		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
-
+		
+		model.addAttribute("content_view", boardService.modify_view(bw_no));
+		
 		return "board_hs/modify_view";
 	}
-
+	
+	
+	//경로 다시.
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modify(Board_writeVO board_writeVO, Model model) {
 

@@ -138,10 +138,16 @@
 		values ( board_write_seq.nextval, 11, #{board_writeVO.bt_no}, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
 	</insert>
 	
+	<!-- modify_view 로 불러오기 -->
+	<select id = "modify_view" resultType = "com.soninlawisdice.vo.Board_writeVO">
+		select bw_no, bt_no, s_no, bw_title, bw_content
+		from board_write
+		where bw_no = #{bw_no}
+	</select>
 	
 	<!-- 글 수정하기 -->
-	<update id="modify">
-		update board_write set bt_no = #{board_write.bt_no}, s_no = #{board_writeVO.s_no}, bw_title = #{board_writeVO.bw_title}, bw_content = #{board_writeVO.bw_content} where bw_no = #{board_writeVO.bw_no}
+	<update id="modify" parameterType="com.soninlawisdice.vo.Board_writeVO">
+		update board_write set bt_no = #{board_writeVO.bt_no}, s_no = #{board_writeVO.s_no}, bw_title = #{board_writeVO.bw_title}, bw_content = #{board_writeVO.bw_content} where bw_no = #{board_writeVO.bw_no}
 	</update>
 	
 	

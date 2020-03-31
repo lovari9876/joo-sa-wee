@@ -78,7 +78,7 @@
 				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
 				<form action="write" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
-						<input type = "hidden" name = "bt_no" value = "${bt_no}"/>
+						<input id = "bt_no" type = "hidden" name = "bt_no" value = "${bt_no}"/>
 						<tr class = "row">
 							<td class = "cell">
 								<select id = "board" name = "bt_no" ></select> 
@@ -133,7 +133,6 @@
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
 	<script src="js/header/scroll.js"></script>
-	
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>

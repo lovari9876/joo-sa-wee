@@ -46,22 +46,34 @@ $(document).ready(function(){
 
 		setSecondSelect(ARR,$("#board option:selected").text()); //월세팅
 		
-		/*console.log($("#board option:selected").text());	//보드이야기, 개봉기 및 리뷰 나옴.
-		console.log($("#board").val());	//1 출력됨.
-*/
-		//바뀌게 하는 부분.
+		//글 작성시 게시판 bt_no 에 따라 첫번째 select box 선택되어지게 하는거.
+		var bt_no = $("#bt_no").val();
+		
+		for(i = 0; i<6; i++){
+			if(bt_no == i){
+				$("#board").val(i).attr("selected", "selected");
+				var selected = $("#board option:selected").text();
+				setSecondSelect(ARR,selected);
+				
+				break;
+			}
+		}
+		
+		//console.log($("#board option:selected").text());	//보드이야기, 개봉기 및 리뷰 나옴.
+		//console.log($("#board").val());	//1 출력됨.
+
+		//첫번째 selectbox 에 따라 두번째 selectbox 바뀌게 하는 부분.
 		$("#board").change(function(e){
 
 			var selected = $("#board option:selected").text();
 			
 			setSecondSelect(ARR,selected);
-
 		});
-
 	});
 
 
-
+	
+	
 	function setFirstSelect(ARR){
 
 		//첫번째 셀렉트 값을 중복제거 후 입력
@@ -99,6 +111,8 @@ $(document).ready(function(){
 	}
 	
 	//여기까지 첫번째 함수.
+	
+	
 	
 	
 	

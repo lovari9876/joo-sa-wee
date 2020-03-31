@@ -44,6 +44,9 @@ public interface BoardMapper {
 	//게시글 작성하기
 	public void insertBoard(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
+	//modify_view 에 불러오기
+	public Board_writeVO modify_view(@Param("bw_no")String bw_no);
+	
 	//글 수정하기
 	public void modify(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
