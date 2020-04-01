@@ -1,5 +1,8 @@
 package com.soninlawisdice.mapper;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
@@ -37,6 +40,10 @@ public interface ContentMapper {
 	
 	public void insertReportCR(ReportVO reportVO); // 카페리뷰 신고글 쓰기
 	
-	public void insertCommentOne(CM_commentVO cm_commentVO); // 댓글 쓰기
+	public void insertCommentBW(CM_commentVO cm_commentVO); // 게시글 댓글 쓰기
+	
+	/* public ArrayList<HashMap<String, Object>> commentList(String cm_no); */ // 게시글 댓글 보기
+	
+	 public CM_commentVO selectCommentOne(String cm_no); 
 	
 }

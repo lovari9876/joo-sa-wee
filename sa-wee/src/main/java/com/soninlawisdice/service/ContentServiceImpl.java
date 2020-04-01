@@ -1,5 +1,8 @@
 package com.soninlawisdice.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -130,13 +133,29 @@ public class ContentServiceImpl implements ContentService {
 		
 	}
 	
-	// 댓글 쓰기
+	// 게시글 댓글 쓰기
 	@Override
-	public void insertCommentOne(CM_commentVO cm_commentVO) {
+	public void insertCommentBW(CM_commentVO cm_commentVO) {
 		
-		contentMapper.insertCommentOne(cm_commentVO);
+		contentMapper.insertCommentBW(cm_commentVO);
 		
 	}
+
+	// 게시글 댓글 보기
+	
+	/*
+	 * @Override public ArrayList<HashMap<String, Object>> commentList(String cm_no)
+	 * {
+	 * 
+	 * return contentMapper.commentList(cm_no); }
+	 */
+	 
+
+	
+	  @Override public CM_commentVO selectCommentOne(String cm_no) {
+	  
+	  return contentMapper.selectCommentOne(cm_no); }
+	 
 
 	
 	

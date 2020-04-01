@@ -18,11 +18,15 @@ public class CM_commentVO {
 	private int cm_step; // step
 	private int cm_indent; // indent
 	
+	// for resultMap
+	private MemberVO memberVO;
+	private Board_writeVO board_wirteVO;
+	
 	public CM_commentVO() {}
 
 	public CM_commentVO(int cm_no, int m_no, String cm_content, Timestamp cm_written_date, Timestamp cm_updated_date,
 			String cm_type, int cm_no2, int cm_recommend_num, int cm_report_num, int cm_rating, int cm_group,
-			int cm_step, int cm_indent) {
+			int cm_step, int cm_indent, MemberVO memberVO, Board_writeVO board_wirteVO) {
 		this.cm_no = cm_no;
 		this.m_no = m_no;
 		this.cm_content = cm_content;
@@ -36,7 +40,10 @@ public class CM_commentVO {
 		this.cm_group = cm_group;
 		this.cm_step = cm_step;
 		this.cm_indent = cm_indent;
+		this.memberVO = memberVO;
+		this.board_wirteVO = board_wirteVO;
 	}
+
 
 	public int getCm_no() {
 		return cm_no;
@@ -141,5 +148,23 @@ public class CM_commentVO {
 	public void setCm_indent(int cm_indent) {
 		this.cm_indent = cm_indent;
 	}
+	
+	public MemberVO getMemberVO() {
+		return memberVO;
+	}
+
+	public void setMemberVO(MemberVO memberVO) {
+		this.memberVO = memberVO;
+	}
+
+	public Board_writeVO getBoard_wirteVO() {
+		return board_wirteVO;
+	}
+
+	public void setBoard_wirteVO(Board_writeVO board_wirteVO) {
+		this.board_wirteVO = board_wirteVO;
+	}
+	
+	
 	
 }

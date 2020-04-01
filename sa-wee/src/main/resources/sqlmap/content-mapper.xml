@@ -8,7 +8,7 @@
 	<!-- namespace를 만든 인터페이스와 맞춰주기 -->
 	<!-- id를 service의 함수명과 맞춰주기 -->
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
-	
+
 	<!-- Board_writeVO resultMap -->
 	<resultMap type="com.soninlawisdice.vo.Board_writeVO"
 		id="Board_writeVO">
@@ -53,7 +53,7 @@
 		SELECT BW.BW_NO, BW.BW_TITLE, BW.BW_CONTENT,
 		BW.BW_WRITTEN_DATE, BW.BW_UPDATED_DATE, BW.BW_HIT,
 		BW.BW_RECOMMEND_NUM, BW.BW_REPORT_NUM, BW.BW_ISLAND, BW.BW_SECRET,
-		M.M_NICK, BT.BT_NAME, S.S_CONTENT
+		M.M_NICK, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
 		FROM BOARD_WRITE BW, MEMBER M,
 		BOARD_TYPE BT, SUBJECT S
 		WHERE BW.M_NO = M.M_NO AND BW.BT_NO = BT.BT_NO
@@ -111,68 +111,141 @@
 			<id column="cm_no" property="cm_no" />
 		</collection>
 	</resultMap>
-	
+
 	<!-- 게시글 신고글 쓰기 -->
 	<insert id="insertReportBW">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '게시글', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '게시글',
+		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
-	
+
 	<!-- m_no를 가져오기 위해 -->
-	<select id="selectContentM" resultType="com.soninlawisdice.vo.MemberVO">
+	<select id="selectContentM"
+		resultType="com.soninlawisdice.vo.MemberVO">
 		SELECT M_NO FROM MEMBER WHERE M_NO = #{m_no}
 	</select>
-	
+
 	<!-- 회원 신고글 쓰기 -->
 	<insert id="insertReportM">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '회원', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '회원',
+		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
-	
+
 	<!-- cm_no를 가져오기 위해 -->
-	<select id="selectContentCM" resultType="com.soninlawisdice.vo.CM_commentVO">
+	<select id="selectContentCM"
+		resultType="com.soninlawisdice.vo.CM_commentVO">
 		SELECT CM_NO FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
-	
+
 	<!-- 댓글 신고글 쓰기 -->
 	<insert id="insertReportCM">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '댓글', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '댓글',
+		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
-	
+
 	<!-- t_no를 가져오기 위해 -->
-	<select id="selectContentT" resultType="com.soninlawisdice.vo.TradeVO">
+	<select id="selectContentT"
+		resultType="com.soninlawisdice.vo.TradeVO">
 		SELECT T_NO FROM TRADE WHERE T_NO = #{t_no}
 	</select>
-	
+
 	<!-- 중고거래 신고글 쓰기 -->
 	<insert id="insertReportT">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '중고거래', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '중고거래',
+		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
-	
+
 	<!-- cr_no를 가져오기 위해 -->
-	<select id="selectContentCR" resultType="com.soninlawisdice.vo.Cafe_reviewVO">
+	<select id="selectContentCR"
+		resultType="com.soninlawisdice.vo.Cafe_reviewVO">
 		SELECT CR_NO FROM CAFE_REVIEW WHERE CR_NO = #{cr_no}
 	</select>
-	
+
 	<!-- 카페리뷰 신고글 쓰기 -->
 	<insert id="insertReportCR">
 		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
 		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '카페리뷰', #{r_type_no}, #{r_content},
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '카페리뷰',
+		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+
+	<!-- CM_commentVO resultMap -->
+	<resultMap type="com.soninlawisdice.vo.CM_commentVO"
+		id="CM_commentVO">
+		<id column="cm_no" property="cm_no" />
+		<result column="m_no" property="m_no" />
+		<result column="cm_content" property="cm_content" />
+		<result column="cm_written_date" property="cm_written_date" />
+		<result column="cm_updated_date" property="cm_updated_date" />
+		<result column="cm_type" property="cm_type" />
+		<result column="cm_no2" property="cm_no2" />
+		<result column="cm_recommend_num" property="cm_recommend_num" />
+		<result column="cm_report_num" property="cm_report_num" />
+		<result column="cm_rating" property="cm_rating" />
+		<result column="cm_group" property="cm_group" />
+		<result column="cm_step" property="cm_step" />
+		<result column="cm_indent" property="cm_indent" />
+
+		<collection javaType="com.soninlawisdice.vo.MemberVO"
+			property="memberVO">
+			<id column="m_no" property="m_no" />
+			<result column="m_nick" property="m_nick" />
+		</collection>
+
+		<!-- <collection javaType="com.soninlawisdice.vo.Board_writeVO" property="board_writeVO"> 
+			<id column="bw_no" property="bw_no" /> </collection> -->
+	</resultMap>
+
+	<!-- 게시글 댓글 쓰기 -->
+	<insert id="insertCommentBW">
+		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
+		CM_WRITTEN_DATE,
+		CM_UPDATED_DATE, CM_TYPE, CM_NO2, CM_RECOMMEND_NUM,
+		CM_REPORT_NUM,
+		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
+		VALUES
+		(CM_COMMENT_SEQ.NEXTVAL, 5, #{cm_content}, SYSDATE, SYSDATE,
+		'게시판',
+		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
+	</insert>
+
+	<!-- 게시글 댓글 보기 -->
+	<!-- <select id="commentList" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT
+		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
+		WHERE CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = BW.BW_NO 
+		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2} 
+	</select>  -->
 	
-	
+	<select id="selectCommentOne" parameterType="String"
+		resultMap="CM_commentVO">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT
+		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
+		WHERE CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = BW.BW_NO 
+		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
+	</select>
+
 
 	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면 -->
 	<!-- 자동으로 현재시간이 입력된다. -->

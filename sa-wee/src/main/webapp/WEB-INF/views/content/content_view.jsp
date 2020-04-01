@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,7 +164,7 @@
 					<br />
 					<br />
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="/" method="get">
+					<form action="/list_home" method="get">
 						<div class="test">
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
@@ -181,8 +182,28 @@
 						</div>
 					</form>
 
+
 					<!-- 댓글부분 -->
-					<%@ include file="/WEB-INF/views/content/comment_view.jsp" %>
+					<%-- <%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %> --%>
+						<c:choose>
+							<c:when test="${board_typeVO.bt_no == 1}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view.bw_no}"></c:param>
+								</c:import>
+							</c:when>
+							 <c:otherwise>
+								 <%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
+							 </c:otherwise>
+						</c:choose>
+						
+						<%-- <c:param name="cm_type" value="${board_typeVO.bt_no}"></c:param>
+						<c:param name="cm_no2" value="${content_view.bw_no}"></c:param> --%>
+					
+					<!-- 댓글 쓰기 -->
+					<div class="comment-form-wrap pt-5">
+						<%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %>
+					</div>
 				</div>
 			</div>
 		</div>
