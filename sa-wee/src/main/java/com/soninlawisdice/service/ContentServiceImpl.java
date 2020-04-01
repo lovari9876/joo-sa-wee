@@ -29,7 +29,7 @@ public class ContentServiceImpl implements ContentService {
 
 	// 게시글 보기(content_view)
 	@Override
-	public Board_writeVO selectContentOne(String bw_no) {
+	public HashMap<String, Object> selectContentOne(int bw_no) {
 		
 		return contentMapper.selectContentOne(bw_no);
 	}
@@ -43,7 +43,7 @@ public class ContentServiceImpl implements ContentService {
 
 	// 게시글 조회수
 	@Override
-	public void upHitContent(String bw_no) {
+	public void upHitContent(int bw_no) {
 		
 		contentMapper.upHitContent(bw_no);
 		
@@ -75,7 +75,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	// m_no를 가져오기 위해
 	@Override
-	public MemberVO selectContentM(String m_no) {
+	public MemberVO selectContentM(int m_no) {
 		
 		return contentMapper.selectContentM(m_no);
 	}
@@ -152,7 +152,7 @@ public class ContentServiceImpl implements ContentService {
 	 
 
 	
-	  @Override public CM_commentVO selectCommentOne(String cm_no) {
+	  @Override public HashMap<String, Object> selectCommentOne(String cm_no) {
 	  
 	  return contentMapper.selectCommentOne(cm_no); }
 	 

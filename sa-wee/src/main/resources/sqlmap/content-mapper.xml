@@ -48,8 +48,7 @@
 	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 
 		없애도 됨. --> <!-- #{bw_no, jdbcType=INTEGER} -->
 	<!-- 게시글 보기(content_view) -->
-	<select id="selectContentOne" parameterType="String"
-		resultMap="Board_writeVO">
+	<select id="selectContentOne" resultType="java.util.HashMap" parameterType="int">
 		SELECT BW.BW_NO, BW.BW_TITLE, BW.BW_CONTENT,
 		BW.BW_WRITTEN_DATE, BW.BW_UPDATED_DATE, BW.BW_HIT,
 		BW.BW_RECOMMEND_NUM, BW.BW_REPORT_NUM, BW.BW_ISLAND, BW.BW_SECRET,
@@ -234,8 +233,8 @@
 		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2} 
 	</select>  -->
 	
-	<select id="selectCommentOne" parameterType="String"
-		resultMap="CM_commentVO">
+	<select id="selectCommentOne" resultType="java.util.HashMap"
+		parameterType="String">
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
 		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
 		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,

@@ -42,17 +42,20 @@ public class HeeJeongController {
 	 */
 	// 게시글 view
 	@RequestMapping(value = "/content_view", method = RequestMethod.GET)
-	public String content(Model model, String bw_no) {
+	public String content(Model model, HttpServletRequest request) {
 		System.out.println("content_view");
 
-//		String bw_no = request.getParameter("bw_no");
+		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
 
-		Board_writeVO board_writeVO = contentService.selectContentOne(bw_no);
+		/*
+		 * ArrayList<HashMap<String, Object>> board_writeVO =
+		 * contentService.selectContentOne(bw_no);
+		 */
 
-		model.addAttribute("content_view", board_writeVO);
-		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
-		model.addAttribute("memberVO", board_writeVO.getMemberVO());
-		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
+//		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
+//		model.addAttribute("memberVO", board_writeVO.getMemberVO());
+//		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
 
 		// 게시글 조회수
 		contentService.upHitContent(bw_no);
@@ -83,8 +86,6 @@ public class HeeJeongController {
 
 	// 지금 여기 하고 있다!!!
 	// 게시글 댓글 view
-
-	
 	 @RequestMapping(value = "/comment_view_bw", method = RequestMethod.GET)
 	 public String comment_view_bw(Model model, String bw_no, HttpServletRequest request, CM_commentVO cm_commentVO) {
 		System.out.println("comment_view_bw");
@@ -120,19 +121,19 @@ public class HeeJeongController {
 
 	// 게시글 댓글 쓰기 view
 	@RequestMapping(value = "/comment_write_view_bw", method = RequestMethod.GET)
-	public String comment_write_view_bw(HttpServletRequest request, Model model) {
+	public String comment_write_view_bw(HttpServletRequest request, Model model, int bw_no) {
 		System.out.println("comment_write_view_bw");
 
-		String bw_no = request.getParameter("bw_no");
+		/*String bw_no = request.getParameter("bw_no");*/
 
-		Board_writeVO board_writeVO = contentService.selectContentOne(bw_no);
+		HashMap<String, Object> board_writeVO = contentService.selectContentOne(bw_no);
 
 		System.out.println(bw_no);
 
 		model.addAttribute("content_view", board_writeVO);
-		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
-		model.addAttribute("memberVO", board_writeVO.getMemberVO());
-		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+//		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
+//		model.addAttribute("memberVO", board_writeVO.getMemberVO());
+//		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
 
 		return "content/comment_write_view_bw";
 	}
@@ -160,17 +161,12 @@ public class HeeJeongController {
 	@RequestMapping(value = "/report_view_bw", method = RequestMethod.GET)
 	public String report_view_bw(HttpServletRequest request, Model model) {
 		System.out.println("report_view_bw");
-
-		String bw_no = request.getParameter("bw_no");
-
-		Board_writeVO board_writeVO = contentService.selectContentOne(bw_no);
+		
+		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
 
 		System.out.println(bw_no);
 
-		model.addAttribute("content_view", board_writeVO);
-		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
-		model.addAttribute("memberVO", board_writeVO.getMemberVO());
-		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
 
 		return "content/report_view_bw";
 	}
@@ -192,13 +188,11 @@ public class HeeJeongController {
 	public String report_view_m(HttpServletRequest request, Model model) {
 		System.out.println("report_view_m");
 
-		String m_no = request.getParameter("m_no");
-
-		MemberVO memberVO = contentService.selectContentM(m_no);
+		int m_no = Integer.parseInt(request.getParameter("m_no"));
 
 		System.out.println(m_no);
 
-		model.addAttribute("member_view", memberVO);
+		model.addAttribute("member_view", contentService.selectContentM(m_no));
 
 		return "content/report_view_m";
 	}

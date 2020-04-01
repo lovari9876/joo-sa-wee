@@ -12,11 +12,11 @@ import com.soninlawisdice.vo.TradeVO;
 
 public interface ContentMapper {
 	
-	public Board_writeVO selectContentOne(String bw_no); // 게시글 보기(content_view)
+	public HashMap<String, Object> selectContentOne(int bw_no); // 게시글 보기(content_view)
 	
 	public void deleteContent(Board_writeVO board_writeVO); // 게시글 삭제
 	
-	public void upHitContent(String bw_no); // 게시글 조회수
+	public void upHitContent(int bw_no); // 게시글 조회수
 	
 	public void upRecommendContent(String bw_no); // 게시글 추천수 증가
 	
@@ -24,7 +24,7 @@ public interface ContentMapper {
 	
 	public void insertReportBW(ReportVO reportVO); // 게시글 신고글 쓰기
 	
-	public MemberVO selectContentM(String m_no); // m_no를 가져오기 위해
+	public MemberVO selectContentM(int m_no); // m_no를 가져오기 위해
 	
 	public void insertReportM(ReportVO reportVO); // 회원 신고글 쓰기
 	
@@ -44,6 +44,6 @@ public interface ContentMapper {
 	
 	/* public ArrayList<HashMap<String, Object>> commentList(String cm_no); */ // 게시글 댓글 보기
 	
-	 public CM_commentVO selectCommentOne(String cm_no); 
+	public HashMap<String, Object> selectCommentOne(String cm_no); 
 	
 }

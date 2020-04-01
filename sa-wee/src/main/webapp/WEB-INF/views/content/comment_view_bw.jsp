@@ -46,9 +46,9 @@
 	<%-- <input type="hidden" name="cm_no" value="${cm_comment_view['CM_NO']}"> --%>
 	<%-- <input type="hidden" name="cm_type" value="${cm_comment_view['CM_TYPE']}">
 	<input type="hidden" name="cm_no2" value="${cm_comment_view['CM_NO2']}"> --%>
-	<input type="hidden" name="cm_no" value="${cm_comment_view.cm_no}">
-	<input type="hidden" name="cm_type" value="<c:out value="${param.cm_type}"/>">
-	<input type="hidden" name="cm_no2" value="<c:out value="${param.cm_no2}"/>">
+	<input type="hidden" name="cm_no" value="${cm_comment_view['CM_NO']}">
+	<input type="hidden" name="cm_type" value="<c:out value="${param['CM_TYPE']}"/>">
+	<input type="hidden" name="cm_no2" value="<c:out value="${param['CM_NO2']}"/>">
 
 	<!-- 댓글 달기 -->
 	<div class="pt-5">
@@ -67,17 +67,17 @@
 							<div class="test_item name" id="pop">
 								<span role="button" class="pop_btn popovers"
 									data-toggle="popover"
-									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${member_view.m_no}'>신고하기</a>"><h3>작성자${memberVO.m_nick}</h3></span>
+									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${member_view["M_NO"]}'>신고하기</a>"><h3>${cm_comment_view['M_NICK']}</h3></span>
 							</div>
 							<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
 							<div class="test_item reco tooltip-purple">
 								<a class="far fa-thumbs-up fa-2x no-text-deco" href="#"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="추천"></a><a class="text_items">(</a><a class="text_items">${cm_comment_view.cm_recommend_num}</a><a class="text_items">)</a>
+									data-placement="top" title="추천"></a><a class="text_items">(</a><a class="text_items">${cm_comment_view['CM_RECOMMEND_NUM']}</a><a class="text_items">)</a>
 							</div>
 						</div>
-						<div class="meta">작성일${cm_comment_view.cm_written_date} 수정일${cm_comment_view.cm_updated_date}</div>
-						<p>${cm_comment_view.cm_content}</p>
+						<div class="meta">작성일${cm_comment_view['CM_WRITTEN_DATE']} 수정일${cm_comment_view['CM_UPDATED_DATE']}</div>
+						<p>${cm_comment_view['CM_CONTENT']}</p>
 
 						<div class="reply_test">
 							<div class="test_item rp">
@@ -99,7 +99,7 @@
 									data-placement="top" title="삭제"></a>
 							</div>
 							<div class="test_item rep tooltip-purple">
-								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_view.cm_no}"
+								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_view['CM_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="신고"> </a>

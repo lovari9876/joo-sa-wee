@@ -37,7 +37,7 @@
 			<div class="comment-form-wrap pt-5">
 				<h3 class="mb-5">신고</h3>
 				<form action="report_cm" method="get">
-					<input type="hidden" name="r_type_no" value="${comment_view.cm_no}">
+					<input type="hidden" name="r_type_no" value="${comment_view['CM_NO']}">
 					<div class="form-group">
 						<label for="message">신고하기</label>
 						<textarea name="r_content" id="message" cols="30" rows="10"
