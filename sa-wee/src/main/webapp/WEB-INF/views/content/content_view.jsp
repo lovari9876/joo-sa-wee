@@ -12,6 +12,9 @@
 <!-- collapse -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
+
 <link rel="stylesheet" href="css/board_hj/custom-bs.css">
 <link rel="stylesheet" href="css/board_hj/jquery.fancybox.min.css">
 <link rel="stylesheet" href="css/board_hj/bootstrap-select.min.css">
