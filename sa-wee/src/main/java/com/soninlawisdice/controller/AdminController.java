@@ -135,6 +135,7 @@ public class AdminController {
 	@RequestMapping(value = "/report_list", method = RequestMethod.GET)
 	public String report_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
+		scri.setPerPageNum(15);
 		model.addAttribute("report_list", adminService.reportList(scri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -235,6 +236,16 @@ public class AdminController {
 
 	////////////////////////////////////////////////////////////////////////////
 
+	
+	
+	
+	
+	
+	
+	
+	////////////////////////////////////////////////////////////////////////////
+	
+	
 	
 	// ajax
 	@RequestMapping("/report_view2")

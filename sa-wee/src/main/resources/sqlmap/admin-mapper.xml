@@ -6,72 +6,8 @@
 	<mapper namespace="com.soninlawisdice.mapper.AdminMapper">
 
 
-<!-- 
-	<resultMap id="WD_recordVO" type="com.soninlawisdice.vo.WD_recordVO">
-		<result column="m_no" property="m_no"/>
-		<result column="w_no" property="w_no"/>
-		<result column="wr_reason" property="wr_reason"/>
-		<result column="w_no_count" property="w_no_count"/>
-		
-		<collection javaType="com.soninlawisdice.vo.MemberVO" property="memberVO">
-			<id column="m_no" property="m_no"/>
-			<result column="m_id" property="m_id"/>			
-			<result column="m_outdate" property="m_outdate"/>	
-		</collection>	
-		
-		<collection javaType="com.soninlawisdice.vo.WithdrawalVO" property="withdrawalVO">
-			<id column="w_no" property="w_no"/>
-			<result column="w_reason" property="w_reason"/>			
-		</collection>		
-	</resultMap> -->
-
-<!-- 	<resultMap id="reportVO" type="com.soninlawisdice.vo.ReportVO" >
-		<id column="r_no" property="m_no"/>
-		<result column="m_no" property="m_no"/>
-		<result column="r_type" property="r_type"/>
-		<result column="r_type_no" property="r_type_no"/>
-		<result column="r_content" property="r_content"/>
-		<result column="r_report_date" property="r_report_date"/>
-		<result column="r_id" property="r_id"/>
-		
-		<collection javaType="com.soninlawisdice.vo.MemberVO" property="memberVO">
-			<id column="m_no" property="m_no"/>
-			<result column="m_id" property="m_id"/>				
-			<result column="m_report_num" property="m_report_num"/>	
-		</collection>	
-		
-		<collection javaType="com.soninlawisdice.vo.Board_writeVO" property="board_writeVO">
-			<id column="bw_no" property="bw_no"/>
-			<result column="bw_title" property="bw_title"/>	
-			<result column="bw_report_num" property="bw_report_num"/>			
-		</collection>
-		
-		<collection javaType="com.soninlawisdice.vo.CM_commentVO" property="cm_commentVO">
-			<id column="cm_no" property="cm_no"/>
-			<result column="cm_type" property="cm_type"/>	
-			<result column="cm_no2" property="cm_no2"/>		
-			<result column="cm_content" property="cm_content"/>	
-			<result column="cm_report_num" property="cm_report_num"/>	
-		</collection>
-				
-	</resultMap> -->
-
-
 	<!-- ================================================List 출력====================================================== -->
-<!--     <select id="statisticsList" resultType="com.soninlawisdice.vo.StatisticsVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
 
-	SELECT * FROM
-	(
-         SELECT st_no, st_date, st_visitor_num, st_post_num, st_trade_num, st_comment_num,
-		               ROW_NUMBER() OVER(ORDER BY st_no DESC) AS RNUM
-		         FROM statistics 
-		         WHERE 1=1
-		         <include refid="search"></include>
-		                       ) MP
-		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY st_no DESC
-
-	</select> -->
 	
 	
 	<select id="memberList" resultType="com.soninlawisdice.vo.MemberVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
@@ -98,7 +34,7 @@
 	SELECT * FROM
 	(
          SELECT r_no, m_no, r_type, r_type_no, r_content,r_report_date,
-		               ROW_NUMBER() OVER(ORDER BY m_no DESC) AS RNUM
+		               ROW_NUMBER() OVER(ORDER BY r_no DESC) AS RNUM
 		         FROM report 
 		         WHERE 1=1
 		       <!--   <choose>
@@ -333,7 +269,7 @@
 			 r.r_no=#{r_no} 		
 
 	</select>
-	<!-- ===============================================  회원정보수정 ====================================================== -->	
+	<!-- =============================================== 회원정보수정 ====================================================== -->	
 
 	<update id="updateMember" parameterType="com.soninlawisdice.vo.MemberVO" >
 		update member 
@@ -344,7 +280,7 @@
 
 
 
-	<!-- ===============================================  회원정보수정 ====================================================== -->
+	<!-- =============================================== 회원정보수정 ====================================================== -->
 	
 	<update id="updateIsland_bw" parameterType="com.soninlawisdice.vo.Board_writeVO" >
 		update board_write 
@@ -360,7 +296,20 @@
 	
 	
 	
+	<!-- =============================================== 방문자수  ====================================================== -->
 	
+	<insert id="setTotalCount" parameterType="com.soninlawisdice.vo.VisitVO">
+		INSERT INTO visit (v_date) VALUES (sysdate)
+	</insert>
+	
+	<select id="getTodayCount" parameterType="com.soninlawisdice.vo.VisitVO" resultType="int">
+		SELECT COUNT(*) AS TodayCount from VISIT
+		WHERE TO_DATE(v_date, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
+	</select>
+	
+	<select id="getTotalCount" parameterType="com.soninlawisdice.vo.VisitVO" resultType="int">
+		SELECT COUNT(*) AS TotalCount FROM VISIT
+	</select>
 	
 	
 </mapper>

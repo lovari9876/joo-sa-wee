@@ -32,6 +32,9 @@
 	</beans:bean>
 	
 	
+	<!-- 방문자수 싱글톤 객체 -->
+	<beans:bean class="com.soninlawisdice.count.VisitCount" factory-method="getInstance"/>
+	
 	
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

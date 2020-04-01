@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html>
@@ -8,6 +7,8 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 파피콘 -->
+<link rel="icon" type="image/png" href="images/share/wolf_logo.ico" />
 <title>Admin</title>
 <link type="text/css" href="css/admin/bootstrap.min.css"
 	rel="stylesheet">
@@ -37,12 +38,18 @@
 		<div class="content">
 			<div class="btn-controls">
 				<div class="btn-box-row row-fluid">
+					<a class="btn-box big span3"><i class="icon-shopping-cart"></i><b>${sessionScope.totalCount}</b>
+						<p class="text-muted">방문자 수</p> </a> <!-- ${sessionScope.todayCount} -->
 					<a class="btn-box big span3"><i class="icon-user"></i><b>675</b>
-						<p class="text-muted">회원 수</p> 
-						</a><a class="btn-box big span3"><i class="icon-list-ul"></i><b>15,552</b>
-						<p class="text-muted">게시글 수</p> </a><a	class="btn-box big span3"><i class="icon-comments"></i><b>148,545</b>
-						<p class="text-muted">댓글 수</p> </a><a class="btn-box big span3"><i class="icon-shopping-cart"></i><b>15,152</b>
-						<p class="text-muted">중고거래 수</p> </a>
+						<p class="text-muted">회원 수</p></a>
+					<a class="btn-box big span3"><i class="icon-list-ul"></i><b>15,552</b>
+						<p class="text-muted">게시글 수</p> </a>
+					<a	class="btn-box big span3"><i class="icon-comments"></i><b>148,545</b>
+						<p class="text-muted">댓글 수</p> </a>
+						
+						
+						<!-- <a class="btn-box big span3"><i class="icon-shopping-cart"></i><b>15,152</b>
+						<p class="text-muted">중고거래 수</p> </a> -->
 				</div>
 				<div class="btn-box-row row-fluid">
 					<!--    <div class="span8">
