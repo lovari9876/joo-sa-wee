@@ -40,12 +40,18 @@ public class JoinServiceImpl implements JoinService {
 		int result = joinMapper.idCheck(memberVO);
 		return result;
 	}
+
+	// 닉네임 중복체크
+	@Override
+	public int nickCheck(MemberVO memberVO) throws Exception{
+		int result = joinMapper.nickCheck(memberVO);
+		return result;
+	}
+
 	// 로그인
 	@Override
-	public MemberVO login(String m_id, String m_pw) throws Exception{
+	public MemberVO login(String m_id, String m_pw) throws Exception {
 		return joinMapper.login(m_id, m_pw);
 	}
-	
 
-	
 }
