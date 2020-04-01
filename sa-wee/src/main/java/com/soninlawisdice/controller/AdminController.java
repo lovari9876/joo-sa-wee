@@ -236,7 +236,30 @@ public class AdminController {
 
 	////////////////////////////////////////////////////////////////////////////
 
-	
+	//통계
+	@RequestMapping(value = "/statistic_count")
+	public String statistic_count(StatisticsVO statVO) throws Exception {
+		System.out.println("statistic_count()");
+		 
+		int board = adminService.getTodayBoard();
+		int comment = adminService.getTodayComment();
+		int trade = adminService.getTodayTrade();
+		int visit = adminService.getTodayCount();
+		
+		System.out.println("getTodayBoard : " + board);
+		System.out.println("getTodayComment : " + comment);
+		System.out.println("getTodayTrade : " + trade);
+		System.out.println("getTodayCount : " + visit);
+		
+		statVO.setSt_post_num(board);
+		statVO.setSt_comment_num(comment);
+		statVO.setSt_trade_num(trade);
+		statVO.setSt_visitor_num(visit);
+		
+		adminService.statisticsInsert(statVO);
+		
+		return "redirect:index";
+	}
 	
 	
 	

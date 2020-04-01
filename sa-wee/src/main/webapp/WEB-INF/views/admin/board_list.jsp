@@ -65,7 +65,7 @@
 								
 								<div class="input-append pull-right"> 
 									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
-									<button type="submit" class="btn" id="serchBtn">
+									<button type="submit" class="btn" id="searchBtn">
 										<i class="icon-search"></i>
 									</button>
 								</div>

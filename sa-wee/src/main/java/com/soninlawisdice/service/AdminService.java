@@ -72,5 +72,16 @@ public interface AdminService {
 	
 	// 글삭제
 	public void selectDelete(Board_writeVO boardVO);
+	
+	// 통계
+	
+	public void setTotalCount();
+	public int getTotalCount();
+	public int getTodayCount();
+	
+	public int getTodayBoard();
+	public int getTodayComment();
+	public int getTodayTrade();
 
+	public void statisticsInsert(StatisticsVO statVo);
 }

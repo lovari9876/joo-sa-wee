@@ -5,14 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.soninlawisdice.mapper.AdminMapper;
+import com.soninlawisdice.service.AdminService;
 
 @Component
 @Scope(value = "singleton")
 public class VisitCount {
 
 	@Autowired
-	AdminMapper adminMapper;
+	AdminService adminService;
 	
 
 	private static VisitCount instance;
@@ -28,16 +28,16 @@ public class VisitCount {
 	}
 
 	public void setTotalCount(){
-		adminMapper.setTotalCount();
+		adminService.setTotalCount();
 	} 
 
 
 	public int getTodayCount() {
-		return adminMapper.getTodayCount();
+		return adminService.getTodayCount();
 	}
 
 	public int getTotalCount() {
-		return adminMapper.getTotalCount();
+		return adminService.getTotalCount();
 	}
 
 }

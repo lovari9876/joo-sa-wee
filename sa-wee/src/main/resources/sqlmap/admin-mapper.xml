@@ -312,4 +312,81 @@
 	</select>
 	
 	
+	<!-- =============================================== 통계  ====================================================== -->
+	
+	<insert id="statisticsInsert" parameterType="com.soninlawisdice.vo.StatisticsVO">
+		INSERT INTO statistics (st_no, st_date, st_visitor_num, st_post_num, st_trade_num, st_comment_num)
+		VALUES (statistics_seq.nextval, sysdate, #{st_visitor_num}, #{st_post_num}, #{st_trade_num}, #{st_comment_num})
+	
+	</insert>
+	
+	<select id="getTodayTrade" parameterType="com.soninlawisdice.vo.TradeVO" resultType="int">
+		SELECT COUNT(*) AS COMMENT_NUM
+		FROM cm_comment
+		WHERE TO_DATE(CM_WRITTEN_DATE, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
+	
+	</select>
+	
+	
+	<select id="getTodayComment" parameterType="com.soninlawisdice.vo.CM_commentVO" resultType="int">
+		SELECT COUNT(*) AS TRADE_NUM
+		FROM TRADE
+		WHERE trade.s_no = 34 AND TO_DATE(T_WRITTEN_DATE, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
+	
+	</select>
+	
+	
+	<select id="getTodayBoard" parameterType="com.soninlawisdice.vo.Board_writeVO" resultType="int">
+		SELECT
+				COUNT(*) AS TODAY_POST_NUM
+		FROM
+			(
+			        (SELECT 
+			        		T.T_NO AS I_NO, T.BT_NO, T.S_NO, T.M_NO, M.M_NICK, T.T_TITLE AS I_TITLE, T.T_CONTENT AS I_CONTENT, 
+			                T.T_WRITTEN_DATE AS I_WRITTEN_DATE, T.T_UPDATED_DATE AS I_UPDATED_DATE, 
+			                T.T_HIT AS I_HIT, T.T_RECOMMEND_NUM AS I_RECOMMEND_NUM, T.T_REPORT_NUM AS I_REPORT_NUM, T.T_ISLAND AS I_ISLAND 
+			        FROM 	
+			        		TRADE T 
+			        LEFT JOIN 
+			        		MEMBER M 
+			        ON 		
+			        		T.M_NO = M.M_NO
+			       ) 
+			
+			UNION
+			
+					(SELECT 
+							BW.BW_NO AS I_NO, BW.BT_NO, BW.S_NO, BW.M_NO, M.M_NICK, BW.BW_TITLE  AS I_TITLE, BW.BW_CONTENT AS I_CONTENT, 
+							BW.BW_WRITTEN_DATE AS I_WRITTEN_DATE, BW.BW_UPDATED_DATE AS I_UPDATED_DATE, 
+			                BW.BW_HIT AS I_HIT, BW.BW_RECOMMEND_NUM AS I_RECOMMEND_NUM, BW.BW_REPORT_NUM AS I_REPORT_NUM, BW.BW_ISLAND AS I_ISLAND 
+			        FROM 
+			        		BOARD_WRITE BW
+			        LEFT JOIN 
+			        		MEMBER M
+			        ON 
+			        		BW.M_NO = M.M_NO
+					) 
+			
+			UNION
+			
+			        (SELECT 
+			        		CR.CR_NO AS I_NO, CR.BT_NO, NULL, CR.M_NO, M.M_NICK, CR.CR_TITLE AS I_TITLE, CR.CR_CONTENT AS I_CONTENT, 
+		                    CR.CR_WRITTEN_DATE AS I_WRITTEN_DATE, CR.CR_UPDATED_DATE AS I_UPDATED_DATE, 
+		                    CR.CR_HIT AS I_HIT, CR.CR_RECOMMEND_NUM AS I_RECOMMEND_NUM, CR.CR_REPORT_NUM AS I_REPORT_NUM, CR.CR_ISLAND AS I_ISLAND
+			        FROM 
+			        		CAFE_REVIEW CR
+			        LEFT JOIN 
+			        		MEMBER M
+			        ON 
+			        		CR.M_NO = M.M_NO
+					 ) 
+			)
+        WHERE TO_DATE(I_WRITTEN_DATE, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
+		ORDER BY I_WRITTEN_DATE DESC
+	</select>
+	
+	
+	
+	
+	
 </mapper>

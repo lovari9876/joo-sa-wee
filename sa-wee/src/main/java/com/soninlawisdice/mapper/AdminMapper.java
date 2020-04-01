@@ -90,12 +90,16 @@ public interface AdminMapper {
 	
 	
 	
-	// 방문자수 처리
-	public void setTotalCount(); // session단위로 현재시간을 date 타입 데이터로 insert 
+	// 방문자수 
+	public void setTotalCount(); // session 단위로 현재시간을 date 타입 데이터로 insert 
 	public int getTodayCount();
 	public int getTotalCount();
 	
-	
+	//통계
+	public int getTodayBoard();
+	public int getTodayComment();
+	public int getTodayTrade();
 
+	public void statisticsInsert(StatisticsVO statVo);
 
 }
