@@ -26,7 +26,7 @@
 	<select id="selectTradeList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
 	
 		SELECT 
-			T.*
+			*
 		FROM (
 				SELECT 
 					T.*, M.M_NICK, ROW_NUMBER() OVER(ORDER BY T_NO DESC) AS RNUM 
@@ -34,10 +34,11 @@
 					TRADE T
 				LEFT JOIN
 					MEMBER M
-				ON T.M_NO = M.M_NO
+				ON 
+					T.M_NO = M.M_NO
 				WHERE 
 					1=1 <include refid="search"></include>
-			) T
+			) 
 		WHERE 
 			RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY
@@ -48,9 +49,13 @@
 	<select id="tradeListCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
 			SELECT 
-				COUNT(T_NO)
+				COUNT(T.T_NO)
 			FROM 
-				TRADE
+				TRADE T
+			LEFT JOIN
+				MEMBER M
+			ON 
+				T.M_NO = M.M_NO
 			WHERE 
 				1=1 <include refid="search"></include>	
 			AND T_NO > 0

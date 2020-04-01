@@ -49,9 +49,11 @@ public class CassieController {
 		pageMaker.setTotalCount(secondhandService.tradeListCount(scri));
 		
 		// perPageNum 부여한 것 잘 가져오니? 네
-		System.out.println(pageMaker.getCri().getPerPageNum());
+		//System.out.println(pageMaker.getCri().getPerPageNum());
 		
 		model.addAttribute("pageMaker", pageMaker );
+		
+		System.out.println(((SearchCriteria) (pageMaker.getCri())).getSearchType()+"fo;afjlkfl;kaf");
 		
 		return "secondhand/tlist";
 	}

@@ -2798,9 +2798,60 @@ to {
   font-size: 13px;
 }
 
-.custom-select select {
-  display: none; /*hide original SELECT element:*/
+/* .custom-select select {
+  display: none; hide original SELECT element:
+} */
+
+/* select box 꾸미기 */
+
+/* IE 10, 11의 네이티브 화살표 숨기기 */ 
+.custom-select select::-ms-expand { 
+	display: none; 
 }
+
+.custom-select select {
+	position: relative;
+	font-family: Arial;
+	width: 110px;
+	font-size: 13px;
+	color: #404040;	
+	margin-bottom:0;
+	width: 200px; /* 원하는 너비설정 */
+	height: 40px;
+	padding: 0px; /* 여백으로 높이 설정 */
+	font-family: inherit; /* 폰트 상속 */
+	border: 1px hidden #999;
+	border-radius: 0px; /* iOS 둥근모서리 제거 */
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.custom-select select:after {
+	position: relative;
+	font-family: Arial;
+	width: 110px;
+	font-size: 13px;
+	color: #272727;	
+}
+
+.custom-select option {
+	color: #272727;	
+}
+
+/* 화살표 색깔 연보라 */
+.select__arrow{
+  position: absolute;
+  top :16px;
+  right: 15px;
+  width :0;
+  height :0;
+  pointer-events: none;
+  border-style :solid;
+  border-width: 8px 5px 0 5px;
+  border-color: #9575df transparent transparent transparent;
+}
+
 
 .select-selected {
   background-color: white;

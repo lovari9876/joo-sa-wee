@@ -31,7 +31,6 @@
     <!-- favicons
     ================================================== -->
 	<link rel="icon" type="image/png" href="resources/images/share/wolf_logo.ico" />
-
 </head>
 
 <body id="top">
@@ -70,11 +69,12 @@
 		          <div class="input-group">	  
 		            <div class="input-group-prepend">
 		              <button id="searchBtn" type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
-		              
-<!-- 	            		<script>
+		              <!-- 엔터 안되고 버튼으로만 검색가능 -->
+	            		<script>
 					      $(function(){
 					        $('#searchBtn').click(function() {
-					          self.location = "tlist" 
+					        	event.preventDefault(); // event canceled 막기!
+					          	self.location = "/tlist" 
 					          				+ '${pageMaker.makeQuery(1)}' 
 					          				+ "&searchType=" 
 					          				+ $("select option:selected").val() 
@@ -82,18 +82,20 @@
 					          				+ encodeURIComponent($('#keywordInput').val());
 					        });
 					      });   
-					    </script>  --> 
+					    </script>
 		              
 		            </div>		            
 		            <div class="custom-select">
 		              <select><!-- data-trigger="" name="choices-single-defaul" -->
-		                <option value="n">선택하세요</option>
-		                <option value="w">작성자</option>
-		                <option value="t">제목</option>
-		                <option value="tc">제목+내용</option>
-		                <option value="c">내용</option>
-		                <option>말머리</option>
-		              </select>
+						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
+					      <option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+					      <option value="c" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+					      <option value="w" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+					      <option value="tc" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+		                  <option>말머리</option>
+		              </select>		      
+		              <div class="select__arrow"></div>        
+		              
 		            </div>			        		           
 		            <input type="search" name="keyword" id="keywordInput" value="${scri.keyword}" placeholder="검색어를 입력하세요"
 		           		   aria-describedby="button-addon2" class="form-control border-0 ">
@@ -120,7 +122,7 @@
 				<c:forEach items="${tList}" var="tItem">
 				<c:choose>
 				<c:when test="${tItem eq tList[0]}">
-					<article class="masonry__brick entry format-standard" >	                 
+					<article class="masonry__brick entry format-standard" data-aos="fade-up">	                 
 	    
 	                    <div class="entry__text">
 	                        <div class="entry__header">
@@ -532,10 +534,7 @@
 	<script src="js/header/scroll.js"></script>
 	<!-- footer -->
 	<!-- <script src="js/footer/footer_hee.js"></script> --> <!-- scroll to top 이미 있음 -->
-	
-	<!-- search -->
-    <script src="js/cassie/search-select.js"></script>
-    <script src="js/cassie/search-paging.js"></script>
+
 	
 </body>
 
