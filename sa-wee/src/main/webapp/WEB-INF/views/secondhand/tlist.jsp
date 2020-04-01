@@ -69,6 +69,7 @@
 		          <div class="input-group">	  
 		            <div class="input-group-prepend">
 		              <button id="searchBtn" type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
+		             
 		              <!-- 엔터 안되고 버튼으로만 검색가능 -->
 	            		<script>
 					      $(function(){
@@ -84,7 +85,8 @@
 					      });   
 					    </script>
 		              
-		            </div>		            
+		            </div>	
+		            	            
 		            <div class="custom-select">
 		              <select><!-- data-trigger="" name="choices-single-defaul" -->
 						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
@@ -94,9 +96,9 @@
 					      <option value="tc" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 		                  <option>말머리</option>
 		              </select>		      
-		              <div class="select__arrow"></div>        
-		              
-		            </div>			        		           
+		              <div class="select__arrow"></div>     
+		            </div>		
+		            	        		           
 		            <input type="search" name="keyword" id="keywordInput" value="${scri.keyword}" placeholder="검색어를 입력하세요"
 		           		   aria-describedby="button-addon2" class="form-control border-0 ">
 		          </div>
@@ -346,17 +348,6 @@
         <div class="row">
             <div class="col-full">
                 <nav class="pgn">
-                   <!-- <ul>
-                        <li><a class="pgn__prev" href="#0">Prev</a></li>
-                        <li><a class="pgn__num" href="#0">1</a></li>
-                        <li><span class="pgn__num current">2</span></li>
-                        <li><a class="pgn__num" href="#0">3</a></li>
-                        <li><a class="pgn__num" href="#0">4</a></li>
-                        <li><a class="pgn__num" href="#0">5</a></li>
-                        <li><span class="pgn__num dots">…</span></li>
-                        <li><a class="pgn__num" href="#0">8</a></li>
-                        <li><a class="pgn__next" href="#0">Next</a></li>
-                    </ul>  --> 
                     <ul class="pagination">
 					    <!-- 검색 결과에 대해 페이징 처리된 페이지 번호 목록 -->
 					    <c:if test="${pageMaker.prev}">

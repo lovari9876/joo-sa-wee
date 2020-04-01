@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.soninlawisdice.mapper.IslandMapper;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 
 @Service("IslandService")
@@ -16,10 +17,6 @@ public class IslandServiceImpl implements IslandService {
 
 	@Autowired
 	private IslandMapper islandMapper;
-
-//	ArrayList<TradeVO> tList;
-//	ArrayList<Board_writeVO> bwList;
-//	ArrayList<Cafe_reviewVO> crList;
 
 //	// 보부상에서 가져오기
 //	@Override
@@ -41,8 +38,13 @@ public class IslandServiceImpl implements IslandService {
 
 	// 무인도리스트 작성일 기준 최신순
 	@Override
-	public ArrayList<HashMap<String, Object>> selectIslandList() {
-		return islandMapper.selectIslandList();
+	public ArrayList<HashMap<String, Object>> selectIslandList(SearchCriteria scri) {
+		return islandMapper.selectIslandList(scri);
+	}
+	
+	@Override
+	public int islandListCount(SearchCriteria scri) {
+		return islandMapper.islandListCount(scri);
 	}
 
 }
