@@ -1,5 +1,7 @@
 package com.soninlawisdice.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ public class SecondhandServiceImpl implements SecondhandService {
 	SecondhandMapper secondhandMapper;
 
 	@Override
-	public List<TradeVO> selectTradeList(SearchCriteria scri) {
+	public ArrayList<HashMap<String, Object>> selectTradeList(SearchCriteria scri) {
 
 		return secondhandMapper.selectTradeList(scri);
 	}

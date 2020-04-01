@@ -39,16 +39,21 @@ public class CassieController {
 	
 		logger.info("tlist");
 		
-		scri.setPerPageNum(20);
+		scri.setPerPageNum(15);
 		
-		List<TradeVO> tList = secondhandService.selectTradeList(scri);
+		ArrayList<HashMap<String, Object>> tList = secondhandService.selectTradeList(scri);
 		model.addAttribute("tList", tList);
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(secondhandService.tradeListCount(scri));
 		
-		model.addAttribute("pageMager", pageMaker );
+		// perPageNum 부여한 것 잘 가져오니? 네
+		//System.out.println(pageMaker.getCri().getPerPageNum());
+		
+		model.addAttribute("pageMaker", pageMaker );
+		
+		System.out.println(((SearchCriteria) (pageMaker.getCri())).getSearchType()+"fo;afjlkfl;kaf");
 		
 		return "secondhand/tlist";
 	}

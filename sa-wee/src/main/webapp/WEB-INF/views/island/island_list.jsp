@@ -38,8 +38,7 @@
 
     <!-- favicons
     ================================================== -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" type="image/png" href="resources/images/share/wolf_logo.ico" />
 
 </head>
 

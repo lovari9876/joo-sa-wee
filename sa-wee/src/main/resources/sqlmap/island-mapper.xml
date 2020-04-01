@@ -7,7 +7,7 @@
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
 	
 	<!-- ========== for island list =========== -->
-	<resultMap id="MemberResultMap" type="java.util.HashMap" >
+<!-- 	<resultMap id="MemberResultMap" type="java.util.HashMap" >
 		<id property="" column="" />
 		<result property="" column="" />
 		<result property="" column="" />
@@ -18,7 +18,7 @@
 		<result property="" column="" />
 		<result property="" column="" />
 		<collection property="" column="" />
-	</resultMap>
+	</resultMap> -->
 	
 <!-- 	<resultMap id="bbsAttachResultMap" type="java.util.HashMap">
 	    <id property="attach_id" column="attach_id"/>

@@ -10,17 +10,23 @@
 	
 	<!-- ========== for island list =========== -->
 
+<!-- 	<resultMap id="rankMap" type="com.soninlawisdice.vo.RankVO" >
+			<id column="r_no" property="r_no"/>
+			<result column="r_name" property="r_name"/>	
+	</resultMap>
+
 	<resultMap id="memberMap" type="com.soninlawisdice.vo.MemberVO" >
 			<id column="m_no" property="m_no"/>
 			<result column="m_id" property="m_id"/>	
 			<result column="m_nick" property="m_nick"/>
 			<result column="m_id" property="m_id"/>
-	</resultMap>
+			<collection property="" ResultMap="해시맵ㄱㄱ"></collection>
+	</resultMap> -->
 	
-	<select id="selectTradeList" resultType="com.soninlawisdice.vo.TradeVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
+	<select id="selectTradeList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
 	
 		SELECT 
-			T.*
+			*
 		FROM (
 				SELECT 
 					T.*, M.M_NICK, ROW_NUMBER() OVER(ORDER BY T_NO DESC) AS RNUM 
@@ -28,23 +34,28 @@
 					TRADE T
 				LEFT JOIN
 					MEMBER M
-				ON T.M_NO = M.M_NO
+				ON 
+					T.M_NO = M.M_NO
 				WHERE 
 					1=1 <include refid="search"></include>
-				ORDER BY
-					T_WRITTEN_DATE DESC
-			) T
+			) 
+		WHERE 
+			RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		ORDER BY
-				T_WRITTEN_DATE DESC
+			T_NO DESC
 				
 	</select> <!-- 1=1 조건 달아야, 처음에 검색어 없이 호출시에도, WHERE 하나만 남아서 BadGrammarException이 뜨지 않는다.. -->
 	
 	<select id="tradeListCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
 			SELECT 
-				COUNT(T_NO)
+				COUNT(T.T_NO)
 			FROM 
-				TRADE
+				TRADE T
+			LEFT JOIN
+				MEMBER M
+			ON 
+				T.M_NO = M.M_NO
 			WHERE 
 				1=1 <include refid="search"></include>	
 			AND T_NO > 0
