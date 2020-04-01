@@ -144,7 +144,39 @@ public class ContentServiceImpl implements ContentService {
 	// 게시글 댓글 보기
 	@Override public HashMap<String, Object> selectCommentOne(String cm_no) {
 	  
-	return contentMapper.selectCommentOne(cm_no); }
+	return contentMapper.selectCommentOne(cm_no); 
+	
+	}
+	
+	// 중고거래 댓글 쓰기
+	@Override
+	public void insertCommentT(CM_commentVO cm_commentVO) {
+		
+		contentMapper.insertCommentT(cm_commentVO);
+		
+	}
+	
+	// 중고거래 댓글 보기
+	@Override
+	public HashMap<String, Object> selectCommentT(String cm_no) {
+		
+		return contentMapper.selectCommentT(cm_no);
+	}
+	
+	// 카페리뷰 댓글 쓰기
+	@Override
+	public void insertCommentCR(CM_commentVO cm_commentVO) {
+		
+		contentMapper.insertCommentCR(cm_commentVO);
+		
+	}
+
+	// 카페리뷰 댓글 보기
+	@Override
+	public HashMap<String, Object> selectCommentCR(String cm_no) {
+		
+		return contentMapper.selectCommentCR(cm_no);
+	}
 	 
 
 	

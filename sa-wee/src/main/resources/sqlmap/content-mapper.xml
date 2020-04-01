@@ -230,6 +230,60 @@
 		CM.CM_NO2 = BW.BW_NO 
 		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
 	</select>
+	
+	<!-- 중고거래 댓글 쓰기 -->
+	<insert id="insertCommentT">
+		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
+		CM_WRITTEN_DATE,
+		CM_UPDATED_DATE, CM_TYPE, CM_NO2, CM_RECOMMEND_NUM,
+		CM_REPORT_NUM,
+		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
+		VALUES
+		(CM_COMMENT_SEQ.NEXTVAL, 5, #{cm_content}, SYSDATE, SYSDATE,
+		'중고거래',
+		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
+	</insert>
+
+	
+	<!-- 게시글 댓글 보기 -->
+	<select id="selectCommentT" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT
+		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
+		WHERE CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = BW.BW_NO 
+		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
+	</select>
+	
+	<!-- 카페리뷰 댓글 쓰기 -->
+	<insert id="insertCommentCR">
+		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
+		CM_WRITTEN_DATE,
+		CM_UPDATED_DATE, CM_TYPE, CM_NO2, CM_RECOMMEND_NUM,
+		CM_REPORT_NUM,
+		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
+		VALUES
+		(CM_COMMENT_SEQ.NEXTVAL, 5, #{cm_content}, SYSDATE, SYSDATE,
+		'카페리뷰',
+		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
+	</insert>
+
+	
+	<!-- 카페리뷰 댓글 보기 -->
+	<select id="selectCommentCR" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT
+		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
+		WHERE CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = BW.BW_NO 
+		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
+	</select>
 
 
 	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면 -->

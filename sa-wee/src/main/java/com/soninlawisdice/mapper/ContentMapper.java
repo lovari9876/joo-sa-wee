@@ -44,4 +44,12 @@ public interface ContentMapper {
 	
 	public HashMap<String, Object> selectCommentOne(String cm_no); // 게시글 댓글 보기
 	
+	public void insertCommentT(CM_commentVO cm_commentVO); // 중고거래 댓글 쓰기
+	
+	public HashMap<String, Object> selectCommentT(String cm_no); // 중고거래 댓글 보기
+	
+	public void insertCommentCR(CM_commentVO cm_commentVO); // 중고거래 댓글 쓰기
+	
+	public HashMap<String, Object> selectCommentCR(String cm_no); // 중고거래 댓글 보기
+	
 }
