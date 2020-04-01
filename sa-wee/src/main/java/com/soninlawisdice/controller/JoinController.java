@@ -29,7 +29,6 @@ public class JoinController {
 
 		System.out.println(memberVO.getM_id());
 
-		
 		return "join/join";
 	}
 
@@ -81,9 +80,18 @@ public class JoinController {
 		return result;
 	}
 
-	
+	// 닉네임 중복 체크
+	@ResponseBody
+	@RequestMapping(value = "/nickCheck", method = RequestMethod.POST)
+	public int nickCheck(MemberVO memberVO) throws Exception {
+		System.out.println(memberVO.getM_id());
+
+		int result = joinService.nickCheck(memberVO);
+		return result;
+	}
+
 	@RequestMapping(value = "/login_check", method = RequestMethod.GET)
-	public String login_check(MemberVO memberVO, Model model) throws Exception{
+	public String login_check(MemberVO memberVO, Model model) throws Exception {
 		System.out.println("login_check()");
 
 		System.out.println(memberVO.getM_id());
@@ -91,6 +99,7 @@ public class JoinController {
 		return "login/login";
 	}
 
+	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest req, RedirectAttributes rttr, MemberVO memberVO) throws Exception {
 		System.out.println("POST login()");
@@ -117,14 +126,14 @@ public class JoinController {
 
 		return "redirect:/login_check";
 	}
-	
+
 	// 로그아웃
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) throws Exception{
+	public String logout(HttpSession session) throws Exception {
 		System.out.println("logout()");
-		
+
 		session.invalidate();
-		
+
 		return "login/login";
 	}
 
@@ -139,7 +148,5 @@ public class JoinController {
 
 		return "login/forgot_pw";
 	}
-	
-	
-	
+
 }

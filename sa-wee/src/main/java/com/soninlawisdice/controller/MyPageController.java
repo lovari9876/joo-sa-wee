@@ -21,7 +21,7 @@ public class MyPageController {
 	private MyPageService myPageService;
 	
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(HttpSession session, MemberVO memberVO,  Model model) throws Exception {
+	public String mypage(HttpSession session, Model model, MemberVO memberVO) throws Exception {
 		System.out.println("mypage()");
 		
 		memberVO = (MemberVO) session.getAttribute("member");
@@ -31,6 +31,14 @@ public class MyPageController {
 		myPageService.mypage(m_id);
 		
 		model.addAttribute("member", memberVO);
+
+		int m_no = memberVO.getM_no();
+		
+		int myWriteCount = myPageService.myWriteCount(m_no);
+		model.addAttribute("myWriteCount", myWriteCount);
+
+		int myReplyCount = myPageService.myReplyCount(m_no);
+		model.addAttribute("myReplyCount", myReplyCount);
 		
 		return "mypage/mypage";
 	}

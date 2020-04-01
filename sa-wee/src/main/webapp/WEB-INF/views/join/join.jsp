@@ -53,11 +53,8 @@
 										<label class="form-row-inner"> <input type="text"
 											name="m_id" id="m_id" class="form-control" required>
 											<span class="label">아이디</span> <span class="border"></span>
-										</label>
-										<div class="check_font" id="id_check">
-											<button class="idCheck" type="button" id="idCheck"
-												onclick="fn_idCheck();" value="N">중복확인</button>
-										</div>
+										</label>										
+										<div class="check_font" id="m_id_check"></div>										
 									</div>
 								</div>
 								<div class="form-row">
@@ -66,7 +63,7 @@
 											class="form-control" id="m_nick" name="m_nick" required>
 											<span class="label">닉네임</span> <span class="border"></span>
 										</label>
-										<div class="check_font" id="nickname_check"></div>
+										<div class="check_font" id="m_nick_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -75,6 +72,7 @@
 											name="m_pw" id="m_pw" class="form-control" required>
 											<span class="label">비밀번호</span> <span class="border"></span>
 										</label>
+										<div class="check_font" id="m_pw_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -84,6 +82,7 @@
 											class="form-control" required> <span class="label">비밀번호
 												확인</span> <span class="border"></span>
 										</label>
+										<div class="check_font" id="comfirm_password_check"></div>
 									</div>
 								</div>
 							</div>
@@ -289,8 +288,6 @@
 					</div>
 
 				</form>
-
-
 			</div>
 		</div>
 	</div>

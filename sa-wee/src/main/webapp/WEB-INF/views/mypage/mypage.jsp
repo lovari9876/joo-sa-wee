@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <meta charset="utf-8">
@@ -53,8 +54,8 @@
 						</div>
 						<div class="col-md-4 eml-mob">
 							<ul>
-								<li>작성글 수 : </li>
-								<li>댓글 수 : </li>
+								<li>작성글 수 : ${myWriteCount}</li>
+								<li>댓글 수 : ${myReplyCount}</li>
 							</ul>
 						</div>
 						<div class="col-md-4 eml-mob">
@@ -99,7 +100,7 @@
 											<br />
 											<li>주소 : ${member.m_addr1} ${member.m_addr2}</li>
 											<br />
-											<li>가입일 : ${member.m_indate}</li>
+											<li >가입일 : <fmt:formatDate pattern="yyyy-MM-dd" value="${member.m_indate}"/></li>
 											<br />
 											<li>신고당한 수 : ${member.m_report_num}</li>
 											<br />

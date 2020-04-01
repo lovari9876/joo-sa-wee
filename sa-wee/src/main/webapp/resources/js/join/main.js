@@ -153,13 +153,109 @@ $(function() {
 							if (idCheckVal == "N") {
 								alert("중복확인 버튼을 눌러주세요.");
 								return false;
-							} else if (idCheckVal == "Y") {
+							} else {
 								alert("Submitted!");
 								$("#form-register").submit();
 							}
-
 						}
 
 					});
+
+	$("#m_id").blur(function() {
+		var m_id = $('#m_id').val();
+		$.ajax({
+			url : '/idCheck?m_id=' + m_id,
+			type : 'post',
+			success : function(data) {
+				console.log("1 = 중복o / 0 = 중복x : " + data);
+
+				if (data > 0) {
+					$("#m_id_check").text("사용중인 아이디입니다.");
+
+				} else {
+					var reg_m_id = /^[A-Za-z0-9_\-]{4,12}$/;
+
+					if (m_id == "") {
+						$('#m_id_check').text('아이디를 입력해주세요.');
+
+					} else if (reg_m_id.test(m_id)) {
+						$("#m_id_check").text(" ");
+
+					} else if (m_id.length < 3 || !reg_m_id.test(m_id)) {
+						$('#m_id_check').text("아이디는 영어와 숫자 4~12자리만 가능합니다.");
+
+					}
+				}
+			},
+			error : function() {
+				console.log("실패");
+			}
+		});
+	});
+	$("#m_nick").blur(
+			function() {
+				var m_nick = $('#m_nick').val();
+				$.ajax({
+					url : '/nickCheck?m_nick=' + m_nick,
+					type : 'post',
+					success : function(data) {
+						console.log("1 = 중복o / 0 = 중복x : " + data);
+
+						if (data > 0) {
+							$("#m_nick_check").text("사용중인 닉네임입니다.");
+
+						} else {
+							var reg_m_nick = /^[A-Za-zㄱ-ㅎㅏ-ㅣ가-힣0-9_\-]{1,10}$/;
+
+							if (m_nick == "") {
+								$('#m_nick_check').text('닉네임을 입력해주세요.');
+
+							} else if (reg_m_nick.test(m_nick)) {
+								$("#m_nick_check").text(" ");
+
+							} else if (!reg_m_nick.test(m_nick)) {
+								$('#m_nick_check').text(
+										"닉네임은 특수문자를 제외한 10자리 이하만 가능합니다");
+
+							}
+						}
+					},
+					error : function() {
+						console.log("실패");
+					}
+				});
+			});
+	$("#m_pw")
+			.blur(
+					function() {
+						var m_pw = $('#m_pw').val();
+						var reg_m_pw = /^[A-Za-z0-9!@#$%^&*_~\-]{8,20}$/;
+
+						if (m_pw == "") {
+							$('#m_pw_check').text('비밀번호를 입력해주세요.');
+
+						} else if (reg_m_pw.test(m_pw)) {
+							$("#m_pw_check").text(" ");
+
+						} else if (!reg_m_pw.test(m_pw)) {
+							$('#m_pw_check')
+									.text(
+											"비밀번호는 영문, 숫자, 특수문자 !@#$%^&*_~- 를 사용한 8~20자리만 가능합니다.");
+						}
+					});
+
+	$('#comfirm_password').blur(function() {
+		if ($('#comfirm_password').val() == '') {
+			$('#comfirm_password_check').text('비밀번호를 입력해주세요.');
+		} else if ($('#m_pw').val() == $('#comfirm_password').val()) {
+			$('#comfirm_password_check').text('비밀번호가 일치합니다.');
+			$("#comfirm_password_check").css("color", "blue");
+
+		} else {
+			$('#comfirm_password_check').text('비밀번호가 일치하지 않습니다.');
+			$("#comfirm_password_check").css("color", "red");
+
+		}
+	})
 
 });
