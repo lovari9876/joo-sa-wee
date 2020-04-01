@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 		setSecondSelect(ARR,$("#board option:selected").text()); //월세팅
 		
-		//글 작성시 게시판 bt_no 에 따라 첫번째 select box 선택되어지게 하는거.
+		//modify_view 에 원래 입력했던 값 가져오기
 		var bt_no = $("#bt_no").val();
 		var s_no =  $("#s_no").val();
 		for(i = 0; i<30; i++){
@@ -45,11 +45,7 @@ $(document).ready(function(){
 				$("#board").val(i).attr("selected", "selected");
 				var selected = $("#board option:selected").text();
 				setSecondSelect(ARR,selected);
-				
-				
-				
 			}
-			
 			if(s_no == i){
 				$("#sub").val(i).attr("selected", "selected");
 			}

@@ -47,7 +47,7 @@
 
 </head>
 <body id="top">
-	<input type="hidden" name="cr_no" value="${cafe_review.cr_no}">
+	<%-- <input type="hidden" name="cr_no" value="${cafe_review['CR_NO']}"> --%>
 
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
@@ -64,22 +64,22 @@
 						<!-- 게시판이름과 게시글 작성자 -->
 						<div class="title">
 							<div class="title_item frist">
-								<h4 id="community">${cafe_review.cafeVO.c_title}</h4>
+								<h4 id="community">${cafe_review['C_TITLE']}</h4>
 								<span class="slash">&bullet;</span> 
 								
 							</div>
 							<div class="title_item second">
-								<span class="slash">추천수(</span><span class="slash rec">${cafe_review.cr_recommend_num}</span><span class="slash">)</span> 
+								<span class="slash">추천수(</span><span class="slash rec">${cafe_review['CR_RECOMMEND_NUM']}</span><span class="slash">)</span> 
 								<span class="slash">&bullet;</span>
-								<span class="slash">조회수(${cafe_review.cr_hit})</span>
+								<span class="slash">조회수(${cafe_review['CR_HIT']})</span>
 							</div>
 						</div>
 						<div>
-							<span class="text-white">작성자 ${cafe_review.memberVO.m_nick}</span>
+							<span class="text-white">작성자 ${cafe_review['M_NICK']}</span>
 							<span class="slash">&bullet;</span> 
-							<span class="text-white">작성일 ${cafe_review.cr_written_date}</span> 
+							<span class="text-white">작성일 ${cafe_review['CR_WRITTEN_DATE']}</span> 
 							<span class="slash">&bullet;</span>
-							<span class="text-white">수정일 ${cafe_review.cr_updated_date}</span>
+							<span class="text-white">수정일 ${cafe_review['CR_UPDATED_DATE']}</span>
 						</div>
 					</div>
 					<br />
@@ -156,11 +156,11 @@
 					<br /> <br />
 					<div align="center" class="tooltip-purple">
 						<input class="good" type="image" src="images/board_hj/good.png"
-							name="button" id="rec_btn" value="${cafe_review.cr_no}"
+							name="button" id="rec_btn" value="${cafe_review['CR_NO']}"
 							data-toggle="tooltip" data-container=".tooltip-purple"
 							data-placement="top" title="추천 +1">
 						<p>
-							<span>(</span><span class="rec">${cafe_review.cr_recommend_num}</span><span>)</span>
+							<span>(</span><span class="rec">${cafe_review['CR_RECOMMEND_NUM']}</span><span>)</span>
 						</p>
 					</div>
 
@@ -179,7 +179,7 @@
 								<a href="delete?cr_no=${cafe_review.cr_no}">삭제</a>
 							</div>
 							<div class="test_item fourth">
-								<a href="content/report_view_cr?cr_no=${cafe_review_view.cr_no}"
+								<a href="content/report_view_cr?cr_no=${cafe_review_view['CR_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 							</div>
 						</div>

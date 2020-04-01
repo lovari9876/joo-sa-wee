@@ -2,19 +2,20 @@ package com.soninlawisdice.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,9 +23,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.soninlawisdice.service.BoardService;
-import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.PageMaker;
+import com.soninlawisdice.vo.SearchCriteria;
 
 /**
  * Handles requests for the application home page.
@@ -57,49 +59,86 @@ public class Board_hs_Controller {
 
 	// 보드이야기 리스트
 	@RequestMapping(value = "/board_story", method = RequestMethod.GET)
-	public String board_story(Model model) {
-		model.addAttribute("list", boardService.selectBoard_Story());
+	public String board_story(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		model.addAttribute("list", boardService.selectBoard_Story(scri));
+		
+		PageMaker pageMaker  = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.b_storyCount(scri));
+		model.addAttribute("pageMaker", pageMaker);
+		
 		return "board_hs/board_story";
 	}
 
 	// 개봉기 및 리뷰 리스트
 	@RequestMapping(value = "/board_open_review", method = RequestMethod.GET)
-	public String board_open_review(Model model) {
-		model.addAttribute("list", boardService.selectBoard_Open());
+	public String board_open_review(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		model.addAttribute("list", boardService.selectBoard_Open(scri));
+		
+		PageMaker pageMaker  = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.b_openCount(scri));
+		model.addAttribute("pagemaker", pageMaker);
+		
 		return "board_hs/board_open_review";
 	}
 
 	// 보드게임 모임 리스트
 	@RequestMapping(value = "/board_meet", method = RequestMethod.GET)
-	public String board_meet(Model model) {
-		model.addAttribute("list", boardService.selectBoard_Meet());
+	public String board_meet(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		model.addAttribute("list", boardService.selectBoard_Meet(scri));
+		
+		PageMaker pageMaker  = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.b_meetCount(scri));
+		model.addAttribute("pagemaker", pageMaker);
+		
 		return "board_hs/board_meet";
 	}
 
 	// 보드뉴스 리스트
 	@RequestMapping(value = "/board_news", method = RequestMethod.GET)
-	public String board_news(Model model) {
-		model.addAttribute("list", boardService.selectBoard_News());
+	public String board_news(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		model.addAttribute("list", boardService.selectBoard_News(scri));
+		
+		PageMaker pageMaker  = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.b_newsCount(scri));
+		model.addAttribute("pagemaker", pageMaker);
+		
 		return "board_hs/board_news";
 	}
-
+	
+	//질문 과 답변 리스트
 	@RequestMapping(value = "/board_qna", method = RequestMethod.GET)
-	public String board_qna(Model model) {
-		model.addAttribute("list", boardService.selectBoard_Qna());
+	public String board_qna(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		model.addAttribute("list", boardService.selectBoard_Qna(scri));
+		
+		PageMaker pageMaker  = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.b_qnaCount(scri));
+		model.addAttribute("pagemaker", pageMaker);
+		
 		return "board_hs/board_qna";
 	}
 
 	// 창작 보드게임 리스트
 	@RequestMapping(value = "/board_creation", method = RequestMethod.GET)
-	public String board_creation(Model model) {
-		model.addAttribute("list", boardService.selectBoard_Creation());
+	public String board_creation(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		model.addAttribute("list", boardService.selectBoard_Creation(scri));
+		
+		PageMaker pageMaker  = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.b_creationCount(scri));
+		model.addAttribute("pagemaker", pageMaker);
+		
 		return "board_hs/board_creation";
 	}
 
 	// 말머리마다 다른 내용 보여주기
 	@ResponseBody
 	@RequestMapping("/list_sub")
-	public List<Board_writeVO> list(Model model) {
+	public ArrayList<HashMap<String, Object>> list(Model model) {
 		System.out.println("test");
 
 		return boardService.selectBoardList();
@@ -134,9 +173,11 @@ public class Board_hs_Controller {
 			return "redirect:board_news";
 		} else if (bt_no == 5) {
 			return "redirect:board_qna";
-		} else {
+		} else if(bt_no == 6){
 			return "redirect:board_creation";
 		}
+		
+		return null;
 
 	}
 
@@ -150,38 +191,78 @@ public class Board_hs_Controller {
 	}
 	
 	
-	//경로 다시.
+
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public String modify(Board_writeVO board_writeVO, Model model) {
 
 		System.out.println("modify()");
 
 		boardService.modify(board_writeVO);
-
-		return "redirect:board_story";
+		
+		int bt_no = board_writeVO.getBt_no();
+		
+		if (bt_no == 1) {
+			return "redirect:board_story";
+		} else if (bt_no == 2) {
+			return "redirect:board_open_review";
+		} else if (bt_no == 3) {
+			return "redirect:board_meet";
+		} else if (bt_no == 4) {
+			return "redirect:board_news";
+		} else if (bt_no == 5) {
+			return "redirect:board_qna";
+		} else if(bt_no == 6){
+			return "redirect:board_creation";
+		}
+		return null;
 	}
 
 	///////////////////////////////////////// 카페리뷰 관련////////////////////////////
 
-	@RequestMapping(value = "/cafe_review_write", method = RequestMethod.GET)
-	public String cafe_review_write(Model model, String c_no) {
+	
+	// 지도
+	@RequestMapping(value = "/cafe_map", method = RequestMethod.GET)
+	public String cafe_map(Model model) {
+		return "board_hs/cafe_map";
+	}
+		
+	// 마커 클릭시 카페 상세정보(cafe_info)로 이동. 
+	@RequestMapping(value = "/cafe_info", method = RequestMethod.GET)
+	public String cafe_content_view(Model model, String c_no) {
 
-		System.out.println(c_no);
+		// 카페 정보 가져오기
+		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
+		// 댓글 불러오는것도 추가해야함
 
-		model.addAttribute("c_no", c_no);
-		model.addAttribute("c_title", boardService.get_CafeName(c_no));
+		// 밑에 관련 리스트 가져오기
+		model.addAttribute("list", boardService.selectCafeReviewList(c_no));
 
-		return "board_hs/cafe_review_write";
+		return "board_hs/cafe_info";
+	}
+	
+	//카페목록 싹다 표로 보기
+	@RequestMapping("/cafe_list")
+	public String cafe_list(Model model) {
+		model.addAttribute("list", boardService.selectAllCafeList());		
+		return "board_hs/cafe_list";
+	}
+	
+	//카페 목록 지역별로 보기
+	@RequestMapping("/cafe_list_loc")
+	public String cafe_list_loc(Model model, String c_add) {
+		model.addAttribute("list", boardService.selectCafeLoc(c_add));
+		
+		return "board_hs/cafe_list";
 	}
 
-	// 카페 리뷰 전체 리스트 보기
+	// 카페 리뷰들 싹다 리스트(표)로 보기
 	@RequestMapping(value = "/selectAllReviewList")
 	public String selectAllReviewList(Model model) {
 		model.addAttribute("list", boardService.selectAllReviewList());
 		return "board_hs/cafe_review_list";
 	}
 
-	// 카페 리뷰 리스트에서 review_content_view 로
+	// 카페 리뷰 하나 보기
 	@RequestMapping(value = "/selectReviewOne")
 	public String selectReviewOne(Model model, String cr_no) {
 		// 조회수 올리기
@@ -190,59 +271,53 @@ public class Board_hs_Controller {
 		model.addAttribute("cafe_review", boardService.selectReviewOne(cr_no));
 		return "board_hs/cafe_review_content_view";
 	}
+	
+	//리뷰쓰는 view 로 가기
+	@RequestMapping(value = "/cafe_review_write", method = RequestMethod.GET)
+	public String cafe_review_write(Model model, String c_no) {
 
-	// 지도
-	@RequestMapping(value = "/cafe_map", method = RequestMethod.GET)
-	public String cafe_map(Model model) {
-		logger.info("review");
+		System.out.println(c_no);
 
-		return "board_hs/cafe_map";
+		//작성 페이지에서 카페번호랑 카페 이름은 자동으로 입력된 상태로 나오게.
+		model.addAttribute("c_no", c_no);
+		model.addAttribute("c_title", boardService.get_CafeName(c_no));
+
+		return "board_hs/cafe_review_write";
 	}
-
-	// 마커 클릭시 카페 상세정보(cafe_info)로 이동. 이거 url 다시 해야함.
-	@RequestMapping(value = "/cafe_info", method = RequestMethod.GET)
-	public String cafe_content_view(Model model, String c_no) {
-
-		// 카페 정보 가져오기
-		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
-
-		// 댓글 불러오는것도 추가해야함
-
-		// 밑에 관련 리스트 가져오기
-		model.addAttribute("list", boardService.selectCafeReviewList(c_no));
-
-		return "board_hs/cafe_info";
-	}
-
-	// 카페 리뷰 글 추천
-	@ResponseBody
-	@RequestMapping(value = "/review_rec")
-	public String recommend(String cr_no, Model model) {
-		System.out.println("recommend");
-
-		boardService.review_recommend(cr_no);
-
-		return boardService.review_rec(cr_no);
-	}
-
+	
 	// 리뷰 작성하기
 	@RequestMapping("/insertReview")
 	public String insertReview(Cafe_reviewVO cafe_reviewVO) {
 
 		boardService.insertReview(cafe_reviewVO);
-
+		
+		int c_no = cafe_reviewVO.getC_no();
+		
 		// 이것도 경로 다시 해야함
-		return "redirect:cafe_info";
+		return "redirect:cafe_info?c_no="+c_no;
 	}
-
+	
 	// 리뷰 수정하기
-
+	
+	
+	
+	// 카페 리뷰 글 추천
+	@ResponseBody
+	@RequestMapping(value = "/review_rec")
+	public String recommend(String cr_no, Model model) {
+		System.out.println("recommend");
+		boardService.review_recommend(cr_no);
+		return boardService.review_rec(cr_no);
+	}	
+	
 	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
 	public String question_list(Model model) {
 		logger.info("review");
-
 		return "board_hs/question_list";
 	}
+
+	
+
 
 	@RequestMapping(value = "/question_write_view", method = RequestMethod.GET)
 	public String question_write_view(Model model) {

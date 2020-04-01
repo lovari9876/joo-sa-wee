@@ -18,15 +18,16 @@ $(document).ready(function(){
 				$.each(data, function(key,value){
 					
 					//button 의 value 값이랑 board_no2 의 값이 같을 경우.
-					if(category == value['S_NO']){
+					if(category == value.s_no){
 						
+						console.log(value.s_no, value.bw_written_date);
 						tag += "<tr class = 'row'>"
-						tag += "<td class = 'cell'>"+value['BW_NO']+"</td>";
-						tag += "<td class = 'cell'><a href = 'content_view?bw_no="+value['BW_NO']+"'>"+value['BW_TITLE']+"</td>";
-						tag += "<td class = 'cell'>"+value['M_NICK']+"</td>";
-						tag += "<td class = 'cell'>"+value['BW_WRITTEN_DATE']+"</td>";
-						tag += "<td class = 'cell'>"+value['BW_HIT']+"</td>";
-						tag += "<td class = 'cell'>"+value['BW_RECOMMEND_NUM']+"</td>";
+						tag += "<td class = 'cell'>"+value.bw_no+"</td>";
+						tag += "<td class = 'cell'><a href = 'content_view?bw_no="+value.bw_no+"'>"+value.bw_title+"</td>";
+						tag += "<td class = 'cell'>"+value.m_no+"</td>";
+						tag += "<td class = 'cell'>"+value.bw_written_date+"</td>";
+						tag += "<td class = 'cell'>"+value.bw_hit+"</td>";
+						tag += "<td class = 'cell'>"+value.bw_recommend_num+"</td>";
 						tag += "</tr>";
 						/*console.log(tag);*/
 					}

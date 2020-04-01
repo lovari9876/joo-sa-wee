@@ -73,10 +73,13 @@
 					<div class="q-search">
 
 						<select>
-							<option value="0" selected>제목</option>
-							<option value="1">내용</option>
-							<option value="2">닉네임</option>
-						</select> <input id="searchBar" type="text">
+							<option value="0" selected>전체</option>
+							<option value="1">제목</option>
+							<option value="2">내용</option>
+							<option value="3">닉네임</option>
+						</select> 
+						
+						<input id="searchBar" type="text">
 
 						<!-- 여기 미쳐버렸음. 일단 버튼으로 만들어 놓고 다음에 해야함 타입이 submit 인줄도 모르겠음-->
 						<button type="submit" class="fa fa-fw fa-search"></button>

@@ -49,7 +49,7 @@ $(document).ready(function(){
 		//글 작성시 게시판 bt_no 에 따라 첫번째 select box 선택되어지게 하는거.
 		var bt_no = $("#bt_no").val();
 		
-		for(i = 0; i<6; i++){
+		for(i = 0; i<7; i++){
 			if(bt_no == i){
 				$("#board").val(i).attr("selected", "selected");
 				var selected = $("#board option:selected").text();
