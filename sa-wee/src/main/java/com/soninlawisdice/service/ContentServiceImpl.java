@@ -75,7 +75,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	// m_no를 가져오기 위해
 	@Override
-	public MemberVO selectContentM(int m_no) {
+	public HashMap<String, Object> selectContentM(int m_no) {
 		
 		return contentMapper.selectContentM(m_no);
 	}
@@ -90,7 +90,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	// cm_no를 가져오기 위해
 	@Override
-	public CM_commentVO selectContentCM(String cm_no) {
+	public HashMap<String, Object> selectContentCM(int cm_no) {
 		
 		return contentMapper.selectContentCM(cm_no);
 	}
@@ -105,7 +105,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	// t_no를 가져오기 위해
 	@Override
-	public TradeVO selectContentT(String t_no) {
+	public HashMap<String, Object> selectContentT(int t_no) {
 
 		return contentMapper.selectContentT(t_no);
 	}
@@ -120,7 +120,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	// cr_no를 가져오기 위해
 	@Override
-	public Cafe_reviewVO selectContentCR(String cr_no) {
+	public HashMap<String, Object> selectContentCR(int cr_no) {
 		
 		return contentMapper.selectContentCR(cr_no);
 	}
@@ -140,21 +140,11 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.insertCommentBW(cm_commentVO);
 		
 	}
-
-	// 게시글 댓글 보기
-	
-	/*
-	 * @Override public ArrayList<HashMap<String, Object>> commentList(String cm_no)
-	 * {
-	 * 
-	 * return contentMapper.commentList(cm_no); }
-	 */
 	 
-
-	
-	  @Override public HashMap<String, Object> selectCommentOne(String cm_no) {
+	// 게시글 댓글 보기
+	@Override public HashMap<String, Object> selectCommentOne(String cm_no) {
 	  
-	  return contentMapper.selectCommentOne(cm_no); }
+	return contentMapper.selectCommentOne(cm_no); }
 	 
 
 	

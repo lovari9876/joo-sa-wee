@@ -67,7 +67,7 @@
 							<div class="test_item name" id="pop">
 								<span role="button" class="pop_btn popovers"
 									data-toggle="popover"
-									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${member_view["M_NO"]}'>신고하기</a>"><h3>${cm_comment_view['M_NICK']}</h3></span>
+									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${cm_comment_view["M_NO"]}'>신고하기</a>"><h3>${cm_comment_view['M_NICK']}</h3></span>
 							</div>
 							<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
 							<div class="test_item reco tooltip-purple">
@@ -99,7 +99,7 @@
 									data-placement="top" title="삭제"></a>
 							</div>
 							<div class="test_item rep tooltip-purple">
-								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_view['CM_NO']}"
+								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${cm_comment_view['CM_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="신고"> </a>

@@ -122,7 +122,7 @@
 
 	<!-- m_no를 가져오기 위해 -->
 	<select id="selectContentM"
-		resultType="com.soninlawisdice.vo.MemberVO">
+		resultType="java.util.HashMap" parameterType="int">
 		SELECT M_NO FROM MEMBER WHERE M_NO = #{m_no}
 	</select>
 
@@ -137,7 +137,7 @@
 
 	<!-- cm_no를 가져오기 위해 -->
 	<select id="selectContentCM"
-		resultType="com.soninlawisdice.vo.CM_commentVO">
+		resultType="java.util.HashMap" parameterType="int">
 		SELECT CM_NO FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
 
@@ -152,7 +152,7 @@
 
 	<!-- t_no를 가져오기 위해 -->
 	<select id="selectContentT"
-		resultType="com.soninlawisdice.vo.TradeVO">
+		resultType="java.util.HashMap" parameterType="int">
 		SELECT T_NO FROM TRADE WHERE T_NO = #{t_no}
 	</select>
 
@@ -167,7 +167,7 @@
 
 	<!-- cr_no를 가져오기 위해 -->
 	<select id="selectContentCR"
-		resultType="com.soninlawisdice.vo.Cafe_reviewVO">
+		resultType="java.util.HashMap" parameterType="int">
 		SELECT CR_NO FROM CAFE_REVIEW WHERE CR_NO = #{cr_no}
 	</select>
 
@@ -202,9 +202,6 @@
 			<id column="m_no" property="m_no" />
 			<result column="m_nick" property="m_nick" />
 		</collection>
-
-		<!-- <collection javaType="com.soninlawisdice.vo.Board_writeVO" property="board_writeVO"> 
-			<id column="bw_no" property="bw_no" /> </collection> -->
 	</resultMap>
 
 	<!-- 게시글 댓글 쓰기 -->
@@ -220,19 +217,8 @@
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
 
-	<!-- 게시글 댓글 보기 -->
-	<!-- <select id="commentList" resultType="java.util.HashMap"
-		parameterType="String">
-		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
-		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
-		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
-		CM.CM_STEP, CM.CM_INDENT
-		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
-		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = BW.BW_NO 
-		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2} 
-	</select>  -->
 	
+	<!-- 게시글 댓글 보기 -->
 	<select id="selectCommentOne" resultType="java.util.HashMap"
 		parameterType="String">
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,

@@ -46,16 +46,10 @@ public class HeeJeongController {
 		System.out.println("content_view");
 
 		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
-
-		/*
-		 * ArrayList<HashMap<String, Object>> board_writeVO =
-		 * contentService.selectContentOne(bw_no);
-		 */
+		
+		System.out.println(bw_no);
 
 		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
-//		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
-//		model.addAttribute("memberVO", board_writeVO.getMemberVO());
-//		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
 
 		// 게시글 조회수
 		contentService.upHitContent(bw_no);
@@ -84,7 +78,6 @@ public class HeeJeongController {
 		return contentService.selectRecommendContent(bw_no);
 	}
 
-	// 지금 여기 하고 있다!!!
 	// 게시글 댓글 view
 	 @RequestMapping(value = "/comment_view_bw", method = RequestMethod.GET)
 	 public String comment_view_bw(Model model, String bw_no, HttpServletRequest request, CM_commentVO cm_commentVO) {
@@ -97,43 +90,18 @@ public class HeeJeongController {
 		model.addAttribute("memberVO", cm_commentVO.getMemberVO());
 	  
 		return "content/comment_view_bw"; 
-	  
-	 }
-	 
-
-	// 게시글 댓글 view
-	/*
-	 * @RequestMapping(value = "/comment_view_bw", method = RequestMethod.GET)
-	 * public ArrayList<HashMap<String, Object>> comment_view_bw(Model model,
-	 * HttpServletRequest req) { System.out.println("comment_view_bw");
-	 * 
-	 * String cm_no2 = req.getParameter("cm_no2"); System.out.println("cm_no2 : " +
-	 * cm_no2);
-	 * 
-	 * model.addAttribute("cm_comment_view", contentService.commentList(cm_no2));
-	 * 
-	 * 
-	 * return contentService.commentList(cm_no2);
-	 * 
-	 * }
-	 */
-	 
+	 } 
 
 	// 게시글 댓글 쓰기 view
 	@RequestMapping(value = "/comment_write_view_bw", method = RequestMethod.GET)
-	public String comment_write_view_bw(HttpServletRequest request, Model model, int bw_no) {
+	public String comment_write_view_bw(HttpServletRequest request, Model model) {
 		System.out.println("comment_write_view_bw");
 
-		/*String bw_no = request.getParameter("bw_no");*/
-
-		HashMap<String, Object> board_writeVO = contentService.selectContentOne(bw_no);
+		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
 
 		System.out.println(bw_no);
 
-		model.addAttribute("content_view", board_writeVO);
-//		model.addAttribute("board_typeVO", board_writeVO.getBoard_typeVO());
-//		model.addAttribute("memberVO", board_writeVO.getMemberVO());
-//		model.addAttribute("subjectVO", board_writeVO.getSubjectVO());
+		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
 
 		return "content/comment_write_view_bw";
 	}
@@ -206,7 +174,7 @@ public class HeeJeongController {
 
 		contentService.insertReportM(reportVO);
 
-		return "redirect:content_view";
+		return "redirect:list_home";
 	}
 
 	// 댓글 신고글 view
@@ -214,13 +182,11 @@ public class HeeJeongController {
 	public String report_view_cm(HttpServletRequest request, Model model) {
 		System.out.println("report_view_cm");
 
-		String cm_no = request.getParameter("cm_no");
-
-		CM_commentVO cm_commentVO = contentService.selectContentCM(cm_no);
+		int cm_no = Integer.parseInt(request.getParameter("cm_no"));
 
 		System.out.println(cm_no);
 
-		model.addAttribute("comment_view", cm_commentVO);
+		model.addAttribute("comment_view", contentService.selectContentCM(cm_no));
 
 		return "content/report_view_cm";
 	}
@@ -242,13 +208,11 @@ public class HeeJeongController {
 	public String report_view_t(HttpServletRequest request, Model model) {
 		System.out.println("report_view_t");
 
-		String t_no = request.getParameter("t_no");
-
-		TradeVO tradeVO = contentService.selectContentT(t_no);
+		int t_no = Integer.parseInt(request.getParameter("t_no"));
 
 		System.out.println(t_no);
 
-		model.addAttribute("trade_view", tradeVO);
+		model.addAttribute("trade_view", contentService.selectContentT(t_no));
 
 		return "content/report_view_t";
 	}
@@ -270,13 +234,11 @@ public class HeeJeongController {
 	public String report_view_cr(HttpServletRequest request, Model model) {
 		System.out.println("report_view_cr");
 
-		String cr_no = request.getParameter("cr_no");
-
-		Cafe_reviewVO cafe_reviewVO = contentService.selectContentCR(cr_no);
+		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
 
 		System.out.println(cr_no);
 
-		model.addAttribute("cafe_review_view", cafe_reviewVO);
+		model.addAttribute("cafe_review_view", contentService.selectContentCR(cr_no));
 
 		return "content/report_view_cr";
 	}

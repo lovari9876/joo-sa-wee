@@ -13,7 +13,6 @@ import com.soninlawisdice.vo.TradeVO;
 public interface ContentService {
 	
 	public HashMap<String, Object> selectContentOne(int bw_no); // 게시글 보기(content_view)
-	/* public Board_writeVO selectContentOne(String bw_no); */
 	
 	public void deleteContent(Board_writeVO board_writeVO); // 게시글 삭제
 	
@@ -25,27 +24,24 @@ public interface ContentService {
 	
 	public void insertReportBW(ReportVO reportVO); //  게시글 신고글 쓰기
 	
-	public MemberVO selectContentM(int m_no); // m_no를 가져오기 위해
+	public HashMap<String, Object> selectContentM(int m_no); // m_no를 가져오기 위해
 	
 	public void insertReportM(ReportVO reportVO); // 회원 신고글 쓰기
 	
-	public CM_commentVO selectContentCM(String cm_no); // cm_no를 가져오기 위해
+	public HashMap<String, Object> selectContentCM(int cm_no); // cm_no를 가져오기 위해
 	
 	public void insertReportCM(ReportVO reportVO); // 댓글 신고글 쓰기
 	
-	public TradeVO selectContentT(String t_no); // t_no를 가져오기 위해
+	public HashMap<String, Object> selectContentT(int t_no); // t_no를 가져오기 위해
 	
 	public void insertReportT(ReportVO reportVO); // 중고거래 신고글 쓰기
 	
-	public Cafe_reviewVO selectContentCR(String cr_no); // cr_no를 가져오기 위해
+	public HashMap<String, Object> selectContentCR(int cr_no); // cr_no를 가져오기 위해
 	
 	public void insertReportCR(ReportVO reportVO); // 카페리뷰 신고글 쓰기
 	
 	public void insertCommentBW(CM_commentVO cm_commentVO); // 게시글 댓글 쓰기
 	
-	/* public ArrayList<HashMap<String, Object>> commentList(String cm_no); */  // 게시글 댓글 보기
-	
-	public HashMap<String, Object> selectCommentOne(String cm_no);// 게시글 댓글 보기
-	/* public CM_commentVO selectCommentOne(String cm_no); */
+	public HashMap<String, Object> selectCommentOne(String cm_no); // 게시글 댓글 보기
 
 }
