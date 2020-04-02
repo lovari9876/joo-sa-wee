@@ -12,9 +12,8 @@
 <body>
 		<!-- 댓글 쓰기 -->
 			<h3 class="mb-5">Leave a comment</h3>
-			<form action="comment_write_bw" method="GET">
+			<form action="comment_write_bw" method="get">
 				<input type="hidden" name="cm_no2" value="${content_view['BW_NO']}">
-				<input type="hidden" name="bw_no" value="${content_view['BW_NO']}">
 				<div class="form-group">
 					<label for="message">Comment</label>
 					<textarea name="cm_content" id="message" cols="30" rows="10"

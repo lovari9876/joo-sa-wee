@@ -14,6 +14,7 @@
 			<h3 class="mb-5">Leave a comment</h3>
 			<form action="comment_write_bw" method="get">
 				<input type="hidden" name="cm_no2" value="${trade_view['T_NO']}">
+				<input type="hidden" name="t_no" value="${trade_view['T_NO']}">
 				<div class="form-group">
 					<label for="message">Comment</label>
 					<textarea name="cm_content" id="message" cols="30" rows="10"

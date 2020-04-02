@@ -205,6 +205,7 @@
 	</resultMap>
 
 	<!-- 게시글 댓글 쓰기 -->
+	<!-- 현재 m_no 5로 되어있음. 나중에 #{m_no}으로 고쳐야 됨. -->
 	<insert id="insertCommentBW">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
 		CM_WRITTEN_DATE,
@@ -245,16 +246,16 @@
 	</insert>
 
 	
-	<!-- 게시글 댓글 보기 -->
+	<!-- 중고거래 댓글 보기 -->
 	<select id="selectCommentT" resultType="java.util.HashMap"
 		parameterType="String">
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
 		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
 		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
 		CM.CM_STEP, CM.CM_INDENT
-		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
+		FROM CM_COMMENT CM, MEMBER M, TRADE T
 		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = BW.BW_NO 
+		CM.CM_NO2 = T.T_NO 
 		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
 	</select>
 	
@@ -279,10 +280,28 @@
 		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
 		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
 		CM.CM_STEP, CM.CM_INDENT
+		FROM CM_COMMENT CM, MEMBER M, CAFE_REVIEW CR
+		WHERE CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = CR.CR_NO 
+		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
+	</select>
+	
+	<!-- 댓글 수정하기 -->
+	<update id="updateCommentOne">
+		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_cotent}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
+	</update>
+	
+	<!-- 댓글 목록 -->
+	<select id="selectCommentList" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT
 		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = BW.BW_NO 
-		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
+		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
 	</select>
 
 

@@ -2,6 +2,7 @@ package com.soninlawisdice.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -176,6 +177,21 @@ public class ContentServiceImpl implements ContentService {
 	public HashMap<String, Object> selectCommentCR(String cm_no) {
 		
 		return contentMapper.selectCommentCR(cm_no);
+	}
+
+	// 댓글 수정하기
+	@Override
+	public void updateCommentOne(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateCommentOne(cm_commentVO);
+		
+	}
+
+	// 댓글 목록
+	@Override
+	public ArrayList<HashMap<String, Object>> selectCommentList(String cm_no) {
+		
+		return contentMapper.selectCommentList(cm_no);
 	}
 	 
 

@@ -189,7 +189,37 @@
 					<!-- 댓글부분 -->
 					<%-- <%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %> --%>
 						<c:choose>
-							<c:when test="${1 <= content_view['BT_NO'] >= 6}">
+							<c:when test="${content_view['BT_NO'] == 1}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 2}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 3}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 4}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 5}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 6}">
 								<c:import url="/comment_view_bw">
 									<c:param name="cm_type" value="게시판"></c:param>
 									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
@@ -206,7 +236,10 @@
 									<c:param name="cm_type" value="카페리뷰"></c:param>
 									<c:param name="cm_no2" value="${content_view['CR_NO']}"></c:param>
 								</c:import>
-							</c:when>
+							</c:when> 
+							<c:otherwise>
+								<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
+							</c:otherwise>
 						</c:choose>
 						
 						<%-- <c:param name="cm_type" value="${board_typeVO.bt_no}"></c:param>

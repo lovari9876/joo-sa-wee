@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.ContentServiceImpl;
@@ -42,7 +46,8 @@ public class HeeJeongController {
 	 */
 	// 게시글 view
 	@RequestMapping(value = "/content_view", method = RequestMethod.GET)
-	public String content(Model model, HttpServletRequest request) {
+	public String content(Model model, HttpServletRequest request, CM_commentVO cm_commentVO, 
+							@RequestParam("bw_no") int pageNum) {
 		System.out.println("content_view");
 
 		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
@@ -80,21 +85,21 @@ public class HeeJeongController {
 
 	// 게시글 댓글 view
 	 @RequestMapping(value = "/comment_view_bw", method = RequestMethod.GET)
-	 public String comment_view_bw(Model model, String bw_no, HttpServletRequest request, CM_commentVO cm_commentVO) {
+	 public String comment_view_bw(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
 		System.out.println("comment_view_bw");
-	  
+		
 		String cm_no2 = request.getParameter("cm_no2");
 		System.out.println("cm_no2 : "+cm_no2);
-	  
-		model.addAttribute("cm_comment_view", contentService.selectCommentOne(cm_no2));
-		model.addAttribute("memberVO", cm_commentVO.getMemberVO());
+
+		model.addAttribute("comment_list", contentService.selectCommentList(cm_no2));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 	  
 		return "content/comment_view_bw"; 
 	 } 
 
 	// 게시글 댓글 쓰기 view
 	@RequestMapping(value = "/comment_write_view_bw", method = RequestMethod.GET)
-	public String comment_write_view_bw(HttpServletRequest request, Model model) {
+	public String comment_write_view_bw(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
 		System.out.println("comment_write_view_bw");
 
 		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
@@ -102,25 +107,33 @@ public class HeeJeongController {
 		System.out.println(bw_no);
 
 		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
+		model.addAttribute("bw_no", bw_no);
+		System.out.println(cm_commentVO.getCm_no2());
 
-		return "content/comment_write_view_bw";
+		contentService.insertCommentBW(cm_commentVO);
+
+		return "content/comment_write_bw";
 	}
 
 	// 게시글 댓글 쓰기
 	@RequestMapping(value = "/comment_write_bw", method = RequestMethod.GET)
-	public String comment_write_bw(CM_commentVO cm_commentVO, Model model) {
+	public String comment_write_bw(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
+									Model model, @RequestParam int bw_no, RedirectAttributes re) {
 		System.out.println("comment_write_bw");
 
 		System.out.println(cm_commentVO.getCm_no2());
 
 		contentService.insertCommentBW(cm_commentVO);
+		
+//		int bw_no = Integer.parseInt(rq.getParameter("bw_no"));
+		re.addAttribute("bw_no", bw_no);
 
-		return "content/content_view";
+		return "redirect:/content_view";
 	}
 	
 	// 중고거래 댓글 view
 	@RequestMapping(value = "/comment_view_t", method = RequestMethod.GET)
-	public String comment_view_t(Model model, String bw_no, HttpServletRequest request, CM_commentVO cm_commentVO) {
+	public String comment_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
 		System.out.println("comment_view_t");
 		  
 		String cm_no2 = request.getParameter("cm_no2");
@@ -134,7 +147,7 @@ public class HeeJeongController {
 
 	// 중고거래 댓글 쓰기 view
 	@RequestMapping(value = "/comment_write_view_t", method = RequestMethod.GET)
-	public String comment_write_view_t(HttpServletRequest request, Model model) {
+	public String comment_write_view_t(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
 		System.out.println("comment_write_view_t");
 
 		int t_no = Integer.parseInt(request.getParameter("t_no"));
@@ -142,20 +155,25 @@ public class HeeJeongController {
 		System.out.println(t_no);
 
 		model.addAttribute("trade_view", contentService.selectContentT(t_no));
+		model.addAttribute("t_no", t_no);
+		System.out.println(cm_commentVO.getCm_no2());
 
 		return "content/comment_write_view_t";
 	}
 
 	// 중고거래 댓글 쓰기
 	@RequestMapping(value = "/comment_write_t", method = RequestMethod.GET)
-	public String comment_write_t(CM_commentVO cm_commentVO, Model model) {
+	public String comment_write_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
+									Model model, @RequestParam int t_no, RedirectAttributes re) {
 		System.out.println("comment_write_t");
 
 		System.out.println(cm_commentVO.getCm_no2());
 
 		contentService.insertCommentT(cm_commentVO);
+		
+		re.addAttribute("t_no", t_no);
 
-		return "content/content_view";
+		return "redirect:/content_view";
 	}
 	
 	// 카페리뷰 댓글 view
@@ -174,7 +192,7 @@ public class HeeJeongController {
 
 	// 카페리뷰 댓글 쓰기 view
 	@RequestMapping(value = "/comment_write_view_cr", method = RequestMethod.GET)
-	public String comment_write_view_cr(HttpServletRequest request, Model model) {
+	public String comment_write_view_cr(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
 		System.out.println("comment_write_view_cr");
 
 		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
@@ -182,18 +200,30 @@ public class HeeJeongController {
 		System.out.println(cr_no);
 
 		model.addAttribute("cafe_review_view", contentService.selectContentCR(cr_no));
+		model.addAttribute("cr_no", cr_no);
+		System.out.println(cm_commentVO.getCm_no2());
 
 		return "content/comment_write_view_cr";
 	}
 
 	// 카페리뷰 댓글 쓰기
 	@RequestMapping(value = "/comment_write_cr", method = RequestMethod.GET)
-	public String comment_write_cr(CM_commentVO cm_commentVO, Model model) {
+	public String comment_write_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
+									Model model, @RequestParam int cr_no, RedirectAttributes re) {
 		System.out.println("comment_write_cr");
 
 		System.out.println(cm_commentVO.getCm_no2());
 
 		contentService.insertCommentCR(cm_commentVO);
+		
+		re.addAttribute("cr_no", cr_no);
+
+		return "content/content_view";
+	}
+	
+	@RequestMapping(value = "/comment_modify", method = RequestMethod.GET)
+	public String comment_modify(Locale locale, Model model) {
+		logger.info("comment_modify");
 
 		return "content/content_view";
 	}
@@ -222,7 +252,7 @@ public class HeeJeongController {
 
 	// 게시글 신고글 쓰기
 	@RequestMapping(value = "/report_bw", method = RequestMethod.GET)
-	public String report_bw(ReportVO reportVO, Model model) {
+	public String report_bw(@ModelAttribute("reportVO") ReportVO reportVO, Model model) {
 		System.out.println("report_bw");
 
 		System.out.println(reportVO.getR_type_no());
@@ -248,7 +278,7 @@ public class HeeJeongController {
 
 	// 회원 신고글 쓰기
 	@RequestMapping(value = "/report_m", method = RequestMethod.GET)
-	public String report_m(ReportVO reportVO, Model model) {
+	public String report_m(@ModelAttribute("reportVO") ReportVO reportVO, Model model) {
 		System.out.println("report_m");
 
 		System.out.println(reportVO.getR_type_no());
@@ -274,7 +304,7 @@ public class HeeJeongController {
 
 	// 댓글 신고글 쓰기
 	@RequestMapping(value = "/report_cm", method = RequestMethod.GET)
-	public String report_cm(ReportVO reportVO, Model model) {
+	public String report_cm(@ModelAttribute("reportVO") ReportVO reportVO, Model model) {
 		System.out.println("report_cm");
 
 		System.out.println(reportVO.getR_type_no());

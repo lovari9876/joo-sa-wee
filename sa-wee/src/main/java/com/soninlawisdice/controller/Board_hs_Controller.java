@@ -157,7 +157,7 @@ public class Board_hs_Controller {
 	
 	//수정하기 view. 희정이 contentview 가지고 오는거. 위에 @Auto 두개 줘도 되는건가.
 	@RequestMapping(value = "/modify_view", method = RequestMethod.GET)
-	public String modify_view(Model model, String bw_no) {
+	public String modify_view(Model model, int bw_no) {
 		model.addAttribute("content_view",contentService.selectContentOne(bw_no));
 		
 		return "board_hs/modify_view";

@@ -2,6 +2,7 @@ package com.soninlawisdice.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
@@ -51,5 +52,9 @@ public interface ContentService {
 	public void insertCommentCR(CM_commentVO cm_commentVO); // 중고거래 댓글 쓰기
 	
 	public HashMap<String, Object> selectCommentCR(String cm_no); // 중고거래 댓글 보기
+	
+	public void updateCommentOne(CM_commentVO cm_commentVO); // 댓글 수정하기
+	
+	public ArrayList<HashMap<String, Object>> selectCommentList(String cm_no); // 댓글 목록
 
 }

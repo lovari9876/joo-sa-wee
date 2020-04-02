@@ -42,14 +42,12 @@
 </head>
 <body>
 
-	<%-- <input type="hidden" name="cm_no" value="<c:out value="${param.cm_no}"/>"> --%>
-	<%-- <input type="hidden" name="cm_no" value="${cm_comment_view['CM_NO']}"> --%>
-	<%-- <input type="hidden" name="cm_type" value="${cm_comment_view['CM_TYPE']}">
-	<input type="hidden" name="cm_no2" value="${cm_comment_view['CM_NO2']}"> --%>
-	<input type="hidden" name="cm_no" value="${cm_comment_view['CM_NO']}">
+	<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
 	<input type="hidden" name="cm_type" value="<c:out value="${param['CM_TYPE']}"/>">
-	<input type="hidden" name="cm_no2" value="<c:out value="${param['CM_NO2']}"/>">
+	<input type="hidden" name="cm_no2" value="<c:out value="${param['CM_NO2']}"/>"> 
+	
 
+	
 	<!-- 댓글 달기 -->
 	<div class="pt-5">
 		<form action="">
@@ -59,7 +57,10 @@
 				<option value="best">인기순</option>
 			</select>
 		</form>
+		
 		<ul class="comment-list">
+		<c:forEach items="${comment_list}" var="cm_comment_list" varStatus="status">
+		<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
 			<li class="comment">
 				<div class="comment-body">
 					<form>
@@ -67,17 +68,17 @@
 							<div class="test_item name" id="pop">
 								<span role="button" class="pop_btn popovers"
 									data-toggle="popover"
-									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${cm_comment_view["M_NO"]}'>신고하기</a>"><h3>${cm_comment_view['M_NICK']}</h3></span>
+									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${comment_list[status.index]["M_NO"]}'>신고하기</a>"><h3>${comment_list[status.index]['M_NICK']}</h3></span>
 							</div>
 							<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
 							<div class="test_item reco tooltip-purple">
 								<a class="far fa-thumbs-up fa-2x no-text-deco" href="#"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="추천"></a><a class="text_items">(</a><a class="text_items">${cm_comment_view['CM_RECOMMEND_NUM']}</a><a class="text_items">)</a>
+									data-placement="top" title="추천"></a><a class="text_items">(</a><a class="text_items">${cm_comment_list[status.index]['CM_RECOMMEND_NUM']}</a><a class="text_items">)</a>
 							</div>
 						</div>
-						<div class="meta">작성일${cm_comment_view['CM_WRITTEN_DATE']} 수정일${cm_comment_view['CM_UPDATED_DATE']}</div>
-						<p>${cm_comment_view['CM_CONTENT']}</p>
+						<div class="meta">작성일 ${comment_list[status.index]['CM_WRITTEN_DATE']} 수정일 ${comment_list[status.index]['CM_UPDATED_DATE']}</div>
+						<p>${comment_list[status.index]['CM_CONTENT']}</p>
 
 						<div class="reply_test">
 							<div class="test_item rp">
@@ -89,7 +90,7 @@
 							</div>
 
 							<div class="test_item modi tooltip-purple">
-								<a class="fas fa-edit fa-lg no-text-deco" href="#"
+								<a class="fas fa-edit fa-lg no-text-deco" href="comment_modify"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="수정"></a>
 							</div>
@@ -99,7 +100,7 @@
 									data-placement="top" title="삭제"></a>
 							</div>
 							<div class="test_item rep tooltip-purple">
-								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${cm_comment_view['CM_NO']}"
+								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_list[status.index]['CM_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="신고"> </a>
@@ -111,96 +112,11 @@
 					</form>
 				</div>
 			</li>
-			
-			<!-- 댓글 달기 -> 이 친구한테 대댓글 닮 -->
-			<li class="comment">
-				<div class="comment-body">
-					<h3>Chris Meyer</h3>
-					<div class="meta">January 9, 2018 at 2:21pm</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem,
-						eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas
-						earum impedit necessitatibus, nihil?</p>
-					<p>
-						<a href="#" class="reply">Reply</a>
-					</p>
-				</div>
-				
-				<!-- 대댓글 달기 -->
-				<ul class="children">
-					<li class="comment">
-						<div class="comment-body">
-							<h3>Chintan Patel</h3>
-							<div class="meta">January 9, 2018 at 2:21pm</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-								autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-								voluptas earum impedit necessitatibus, nihil?</p>
-							<p>
-								<a href="#" class="reply">Reply</a>
-							</p>
-						</div>
-
-						<!-- 대대댓글 달기 -->
-						<ul class="children">
-							<li class="comment">
-								<div class="comment-body">
-									<h3>Jean Doe</h3>
-									<div class="meta">January 9, 2018 at 2:21pm</div>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-										elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-										vitae autem, eum officia, fugiat saepe enim sapiente iste
-										iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-									<p>
-										<a href="#" class="reply">Reply</a>
-									</p>
-								</div>
-								
-								<!-- 대대대댓글 달기 -->
-								<ul class="children">
-									<li class="comment">
-										<div class="comment-body">
-											<h3>Ben Afflick</h3>
-											<div class="meta">January 9, 2018 at 2:21pm</div>
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing
-												elit. Pariatur quidem laborum necessitatibus, ipsam impedit
-												vitae autem, eum officia, fugiat saepe enim sapiente iste
-												iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
-											<p>
-												<a href="#" class="reply">Reply</a>
-											</p>
-										</div>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-			
-			<!-- 댓글 달기 -->
-			<li class="comment">
-				<div class="comment-body">
-					<h3>Jean Doe</h3>
-					<div class="meta">January 9, 2018 at 2:21pm</div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem,
-						eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas
-						earum impedit necessitatibus, nihil?</p>
-					<p>
-						<a href="#" class="reply">Reply</a>
-					</p>
-				</div>
-			</li>
+			</c:forEach>
 		</ul>
-		<!-- END comment-list -->
-		
-		<!-- 댓글 쓰기 -->
-		<%-- <div class="comment-form-wrap pt-5">
-			<%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %>
-		</div> --%>
 	</div>
-
+	
+	
 	<!-- SCRIPTS -->
 	<script src="js/board_hj/jquery.min.js"></script>
 	<script src="js/board_hj/jquery-3.2.1.min.js"></script>
