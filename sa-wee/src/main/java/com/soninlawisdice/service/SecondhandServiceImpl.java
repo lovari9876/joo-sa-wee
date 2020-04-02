@@ -19,7 +19,6 @@ public class SecondhandServiceImpl implements SecondhandService {
 
 	@Override
 	public ArrayList<HashMap<String, Object>> selectTradeList(SearchCriteria scri) {
-
 		return secondhandMapper.selectTradeList(scri);
 	}
 

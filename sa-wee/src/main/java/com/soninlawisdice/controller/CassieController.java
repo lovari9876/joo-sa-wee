@@ -1,9 +1,7 @@
 package com.soninlawisdice.controller;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +16,7 @@ import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
-import com.soninlawisdice.vo.TradeVO;
+
 
 @Controller
 public class CassieController {
@@ -53,76 +51,40 @@ public class CassieController {
 		
 		model.addAttribute("pageMaker", pageMaker );
 		
-		System.out.println(((SearchCriteria) (pageMaker.getCri())).getSearchType()+"fo;afjlkfl;kaf");
+		System.out.println(((SearchCriteria) (pageMaker.getCri())).getSearchType());
 		
 		return "secondhand/tlist";
 	}
 
 
 	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
-	public String island_list(Model model) {
+	public String island_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 		logger.info("island_list");
-
-		ArrayList<HashMap<String, Object>> iList = islandService.selectIslandList();
-
+		
+		scri.setPerPageNum(15);
+		
+		ArrayList<HashMap<String, Object>> iList = islandService.selectIslandList(scri);
+		model.addAttribute("iList", iList);
+		
 		// 사이즈 찍어보기
 		System.out.println(iList.size());
 		System.out.println(iList.get(0).toString()); // String key는 반드시 대문자로!
 
-		model.addAttribute("iList", iList);
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(islandService.islandListCount(scri));
+		
+		// perPageNum 부여한 것 잘 가져오니? 네
+		//System.out.println(pageMaker.getCri().getPerPageNum());
+		
+		model.addAttribute("pageMaker", pageMaker );
+		
+		System.out.println(((SearchCriteria) (pageMaker.getCri())).getSearchType());
+		
 
 		return "island/island_list";
 	}
 
-	
-	@RequestMapping(value = "/island/list", method = RequestMethod.GET)
-	public String list(Model model) {
-		logger.info("islandList");
 
-		ArrayList<HashMap<String, Object>> iList = islandService.selectIslandList();
-
-		// 사이즈 찍어보기
-		System.out.println(iList.size());
-		System.out.println(iList.get(0).toString()); // String key가 대문자임..
-
-		model.addAttribute("iList", iList);
-
-		return "island/list";
-	}
-
-//	@Autowired
-//	private EmpService empService;
-//	
-//	@RequestMapping("/list")
-//	public String emp(Model model) {
-//		
-//		System.out.println("emp");
-//		
-//		//ArrayList<EmpVO> empList = empService.selectAllEmpList();
-//		
-//		/*
-//		 * ArrayList<HashMap<String,Object>> empList =
-//		 * empServie.selectAllEmpListHashMap();
-//		 * 
-//		 * for (HashMap<String, Object> hashMap : empList) {
-//		 * 
-//		 * Iterator<String> keys = hashMap.keySet().iterator(); while( keys.hasNext() ){
-//		 * String key = keys.next(); System.out.println( String.format("Ű : %s, �� : %s",
-//		 * key, hashMap.get(key)) ); } }
-//		 * 
-//		 * 
-//		 * System.out.println(empList.size());
-//		 */
-//		
-//		DeptEmpVO deptEmpVO = empService.selectEmpDeptName(10);
-//		 
-//		model.addAttribute("deptEmpVO", deptEmpVO);
-//		model.addAttribute("empList", deptEmpVO.getEmpList());
-//		
-//		System.out.println(deptEmpVO.getDeptno());
-//		System.out.println(deptEmpVO.getEmpList().size()); 
-//		
-//		return "/list";
-//	}
 
 }

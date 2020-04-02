@@ -6,26 +6,8 @@
 <mapper namespace="com.soninlawisdice.mapper.IslandMapper">
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
 	
-	<!-- ========== for island list =========== -->
-<!-- 	<resultMap id="MemberResultMap" type="java.util.HashMap" >
-		<id property="" column="" />
-		<result property="" column="" />
-		<result property="" column="" />
-	</resultMap>
 	
-	<resultMap type="com.soninlawisdice.vo.MemberVO" id="MemberVO">
-		<id property="" column="" />
-		<result property="" column="" />
-		<result property="" column="" />
-		<collection property="" column="" />
-	</resultMap> -->
-	
-<!-- 	<resultMap id="bbsAttachResultMap" type="java.util.HashMap">
-	    <id property="attach_id" column="attach_id"/>
-	    <result property="file_name" column="file_name"/>
-	    <result property="file_size" column="file_size"/>
-	</resultMap>  -->
-	
+	<!-- ========== 개별 리스트 3개 =========== -->
 	<select id="selectTradeIslandList" resultType="com.soninlawisdice.vo.TradeVO">
 		SELECT T.*, M.M_NICK 
 		FROM TRADE T LEFT JOIN MEMBER M 
@@ -52,14 +34,82 @@
 		ORDER BY CR_WRITTEN_DATE DESC
 	</select> 
 	
-	<select id="selectIslandList" resultType="java.util.HashMap">
+	<!-- ========== for island list =========== -->
+	<select id="selectIslandList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria" >
 		SELECT
-				ROW_NUMBER() OVER(ORDER BY I_WRITTEN_DATE) AS RNUM, 
-		        I_NO, BT_NO, S_NO, M_NO, M_NICK, I_TITLE, I_CONTENT,
-		        I_WRITTEN_DATE, I_UPDATED_DATE, 
-		        I_HIT, I_RECOMMEND_NUM, I_REPORT_NUM,I_ISLAND
+				*
 		FROM
 			(
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY I_WRITTEN_DATE ASC, I_NO ASC) AS RNUM,
+				ROW_NUMBER() OVER(ORDER BY I_WRITTEN_DATE DESC, I_NO DESC) AS RNUM_COUNT,
+				I.*
+			FROM
+				(
+				        (
+					        SELECT 
+					        		T.T_NO AS I_NO, T.BT_NO, T.S_NO, T.M_NO, M.M_NICK, T.T_TITLE AS I_TITLE, T.T_CONTENT AS I_CONTENT, 
+					                T.T_WRITTEN_DATE AS I_WRITTEN_DATE, T.T_UPDATED_DATE AS I_UPDATED_DATE, 
+					                T.T_HIT AS I_HIT, T.T_RECOMMEND_NUM AS I_RECOMMEND_NUM, T.T_REPORT_NUM AS I_REPORT_NUM, T.T_ISLAND AS I_ISLAND 
+					        FROM 	
+					        		TRADE T 
+					        LEFT JOIN 
+					        		MEMBER M 
+					        ON 		
+					        		T.M_NO = M.M_NO
+					        WHERE 	
+					        		T_ISLAND != 0 ) 
+					
+					UNION
+					
+							(SELECT 
+									BW.BW_NO AS I_NO, BW.BT_NO, BW.S_NO, BW.M_NO, M.M_NICK, BW.BW_TITLE  AS I_TITLE, BW.BW_CONTENT AS I_CONTENT, 
+									BW.BW_WRITTEN_DATE AS I_WRITTEN_DATE, BW.BW_UPDATED_DATE AS I_UPDATED_DATE, 
+					                BW.BW_HIT AS I_HIT, BW.BW_RECOMMEND_NUM AS I_RECOMMEND_NUM, BW.BW_REPORT_NUM AS I_REPORT_NUM, BW.BW_ISLAND AS I_ISLAND 
+					        FROM 
+					        		BOARD_WRITE BW
+					        LEFT JOIN 
+					        		MEMBER M
+					        ON 
+					        		BW.M_NO = M.M_NO
+							WHERE 
+									BW_ISLAND != 0 ) 
+					
+					UNION
+					
+					        (SELECT 
+					        		CR.CR_NO AS I_NO, CR.BT_NO, NULL, CR.M_NO, M.M_NICK, CR.CR_TITLE AS I_TITLE, CR.CR_CONTENT AS I_CONTENT, 
+				                    CR.CR_WRITTEN_DATE AS I_WRITTEN_DATE, CR.CR_UPDATED_DATE AS I_UPDATED_DATE, 
+				                    CR.CR_HIT AS I_HIT, CR.CR_RECOMMEND_NUM AS I_RECOMMEND_NUM, CR.CR_REPORT_NUM AS I_REPORT_NUM, CR.CR_ISLAND AS I_ISLAND
+					        FROM 
+					        		CAFE_REVIEW CR
+					        LEFT JOIN 
+					        		MEMBER M
+					        ON 
+					        		CR.M_NO = M.M_NO
+							WHERE 
+									CR_ISLAND != 0 ) 
+					) I
+			ORDER BY 
+				RNUM DESC
+				) 
+		WHERE 
+			RNUM_COUNT BETWEEN ${rowStart} AND ${rowEnd} 
+			<include refid="islandSearch"></include>
+		ORDER BY 
+			RNUM DESC
+					
+	</select> 
+	<!-- UNION한 결과테이블을 다시 감싸서 RNUM 구하고, 그 결과에 다시 WHERE 절을 해야... 정상 작동함... -->
+	
+	
+	<select id="islandListCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType="int">
+			
+		SELECT
+				COUNT(*)
+		FROM
+			(
+				
 			        (SELECT 
 			        		T.T_NO AS I_NO, T.BT_NO, T.S_NO, T.M_NO, M.M_NICK, T.T_TITLE AS I_TITLE, T.T_CONTENT AS I_CONTENT, 
 			                T.T_WRITTEN_DATE AS I_WRITTEN_DATE, T.T_UPDATED_DATE AS I_UPDATED_DATE, 
@@ -101,21 +151,24 @@
 			        ON 
 			        		CR.M_NO = M.M_NO
 					WHERE 
-							CR_ISLAND != 0 ) 
-			)
-		WHERE RNUM BETWEEN #{ROWSTART} AND #{ROWEND}
-		ORDER BY I_WRITTEN_DATE DESC
+							CR_ISLAND != 0 ) 							
+			)			
+		WHERE 
+			1=1
+			<include refid="islandSearch"></include>
+
 	</select>
-
-
-<!-- SELECT T.*, M.M_NICK FROM TRADE T, MEMBER M 
-WHERE T_ISLAND != 0 AND T.M_NO = M.M_NO
-ORDER BY T_WRITTEN_DATE DESC;  
-
-SELECT T.*, M.M_NICK FROM TRADE T left join MEMBER M 
-on T.M_NO = M.M_NO
-WHERE T_ISLAND != 0 
-ORDER BY T_WRITTEN_DATE DESC; -->
+	
+	
+	<sql id="islandSearch">
+		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">AND I_TITLE LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND I_CONTENT LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'w'.toString()">AND M_NICK LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'tc'.toString()">
+				AND (I_TITLE LIKE '%' || #{keyword} || '%') or (I_CONTENT LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql>
 
 
 </mapper>

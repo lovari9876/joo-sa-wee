@@ -79,9 +79,40 @@
 		        <div class="search--div p-1 bg-island rounded rounded-pill shadow-sm mb-4">
 		          <div class="input-group">
 		            <div class="input-group-prepend">
-		              <button type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
+		              <button id="searchBtn" type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
+		              
+		              <!-- 엔터 안되고 버튼으로만 검색가능 -->
+	            		<script>
+					      $(function(){
+					        $('#searchBtn').click(function() {
+					        	event.preventDefault(); // event canceled 막기!
+					          	self.location = "/island_list" 
+					          				+ '${pageMaker.makeQuery(1)}' 
+					          				+ "&searchType=" 
+					          				+ $("select option:selected").val() 
+					          				+ "&keyword=" 
+					          				+ encodeURIComponent($('#keywordInput').val());
+					        });
+					      });   
+					    </script>
+		              
 		            </div>
-		            <input type="search" placeholder="검색어를 입력하세요" aria-describedby="button-addon2" class="form-control border-0 ">
+		            
+		            <div class="custom-select">
+		              <select><!-- data-trigger="" name="choices-single-defaul" -->
+						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
+					      <option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+					      <option value="c" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+					      <option value="w" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+					      <option value="tc" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+		                  <option>말머리</option>
+		              </select>		      
+		              <div class="select__arrow"></div>        
+		              
+		            </div>	
+		            
+		            <input type="search" id="keywordInput" value="${scri.keyword}" placeholder="검색어를 입력하세요" 
+		            	   aria-describedby="button-addon2" class="form-control border-0 ">
 		          </div>
 		        </div>
 		        		
@@ -168,6 +199,46 @@
             </div>
             
         </div> <!-- end row -->
+    
+        <div class="row">
+            <div class="col-full">
+                <nav class="pgn">
+                    <ul class="pagination">
+					    <!-- 검색 결과에 대해 페이징 처리된 페이지 번호 목록 -->
+					    <c:if test="${pageMaker.prev}">
+					        <li>
+					            <a class="pgn__prev" href="island_list${pageMaker.makeSearch(pageMaker.startPage - 1)}">
+					                &laquo;
+					            </a>
+					        </li>
+					    </c:if>
+					 
+					    <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="idx">
+					        <li>
+					        	<c:choose>
+					        		<c:when test="${pageMaker.cri.page == idx}">
+					        			<span class="pgn__num current">${idx}</span>
+					        		</c:when>
+					        		<c:otherwise>
+					        			<a class="pgn__num" href="island_list${pageMaker.makeSearch(idx)}">${idx}</a>
+					        		</c:otherwise>					        
+					        	</c:choose>
+					        </li>
+					    </c:forEach>
+					 
+					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					        <li>
+					            <a class="pgn__next" href="island_list${pageMaker.makeSearch(pageMaker.endPage +1)}">
+					                &raquo;
+					            </a>
+					        </li>
+					    </c:if>					   
+					</ul>
+					<button class="btn btn-primary">글쓰기</button>
+                </nav>
+            </div>
+        </div>    
+    
     
     </section> <!-- end styles -->
 
