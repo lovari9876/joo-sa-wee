@@ -128,9 +128,9 @@
 	    
 	                    <div class="entry__text">
 	                        <div class="entry__header">
-	                        	<div class="entry__excerpt">${tItem['T_NO']}</div>
-	                            <div class="entry__date">
-	                                <a href="single-standard.html">
+	                        	<div class="entry__excerpt">${tItem['T_NO']} | ${tItem['S_CONTENT']}</div>
+	                       		<div class="entry__date">
+	                                <a href="single-standard.html">	                                
 	                                	<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 										<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
 										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
@@ -141,14 +141,19 @@
 												<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="HH:mm"/>
 											</c:otherwise>
 										</c:choose>
+										
 	                                </a>
 	                            </div>
 	                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
 	                            
 	                        </div>
-	                        <div class="entry__excerpt">
-	                            <p>${tItem['M_NICK']}</p>
+	                        <div class="entry__excerpt" style="font-family:ariel;">
+	                            ${tItem['M_NICK']}
 	                        </div>
+	                        <div class="entry__excerpt" style="font-weight:50;">
+	                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}
+	                        </div>
+	                        
 	                        <div class="entry__meta">
 	                            <span class="entry__meta-links">
 	                                <a href="category.html">Design</a> 
@@ -171,7 +176,7 @@
 	    
 	                    <div class="entry__text">
 	                        <div class="entry__header">
-	                            <div class="entry__excerpt">${tItem['T_NO']}</div>
+	                            <div class="entry__excerpt">${tItem['T_NO']} | ${tItem['S_CONTENT']}</div>
 	                            <div class="entry__date">
 	                                <a href="single-standard.html">
 										<c:choose>
@@ -185,9 +190,13 @@
 	                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
 	                            
 	                        </div>
-	                        <div class="entry__excerpt">
-	                            <p>${tItem['M_NICK']}</p>
+							<div class="entry__excerpt" style="font-family:ariel;">
+	                            ${tItem['M_NICK']}
 	                        </div>
+	                        <div class="entry__excerpt" style="font-weight:50;">
+	                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}
+	                        </div>
+	                        
 	                        <div class="entry__meta">
 	                            <span class="entry__meta-links">
 	                                <a href="category.html">Design</a> 

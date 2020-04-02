@@ -29,13 +29,18 @@
 			*
 		FROM (
 				SELECT 
-					T.*, M.M_NICK, ROW_NUMBER() OVER(ORDER BY T_NO DESC) AS RNUM 
+					T.*, M.M_NICK, S.S_CONTENT, ROW_NUMBER() OVER(ORDER BY T_NO DESC) AS RNUM 
 				FROM
 					TRADE T
 				LEFT JOIN
 					MEMBER M
 				ON 
 					T.M_NO = M.M_NO
+				LEFT JOIN
+					SUBJECT S
+				ON 
+					T.S_NO = S.S_NO
+					
 				WHERE 
 					1=1 <include refid="tradeSearch"></include>
 			) 
