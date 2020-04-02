@@ -25,7 +25,6 @@
 
 <link rel="stylesheet" href="resources/css/join/style.css" />
 <link rel="stylesheet" href="resources/css/join/main.css" />
-
 <!-- 우편번호 api -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -85,6 +84,7 @@
         }).open();
     }
 </script>
+	
 </head>
 <body>
 
@@ -112,8 +112,8 @@
 										<label class="form-row-inner"> <input type="text"
 											name="m_id" id="m_id" class="form-control" required>
 											<span class="label">아이디</span> <span class="border"></span>
-										</label>										
-										<div class="check_font" id="m_id_check"></div>										
+										</label>
+										<div class="check_font" id="m_id_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -160,7 +160,6 @@
 											class="form-control" id="m_name" name="m_name" required>
 											<span class="label">이름</span> <span class="border"></span>
 										</label>
-										<div class="check_font" id="m_name_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -176,7 +175,6 @@
 											class="form-control" id="m_birth" name="m_birth" required>
 											<span class="label">생년월일</span> <span class="border"></span>
 										</label>
-										<div class="check_font" id="m_birth_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -185,7 +183,6 @@
 											class="form-control" id="m_phone" name="m_phone" required>
 											<span class="label">핸드폰 번호</span> <span class="border"></span>
 										</label>
-										<div class="check_font" id="m_phone_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -194,11 +191,10 @@
 											name="m_email" id="m_email" class="form-control" required>
 											<span class="label">이메일 주소</span> <span class="border"></span>
 										</label>
-										<div class="check_font" id="m_email_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-2">
+									<div class="form-holder form-holder-1">
 										<label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_post" name="m_post" required>
 											<span class="label">우편번호</span> <span class="border"></span>
@@ -218,7 +214,7 @@
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-2">
+									<div class="form-holder form-holder-1">
 										<label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_addr1" name="m_addr1" required>
 											<span class="label">주소</span> <span class="border"></span>
@@ -226,7 +222,7 @@
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-2">
+									<div class="form-holder form-holder-1">
 										<label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_addr2" name="m_addr2" required>
 											<span class="label">상세주소</span> <span class="border"></span>
@@ -366,11 +362,13 @@
 			</div>
 		</div>
 	</div>
-	<script src="resources/js/join/jquery-3.3.1.min.js"></script>
-	<script src="resources/js/join/jquery.steps.js"></script>
-	<script src="resources/js/join/jquery-ui.min.js"></script>
-	<script src="resources/js/join/main.js"></script>
-	<!-- <script src="resources/js/join/check.js"></script> -->
+<script src="resources/js/join/jquery-3.3.1.min.js"></script>
+<script src="resources/js/join/jquery.steps.js"></script>
+<script src="resources/js/join/jquery-ui.min.js"></script>
+<script src="resources/js/join/main.js"></script>
+<!-- <script src="resources/js/join/check.js"></script> -->
+
+
 
 
 	<script async
