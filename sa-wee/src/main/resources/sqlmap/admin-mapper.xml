@@ -321,18 +321,19 @@
 	</insert>
 	
 	<select id="getTodayTrade" parameterType="com.soninlawisdice.vo.TradeVO" resultType="int">
-		SELECT COUNT(*) AS COMMENT_NUM
-		FROM cm_comment
-		WHERE TO_DATE(CM_WRITTEN_DATE, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
-	
+		SELECT COUNT(*) AS TRADE_NUM
+		FROM TRADE
+		WHERE trade.s_no = 34 AND TO_DATE(T_WRITTEN_DATE, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
+		<!-- s_no 말머리 번호가 34(거래완료)인 값만 체크 -->
 	</select>
 	
 	
 	<select id="getTodayComment" parameterType="com.soninlawisdice.vo.CM_commentVO" resultType="int">
-		SELECT COUNT(*) AS TRADE_NUM
-		FROM TRADE
-		WHERE trade.s_no = 34 AND TO_DATE(T_WRITTEN_DATE, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
-	
+		
+		SELECT COUNT(*) AS COMMENT_NUM
+		FROM cm_comment
+		WHERE TO_DATE(CM_WRITTEN_DATE, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
+
 	</select>
 	
 	
