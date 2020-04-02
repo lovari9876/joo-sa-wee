@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +19,13 @@ public class SecondhandServiceImpl implements SecondhandService {
 	SecondhandMapper secondhandMapper;
 
 	@Override
-	public ArrayList<HashMap<String, Object>> selectTradeList(SearchCriteria scri) {
-		return secondhandMapper.selectTradeList(scri);
+	public ArrayList<HashMap<String, Object>> selectTradeList(SearchCriteria scri, String s_content) {
+		
+		return secondhandMapper.selectTradeList(scri, s_content);
 	}
 
 	@Override
-	public int tradeListCount(SearchCriteria scri) {
-		return secondhandMapper.tradeListCount(scri);
+	public int tradeListCount(SearchCriteria scri, String s_content) {
+		return secondhandMapper.tradeListCount(scri, s_content);
 	}
 }

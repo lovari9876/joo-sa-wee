@@ -34,7 +34,7 @@
     <!-- script
     ================================================== -->
     <script src="js/cassie/modernizr.js"></script>
-    <!-- <script src="js/pace.min.js"></script> --><!-- 프리로더와 더불어 나아가는 흰 줄 -->
+    <script src="js/cassie/jquery-3.2.1.min.js"></script>
 
     <!-- favicons
     ================================================== -->
@@ -98,6 +98,17 @@
 		              
 		            </div>
 		            
+		            <div class="custom-select">
+		              <select><!-- data-trigger="" name="choices-single-defaul" -->
+						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
+					      <option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+					      <option value="c" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+					      <option value="w" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+					      <option value="tc" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+		                  <option>말머리</option>
+		              </select>		      
+		              <div class="select__arrow"></div>
+		            </div>  
 		            <div class="custom-select">
 		              <select><!-- data-trigger="" name="choices-single-defaul" -->
 						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
@@ -245,8 +256,7 @@
 
 
     <!-- Java Script
-    ================================================== -->
-    <script src="js/cassie/jquery-3.2.1.min.js"></script>
+    ================================================== -->    
     <script src="js/cassie/plugins.js"></script>
     <script src="js/cassie/main.js"></script>
     <!-- header -->
