@@ -256,6 +256,55 @@ $(function() {
 			$("#comfirm_password_check").css("color", "red");
 
 		}
-	})
+	});
+	
+	$("#m_name").blur(function() {
+	
+		var m_name = $('#m_name').val();
+		var reg_m_name = /^[가-힣a-zA-Z]{2,10}$/;
 
+		if (m_name == "") {
+			$('#m_name_check').text('이름을 입력해주세요.');
+
+		} else if (reg_m_name.test(m_name)) {
+			$("#m_name_check").text(" ");
+
+		} else if (!reg_m_name.test(m_name)) {
+			$('#m_name_check').text("이름은 한글과 영문 2~10자리로 입력해주세요.");
+		}
+	});
+
+	$("#m_birth").blur(function() {
+		
+		var m_birth = $('#m_birth').val();
+		var reg_m_birth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+
+		if (m_birth == "") {
+			$('#m_birth_check').text('생년월일을 입력해주세요. ex)19940615');
+
+		} else if (reg_m_birth.test(m_birth)) {
+			$("#m_birth_check").text(" ");
+
+		} else if (!reg_m_birth.test(m_birth)) {
+			$('#m_birth_check').text("생년월일은 숫자 8자리로 입력해주세요. ex)19940615");
+		}
+	});
+	
+	$("#m_email").blur(function() {
+		
+		var m_email = $('#m_email').val();
+		var reg_m_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+
+
+		if (m_email == "") {
+			$('#m_email_check').text('이메일을 입력해주세요.');
+
+		} else if (reg_m_email.test(m_email)) {
+			$("#m_email_check").text(" ");
+
+		} else if (!reg_m_email.test(m_email)) {
+			$('#m_email_check').text("이메일 형식으로 입력해주세요.");
+		}
+	});
+	
 });

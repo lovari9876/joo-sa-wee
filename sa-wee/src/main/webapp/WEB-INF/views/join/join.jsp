@@ -160,6 +160,7 @@
 											class="form-control" id="m_name" name="m_name" required>
 											<span class="label">이름</span> <span class="border"></span>
 										</label>
+										<div class="check_font" id="m_name_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -175,6 +176,7 @@
 											class="form-control" id="m_birth" name="m_birth" required>
 											<span class="label">생년월일</span> <span class="border"></span>
 										</label>
+										<div class="check_font" id="m_birth_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -183,6 +185,7 @@
 											class="form-control" id="m_phone" name="m_phone" required>
 											<span class="label">핸드폰 번호</span> <span class="border"></span>
 										</label>
+										<div class="check_font" id="m_phone_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
@@ -191,10 +194,11 @@
 											name="m_email" id="m_email" class="form-control" required>
 											<span class="label">이메일 주소</span> <span class="border"></span>
 										</label>
+										<div class="check_font" id="m_email_check"></div>
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-1">
+									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_post" name="m_post" required>
 											<span class="label">우편번호</span> <span class="border"></span>
@@ -214,7 +218,7 @@
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-1">
+									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_addr1" name="m_addr1" required>
 											<span class="label">주소</span> <span class="border"></span>
@@ -222,7 +226,7 @@
 									</div>
 								</div>
 								<div class="form-row">
-									<div class="form-holder form-holder-1">
+									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_addr2" name="m_addr2" required>
 											<span class="label">상세주소</span> <span class="border"></span>
