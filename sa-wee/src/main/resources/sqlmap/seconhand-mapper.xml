@@ -23,7 +23,7 @@
 			<collection property="" ResultMap="해시맵ㄱㄱ"></collection>
 	</resultMap> -->
 	
-	<select id="selectTradeList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
+	<select id="selectTradeList" resultType="java.util.HashMap" >
 	
 		SELECT 
 			*
@@ -39,19 +39,20 @@
 				LEFT JOIN
 					SUBJECT S
 				ON 
-					T.S_NO = S.S_NO
-					
+					T.S_NO = S.S_NO					
 				WHERE 
-					1=1 <include refid="tradeSearch"></include>
+					1=1 
+					<include refid="subjectSearch"></include>
+					<include refid="tradeSearch"></include>
 			) 
 		WHERE 
-			RNUM BETWEEN #{rowStart} AND #{rowEnd}
+			RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 		ORDER BY
 			T_NO DESC
 				
 	</select> <!-- 1=1 조건 달아야, 처음에 검색어 없이 호출시에도, WHERE 하나만 남아서 BadGrammarException이 뜨지 않는다.. -->
 	
-	<select id="tradeListCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType="int">
+	<select id="tradeListCount" resultType="int">
 
 			SELECT 
 				COUNT(T.T_NO)
@@ -61,18 +62,32 @@
 				MEMBER M
 			ON 
 				T.M_NO = M.M_NO
+			LEFT JOIN
+				SUBJECT S
+			ON 
+				T.S_NO = S.S_NO	
 			WHERE 
-				1=1 <include refid="tradeSearch"></include>	
+				1=1 
+				<include refid="subjectSearch"></include>	
+				<include refid="tradeSearch"></include>
 				AND T_NO > 0
 
 	</select>
 	
 	<sql id="tradeSearch">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND T_TITLE LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND T_CONTENT LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND M_NICK LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (T_TITLE LIKE '%' || #{keyword} || '%') or (T_CONTENT LIKE '%' || #{keyword} || '%')</if>
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 't'.toString()">AND T_TITLE LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND T_CONTENT LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'w'.toString()">AND M_NICK LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'tc'.toString()">AND (T_TITLE LIKE '%' || #{scri.keyword} || '%') or (T_CONTENT LIKE '%' || #{scri.keyword} || '%')</if>
+		</if>
+	</sql>
+	
+	<sql id="subjectSearch">
+		<if test="s_content != null">
+			<if test="s_content == 's'.toString()">AND S_CONTENT LIKE '판매중'</if>
+			<if test="s_content == 'b'.toString()">AND S_CONTENT LIKE '구매중'</if>
+			<if test="s_content == 'c'.toString()">AND S_CONTENT LIKE '거래완료'</if>
 		</if>
 	</sql>
 
