@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <head>
@@ -62,11 +63,15 @@
 									<tr class="row">
 										<td class="cell">신고 대상</td>
 										<td class="cell" colspan= "3">
+											<c:if test="${report_view['R_ID'] eq null}">삭제된 글입니다....</c:if>
 											<c:choose>
 												<c:when test="${report_view['R_TYPE'] == '회원'}">${report_view['R_ID']}</c:when>
 												<c:when test="${report_view['R_TYPE'] == '댓글'}">${report_view['CM_CONTENT']}</c:when>
 												<c:when test="${report_view['R_TYPE'] == '게시글'}">${report_view['BW_TITLE']}</c:when>
+												<c:when test="${report_view['R_TYPE'] == '카페리뷰'}">${report_view['CR_TITLE']}</c:when>
+												<c:when test="${report_view['R_TYPE'] == '중고거래'}">${report_view['T_TITLE']}</c:when>
 											</c:choose>
+										
 										</td>
 									</tr>
 									
@@ -81,7 +86,7 @@
 											
 										</td>
 										<td class="cell">신고일</td>
-										<td class="cell">${report_view['R_REPORT_DATE']}</td>
+										<td class="cell"><fmt:formatDate value="${report_view['R_REPORT_DATE']}"  type="both" pattern="yyyy.MM.dd hh:mm:ss"/></td>
 									</tr>
 
 

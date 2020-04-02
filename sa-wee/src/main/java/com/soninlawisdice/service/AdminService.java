@@ -13,8 +13,6 @@ import com.soninlawisdice.vo.WD_recordVO;
 
 public interface AdminService {
 
-//  목록
-//	public List<StatisticsVO> selectAdminList();
 
 	
 	// 페이징 처리 + 검색  List
@@ -32,10 +30,6 @@ public interface AdminService {
 	
 	public ArrayList<HashMap<String, Object>> cafe_reviewList(SearchCriteria scri);
 	public int cafe_review_listCount(SearchCriteria scri);	
-	
-
-//	public List<StatisticsVO> statisticsList(SearchCriteria scri);
-//	public int statistics_listCount(SearchCriteria scri);
 	
 	
 	
@@ -62,7 +56,6 @@ public interface AdminService {
 	
 
 	// 글보기
-	public StatisticsVO selectAdminView(int st_no);
 
 	public MemberVO selectMemberView(int m_no);
 

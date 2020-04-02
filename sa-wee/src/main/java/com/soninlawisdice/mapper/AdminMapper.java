@@ -70,15 +70,10 @@ public interface AdminMapper {
 	public void updateIsland_member(int m_no);
 	
 	// 삭제
-	@Delete("delete board_write where bw_no = #{bw_no}")
 	public void selectDelete(Board_writeVO boardVO);
 	
 	
 	// 글보기
-	@Select("select * from statistics where st_no=#{st_no}")
-	public StatisticsVO selectAdminView(int st_no);
-	
-	@Select("select * from member where m_no=#{m_no}")
 	public MemberVO selectMemberView(int m_no);
 
 	/* @Select("select * from report where r_no=#{r_no}") */

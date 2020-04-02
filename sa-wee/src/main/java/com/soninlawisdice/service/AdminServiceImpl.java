@@ -33,18 +33,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 
-	// 목록
-//	@Override
-//	public List<StatisticsVO> selectAdminList() {
-//		return adminMapper.selectAdminList();
-//	}
 
-	// 페이징 처리된 목록
-//	@Override
-//	public List<StatisticsVO> statisticsList(SearchCriteria scri){
-//		return adminMapper.list(scri);
-//	}
-	
+	// 페이징 처리된 리스트
 	
 	
 	@Override
@@ -122,10 +112,6 @@ public class AdminServiceImpl implements AdminService {
 	
 
 	// 글보기
-	@Override
-	public StatisticsVO selectAdminView(int st_no) {
-		return adminMapper.selectAdminView(st_no);
-	}
 	
 	@Override
 	public MemberVO selectMemberView(int m_no) {
@@ -137,10 +123,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.selectReportView(r_no, r_type);
 	}
 	
-//	public RankVO selectRankView(int m_no) {
-//		return adminMapper.selectRankView(m_no);
-//	}
-
+	
 	// 수정 : 회원정보
 	public void updateMember(MemberVO memberVO) {
 		adminMapper.updateMember(memberVO);
@@ -162,6 +145,7 @@ public class AdminServiceImpl implements AdminService {
 	public void selectDelete(Board_writeVO boardVO) {
 		adminMapper.selectDelete(boardVO);
 	}
+	
 
 	// 통계
 	public void setTotalCount() {

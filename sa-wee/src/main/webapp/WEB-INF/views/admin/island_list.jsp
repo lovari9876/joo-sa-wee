@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,7 +85,7 @@
 					</form>
 					
 					<div class="btn-group pull-left" >
-						<button type="button" class="btn selectDelete_btn" data-Num="${report.st_no}" >선택 글 삭제</button>  ㅠ 
+						<button type="button" class="btn selectDelete_btn" data-Num="${island['RNUM']}" >선택 글 삭제</button>  ㅠ 
 						<button type="button" class="btn">수정완료</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
@@ -108,24 +109,48 @@
 						<tr class="trow header">
 							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
 							<td class="cell">글 번호</td>
-							<td class="cell">말머리</td>
 							<td class="cell">게시판</td>
-							<td class="cell">글 제목</td>
+							<td class="cell span4">글 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
 							<td class="cell">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						
-						<c:forEach items="${board_list}" var="report">
+						<c:forEach items="${island_list}" var="island">
 								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${report.st_no}"></td>
-									<td class="cell">${report.st_no}</td>
+									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${island['RNUM']}"></td>
+									<td class="cell">${island['RNUM']}</td>
+									<td>
+										<c:choose>				
+												<c:when test="${island['BT_NO'] eq 1}">보드이야기</c:when>		
+												<c:when test="${island['BT_NO'] eq 2}">개봉기 및 리뷰</c:when>
+												<c:when test="${island['BT_NO'] eq 3}">보드게임 모임</c:when>
+												<c:when test="${island['BT_NO'] eq 4}">보드 뉴스</c:when>
+												<c:when test="${island['BT_NO'] eq 5}">질문&답변</c:when>
+												<c:when test="${island['BT_NO'] eq 6}">창작 보드게임</c:when>
+												<c:when test="${island['BT_NO'] eq 8}">일대일 문의</c:when>
+												<c:when test="${island['BT_NO'] eq 9}">보부상</c:when>
+												<c:when test="${island['BT_NO'] eq 11}">카페 리뷰</c:when>
+												<c:otherwise>불명확</c:otherwise>
+											</c:choose>
+										</td>
 									<td class="cell"><a
-										href="report_view?st_no=${report.st_no}">${report.st_comment_num}</a></td>
-									<td class="cell">${report.st_trade_num}</td>
-									<td class="cell">${report.st_visitor_num}</td>
-									<td class="cell">${report.st_date}</td>
+										href="report_view?_no=${report.st_no}">${island['I_TITLE']}</a></td>
+									<td class="cell">${island['M_ID']}</td>
+									<td>
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+										<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+										<fmt:formatDate value="${island['I_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+										<c:choose>
+											<c:when test="${now ne date}">${date}</c:when> 
+											<c:otherwise>
+												<fmt:formatDate value="${island['I_WRITTEN_DATE']}" pattern="HH:mm"/>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td class="cell">${island['I_REPORT_NUM']}</td>
 								</tr>
 							</c:forEach>
 
@@ -136,18 +161,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="board_list2${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="island_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="board_list2${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li><a href="island_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="board_list2${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="island_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

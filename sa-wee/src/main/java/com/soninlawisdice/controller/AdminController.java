@@ -1,6 +1,8 @@
 package com.soninlawisdice.controller;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soninlawisdice.controller.AdminController;
 import com.soninlawisdice.service.AdminService;
+import com.soninlawisdice.service.IslandService;
+import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
@@ -38,6 +42,13 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
+	@Autowired
+	private IslandService islandService;
+	@Autowired
+	private SecondhandService secondhandService;
+	
+	
+	
 
 	@RequestMapping("/index")
 	public String index() {
@@ -51,12 +62,6 @@ public class AdminController {
 		return "admin/user_list";
 	}
 
-	
-	/*
-	 * @RequestMapping("/user_view") public String user_view() {
-	 * 
-	 * return "user_view"; }
-	 */
 	////////////////////////////////////////////////////////////////////////////
 
 
@@ -198,6 +203,7 @@ public class AdminController {
 	@RequestMapping(value = "/board_list_cafe", method = RequestMethod.GET)
 	public String board_list_cafe(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
+		scri.setPerPageNum(15);
 		model.addAttribute("board_list_cafe", adminService.cafe_reviewList(scri));
 		
 		PageMaker pageMaker = new PageMaker();
@@ -210,6 +216,44 @@ public class AdminController {
 		return "admin/board_list_cafe";
 	}
 	
+	
+	@RequestMapping(value = "/board_list_trade", method = RequestMethod.GET)
+	public String board_list_trade(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+		scri.setPerPageNum(15);
+		model.addAttribute("board_list_trade", secondhandService.selectTradeList(scri));
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(secondhandService.tradeListCount(scri));
+	
+		
+		model.addAttribute("pageMaker", pageMaker );
+		
+		return "admin/board_list_trade";
+	}
+	
+
+
+	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
+	public String island_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+		
+		scri.setPerPageNum(15);
+		model.addAttribute("island_list", islandService.selectIslandList(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(islandService.islandListCount(scri));
+		
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "admin/island_list";
+	}
+	
+	
+	
+	
+	
+	////////////////////////////////////////////////////////////////////////////
 	
 	
 	
@@ -234,6 +278,8 @@ public class AdminController {
 		//}
 		return result;
 	}
+	
+	
 
 	////////////////////////////////////////////////////////////////////////////
 
@@ -273,28 +319,7 @@ public class AdminController {
 	
 	////////////////////////////////////////////////////////////////////////////
 	
-	
-	
-	// ajax
-	@RequestMapping("/report_view2")
-	public String report_view2() {
 
-		return "admin/report_view2";
-	}
-
-	@RequestMapping("/board_list_trade")
-	public String board_list_trade() {
-
-		return "admin/board_list_trade";
-	}
-	
-	
-	@RequestMapping("/board_list_cafe")
-	public String board_list_cafe() {
-
-		return "admin/board_list_cafe";
-	}
-	
 	
 	@RequestMapping("/notice_list")
 	public String notice_list() {
@@ -317,7 +342,7 @@ public class AdminController {
 	@RequestMapping("/faq")
 	public String faq() {
 
-		return "admin/faq";
+		return "faq/faq";
 	}
 
 	@RequestMapping("/faq_list")
@@ -344,11 +369,6 @@ public class AdminController {
 		return "admin/ask_list";
 	}
 	
-	@RequestMapping("/island_list")
-	public String island_list() {
-
-		return "admin/island_list";
-	}
 
 	@RequestMapping("/cafe_write")
 	public String cafe_write() {

@@ -9,7 +9,6 @@
 	<!-- ================================================List 출력====================================================== -->
 
 	
-	
 	<select id="memberList" resultType="com.soninlawisdice.vo.MemberVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
 
 	SELECT * FROM
@@ -27,7 +26,6 @@
 		ORDER BY m_no DESC
 
 	</select>
-	
 	
 	<select id="reportList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
 
@@ -50,9 +48,6 @@
 		ORDER BY r_no DESC
 
 	</select>
-	
-	
-	
 	
 	<select id="boardList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
 
@@ -86,10 +81,8 @@
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 		<!-- ORDER BY m_no DESC -->
-
+		<!-- 탈퇴 사유 w_no중 5(주관적사유,기타)를 고른 항목만 출력 -->
 	</select>
-	<!-- 탈퇴 사유 w_no중 5(주관적사유,기타)를 고른 항목만 출력 -->
-	
 	
 	<select id="cafe_reviewList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
 			
@@ -108,24 +101,12 @@
 			)MP
 			WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
 			ORDER BY cr_no DESC
-			
-			
-			
-	
+		
 	
 	</select>
 	
 	
-	<!-- =============================================== 탈퇴 사유 통계 ====================================================== -->	
-	
-	<select id="wdData" resultType="java.util.HashMap" >
-		select  w.w_reason ,w.w_no, count(*) as w_no_count FROM wd_record wr, withdrawal w 
-		         WHERE w.w_no = wr.w_no group by w.w_no, w.w_reason
-	
-	</select>
-	
-	
-	
+	<!-- =============================================== 페이징처리 + 검색 ====================================================== -->
 	
 	<select id="board_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
@@ -169,7 +150,6 @@
 	
 	
 	
-	
 	<select id="member_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
 		SELECT COUNT(m_no)
 		  FROM member
@@ -210,7 +190,6 @@
 	
 	
 	
-	
 	<select id="wd_record_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
 		 SELECT  COUNT (w.w_no) FROM wd_record wr, member m, withdrawal w 
@@ -227,48 +206,60 @@
 		</if>
 	</sql>
 	
+	<!-- =============================================== 글 보기  ====================================================== -->
+	
+
+	<select id="selectMemberView" parameterType="com.soninlawisdice.vo.MemberVO" resultType="com.soninlawisdice.vo.MemberVO">
+		select * from member where m_no=#{m_no}
+	</select>
 	
 	
+
 	
-<!-- =============================================== 신고게시판 글 보기 타입분류 ====================================================== -->	
+	<!-- =============================================== 신고게시판 글 보기 타입분류 ====================================================== -->	
 	
 	<select id="selectReportView" resultType="java.util.HashMap">
 
-		<!--  select  r.r_no, r.m_no, r.r_type, r.r_type_no, r.r_content, r.r_report_date, m.m_id
-			from report r,member m
-				where r.m_no=m.m_no and r.r_no=#{r.r_no} -->
-		                           
-		<!-- select r.r_no, r.m_no, m.m_id, r.r_content, r.r_report_date, bw.bw_title, cm.cm_content, r.r_type, r.r_type_no, bw.bw_title, bw.bw_report_num
-		from report r,member m, board_write bw, cm_comment cm 
-		where r.m_no=m.m_no and r.r_type_no=cm.cm_no and r.r_type_no=bw.bw_no and r.r_no=#{r_no} and r.r_type=#{r_type} 		
-		 -->		
+			
+		 SELECT r.*, 
 		 
 		 <choose>
 			<when test="r_type == '게시글'">
-				select r.r_no, r.m_no, m.m_id, r.r_content, r.r_report_date, r.r_type, r.r_type_no,
-				bw.bw_title, bw.bw_report_num
-				from report r, board_write bw, member m
-				where  r.m_no= m.m_no and r.r_type_no = bw.bw_no 	and 
+				m.m_id, bw.bw_title, bw.bw_report_num, bw.bw_no, bw.m_no AS r_id
+				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
+                LEFT JOIN board_write bw ON r.r_type_no = bw.bw_no WHERE
 			</when>
+			
+			<when test="r_type == '카페리뷰'">
+				m.m_id, cr.cr_title, cr.cr_report_num, cr.cr_no, cr.m_no AS r_id
+				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
+                LEFT JOIN cafe_review cr ON r.r_type_no = cr.cr_no WHERE
+			</when>
+			
+			<when test="r_type == '중고거래'">
+				m.m_id, t.t_title, t.t_report_num, t.t_no, t.m_no AS r_id
+				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
+                LEFT JOIN trade t ON r.r_type_no = t.t_no WHERE
+			</when>
+			
 			<when test="r_type == '댓글'">
-				select r.r_no, r.m_no, m.m_id, r.r_content, r.r_report_date, r.r_type, r.r_type_no,
-				cm.cm_content, cm.cm_report_num
-				from report r, cm_comment cm, member m
-				where r.m_no= m.m_no and r.r_type_no = cm.cm_no and 
+				m.m_id, cm.cm_content, cm.cm_report_num, cm.cm_no, cm.m_no AS r_id
+				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
+                LEFT JOIN cm_comment cm ON r.r_type_no = cm.cm_no WHERE
 			</when>
+			
 			<when test="r_type == '회원'">
-				SELECT r.r_no, r.m_no, m1.m_id as m_id, r.r_content, r.r_report_date, r.r_type, r.r_type_no, m2.m_id as r_id, m1.m_report_num
-				FROM report r
-				LEFT JOIN member m1
-				ON r.m_no=m1.m_no
-				LEFT JOIN member m2
-				ON r.r_type_no= m2.m_no	where
+				m1.m_id as m_id, m2.m_id as r_id, m2.m_report_num
+				FROM report r LEFT JOIN member m1 ON r.m_no=m1.m_no
+				LEFT JOIN member m2 ON r.r_type_no= m2.m_no WHERE
 			</when>
 		</choose>
 		
-			 r.r_no=#{r_no} 		
+			r.r_no=#{r_no} 		
 
 	</select>
+	
+	
 	<!-- =============================================== 회원정보수정 ====================================================== -->	
 
 	<update id="updateMember" parameterType="com.soninlawisdice.vo.MemberVO" >
@@ -280,7 +271,7 @@
 
 
 
-	<!-- =============================================== 회원정보수정 ====================================================== -->
+	<!-- =============================================== 무인도행 ====================================================== -->
 	
 	<update id="updateIsland_bw" parameterType="com.soninlawisdice.vo.Board_writeVO" >
 		update board_write 
@@ -294,6 +285,14 @@
 		where m_no = #{m_no}
 	</update>
 	
+	
+	
+	
+	<!-- =============================================== 글 삭제 ====================================================== -->
+	
+	<delete id="selectDelete" parameterType="com.soninlawisdice.vo.Board_writeVO" >
+		delete board_write where bw_no = #{bw_no}
+	</delete>
 	
 	
 	<!-- =============================================== 방문자수  ====================================================== -->
@@ -327,7 +326,6 @@
 		<!-- s_no 말머리 번호가 34(거래완료)인 값만 체크 -->
 	</select>
 	
-	
 	<select id="getTodayComment" parameterType="com.soninlawisdice.vo.CM_commentVO" resultType="int">
 		
 		SELECT COUNT(*) AS COMMENT_NUM
@@ -335,7 +333,6 @@
 		WHERE TO_DATE(CM_WRITTEN_DATE, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
 
 	</select>
-	
 	
 	<select id="getTodayBoard" parameterType="com.soninlawisdice.vo.Board_writeVO" resultType="int">
 		SELECT
@@ -384,6 +381,14 @@
 			)
         WHERE TO_DATE(I_WRITTEN_DATE, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD')
 		ORDER BY I_WRITTEN_DATE DESC
+	</select>
+	
+	
+	<!-- =============================================== 탈퇴 사유 통계 ====================================================== -->	
+	
+	<select id="wdData" resultType="java.util.HashMap" >
+		select  w.w_reason ,w.w_no, count(*) as w_no_count FROM wd_record wr, withdrawal w 
+		         WHERE w.w_no = wr.w_no group by w.w_no, w.w_reason
 	</select>
 	
 	
