@@ -149,4 +149,11 @@ public class JoinController {
 		return "login/forgot_pw";
 	}
 
+	
+	// 테스트
+	@RequestMapping(value = "/address", method = RequestMethod.GET)
+	public String address(Locale locale, Model model) {
+
+		return "join/address";
+	}
 }
