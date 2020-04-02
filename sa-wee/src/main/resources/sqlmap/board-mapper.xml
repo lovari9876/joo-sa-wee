@@ -43,7 +43,7 @@
 	
 	
 	
-	<!-- 메인 핫이슈, 베스트 부분 -->
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ메인:베스트,핫이슈ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->	
 	<!-- 핫이슈  : 조회순-->
 	<select id="selectHotList" resultType = "java.util.HashMap">
 		<![CDATA[ select * from (select * from board_write order by bw_hit desc) where rownum <= 10 ]]>
@@ -55,9 +55,8 @@
 	</select>
 	
 	
-	<!-- 커뮤니티 부분 -->
-	
-	
+
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ커뮤니티ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->	
 	
 	<!-- 커뮤니티 전체보기 -->
 	<select id = "selectBoardList" resultType = "java.util.HashMap">
@@ -172,11 +171,7 @@
 	
 	
 	
-	
-
-	
-	
-	<!-- 카페 리뷰 테이블 -->
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ카페 리뷰, 카페정보ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	
 	<!-- 카페리뷰 게시판 -->
 	<resultMap type="com.soninlawisdice.vo.Cafe_reviewVO" 
@@ -225,6 +220,7 @@
 		select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_hit, cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
 		from cafe_review cr, member m, cafe c 
 		where cr.m_no = m.m_no and cr.c_no = c.c_no
+		and cr.cr_island = 0
 		order by cr.cr_no desc
 	</select>
 	
@@ -242,6 +238,7 @@
 		from cafe_review cr, member m, cafe c 
 		where cr.m_no = m.m_no and cr.c_no = c.c_no
 		and cr.c_no = #{c_no}
+		and cr.cr_island = 0
 		order by cr.cr_no desc
 	</select>
 	
@@ -270,7 +267,7 @@
 		select c_title from cafe where c_no = #{c_no}
 	</select>
 	
-	<!-- 회원번호:임시 -->
+	<!-- 회원번호 수정해야함 -->
 	<!-- 카페 리뷰 작성하기 -->
 	<insert id="insertReview" parameterType="com.soninlawisdice.vo.Cafe_reviewVO">
 		insert into cafe_review (cr_no, m_no, bt_no, c_no,  cr_title, cr_content, cr_hit, cr_recommend_num, cr_report_num, cr_island) 
@@ -281,6 +278,40 @@
 	<update id="review_modify">
 		update cafe_review set cr_title = #{cafe_reivewVO.cr_title}, bw_content = #{cafe_reivewVO.cr_content} where cr_no = #{cafe_reivewVO.cr_no}
 	</update>
+	
+	
+	
+	
+	
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 1 : 1 문의ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
+	<!-- 1:1 문의 목록 -->
+	<select id = "selectQuestionList"  resultType = "java.util.HashMap">
+		select bw.bw_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, m.m_nick, s.s_content
+		from board_write bw, member m, subject s 
+		where bw.m_no = m.m_no and bw.s_no = s.s_no
+		and bw.bw_island = 0
+	</select>
+	
+	<!-- content_view 따로 만들지, 있는거 수정할지. -->
+	<!-- 비밀글은 못보게 하는거.(따로 페이지로 보내야하는지 alert 띄워야하는지 -->
+	
+	<!--1:1문의 작성하기  m_no 수정해야함 //bt_no 은 수정할 필요 없을 듯-->
+	<insert id = "insertQuestion" parameterType="com.soninlawisdice.vo.Board_writeVO">
+		insert into board_write (bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
+		values (board_write_seq.nextval, 11, 8, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, #{board_writeVO.bw_secret} ) 
+	</insert>
+	
+	<!-- 1:1 문의 수정하기 -->
+	<update id="modifyQuestion" parameterType="com.soninlawisdice.vo.Board_writeVO">
+		update board_write set s_no = #{board_writeVO.s_no}, bw_title = #{board_writeVO.bw_title}, bw_content = #{board_writeVO.bw_content}, bw_secret = #{board_writeVO.bw_secret} where bw_no = #{board_writeVO.bw_no}
+	</update>
+	
+	<!--댓글 달렸을때는 삭제 불가능하게 해야함  -->
+	<!-- 1:1 문의 삭제하기 -->
+	<delete id="deleteQuestion">
+		delete from board_write where bw_no = #{bw_no}<!--  and...... -->
+	</delete>
+	
 	
 	
 	

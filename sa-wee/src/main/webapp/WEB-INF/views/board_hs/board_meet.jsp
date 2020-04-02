@@ -129,7 +129,7 @@
 								<td class = "cell">${dto['M_NICK']}</td>
 								<td class = "cell">${dto['BW_WRITTEN_DATE']}</td>
 								<td class = "cell">${dto['BW_HIT']}</td>
-								<td class = "cell">${dto['BW_RECOMMEND_DATE']}</td>
+								<td class = "cell">${dto['BW_RECOMMEND_NUM']}</td>
 							</tr>
 							</c:forEach>
 						</tbody>

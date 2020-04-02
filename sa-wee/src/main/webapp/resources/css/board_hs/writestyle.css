@@ -207,7 +207,7 @@
 		display: block;
 	}
 	.row .cell:nth-child(1) {
-		display: none;
+		/* display: none; */
 	}
 	.write-table, .row, .cell {
 		width: 100%;
@@ -218,19 +218,19 @@
 }
 
 ::-webkit-input-placeholder {
-	color: #f2f2f2;
+	color: #bfbfbf;
 }
 
 :-ms-input-placeholder {
-	color: #f2f2f2;
+	color: #bfbfbf;
 }
 
 ::-ms-input-placeholder {
-	color: #f2f2f2;
+	color: #bfbfbf;
 }
 
 ::placeholder {
-	color: #f2f2f2;
+	color: #bfbfbf;
 }
 
 .row .cell:nth-child(1) {
@@ -326,6 +326,97 @@ input:focus, select:focus, button:focus, textarea:focus {
 	outline: none!important; 
 }
 
+
+/* 비밀글 체크 부분 */
+/*
+.cell input[type="checkbox"]{
+	display : none;
+}
+.cell label{
+	width : 100%;
+	height : 20px;
+}
+
+.cell input[type="checkbox"] + label .chk_img{
+	padding : 0 0 0 30px;
+	height : 20px;
+	background : url("../../images/board_hs/unlock.png") no-repeat;
+	cursor:pointer;
+}
+
+.cell input[type="checkbox"]:checked + label .chk_img {
+	background:url("../../images/board_hs/lock.png")no-repeat;
+}
+
+*/
+
+.secret{
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+/* Hide the default checkbox */
+.secret input{
+	position : absolute;
+	opacity : 0;
+	cursor : pointer;
+	height : 0;
+	width : 0;
+}
+/* Create a custom checkbox  */
+.checkmark{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 25px;
+	width: 25px;
+	background-color: #eee;
+}
+/* On mouse-over, add a grey background color */
+.secret:hover input ~ .checkmark {
+  background-color: #e8e8e8;
+}
+
+/* When the checkbox is checked, add a blue background */
+.secret input:checked ~ .checkmark {
+  background-color: #1E0A37;
+  opacity : 0.7;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.secret input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.secret .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
 /* ckEditor 부분 */
 
 .ck.ck-editor{
@@ -340,3 +431,7 @@ input:focus, select:focus, button:focus, textarea:focus {
 .ck.ck-toolbar {
 	background : #fff!important;
 	}
+	
+.ck.ck-editor__editable_inline{
+	/* padding : var(--ck-spacing-standard) !important; */
+}

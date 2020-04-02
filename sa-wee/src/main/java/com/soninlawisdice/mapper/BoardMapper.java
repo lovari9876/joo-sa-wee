@@ -100,4 +100,19 @@ public interface BoardMapper {
 	//리뷰 수정하기
 	public void review_modify(@Param("cafe_reivewVO")Cafe_reviewVO cafe_reviewVO);
 	
+	
+
+	////////////////////////// 1 : 1 문의 /////////////////////////////
+	public void insertQuestion(@Param("board_writeVO") Board_writeVO board_writeVO);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

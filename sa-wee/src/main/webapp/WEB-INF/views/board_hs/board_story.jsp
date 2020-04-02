@@ -131,7 +131,7 @@
 								<td class = "cell">${dto['M_NICK']}</td>
 								<td class = "cell">${dto['BW_WRITTEN_DATE']}</td>
 								<td class = "cell">${dto['BW_HIT']}</td>
-								<td class = "cell">${dto['BW_RECOMMEND_DATE']}</td>
+								<td class = "cell">${dto['BW_RECOMMEND_NUM']}</td>
 							</tr>
 							</c:forEach>
 						</tbody>
@@ -237,18 +237,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="board_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_story${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="board_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li><a href="board_story${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="board_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_story${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

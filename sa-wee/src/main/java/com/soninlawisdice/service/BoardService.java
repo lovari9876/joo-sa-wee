@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
@@ -102,6 +104,10 @@ public interface BoardService {
 		
 	//리뷰 수정하기
 	public void review_modify(Cafe_reviewVO cafe_reviewVO);
+	
+	
+	//////////////////////////1 : 1 문의 /////////////////////////////
+	public void insertQuestion(Board_writeVO board_writeVO);
 		
 
 }

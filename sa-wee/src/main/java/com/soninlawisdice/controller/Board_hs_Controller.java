@@ -49,7 +49,7 @@ public class Board_hs_Controller {
 		return "board_hs/index";
 	}
 
-	///////////////////////////////////// 커뮤니티 관련//////////////////////////////
+	///////////////////////////////////// 커뮤니티 관련//////////////////////////////////////
 
 	// 리스트 홈화면
 	@RequestMapping(value = "/list_home", method = RequestMethod.GET)
@@ -217,7 +217,7 @@ public class Board_hs_Controller {
 		return null;
 	}
 
-	///////////////////////////////////////// 카페리뷰 관련////////////////////////////
+	///////////////////////////////////////// 카페리뷰, 카페정보 관련/////////////////////////////////////
 
 	
 	// 지도
@@ -310,14 +310,13 @@ public class Board_hs_Controller {
 		return boardService.review_rec(cr_no);
 	}	
 	
-	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
-	public String question_list(Model model) {
-		logger.info("review");
-		return "board_hs/question_list";
-	}
+	
 
 	
 
+
+	
+	//////////////////일단 1 : 1 문의 /////////////////////////////////
 
 	@RequestMapping(value = "/question_write_view", method = RequestMethod.GET)
 	public String question_write_view(Model model) {
@@ -325,8 +324,25 @@ public class Board_hs_Controller {
 
 		return "board_hs/question_write_view";
 	}
+	
+	@RequestMapping(value = "/question_write", method = RequestMethod.POST)
+	public String question_write(Model model, Board_writeVO board_writeVO) {
+		
+		boardService.insertQuestion(board_writeVO);
+		
+		return "board_hs/question_list";
+	}
+	
+	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
+	public String question_list(Model model) {
+		logger.info("review");
+		return "board_hs/question_list";
+	}
+	
+	
+	
 
-	//////////////////////// 게시물 작성 시 파일 업로드 부분(DB에 넣는거 X)///////////////////
+	/////////////////////////////////// 게시물 작성 시 파일 업로드 부분(DB에 넣는거 X)/////////////////////////////////
 
 	/**
 	 * ck에디터 파일업로드 이벤트 발생 시 처리

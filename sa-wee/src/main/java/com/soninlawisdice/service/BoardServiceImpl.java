@@ -186,4 +186,10 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.review_modify(cafe_reviewVO);
 	}
 
+	
+	//////////////////////////1 : 1 문의 /////////////////////////////
+	@Override
+	public void insertQuestion(Board_writeVO board_writeVO) {
+		boardMapper.insertQuestion(board_writeVO);
+	}
 }
