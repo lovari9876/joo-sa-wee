@@ -137,15 +137,13 @@
                     <table class="island--table">
                             <thead>
 	                            <tr class="table-header">	                                
-	                                <th>원글 번호</th>
+	                                <th>글 번호</th>
 	                                <th>게시판</th>
 	                                <th>작성자</th>
 	                                <th>제목</th>
 	                                <th>작성일</th>
 	                                <th>조회수</th>
-	                                <th>추천수</th>
-	                                <th>신고수</th>	
-	                                <th>신고수</th>	                                                               
+	                                <th>상태</th>	                                                               
 	                            </tr>
                             </thead>
                             <tbody>
@@ -181,8 +179,6 @@
 											</c:choose>
 										</td>
 										<td>${IMap['I_HIT']}</td>
-										<td>${IMap['I_RECOMMEND_NUM']}</td>
-										<td>${IMap['I_REPORT_NUM']}</td>	
 										
 										<!-- 관리자가 상태 보려면 이거 추가 -->
 										<td>
