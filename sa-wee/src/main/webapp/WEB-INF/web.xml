@@ -12,7 +12,13 @@
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		<listener-class>com.soninlawisdice.count.VisitSessionListener</listener-class>
 	</listener>
+	
+	<!-- 방문자수 구하기 위한 리스너 : 웹페이지에 접속했을때 톰캣이 실행되면서 리스터가 실행되도록! -->
+
+
+
 
 	<!-- Processes application requests -->
 	<servlet>

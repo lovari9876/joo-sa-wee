@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -135,6 +136,7 @@ public class AdminController {
 	@RequestMapping(value = "/report_list", method = RequestMethod.GET)
 	public String report_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
+		scri.setPerPageNum(15);
 		model.addAttribute("report_list", adminService.reportList(scri));
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -235,6 +237,43 @@ public class AdminController {
 
 	////////////////////////////////////////////////////////////////////////////
 
+	//통계 : 카운트된 데이터 insert
+	//@RequestMapping(value = "/statistic_count")
+	public String statistic_count() throws Exception {
+		
+		System.out.println("statistic_count()");
+		 
+		int board = adminService.getTodayBoard();
+		int comment = adminService.getTodayComment();
+		int trade = adminService.getTodayTrade();
+		int visit = adminService.getTodayCount();
+		
+		System.out.println("getTodayBoard : " + board);
+		System.out.println("getTodayComment : " + comment);
+		System.out.println("getTodayTrade : " + trade);
+		System.out.println("getTodayCount : " + visit);
+		
+		StatisticsVO statVO = new StatisticsVO();
+		statVO.setSt_post_num(board);
+		statVO.setSt_comment_num(comment);
+		statVO.setSt_trade_num(trade);
+		statVO.setSt_visitor_num(visit);
+		
+		adminService.statisticsInsert(statVO);
+
+		return "redirect:index";
+	}
+	
+	//statistic_count() 하루에 한번 11시 59분에 실행 
+	@Scheduled(cron="0 59 23 * * * ")	
+	public void testt() throws Exception {
+		statistic_count();
+	}
+	
+	
+	////////////////////////////////////////////////////////////////////////////
+	
+	
 	
 	// ajax
 	@RequestMapping("/report_view2")

@@ -163,4 +163,36 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.selectDelete(boardVO);
 	}
 
+	// 통계
+	public void setTotalCount() {
+		adminMapper.setTotalCount();
+	}
+	
+	public int getTotalCount() {
+		return adminMapper.getTotalCount();
+	}
+	
+	public int getTodayCount() {
+		return adminMapper.getTodayBoard();
+	}
+	
+	
+	
+	
+	public int getTodayBoard() {
+		return adminMapper.getTodayBoard();
+	}
+	
+	public int getTodayComment() {
+		return adminMapper.getTodayComment();
+	}
+	public int getTodayTrade() {
+		return adminMapper.getTodayTrade();
+	}
+	
+	public void statisticsInsert(StatisticsVO statVo) {
+		adminMapper.statisticsInsert(statVo);
+	}
+	
+	
 }

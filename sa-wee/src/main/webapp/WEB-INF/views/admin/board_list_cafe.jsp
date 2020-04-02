@@ -1,12 +1,13 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edmin</title>
+<!-- 파피콘 -->
+<link rel="icon" type="image/png" href="images/share/wolf_logo.ico" />
+<title>Admin</title>
 <link type="text/css" href="css/admin/bootstrap.min.css"rel="stylesheet">
 <link type="text/css" href="css/admin/bootstrap-responsive.min.css"rel="stylesheet">
 <link type="text/css" href="css/admin/theme.css" rel="stylesheet">
@@ -147,18 +148,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="board_list2${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_list_cafe${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="board_list2${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li><a href="board_list_cafe${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="board_list2${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_list_cafe${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>
