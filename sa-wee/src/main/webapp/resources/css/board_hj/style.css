@@ -1020,8 +1020,20 @@ dl, ol, ul {
 }
 
 /* 모든 링크 a 태그는 라벤더로 고고 */
-a {color: #9f80c2;}
-a:hover {color: #400186;}
+.test_item a  {
+	color: #9f80c2 !important;
+}
+.test_item a:hover  {
+	color: #400186 !important;
+}
+
+.test_item a.reply {
+	color: #000000 !important;
+}
+
+.test_item a:hover.reply  {
+	color: #000000 !important;
+}
 
 /* 아이콘 폰트에 링크 걸 때 밑줄 때문에 점이 생기는 문제 해결 */
 .no-text-deco:hover {
@@ -1063,39 +1075,39 @@ a:hover {color: #400186;}
 /* start: 목록 버튼 라벤더 #9f80c2 로 색깔 바꾸기  */
 
 .btn-lavender {
-	color: #fff;
-	background-color: #9f80c2;
-	border-color: #9f80c2;
+	color: #fff !important;
+	background-color: #9f80c2 !important;
+	border-color: #9f80c2 !important;
 }
 
 .btn-lavender:hover {
-	color: #fff;
-	background-color: #8c66b6;
-	border-color: #8c66b6;
+	color: #fff !important;
+	background-color: #8c66b6 !important;
+	border-color: #8c66b6 !important;
 }
 
 .btn-lavender.focus, .btn-lavender:focus {
-	box-shadow: 0 0 0 .2rem rgba(159, 128, 194 .5);
+	box-shadow: 0 0 0 .2rem rgba(159, 128, 194 .5) !important;
 }
 
 .btn-lavender.disabled, .btn-primary:disabled {
-	color: #fff;
-	background-color: #b299ce;
-	border-color: #b299ce;
+	color: #fff !important;
+	background-color: #b299ce !important;
+	border-color: #b299ce !important;
 }
 
 .btn-lavender:not (:disabled ):not (.disabled ).active, .btn-lavender:not
 	(:disabled ):not (.disabled ):active, .show>.btn-lavender.dropdown-toggle
 	{
-	color: #fff;
-	background-color: #8c66b6;
-	border-color: #794daa;
+	color: #fff !important;
+	background-color: #8c66b6 !important;
+	border-color: #794daa !important;
 }
 
 .btn-lavender:not (:disabled ):not (.disabled ).active:focus,
 	.btn-lavender:not (:disabled ):not (.disabled ):active:focus, .show>.btn-lavender.dropdown-toggle:focus
 	{
-	box-shadow: 0 0 0 .2rem rgba(159, 128, 194 .5);
+	box-shadow: 0 0 0 .2rem rgba(159, 128, 194 .5) !important;
 }
 /* end: 목록 버튼 색깔 바꾸기 */
 
@@ -2173,7 +2185,8 @@ The Close Button
   box-shadow: none !important; }
 
 .form-control:active, .form-control:focus {
-  border-color: #280153; }
+  border-color: #280153 !important; 
+ }
   
 #drop_list {
     margin-left: 5px;

@@ -116,15 +116,15 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/1.jpg" alt="#">
 								<h5>Zombie Appocalipse 2</h5>
-								<a href="gameSingle" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
+								<a href="game_detail" class="read-more">Read More <img
+									src="images/board_hj/icons/double-arrow.png" alt="" /></a>
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-6">
 							<div class="game-item">
 								<img src="images/board_hj/games/2.jpg" alt="#">
 								<h5>Dooms Day</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/3.jpg" alt="#">
 								<h5>The Huricane</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -140,7 +140,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/4.jpg" alt="#">
 								<h5>Star Wars</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -148,7 +148,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/5.jpg" alt="#">
 								<h5>Candy land</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -156,7 +156,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/6.jpg" alt="#">
 								<h5>E.T.</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -164,7 +164,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/7.jpg" alt="#">
 								<h5>Zombie Appocalipse 2</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -172,7 +172,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/8.jpg" alt="#">
 								<h5>Dooms Day</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -180,7 +180,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/9.jpg" alt="#">
 								<h5>The Huricane</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -189,7 +189,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/9.jpg" alt="#">
 								<h5>The Huricane</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -197,7 +197,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/9.jpg" alt="#">
 								<h5>The Huricane</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>
@@ -205,7 +205,7 @@
 							<div class="game-item">
 								<img src="images/board_hj/games/9.jpg" alt="#">
 								<h5>The Huricane</h5>
-								<a href="gameSingle" class="read-more">Read More <img
+								<a href="game_detail" class="read-more">Read More <img
 									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
 							</div>
 						</div>

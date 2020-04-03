@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,6 +41,15 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+	<%-- <input type="hidden" name="cm_no" value="<c:out value="${param.cm_no}"/>"> --%>
+	<%-- <input type="hidden" name="cm_no" value="${cm_comment_view['CM_NO']}"> --%>
+	<%-- <input type="hidden" name="cm_type" value="${cm_comment_view['CM_TYPE']}">
+	<input type="hidden" name="cm_no2" value="${cm_comment_view['CM_NO2']}"> --%>
+	<input type="hidden" name="cm_no" value="${cm_comment_view['CM_NO']}">
+	<input type="hidden" name="cm_type" value="<c:out value="${param['CM_TYPE']}"/>">
+	<input type="hidden" name="cm_no2" value="<c:out value="${param['CM_NO2']}"/>">
+
 	<!-- 댓글 달기 -->
 	<div class="pt-5">
 		<form action="">
@@ -57,21 +67,17 @@
 							<div class="test_item name" id="pop">
 								<span role="button" class="pop_btn popovers"
 									data-toggle="popover"
-									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${member_view.m_no}'>신고하기</a>"><h3>Jacob
-										Smith</h3></span>
+									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${cm_comment_view["M_NO"]}'>신고하기</a>"><h3>${cm_comment_view['M_NICK']}</h3></span>
 							</div>
 							<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
 							<div class="test_item reco tooltip-purple">
 								<a class="far fa-thumbs-up fa-2x no-text-deco" href="#"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="추천"></a><a class="text_items">(숫자)</a>
+									data-placement="top" title="추천"></a><a class="text_items">(</a><a class="text_items">${cm_comment_view['CM_RECOMMEND_NUM']}</a><a class="text_items">)</a>
 							</div>
 						</div>
-						<div class="meta">January 9, 2018 at 2:21pm</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Pariatur quidem laborum necessitatibus, ipsam impedit vitae
-							autem, eum officia, fugiat saepe enim sapiente iste iure! Quam
-							voluptas earum impedit necessitatibus, nihil?</p>
+						<div class="meta">작성일${cm_comment_view['CM_WRITTEN_DATE']} 수정일${cm_comment_view['CM_UPDATED_DATE']}</div>
+						<p>${cm_comment_view['CM_CONTENT']}</p>
 
 						<div class="reply_test">
 							<div class="test_item rp">
@@ -93,7 +99,7 @@
 									data-placement="top" title="삭제"></a>
 							</div>
 							<div class="test_item rep tooltip-purple">
-								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_view.cm_no}"
+								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${cm_comment_view['CM_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="신고"> </a>
@@ -190,9 +196,9 @@
 		<!-- END comment-list -->
 		
 		<!-- 댓글 쓰기 -->
-		<div class="comment-form-wrap pt-5">
-			<%@ include file="/WEB-INF/views/content/comment_write.jsp" %>
-		</div>
+		<%-- <div class="comment-form-wrap pt-5">
+			<%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %>
+		</div> --%>
 	</div>
 
 	<!-- SCRIPTS -->

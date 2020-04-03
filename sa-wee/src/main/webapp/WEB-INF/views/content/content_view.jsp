@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,9 @@
 
 <!-- collapse -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
 
 <link rel="stylesheet" href="css/board_hj/custom-bs.css">
 <link rel="stylesheet" href="css/board_hj/jquery.fancybox.min.css">
@@ -43,7 +47,7 @@
 
 </head>
 <body id="top">
-	<input type="hidden" name="bw_no" value="${content_view.bw_no}">
+	<input type="hidden" name="bw_no" value="${content_view['BW_NO']}"/>
 
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
@@ -60,27 +64,27 @@
 						<!-- 게시판이름과 게시글 작성자 -->
 						<div class="title">
 							<div class="title_item frist">
-								<h4 id="community">${board_typeVO.bt_name}</h4>
+								<h4 id="community">${content_view['BT_NAME']}</h4>
 								<span class="slash">&bullet;</span> 
-								<span class="slash">${subjectVO.s_content}</span>
+								<span class="slash">${content_view['S_CONTENT']}</span>
 							</div>
 							<div class="title_item second">
-								<span class="slash">추천수(</span><span class="slash rec">${content_view.bw_recommend_num}</span><span class="slash">)</span> 
+								<span class="slash">추천수(</span><span class="slash rec">${content_view['BW_RECOMMEND_NUM']}</span><span class="slash">)</span> 
 								<span class="slash">&bullet;</span>
-								<span class="slash">조회수(${content_view.bw_hit})</span>
+								<span class="slash">조회수(${content_view['BW_HIT']})</span>
 							</div>
 						</div>
 						<div>
-							<span class="text-white">작성자 ${memberVO.m_nick}</span>
+							<span class="text-white">작성자 ${content_view['M_NICK']}</span>
 							<span class="slash">&bullet;</span> 
-							<span class="text-white">작성일 ${content_view.bw_written_date}</span> 
+							<span class="text-white">작성일 ${content_view['BW_WRITTEN_DATE']}</span> 
 							<span class="slash">&bullet;</span>
-							<span class="text-white">수정일 ${content_view.bw_updated_date}</span>
+							<span class="text-white">수정일 ${content_view['BW_UPDATED_DATE']}</span>
 						</div>
 					</div>
 					<br />
 					<!-- 게시글 제목 -->
-					<h2 class="text-white">${content_view.bw_title}</h2>
+					<h2 class="text-white">${content_view['BW_TITLE']}</h2>
 				</div>
 			</div>
 		</div>
@@ -102,7 +106,7 @@
 							class="img-fluid rounded">
 					</p>
 
-					<p>${content_view.bw_content}</p>
+					<p>${content_view['BW_CONTENT']}</p>
 
 					<blockquote>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -152,18 +156,18 @@
 					<br /> <br />
 					<div align="center" class="tooltip-purple">
 						<input class="good" type="image" src="images/board_hj/good.png"
-							name="button" id="rec_btn" value="${content_view.bw_no}"
+							name="button" id="rec_btn" value="${content_view['BW_NO']}"
 							data-toggle="tooltip" data-container=".tooltip-purple"
 							data-placement="top" title="추천 +1">
 						<p>
-							<span>(</span><span class="rec">${content_view.bw_recommend_num}</span><span>)</span>
+							<span>(</span><span class="rec">${content_view['BW_RECOMMEND_NUM']}</span><span>)</span>
 						</p>
 					</div>
 
 					<br />
 					<br />
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="/" method="get">
+					<form action="/list_home" method="get">
 						<div class="test">
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
@@ -172,17 +176,79 @@
 								<a href="#">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="delete?bw_no=${content_view.bw_no}">삭제</a>
+								<a href="delete?bw_no=${content_view['BW_NO']}">삭제</a>
 							</div>
 							<div class="test_item fourth">
-								<a href="report_view_bw?bw_no=${content_view.bw_no}"
+								<a href="report_view_bw?bw_no=${content_view['BW_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 							</div>
 						</div>
 					</form>
 
+
 					<!-- 댓글부분 -->
-					<%@ include file="/WEB-INF/views/content/comment_view.jsp" %>
+					<%-- <%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %> --%>
+						<c:choose>
+							<c:when test="${content_view['BT_NO'] == 1}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 2}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 3}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 4}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 5}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 6}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 9}">
+								<c:import url="/comment_view_t">
+									<c:param name="cm_type" value="중고거래"></c:param>
+									<c:param name="cm_no2" value="${content_view['T_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							 <c:when test="${content_view['BT_NO'] == 11}">
+								<c:import url="/comment_view_cr">
+									<c:param name="cm_type" value="카페리뷰"></c:param>
+									<c:param name="cm_no2" value="${content_view['CR_NO']}"></c:param>
+								</c:import>
+							</c:when> 
+							<c:otherwise>
+								<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
+							</c:otherwise>
+						</c:choose>
+						
+						<%-- <c:param name="cm_type" value="${board_typeVO.bt_no}"></c:param>
+						<c:param name="cm_no2" value="${content_view.bw_no}"></c:param> --%>
+					
+					<!-- 댓글 쓰기 -->
+					<div class="comment-form-wrap pt-5">
+						<%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %>
+					</div>
 				</div>
 			</div>
 		</div>

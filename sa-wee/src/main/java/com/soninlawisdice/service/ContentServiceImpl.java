@@ -1,5 +1,9 @@
 package com.soninlawisdice.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +30,7 @@ public class ContentServiceImpl implements ContentService {
 
 	// 게시글 보기(content_view)
 	@Override
-	public Board_writeVO selectContentOne(String bw_no) {
+	public HashMap<String, Object> selectContentOne(int bw_no) {
 		
 		return contentMapper.selectContentOne(bw_no);
 	}
@@ -40,7 +44,7 @@ public class ContentServiceImpl implements ContentService {
 
 	// 게시글 조회수
 	@Override
-	public void upHitContent(String bw_no) {
+	public void upHitContent(int bw_no) {
 		
 		contentMapper.upHitContent(bw_no);
 		
@@ -72,7 +76,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	// m_no를 가져오기 위해
 	@Override
-	public MemberVO selectContentM(String m_no) {
+	public HashMap<String, Object> selectContentM(int m_no) {
 		
 		return contentMapper.selectContentM(m_no);
 	}
@@ -87,7 +91,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	// cm_no를 가져오기 위해
 	@Override
-	public CM_commentVO selectContentCM(String cm_no) {
+	public HashMap<String, Object> selectContentCM(int cm_no) {
 		
 		return contentMapper.selectContentCM(cm_no);
 	}
@@ -102,7 +106,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	// t_no를 가져오기 위해
 	@Override
-	public TradeVO selectContentT(String t_no) {
+	public HashMap<String, Object> selectContentT(int t_no) {
 
 		return contentMapper.selectContentT(t_no);
 	}
@@ -117,7 +121,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	// cr_no를 가져오기 위해
 	@Override
-	public Cafe_reviewVO selectContentCR(String cr_no) {
+	public HashMap<String, Object> selectContentCR(int cr_no) {
 		
 		return contentMapper.selectContentCR(cr_no);
 	}
@@ -130,13 +134,66 @@ public class ContentServiceImpl implements ContentService {
 		
 	}
 	
-	// 댓글 쓰기
+	// 게시글 댓글 쓰기
 	@Override
-	public void insertCommentOne(CM_commentVO cm_commentVO) {
+	public void insertCommentBW(CM_commentVO cm_commentVO) {
 		
-		contentMapper.insertCommentOne(cm_commentVO);
+		contentMapper.insertCommentBW(cm_commentVO);
 		
 	}
+	 
+	// 게시글 댓글 보기
+	@Override public HashMap<String, Object> selectCommentOne(String cm_no) {
+	  
+	return contentMapper.selectCommentOne(cm_no); 
+	
+	}
+	
+	// 중고거래 댓글 쓰기
+	@Override
+	public void insertCommentT(CM_commentVO cm_commentVO) {
+		
+		contentMapper.insertCommentT(cm_commentVO);
+		
+	}
+	
+	// 중고거래 댓글 보기
+	@Override
+	public HashMap<String, Object> selectCommentT(String cm_no) {
+		
+		return contentMapper.selectCommentT(cm_no);
+	}
+	
+	// 카페리뷰 댓글 쓰기
+	@Override
+	public void insertCommentCR(CM_commentVO cm_commentVO) {
+		
+		contentMapper.insertCommentCR(cm_commentVO);
+		
+	}
+
+	// 카페리뷰 댓글 보기
+	@Override
+	public HashMap<String, Object> selectCommentCR(String cm_no) {
+		
+		return contentMapper.selectCommentCR(cm_no);
+	}
+
+	// 댓글 수정하기
+	@Override
+	public void updateCommentOne(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateCommentOne(cm_commentVO);
+		
+	}
+
+	// 댓글 목록
+	@Override
+	public ArrayList<HashMap<String, Object>> selectCommentList(String cm_no) {
+		
+		return contentMapper.selectCommentList(cm_no);
+	}
+	 
 
 	
 	

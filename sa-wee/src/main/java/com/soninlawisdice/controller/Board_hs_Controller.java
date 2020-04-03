@@ -186,6 +186,7 @@ public class Board_hs_Controller {
 	public String modify_view(Model model, String bw_no) {
 		
 		model.addAttribute("content_view", boardService.modify_view(bw_no));
+
 		
 		return "board_hs/modify_view";
 	}

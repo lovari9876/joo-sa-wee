@@ -186,7 +186,7 @@
 					</form>
 
 					<!-- 댓글부분 -->
-					<%@ include file="/WEB-INF/views/content/comment_view.jsp" %>
+					<%@ include file="/WEB-INF/views/content/comment_write_view_cr.jsp" %>
 				</div>
 			</div>
 		</div>
