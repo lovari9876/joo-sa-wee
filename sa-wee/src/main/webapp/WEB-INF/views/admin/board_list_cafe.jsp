@@ -84,8 +84,8 @@
 					</form>
 					
 					<div class="btn-group pull-left" >
-						<button type="button" class="btn selectDelete_btn" data-Num="${report.st_no}" >선택 글 삭제</button>
-						<button type="button" class="btn">무인도 행</button>
+						<button type="button" class="btn selectDelete_btn" data-BW="${cr['BT_NO']} ${cr['CR_NO']}" >선택 글 삭제</button>
+						<button type="button" class="btn selectIsland_btn" data-BW="${cr['BT_NO']} ${cr['CR_NO']} ${cr['M_NO']}">무인도 행</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn">정렬</button>
@@ -118,7 +118,7 @@
 						
 						<c:forEach items="${board_list_cafe}" var="cr">
 								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${cr[CR_NO]}"></td>
+									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${cr['BT_NO']} ${cr['CR_NO']} ${cr['M_NO']}"></td>
 									<td class="cell">${cr['CR_NO']}</td>
 									<td class="cell">${cr['C_TITLE']}</td>
 									<td class="cell"><a
@@ -196,6 +196,7 @@
 	
 	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
 	<script src="js/admin/checkBox.js" type="text/javascript"></script>
+	<script src="js/admin/island.js" type="text/javascript"></script>
 	
 	<script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script>
 	

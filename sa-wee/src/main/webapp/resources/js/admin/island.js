@@ -9,12 +9,10 @@ $(".selectIsland_btn").click(function() {
 
 	if (checkArr == "") {
 		alert("게시글을 하나 이상 선택해주세요");
-	}else{
+	}else{s
 		var confirm_val = confirm("정말 무인도로 보내시겠습니까?");
 
 		if (confirm_val) {
-			
-
 			$.ajax({
 				url : "http://localhost:8282/admin/updateIsland",
 				type : "post",
@@ -22,9 +20,13 @@ $(".selectIsland_btn").click(function() {
 					chbox : checkArr
 				},
 				success : function(result) {
+					alert("무인도로 이동되었습니다.");
 					if(result == 1) {
-						alert("무인도로 이동되었습니다.");
 						location.href = "http://localhost:8282/admin/board_list";
+					}else if(result == 2) {
+						location.href = "http://localhost:8282/admin/board_list_cafe";
+					}else if(result == 3) {
+						location.href = "http://localhost:8282/admin/board_list_trade";
 					} else {
 						alert("실패");
 					}

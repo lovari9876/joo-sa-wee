@@ -85,8 +85,8 @@
 					</form>
 					
 					<div class="btn-group pull-left" >
-						<button type="button" class="btn selectDelete_btn" data-BW="${board['BW_NO']}">선택 글 삭제</button>
-						<button type="button" class="btn selectIsland_btn" data-BW="${board['BW_NO']} ${board['M_NO']}">무인도 행</button>
+						<button type="button" class="btn selectDelete_btn" data-BW="${board['BT_NO']} ${board['BW_NO']}">선택 글 삭제</button>
+						<button type="button" class="btn selectIsland_btn" data-BW="${board['BT_NO']} ${board['BW_NO']} ${board['M_NO']}">무인도 행</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn">정렬</button>
@@ -120,7 +120,7 @@
 						
 						<c:forEach items="${board_list}" var="board">
 								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${board['BW_NO']} ${board['M_NO']}"></td>
+									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${board['BT_NO']} ${board['BW_NO']} ${board['M_NO']}"></td>
 									<td class="cell">${board['BW_NO']}</td>
 									<td class="cell">${board['BT_NAME']}</td>
 									<td class="cell">${board['S_CONTENT']}</td>

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <head>
@@ -82,8 +83,8 @@
 					</form>
 					
 					<div class="btn-group pull-left" >
-						<button type="button" class="btn selectDelete_btn" data-Num="${report.st_no}" >선택 글 삭제</button>
-						<button type="button" class="btn">무인도 행</button>
+						<button type="button" class="btn selectDelete_btn" data-BW="${trade['BT_NO']} ${trade['T_NO']}" >선택 글 삭제</button>
+						<button type="button" class="btn selectIsland_btn" data-BW="${trade['BT_NO']} ${trade['T_NO']} ${trade['M_NO']}">무인도 행</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn">정렬</button>
@@ -107,25 +108,34 @@
 							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
 							<td class="cell">글 번호</td>
 							<td class="cell">말머리</td>
-							<td class="cell">게시판</td>
-							<td class="cell">글 제목</td>
+							<td class="cell span3">글 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
 							<td class="cell">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						
-						<c:forEach items="${board_list}" var="report">
+						<c:forEach items="${board_list_trade}" var="trade">
 								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${report.st_no}"></td>
-									<td class="cell">${report.st_no}</td>
+									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${trade['BT_NO']} ${trade['T_NO']} ${trade['M_NO']}"></td>
+									<td class="cell">${trade['T_NO']}</td>
+									<td class="cell">${trade['S_CONTENT']}</td>
 									<td class="cell"><a
-										href="report_view?st_no=${report.st_no}">${report.st_comment_num}</a></td>
-									<td class="cell">${report.st_trade_num}</td>
-									<td class="cell">${report.st_trade_num}</td>
-									<td class="cell">${report.st_trade_num}</td>
-									<td class="cell">${report.st_visitor_num}</td>
-									<td class="cell">${report.st_date}</td>
+										href="report_view?st_no=${trade['T_NO']}">${trade['T_TITLE']}</a></td>
+									<td class="cell">${trade['M_ID']}</td>
+									<td>
+										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+										<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+										<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+										<c:choose>
+											<c:when test="${now ne date}">${date}</c:when> 
+											<c:otherwise>
+												<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="HH:mm"/>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td class="cell">${trade['T_REPORT_NUM']}</td>
 								</tr>
 							</c:forEach>
 
@@ -136,18 +146,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="board_list2${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_list_trade${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="board_list2${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li><a href="board_list_trade${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="board_list2${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_list_trade${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>
@@ -184,6 +194,7 @@
 	
 	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
 	<script src="js/admin/checkBox.js" type="text/javascript"></script>
+	<script src="js/admin/island.js" type="text/javascript"></script>
 	
 	<script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script>
 	

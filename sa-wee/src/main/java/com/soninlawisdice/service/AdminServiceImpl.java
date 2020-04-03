@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.AdminMapper;
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.WD_recordVO;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
@@ -33,18 +35,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 
-	// 목록
-//	@Override
-//	public List<StatisticsVO> selectAdminList() {
-//		return adminMapper.selectAdminList();
-//	}
 
-	// 페이징 처리된 목록
-//	@Override
-//	public List<StatisticsVO> statisticsList(SearchCriteria scri){
-//		return adminMapper.list(scri);
-//	}
-	
+	// 페이징 처리된 리스트
 	
 	
 	@Override
@@ -123,11 +115,6 @@ public class AdminServiceImpl implements AdminService {
 
 	// 글보기
 	@Override
-	public StatisticsVO selectAdminView(int st_no) {
-		return adminMapper.selectAdminView(st_no);
-	}
-	
-	@Override
 	public MemberVO selectMemberView(int m_no) {
 		return adminMapper.selectMemberView(m_no);
 	}
@@ -137,59 +124,86 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.selectReportView(r_no, r_type);
 	}
 	
-//	public RankVO selectRankView(int m_no) {
-//		return adminMapper.selectRankView(m_no);
-//	}
-
+	
 	// 수정 : 회원정보
+	@Override
 	public void updateMember(MemberVO memberVO) {
 		adminMapper.updateMember(memberVO);
 	}
 		
 	
 	//무인도행
-	public void updateIsland_bw(int bw_no) {
-		adminMapper.updateIsland_bw(bw_no);
-	}
+	@Override
 	public void updateIsland_member(int m_no) {
 		adminMapper.updateIsland_member(m_no);
 	}
 	
-	
+	@Override
+	public void updateIsland_bw(int bw_no) {
+		adminMapper.updateIsland_bw(bw_no);
+	}
+
+	@Override
+	public void updateIsland_cafe(int cr_no) {
+		adminMapper.updateIsland_cafe(cr_no);
+	}
+
+	@Override
+	public void updateIsland_trade(int t_no) {
+		adminMapper.updateIsland_trade(t_no);
+	}
+
+
 	
 	// 글삭제
 	@Override
 	public void selectDelete(Board_writeVO boardVO) {
 		adminMapper.selectDelete(boardVO);
 	}
+	
+	@Override
+	public void selectDelete_cafe(Cafe_reviewVO cafe_reviewVO) {
+		adminMapper.selectDelete_cafe(cafe_reviewVO);
+	}
+	
+	@Override
+	public void selectDelete_trade(TradeVO tradeVO) {
+		adminMapper.selectDelete_trade(tradeVO);
+	}
+	
+	
+	
+	
 
 	// 통계
+	@Override
 	public void setTotalCount() {
 		adminMapper.setTotalCount();
 	}
-	
+	@Override
 	public int getTotalCount() {
 		return adminMapper.getTotalCount();
 	}
-	
+	@Override
 	public int getTodayCount() {
 		return adminMapper.getTodayBoard();
 	}
 	
 	
 	
-	
+	@Override
 	public int getTodayBoard() {
 		return adminMapper.getTodayBoard();
 	}
-	
+	@Override
 	public int getTodayComment() {
 		return adminMapper.getTodayComment();
 	}
+	@Override
 	public int getTodayTrade() {
 		return adminMapper.getTodayTrade();
 	}
-	
+	@Override
 	public void statisticsInsert(StatisticsVO statVo) {
 		adminMapper.statisticsInsert(statVo);
 	}
