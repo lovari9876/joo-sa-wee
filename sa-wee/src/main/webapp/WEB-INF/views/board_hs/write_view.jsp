@@ -78,7 +78,7 @@
 				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
 				<form action="board_write" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
-						<input id = "bt_no" type = "hidden" name = "bt_no" value = "${bt_no}"/>
+						<input id = "bt_no" type = "hidden"  value = "${bt_no}"/>
 						<tr class = "row">
 							<td class = "cell">
 								<select id = "board" name = "bt_no" ></select> 

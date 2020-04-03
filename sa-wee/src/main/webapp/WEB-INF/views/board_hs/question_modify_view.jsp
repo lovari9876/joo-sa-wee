@@ -64,14 +64,15 @@
 			<div class="write-view">
 
 				<div class="writeName">
-					<h3> 1 : 1 문의 작성하기 </h3>
+					<h3> 1 : 1 문의 수정하기 </h3>
 				</div>
 				<div class = "question-square"></div>
 				
 				
-				<form action="question_write" method = "post" enctype="multipart/form-data">
+				<form action="question_modify" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
-						
+						<input type = "hidden" name = "bw_no" value = "${question['BW_NO']}"/>
+						<input type = "hidden" id = "s_no"  value = "${question['S_NO'] }"/>
 						<!-- 질문 말머리 -->
 						<tr class = "row">
 							<td class = "cell">
@@ -89,12 +90,12 @@
 						
 						<!-- 입력창 -->
 						<tr class="row">
-							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요"></td>
+							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요" value = "${question['BW_TITLE']}"></td>
 						</tr> 
 						
 						
 						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요"></textarea></td>
+							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요">${question['BW_CONTENT']}</textarea></td>
 						</tr>
 						
 						<tr class = "row">
@@ -117,7 +118,7 @@
 						
 					</table>
 					<button class = "list" type="button" onclick="location.href='question_list'">목록</button>
-					<button class = "write-btn" type = "submit">작성완료</button>
+					<button class = "write-btn" type = "submit">수정 완료</button>
 				</form>
 
 
@@ -157,6 +158,20 @@
 	<script src="js/board_hs/secret_box.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
 	
+	<script>
+	$(document).ready(function(){
+		var s_no = $("#s_no").val();
+		
+		for(i =  27; i < 32; i++){
+			if(s_no == i){
+				$("#sub").val(i).attr("selected", "selected");
+			}
+		}
+		
+	});
+		
+	
+	</script>
 	
 		
 	<script type="text/javascript">

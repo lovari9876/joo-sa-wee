@@ -359,7 +359,7 @@ public class Board_hs_Controller {
 	//1 : 1 문의 리스트
 	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
 	public String question_list(Model model) {
-		logger.info("review");
+		model.addAttribute("question", boardService.selectQuestionList());
 		return "board_hs/question_list";
 	}
 	
@@ -373,22 +373,38 @@ public class Board_hs_Controller {
 	@RequestMapping(value = "/question_write", method = RequestMethod.POST)
 	public String question_write(Model model, Board_writeVO board_writeVO) {
 		boardService.insertQuestion(board_writeVO);
-		return "redirect:board_hs/question_list";
+		return "redirect:question_list";
 	}
 	
 	//문의 보기 (비밀글이면 작성자와 관리자만 볼 수 있음)
-	
+	@RequestMapping("/question_content_view")
+	public String question_content_view(String bw_no,Model model) {
+		model.addAttribute("question", boardService.selectQuestionOne(bw_no));
+		return "board_hs/question_content_view";
+	}
 	
 	
 	//문의 수정 view
-	//@RequestMapping(value = "/question_modify", method = RequestMethod.POST)
-	//public
+	@RequestMapping(value = "/question_modify_view")
+	public String question_modify_view(String bw_no, Model model) {
+		model.addAttribute("question", boardService.selectQuestionOne(bw_no));
+		return "board_hs/question_modify_view";
+	}
 	
-	//문의 수정
+	//문의 수정(수정 후 수정한 글 다시 보기)
+	@RequestMapping(value = "/question_modify" , method = RequestMethod.POST)
+	public String question_modify(Board_writeVO board_writeVO) {
+		boardService.modifyQuestion(board_writeVO);
+		int bw_no = board_writeVO.getBw_no();
+		return "redirect:question_content_view?bw_no="+bw_no;
+	}
 	
-	
-	//문의 삭제(댓글 달렸으면 삭제 못하게)
-	
+	//문의 삭제(댓글 달렸으면 삭제 못하게 해야함)
+	@RequestMapping("/question_delete")
+	public String question_delte(String bw_no) {
+		boardService.deleteQuestion(bw_no);
+		return "redirect:question_list";
+	}
 	
 	
 	

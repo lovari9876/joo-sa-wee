@@ -110,7 +110,16 @@ public interface BoardService {
 	
 	
 	//////////////////////////1 : 1 문의 /////////////////////////////
-	public void insertQuestion(Board_writeVO board_writeVO);
-		
+	
+	//문의 리스트
+	public ArrayList<HashMap<String, Object>> selectQuestionList();
+	//문의 작성
+	public void insertQuestion(Board_writeVO board_writeVO);	
+	//문의 보기//비밀글때문에 따로
+	public HashMap<String, Object> selectQuestionOne(String bw_no);
+	//문의 수정
+	public void modifyQuestion(Board_writeVO board_writeVO);
+	//문의 삭제
+	public void deleteQuestion(String bw_no);
 
 }

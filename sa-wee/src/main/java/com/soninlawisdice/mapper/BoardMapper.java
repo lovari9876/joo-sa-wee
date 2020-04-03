@@ -111,12 +111,12 @@ public interface BoardMapper {
 	//문의 작성
 	public void insertQuestion(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
-	//문의 보기
-	public HashMap<String, Object> selectQuestionOne();
+	//문의 보기//비밀글때문에 따로
+	public HashMap<String, Object> selectQuestionOne(@Param("bw_no")String bw_no);
 	//문의 수정
-	public void modifyQuestion();
+	public void modifyQuestion(@Param("board_writeVO") Board_writeVO board_writeVO);
 	//문의 삭제
-	public void deleteQuestion();
+	public void deleteQuestion(@Param("bw_no")String bw_no);
 	
 	
 	
