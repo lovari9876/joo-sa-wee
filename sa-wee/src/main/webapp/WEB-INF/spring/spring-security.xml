@@ -12,14 +12,16 @@
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 	<http auto-config="true" use-expressions="true">
-	    <intercept-url pattern="/login" access="ROLE_USER" />
+	    <intercept-url pattern="/login" access="hasRole('ROLE_USER')" />
+	   	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 	    <intercept-url pattern="/**" access="permitAll" />
     </http>
     
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
-				<user name="id" password="pw" authorities="ROLE_USER" />
+				<user name="user" password="pw" authorities="ROLE_USER" />
+				<user name="admin" password="pw" authorities="ROLE_ADMIN" />
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
