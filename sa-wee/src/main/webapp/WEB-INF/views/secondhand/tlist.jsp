@@ -27,6 +27,7 @@
     ================================================== -->
     <script src="js/cassie/modernizr.js"></script>    
     <script src="js/cassie/jquery-3.2.1.min.js"></script>
+    <script src="js/cassie/change-view.js"></script>
 
     <!-- favicons
     ================================================== -->
@@ -61,14 +62,17 @@
 		  <div class="mx-auto">
 		
 		    <div class="search--box rounded">
+		    
+		     <!-- **** change view -->
+		      <!-- 리스트 뷰와 masonry 뷰를 switch하기 위한 버튼 -->
+		      <button class="view-btn"><i class="fa fa-bars"></i></button>
 		
 		      <!-- Custom rounded search bars with input group -->
 		      <form role="form">		
 		      
 		        <div class="search--div p-1 bg-white rounded rounded-pill shadow-sm mb-4">
 		          <div class="input-group">	  
-		            <div class="input-group-prepend">
-		              <button id="searchBtn" type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
+		            <div class="input-group-prepend">	              
 		             
 		              <!-- 엔터 안되고 버튼으로만 검색가능 -->
 	            		<script>
@@ -109,8 +113,11 @@
 		              <div class="select__arrow"></div>     
 		            </div>		
 		            	        		           
-		            <input type="search" name="keyword" id="keywordInput" value="${scri.keyword}" placeholder="검색어를 입력하세요"
-		           		   aria-describedby="button-addon2" class="form-control border-0 ">
+		            <div>
+		            	<input type="search" name="keyword" id="keywordInput" value="${scri.keyword}" placeholder="검색어를 입력하세요"
+		           		 		aria-describedby="button-addon2" class="form-control border-0 ">
+		            </div>
+		            <button id="searchBtn" type="submit" class="btn btn-link text-warning"><i class="fa fa-search"></i></button>
 		          </div>
 		        </div>
 		        		

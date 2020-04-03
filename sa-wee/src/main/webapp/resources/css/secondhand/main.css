@@ -2695,6 +2695,11 @@ to {
 	
 }
 
+/* 검색 폼이 버튼보다 오른쪽에 있도록 */
+.search--box form {
+    float: right;
+}
+
 .search--div {
 	padding: .25rem !important;
 	display: block;
@@ -2710,7 +2715,9 @@ to {
 }
 
 .search--bar .rounded {
-	border-radius: .25rem !important
+	border-radius: .25rem !important;
+	float: right;
+    display: block;
 }
 
 .search--bar .rounded-pill {
@@ -2730,7 +2737,7 @@ to {
 	-ms-flex-align: stretch;
 	align-items: stretch;
 	width: 100%;
-	margin-right: 3rem; /* 이거 없으면 input 네모가 오른쪽 상단으로 삐져나오삼 */
+	margin-left: 3rem; /* 검색 폼 왼쪽 여백 */
 }
 
 .search--div .input-group-prepend {
@@ -2906,6 +2913,97 @@ to {
 }
 
 
+/* -----------------------------------------------------------------------  
+ * 리스트 뷰와 masonry 뷰를 switch하기 위한 버튼
+ * 
+ * ----------------------------------------------------------------------- */
+
+button.view-btn {
+	border-radius: 12px;
+    height: 45px;
+    box-shadow: 0 .170rem .50rem rgba(209, 204, 238, 0.75) !important;
+    line-height: 45px;
+    text-align: center;
+    margin-right: 10px;
+    padding: 0 10px;
+}
+
+
+/* -----------------------------------------------------------------------  
+ * 검색창 responsible 하게 만들기...
+ * width: 700px 이하에서 헤더 메뉴처럼 세로로 겹치도록..
+ * ----------------------------------------------------------------------- */
+@media only screen and (max-width: 700px) {
+	.search--row { /* 검색창 오른쪽으로 가게 했던 것.. */
+    	margin-right: 0;
+    }
+    
+    .search--box {
+    	float: inherit;
+    	margin: 0 auto;
+    }
+    
+    /* 검색 박스 가운데 정렬 */
+    .search--bar .rounded {
+   		float: inherit;
+    }
+    
+    /* 검색 박스 가운데 정렬 */   
+    .search--box form {
+    float: inherit;
+	}
+    
+    /* 뷰 전환 버튼 가운데 정렬.. 근데 없애려구.. */
+    button.view-btn { 
+    	margin: 0 auto 1.2rem auto;
+    	display: none;
+    	border-radius: 20px ;
+    }
+    
+	.search--div .input-group {
+	    display: block;
+	    margin-left: 2rem;
+	}
+	
+	/* 검색박스 */
+	.search--bar .rounded-pill {
+		border-radius: 20px !important;
+		height: 140px;
+		width: 230px;
+		margin: 0 auto 24px auto; /* 가운데 정렬 */
+	}
+	
+	.search--div input {
+		margin: 0px !important;
+		margin-right: 0 !important;
+	}
+	
+	.search--div input[type="search"] {
+		margin: 0px !important;
+		margin-right: 0 !important;
+	}
+	
+	.custom-select select {
+		max-width: unset; /* width 제한 없애기 */
+		width: 185px;
+	}
+	
+	/* 보라색으로 변경한 화살표.. */
+	.search--div .select__arrow {
+		right: -70px;
+   		float: right;
+	}
+	
+	/* 돋보기: input 오른쪽에 오도록... */
+	.search--div #searchBtn {
+		top: -40px;
+	    left: -15px;
+	    position: relative;
+		float: right;
+	}
+}
+
+
 /* -------------------------------------------------------------------
  * ## masonry layout
  * ------------------------------------------------------------------- */
@@ -2986,7 +3084,8 @@ to {
 @media only screen and (max-width:600px) {
 	.masonry-wrap {
 		width: auto;
-		margin-top: 80px; /* content-header가 내려오면서 검색창이 내려와 컨텐트가 오른쪽으로 밀리는 것 방지 */
+		/* margin-top: 80px;  */
+		/* content-header가 내려오면서 검색창이 내려와 컨텐트가 오른쪽으로 밀리는 것 방지 */
 	}
 	.masonry .grid-sizer, .masonry .masonry__brick {
 		padding: 0 10px;
