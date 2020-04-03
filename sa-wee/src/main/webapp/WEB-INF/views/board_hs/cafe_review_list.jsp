@@ -71,10 +71,13 @@
 					<div class="search">
 
 						<select>
-							<option value="0" selected>제목</option>
-							<option value="1">내용</option>
-							<option value="2">닉네임</option>
-						</select> <input id="searchBar" type="text">
+							<option value="0" selected>전체</option>
+							<option value="1">제목</option>
+							<option value="2">내용</option>
+							<option value="3">닉네임</option>
+						</select> 
+						
+						<input id="searchBar" type="text">
 
 						<!-- 여기 미쳐버렸음. 일단 버튼으로 만들어 놓고 다음에 해야함 타입이 submit 인줄도 모르겠음-->
 						<button type="submit" class="fa fa-fw fa-search"></button>
@@ -116,13 +119,13 @@
 						<tbody class = "tbody">
 							<c:forEach items="${list}" var="list">
 							<tr class="row">
-								<td class = "cell">${list.cr_no}</td>
-								<td class = "cell">${list.cafeVO.c_title}</td>
-								<td class = "cell"><a href="selectReviewOne?cr_no=${list.cr_no}">${list.cr_title}</a></td>
-								<td class = "cell">${list.memberVO.m_nick}</td>
-								<td class = "cell">${list.cr_written_date}</td>
-								<td class = "cell">${list.cr_hit}</td>
-								<td class = "cell">${list.cr_recommend_num}</td>
+								<td class = "cell">${list['CR_NO']}</td>
+								<td class = "cell">${list['C_TITLE']}</td>
+								<td class = "cell"><a href="selectReviewOne?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a></td>
+								<td class = "cell">${list['M_NICK']}</td>
+								<td class = "cell">${list['CR_WRITTEN_DATE']}</td>
+								<td class = "cell">${list['CR_HIT']}</td>
+								<td class = "cell">${list['CR_RECOMMEND_NUM']}</td>
 							</tr>
 							</c:forEach>
 						</tbody>
@@ -133,11 +136,7 @@
 
 				</div>
 
-				<!-- 버튼에 링크 걸기 -->
-				<button class="write-view-btn" type="button"
-					onclick="location.href='cafe_review_write'">글쓰기</button>
-
-
+				
 			</div>
 		</div>
 	</div>

@@ -389,12 +389,12 @@
 							
 								<c:forEach items="${list}" var="list">
 									<tr class="row">
-										<td class = "cell">${list.cr_no}</td>
-										<td class = "cell"><a href="selectReviewOne?cr_no=${list.cr_no}">${list.cr_title}</a></td>
-										<td class = "cell">${list.memberVO.m_nick}</td>
-										<td class = "cell">${list.cr_written_date}</td>
-										<td class = "cell">${list.cr_hit}</td>
-										<td class = "cell">${list.cr_recommend_num}</td>
+										<td class = "cell">${list['CR_NO']}</td>
+										<td class = "cell"><a href="selectReviewOne?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a></td>
+										<td class = "cell">${list['M_NICK']}</td>
+										<td class = "cell">${list['CR_WRITTEN_DATE']}</td>
+										<td class = "cell">${list['CR_HIT']}</td>
+										<td class = "cell">${list['CR_RECOMMEND_NUM']}</td>
 									</tr>
 							</c:forEach>
 	

@@ -73,10 +73,13 @@
 					<div class="q-search">
 
 						<select>
-							<option value="0" selected>제목</option>
-							<option value="1">내용</option>
-							<option value="2">닉네임</option>
-						</select> <input id="searchBar" type="text">
+							<option value="0" selected>전체</option>
+							<option value="1">제목</option>
+							<option value="2">내용</option>
+							<option value="3">닉네임</option>
+						</select> 
+						
+						<input id="searchBar" type="text">
 
 						<!-- 여기 미쳐버렸음. 일단 버튼으로 만들어 놓고 다음에 해야함 타입이 submit 인줄도 모르겠음-->
 						<button type="submit" class="fa fa-fw fa-search"></button>
@@ -246,12 +249,12 @@
 	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
-	<script src="js/js_header/scroll.js"></script>
+	<script src="js/header/scroll.js"></script>
 	<script src="js/board_hs/tab.js"></script>
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	<script src="js/js_footer/footer_hee.js"></script>
+	<script src="js/footer/footer_hee.js"></script>
 
 </body>
 </html>

@@ -62,7 +62,13 @@
 
 			<div class="map_wrap">
 
+					<div class = "btn_div">
+						<button class ="list_btn" onclick="location.href='cafe_list'">리스트로 보기</button>
+					</div>
+
 				<div id="menu_wrap" class="bg_white">
+					
+					
 					<div class="option">
 						<div>
 							<form onsubmit="searchPlaces(); return false;">
@@ -107,7 +113,7 @@
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-			level : 3
+			level : 5
 		// 지도의 확대 레벨
 		};
 
@@ -267,10 +273,11 @@
 			marker.setMap(map); // 지도 위에 마커를 표출합니다
 			markers.push(marker); // 배열에 생성된 마커를 추가합니다
 			
+			//마커 클릭시에 이동하는 url 걸기.
 			kakao.maps.event.addListener(marker, 'click', function(){
 				//일단 이렇게는 해놓는데, 
 				//var url = 'https://map.kakao.com/link/map/'+position.getLat()+','+position.getLng(); 이런식으로 처리하라함
-				var url = '/cafe_info';
+				var url = '/cafe_info?c_no='+(idx+1);
 				window.open(url, '_self');
 			})
 

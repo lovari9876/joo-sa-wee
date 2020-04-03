@@ -37,16 +37,16 @@
 				<div class="col-6 col-md-3 mb-4 mb-md-0">
 					<a href=""><h3>커뮤니티</h3></a>
 					<ul class="list-unstyled">
-						<li><a href="#">보드 이야기</a></li>
-						<li><a href="#">개봉기 및 리뷰</a></li>
-						<li><a href="#">보드게임 모임</a></li>
-						<li><a href="#">보드 뉴스</a></li>
-						<li><a href="#">질문 & 답변</a></li>
-						<li><a href="#">창작 보드게임</a></li>
+						<li><a href="board_story">보드 이야기</a></li>
+						<li><a href="board_open_review">개봉기 및 리뷰</a></li>
+						<li><a href="board_meet">보드게임 모임</a></li>
+						<li><a href="board_news">보드 뉴스</a></li>
+						<li><a href="board_qna">질문 & 답변</a></li>
+						<li><a href="board_creation">창작 보드게임</a></li>
 					</ul>
 				</div>
 				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href="#"><h3>보드게임 카페</h3></a>
+					<a href="cafe_map"><h3>보드게임 카페</h3></a>
 				</div>
 				<div class="col-6 col-md-3 mb-4 mb-md-0">
 					<a href="#"><h3>보부상</h3></a>
@@ -55,7 +55,7 @@
 					<a href=""><h3>헬프데스크</h3></a>
 					<ul class="list-unstyled">
 						<li><a href="#">자주하는 질문</a></li>
-						<li><a href="#">1:1 문의</a></li>
+						<li><a href="question_list">1:1 문의</a></li>
 						<li><a href="#">무인도</a></li>
 					</ul>
 				</div>				

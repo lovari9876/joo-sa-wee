@@ -1,5 +1,7 @@
 package com.soninlawisdice.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -10,6 +12,7 @@ import com.soninlawisdice.mapper.BoardMapper;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.SearchCriteria;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -19,51 +22,83 @@ public class BoardServiceImpl implements BoardService {
 
 	/////////////// 핫이슈, 베스트/////////////////////
 	@Override
-	public List<Board_writeVO> selectHotList() {
+	public ArrayList<HashMap<String, Object>> selectHotList() {
 		return boardMapper.selectHotList();
 	}
 
 	@Override
-	public List<Board_writeVO> selectBestList() {
+	public ArrayList<HashMap<String, Object>> selectBestList() {
 		return boardMapper.selectBestList();
 	}
 
 	//////////////////////// 커뮤니티////////////////////////
 
 	@Override
-	public List<Board_writeVO> selectBoardList() {
+	public  ArrayList<HashMap<String, Object>> selectBoardList() {
 		return boardMapper.selectBoardList();
 	}
+	
+
 
 	@Override
-	public List<Board_writeVO> selectBoard_Story() {
-		return boardMapper.selectBoard_Story();
+	public ArrayList<HashMap<String, Object>> selectBoard_Story(SearchCriteria scri) {
+		return boardMapper.selectBoard_Story(scri);
+	}
+	@Override
+	public int b_storyCount(SearchCriteria scri) {
+		return boardMapper.b_storyCount(scri);
 	}
 
+	
 	@Override
-	public List<Board_writeVO> selectBoard_Open() {
-		return boardMapper.selectBoard_Open();
+	public ArrayList<HashMap<String, Object>> selectBoard_Open(SearchCriteria scri) {
+		return boardMapper.selectBoard_Open(scri);
 	}
+	@Override
+	public int b_openCount(SearchCriteria scri) {
+		return boardMapper.b_openCount(scri);
+	}
+	
 
 	@Override
-	public List<Board_writeVO> selectBoard_Meet() {
-		return boardMapper.selectBoard_Meet();
+	public ArrayList<HashMap<String, Object>> selectBoard_Meet(SearchCriteria scri) {
+		return boardMapper.selectBoard_Meet(scri);
+	}
+	@Override
+	public int b_meetCount(SearchCriteria scri) {
+		return boardMapper.b_meetCount(scri);
 	}
 
+	
 	@Override
-	public List<Board_writeVO> selectBoard_News() {
-		return boardMapper.selectBoard_News();
+	public ArrayList<HashMap<String, Object>> selectBoard_News(SearchCriteria scri) {
+		return boardMapper.selectBoard_News(scri);
+	}
+	@Override
+	public int b_newsCount(SearchCriteria scri) {
+		return boardMapper.b_newsCount(scri);
 	}
 
+	
 	@Override
-	public List<Board_writeVO> selectBoard_Qna() {
-		return boardMapper.selectBoard_Qna();
+	public ArrayList<HashMap<String, Object>> selectBoard_Qna(SearchCriteria scri) {
+		return boardMapper.selectBoard_Qna(scri);
+	}
+	@Override
+	public int b_qnaCount(SearchCriteria scri) {
+		return boardMapper.b_qnaCount(scri);
 	}
 
+	
 	@Override
-	public List<Board_writeVO> selectBoard_Creation() {
+	public ArrayList<HashMap<String, Object>> selectBoard_Creation(SearchCriteria scri) {
 		return boardMapper.selectBoard_Creation();
 	}
+	@Override
+	public int b_creationCount(SearchCriteria scri) {
+		return boardMapper.b_creationCount(scri);
+	}
+	
 
 	@Override
 	public void insertBoard(Board_writeVO board_writeVO) {
@@ -82,20 +117,32 @@ public class BoardServiceImpl implements BoardService {
 
 	///////////////////// 카페리뷰////////////////////////
 
+	//카페 목록 싹다 보기
+	@Override
+	public List<CafeVO> selectAllCafeList(){
+		return boardMapper.selectAllCafeList();
+	}
+	
+	//카페 지역별로 보기
+	@Override
+	public List<CafeVO> selectCafeLoc(String c_add){
+		return boardMapper.selectCafeLoc(c_add);
+	}
+	
 	// 카페 리뷰 전체 리스트 보기
 	@Override
-	public List<Cafe_reviewVO> selectAllReviewList() {
+	public ArrayList<HashMap<String, Object>> selectAllReviewList() {
 		return boardMapper.selectAllReviewList();
 	}
 
 	// 카페 리뷰 리스트에서 review_content_view 로
-	public Cafe_reviewVO selectReviewOne(String cr_no) {
+	public HashMap<String, Object> selectReviewOne(String cr_no) {
 		return boardMapper.selectReviewOne(cr_no);
 	}
 
 	// 카페별로 밑에 리뷰 리스트 있는거
 	@Override
-	public List<Cafe_reviewVO> selectCafeReviewList(String c_no) {
+	public ArrayList<HashMap<String, Object>> selectCafeReviewList(String c_no) {
 		return boardMapper.selectCafeReviewList(c_no);
 	}
 
@@ -139,4 +186,10 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.review_modify(cafe_reviewVO);
 	}
 
+	
+	//////////////////////////1 : 1 문의 /////////////////////////////
+	@Override
+	public void insertQuestion(Board_writeVO board_writeVO) {
+		boardMapper.insertQuestion(board_writeVO);
+	}
 }
