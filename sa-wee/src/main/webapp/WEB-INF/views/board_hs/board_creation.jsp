@@ -60,8 +60,8 @@
 			<div class="wrap-table100">
 
 				<div class="listName">
-					<h3>보드 이야기</h3>
-					<p>보드이야기를 하는 곳입니다. 보드 이야기 하세요</p>
+					<h3>창작보드게임</h3>
+					<p>창작보드게임 올리세요</p>
 				</div>
 
 
@@ -105,11 +105,6 @@
 
 					<!-- 테이블  -->
 					<div id="tab1" class="tabcontent current">
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
 						<table class="table">
 
 
@@ -144,14 +139,6 @@
 					
 					<!-- 여기서부터는 말머리 선택 부분이라  -->
 					<div id="tab2" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
 						<table class="table">
 
 							
@@ -204,14 +191,6 @@
 					</div>
 
 					<div id="tab4" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
 						<table class="table">
 
 
@@ -264,14 +243,6 @@
 					</div>
 					
 					<div id="tab6" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
 						<table class="table">
 
 
@@ -297,7 +268,7 @@
 
 				<!-- 버튼에 링크 걸기 -->
 				<button class="write-view-btn" type="button"
-					onclick="location.href='write_view?bt_no=6'">글쓰기</button>
+					onclick="location.href='board_write_view?bt_no=6'">글쓰기</button>
 
 
 			</div>

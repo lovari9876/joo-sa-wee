@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.vo.Board_writeVO;
@@ -137,7 +138,7 @@ public class Board_hs_Controller {
 
 	// 말머리마다 다른 내용 보여주기
 	@ResponseBody
-	@RequestMapping("/list_sub")
+	@RequestMapping("/board_list_sub")
 	public ArrayList<HashMap<String, Object>> list(Model model) {
 		System.out.println("test");
 
@@ -145,7 +146,7 @@ public class Board_hs_Controller {
 	}
 
 	// 글쓰기 view
-	@RequestMapping(value = "/write_view", method = RequestMethod.GET)
+	@RequestMapping(value = "/board_write_view", method = RequestMethod.GET)
 	public String write_view(Model model, String bt_no) {
 		logger.info("home");
 
@@ -155,7 +156,7 @@ public class Board_hs_Controller {
 	}
 
 	// 글 작성
-	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	@RequestMapping(value = "/board_write", method = RequestMethod.POST)
 	public String write(Board_writeVO board_writeVO) {
 		boardService.insertBoard(board_writeVO);
 
@@ -182,7 +183,7 @@ public class Board_hs_Controller {
 	}
 
 	// 수정하기 view.
-	@RequestMapping(value = "/modify_view", method = RequestMethod.GET)
+	@RequestMapping(value = "/board_modify_view", method = RequestMethod.GET)
 	public String modify_view(Model model, String bw_no) {
 		
 		model.addAttribute("content_view", boardService.modify_view(bw_no));
@@ -192,8 +193,18 @@ public class Board_hs_Controller {
 	}
 	
 	
-
-	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	//수정하기
+	//수정했을때 수정된 content 보기
+	@RequestMapping(value = "/board_modify", method = RequestMethod.POST)
+	public String modify(Board_writeVO board_writeVO, Model model) {
+		boardService.modify(board_writeVO);
+		int bw_no = board_writeVO.getBw_no();
+		
+		return "redirect:content_view?bw_no"+bw_no;
+	}
+	
+	/* 수정했을때 각각 게시판으로 가기
+	@RequestMapping(value = "/board_modify", method = RequestMethod.POST)
 	public String modify(Board_writeVO board_writeVO, Model model) {
 
 		System.out.println("modify()");
@@ -217,6 +228,7 @@ public class Board_hs_Controller {
 		}
 		return null;
 	}
+	*/
 
 	///////////////////////////////////////// 카페리뷰, 카페정보 관련/////////////////////////////////////
 
@@ -294,12 +306,38 @@ public class Board_hs_Controller {
 		
 		int c_no = cafe_reviewVO.getC_no();
 		
-		// 이것도 경로 다시 해야함
 		return "redirect:cafe_info?c_no="+c_no;
 	}
 	
-	// 리뷰 수정하기
+	// 리뷰 수정 view
+	@RequestMapping(value = "/review_modify_view")
+	public String review_modify_view(String cr_no, Model model) {
+		model.addAttribute("cafe_review", boardService.selectReviewOne(cr_no));
+		return "board_hs/cafe_review_modify_view";
+	}
+	//리뷰 수정 (수정 완료시 수정된 content_view 로 감.)
+	@RequestMapping(value = "/review_modify", method = RequestMethod.POST)
+	public String review_modify(Cafe_reviewVO cafe_reviewVO) {
+		boardService.review_modify(cafe_reviewVO);
+		
+		int cr_no = cafe_reviewVO.getCr_no();
+		System.out.println(cr_no);
+		
 	
+		return "redirect:selectReviewOne?cr_no="+cr_no;
+		
+	}
+	//리뷰 삭제하기
+	@RequestMapping("/review_delete")
+	public String review_delete(String cr_no ) {
+		boardService.review_delete(cr_no);
+	
+		//경로 어떻게 할지 생각해봐야함.
+		return "redirect:list";
+	}
+
+	// HttpServletRequest request, RedirectAttributes redirectAttributes
+	//String referer = request.getHeader("Referer");
 	
 	
 	// 카페 리뷰 글 추천
@@ -319,26 +357,56 @@ public class Board_hs_Controller {
 	
 	//////////////////일단 1 : 1 문의 /////////////////////////////////
 
+	//1 : 1 문의 리스트
+	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
+	public String question_list(Model model) {
+		model.addAttribute("question", boardService.selectQuestionList());
+		return "board_hs/question_list";
+	}
+	
+	//문의 작성 view
 	@RequestMapping(value = "/question_write_view", method = RequestMethod.GET)
 	public String question_write_view(Model model) {
-		logger.info("review");
-
 		return "board_hs/question_write_view";
 	}
 	
+	//문의 작성
 	@RequestMapping(value = "/question_write", method = RequestMethod.POST)
 	public String question_write(Model model, Board_writeVO board_writeVO) {
-		
 		boardService.insertQuestion(board_writeVO);
-		
-		return "board_hs/question_list";
+		return "redirect:question_list";
 	}
 	
-	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
-	public String question_list(Model model) {
-		logger.info("review");
-		return "board_hs/question_list";
+	//문의 보기 (비밀글이면 작성자와 관리자만 볼 수 있음)
+	@RequestMapping("/question_content_view")
+	public String question_content_view(String bw_no,Model model) {
+		model.addAttribute("question", boardService.selectQuestionOne(bw_no));
+		return "board_hs/question_content_view";
 	}
+	
+	
+	//문의 수정 view
+	@RequestMapping(value = "/question_modify_view")
+	public String question_modify_view(String bw_no, Model model) {
+		model.addAttribute("question", boardService.selectQuestionOne(bw_no));
+		return "board_hs/question_modify_view";
+	}
+	
+	//문의 수정(수정 후 수정한 글 다시 보기)
+	@RequestMapping(value = "/question_modify" , method = RequestMethod.POST)
+	public String question_modify(Board_writeVO board_writeVO) {
+		boardService.modifyQuestion(board_writeVO);
+		int bw_no = board_writeVO.getBw_no();
+		return "redirect:question_content_view?bw_no="+bw_no;
+	}
+	
+	//문의 삭제(댓글 달렸으면 삭제 못하게 해야함)
+	@RequestMapping("/question_delete")
+	public String question_delte(String bw_no) {
+		boardService.deleteQuestion(bw_no);
+		return "redirect:question_list";
+	}
+	
 	
 	
 	

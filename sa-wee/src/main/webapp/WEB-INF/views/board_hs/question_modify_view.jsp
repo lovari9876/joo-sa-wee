@@ -57,7 +57,6 @@
 	<!-- header include end -->
 	
 
-
 	<div class="write-section">
 		<div class="write-container">
 
@@ -65,33 +64,61 @@
 			<div class="write-view">
 
 				<div class="writeName">
-					<h3>리뷰 수정하기</h3>
+					<h3> 1 : 1 문의 수정하기 </h3>
 				</div>
-				<div class = "square"></div>
+				<div class = "question-square"></div>
 				
-				<!-- -->
-				<!-- 수정하는 부분의 각각 value 를 ex) ${detail.TITLE} 이런식으로 받아와야함-->
-				<!--  -->
 				
-				<form action="review_modify" method = "post" enctype="multipart/form-data">
+				<form action="question_modify" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
-						<input type="hidden" name="cr_no" value="${cafe_review['CR_NO']}"/>
-						
-
-						<tr class="row">
-							<td class="cell"><input type="text" name="cr_title" value = "${cafe_review['CR_TITLE']}"  placeholder = "제목을 입력하세요"></td>
+						<input type = "hidden" name = "bw_no" value = "${question['BW_NO']}"/>
+						<input type = "hidden" id = "s_no"  value = "${question['S_NO'] }"/>
+						<!-- 질문 말머리 -->
+						<tr class = "row">
+							<td class = "cell">
+								<select id = "sub" name = "s_no">
+									<option selected>말머리 선택</option>
+									<option value = "27">회원 관련 문의</option>
+									<option value = "28">결제 관련 문의</option>
+									<option value = "29">정보수정 요청</option>
+									<option value = "30">무인도 관련 문의</option>
+									<option value = "31">기타 문의</option>
+								</select>
+							</td>
 							
 						</tr>
-
+						
+						<!-- 입력창 -->
 						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="cr_content" placeholder = "내용을 입력하세요">${cafe_review['CR_CONTENT']}</textarea></td>
-							<%-- <td class="cell"><textarea name="bwTitle" placeholder = "내용을 입력하세요">이건 여기에 ${detail.CONTENTS } 이런식으로</textarea></td> --%>
+							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요" value = "${question['BW_TITLE']}"></td>
+						</tr> 
+						
+						
+						<tr class="row">
+							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요">${question['BW_CONTENT']}</textarea></td>
 						</tr>
+						
+						<tr class = "row">
+							<td class = "cell">
+								<label class = "secret">비밀글
+									<input id = "secret_box" type = "checkbox" name = "bw_secret"/>
+									<span class = "checkmark"></span>
+								</label>
+							
+							</td>
+							
+							
+							<!-- <td class = "cell">
+								<input type = "checkbox" id = "check_test">
+								<label for = "check_test"><div class = "chk_img">비밀글</div></label>
+							</td> -->
+						</tr>
+						
 
 						
 					</table>
-					<button class = "list" type="button" onclick="location.href='cafe_info?c_no ='${cafe_review['CR_NO']}">목록</button>
-					<button class = "modify-btn" type = "submit">수정 완료</button>
+					<button class = "list" type="button" onclick="location.href='question_list'">목록</button>
+					<button class = "write-btn" type = "submit">수정 완료</button>
 				</form>
 
 
@@ -103,12 +130,15 @@
 
 	
 	
-	
 	<!-- footer 부분 -->
 	<!-- footer include start -->
 	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
 	<!-- footer include end -->
 	
+	
+
+
+
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
@@ -120,17 +150,30 @@
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
 	<script src="js/header/scroll.js"></script>
-	<!-- <script src ="js/file.js"></script> -->
-	<script src="js/board_hs/jquery.easing.1.3.js"></script>
+	<!-- <script src ="js/file.js"></script>
+ -->
+ 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	<script src="js/board_hs/category.js"></script>
+	<script src="js/board_hs/secret_box.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
 	
+	<script>
+	$(document).ready(function(){
+		var s_no = $("#s_no").val();
+		
+		for(i =  27; i < 32; i++){
+			if(s_no == i){
+				$("#sub").val(i).attr("selected", "selected");
+			}
+		}
+		
+	});
+		
 	
+	</script>
 	
-	<!-- ckEditor 관련 -->
-	
+		
 	<script type="text/javascript">
 			var myEditor;
 			ClassicEditor
@@ -166,6 +209,7 @@
 			    console.error( error );
 			} );
 		</script>
-
+	
+	
 </body>
 </html>
