@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.WD_recordVO;
 
 public interface AdminService {
@@ -49,9 +51,11 @@ public interface AdminService {
 	//회원정보수정
 	public void updateMember(MemberVO memberVO);
 	
-	//무인도행
-	public void updateIsland_bw(int bw_no);
+	// 무인도 member, board_write, cafe_review, trade 컬럼 변경
 	public void updateIsland_member(int m_no);
+	public void updateIsland_bw(int bw_no);
+	public void updateIsland_cafe(int cr_no);
+	public void updateIsland_trade(int t_no);
 	
 	
 
@@ -65,6 +69,8 @@ public interface AdminService {
 	
 	// 글삭제
 	public void selectDelete(Board_writeVO boardVO);
+	public void selectDelete_cafe(Cafe_reviewVO cafe_reviewVO);
+	public void selectDelete_trade(TradeVO tradeVO);
 	
 	// 통계
 	

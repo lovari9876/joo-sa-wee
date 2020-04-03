@@ -39,9 +39,13 @@ $(".selectDelete_btn").click(function() {
 					chbox : checkArr
 				},
 				success : function(result) {
+					alert("삭제되었습니다.");
 					if(result == 1) {
-						alert("삭제되었습니다.");
 						location.href = "http://localhost:8282/admin/board_list";
+					}else if(result == 2) {
+						location.href = "http://localhost:8282/admin/board_list_cafe";
+					}else if(result == 3) {
+						location.href = "http://localhost:8282/admin/board_list_trade";
 					} else {
 						alert("삭제 실패");
 					}

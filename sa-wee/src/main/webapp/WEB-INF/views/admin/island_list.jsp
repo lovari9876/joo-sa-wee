@@ -114,6 +114,7 @@
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
 							<td class="cell">신고수</td>
+							<td class="cell">상태</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						
@@ -151,6 +152,10 @@
 										</c:choose>
 									</td>
 									<td class="cell">${island['I_REPORT_NUM']}</td>
+									<td class="cell">
+										<c:if test="${island['I_ISLAND'] eq 1}">수정 전</c:if>	
+										<c:if test="${island['I_ISLAND'] eq 2}">수정 완료</c:if>
+									</td>
 								</tr>
 							</c:forEach>
 

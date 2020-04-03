@@ -23,11 +23,13 @@ import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.WD_recordVO;
 
 
@@ -106,28 +108,34 @@ public class AdminController {
 	//무인도행
 	@ResponseBody
 	@RequestMapping(value = "/updateIsland", method = RequestMethod.POST)
-	public int updateIsland(Board_writeVO boardVO, MemberVO memberVO, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+	public int updateIsland(Board_writeVO boardVO, MemberVO memberVO, Cafe_reviewVO cafe_reviewVO, TradeVO tradeVO, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
 
-		int bw_no = 0;
-		int m_no = 0;
-		int result = 0;
+		int bt = 0;
+		int no = 0;
+		int mem = 0;
+		int result = 0;//나중에 로그인여부, 관리자인지 여부를 확인하기 위함 >> 지금은 테이블별로 다른 링크 걸기 위함
+		
+
 		StringTokenizer st;
-		
-		
 		for (String i : chArr) {
 			st = new StringTokenizer(i);
-			bw_no = Integer.parseInt(st.nextToken());
-			m_no = Integer.parseInt(st.nextToken());
+			bt = Integer.parseInt(st.nextToken());
+			no = Integer.parseInt(st.nextToken());
+			mem = Integer.parseInt(st.nextToken());
 			
-			boardVO.setBw_no(bw_no);
-			memberVO.setM_no(m_no);
-			adminService.updateIsland_bw(bw_no);
-			adminService.updateIsland_member(m_no);
+			if( 1<= bt && bt <= 6 ) { // bt_no이 1~6인 커뮤니티
+				adminService.updateIsland_bw(no);
+				result = 1;
+			}else if(bt == 11) { //bt_no이 11인 카페리뷰
+				adminService.updateIsland_cafe(no);
+				result = 2;
+			}else {//중고거래는 bt 테이블과 조인하지않음
+				adminService.updateIsland_trade(no);
+				result = 3;
+			}
 		}
-		System.out.println(bw_no);
-		System.out.println(m_no);
-		
-		result = 1; 
+		System.out.println(bt);
+		adminService.updateIsland_member(mem);
 		
 		return result;
 	}
@@ -261,19 +269,38 @@ public class AdminController {
 	//선택한 글 삭제 ! !  json 객체로 변환해서 값을 보내야함, 안그러면 형변환 관련 오류뜸
 	@ResponseBody
 	@RequestMapping(value = "/deleteBoard", method = RequestMethod.POST)
-	public int deleteBoard(Board_writeVO boardVO, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
-		int bw_no = 0;
-		int result = 0;//나중에 로그인여부, 관리자인지 여부를 확인하기 위함
+	public int deleteBoard(Board_writeVO boardVO, Cafe_reviewVO cafe_reviewVO, TradeVO tradeVO, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
 		
+		int bt = 0;
+		int no=0;
+		int result = 0;//나중에 로그인여부, 관리자인지 여부를 확인하기 위함 >> 지금은 테이블별로 다른 링크 걸기 위함
+		
+		StringTokenizer st;
+
 		//매개변수로 member정보도 추가해야함, 
 		//if(member != null){
 		//	adminVO.setUserId(userId);//delete 삭제 구문에 id 값 확인하는 부분이 추가되어야함 (and userId =#{})
 		for (String i : chArr) {
-			bw_no = Integer.parseInt(i);
-			boardVO.setBw_no(bw_no);
-			adminService.selectDelete(boardVO);
+			st = new StringTokenizer(i);
+			bt = Integer.parseInt(st.nextToken());
+			no = Integer.parseInt(st.nextToken());
+			
+			if( 1<= bt && bt <= 6 ) { // bt_no이 1~6인 커뮤니티
+			
+				boardVO.setBw_no(no);
+				adminService.selectDelete(boardVO);
+				result = 1;
+			}else if(bt == 11) { //bt_no이 11인 카페리뷰
+				cafe_reviewVO.setCr_no(no);
+				adminService.selectDelete_cafe(cafe_reviewVO);
+				result = 2;
+			}else {//중고거래는 bt 테이블과 조인하지않음
+				tradeVO.setT_no(no);
+				adminService.selectDelete_trade(tradeVO);
+				result = 3;
+			}
 		}
-		result = 1; //성공!
+		System.out.println(bt);
 		
 		//}
 		return result;

@@ -9,8 +9,10 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.soninlawisdice.vo.StatisticsVO;
+import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.WD_recordVO;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -65,12 +67,16 @@ public interface AdminMapper {
 	// 수정 : 회원정보 수정
 	public void updateMember(@Param("memberVO")MemberVO memberVO);
 	
-	// 무인도 board_write , member 컬럼 변경
-	public void updateIsland_bw(int bw_no);
+	// 무인도 member, board_write, cafe_review, trade 컬럼 변경
 	public void updateIsland_member(int m_no);
+	public void updateIsland_bw(int bw_no);
+	public void updateIsland_cafe(int cr_no);
+	public void updateIsland_trade(int t_no);
 	
 	// 삭제
 	public void selectDelete(Board_writeVO boardVO);
+	public void selectDelete_cafe(Cafe_reviewVO cafe_reviewVO);
+	public void selectDelete_trade(TradeVO tradeVO);
 	
 	
 	// 글보기
