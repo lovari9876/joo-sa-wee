@@ -36,7 +36,7 @@
 						<li><a class="gameinfo" href="">보드게임 정보</a>
 							<ul class="sub-menu">
 								<li><a href="">당신의 보드게임</a></li>
-								<li><a href="">보드게임 리스트</a></li>
+								<li><a href="game_info">보드게임 리스트</a></li>
 							</ul></li>
 						<li><a class="comm" href="list_home">커뮤니티</a>
 							<ul class="sub-menu">
