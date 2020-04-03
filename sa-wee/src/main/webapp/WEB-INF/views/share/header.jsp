@@ -25,7 +25,7 @@
 	<!-- 상단바 전체 -->
 	<!-- Header section -->
 	<header class="header-section">
-		<div class="dice">내 사위는 주사위</div>
+		<div class="dice"><a href="/" style="color: white">내 사위는 주사위</a></div>
 		<div class="header-warp">
 			<div class="header-bar-warp d-flex ">
 				<nav class="top-nav-area w-100">
@@ -55,12 +55,12 @@
 								<li><a href="selectAllReviewList">카페리뷰 리스트</a></li>
 							</ul>
 						</li>
-						<li><a href="blog">보부상</a></li>
+						<li><a href="tlist">보부상</a></li>
 						<li><a class="help" href="contact">헬프데스크</a>
 							<ul class="sub-menu">
 								<li><a href="">자주하는 질문</a></li>
 								<li><a href="question_list">1 : 1 문의 </a></li>
-								<li><a href="">무인도 </a></li>
+								<li><a href="island_list">무인도 </a></li>
 							</ul></li>
 						<!-- 검색창  -->
 						<li><div class="mysearch relative">

@@ -49,14 +49,14 @@
 					<a href="cafe_map"><h3>보드게임 카페</h3></a>
 				</div>
 				<div class="col-6 col-md-3 mb-4 mb-md-0">
-					<a href="#"><h3>보부상</h3></a>
+					<a href="tlist"><h3>보부상</h3></a>
 				</div>
 				<div class="col-6 col-md-3 mb-4 mb-md-0">
 					<a href=""><h3>헬프데스크</h3></a>
 					<ul class="list-unstyled">
 						<li><a href="#">자주하는 질문</a></li>
 						<li><a href="question_list">1:1 문의</a></li>
-						<li><a href="#">무인도</a></li>
+						<li><a href="island_list">무인도</a></li>
 					</ul>
 				</div>				
 			</div>

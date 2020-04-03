@@ -57,7 +57,7 @@
 
             <div class="col-twelve tab-full">
 
-                <h1>무인도</h1> <!-- 글씨체 바꾸기 -->
+                <h1><a href="/island_list" style="color:black">무인도</a></h1>
 
                 <p class="lead">무인도에 갇히셨나요?
                 	<br>얼른 수정해서 있어야 할 곳으로 돌아가세요.
@@ -88,6 +88,8 @@
 					        	event.preventDefault(); // event canceled 막기!
 					          	self.location = "/island_list" 
 					          				+ '${pageMaker.makeQuery(1)}' 
+					          				/* + "&bt="
+					          				+ $("#s_content option:selected").val()  */
 					          				+ "&searchType=" 
 					          				+ $("select option:selected").val() 
 					          				+ "&keyword=" 
@@ -98,9 +100,10 @@
 		              
 		            </div>
 		            
-		            <div class="custom-select">
-		              <select><!-- data-trigger="" name="choices-single-defaul" -->
-						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
+		            <!-- 게시판도 동시 검색해야 할 때 추가하기... -->
+		<%--             <div class="custom-select">
+		              <select id="searchType" name="searchType"><!-- data-trigger="" name="choices-single-defaul" -->
+						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>게시판</option>
 					      <option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 					      <option value="c" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 					      <option value="w" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
@@ -108,9 +111,9 @@
 		                  <option>말머리</option>
 		              </select>		      
 		              <div class="select__arrow"></div>
-		            </div>  
+		            </div>  --%> 
 		            <div class="custom-select">
-		              <select><!-- data-trigger="" name="choices-single-defaul" -->
+		              <select id="searchType" name="searchType"><!-- data-trigger="" name="choices-single-defaul" -->
 						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
 					      <option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 					      <option value="c" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>

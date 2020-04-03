@@ -2883,8 +2883,7 @@ to {
 	box-shadow: 0 .170rem .50rem rgba(65, 41, 73, 0.4) !important;
 }
 
-/* ============ search--select ============== */
-/*the container must be positioned relative:*/
+
 /* ============ search--select ============== */
 /*the container must be positioned relative:*/
 .search--div .custom-select {
@@ -2935,7 +2934,7 @@ to {
 	color: #272727;	
 }
 
-/* 화살표 색깔 연보라 */
+/* 화살표 색깔 진보라 */
 .select__arrow{
   position: absolute;
   top :16px;
@@ -2945,7 +2944,7 @@ to {
   pointer-events: none;
   border-style :solid;
   border-width: 8px 5px 0 5px;
-  border-color: #9575df transparent transparent transparent;
+  border-color: #2e005b transparent transparent transparent;
 }
 
 
@@ -2963,12 +2962,12 @@ to {
   width: 0;
   height: 0;
   border: 6px solid transparent;
-  border-color: #9575df transparent transparent transparent;
+  border-color: #2e005b transparent transparent transparent;
 }
 
 /*point the arrow upwards when the select box is open (active):*/
 .select-selected.select-arrow-active:after {
-  border-color: transparent transparent #9575df transparent;
+  border-color: transparent transparent #2e005b transparent;
   top: 7px;
 }
 
