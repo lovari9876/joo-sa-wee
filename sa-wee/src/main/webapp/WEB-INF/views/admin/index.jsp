@@ -38,13 +38,13 @@
 		<div class="content">
 			<div class="btn-controls">
 				<div class="btn-box-row row-fluid">
-					<a class="btn-box big span3"><i class="icon-shopping-cart"></i><b>${sessionScope.totalCount}</b>
-						<p class="text-muted">방문자 수</p> </a> <!-- ${sessionScope.todayCount} -->
-					<a class="btn-box big span3"><i class="icon-user"></i><b>675</b>
+					<a class="btn-box big span3"><i class="icon-thumbs-up"></i><b>${sessionScope.totalCount}</b>
+						<p class="text-muted">방문자 수</p> </a> 
+					<a class="btn-box big span3"><i class="icon-user"></i><b>${count_member}</b>
 						<p class="text-muted">회원 수</p></a>
-					<a class="btn-box big span3"><i class="icon-list-ul"></i><b>15,552</b>
+					<a class="btn-box big span3"><i class="icon-list-ul"></i><b>${count_board}</b>
 						<p class="text-muted">게시글 수</p> </a>
-					<a	class="btn-box big span3"><i class="icon-comments"></i><b>148,545</b>
+					<a	class="btn-box big span3"><i class="icon-comments"></i><b>${count_comment}</b>
 						<p class="text-muted">댓글 수</p> </a>
 						
 						

@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +55,10 @@ public class AdminController {
 	
 
 	@RequestMapping("/index")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("count_board", adminService.allBoard());
+		model.addAttribute("count_member", adminService.allMember());
+		model.addAttribute("count_comment", adminService.allComment());
 
 		return "admin/index";
 	}
@@ -226,13 +231,20 @@ public class AdminController {
 	
 	
 	@RequestMapping(value = "/board_list_trade", method = RequestMethod.GET)
-	public String board_list_trade(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String board_list_trade(Model model, @ModelAttribute("scri") SearchCriteria scri, 
+			/*@RequestParam(name="s_content", defaultValue = "n") String s_content, */ HttpServletRequest rq) throws Exception {
+		//@RequestParam으로 받으면, 처음에 검색어 없이 /tlist로 갈때는 없는 파라미터 오류 발생
+		
+		String s_content = rq.getParameter("s_content");
+		
+		
 		scri.setPerPageNum(15);
-		model.addAttribute("board_list_trade", secondhandService.selectTradeList(scri));
-
+		model.addAttribute("board_list_trade", secondhandService.selectTradeList(scri, s_content));
+		model.addAttribute("s_content", s_content); 
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(secondhandService.tradeListCount(scri));
+		pageMaker.setTotalCount(secondhandService.tradeListCount(scri, s_content));
 	
 		
 		model.addAttribute("pageMaker", pageMaker );

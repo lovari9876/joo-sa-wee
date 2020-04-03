@@ -93,14 +93,18 @@ public interface AdminMapper {
 	
 	// 방문자수 
 	public void setTotalCount(); // session 단위로 현재시간을 date 타입 데이터로 insert 
-	public int getTodayCount();
-	public int getTotalCount();
+	public int getTodayCount();	//오늘 방문자수
+	public int getTotalCount();	//전체 방문자수
 	
 	//통계
-	public int getTodayBoard();
-	public int getTodayComment();
-	public int getTodayTrade();
+	public int getTodayBoard();	//오늘 글 개수
+	public int getTodayComment();//오늘 댓글개수
+	public int getTodayTrade();	//오늘 성사된 중고거래 개수
 
-	public void statisticsInsert(StatisticsVO statVo);
+	public void statisticsInsert(StatisticsVO statVo); //위의 데이터 insert
+	
+	public int allMember(); //전체 회원수
+	public int allComment();//전체 댓글수
+	public int allBoard();	//전체 게시글수
 
 }

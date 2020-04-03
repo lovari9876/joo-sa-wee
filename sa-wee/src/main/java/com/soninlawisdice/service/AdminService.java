@@ -83,4 +83,11 @@ public interface AdminService {
 	public int getTodayTrade();
 
 	public void statisticsInsert(StatisticsVO statVo);
+	
+	public int allMember(); //전체 회원수
+	public int allComment();//전체 댓글수
+	public int allBoard();	//전체 게시글수
+
+	
+	
 }

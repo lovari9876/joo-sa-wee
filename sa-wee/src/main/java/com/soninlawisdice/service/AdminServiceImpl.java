@@ -209,4 +209,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	
+	@Override
+	public int allMember() {
+		return adminMapper.allMember();
+	}
+	@Override
+	public int allComment() {
+		return adminMapper.allComment();
+	}
+	@Override
+	public int allBoard() {
+		return adminMapper.allBoard();
+	}
+	
 }
