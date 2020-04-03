@@ -100,13 +100,23 @@ public interface BoardMapper {
 	//리뷰 수정하기
 	public void review_modify(@Param("cafe_reivewVO")Cafe_reviewVO cafe_reviewVO);
 	
+	//리뷰 삭제하기
+	public void review_delete(@Param("cr_no")String cr_no);
 	
 
 	////////////////////////// 1 : 1 문의 /////////////////////////////
+	
+	//문의 리스트
+	public ArrayList<HashMap<String, Object>> selectQuestionList();
+	//문의 작성
 	public void insertQuestion(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
-	
-	
+	//문의 보기//비밀글때문에 따로
+	public HashMap<String, Object> selectQuestionOne(@Param("bw_no")String bw_no);
+	//문의 수정
+	public void modifyQuestion(@Param("board_writeVO") Board_writeVO board_writeVO);
+	//문의 삭제
+	public void deleteQuestion(@Param("bw_no")String bw_no);
 	
 	
 	

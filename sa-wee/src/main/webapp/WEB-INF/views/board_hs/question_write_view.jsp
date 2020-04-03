@@ -116,7 +116,7 @@
 
 						
 					</table>
-					<button class = "list" type="button" onclick="location.href='list'">목록</button>
+					<button class = "list" type="button" onclick="location.href='question_list'">목록</button>
 					<button class = "write-btn" type = "submit">작성완료</button>
 				</form>
 

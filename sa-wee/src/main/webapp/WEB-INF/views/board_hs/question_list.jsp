@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,8 +12,6 @@
 <!-- 파피콘 -->
 <link rel="icon" type="image/png"
 	href="resources/images/share/wolf_logo.ico" />
-
-<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
 <!-- Google Font -->
 <link
@@ -29,11 +28,12 @@
 <link rel="stylesheet" href="css/board_hs/magnific-popup.css" />
 <link rel="stylesheet" href="css/board_hs/animate.css" />
 <link rel="stylesheet" href="css/board_hs/linearicons.css" />
+<link type="text/css" href="images/admin/icons/css/font-awesome.css"rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- <script src="https://kit.fontawesome.com/4b0668ef4e.js" crossorigin="anonymous"></script> -->
+
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
@@ -48,29 +48,28 @@
 		<div class="loader"></div>
 	</div>
 
-
 	<!-- Header section -->
 	
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
 	<!-- header include end -->
 	
-
-
+	
+	
 	<div class="limiter">
 		<div class="container-table100">
 			<div class="wrap-table100">
 
 				<div class="listName">
 					<h3>1 : 1 문의</h3>
-					<p> 1 : 1 로 문의하는 곳입니다. 문의하세요 </p>
+					<p>문의하세요</p>
 				</div>
 
 
 				<!-- Search Bar  -->
 				<form action="">
 
-					<div class="q-search">
+					<div class="search">
 
 						<select>
 							<option value="0" selected>전체</option>
@@ -93,11 +92,75 @@
 
 
 				<!-- 리스트 -->
-				<div class="q-tab-table">
-	
-					<!-- 테이블  -->
-					<div id="tab1" class="q-tabcontent current">
+				<div class=tab-table>
+					<!-- 탭부분 -->
+					<ul class="tab">
+						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
+						<li data-tab="tab2"><button type = "button" value = "27" class = "select">회원 관련 문의</button></li>
+						<li data-tab="tab3"><button type = "button" value = "28" class= "select">결제 관련 문의</button></li>
+						<li data-tab="tab4"><button type = "button" value = "29" class = "select">정보수정 요청</button></li>
+						<li data-tab="tab5"><button type = "button" value = "30" class = "select">무인도 관련 문의</button></li>
+						<li data-tab="tab6"><button type = "button" value = "31" class= "select">기타 문의</button></li>
+					</ul>
 
+
+					<!-- 테이블  -->
+					<div id="tab1" class="tabcontent current">
+						<table class="table">
+
+
+							<tr class="row header">
+								<td class="cell">글 번호</td>
+								<td class="cell">말머리</td>
+								<td class="cell">글 제목</td>
+								<td class="cell">작성자</td>
+								<td class="cell">작성일</td>
+								<td class="cell">조회수</td>
+							</tr>
+
+						<tbody class = "tbody">
+							<c:forEach items="${question}" var="question">
+							<tr class="row">
+								<td class = "cell">${question['BW_NO']}</td>
+								<td class = "cell">${question['S_CONTENT']}</td>
+								<td class = "cell"><a href="question_content_view?bw_no=${question['BW_NO']}">${question['BW_TITLE']}</a></td>
+								<td class = "cell">${question['M_NICK']}</td>
+								<td class = "cell">${question['BW_WRITTEN_DATE']}</td>
+								<td class = "cell">${question['BW_HIT']}</td>
+							</tr>
+							</c:forEach>
+						</tbody>
+
+						</table>
+
+					</div>
+
+					
+					<!-- 여기서부터는 말머리 선택 부분이라  -->
+					<div id="tab2" class="tabcontent">
+						<table class="table">
+
+							
+							<tr class="row header">
+								<td class="cell">글 번호</td>
+								<td class="cell">글 제목</td>
+								<td class="cell">작성자</td>
+								<td class="cell">작성일</td>
+								<td class="cell">조회수</td>
+								<td class="cell">추천수</td>
+							</tr>
+							
+							<tbody class = "tbody test">
+							
+						</tbody>
+							
+							
+
+						</table>
+
+					</div>
+
+					<div id="tab3" class="tabcontent">
 						<table class="table">
 
 
@@ -106,118 +169,106 @@
 								<td class="cell">글 제목</td>
 								<td class="cell">작성자</td>
 								<td class="cell">작성일</td>
+								<td class="cell">조회수</td>
+								<td class="cell">추천수</td>
 							</tr>
 
-							<tr class="row">
-								<td class="cell">1</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">2</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">3</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">4</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">5</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">6</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">7</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">8</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">9</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">10</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">11</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">12</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">13</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">14</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
-							<tr class="row">
-								<td class="cell">15</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-								<td class="cell">Vincent Williamson</td>
-							</tr>
-
+							<tbody class = "tbody test">
+							
+						</tbody>
+							
 						</table>
 
 					</div>
 
+					<div id="tab4" class="tabcontent">
+						<table class="table">
+
+
+							<tr class="row header">
+								<td class="cell">글 번호</td>
+								<td class="cell">글 제목</td>
+								<td class="cell">작성자</td>
+								<td class="cell">작성일</td>
+								<td class="cell">조회수</td>
+								<td class="cell">추천수</td>
+							</tr>
+
+						
+							<tbody class = "tbody test">
+							
+						</tbody>
+							
+							
+						</table>
+					</div>
+					
+					<div id="tab5" class="tabcontent">
+						<table class="table">
+
+
+							<tr class="row header">
+								<td class="cell">글 번호</td>
+								<td class="cell">글 제목</td>
+								<td class="cell">작성자</td>
+								<td class="cell">작성일</td>
+								<td class="cell">조회수</td>
+								<td class="cell">추천수</td>
+							</tr>
+
+						
+							<tbody class = "tbody test">
+							
+						</tbody>
+							
+							
+						</table>
+					</div>
+					
+					<div id="tab6" class="tabcontent">
+						<table class="table">
+
+
+							<tr class="row header">
+								<td class="cell">글 번호</td>
+								<td class="cell">글 제목</td>
+								<td class="cell">작성자</td>
+								<td class="cell">작성일</td>
+								<td class="cell">조회수</td>
+								<td class="cell">추천수</td>
+							</tr>
+
+						
+							<tbody class = "tbody test">
+							
+						</tbody>
+							
+							
+						</table>
+					</div>
 				</div>
+				
+				<div class="pagination pagination-centered">
+						<ul>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="board_story${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="board_story${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="board_story${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
+						</ul>
+					</div>
+				
 
 				<!-- 버튼에 링크 걸기 -->
 				<button class="write-view-btn" type="button"
@@ -234,13 +285,10 @@
 	<!-- footer include start -->
 	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
 	<!-- footer include end -->
-
-
-
+	
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/board_hs/jquery.min.js"></script>
 	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
 	<script src="js/board_hs/bootstrap.min.js"></script>
 	<script src="js/board_hs/jquery.slicknav.min.js"></script>
@@ -254,6 +302,8 @@
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
+	<script src="js/board_hs/tabdata.js" type="text/javascript"></script>
+	<script src="js/board_hs/button.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
 
 </body>

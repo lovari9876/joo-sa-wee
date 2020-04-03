@@ -73,7 +73,7 @@
 				<!-- 수정하는 부분의 각각 value 를 ex) ${detail.TITLE} 이런식으로 받아와야함-->
 				<!--  -->
 				
-				<form action="modify" method = "post" enctype="multipart/form-data">
+				<form action="board_modify" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
 						<input type="hidden" name="bw_no" value="${content_view.bw_no}"/>
 						<input type="hidden" id="bt_no" value="${content_view.bt_no}"/>

@@ -185,11 +185,34 @@ public class BoardServiceImpl implements BoardService {
 	public void review_modify(Cafe_reviewVO cafe_reviewVO) {
 		boardMapper.review_modify(cafe_reviewVO);
 	}
+	
+	//리뷰 삭제하기
+	@Override
+	public void review_delete(String cr_no) {
+		boardMapper.review_delete(cr_no);
+	}
+		
 
 	
 	//////////////////////////1 : 1 문의 /////////////////////////////
 	@Override
+	public ArrayList<HashMap<String, Object>> selectQuestionList() {
+		return boardMapper.selectQuestionList();
+	}
+	@Override
 	public void insertQuestion(Board_writeVO board_writeVO) {
 		boardMapper.insertQuestion(board_writeVO);
+	}
+	@Override
+	public HashMap<String, Object> selectQuestionOne(String bw_no) {
+		return boardMapper.selectQuestionOne(bw_no);
+	}
+	@Override
+	public void modifyQuestion(Board_writeVO board_writeVO) {
+		boardMapper.modifyQuestion(board_writeVO);
+	}
+	@Override
+	public void deleteQuestion(String bw_no) {
+		boardMapper.deleteQuestion(bw_no);
 	}
 }

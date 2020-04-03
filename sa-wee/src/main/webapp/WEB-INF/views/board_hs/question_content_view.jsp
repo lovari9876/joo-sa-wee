@@ -54,6 +54,7 @@
 	<!-- header include end -->
 
 	<!-- HOME -->
+	<!-- 여기 이미지만 바꾸면 됨.  -->
 	<section class="section-hero overlay inner-page bg-image"
 		style="background-image: url('images/board_hj/lavender_dot.png');"
 		id="home-section">
@@ -64,27 +65,26 @@
 						<!-- 게시판이름과 게시글 작성자 -->
 						<div class="title">
 							<div class="title_item frist">
-								<h4 id="community">${cafe_review['C_TITLE']}</h4>
+								<h4 id="community">132 : 111 문의</h4>
 								<span class="slash">&bullet;</span> 
+								<span class="slash">${question['S_CONTENT']}</span>
 								
 							</div>
 							<div class="title_item second">
-								<span class="slash">추천수(</span><span class="slash rec">${cafe_review['CR_RECOMMEND_NUM']}</span><span class="slash">)</span> 
-								<span class="slash">&bullet;</span>
-								<span class="slash">조회수(${cafe_review['CR_HIT']})</span>
+								<span class="slash">조회수(${question['BW_HIT']})</span>
 							</div>
 						</div>
 						<div>
-							<span class="text-white">작성자 ${cafe_review['M_NICK']}</span>
+							<span class="text-white">작성자 ${question['M_NICK']}</span>
 							<span class="slash">&bullet;</span> 
-							<span class="text-white">작성일 ${cafe_review['CR_WRITTEN_DATE']}</span> 
+							<span class="text-white">작성일 ${question['BW_WRITTEN_DATE']}</span> 
 							<span class="slash">&bullet;</span>
-							<span class="text-white">수정일 ${cafe_review['CR_UPDATED_DATE']}</span>
+							<span class="text-white">수정일 ${question['BW_UPDATED_DATE']}</span>
 						</div>
 					</div>
 					<br />
 					<!-- 게시글 제목 -->
-					<h2 class="text-white">${cafe_review.cr_title}</h2>
+					<h2 class="text-white">${question['BW_TITLE']}</h2>
 				</div>
 			</div>
 		</div>
@@ -97,72 +97,10 @@
 				<div class="col-lg-8 blog-content">
 					<h3 class="mb-4">Lorem ipsum dolor sit amet consectetur
 						adipisicing elit</h3>
-					<p class="lead">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Assumenda nihil aspernatur nemo sunt, qui, harum
-						repudiandae quisquam eaque dolore itaque quod tenetur quo quos
-						labore?</p>
-					<p>
-						<img src="images/board_hj/job_single_img_1.jpg" alt="Image"
-							class="img-fluid rounded">
-					</p>
+					
 
-					<p>${cafe_review.cr_content}</p>
+					<p>${question['BW_CONTENT']}</p>
 
-					<blockquote>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Provident vero tempora aliquam excepturi labore, ad soluta
-							voluptate necessitatibus. Nulla error beatae, quam, facilis
-							suscipit quaerat aperiam minima eveniet quis placeat.</p>
-					</blockquote>
-
-					<p>Eveniet deleniti accusantium nulla natus nobis nam
-						asperiores ipsa minima laudantium vero cumque cupiditate ipsum
-						ratione dicta, expedita quae, officiis provident harum nisi! Esse
-						eligendi ab molestias, quod nostrum hic saepe repudiandae non.
-						Suscipit reiciendis tempora ut, saepe temporibus nemo.</p>
-					<h4 class="mt-5 mb-4">Lorem ipsum dolor sit amet consectetur
-						adipisicing elit</h4>
-					<p>Accusamus, temporibus, ullam. Voluptate consectetur laborum
-						totam sunt culpa repellat, dolore voluptas. Quaerat cum ducimus
-						aut distinctio sit, facilis corporis ab vel alias, voluptas
-						aliquam, expedita molestias quisquam sequi eligendi nobis ea error
-						omnis consequatur iste deleniti illum, dolorum odit.</p>
-					<p>In adipisci corporis at delectus! Cupiditate, voluptas, in
-						architecto odit id error reprehenderit quam quibusdam excepturi
-						distinctio dicta laborum deserunt qui labore dignissimos
-						necessitatibus reiciendis tenetur corporis quas explicabo
-						exercitationem suscipit. Nisi quo nulla, nihil harum obcaecati vel
-						atque quos.</p>
-					<p>Amet sint explicabo maxime accusantium qui dicta enim quia,
-						nostrum id libero voluptates quae suscipit dolor quam tenetur
-						dolores inventore illo laborum, corporis non ex, debitis quidem
-						obcaecati! Praesentium maiores illo atque error! Earum, et, fugit.
-						Sint, delectus molestiae. Totam.</p>
-
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Culpa iste, repudiandae facere aperiam sapiente, officia delectus
-						soluta molestiae nihil corporis animi quos ratione qui labore?
-						Sint eaque perspiciatis minus illum.</p>
-					<p>Consectetur porro odio quod iure quaerat cupiditate
-						similique, dolor reprehenderit molestias provident, esse dolorum
-						omnis architecto magni amet corrupti neque ratione sunt beatae
-						perspiciatis? Iste pariatur omnis sed ut itaque.</p>
-					<p>Id similique, rem ipsam accusantium iusto dolores sit velit
-						ex quas ea atque, molestiae. Sint, sed. Quisquam, suscipit!
-						Quisquam quibusdam maiores fugiat eligendi eius consequuntur,
-						molestiae saepe commodi expedita nemo!</p>
-
-					<!-- 추천 -->
-					<br /> <br />
-					<div align="center" class="tooltip-purple">
-						<input class="good" type="image" src="images/board_hj/good.png"
-							name="button" id="rec_btn" value="${cafe_review['CR_NO']}"
-							data-toggle="tooltip" data-container=".tooltip-purple"
-							data-placement="top" title="추천 +1">
-						<p>
-							<span>(</span><span class="rec">${cafe_review['CR_RECOMMEND_NUM']}</span><span>)</span>
-						</p>
-					</div>
 
 					<br />
 					<br />
@@ -170,16 +108,16 @@
 					<form action="" method="get">
 						<div class="test">
 							<div class="test_item first">
-								<input type="submit" value="목록" class="btn btn-lavender btn-md">
+								<input type = "button" onclick ="location.href='question_list'" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item second">
-								<a href="#">수정</a>
+								<a href="question_modify_view?bw_no=${question['BW_NO']}">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="delete?cr_no=${cafe_review.cr_no}">삭제</a>
+								<a href="question_delete?bw_no=${question['BW_NO']}">삭제</a>
 							</div>
 							<div class="test_item fourth">
-								<a href="content/report_view_cr?cr_no=${cafe_review_view['CR_NO']}"
+								<a href="content/report_view_bw?bw_no=${question['BW_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 							</div>
 						</div>

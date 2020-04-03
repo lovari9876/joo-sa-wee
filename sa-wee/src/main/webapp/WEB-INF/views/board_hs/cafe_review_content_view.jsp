@@ -84,7 +84,7 @@
 					</div>
 					<br />
 					<!-- 게시글 제목 -->
-					<h2 class="text-white">${cafe_review.cr_title}</h2>
+					<h2 class="text-white">${cafe_review['CR_TITLE']}</h2>
 				</div>
 			</div>
 		</div>
@@ -106,7 +106,7 @@
 							class="img-fluid rounded">
 					</p>
 
-					<p>${cafe_review.cr_content}</p>
+					<p>${cafe_review['CR_CONTENT']}</p>
 
 					<blockquote>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -170,13 +170,13 @@
 					<form action="" method="get">
 						<div class="test">
 							<div class="test_item first">
-								<input type="submit" value="목록" class="btn btn-lavender btn-md">
+								<input type = "button" onclick ="location.href='cafe_info?c_no ='${cafe_review['CR_NO']}" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item second">
-								<a href="#">수정</a>
+								<a href="review_modify_view?cr_no=${cafe_review['CR_NO']}">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="delete?cr_no=${cafe_review.cr_no}">삭제</a>
+								<a href="review_delete?cr_no=${cafe_review['CR_NO']}">삭제</a>
 							</div>
 							<div class="test_item fourth">
 								<a href="content/report_view_cr?cr_no=${cafe_review_view['CR_NO']}"
