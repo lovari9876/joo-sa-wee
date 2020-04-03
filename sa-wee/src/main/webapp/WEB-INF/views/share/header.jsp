@@ -25,7 +25,12 @@
 	<!-- 상단바 전체 -->
 	<!-- Header section -->
 	<header class="header-section">
-		<div class="dice"><a href="/" style="color: white">내 사위는 주사위</a></div>
+		<div class="dice">
+			<!-- 혜수야 부탁해^^ -->
+			<img class="wolf" src="/images/share/wolf_all_white.png"></img>
+			
+			<a href="/" style="color: white">내 사위는 주사위</a>
+		</div>
 		<div class="header-warp">
 			<div class="header-bar-warp d-flex ">
 				<nav class="top-nav-area w-100">

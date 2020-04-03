@@ -369,6 +369,11 @@ button span.lnr-magnifier {
 	display: none;
 }
 
+/* 로고: 사이트 이름 왼쪽  */
+.wolf {
+	max-width: 60px; /* 크기는 이정도로 하되, 위치 좀 내려주삼 */
+}
+
 
 /* ---------------------------------
 * responsive header
