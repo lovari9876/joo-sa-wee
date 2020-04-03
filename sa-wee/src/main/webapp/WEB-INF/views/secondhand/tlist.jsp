@@ -46,7 +46,7 @@
 
         <div class="row narrow">
             <div class="col-full s-content__header" data-aos="fade-up">
-                <h1>보부상</h1>
+                <h1><a href="/tlist" style="color:black">보부상</a></h1>
 
                 <p class="lead">보부상은 중고거래 게시판입니다. 
                 	<br>당신은 어떤 보드게임을 원하시나요? 당신이 원하던 그것. 바로 이 곳에 있습니다.

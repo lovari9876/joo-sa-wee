@@ -79,7 +79,8 @@
 			<if test="scri.searchType == 't'.toString()">AND T_TITLE LIKE '%' || #{scri.keyword} || '%'</if>
 			<if test="scri.searchType == 'c'.toString()">AND T_CONTENT LIKE '%' || #{scri.keyword} || '%'</if>
 			<if test="scri.searchType == 'w'.toString()">AND M_NICK LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'tc'.toString()">AND (T_TITLE LIKE '%' || #{scri.keyword} || '%') or (T_CONTENT LIKE '%' || #{scri.keyword} || '%')</if>
+			<if test="scri.searchType == 'tc'.toString()">
+					AND (T_TITLE LIKE '%' || #{scri.keyword} || '%') or (T_CONTENT LIKE '%' || #{scri.keyword} || '%')</if>
 		</if>
 	</sql>
 	

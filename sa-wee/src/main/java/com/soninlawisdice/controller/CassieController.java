@@ -34,6 +34,8 @@ public class CassieController {
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
 	public String tlist(Model model, @ModelAttribute("scri") SearchCriteria scri,
 			/*@RequestParam(name="s_content", defaultValue = "n") String s_content, */ HttpServletRequest rq) {
+		//@RequestParam으로 받으면, 처음에 검색어 없이 /tlist로 갈때는 없는 파라미터 오류 발생
+		
 		// 스프링 컨테이너가
 		// SearchCriteria scri = new SearchCriteria();
 		// model.attribute("scri", scri)
@@ -83,7 +85,8 @@ public class CassieController {
 
 		// 사이즈 찍어보기
 		System.out.println(iList.size());
-		System.out.println(iList.get(0).toString()); // String key는 반드시 대문자로!
+//		System.out.println(iList.get(0).toString()); // String key는 반드시 대문자로! 
+//		이 시험 출력을 계속 두면, 받아올 리스트가 없는 상황에서는 index 없다고 오류난다....	
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
