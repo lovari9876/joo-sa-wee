@@ -65,7 +65,7 @@
 		    
 		     <!-- **** change view -->
 		      <!-- 리스트 뷰와 masonry 뷰를 switch하기 위한 버튼 -->
-		      <button class="view-btn"><i class="fa fa-bars"></i></button>
+		      <button id="view-btn"><i class="fa fa-bars"></i></button>
 		
 		      <!-- Custom rounded search bars with input group -->
 		      <form role="form">		

@@ -36,12 +36,22 @@ $(document).ready(function(){
 		  var list = '<i class="fa fa-bars"></i>';
 		  var squre = '<i class="fas fa-th-large"></i>';
 		  
-		  if($("button.view-btn").innerHTML==list) {
-			  $("button.view-btn").html(squre);
+		  if($("button.view-btn i").innerHTML==list) {
+			  $("button.view-btn i").toggleClass("iconize");
 			  
 		  }else{
-			  $("button.view-btn").html(list);
+			  $(this).toggleClass("iconize");
 		  }
 	    
 	  });
 });
+
+document.getElementById("w8-d-blue").addEventListener("click", function (e) {
+    var target = e.target;
+
+    target.classList.toggle("iconize");
+    target.classList.toggle("iconize2");
+}, false);
+
+
+
