@@ -179,7 +179,7 @@ public class ContentServiceImpl implements ContentService {
 		return contentMapper.selectCommentCR(cm_no);
 	}
 
-	// 댓글 수정하기
+	// 댓글 수정
 	@Override
 	public void updateCommentOne(CM_commentVO cm_commentVO) {
 		
@@ -192,6 +192,14 @@ public class ContentServiceImpl implements ContentService {
 	public ArrayList<HashMap<String, Object>> selectCommentList(String cm_no) {
 		
 		return contentMapper.selectCommentList(cm_no);
+	}
+
+	// 댓글 삭제
+	@Override
+	public void deleteComment(CM_commentVO cm_commentVO) {
+		
+		contentMapper.deleteComment(cm_commentVO);
+		
 	}
 	 
 

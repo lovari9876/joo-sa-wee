@@ -286,7 +286,7 @@
 		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
 	</select>
 	
-	<!-- 댓글 수정하기 -->
+	<!-- 댓글 수정 -->
 	<update id="updateCommentOne">
 		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
 	</update>
@@ -304,7 +304,11 @@
 		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
 		ORDER BY CM.CM_WRITTEN_DATE DESC
 	</select>
-
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment">
+		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+	</delete>
 
 	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면 -->
 	<!-- 자동으로 현재시간이 입력된다. -->

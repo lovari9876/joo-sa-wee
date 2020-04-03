@@ -53,8 +53,10 @@ public interface ContentMapper {
 	
 	public HashMap<String, Object> selectCommentCR(String cm_no); // 중고거래 댓글 보기
 	
-	public void updateCommentOne(CM_commentVO cm_commentVO); // 댓글 수정하기
+	public void updateCommentOne(CM_commentVO cm_commentVO); // 댓글 수정
 	
 	public ArrayList<HashMap<String, Object>> selectCommentList(String cm_no); // 댓글 목록
+	
+	public void deleteComment(CM_commentVO cm_commentVO); // 댓글 삭제
 	
 }

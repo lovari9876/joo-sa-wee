@@ -236,7 +236,7 @@ public class HeeJeongController {
 		return "content/comment_modify_view";
 	}
 	
-	// 댓글 수정하기
+	// 댓글 수정
 	@RequestMapping(value = "/comment_modify", method = RequestMethod.GET)
 	public String comment_modify(CM_commentVO cm_commentVO, Model model) {
 		System.out.println("comment_modify");
@@ -244,6 +244,19 @@ public class HeeJeongController {
 		contentService.updateCommentOne(cm_commentVO);
 		
 		return "content/comment_modi_success";
+	}
+	
+	// 댓글 삭제
+	@RequestMapping(value = "/comment_delete", method = RequestMethod.GET)
+	public String comment_delete(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
+									Model model, @RequestParam int bw_no, RedirectAttributes re) {
+		System.out.println("comment_delete");
+		
+		contentService.deleteComment(cm_commentVO);
+	
+		re.addAttribute("bw_no", bw_no);
+			
+		return "redirect:/content_view";
 	}
 	
 	

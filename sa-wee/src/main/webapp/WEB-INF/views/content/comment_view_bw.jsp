@@ -96,7 +96,7 @@
 									data-placement="top" title="수정"></a>
 							</div>
 							<div class="test_item del tooltip-purple">
-								<a class="fas fa-trash-alt fa-lg no-text-deco" href="#"
+								<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete?cm_no=${comment_list[status.index]['CM_NO']}&bw_no=${content_view['BW_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="삭제"></a>
 							</div>
