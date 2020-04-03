@@ -105,6 +105,9 @@ public interface BoardService {
 	//리뷰 수정하기
 	public void review_modify(Cafe_reviewVO cafe_reviewVO);
 	
+	//리뷰 삭제하기
+	public void review_delete(String cr_no);
+	
 	
 	//////////////////////////1 : 1 문의 /////////////////////////////
 	public void insertQuestion(Board_writeVO board_writeVO);

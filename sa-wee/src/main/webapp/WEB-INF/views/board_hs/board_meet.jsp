@@ -102,11 +102,6 @@
 
 					<!-- 테이블  -->
 					<div id="tab1" class="tabcontent current">
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
 						<table class="table">
 
 
@@ -141,14 +136,6 @@
 					
 					<!-- 여기서부터는 말머리 선택 부분이라  -->
 					<div id="tab2" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
 						<table class="table">
 
 							
@@ -172,14 +159,6 @@
 					</div>
 
 					<div id="tab3" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
 						<table class="table">
 
 
@@ -205,7 +184,7 @@
 
 				<!-- 버튼에 링크 걸기 -->
 				<button class="write-view-btn" type="button"
-					onclick="location.href='write_view?bt_no=3'">글쓰기</button>
+					onclick="location.href='board_write_view?bt_no=3'">글쓰기</button>
 
 
 			</div>

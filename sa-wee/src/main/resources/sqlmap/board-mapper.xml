@@ -275,10 +275,14 @@
 	</insert>
 	
 	<!--리뷰 수정하기  -->
-	<update id="review_modify">
-		update cafe_review set cr_title = #{cafe_reivewVO.cr_title}, bw_content = #{cafe_reivewVO.cr_content} where cr_no = #{cafe_reivewVO.cr_no}
+	<update id="review_modify" parameterType="com.soninlawisdice.vo.Cafe_reviewVO">
+		update cafe_review set cr_title = #{cafe_reivewVO.cr_title}, cr_content = #{cafe_reivewVO.cr_content} where cr_no = #{cafe_reivewVO.cr_no}
 	</update>
 	
+	<!-- 리뷰삭제하기 -->
+	<delete id="review_delete">
+		delete from cafe_review where cr_no = #{cr_no}
+	</delete>
 	
 	
 	
@@ -294,6 +298,11 @@
 	
 	<!-- content_view 따로 만들지, 있는거 수정할지. -->
 	<!-- 비밀글은 못보게 하는거.(따로 페이지로 보내야하는지 alert 띄워야하는지 -->
+	<select id = "selectQuestionOne" resultType = "java.util.HashMap">
+		select  from board_write br, member m, subject s
+		where bw.m_no = m.m_no and bw.bw_s._no
+	</select>
+	
 	
 	<!--1:1문의 작성하기  m_no 수정해야함 //bt_no 은 수정할 필요 없을 듯-->
 	<insert id = "insertQuestion" parameterType="com.soninlawisdice.vo.Board_writeVO">

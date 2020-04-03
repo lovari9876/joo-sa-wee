@@ -185,6 +185,12 @@ public class BoardServiceImpl implements BoardService {
 	public void review_modify(Cafe_reviewVO cafe_reviewVO) {
 		boardMapper.review_modify(cafe_reviewVO);
 	}
+	
+	//리뷰 삭제하기
+	public void review_delete(String cr_no) {
+		boardMapper.review_delete(cr_no);
+	}
+		
 
 	
 	//////////////////////////1 : 1 문의 /////////////////////////////

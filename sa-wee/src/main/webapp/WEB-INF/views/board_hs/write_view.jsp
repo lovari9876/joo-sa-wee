@@ -76,7 +76,7 @@
 				
 				
 				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
-				<form action="write" method = "post" enctype="multipart/form-data">
+				<form action="board_write" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
 						<input id = "bt_no" type = "hidden" name = "bt_no" value = "${bt_no}"/>
 						<tr class = "row">
@@ -101,7 +101,7 @@
 
 						
 					</table>
-					<button class = "list" type="button" onclick="location.href='list'">목록</button>
+					<button class = "list" type="button" onclick="toList()">목록</button>
 					<button class = "write-btn" type = "submit">작성완료</button>
 				</form>
 
@@ -137,6 +137,7 @@
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	<script src="js/board_hs/category.js"></script>
+	<script src="js/board_hs/toList.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
 	
 	
