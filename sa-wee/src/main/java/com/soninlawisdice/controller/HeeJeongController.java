@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.ContentService;
@@ -221,11 +222,28 @@ public class HeeJeongController {
 		return "content/content_view";
 	}
 	
-	@RequestMapping(value = "/comment_modify", method = RequestMethod.GET)
-	public String comment_modify(Locale locale, Model model) {
-		logger.info("comment_modify");
+	// 댓글 수정하기 view
+	@RequestMapping(value = "/comment_modify_view", method = RequestMethod.GET)
+	public String comment_modify_view(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
+		System.out.println("comment_modify_view");
+		
+		String cm_no = request.getParameter("cm_no");
+		System.out.println("cm_no : "+cm_no);
 
-		return "content/content_view";
+		model.addAttribute("comment_modi", contentService.selectCommentOne(cm_no));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		
+		return "content/comment_modify_view";
+	}
+	
+	// 댓글 수정하기
+	@RequestMapping(value = "/comment_modify", method = RequestMethod.GET)
+	public String comment_modify(CM_commentVO cm_commentVO, Model model) {
+		System.out.println("comment_modify");
+		
+		contentService.updateCommentOne(cm_commentVO);
+		
+		return "content/comment_modi_success";
 	}
 	
 	

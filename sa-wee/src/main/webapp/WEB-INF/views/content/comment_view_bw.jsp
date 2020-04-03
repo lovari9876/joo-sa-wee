@@ -51,7 +51,7 @@
 	<!-- 댓글 달기 -->
 	<div class="pt-5">
 		<form action="">
-			<label for="drop_list"><h3 class="mb-5">6 댓글</h3></label> <select
+			<label for="drop_list"><h3 class="mb-5">Comment</h3></label> <select
 				id="drop_list" name="drop_list">
 				<option value="new">최신순</option>
 				<option value="best">인기순</option>
@@ -90,7 +90,8 @@
 							</div>
 
 							<div class="test_item modi tooltip-purple">
-								<a class="fas fa-edit fa-lg no-text-deco" href="comment_modify"
+								<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi" href="comment_modify_view?cm_no=${comment_list[status.index]['CM_NO']}"
+									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="수정"></a>
 							</div>

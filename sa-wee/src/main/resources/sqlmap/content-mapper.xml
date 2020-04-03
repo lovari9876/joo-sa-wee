@@ -213,13 +213,13 @@
 		CM_REPORT_NUM,
 		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
 		VALUES
-		(CM_COMMENT_SEQ.NEXTVAL, 5, #{cm_content}, SYSDATE, SYSDATE,
+		(CM_COMMENT_SEQ.NEXTVAL, 10, #{cm_content}, SYSDATE, SYSDATE,
 		'게시판',
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
 
 	
-	<!-- 게시글 댓글 보기 -->
+	<!-- 게시글 댓글 수정하기 view -->
 	<select id="selectCommentOne" resultType="java.util.HashMap"
 		parameterType="String">
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
@@ -229,7 +229,7 @@
 		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = BW.BW_NO 
-		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
+		AND CM.CM_TYPE = '게시판' AND CM.CM_NO = #{cm_no}
 	</select>
 	
 	<!-- 중고거래 댓글 쓰기 -->
@@ -288,7 +288,7 @@
 	
 	<!-- 댓글 수정하기 -->
 	<update id="updateCommentOne">
-		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_cotent}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
+		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
 	</update>
 	
 	<!-- 댓글 목록 -->
@@ -302,6 +302,7 @@
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = BW.BW_NO 
 		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
+		ORDER BY CM.CM_WRITTEN_DATE DESC
 	</select>
 
 

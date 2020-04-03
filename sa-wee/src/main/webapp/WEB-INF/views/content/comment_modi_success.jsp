@@ -32,24 +32,27 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
+
+	<script type="text/javascript">
+		window.opener.location.reload();
+		window.close();
+	</script>
+
+
+
+	<!-- 	<div class="container">
 		<div class="pt-5">
 			<div class="comment-form-wrap pt-5">
-				<h3 class="mb-5">신고</h3>
-				<form action="report_cm" method="get">
-					<input type="hidden" name="r_type_no" value="${comment_view['CM_NO']}">
-					<div class="form-group">
-						<label for="message">신고하기</label>
-						<textarea name="r_content" id="message" cols="30" rows="10"
-							class="form-control" placeholder="신고할 내용을 입력하세요."></textarea>
-					</div>
-					<div class="form-group">
-						<input type="submit" value="신고하기" class="btn btn-lavender btn-md text-white" id="btn-color">
-					</div>
-				</form>
+				<h3 class="mb-5">댓글 수정이 완료되었습니다.</h3>
+				<h5>(새로고침 한 번 부탁드립니다!!!!!)</h5>
+				<input type="button" value="닫기" onClick='window.close()'
+					class="btn btn-lavender btn-md text-white" id="btn-color">
 			</div>
 		</div>
 	</div>
+ -->
+
+
 
 
 	<!-- modal 일단 실패...ㅜㅠ -->
