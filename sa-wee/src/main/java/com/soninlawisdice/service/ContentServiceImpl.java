@@ -161,19 +161,39 @@ public class ContentServiceImpl implements ContentService {
 
 	/* ============================== 보부상 =================================== */
 
-	// // 중고거래 게시글 보기(content_view)
+	// 중고거래 게시글 보기(content_view)
 	@Override
-	public HashMap<String, Object> selectContentTOne(int bw_no) {
+	public HashMap<String, Object> selectContentTOne(int t_no) {
 		
-		return contentMapper.selectContentTOne(bw_no);
+		return contentMapper.selectContentTOne(t_no);
 	}
 	
-	
-	// t_no를 가져오기 위해
+	// 중고거래 게시글 삭제
 	@Override
-	public HashMap<String, Object> selectContentT(int t_no) {
+	public void deleteContentT(TradeVO tradeVO) {
+		
+		contentMapper.deleteContentT(tradeVO);
+	}
 
-		return contentMapper.selectContentT(t_no);
+	// 중고거래 게시글 조회수
+	@Override
+	public void upHitContentT(int t_no) {
+		
+		contentMapper.upHitContentT(t_no);	
+	}
+	
+	// 중고거래 게시글 추천수 증가
+	@Override
+	public void upRecommendContentT(String t_no) {
+		
+		contentMapper.upRecommendContentT(t_no);
+	}
+
+	// 중고거래 게시글 추천수 증가하는 거 받아옴
+	@Override
+	public String selectRecommendContentT(String t_no) {
+
+		return contentMapper.selectRecommendContentT(t_no);
 	}
 
 	// 중고거래 신고글 쓰기
@@ -182,6 +202,13 @@ public class ContentServiceImpl implements ContentService {
 
 		contentMapper.insertReportT(reportVO);
 
+	}
+	
+	// 중고거래 댓글 목록
+	@Override
+	public ArrayList<HashMap<String, Object>> selectCommentListT(String cm_no) {
+		
+		return contentMapper.selectCommentListT(cm_no);
 	}
 
 	// 중고거래 댓글 쓰기
@@ -197,6 +224,37 @@ public class ContentServiceImpl implements ContentService {
 	public HashMap<String, Object> selectCommentT(String cm_no) {
 
 		return contentMapper.selectCommentT(cm_no);
+	}
+	
+	// 중고거래 댓글 수정
+	@Override
+	public void updateCommentTOne(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateCommentTOne(cm_commentVO);
+		
+	}
+	
+	// 중고거래 댓글 삭제
+	@Override
+	public void deleteCommentT(CM_commentVO cm_commentVO) {
+		
+		contentMapper.deleteCommentT(cm_commentVO);
+		
+	}
+	
+	// 중고거래 댓글 추천수 증가
+	@Override
+	public void upRecommendCommentT(String cm_no) {
+		
+		contentMapper.upRecommendCommentT(cm_no);
+		
+	}
+
+	// 댓글 추천수 증가하는 거 받아옴
+	@Override
+	public String selectRecommendCommentT(String cm_no) {
+		
+		return contentMapper.selectRecommendCommentT(cm_no);
 	}
 
 	/* ============================== 카페리뷰 =================================== */
@@ -232,5 +290,4 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	
-
 }

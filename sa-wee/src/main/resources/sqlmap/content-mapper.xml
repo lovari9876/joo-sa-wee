@@ -244,14 +244,30 @@
 		BOARD_TYPE BT, SUBJECT S
 		WHERE T.M_NO = M.M_NO AND T.BT_NO = BT.BT_NO
 		AND T.S_NO = S.S_NO AND
-		T.T_NO = 1
+		T.T_NO = 2
 	</select> 
 	
+	<!-- 중고거래 게시글 삭제 -->
+	<delete id="deleteContentT">
+		DELETE FROM TRADE WHERE T_NO = #{t_no}
+	</delete>
 	
-	<!-- t_no를 가져오기 위해 -->
-	<select id="selectContentT"
-		resultType="java.util.HashMap" parameterType="int">
-		SELECT T_NO FROM TRADE WHERE T_NO = #{t_no}
+	<!-- 중고거래 게시글 조회수 -->
+	<update id="upHitContentT">
+		UPDATE TRADE SET T_HIT = T_HIT + 1 WHERE
+		T_NO = #{t_no}
+	</update>
+	
+	<!-- 중고거래 게시글 추천수 증가 -->
+	<update id="upRecommendContentT">
+		UPDATE TRADE SET T_RECOMMEND_NUM =
+		T_RECOMMEND_NUM +1 WHERE T_NO = #{t_no}
+	</update>
+
+	<!-- 중고거개 게시글 추천수 증가하는 거 받아옴 -->
+	<select id="selectRecommendContentT" resultType="String">
+		SELECT
+		T_RECOMMEND_NUM FROM TRADE WHERE T_NO = #{t_no}
 	</select>
 
 	<!-- 중고거래 신고글 쓰기 -->
@@ -262,6 +278,20 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+	
+	<!-- 중고거래 댓글 목록 -->
+	<select id="selectCommentListT" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT
+		FROM CM_COMMENT CM, MEMBER M, TRADE T
+		WHERE CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = T.T_NO 
+		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
+		ORDER BY CM.CM_WRITTEN_DATE DESC
+	</select>
 	
 	<!-- 중고거래 댓글 쓰기 -->
 	<insert id="insertCommentT">
@@ -286,9 +316,30 @@
 		FROM CM_COMMENT CM, MEMBER M, TRADE T
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = T.T_NO 
-		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
+		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO = #{cm_no}
 	</select>
 	
+	<!-- 중고거래 댓글 수정 -->
+	<update id="updateCommentTOne">
+		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
+	</update>
+	
+	<!-- 중고거래 댓글 삭제 -->
+	<delete id="deleteCommentT">
+		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+	</delete>
+	
+	<!-- 댓글 추천수 증가 -->
+	<update id="upRecommendCommentT">
+		UPDATE CM_COMMENT SET CM_RECOMMEND_NUM =
+		CM_RECOMMEND_NUM +1 WHERE CM_NO = #{cm_no}
+	</update>
+
+	<!-- 댓글 추천수 증가하는 거 받아옴 -->
+	<select id="selectRecommendCommentT" resultType="String">
+		SELECT
+		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+	</select>
 	
 <!-- ====================== 카페리뷰 ======================== -->
 	

@@ -156,18 +156,18 @@
 					<br /> <br />
 					<div align="center" class="tooltip-purple">
 						<input class="good" type="image" src="images/board_hj/good.png"
-							name="button" id="rec_btn" value="${content_view_t['T_NO']}"
+							name="button" id="rec_btn_t" value="${content_view_t['T_NO']}"
 							data-toggle="tooltip" data-container=".tooltip-purple"
 							data-placement="top" title="추천 +1">
 						<p>
-							<span>(</span><span class="rec">${content_view_t['T_RECOMMEND_NUM']}</span><span>)</span>
+							<span>(</span><span class="rec_t">${content_view_t['T_RECOMMEND_NUM']}</span><span>)</span>
 						</p>
 					</div>
 
 					<br />
 					<br />
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="/list_home" method="get">
+					<form action="/tlist" method="get">
 						<div class="test">
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
@@ -176,7 +176,7 @@
 								<a href="#">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="delete?t_no=${content_view_t['T_NO']}">삭제</a>
+								<a href="delete_t?t_no=${content_view_t['T_NO']}">삭제</a>
 							</div>
 							<div class="test_item fourth">
 								<a href="report_view_t?t_no=${content_view_t['T_NO']}"
@@ -205,7 +205,7 @@
 					
 					<!-- 댓글 쓰기 -->
 					<div class="comment-form-wrap pt-5">
-						<%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %>
+						<%@ include file="/WEB-INF/views/content/comment_write_view_t.jsp" %>
 					</div>
 				</div>
 			</div>
@@ -246,7 +246,7 @@
 	<script src="js/board_hj/main.js"></script>
 
 	<script src="js/board_hj/tooltip.js"></script>
-	<script src="js/board_hj/recommed.js"></script>
+	<script src="js/board_hj/recommed_t.js"></script>
 	<script src="js/board_hj/popover.js"></script>
 
 	<!-- Java Script for header

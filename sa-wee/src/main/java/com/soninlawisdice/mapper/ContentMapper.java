@@ -50,15 +50,31 @@ public interface ContentMapper {
 	
 
 	/*============================== 보부상 ===================================*/
-	public HashMap<String, Object> selectContentTOne(int bw_no); // 중고거래 게시글 보기(content_view)
+	public HashMap<String, Object> selectContentTOne(int t_no); // 중고거래 게시글 보기(content_view)
 	
-	public HashMap<String, Object> selectContentT(int t_no); // t_no를 가져오기 위해
+	public void deleteContentT(TradeVO tradeVO); // 중고거래 게시글 삭제
+	
+	public void upHitContentT(int t_no); // 중고거래 게시글 조회수
+	
+	public void upRecommendContentT(String t_no); // 중고거래 게시글 추천수 증가
+	
+	public String selectRecommendContentT(String t_no); // 중고거래 게시글 추천수 증가하는 거 받아옴
 	
 	public void insertReportT(ReportVO reportVO); // 중고거래 신고글 쓰기
+	
+	public ArrayList<HashMap<String, Object>> selectCommentListT(String cm_no); // 중고거래 댓글 목록
 	
 	public void insertCommentT(CM_commentVO cm_commentVO); // 중고거래 댓글 쓰기
 	
 	public HashMap<String, Object> selectCommentT(String cm_no); // 중고거래 댓글 보기
+	
+	public void updateCommentTOne(CM_commentVO cm_commentVO); // 중고거래 댓글 수정
+	
+	public void deleteCommentT(CM_commentVO cm_commentVO); // 중고거래 댓글 삭제
+	
+	public void upRecommendCommentT(String cm_no); // 댓글 추천수 증가
+	
+	public String selectRecommendCommentT(String cm_no); // 댓글 추천수 증가하는 거 받아옴
 	
 	
 	/*============================== 카페리뷰 ===================================*/
