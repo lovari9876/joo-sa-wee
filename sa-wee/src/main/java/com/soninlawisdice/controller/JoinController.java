@@ -200,10 +200,10 @@ public class JoinController {
 		return "login/forgot_pw";
 	}
 
-	// 테스트
-	@RequestMapping(value = "/address", method = RequestMethod.GET)
-	public String address(Locale locale, Model model) {
+	// 접속권한 없을 때 403 에러 페이지 대신
+	@RequestMapping(value="/access_denied_page")
+    public String accessDeniedPage() throws Exception {
+        return "/share/access_denied_page";
+    }
 
-		return "join/address";
-	}
 }

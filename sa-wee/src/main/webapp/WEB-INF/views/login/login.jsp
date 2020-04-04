@@ -54,13 +54,23 @@
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">로그인</button>
 					</div>
-					
-					<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+
+					<input name="${_csrf.parameterName}" type="hidden"
+						value="${_csrf.token}" />
 
 
-					<!-- F5를 누르면 사라짐 / 1회성  -->
+					<!-- 로그인 실패, F5를 누르면 사라짐 / 1회성  -->
 					<c:if test="${msg == false}">
 						<p style="color: #f00;">아이디 또는 패스워드를 다시 입력하십시오</p>
+					</c:if>
+
+					<!-- 스프링 시큐리티 로그인 실패 -->
+					<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+						<p style="color: #f00;">
+							<!-- Your login attempt was not successful due to <br /> -->
+							${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+						</p>
+						<c:remove var="SPRING_SECURITY_LAST_EXCEPTION" scope="session" />
 					</c:if>
 
 					<br />
@@ -95,16 +105,16 @@
 
 				</form>
 			</c:if>
-			
+
 			<c:if test="${member != null}">
 				<div class="text-center p-t-37 p-b-30">
-						<span class="txt1"> ${member.m_id}님 환영합니다 </span>
-					</div>
+					<span class="txt1"> ${member.m_id}님 환영합니다 </span>
+				</div>
 				<a href="/logout" class="txt3 hov1">로그아웃</a>
-			
+
 				<a href="/mypage" class="txt3 hov1">마이페이지</a>
 			</c:if>
-			
+
 
 		</div>
 	</div>

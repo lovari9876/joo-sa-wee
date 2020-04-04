@@ -12,7 +12,7 @@
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 	<http auto-config="true" use-expressions="true">
-	    <intercept-url pattern="/login" access="permitAll" />
+	    <intercept-url pattern="/loginView" access="permitAll" />
 	   	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 	    <intercept-url pattern="/**" access="permitAll" />
 	    
@@ -26,9 +26,11 @@
 	        authentication-failure-url="/loginView"
 	    />
 	    
+	    <!--  접속권한 없을 때 403 에러 페이지 대신 -->
+	    <access-denied-handler error-page="/access_denied_page"/>
+	    
     </http>
-    
-    
+       
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
