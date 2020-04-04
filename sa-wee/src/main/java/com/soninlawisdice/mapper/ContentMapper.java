@@ -50,6 +50,8 @@ public interface ContentMapper {
 	
 
 	/*============================== 보부상 ===================================*/
+	public HashMap<String, Object> selectContentTOne(int bw_no); // 중고거래 게시글 보기(content_view)
+	
 	public HashMap<String, Object> selectContentT(int t_no); // t_no를 가져오기 위해
 	
 	public void insertReportT(ReportVO reportVO); // 중고거래 신고글 쓰기

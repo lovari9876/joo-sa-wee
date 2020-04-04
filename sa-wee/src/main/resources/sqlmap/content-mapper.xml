@@ -234,6 +234,20 @@
 	
 <!-- ====================== 보부상 ======================== -->
 	
+	<!-- 중고거래 게시글 보기(content_view) -->
+	<select id="selectContentTOne" resultType="java.util.HashMap" parameterType="int">
+		SELECT T.T_NO, T.T_TITLE, T.T_CONTENT,
+		T.T_WRITTEN_DATE, T.T_UPDATED_DATE, T.T_HIT,
+		T.T_RECOMMEND_NUM, T.T_REPORT_NUM, T.T_ISLAND, T.T_PRICE,
+		M.M_NICK, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
+		FROM TRADE T, MEMBER M,
+		BOARD_TYPE BT, SUBJECT S
+		WHERE T.M_NO = M.M_NO AND T.BT_NO = BT.BT_NO
+		AND T.S_NO = S.S_NO AND
+		T.T_NO = 1
+	</select> 
+	
+	
 	<!-- t_no를 가져오기 위해 -->
 	<select id="selectContentT"
 		resultType="java.util.HashMap" parameterType="int">

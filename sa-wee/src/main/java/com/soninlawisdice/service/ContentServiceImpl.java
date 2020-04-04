@@ -161,6 +161,14 @@ public class ContentServiceImpl implements ContentService {
 
 	/* ============================== 보부상 =================================== */
 
+	// // 중고거래 게시글 보기(content_view)
+	@Override
+	public HashMap<String, Object> selectContentTOne(int bw_no) {
+		
+		return contentMapper.selectContentTOne(bw_no);
+	}
+	
+	
 	// t_no를 가져오기 위해
 	@Override
 	public HashMap<String, Object> selectContentT(int t_no) {
@@ -222,5 +230,7 @@ public class ContentServiceImpl implements ContentService {
 
 		return contentMapper.selectCommentCR(cm_no);
 	}
+
+	
 
 }

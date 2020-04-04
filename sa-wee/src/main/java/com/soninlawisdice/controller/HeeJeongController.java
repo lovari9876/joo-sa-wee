@@ -45,6 +45,9 @@ public class HeeJeongController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	
+	/*============================== 커뮤니티(일반 게시판) ===================================*/
+	
 	// 게시글 view
 	@RequestMapping(value = "/content_view", method = RequestMethod.GET)
 	public String content(Model model, HttpServletRequest request, CM_commentVO cm_commentVO, 
@@ -132,96 +135,6 @@ public class HeeJeongController {
 		return "redirect:/content_view";
 	}
 	
-	// 중고거래 댓글 view
-	@RequestMapping(value = "/comment_view_t", method = RequestMethod.GET)
-	public String comment_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
-		System.out.println("comment_view_t");
-		  
-		String cm_no2 = request.getParameter("cm_no2");
-		System.out.println("cm_no2 : "+cm_no2);
-		  
-		model.addAttribute("cm_comment_view", contentService.selectCommentT(cm_no2));
-		model.addAttribute("memberVO", cm_commentVO.getMemberVO());
-		  
-		return "content/comment_view_t"; 
-	} 
-
-	// 중고거래 댓글 쓰기 view
-	@RequestMapping(value = "/comment_write_view_t", method = RequestMethod.GET)
-	public String comment_write_view_t(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
-		System.out.println("comment_write_view_t");
-
-		int t_no = Integer.parseInt(request.getParameter("t_no"));
-
-		System.out.println(t_no);
-
-		model.addAttribute("trade_view", contentService.selectContentT(t_no));
-		model.addAttribute("t_no", t_no);
-		System.out.println(cm_commentVO.getCm_no2());
-
-		return "content/comment_write_view_t";
-	}
-
-	// 중고거래 댓글 쓰기
-	@RequestMapping(value = "/comment_write_t", method = RequestMethod.GET)
-	public String comment_write_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
-									Model model, @RequestParam int t_no, RedirectAttributes re) {
-		System.out.println("comment_write_t");
-
-		System.out.println(cm_commentVO.getCm_no2());
-
-		contentService.insertCommentT(cm_commentVO);
-		
-		re.addAttribute("t_no", t_no);
-
-		return "redirect:/content_view";
-	}
-	
-	// 카페리뷰 댓글 view
-	@RequestMapping(value = "/comment_view_cr", method = RequestMethod.GET)
-	public String comment_view_cr(Model model, String bw_no, HttpServletRequest request, CM_commentVO cm_commentVO) {
-		System.out.println("comment_view_cr");
-			  
-		String cm_no2 = request.getParameter("cm_no2");
-		System.out.println("cm_no2 : "+cm_no2);
-			  
-		model.addAttribute("cm_comment_view", contentService.selectCommentCR(cm_no2));
-		model.addAttribute("memberVO", cm_commentVO.getMemberVO());
-			  
-		return "content/comment_view_cr"; 
-	} 
-
-	// 카페리뷰 댓글 쓰기 view
-	@RequestMapping(value = "/comment_write_view_cr", method = RequestMethod.GET)
-	public String comment_write_view_cr(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
-		System.out.println("comment_write_view_cr");
-
-		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
-
-		System.out.println(cr_no);
-
-		model.addAttribute("cafe_review_view", contentService.selectContentCR(cr_no));
-		model.addAttribute("cr_no", cr_no);
-		System.out.println(cm_commentVO.getCm_no2());
-
-		return "content/comment_write_view_cr";
-	}
-
-	// 카페리뷰 댓글 쓰기
-	@RequestMapping(value = "/comment_write_cr", method = RequestMethod.GET)
-	public String comment_write_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
-									Model model, @RequestParam int cr_no, RedirectAttributes re) {
-		System.out.println("comment_write_cr");
-
-		System.out.println(cm_commentVO.getCm_no2());
-
-		contentService.insertCommentCR(cm_commentVO);
-		
-		re.addAttribute("cr_no", cr_no);
-
-		return "content/content_view";
-	}
-	
 	// 댓글 수정하기 view
 	@RequestMapping(value = "/comment_modify_view", method = RequestMethod.GET)
 	public String comment_modify_view(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
@@ -268,13 +181,6 @@ public class HeeJeongController {
 		contentService.upRecommendComment(cm_no);
 
 		return contentService.selectRecommendComment(cm_no);
-	}
-	
-	@RequestMapping(value = "/reply", method = RequestMethod.GET)
-	public String reply(Locale locale, Model model) {
-		logger.info("reply");
-
-		return "content/reply";
 	}
 
 	// 게시글 신고글 view
@@ -355,6 +261,101 @@ public class HeeJeongController {
 		return "content/report_success";
 	}
 
+	// 신고글 완료 메세지
+	@RequestMapping(value = "/report_success", method = RequestMethod.GET)
+	public String report_success(Locale locale, Model model) {
+		System.out.println("report_success");
+
+		return "content/report_success";
+	}
+	
+	@RequestMapping(value = "/reply", method = RequestMethod.GET)
+	public String reply(Locale locale, Model model) {
+		logger.info("reply");
+
+		return "content/reply";
+	}
+
+	@RequestMapping(value = "/game_info", method = RequestMethod.GET)
+	public String game_info(Locale locale, Model model) {
+		System.out.println("game_info");
+
+		return "game_info/game_info";
+	}
+
+	@RequestMapping(value = "/game_detail", method = RequestMethod.GET)
+	public String game_detail(Locale locale, Model model) {
+		System.out.println("game_detail");
+
+		return "game_detail/game_detail";
+	}
+	
+	/*============================== 보부상 ===================================*/
+	
+	// 게시글 view
+	@RequestMapping(value = "/content_view_t", method = RequestMethod.GET)
+	public String content_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
+		System.out.println("content_view_t");
+
+		System.out.println(request.getParameter("t_no"));
+		
+		int t_no = Integer.parseInt(request.getParameter("t_no"));
+			
+		System.out.println(t_no);
+
+		model.addAttribute("content_view_t", contentService.selectContentTOne(t_no));
+
+		// 게시글 조회수
+		/* contentService.upHitContent(t_no); */
+
+		return "content/content_view_t";
+	}
+	
+	// 중고거래 댓글 view -> 이거 댓글 목록으로 고쳐야 함
+	@RequestMapping(value = "/comment_view_t", method = RequestMethod.GET)
+	public String comment_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
+		System.out.println("comment_view_t");
+			  
+		String cm_no2 = request.getParameter("cm_no2");
+		System.out.println("cm_no2 : "+cm_no2);
+			  
+		model.addAttribute("cm_comment_view", contentService.selectCommentT(cm_no2));
+		model.addAttribute("memberVO", cm_commentVO.getMemberVO());
+			  
+		return "content/comment_view_t"; 
+	} 
+
+	// 중고거래 댓글 쓰기 view
+	@RequestMapping(value = "/comment_write_view_t", method = RequestMethod.GET)
+	public String comment_write_view_t(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
+		System.out.println("comment_write_view_t");
+
+		int t_no = Integer.parseInt(request.getParameter("t_no"));
+
+		System.out.println(t_no);
+
+		model.addAttribute("trade_view", contentService.selectContentT(t_no));
+		model.addAttribute("t_no", t_no);
+		System.out.println(cm_commentVO.getCm_no2());
+
+		return "content/comment_write_view_t";
+	}
+
+	// 중고거래 댓글 쓰기
+	@RequestMapping(value = "/comment_write_t", method = RequestMethod.GET)
+	public String comment_write_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
+										Model model, @RequestParam int t_no, RedirectAttributes re) {
+		System.out.println("comment_write_t");
+
+		System.out.println(cm_commentVO.getCm_no2());
+
+		contentService.insertCommentT(cm_commentVO);
+			
+		re.addAttribute("t_no", t_no);
+
+		return "redirect:/content_view";
+	}
+		
 	// 중고거래 신고글 view
 	@RequestMapping(value = "/report_view_t", method = RequestMethod.GET)
 	public String report_view_t(HttpServletRequest request, Model model) {
@@ -380,7 +381,55 @@ public class HeeJeongController {
 
 		return "content/report_success";
 	}
+	
+	
+	/*============================== 카페리뷰 ===================================*/
+		
+	// 카페리뷰 댓글 view -> 이거 댓글 목록으로 고쳐야 함
+	@RequestMapping(value = "/comment_view_cr", method = RequestMethod.GET)
+	public String comment_view_cr(Model model, String bw_no, HttpServletRequest request, CM_commentVO cm_commentVO) {
+		System.out.println("comment_view_cr");
+				  
+		String cm_no2 = request.getParameter("cm_no2");
+		System.out.println("cm_no2 : "+cm_no2);
+				  
+		model.addAttribute("cm_comment_view", contentService.selectCommentCR(cm_no2));
+		model.addAttribute("memberVO", cm_commentVO.getMemberVO());
+				  
+		return "content/comment_view_cr"; 
+	} 
 
+	// 카페리뷰 댓글 쓰기 view
+	@RequestMapping(value = "/comment_write_view_cr", method = RequestMethod.GET)
+	public String comment_write_view_cr(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
+		System.out.println("comment_write_view_cr");
+
+		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
+
+		System.out.println(cr_no);
+
+		model.addAttribute("cafe_review_view", contentService.selectContentCR(cr_no));
+		model.addAttribute("cr_no", cr_no);
+		System.out.println(cm_commentVO.getCm_no2());
+
+		return "content/comment_write_view_cr";
+	}
+
+	// 카페리뷰 댓글 쓰기
+	@RequestMapping(value = "/comment_write_cr", method = RequestMethod.GET)
+	public String comment_write_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
+										Model model, @RequestParam int cr_no, RedirectAttributes re) {
+		System.out.println("comment_write_cr");
+
+		System.out.println(cm_commentVO.getCm_no2());
+
+		contentService.insertCommentCR(cm_commentVO);
+			
+		re.addAttribute("cr_no", cr_no);
+
+		return "content/content_view";
+	}
+		
 	// 카페리뷰 신고글 view
 	@RequestMapping(value = "/report_view_cr", method = RequestMethod.GET)
 	public String report_view_cr(HttpServletRequest request, Model model) {
@@ -406,27 +455,6 @@ public class HeeJeongController {
 
 		return "content/report_success";
 	}
-
-	// 신고글 완료 메세지
-	@RequestMapping(value = "/report_success", method = RequestMethod.GET)
-	public String report_success(Locale locale, Model model) {
-		System.out.println("report_success");
-
-		return "content/report_success";
-	}
-
-	@RequestMapping(value = "/game_info", method = RequestMethod.GET)
-	public String game_info(Locale locale, Model model) {
-		System.out.println("game_info");
-
-		return "game_info/game_info";
-	}
-
-	@RequestMapping(value = "/game_detail", method = RequestMethod.GET)
-	public String game_detail(Locale locale, Model model) {
-		System.out.println("game_detail");
-
-		return "game_detail/game_detail";
-	}
-
+	
+		
 }
