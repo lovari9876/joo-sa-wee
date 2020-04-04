@@ -33,7 +33,7 @@
 				<br />
 
 				<form class="login100-form validate-form" method="post"
-					autocomplete="off" action="/login">
+					autocomplete="off" action="/loginSecurity">
 					<!-- <span class="login100-form-title p-b-37"> <img
 					class="logo_image" src="resources/images/icons/login/wolf_logo.png"
 					alt="son-in-low_is_dice">
@@ -54,6 +54,9 @@
 					<div class="container-login100-form-btn">
 						<button type="submit" class="login100-form-btn">로그인</button>
 					</div>
+					
+					<input name="${_csrf.parameterName}" type="hidden" value="${_csrf.token}"/>
+
 
 					<!-- F5를 누르면 사라짐 / 1회성  -->
 					<c:if test="${msg == false}">

@@ -80,12 +80,12 @@ public class JoinController {
 //
 //		return result;
 //	}
-	
+
 	// 패스워드 체크
 	@ResponseBody
 	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
 	public boolean passChk(MemberVO memberVO) throws Exception {
-		MemberVO login =  joinService.login(memberVO.getM_id(), memberVO.getM_pw());
+		MemberVO login = joinService.login(memberVO.getM_id(), memberVO.getM_pw());
 		boolean pwdMatch = pwdEncoder.matches(memberVO.getM_pw(), login.getM_pw());
 
 		return pwdMatch;
@@ -121,9 +121,38 @@ public class JoinController {
 	}
 
 	// 로그인
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest req, RedirectAttributes rttr, MemberVO memberVO) throws Exception {
-		System.out.println("POST login()");
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	public String login(HttpServletRequest req, RedirectAttributes rttr, MemberVO memberVO) throws Exception {
+//		System.out.println("POST login()");
+//
+//		HttpSession session = req.getSession();
+//		String m_id = req.getParameter("m_id");
+//		String m_pw = req.getParameter("m_pw");
+//		System.out.println("m_id : " + m_id + ", m_pw : " + m_pw);
+//
+//		MemberVO login = joinService.login(m_id, m_pw);
+//		System.out.println("loginService()");
+//
+//		boolean pwdMatch = pwdEncoder.matches(memberVO.getM_pw(), login.getM_pw());
+//
+//		if (login != null && pwdMatch == true) {
+//			session.setAttribute("member", login);
+//			System.out.println("login 성공");
+//
+//		} else {
+//			session.setAttribute("member", null);
+//			// RedirectAttributes 새로고침하면 날라가는 데이터(1회성)
+//			rttr.addFlashAttribute("msg", false);
+//			System.out.println("login == null");
+//		}
+//
+//		return "redirect:/loginView";
+//	}
+
+	// 로그인
+	@RequestMapping(value = "/loginSecurity", method = RequestMethod.POST)
+	public String loginSecurity(HttpServletRequest req, RedirectAttributes rttr, MemberVO memberVO) throws Exception {
+		System.out.println("POST loginSecurity()");
 
 		HttpSession session = req.getSession();
 		String m_id = req.getParameter("m_id");
