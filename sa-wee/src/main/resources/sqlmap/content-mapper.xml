@@ -3,11 +3,9 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- mapper 태그 내부에 sql문을 넣으면 mybatis가 알아서 해준다.. -->
 <mapper namespace="com.soninlawisdice.mapper.ContentMapper">
-	<!-- namespace를 만든 인터페이스와 맞춰주기 -->
-	<!-- id를 service의 함수명과 맞춰주기 -->
-	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
+
+<!-- ====================== 커뮤니티(일반 게시판) ======================== -->
 
 	<!-- Board_writeVO resultMap -->
 	<resultMap type="com.soninlawisdice.vo.Board_writeVO"
@@ -45,8 +43,6 @@
 		</collection>
 	</resultMap>
 
-	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 
-		없애도 됨. --> <!-- #{bw_no, jdbcType=INTEGER} -->
 	<!-- 게시글 보기(content_view) -->
 	<select id="selectContentOne" resultType="java.util.HashMap" parameterType="int">
 		SELECT BW.BW_NO, BW.BW_TITLE, BW.BW_CONTENT,
@@ -58,10 +54,8 @@
 		WHERE BW.M_NO = M.M_NO AND BW.BT_NO = BT.BT_NO
 		AND BW.S_NO = S.S_NO AND
 		BW.BW_NO = #{bw_no}
-	</select> <!-- ;세미콜론 금지!!!!!!!!!! -->
+	</select> 
 
-	<!-- list에서 id값을 가져와야하는데 그렇게 못해서 '부적합한 열 유형'이런 에러가 난 것. list 생기면 jdbcType=INTEGER이거 
-		없애도 됨. -->
 	<!-- 게시글 삭제 -->
 	<delete id="deleteContent">
 		DELETE FROM BOARD_WRITE WHERE BW_NO = #{bw_no}
@@ -150,36 +144,6 @@
 		SYSDATE)
 	</insert>
 
-	<!-- t_no를 가져오기 위해 -->
-	<select id="selectContentT"
-		resultType="java.util.HashMap" parameterType="int">
-		SELECT T_NO FROM TRADE WHERE T_NO = #{t_no}
-	</select>
-
-	<!-- 중고거래 신고글 쓰기 -->
-	<insert id="insertReportT">
-		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
-		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '중고거래',
-		#{r_type_no}, #{r_content},
-		SYSDATE)
-	</insert>
-
-	<!-- cr_no를 가져오기 위해 -->
-	<select id="selectContentCR"
-		resultType="java.util.HashMap" parameterType="int">
-		SELECT CR_NO FROM CAFE_REVIEW WHERE CR_NO = #{cr_no}
-	</select>
-
-	<!-- 카페리뷰 신고글 쓰기 -->
-	<insert id="insertReportCR">
-		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
-		R_CONTENT, R_REPORT_DATE)
-		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '카페리뷰',
-		#{r_type_no}, #{r_content},
-		SYSDATE)
-	</insert>
-
 	<!-- CM_commentVO resultMap -->
 	<resultMap type="com.soninlawisdice.vo.CM_commentVO"
 		id="CM_commentVO">
@@ -213,13 +177,12 @@
 		CM_REPORT_NUM,
 		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
 		VALUES
-		(CM_COMMENT_SEQ.NEXTVAL, 5, #{cm_content}, SYSDATE, SYSDATE,
+		(CM_COMMENT_SEQ.NEXTVAL, 10, #{cm_content}, SYSDATE, SYSDATE,
 		'게시판',
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
 
-	
-	<!-- 게시글 댓글 보기 -->
+	<!-- 게시글 댓글 수정하기 view에서 사용 -->
 	<select id="selectCommentOne" resultType="java.util.HashMap"
 		parameterType="String">
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
@@ -229,8 +192,76 @@
 		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = BW.BW_NO 
-		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
+		AND CM.CM_TYPE = '게시판' AND CM.CM_NO = #{cm_no}
 	</select>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateCommentOne">
+		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
+	</update>
+	
+	<!-- 댓글 목록 -->
+	<select id="selectCommentList" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT
+		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
+		WHERE CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = BW.BW_NO 
+		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
+		ORDER BY CM.CM_WRITTEN_DATE DESC
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment">
+		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+	</delete>
+	
+	<!-- 댓글 추천수 증가 -->
+	<update id="upRecommendComment">
+		UPDATE CM_COMMENT SET CM_RECOMMEND_NUM =
+		CM_RECOMMEND_NUM +1 WHERE CM_NO = #{cm_no}
+	</update>
+
+	<!-- 댓글 추천수 증가하는 거 받아옴 -->
+	<select id="selectRecommendComment" resultType="String">
+		SELECT
+		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+	</select>
+	
+	
+<!-- ====================== 보부상 ======================== -->
+	
+	<!-- 중고거래 게시글 보기(content_view) -->
+	<select id="selectContentTOne" resultType="java.util.HashMap" parameterType="int">
+		SELECT T.T_NO, T.T_TITLE, T.T_CONTENT,
+		T.T_WRITTEN_DATE, T.T_UPDATED_DATE, T.T_HIT,
+		T.T_RECOMMEND_NUM, T.T_REPORT_NUM, T.T_ISLAND, T.T_PRICE,
+		M.M_NICK, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
+		FROM TRADE T, MEMBER M,
+		BOARD_TYPE BT, SUBJECT S
+		WHERE T.M_NO = M.M_NO AND T.BT_NO = BT.BT_NO
+		AND T.S_NO = S.S_NO AND
+		T.T_NO = 1
+	</select> 
+	
+	
+	<!-- t_no를 가져오기 위해 -->
+	<select id="selectContentT"
+		resultType="java.util.HashMap" parameterType="int">
+		SELECT T_NO FROM TRADE WHERE T_NO = #{t_no}
+	</select>
+
+	<!-- 중고거래 신고글 쓰기 -->
+	<insert id="insertReportT">
+		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
+		R_CONTENT, R_REPORT_DATE)
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '중고거래',
+		#{r_type_no}, #{r_content},
+		SYSDATE)
+	</insert>
 	
 	<!-- 중고거래 댓글 쓰기 -->
 	<insert id="insertCommentT">
@@ -245,7 +276,6 @@
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
 
-	
 	<!-- 중고거래 댓글 보기 -->
 	<select id="selectCommentT" resultType="java.util.HashMap"
 		parameterType="String">
@@ -258,6 +288,24 @@
 		CM.CM_NO2 = T.T_NO 
 		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
 	</select>
+	
+	
+<!-- ====================== 카페리뷰 ======================== -->
+	
+	<!-- cr_no를 가져오기 위해 -->
+	<select id="selectContentCR"
+		resultType="java.util.HashMap" parameterType="int">
+		SELECT CR_NO FROM CAFE_REVIEW WHERE CR_NO = #{cr_no}
+	</select>
+
+	<!-- 카페리뷰 신고글 쓰기 -->
+	<insert id="insertReportCR">
+		INSERT INTO REPORT (R_NO, M_NO, R_TYPE, R_TYPE_NO,
+		R_CONTENT, R_REPORT_DATE)
+		VALUES (REPORT_SEQ.NEXTVAL, #{m_no}, '카페리뷰',
+		#{r_type_no}, #{r_content},
+		SYSDATE)
+	</insert>
 	
 	<!-- 카페리뷰 댓글 쓰기 -->
 	<insert id="insertCommentCR">
@@ -272,7 +320,6 @@
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
 
-	
 	<!-- 카페리뷰 댓글 보기 -->
 	<select id="selectCommentCR" resultType="java.util.HashMap"
 		parameterType="String">
@@ -286,36 +333,4 @@
 		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
 	</select>
 	
-	<!-- 댓글 수정하기 -->
-	<update id="updateCommentOne">
-		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_cotent}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
-	</update>
-	
-	<!-- 댓글 목록 -->
-	<select id="selectCommentList" resultType="java.util.HashMap"
-		parameterType="String">
-		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
-		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
-		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
-		CM.CM_STEP, CM.CM_INDENT
-		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
-		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = BW.BW_NO 
-		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
-	</select>
-
-
-	<!-- bDate는 sysdate를 default로 테이블을 생성했었기에 별다른 입력값이 없으면 -->
-	<!-- 자동으로 현재시간이 입력된다. -->
-	<!-- <insert id="insertBoard"> insert into mvc_board (bId, bName, bTitle, 
-		bContent, bHit, bGroup, bStep, bIndent) values (mvc_board_seq.nextval, #{bName}, 
-		#{bTitle}, #{bContent}, 0, mvc_board_seq.currval, 0, 0 ) </insert> -->
-
-	<!-- <insert id="insertBoard" parameterType="com.soninlawisdice.vo.BoardVO"> 
-		insert into mvc_board (bId, bName, bTitle, bContent, bHit, bGroup, bStep, 
-		bIndent) values (mvc_board_seq.nextval, #{boardVO.bName}, #{boardVO.bTitle}, 
-		#{boardVO.bContent}, 0, mvc_board_seq.currval, 0, 0 ) </insert> <select id="selectBoardOne" 
-		resultType="edu.bit.board.vo.BoardVO"> select bId, bName, bTitle, bContent, 
-		bDate, bHit, bGroup, bStep, bIndent from mvc_board where bId=#{bId} </select> -->
-
 </mapper>
