@@ -42,6 +42,14 @@ public class MyPageController {
 		
 		return "mypage/mypage";
 	}
+	
+	@RequestMapping(value = "/mypageTest", method = RequestMethod.GET)
+	public String mypageTest(HttpSession session, Model model, MemberVO memberVO) throws Exception {
+		System.out.println("mypageTest()");
+		
+		return "mypage/mypage";
+	}
+	
 	@RequestMapping(value = "/modify_mypage", method = RequestMethod.GET)
 	public String modify_mypage(Locale locale, Model model)  throws Exception{
 		

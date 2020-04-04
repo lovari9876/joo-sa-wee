@@ -31,6 +31,7 @@ public class CassieController {
 	@Autowired
 	private SecondhandService secondhandService;
 
+	// 보부상 리스트
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
 	public String tlist(Model model, @ModelAttribute("scri") SearchCriteria scri,
 			/*@RequestParam(name="s_content", defaultValue = "n") String s_content, */ HttpServletRequest rq) {
@@ -74,6 +75,7 @@ public class CassieController {
 		return "secondhand/tlist";
 	}
 
+	// 무인도 리스트
 	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
 	public String island_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 		logger.info("island_list");
