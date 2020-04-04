@@ -259,6 +259,16 @@ public class HeeJeongController {
 		return "redirect:/content_view";
 	}
 	
+	// 댓글 추천수 증가
+	@ResponseBody
+	@RequestMapping(value = "/rec_cm", method = RequestMethod.GET)
+	public String recommend_cm(String cm_no, Model model) {
+		System.out.println("recommend_cm");
+
+		contentService.upRecommendComment(cm_no);
+
+		return contentService.selectRecommendComment(cm_no);
+	}
 	
 	@RequestMapping(value = "/reply", method = RequestMethod.GET)
 	public String reply(Locale locale, Model model) {

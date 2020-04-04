@@ -59,4 +59,8 @@ public interface ContentMapper {
 	
 	public void deleteComment(CM_commentVO cm_commentVO); // 댓글 삭제
 	
+	public void upRecommendComment(String cm_no); // 댓글 추천수 증가
+	
+	public String selectRecommendComment(String cm_no); // 댓글 추천수 증가하는 거 받아옴
+	
 }

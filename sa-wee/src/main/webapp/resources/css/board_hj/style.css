@@ -1218,7 +1218,7 @@ dl, ol, ul {
 }
 
 .test_item.reco {
-	width:65%;
+	width:55%;
 	text-align: right;
 } }
 
@@ -1248,7 +1248,7 @@ dl, ol, ul {
 }
 
 .test_item.reco {
-	width:65%;
+	width:55%;
 	text-align: right;
 } }
 
@@ -1368,7 +1368,10 @@ dl, ol, ul {
 	text-align: right;
 } }
 
-
+/* 댓글 추천하기 */
+#rec_cm_btn {
+	width: 30px;
+}
 /* 추천하기 폰트 */
 
 .test_item .text_items {

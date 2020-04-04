@@ -72,9 +72,11 @@
 							</div>
 							<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
 							<div class="test_item reco tooltip-purple">
-								<a class="far fa-thumbs-up fa-2x no-text-deco" href="#"
+								<input class="rec_cm_btn" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm.png"
+									name="button" value="${comment_list[status.index]['CM_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="추천"></a><a class="text_items">(</a><a class="text_items">${cm_comment_list[status.index]['CM_RECOMMEND_NUM']}</a><a class="text_items">)</a>
+									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm">${comment_list[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
+								<input type="hidden" name="bw_no" class="rec_cm_btn" value="${content_view['BW_NO']}">
 							</div>
 						</div>
 						<div class="meta">작성일 ${comment_list[status.index]['CM_WRITTEN_DATE']} 수정일 ${comment_list[status.index]['CM_UPDATED_DATE']}</div>
@@ -150,5 +152,7 @@
 	
 	<script src="js/board_hj/tooltip.js"></script>
 	<script src="js/board_hj/popover.js"></script>
+	
+	<script src="js/board_hj/recommed_cm.js"></script>
 </body>
 </html>

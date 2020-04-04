@@ -201,6 +201,21 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.deleteComment(cm_commentVO);
 		
 	}
+
+	// 댓글 추천수 증가
+	@Override
+	public void upRecommendComment(String cm_no) {
+		
+		contentMapper.upRecommendComment(cm_no);
+		
+	}
+
+	// 댓글 추천수 증가하는 거 받아옴
+	@Override
+	public String selectRecommendComment(String cm_no) {
+		
+		return contentMapper.selectRecommendComment(cm_no);
+	}
 	 
 
 	
