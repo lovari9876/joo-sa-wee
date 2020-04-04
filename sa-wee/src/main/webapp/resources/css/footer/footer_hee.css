@@ -795,6 +795,10 @@
 	/* 3rem은 root인 html 기본 설정 폰트 크기인데 기본폰트 크기는 템플릿마다 달라서, 희정이 푸터의 경우 48px이다. */
 }
 
+.site-footer .mt-5 {
+	margin-top: 48px !important;
+}
+
 .site-footer .col-6.col-md-3.mb-4.mb-md-0 {
 	margin-bottom: 16px !important; /* 위와 마찬가지로, 1em인데 16px */
 	font-weight: 400;
@@ -835,6 +839,15 @@
     line-height:18px;
 )
 
+/* ============= responsive =========================================== */
+
+/* 화면 클때 과도한게 커지는 마진 탑 없애는건데 작동안함...
+   고치고 싶다 */
+@media only screen and (min-width :1000px) {
+	.site-footer .mt-5 {
+		margin-top: 0px !important;
+	}
+}
 
 
 

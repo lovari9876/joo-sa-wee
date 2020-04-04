@@ -23,7 +23,7 @@
 		</a>
 
 		<div class="container">
-			<div class="footer--row mb-5">
+			<div class="footer--row mb-5 mt-5">
 				<div class="col-6 col-md-3 mb-4 mb-md-0">
 					<a href="#"><h3>Home</h3></a>
 				</div>

@@ -1,4 +1,5 @@
 /* =================================================================== 
+ * 보부상 css!
  *
  *  Philosophy v1.0 Main Stylesheet
  *  1-2-2018
@@ -2619,6 +2620,74 @@ to {
 	font-weight: 400;
 }
 
+
+/* ===================================================================
+ * # 테이블 뷰를 위한 table 
+ *
+ * ------------------------------------------------------------------- */
+ 
+.trade--table {
+    display: table;
+    border-collapse: collapse; /* seperate로 하면 선이 끊어진다! */
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-size: medium;
+    font-style: normal;
+    text-align: start;
+    border-spacing: 2px;
+    border-color: #cabaef;
+    font-variant: normal;
+}
+
+.trade--table th, .trade--table td {
+	border-color: #cabaef;
+	border-spacing: 0;
+	border-collapse: collapse ;
+}
+
+.trade--table tr:not(.table-header):hover {
+	background-color: rgba(149, 117, 223, 0.14);
+	cursor: pointer;
+	color: #9575df;
+}
+
+/* ============== responsive table =============================== */
+
+.s-styles-header h1 {
+		font-size: 10rem;
+}
+
+@media only screen and (max-width:1200px) {
+	.s-styles .row {
+		max-width: 900px;
+	}
+}
+
+@media only screen and (max-width:1000px) {
+	.s-styles .row {
+		max-width: 800px;
+	}
+	.s-styles-header h1 {
+		font-size: 8rem;
+	}
+}
+
+@media only screen and (max-width:800px) {
+	.s-content {
+		padding-top: 6rem;
+	}
+	.s-styles-header h1 {
+		font-size: 7rem;
+	}
+}
+
+@media only screen and (max-width:600px) {
+	.s-styles-header h1 {
+		font-size: 5rem;
+	}
+}
+
 /* ------------------------------------------------------------------- 
  * responsive:
  * s-content
@@ -2764,10 +2833,15 @@ to {
 }
 
 /* 돋보기 친구 */
-.search--bar .fa {
+#searchBtn .fa {
 	font-size: 2.0rem;
 	display: inline-block;
 	color: #9575df;
+}
+
+/* 돋보기 hover 색깔 바꾸기 */
+#searchBtn .fa:hover {
+	color: #400186; /* #754cd5 */
 }
 
 .btn-link {
@@ -2865,6 +2939,11 @@ to {
   font-color: #272727;
 }
 
+/* select 마우스 포인터 */
+select:hover {
+	cursor: pointer;;
+}
+
 /*style the arrow inside the select element:*/
 .select-selected:after { 
   position: absolute;
@@ -2914,22 +2993,6 @@ to {
 
 
 /* -----------------------------------------------------------------------  
- * 리스트 뷰와 masonry 뷰를 switch하기 위한 버튼
- * 
- * ----------------------------------------------------------------------- */
-
-button.view-btn {
-	border-radius: 12px;
-    height: 45px;
-    box-shadow: 0 .170rem .50rem rgba(209, 204, 238, 0.75) !important;
-    line-height: 45px;
-    text-align: center;
-    margin-right: 10px;
-    padding: 0 10px;
-}
-
-
-/* -----------------------------------------------------------------------  
  * 검색창 responsible 하게 만들기...
  * width: 700px 이하에서 헤더 메뉴처럼 세로로 겹치도록..
  * ----------------------------------------------------------------------- */
@@ -2954,7 +3017,7 @@ button.view-btn {
 	}
     
     /* 뷰 전환 버튼 가운데 정렬.. 근데 없애려구.. */
-    button.view-btn { 
+    button#view-btn { 
     	margin: 0 auto 1.2rem auto;
     	display: none;
     	border-radius: 20px ;
@@ -3001,9 +3064,90 @@ button.view-btn {
 	    position: relative;
 		float: right;
 	}
+	
 }
 
 
+/* -------------------------------------------------------------------
+ * 버튼 모음!
+ *
+ *
+ * ------------------------------------------------------------------- */
+ 
+/* 리스트 뷰와 masonry 뷰를 switch하기 위한 버튼(뷰 버튼)  */
+button#view-btn {
+	border-radius: 12px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    margin-right: 10px;
+    padding: 0 10px;
+    box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    background-color: rgba(149, 117, 223, 0.14)/* #9575df24 */; /* 투명도 조절한 색.. */
+    border-color: transparent;   
+    font-size: 20px;
+    color: #9575df;
+} 
+
+button#view-btn:hover {
+	background-color: rgba(149, 117, 223, 0.30);
+	
+}
+ 
+/* 페이지 번호 오른쪽에 위치 */
+.write-btn {
+	float: right;
+    margin-left: 20px;
+    border-radius: 12px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding: 0 10px;
+    font-weight: 700;
+}
+
+.write-btn:hover {
+
+}
+
+/* 색깔 조정 */
+.lavender-btn {
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    background-color: rgba(149, 117, 223, 0.14)/* #9575df24 */; /* 투명도 조절한 색.. */
+    border-color: transparent;
+    margin-left: 20px;
+    border-radius: 12px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding: 0 10px;
+    font-weight: 700;
+    color: #400186;
+}
+
+.lavender-btn:hover {
+	background-color: rgba(149, 117, 223, 0.30);
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    border-color: transparent;
+}
+
+.lavender-btn:focus {
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    background-color: rgba(149, 117, 223, 0.30);
+    border-color: transparent;
+	
+}
+
+/* -----------------------------------------------------------------------  
+ * 버튼 responsible 하게 만들기...
+ * ----------------------------------------------------------------------- */
+@media only screen and (max-width: 770px) {
+	.write-btn {
+		float: inherit; /* 가운데로 가도록 */
+	}	
+}
+
+	
 /* -------------------------------------------------------------------
  * ## masonry layout
  * ------------------------------------------------------------------- */

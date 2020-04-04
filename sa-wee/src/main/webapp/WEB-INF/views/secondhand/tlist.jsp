@@ -65,7 +65,7 @@
 		    
 		     <!-- **** change view -->
 		      <!-- 리스트 뷰와 masonry 뷰를 switch하기 위한 버튼 -->
-		      <button id="view-btn"><i class="fa fa-bars"></i></button>
+		      <button id="view-btn" ><i class="fa fa-bars"></i></button>
 		
 		      <!-- Custom rounded search bars with input group -->
 		      <form role="form">		
@@ -130,247 +130,311 @@
 		<!-- 검색 끝 -->       
               
         
-        <div class="row masonry-wrap">
-            <div class="masonry">
-            
-                <div class="grid-sizer"></div>
-				
-				<!-- 자바스크립트로 조건 2가지 넣어줘야 masonry가 예쁘게 작동! -->
-				<!-- 1. 사진이 2장 이상이면 갤러리 타입, 사진 1장: standard 타입, 사진 없으면 이미지 부분 태그 통으로 빼서 벽돌리스트 이쁘게 해야함 -->
-				<!-- 2. data-aos="fade-up"을 세번째 아이템에게 넣어줘야함; list[2]에 article param으로 넣을것!!-->
-				<c:forEach items="${tList}" var="tItem">
-				<c:choose>
-				<c:when test="${tItem eq tList[0]}">
-					<article class="masonry__brick entry format-standard" data-aos="fade-up">	                 
-	    
-	                    <div class="entry__text">
-	                        <div class="entry__header">
-	                        	<div class="entry__excerpt">${tItem['T_NO']} | ${tItem['S_CONTENT']}</div>
-	                       		<div class="entry__date">
-	                                <a href="single-standard.html">	                                
-	                                	<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-										<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
-										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-										<c:choose>
-											<c:when test="${now ne date}">${date}</c:when> 
-											<c:otherwise>
-												<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="HH:mm"/>
-											</c:otherwise>
-										</c:choose>
-										
-	                                </a>
-	                            </div>
-	                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
-	                            
-	                        </div>
-	                        <div class="entry__excerpt" style="font-family:ariel;">
-	                            ${tItem['M_NICK']}
-	                        </div>
-	                        <div class="entry__excerpt" style="font-weight:50;">
-	                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}
-	                        </div>
-	                        
-	                        <div class="entry__meta">
-	                            <span class="entry__meta-links">
-	                                <a href="category.html">Design</a> 
-	                                <a href="category.html">Photography</a>
-	                            </span>
-	                        </div>
-	                    </div>
-	    
-	                </article> <!-- end article -->
-				</c:when>
-				<c:otherwise>
-	                <article class="masonry__brick entry format-standard" >
+		<div class="switch-view">
+
+          <div id="view1" class="view--content">
+        
+	        <div class="row masonry-wrap">
+	            <div class="masonry">
+	            
+	                <div class="grid-sizer"></div>
+					
+					<!-- 자바스크립트로 조건 2가지 넣어줘야 masonry가 예쁘게 작동! -->
+					<!-- 1. 사진이 2장 이상이면 갤러리 타입, 사진 1장: standard 타입, 사진 없으면 이미지 부분 태그 통으로 빼서 벽돌리스트 이쁘게 해야함 -->
+					<!-- 2. data-aos="fade-up"을 세번째 아이템에게 넣어줘야함; list[2]에 article param으로 넣을것!!-->
+					<c:forEach items="${tList}" var="tItem">
+					<c:choose>
+					<c:when test="${tItem eq tList[0]}">
+						<article class="masonry__brick entry format-standard" data-aos="fade-up">	                 
+		    
+		                    <div class="entry__text">
+		                        <div class="entry__header">
+		                        	<div class="entry__excerpt">${tItem['T_NO']} | ${tItem['S_CONTENT']}</div>
+		                       		<div class="entry__date">
+		                                <a href="single-standard.html">	                                
+		                                	<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+											
+		                                </a>
+		                            </div>
+		                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
+		                            
+		                        </div>
+		                        <div class="entry__excerpt" style="font-family:ariel;">
+		                            ${tItem['M_NICK']}
+		                        </div>
+		                        <div class="entry__excerpt" style="font-weight:50;">
+		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}
+		                        </div>
+		                        
+		                        <div class="entry__meta">
+		                            <span class="entry__meta-links">
+		                                <a href="category.html">Design</a> 
+		                                <a href="category.html">Photography</a>
+		                            </span>
+		                        </div>
+		                    </div>
+		    
+		                </article> <!-- end article -->
+					</c:when>
+					<c:otherwise>
+		                <article class="masonry__brick entry format-standard" >
+		                        
+		                    <div class="entry__thumb">
+		                        <a href="single-standard.html" class="entry__thumb-link">
+		                            <img src="images/cassie/thumbs/masonry/lamp-400.jpg" 
+		                                 srcset="images/cassie/thumbs/masonry/lamp-400.jpg 1x, images/cassie/thumbs/masonry/lamp-800.jpg 2x" alt="">
+		                        </a>
+		                    </div>
+		    
+		                    <div class="entry__text">
+		                        <div class="entry__header">
+		                            <div class="entry__excerpt">${tItem['T_NO']} | ${tItem['S_CONTENT']}</div>
+		                            <div class="entry__date">
+		                                <a href="single-standard.html">
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+		                                </a>
+		                            </div>
+		                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
+		                            
+		                        </div>
+								<div class="entry__excerpt" style="font-family:ariel;">
+		                            ${tItem['M_NICK']}
+		                        </div>
+		                        <div class="entry__excerpt" style="font-weight:50;">
+		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}
+		                        </div>
+		                        
+		                        <div class="entry__meta">
+		                            <span class="entry__meta-links">
+		                                <a href="category.html">Design</a> 
+		                                <a href="category.html">Photography</a>
+		                            </span>
+		                        </div>
+		                    </div>
+		    
+		                </article> <!-- end article -->
+		                </c:otherwise>
+		                </c:choose>
+	                </c:forEach>
+	                
+	            </div> <!-- end masonry -->
+	        </div> <!-- end masonry-wrap -->               
+	
+	
+	                <%-- <article class="masonry__brick entry format-quote" data-aos="fade-up">
 	                        
 	                    <div class="entry__thumb">
-	                        <a href="single-standard.html" class="entry__thumb-link">
-	                            <img src="images/cassie/thumbs/masonry/lamp-400.jpg" 
-	                                 srcset="images/cassie/thumbs/masonry/lamp-400.jpg 1x, images/cassie/thumbs/masonry/lamp-800.jpg 2x" alt="">
+	                        <blockquote>
+	                                <p>Good design is making something intelligible and memorable. Great design is making something memorable and meaningful.</p>
+	    
+	                                <cite>Dieter Rams</cite>
+	                        </blockquote>
+	                    </div>   
+	    
+	                </article> <!-- end article -->
+	
+	                <article class="masonry__brick entry format-video" data-aos="fade-up">
+	                        
+	                    <div class="entry__thumb video-image">
+	                        <a href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0" data-lity>
+	                            <img src="images/cassie/thumbs/masonry/shutterbug-400.jpg" 
+	                                 srcset="images/cassie/thumbs/masonry/shutterbug-400.jpg 1x, images/cassie/thumbs/masonry/shutterbug-800.jpg 2x" alt="">
 	                        </a>
 	                    </div>
 	    
 	                    <div class="entry__text">
 	                        <div class="entry__header">
-	                            <div class="entry__excerpt">${tItem['T_NO']} | ${tItem['S_CONTENT']}</div>
+	                            
 	                            <div class="entry__date">
-	                                <a href="single-standard.html">
-										<c:choose>
-											<c:when test="${now ne date}">${date}</c:when> 
-											<c:otherwise>
-												<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="HH:mm"/>
-											</c:otherwise>
-										</c:choose>
-	                                </a>
+	                                <a href="single-video.html">December 10, 2017</a>
 	                            </div>
-	                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
+	                            <h1 class="entry__title"><a href="single-video.html">Key Benefits Of Family Photography.</a></h1>
 	                            
 	                        </div>
-							<div class="entry__excerpt" style="font-family:ariel;">
-	                            ${tItem['M_NICK']}
+	                        <div class="entry__excerpt">
+	                            <p>
+	                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
+	                            </p>
 	                        </div>
-	                        <div class="entry__excerpt" style="font-weight:50;">
-	                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}
-	                        </div>
-	                        
 	                        <div class="entry__meta">
 	                            <span class="entry__meta-links">
-	                                <a href="category.html">Design</a> 
+	                                <a href="category.html">Family</a> 
 	                                <a href="category.html">Photography</a>
 	                            </span>
 	                        </div>
 	                    </div>
 	    
 	                </article> <!-- end article -->
-	                </c:otherwise>
-	                </c:choose>
-                </c:forEach>
+	
+	
+	                <article class="masonry__brick entry format-gallery" data-aos="fade-up">
+	                        
+	                    <div class="entry__thumb slider">
+	                        <div class="slider__slides">
+	                            <div class="slider__slide">
+	                                <img src="images/cassie/thumbs/masonry/gallery/gallery-1-400.jpg" 
+	                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-1-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-1-800.jpg 2x" alt=""> 
+	                            </div>
+	                            <div class="slider__slide">
+	                                <img src="images/cassie/thumbs/masonry/gallery/gallery-2-400.jpg" 
+	                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-2-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-2-800.jpg 2x" alt=""> 
+	                            </div>
+	                            <div class="slider__slide">
+	                                <img src="images/cassie/thumbs/masonry/gallery/gallery-3-400.jpg" 
+	                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-3-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-3-800.jpg 2x" alt="">  
+	                            </div>
+	                        </div>
+	                    </div>
+	    
+	                    <div class="entry__text">
+	                        <div class="entry__header">
+	                            
+	                            <div class="entry__date">
+	                                <a href="single-gallery.html">December 10, 2017</a>
+	                            </div>
+	                            <h1 class="entry__title"><a href="single-gallery.html">Workspace Design Trends and Ideas.</a></h1>
+	                            
+	                        </div>
+	                        <div class="entry__excerpt">
+	                            <p>
+	                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
+	                            </p>
+	                        </div>
+	                        <div class="entry__meta">
+	                            <span class="entry__meta-links">
+	                                <a href="category.html">Work</a> 
+	                                <a href="category.html">Management</a>
+	                            </span>
+	                        </div>
+	                    </div>
+	    
+	                </article> <!-- end article -->
+	
+	                <article class="masonry__brick entry format-audio" data-aos="fade-up">
+	
+	                    <div class="entry__thumb">
+	                        <a href="single-audio.html" class="entry__thumb-link">
+	                            <img src="images/cassie/thumbs/masonry/guitarman-400.jpg" 
+	                                 srcset="images/cassie/thumbs/masonry/guitarman-400.jpg 1x, images/cassie/thumbs/masonry/guitarman-800.jpg 2x" alt="">
+	                        </a>
+	                        <div class="audio-wrap">
+	                            <audio id="player" src="media/AirReview-Landmarks-02-ChasingCorporate.mp3" width="100%" height="42" controls="controls"></audio>
+	                        </div>
+	                    </div>
+	
+	                    <div class="entry__text">
+	                        <div class="entry__header">
+	                            
+	                            <div class="entry__date">
+	                                <a href="single-audio.html">December 10, 2017</a>
+	                            </div>
+	                            <h1 class="entry__title"><a href="single-audio.html">What Your Music Preference Says About You and Your Personality.</a></h1>
+	                            
+	                        </div>
+	                        <div class="entry__excerpt">
+	                            <p>
+	                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
+	                            </p>
+	                        </div>
+	                        <div class="entry__meta">
+	                            <span class="entry__meta-links">
+	                                <a href="category.html">Music</a> 
+	                                <a href="category.html">Lifestyle</a>
+	                            </span>
+	                        </div>
+	                    </div>
+	
+	                </article> <!-- end article -->
+	
+	                <article class="masonry__brick entry format-link" data-aos="fade-up">
+	                    
+	                    <div class="entry__thumb">
+	                        <div class="link-wrap">
+	                            <p>The Only Resource You Will Need To Start a Blog Using WordPress.</p>
+	                            <cite>
+	                                <a target="_blank" href="https://colorlib.com/">https://colorlib.com</a>
+	                            </cite>
+	                        </div>
+	                    </div>
+	                    
+	                </article> <!-- end article -->
+	
+	                 --%>
+
+		  </div> <!-- end view1 -->
+			
+			
+		  <div id="view2" class="view--content">
+			
+			<!-- 테이블 시작! -->
+	        <div class="row add-bottom">	
+	            <div class="col-twelve">	
+	                <div class="table-responsive">
+	
+	                    <table class="trade--table">
+	                            <thead>
+		                            <tr class="table-header">	                                
+		                                <th>글 번호</th>
+		                                <th>말머리</th>
+		                                <th>작성자</th>
+		                                <th>제목</th>
+		                                <th>작성일</th>
+		                                <th>조회수</th>
+		                                <th>추천수</th>	                                                               
+		                            </tr>
+	                            </thead>
+	                            <tbody>
+		              				<c:forEach items="${tList}" var="tItem">
+										<tr>											
+											<td>${tItem['T_NO']}</td>
+											<td>${tItem['S_CONTENT']}</td>
+											<td>${tItem['M_NICK']}</td>
+											<td>${tItem['T_TITLE']}</td>
+											<td>
+												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+												<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+												<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+												<c:choose>
+													<c:when test="${now ne date}">${date}</c:when> 
+													<c:otherwise>
+														<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="HH:mm"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+											<td>${tItem['T_HIT']}</td>
+											<td>${tItem['T_RECOMMEND_NUM']}</td>															
+										</tr>
+									</c:forEach>
+	                            </tbody>
+	                    </table>
+	
+	                </div>
+	
+	            </div>
+	            
+	        </div> <!-- end row -->
+ 
+			
+		  </div> <!-- end view2 -->
+		
+		</div>
 
 
-                <%-- <article class="masonry__brick entry format-quote" data-aos="fade-up">
-                        
-                    <div class="entry__thumb">
-                        <blockquote>
-                                <p>Good design is making something intelligible and memorable. Great design is making something memorable and meaningful.</p>
-    
-                                <cite>Dieter Rams</cite>
-                        </blockquote>
-                    </div>   
-    
-                </article> <!-- end article -->
-
-                <article class="masonry__brick entry format-video" data-aos="fade-up">
-                        
-                    <div class="entry__thumb video-image">
-                        <a href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0" data-lity>
-                            <img src="images/cassie/thumbs/masonry/shutterbug-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/shutterbug-400.jpg 1x, images/cassie/thumbs/masonry/shutterbug-800.jpg 2x" alt="">
-                        </a>
-                    </div>
-    
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-video.html">December 10, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-video.html">Key Benefits Of Family Photography.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Family</a> 
-                                <a href="category.html">Photography</a>
-                            </span>
-                        </div>
-                    </div>
-    
-                </article> <!-- end article -->
-
-
-                <article class="masonry__brick entry format-gallery" data-aos="fade-up">
-                        
-                    <div class="entry__thumb slider">
-                        <div class="slider__slides">
-                            <div class="slider__slide">
-                                <img src="images/cassie/thumbs/masonry/gallery/gallery-1-400.jpg" 
-                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-1-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-1-800.jpg 2x" alt=""> 
-                            </div>
-                            <div class="slider__slide">
-                                <img src="images/cassie/thumbs/masonry/gallery/gallery-2-400.jpg" 
-                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-2-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-2-800.jpg 2x" alt=""> 
-                            </div>
-                            <div class="slider__slide">
-                                <img src="images/cassie/thumbs/masonry/gallery/gallery-3-400.jpg" 
-                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-3-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-3-800.jpg 2x" alt="">  
-                            </div>
-                        </div>
-                    </div>
-    
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-gallery.html">December 10, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-gallery.html">Workspace Design Trends and Ideas.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Work</a> 
-                                <a href="category.html">Management</a>
-                            </span>
-                        </div>
-                    </div>
-    
-                </article> <!-- end article -->
-
-                <article class="masonry__brick entry format-audio" data-aos="fade-up">
-
-                    <div class="entry__thumb">
-                        <a href="single-audio.html" class="entry__thumb-link">
-                            <img src="images/cassie/thumbs/masonry/guitarman-400.jpg" 
-                                 srcset="images/cassie/thumbs/masonry/guitarman-400.jpg 1x, images/cassie/thumbs/masonry/guitarman-800.jpg 2x" alt="">
-                        </a>
-                        <div class="audio-wrap">
-                            <audio id="player" src="media/AirReview-Landmarks-02-ChasingCorporate.mp3" width="100%" height="42" controls="controls"></audio>
-                        </div>
-                    </div>
-
-                    <div class="entry__text">
-                        <div class="entry__header">
-                            
-                            <div class="entry__date">
-                                <a href="single-audio.html">December 10, 2017</a>
-                            </div>
-                            <h1 class="entry__title"><a href="single-audio.html">What Your Music Preference Says About You and Your Personality.</a></h1>
-                            
-                        </div>
-                        <div class="entry__excerpt">
-                            <p>
-                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-                            </p>
-                        </div>
-                        <div class="entry__meta">
-                            <span class="entry__meta-links">
-                                <a href="category.html">Music</a> 
-                                <a href="category.html">Lifestyle</a>
-                            </span>
-                        </div>
-                    </div>
-
-                </article> <!-- end article -->
-
-                <article class="masonry__brick entry format-link" data-aos="fade-up">
-                    
-                    <div class="entry__thumb">
-                        <div class="link-wrap">
-                            <p>The Only Resource You Will Need To Start a Blog Using WordPress.</p>
-                            <cite>
-                                <a target="_blank" href="https://colorlib.com/">https://colorlib.com</a>
-                            </cite>
-                        </div>
-                    </div>
-                    
-                </article> <!-- end article -->
-
-                 --%>
-
-            </div> <!-- end masonry -->
-        </div> <!-- end masonry-wrap -->
-
+		<!-- 페이징 -->
         <div class="row">
             <div class="col-full">
                 <nav class="pgn">
@@ -405,7 +469,8 @@
 					        </li>
 					    </c:if>					   
 					</ul>
-					<button class="btn btn-primary">글쓰기</button>
+					<!-- 글쓰기 버튼 -->
+					<button class="btn btn-primary write-btn lavender-btn ">글쓰기</button>
                 </nav>
             </div>
         </div>

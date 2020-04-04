@@ -143,9 +143,6 @@
         <div class="row add-bottom">
 
             <div class="col-twelve">
-        
-                <!-- <p>돌아가고 싶다면.... 얼른 수정하십시오....</p> -->
-
                 <div class="table-responsive">
 
                     <table class="island--table">
@@ -244,7 +241,8 @@
 					        </li>
 					    </c:if>					   
 					</ul>
-					<button class="btn btn-primary">글쓰기</button>
+					<!-- 글쓰기 버튼 -->
+					<button class="btn btn-primary write-btn lavender-btn ">글쓰기</button>
                 </nav>
             </div>
         </div>    

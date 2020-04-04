@@ -1,4 +1,5 @@
 /* =================================================================== 
+ * #### 무인도 css : masonry 는 싹 다 지워버림
  *
  *  Philosophy v1.0 Main Stylesheet
  *  1-2-2018
@@ -1239,275 +1240,6 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	background: #FFFFFF;
 }
 
-/* ------------------------------------------------------------------- 
- * ## masonry entries 
- * ------------------------------------------------------------------- */
-.masonry .entry {
-	margin-bottom: 40px;
-}
-
-.masonry .entry__thumb, .masonry .entry__text {
-	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.05);
-}
-
-.masonry .entry__thumb {
-	position: relative;
-	overflow: hidden;
-}
-
-.masonry .entry__thumb-link img {
-	vertical-align: bottom;
-	-webkit-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-}
-
-.masonry .entry__thumb-link::before {
-	content: "";
-	display: block;
-	background: rgba(0, 0, 0, 0.8);
-	opacity: 0;
-	visibility: hidden;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	-webkit-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-	z-index: 1;
-}
-
-.masonry .entry__thumb-link::after {
-	content: "...";
-	font-family: georgia, serif;
-	font-size: 2.7rem;
-	z-index: 1;
-	display: block;
-	height: 90px;
-	width: 90px;
-	letter-spacing: -1px;
-	line-height: 90px;
-	margin-left: -45px;
-	margin-top: -45px;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	text-align: center;
-	color: #FFFFFF;
-	opacity: 0;
-	visibility: hidden;
-	-webkit-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
-	-webkit-transform: scale(0.5);
-	-ms-transform: scale(0.5);
-	transform: scale(0.5);
-}
-
-.masonry .entry__thumb:hover .entry__thumb-link::before {
-	opacity: 1;
-	visibility: visible;
-}
-
-.masonry .entry__thumb:hover .entry__thumb-link::after {
-	opacity: 1;
-	visibility: visible;
-	-webkit-transform: scale(1);
-	-ms-transform: scale(1);
-	transform: scale(1);
-}
-
-.masonry .entry__thumb:hover .entry__thumb-link img {
-	-webkit-transform: scale(1.05);
-	-ms-transform: scale(1.05);
-	transform: scale(1.05);
-}
-
-.masonry .entry__text {
-	padding: 3rem 2.8rem 3.6rem;
-	background-color: #FFFFFF;
-}
-
-.masonry .entry__title {
-	font-size: 2.4rem;
-	line-height: 1.375;
-	margin-top: 0;
-	margin-bottom: 2.1rem;
-}
-
-.masonry .entry__title a {
-	color: #000000;
-	border-bottom: 1px solid transparent;
-}
-
-.masonry .entry__title a:hover, .masonry .entry__title a:focus {
-	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-.masonry .entry__date {
-	font-family: "metropolis-medium", sans-serif;
-	font-size: 1.4rem;
-	line-height: 1.714;
-	margin-bottom: .6rem;
-}
-
-.masonry .entry__date a {
-	color: #858585;
-}
-
-.masonry .entry__excerpt {
-	font-size: 1.5rem;
-	line-height: 1.8;
-}
-
-.masonry .entry__meta {
-	font-family: "metropolis-semibold", sans-serif;
-	font-size: 1.5rem;
-	margin-bottom: 0;
-}
-
-.masonry .entry__meta a {
-	color: #0054a5;
-}
-
-.masonry .entry__meta a:hover, .masonry .entry__meta a:focus {
-	color: #000000;
-}
-
-.masonry .entry__meta-links a::after {
-	content: ", ";
-}
-
-.masonry .entry__meta-links a:last-child::after {
-	display: none;
-}
-
-/* ------------------------------------------------------------------- 
- *  ## post formats - masonry view
- * ------------------------------------------------------------------- */
-
-/* format quote & format link
- * --------------------------------------- */
-.format-quote, .format-link {
-	text-align: center;
-}
-
-.format-quote .entry__thumb, .format-link .entry__thumb {
-	display: table;
-	background: #FFFFFF;
-	padding: 2.4rem 3rem 4.8rem;
-	min-height: 324px;
-	width: 100%;
-	position: relative;
-}
-
-.format-quote .entry__thumb::before, .format-link .entry__thumb::before
-	{
-	content: "";
-	display: block;
-	height: 3.6rem;
-	width: 3.6rem;
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	opacity: .2;
-	margin-bottom: 1.5rem;
-	position: absolute;
-	top: 3.3rem;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	transform: translateX(-50%);
-}
-
-.format-quote blockquote::before {
-	display: none;
-}
-
-.format-quote blockquote, .format-link .link-wrap {
-	display: table-cell;
-	margin: 0;
-	padding-left: 0;
-	vertical-align: middle;
-}
-
-.format-quote blockquote p, .format-link .link-wrap p {
-	font-family: "librebaskerville-bold", serif;
-	color: #000000;
-	padding: 7.8rem 0 0 0;
-	margin-bottom: 3.3rem;
-	font-size: 2.4rem;
-	line-height: 1.625;
-}
-
-.format-quote cite, .format-link cite {
-	display: block;
-	font-family: "metropolis-regular", sans-serif;
-	font-size: 1.5rem;
-	font-style: normal;
-	line-height: 1.6;
-	color: #999999;
-}
-
-.format-quote cite::before, .format-link cite::before {
-	display: none;
-}
-
-.format-quote cite a, .format-quote cite a:visited {
-	color: #999999;
-	border: none;
-}
-
-.format-quote .entry__thumb::before {
-	background-image: url(../../../images/cassie/icons/icon-quote.svg);
-}
-
-.format-link .entry__thumb::before {
-	background-image: url(../../../images/cassie/icons/icon-link.svg);
-	width: 3.3rem;
-}
-
-.format-link .link-wrap cite:before {
-	display: none;
-}
-
-.format-link .link-wrap cite a, .format-link .link-wrap cite a:visited {
-	color: #999999;
-	display: inline-block;
-	padding-bottom: .3rem;
-}
-
-.format-link .link-wrap cite a:hover, .format-link .link-wrap cite a:focus
-	{
-	color: #000000;
-	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
-
-/* format video
- * --------------------------------------- */
-.format-video .entry__thumb a {
-	cursor: zoom-in;
-	display: block;
-	position: relative;
-}
-
-.format-video .entry__thumb a img {
-	vertical-align: bottom;
-}
-
-.format-video .entry__thumb a::before {
-	content: "";
-	display: block;
-	height: 4.5rem;
-	width: 4.5rem;
-	position: absolute;
-	bottom: 3rem;
-	left: 3rem;
-	cursor: zoom-in;
-	background-image: url(../../../images/cassie/icons/icon-video.svg);
-	background-position: center center;
-	background-repeat: no-repeat;
-	background-size: contain;
-}
 
 /* ===================================================================
  * # pageheader
@@ -2842,10 +2574,15 @@ to {
 }
 
 /* 돋보기 친구 */
-.search--bar .fa {
+#searchBtn .fa {
 	font-size: 2.0rem;
 	display: inline-block;
-	color: #9575df;
+	color: #400186;
+}
+
+/* 돋보기 hover 색깔 바꾸기 */
+#searchBtn .fa:hover {
+	color: #6b4c8d; 
 }
 
 .btn-link {
@@ -2872,7 +2609,7 @@ to {
 
 /* 검색창 for 무인도 게시판 */
 .search--island .fa {
-	color: #2e005b;
+	color: #400186;
 }
 
 .search--island .bg-island {
@@ -2953,6 +2690,11 @@ to {
   font-color: #272727;
 }
 
+/* select 마우스 포인터 */
+select:hover {
+	cursor: pointer;;
+}
+
 /*style the arrow inside the select element:*/
 .select-selected:after { 
   position: absolute;
@@ -3002,102 +2744,65 @@ to {
 
 
 /* -------------------------------------------------------------------
- * ## masonry layout
+ * 버튼 모음!
+ *
+ *
  * ------------------------------------------------------------------- */
-.masonry-wrap {
-	max-width: none;
-	width: 1440px;
-	overflow: hidden;
+ 
+/* 페이지 번호 오른쪽에 위치 */
+.write-btn {
+	float: right;
+    margin-left: 20px;
+    border-radius: 12px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding: 0 10px;
+    font-weight: 700;
 }
 
-.masonry {
-	margin-bottom: 3rem;
+.write-btn:hover {
+
 }
 
-.masonry:after {
-	content: "";
-	display: table;
-	clear: both;
+/* 색깔 조정 */
+.lavender-btn {
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    background-color: rgba(149, 117, 223, 0.14)/* #9575df24 */; /* 투명도 조절한 색.. */
+    border-color: transparent;
+    margin-left: 20px;
+    border-radius: 12px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding: 0 10px;
+    font-weight: 700;
+    color: #400186;
 }
 
-.masonry .grid-sizer, .masonry__brick {
-	width: 360px;
+.lavender-btn:hover {
+	background-color: rgba(149, 117, 223, 0.30);
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    border-color: transparent;
 }
 
-.masonry__brick {
-	float: left;
-	padding: 0 20px;
+.lavender-btn:focus {
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    background-color: rgba(149, 117, 223, 0.30);
+    border-color: transparent;
+	
 }
 
-/* ------------------------------------------------------------------- 
- * responsive:
- * masonry layout
- * ------------------------------------------------------------------- */
-@media only screen and (max-width:1480px) {
-	.masonry-wrap {
-		width: 1080px;
-	}
+
+/* -----------------------------------------------------------------------  
+ * 버튼 responsible 하게 만들기...
+ * ----------------------------------------------------------------------- */
+@media only screen and (max-width: 770px) {
+	.write-btn {
+		float: inherit; /* 가운데로 가도록 */
+	}	
 }
 
-@media only screen and (max-width:1140px) {
-	.masonry-wrap {
-		width: 1020px;
-	}
-	.masonry .grid-sizer, .masonry .masonry__brick {
-		width: 340px;
-	}
-}
-
-@media only screen and (max-width:1060px) {
-	.masonry-wrap {
-		width: 740px;
-	}
-	.masonry .grid-sizer, .masonry .masonry__brick {
-		width: 370px;
-	}
-}
-
-@media only screen and (max-width:800px) {
-	.masonry-wrap {
-		max-width: 700px;
-		width: 90%;
-	}
-	.masonry .grid-sizer, .masonry .masonry__brick {
-		width: 50%;
-		padding: 0 15px;
-	}
-}
-
-@media only screen and (max-width:700px) {
-	.masonry-wrap {
-		max-width: 400px;
-	}
-	.masonry .grid-sizer, .masonry .masonry__brick {
-		width: 100%;
-		clear: both;
-	}
-}
-
-@media only screen and (max-width:600px) {
-	.masonry-wrap {
-		width: auto;
-		margin-top: 80px; /* content-header가 내려오면서 검색창이 내려와 컨텐트가 오른쪽으로 밀리는 것 방지 */
-	}
-	.masonry .grid-sizer, .masonry .masonry__brick {
-		padding: 0 10px;
-	}
-}
-
-@media only screen and (max-width:400px) {
-	.masonry .masonry__brick {
-		width: 100% !important;
-		float: none !important;
-		clear: both !important;
-		margin-left: 0;
-		margin-right: 0;
-		padding: 0;
-	}
-}
 
 /* ===================================================================
  * # s-extra
