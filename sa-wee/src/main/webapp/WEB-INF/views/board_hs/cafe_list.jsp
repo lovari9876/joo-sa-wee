@@ -63,7 +63,14 @@
 					<h3>카페 리스트</h3>
 					<p>카페 리스트임</p>
 				</div>
-
+				
+				
+				
+				
+				
+				<div class = "toMap">
+					<button class ="cafe_btn" onclick="location.href='cafe_map'">지도 보기</button>
+				</div>
 
 				<!-- Search Bar  -->
 				<form action="">

@@ -40,7 +40,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
 <link rel="stylesheet" href="css/board_hs/style.css" />
-<link rel="stylesheet" href="css/css_header/header_hyesoo.css">
+<link rel="stylesheet" href="css/header/header_hyesoo.css">
 <link rel="stylesheet" href="css/board_hs/home-liststyle.css" />
 
 
@@ -231,16 +231,18 @@
 									<td class="cell">순위</td>
 									<td class="cell">게시판</td>
 									<td class="cell">제목</td>
+									<td class="cell">작성자 </td>
 									<td class="cell">작성일</td>
 								</tr>
 							<c:forEach items = "${hot}" var = "hot">
 								<tr class="row">
 								<!-- 이거 1부터 10까지  -->
-									<td class="cell">1</td>
+									<td class="cell">${hot.['ROWNUM'] }</td>
 									<!-- 게시판 이름 어찌 가져오냐..... -->
-									<td class="cell">${hot.bw_title}</td>
-									<td class="cell">${hot.bw_title}</td>
-									<td class="cell">${hot.bw_written_date}</td>
+									<td class="cell">${hot['BT_NAME']}</td>
+									<td class="cell">${hot['BW_TITLE']}</td>
+									<td class="cell">${hot['M_NICK']}</td>
+									<td class="cell">${hot['BW_WRITTEN_DATE']}</td>
 								</tr>
 							</c:forEach>
 								
@@ -275,23 +277,24 @@
 
 							<table class="table">
 								<tr class="row header">
-									<td class="cell">글 번호</td>
-									<td class="cell">글 제목</td>
-									<td class="cell">작성자</td>
+									<td class="cell">순위</td>
+									<td class="cell">게시판</td>
+									<td class="cell">제목</td>
+									<td class="cell">작성자 </td>
 									<td class="cell">작성일</td>
 								</tr>
-
 							<c:forEach items = "${best}" var = "best">
 								<tr class="row">
 								<!-- 이거 1부터 10까지  -->
-									<td class="cell">1</td>
+									<td class="cell">${best['ROWNUM'] }</td>
 									<!-- 게시판 이름 어찌 가져오냐..... -->
-									<td class="cell">${best.bw_title}</td>
-									<td class="cell">${best.bw_title}</td>
-									<td class="cell">${best.bw_written_date}</td>
+									<td class="cell">${best['BT_NAME']}</td>
+									<td class="cell">${best['BW_TITLE']}</td>
+									<td class="cell">${best['M_NICK']}</td>
+									<td class="cell">${best['BW_WRITTEN_DATE']}</td>
 								</tr>
 							</c:forEach>
-
+								
 							</table>
 						</div>
 					</div>

@@ -519,4 +519,26 @@ select{
 	color : #fff;
 }
 
+/*  */
+.toMap{
+	float : left;
+	margin-top: 50px;
+}
+
+.cafe_btn{
+	background : red;
+	border : none;
+	color : #fff;
+	padding : 5px 10px;
+	border-radius : 10px;
+}
+
+.cafe_btn:hover{
+	cursor: pointer;
+}
+
+button:focus{
+	outline : none !important;
+}
+
 

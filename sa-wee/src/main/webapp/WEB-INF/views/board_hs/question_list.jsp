@@ -123,7 +123,7 @@
 							<tr class="row">
 								<td class = "cell">${question['BW_NO']}</td>
 								<td class = "cell">${question['S_CONTENT']}</td>
-								<td class = "cell"><a href="question_content_view?bw_no=${question['BW_NO']}">${question['BW_TITLE']}</a></td>
+								<td class = "cell"><c:if test = "${question['BW_SECRET'] eq 'y' }">  <img src="images/board_hs/lock.png"> </c:if> <a href="question_content_view?bw_no=${question['BW_NO']}">${question['BW_TITLE']}</a></td>
 								<td class = "cell">${question['M_NICK']}</td>
 								<td class = "cell">${question['BW_WRITTEN_DATE']}</td>
 								<td class = "cell">${question['BW_HIT']}</td>
