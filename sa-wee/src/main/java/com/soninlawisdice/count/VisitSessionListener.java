@@ -25,7 +25,6 @@ public class VisitSessionListener implements HttpSessionListener {
 	        try {
 	            // 전체 방문자 수 증가
 	            visitCount.setTotalCount();
-	            System.out.println("========= setTotalCount =====\n");
 	            
 	            // 총 방문자 수
 	            int totalCount = visitCount.getTotalCount();

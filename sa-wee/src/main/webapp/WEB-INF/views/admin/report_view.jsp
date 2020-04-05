@@ -25,9 +25,6 @@
 <body>
 
 	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/admin/fetchPage.js" type="text/javascript"></script>
-
 	<%@include file="side.jsp"%>
 
 
@@ -50,8 +47,12 @@
 
 						<div class="content-view">
 
-							 <form action="" method = "get" enctype="multipart/form-data">
-							 <input type = "hidden" name = "r_no" value = "${report_view['R_NO']}">
+							<form id="viewForm" method="post">
+							<input type = "hidden" name = "r_no" value = "${report_view['R_NO']} ${report_view['R_TYPE_NO']}">
+							<!-- get방식으로 url뒤에 붙는 값과 name이 맞지않으면 오류가난다. r_no, r_type외의 다른 값이 추가되면(해당 메소드에서 파라미터로 받으면) 오류가 난다... 
+							그래서 띄어쓰기 기준으로 값을 두가지 보내서 탈퇴처리할 신고당한 회원 번호를 가져옴  -->
+							<input type = "hidden" name = "r_type" value = "${report_view['R_TYPE']}">
+							
 								<table class="table" >
 									<tr class="row">
 										<td class="cell span2">신고한 회원</td>
@@ -103,11 +104,25 @@
 											<button type="button" class="btn  pull-left"
 												onclick="location='report_list'">목록</button>
 												<!-- 댓글의 경우 무인도 행 없이 바로 삭제이므로 무인도행 버튼 출력안함 
-												해당 신고당한 대상의 타입을 받아와 댓글이라면 출력 하지 않는다! ㄴ-->
-												<c:if test="${report_view.r_type != '댓글'}">
-													<button type="submit" class="btn  pull-right">무인도행</button>
-												</c:if>
-											<button type="submit" class="btn  pull-right">삭제 / 탈퇴</button>
+												해당 신고당한 대상의 타입을 받아와 댓글이라면 출력 하지 않는다! -->
+												
+												<c:choose>
+													<c:when test="${report_view['R_TYPE'] == '댓글'}">
+														<button type="submit" class="btn  pull-right" onClick='comment_delete()'>삭제</button>
+													</c:when>
+												
+													<c:when test="${report_view['R_TYPE'] == '회원'}">
+														<button type="submit" class="btn  pull-right">무인도행</button>
+														<button type="submit" class="btn  pull-right" onClick='m_island()'>탈퇴</button>
+													</c:when>
+													
+													<c:when test="${report_view['R_TYPE'] == '게시글' || report_view['R_TYPE'] == '중고거래' || report_view['R_TYPE'] == '카페리뷰'}">
+														<button type="submit" class="btn  pull-right" onClick='island()'>무인도행</button>
+														<button type="submit" class="btn  pull-right" onClick='board_delete()'>삭제</button>
+													</c:when>
+												</c:choose>	
+												
+											
 
 										</div>
 									</div>
@@ -115,9 +130,39 @@
 
 
 							</form> 
-
-
-
+							<script>
+								function m_out(){
+									var out = document.getElementById("viewForm");
+									out.action="<c:url value='/admin/outMember_report'/>";
+									out.submit();
+									console.log("out");
+									alert("해당 회원이 탈퇴처리 되었습니다.");
+								}
+								
+								function comment_delete(){
+									var out = document.getElementById("viewForm");
+									out.action="<c:url value='/admin/commentDelete'/>";
+									out.submit();
+									console.log("out");
+									alert("해당 댓글이 삭제되었습니다.");
+								}
+								
+								function board_delete(){
+									var out = document.getElementById("viewForm");
+									out.action="<c:url value='/admin/boardDelete'/>";
+									out.submit();
+									console.log("out");
+									alert("해당 글이 삭제되었습니다.");
+								}
+								
+								function island(){
+									var out = document.getElementById("viewForm");
+									out.action="<c:url value='/admin/island'/>";
+									out.submit();
+									console.log("out");
+									alert("해당 글이 삭제되었습니다.");
+								}
+							</script>
 
 						</div>
 					</div>

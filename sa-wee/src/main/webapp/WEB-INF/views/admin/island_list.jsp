@@ -85,8 +85,8 @@
 					</form>
 					
 					<div class="btn-group pull-left" >
-						<button type="button" class="btn selectDelete_btn" data-Num="${island['RNUM']}" >선택 글 삭제</button>  ㅠ 
-						<button type="button" class="btn">수정완료</button>
+						<button type="button" class="btn selectDelete_btn" data-BW="${island['BT_NO']} ${island['I_NO']}">선택 글 삭제</button>
+						<button type="button" class="btn" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}">수정완료</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn">정렬</button>
@@ -120,7 +120,7 @@
 						
 						<c:forEach items="${island_list}" var="island">
 								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-Num="${island['RNUM']}"></td>
+									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}"></td>
 									<td class="cell">${island['RNUM']}</td>
 									<td>
 										<c:choose>				

@@ -3,6 +3,7 @@ package com.soninlawisdice.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,8 @@ import com.soninlawisdice.vo.StatisticsVO;
 import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.WD_recordVO;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
@@ -60,12 +63,12 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri){
-		return adminMapper.boardList(scri);
+	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no){
+		return adminMapper.boardList(scri, bt_no);
 	}
 	@Override
-	public int board_listCount(SearchCriteria scri){
-		return adminMapper.board_listCount(scri);
+	public int board_listCount(SearchCriteria scri, int bt_no){
+		return adminMapper.board_listCount(scri, bt_no);
 	}
 	
 	
@@ -125,12 +128,28 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	
+	// 글쓰기 
+	public void boardInsert(Board_writeVO board_writeVO) {
+		adminMapper.boardInsert(board_writeVO);
+	}
+	
+	public void cafeInsert(CafeVO cafeVO) {
+		adminMapper.cafeInsert(cafeVO);
+	}
+	
+	
 	// 수정 : 회원정보
 	@Override
 	public void updateMember(MemberVO memberVO) {
 		adminMapper.updateMember(memberVO);
 	}
-		
+	
+	// 회원탈퇴
+	@Override
+	public void outMember(int m_id) {
+		adminMapper.outMember(m_id);
+	}
+	
 	
 	//무인도행
 	@Override
@@ -172,7 +191,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	
+	@Override
+	public void selectDelete(int bw_no) {
+		adminMapper.selectDelete(bw_no);
+	}
+
 	
+	@Override
+	public void selectDelete_comment(int cm_no) {
+		adminMapper.selectDelete_comment(cm_no);
+	}
+
 	
 
 	// 통계
@@ -186,7 +215,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	@Override
 	public int getTodayCount() {
-		return adminMapper.getTodayBoard();
+		return adminMapper.getTodayCount();
 	}
 	
 	
@@ -208,5 +237,18 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.statisticsInsert(statVo);
 	}
 	
+	
+	@Override
+	public int allMember() {
+		return adminMapper.allMember();
+	}
+	@Override
+	public int allComment() {
+		return adminMapper.allComment();
+	}
+	@Override
+	public int allBoard() {
+		return adminMapper.allBoard();
+	}
 	
 }

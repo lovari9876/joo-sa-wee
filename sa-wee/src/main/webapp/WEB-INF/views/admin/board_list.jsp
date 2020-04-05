@@ -101,11 +101,12 @@
 					<!-- 	<div class="limiter">
 						<div class="container-table100">
 							<div class="wrap-table100"> -->
-
+			
 
 					<!-- 리스트 -->
 					<div class = "table_mobile">
 					<table class="table">
+					
 						<tr class="trow header">
 							<td class="cell span1"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
 							<td class="cell">글 번호</td>

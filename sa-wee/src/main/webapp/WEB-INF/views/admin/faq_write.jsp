@@ -17,6 +17,7 @@
 <link type="text/css"
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
 	rel='stylesheet'>
+<script src = "js/board_hs/ckeditor.js" ></script>
 <!-- <link rel="stylesheet" href="css/liststyle.css" /> -->
 </head>
 
@@ -45,38 +46,35 @@
 
 							<div class="write-view"> -->
 
-					<form action="" enctype="multipart/form-data">
+					<form action="/admin/faqInsert" method="post">
+						<input type="hidden" name = "bt_no" value="8" >
+						<input type="hidden" name = "m_no" value="0">
 						<table class="table">
 							 <tr class = "row">
-							<td class = "cell">말머리</td>
-							<td class = "cell span7">
-								<select>
-										<option value="0" selected>말머리</option>
-										<option value="1">말머리</option>
-										<option value="2">말머리</option>
+							<td class = "cell span2">말머리</td>
+							<td class = "cell span8">
+								<select name="s_no">
+										<option value="27" selected>회원관련문의</option>
+										<option value="28">결제관련문의</option>
+										<option value="29">정보수정요청</option>
+										<option value="30">무인도관련문의</option>
+										<option value="31">기타문의</option>
 								</select>
 							</td>
 						</tr> 
 
 							<tr class="row">
-								<td class="cell">제목</td>
-								<td class="cell"><input type="text" name="bwTitle"
-									class="span7" placeholder="제목을 입력하세요"></td>
-
+								<td class="cell span2">제목</td>
+								<td class="cell span8"><input type="text" name="bw_title"
+									class="span6" placeholder="제목을 입력하세요"></td>
 							</tr>
 
 							<tr class="row">
 								<td class="cell">내용</td>
-								<td class="cell"><textarea name="bwTitle" class="span7"
+								<td class="cell"><textarea id="editor" name="bw_content" class="span5"
 										rows="10" placeholder="내용을 입력하세요"></textarea></td>
 							</tr>
 
-							<tr class="row">
-								<td class="cell">첨부파일</td>
-								<td class="cell"><input multiple="multiple" type="file"
-									class="btn  pull-right" name="file" /></td>
-
-							</tr>
 						</table>
 						<div class="module-option clearfix">
 							<div class="control-group">
@@ -95,7 +93,7 @@
 
 
 
-					<!-- 							</div>
+					<!-- 	</div>
 						</div>
 					</div> -->
 
@@ -124,5 +122,42 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+	<!-- ckEditor 관련 -->
+	
+	<script type="text/javascript">
+			var myEditor;
+			ClassicEditor
+				.create( document.querySelector( '#editor' ), {
+					
+					
+					
+					
+					ckfinder: {
+				        uploadUrl: '${pageContext.request.contextPath}/fileupload' // 내가 지정한 업로드 url (post로 요청감)
+				       
+					},
+					
+					toolbar: [ 'heading', '|',  'bold', 'italic','fontSize','fontColor', 'fontFamily', 'alignment:left', 'alignment:center', 'alignment:right','link', 'bulletedList', 'numberedList', 'blockQuote','insertTable',  'imageUpload', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
+
+					image : {
+						styles : ['full', 'alignLeft', 'alignRight']
+					},
+					
+					uiClor : '#FFFFFF',
+					
+					removePlugins: [ 'ImageCaption' ],
+					
+					alignment: {
+			            options: [ 'left', 'center', 'right' ]
+			        }
+				} )
+				.then( editor => {
+			        console.log( 'Editor was initialized', editor );
+			        myEditor = editor;
+		    } )
+			.catch( error => {
+			    console.error( error );
+			} );
+		</script>
 </body>
 </html>
