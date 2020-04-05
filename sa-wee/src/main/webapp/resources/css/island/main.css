@@ -2435,11 +2435,30 @@ to {
 	border-collapse: collapse ;
 }
 
+.island--table td a {
+	color: #656565; /* body 기본 적용 컬러 */
+	text-decoration: none;
+}
+
 .island--table tr:not(.table-header):hover {
 	background-color: #564569;
 	cursor: pointer;
-	color: white;
+	color: #B9B0C1;
 }
+
+
+/* 해당 table row에 hover 할때 a 태그 접근 안해도 색 같이 바꿔주기 */
+.island--table tr:hover a {
+	color: #B9B0C1; 
+	text-decoration: none;
+}
+
+/* 해당 table row에 hover 하면서 a 에도 hove 할 때 a 강조 */
+.island--table tr:hover a:hover {
+	color: #E5E2E8; 
+	text-decoration: none;
+}
+
 
 /* ============== responsive ===================================== */
 

@@ -228,11 +228,11 @@ public class AdminController {
 	@RequestMapping(value = "/board_list_trade", method = RequestMethod.GET)
 	public String board_list_trade(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 		scri.setPerPageNum(15);
-		model.addAttribute("board_list_trade", secondhandService.selectTradeList(scri));
+		model.addAttribute("board_list_trade", secondhandService.selectTradeList(scri, null));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(secondhandService.tradeListCount(scri));
+		pageMaker.setTotalCount(secondhandService.tradeListCount(scri, null));
 	
 		
 		model.addAttribute("pageMaker", pageMaker );

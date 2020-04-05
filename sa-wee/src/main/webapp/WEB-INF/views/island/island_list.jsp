@@ -160,7 +160,9 @@
                             <tbody>
 	              				<c:forEach items="${iList}" var="IMap">
 									<tr>											
-										<td>${IMap['RNUM']}</td>
+										<td> <!-- 컨텐트 뷰 링크 -->
+											<a href="/content_view_i?i_no=${IMap['I_NO']}&bt_no=${IMap['BT_NO']}">${IMap['RNUM']}</a>
+										</td>										
 										<td>
 											<c:choose>				
 												<c:when test="${IMap['BT_NO'] eq 1}">보드이야기</c:when>		
@@ -176,7 +178,9 @@
 											</c:choose>
 										</td>
 										<td>${IMap['M_NICK']}</td>
-										<td>${IMap['I_TITLE']}</td>
+										<td> <!-- 컨텐트 뷰 링크 -->
+											<a href="/content_view_i?i_no=${IMap['I_NO']}&bt_no=${IMap['BT_NO']}">${IMap['I_TITLE']}</a>
+										</td>
 										<td>
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
@@ -200,7 +204,6 @@
 								</c:forEach>
                             </tbody>
                     </table>
-
                 </div>
 
             </div>

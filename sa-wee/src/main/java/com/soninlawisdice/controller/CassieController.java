@@ -13,13 +13,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
+import com.soninlawisdice.service.BoardService;
+import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
+import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
-import com.soninlawisdice.vo.SubjectVO;
+import com.soninlawisdice.vo.TradeVO;
 
 @Controller
 public class CassieController {
@@ -30,7 +32,13 @@ public class CassieController {
 	private IslandService islandService;
 	@Autowired
 	private SecondhandService secondhandService;
+	@Autowired
+	private BoardService boardService;
+	@Autowired
+	private ContentService contentService;
 
+	////////////////////////////////// 보부상 /////////////////////////////////////////////
+	
 	// 보부상 리스트
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
 	public String tlist(Model model, @ModelAttribute("scri") SearchCriteria scri,
@@ -74,6 +82,36 @@ public class CassieController {
 
 		return "secondhand/tlist";
 	}
+	
+	// 중고거래 게시글 view
+	@RequestMapping(value = "/content_view_t", method = RequestMethod.GET)
+	public String content_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
+		System.out.println("content_view_t");
+
+		System.out.println(request.getParameter("t_no"));
+		
+		int t_no = Integer.parseInt(request.getParameter("t_no"));
+
+		model.addAttribute("content_view_t", secondhandService.selectContentOne(t_no));
+
+		// 게시글 조회수
+		secondhandService.upHitContent(t_no);
+
+		return "secondhand/content_view";
+	}
+	
+	// 중고거래 게시글 삭제
+	@RequestMapping(value = "/delete_t", method = RequestMethod.GET)
+	public String delete_t(TradeVO tradeVO, Model model) {
+		System.out.println("delete_t");
+
+		secondhandService.deleteContent(tradeVO);
+
+		return "redirect:/tlist";
+	}
+
+	
+	////////////////////////////////// 무인도 /////////////////////////////////////////////
 
 	// 무인도 리스트
 	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
@@ -102,6 +140,38 @@ public class CassieController {
 		System.out.println(((SearchCriteria) (pageMaker.getCri())).getSearchType());
 
 		return "island/island_list";
+	}
+	
+	// 무인도 게시글 view
+	@RequestMapping(value = "/content_view_i", method = RequestMethod.GET)
+	public String content_view_i(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
+		System.out.println("content_view_i");
+
+		System.out.println(request.getParameter("i_no"));
+		
+		int i_no = Integer.parseInt(request.getParameter("i_no"));
+		int bt_no = Integer.parseInt(request.getParameter("bt_no"));
+			
+		if (bt_no==9) { // 보부상
+			model.addAttribute("content_view_t", secondhandService.selectContentOne(i_no));
+			secondhandService.upHitContent(i_no);
+
+			return "secondhand/content_view";
+			
+		}else if(bt_no==11) { // 카페리뷰
+			boardService.review_uphit(Integer.toString(i_no));
+			model.addAttribute("cafe_review", boardService.selectReviewOne(Integer.toString(i_no)));
+			
+			return "board_hs/cafe_review_content_view";
+			
+		}else { // 게시글
+			model.addAttribute("content_view", contentService.selectContentOne(i_no));
+			contentService.upHitContent(i_no);
+
+			return "content/content_view";
+		}
+		
+		
 	}
 
 }

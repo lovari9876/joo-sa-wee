@@ -50,6 +50,7 @@ public interface ContentService {
 	
 
 	/*============================== 보부상 ===================================*/
+	// 밑에 3개 뽀려가욘 ^^ 
 	public HashMap<String, Object> selectContentTOne(int t_no); // 중고거래 게시글 보기(content_view)
 	
 	public void deleteContentT(TradeVO tradeVO); // 중고거래 게시글 삭제
