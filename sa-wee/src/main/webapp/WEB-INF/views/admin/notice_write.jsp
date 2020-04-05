@@ -47,8 +47,12 @@
 
 							<div class="write-view"> -->
 
-					<form action="" enctype="multipart/form-data">
+					<form action="/admin/boardInsert" method="post">
+						<input type="hidden" name = "bt_no" value="12" >
+						<input type="hidden" name = "s_no" value="35">
+						<input type="hidden" name = "m_no" value="0">
 						<table class="table">
+						
 							<!-- <tr class = "row">
 							<td class = "cell">게시판 선택</td>
 							<td class = "cell">
@@ -70,23 +74,23 @@
 
 							<tr class="row">
 								<td class="cell span2">제목</td>
-								<td class="cell span9"><input type="text" name="bwTitle"
+								<td class="cell span9"><input type="text" name="bw_title"
 									class="span7" placeholder="제목을 입력하세요"></td>
 
 							</tr>
 
 							<tr class="row">
 								<td class="cell ">내용</td>
-								<td class="cell "><textarea id="editor" name="bwTitle" 
+								<td class="cell "><textarea id="editor" name="bw_content" 
 										rows="10" placeholder="내용을 입력하세요"></textarea></td>
 							</tr>
 
-							<tr class="row">
+							<!-- <tr class="row">
 								<td class="cell">첨부파일</td>
 								<td class="cell"><input multiple="multiple" type="file"
 									class="btn  pull-right" name="file" /></td>
 
-							</tr>
+							</tr> -->
 						</table>
 						<div class="module-option clearfix">
 							<div class="control-group">

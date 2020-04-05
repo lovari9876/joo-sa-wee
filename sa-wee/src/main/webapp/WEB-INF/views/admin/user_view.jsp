@@ -43,6 +43,7 @@
 
 							 <form id="viewForm" method="post">
 							 <input type = "hidden" name = "m_no" value = "${user_view.m_no}">
+							 <input type = "hidden" name = "cate" value = "user">
 								<table class="table user_view" >
 									<tr class="row ">
 										<td class="cell span3" rowspan= "5">프로필사진</td>
@@ -127,7 +128,18 @@
 									<tr class="row">
 										<td class = "cell span1">자기소개</td>
 										<td colspan= "3" class="cell span8">
-											<textarea name = "m_self" class="span5" rows="10">${user_view.m_self}</textarea></td>
+											<textarea name = "m_self" class="span5" rows="8">${user_view.m_self}</textarea></td>
+									</tr>
+									
+									<tr class="row">
+										<td class="cell">탈퇴여부</td>
+										<td class="cell">${user_view.m_out}</td>
+										<td class="cell">탈퇴일</td>
+										<td class="cell">
+											<c:if test = "${user_view.m_outdate eq null}">X</c:if>
+											${user_view.m_outdate} <!-- 탈퇴일이 null이면 X출력하기  -->
+										</td>
+										
 									</tr>
 
 
@@ -138,7 +150,7 @@
 											<button type="button" class="btn  pull-left"
 												onclick="location='user_list'">목록</button>
 											<button class="btn  pull-right" onclick='m_update()'>수정</button>
-											<button type="submit" class="btn  pull-right">탈퇴</button>
+											<button type="submit" class="btn  pull-right" onClick='m_out()'>탈퇴</button>
 
 										</div>
 									</div>
@@ -151,6 +163,14 @@
 									/* modify.setUrl("<c:url value='/admin/updateMember'/>"); */
 									modify.submit();
 									console.log("modify");
+								}
+								
+								function m_out(){
+									var out = document.getElementById("viewForm");
+									out.action="<c:url value='/admin/outMember_user'/>";
+									out.submit();
+									console.log("out");
+									alert("해당 회원이 탈퇴처리 되었습니다.");
 								}
 							</script>
 

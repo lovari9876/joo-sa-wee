@@ -97,34 +97,14 @@
 								<td class="cell">카페 이름</td>
 								<td class="cell">전화번호</td>
 								<td class="cell">주소</td>
-								<td class="cell">조회수</td>
-								<td class="cell">작성일</td>
 							</tr>
-							<c:forEach items="${cafe_review_list}" var="cr">
+							<c:forEach items="${cafe_list}" var="cafe">
 								<tr class="trow">
-									<td class="cell">${cr['CR_NO']}</td>
-									<td class="cell">${cr['CR_TITLE']}</td>
-									<td class="cell">${cr['CR_CONTENT']}</td>
+									<td class="cell">${cafe.c_no}</td>
 									<td class="cell"><a
-										href="/cafe_review_content_view?cr_no=${cr['BW_NO']}">${cr['BW_TITLE']}</a></td>
-									<td class="cell">${cr['M_ID']}</td>
-									<td class="cell"> 
-									
-									
-										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-										<jsp:useBean id="today" class="java.util.Date" />
-										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-										<c:choose>
-											<c:when test="${now ne date}">${date}</c:when>
-											<c:otherwise>
-												<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
-											</c:otherwise>
-										</c:choose>
-										
-										
-									</td>
-									<td class="cell">${board['BW_REPORT_NUM']}</td>
+										href="/cafe_info?c_no=${cafe.c_no}">${cafe.c_title}</a></td>
+									<td class="cell">${cafe.c_phone}</td>
+									<td class="cell">${cafe.c_add}</td>
 								</tr>
 							</c:forEach>
 

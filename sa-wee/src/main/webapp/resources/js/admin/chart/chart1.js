@@ -35,7 +35,7 @@ $(document).ready(function chart1() {
 			$.each(data, function(key, value) {
 				
 				chartLabels.push(value.st_date);
-				chartData.push(value.st_post_num);
+				chartData.push(value.st_visitor_num);
 				
 				
 			});

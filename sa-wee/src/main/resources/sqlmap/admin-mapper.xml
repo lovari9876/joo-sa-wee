@@ -35,13 +35,6 @@
 		               ROW_NUMBER() OVER(ORDER BY r_no DESC) AS RNUM
 		         FROM report 
 		         WHERE 1=1
-		       <!--   <choose>
-		         	<when test="r_type == '회원'">
-		         		r_type 
-		         	</when>
-		         
-		         </choose> -->
-		         
 		         <include refid="report_search"></include>
 		                       ) MP
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
@@ -49,11 +42,11 @@
 
 	</select>
 	
-	<select id="boardList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
+	<select id="boardList" resultType="java.util.HashMap">
 
 	SELECT * FROM
 	(
-         SELECT bw.bw_no, m.m_no, m.m_id, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island,
+         SELECT bw.bw_no, m.m_no, m.m_id, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island,
 		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM
 		          FROM board_write bw
                  INNER JOIN subject s
@@ -62,12 +55,24 @@
                  ON bw.bt_no = bt.bt_no
                 INNER JOIN member m
                 ON bw.m_no=m.m_no
+                
+              <choose>
+                	<when test = "bt_no == 13">
+                		WHERE bt.bt_no BETWEEN 1 and 6
+                	</when>
+                	<otherwise> 
+                		WHERE bt.bt_no = #{bt_no}
+                	</otherwise>
+                </choose> 
+		        
 		         <include refid="board_search"></include>
-		                       ) MP
-		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		                       )
+		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 		ORDER BY bw_no DESC
 
 	</select>
+	
+
 	
 	<select id="wd_recordList" resultType="java.util.HashMap"  parameterType="com.soninlawisdice.vo.SearchCriteria">
 
@@ -101,26 +106,46 @@
 		
 	
 	</select>
+
+
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<!-- =============================================== 페이징처리 + 검색 ====================================================== -->
 	
-	<select id="board_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
+	<select id="board_listCount" resultType="int">
 
-		SELECT COUNT(bw_no)
-		  FROM board_write
-		 WHERE 1=1
+		SELECT COUNT(bw.bw_no)
+		  FROM board_write bw
+		  LEFT JOIN board_type bt
+		  ON bw.bt_no = bt.bt_no
+		 
+		 <choose>
+           <when test = "bt_no == 13"> <!-- 게시글 관리 : 커뮤니티 전체 불러오기  -->
+               WHERE bt.bt_no BETWEEN 1 and 6
+            </when>
+            <otherwise> 
+                WHERE bt.bt_no = #{bt_no}
+            </otherwise>
+         </choose> 
 		 <include refid="board_search"></include>	
-		 AND bw_no > 0
+		 AND bw.bw_no > 0
 
 	</select>
 	
 	<sql id="board_search">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND bw_title LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND bw_content LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND m_no LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">AND (bw_title LIKE '%' || #{keyword} || '%') or (bw_content LIKE '%' || #{keyword} || '%')</if>
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 't'.toString()">AND bw_title LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND bw_content LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'w'.toString()">AND m_no LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'tc'.toString()">AND (bw_title LIKE '%' || #{scri.keyword} || '%') or (bw_content LIKE '%' || #{scri.keyword} || '%')</if>
 		</if>
 	</sql>
 	
@@ -203,6 +228,8 @@
 		</if>
 	</sql>
 	
+	
+	
 	<!-- =============================================== 글 보기  ====================================================== -->
 	
 
@@ -211,7 +238,21 @@
 	</select>
 	
 	
-
+	<!-- =============================================== 글 쓰기  ====================================================== -->
+	
+	<insert id="boardInsert" parameterType="com.soninlawisdice.vo.Board_writeVO" >
+		INSERT INTO board_write (bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
+		VALUES (board_write_seq.nextval, #{board_writeVO.m_no}, #{board_writeVO.bt_no}, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
+	
+	</insert>
+	
+	
+	<insert id="cafeInsert" parameterType="com.soninlawisdice.vo.CafeVO" >
+		INSERT INTO cafe (c_no, c_title, c_add, c_phone, c_people, c_table, c_chair, c_open, c_close, c_rest, c_written_date, c_updated_date, c_hit, bt_no) 
+		VALUES (cafe_seq.nextval, #{cafeVO.c_title}, #{cafeVO.c_add}, #{cafeVO.c_phone}, #{cafeVO.c_people}, #{cafeVO.c_table}, #{cafeVO.c_chair}, #{cafeVO.c_open}, #{cafeVO.c_close}, #{cafeVO.c_rest}, sysdate, sysdate, 0, 10) 
+	
+	</insert>
+	
 	
 	<!-- =============================================== 신고게시판 글 보기 타입분류 ====================================================== -->	
 	
@@ -221,32 +262,32 @@
 		 SELECT r.*, 
 		 
 		 <choose>
-			<when test="r_type == '게시글'">
+			<when test='r_type == "게시글"'>
 				m.m_id, bw.bw_title, bw.bw_report_num, bw.bw_no, bw.m_no AS r_id
 				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
                 LEFT JOIN board_write bw ON r.r_type_no = bw.bw_no WHERE
 			</when>
 			
-			<when test="r_type == '카페리뷰'">
+			<when test='r_type == "카페리뷰"'>
 				m.m_id, cr.cr_title, cr.cr_report_num, cr.cr_no, cr.m_no AS r_id
 				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
                 LEFT JOIN cafe_review cr ON r.r_type_no = cr.cr_no WHERE
 			</when>
 			
-			<when test="r_type == '중고거래'">
+			<when test='r_type == "중고거래"'>
 				m.m_id, t.t_title, t.t_report_num, t.t_no, t.m_no AS r_id
 				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
                 LEFT JOIN trade t ON r.r_type_no = t.t_no WHERE
 			</when>
 			
-			<when test="r_type == '댓글'">
+			<when test='r_type == "댓글"'>
 				m.m_id, cm.cm_content, cm.cm_report_num, cm.cm_no, cm.m_no AS r_id
 				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
                 LEFT JOIN cm_comment cm ON r.r_type_no = cm.cm_no WHERE
 			</when>
 			
-			<when test="r_type == '회원'">
-				m1.m_id as m_id, m2.m_id as r_id, m2.m_report_num
+			<when test='r_type == "회원"'>
+				m1.m_id as m_id, m2.m_id as r_id, m2.m_report_num, m2.m_no as r_m_no
 				FROM report r LEFT JOIN member m1 ON r.m_no=m1.m_no
 				LEFT JOIN member m2 ON r.r_type_no= m2.m_no WHERE
 			</when>
@@ -265,8 +306,13 @@
 		where m_no = #{memberVO.m_no}
 	</update>
 	
-
-
+	
+	<!-- =============================================== 회원 탈퇴처리 ====================================================== -->
+	
+	<update id="outMember" parameterType="com.soninlawisdice.vo.MemberVO" >
+		UPDATE member SET m_out = 'y', m_outdate = sysdate where m_no = #{m_no}
+	</update>
+	
 
 	<!-- =============================================== 무인도행 ====================================================== -->
 	
@@ -314,6 +360,9 @@
 		delete trade where t_no = #{t_no}
 	</delete>
 	
+	<delete id="selectDelete_comment" parameterType="com.soninlawisdice.vo.CM_commentVO" >
+		delete cm_comment where cm_no = #{cm_no}
+	</delete>
 	
 	<!-- =============================================== 방문자수  ====================================================== -->
 	
@@ -406,9 +455,6 @@
 	
 	
 	<!-- =============================================== index에 출력할 데이터 : 글, 댓글, 회원 전체 수 ====================================================== -->	
-	
-	
-	
 	
 	
 	<select id="allMember" parameterType="com.soninlawisdice.vo.MemberVO" resultType="int">

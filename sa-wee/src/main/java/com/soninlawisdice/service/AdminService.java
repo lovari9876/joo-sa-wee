@@ -3,8 +3,13 @@ package com.soninlawisdice.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
@@ -18,8 +23,8 @@ public interface AdminService {
 
 	
 	// 페이징 처리 + 검색  List
-	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri);
-	public int board_listCount(SearchCriteria scri);
+	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no);
+	public int board_listCount(SearchCriteria scri, int bt_no);
 	
 	public List<MemberVO> memberList(SearchCriteria scri);
 	public int member_listCount(SearchCriteria scri);
@@ -51,6 +56,11 @@ public interface AdminService {
 	//회원정보수정
 	public void updateMember(MemberVO memberVO);
 	
+	
+	// 회원 탈퇴
+	public void outMember(int m_no);
+
+	
 	// 무인도 member, board_write, cafe_review, trade 컬럼 변경
 	public void updateIsland_member(int m_no);
 	public void updateIsland_bw(int bw_no);
@@ -66,11 +76,19 @@ public interface AdminService {
 	public HashMap<String, Object> selectReportView(int r_no, String r_type);
 
 	
+	// 글쓰기 
+	public void boardInsert(Board_writeVO board_writeVO);
+	public void cafeInsert(CafeVO cafeVO);
+	
 	
 	// 글삭제
 	public void selectDelete(Board_writeVO boardVO);
 	public void selectDelete_cafe(Cafe_reviewVO cafe_reviewVO);
 	public void selectDelete_trade(TradeVO tradeVO);
+	
+	public void selectDelete(int bw_no);
+	public void selectDelete_comment(int cm_no);
+
 	
 	// 통계
 	
