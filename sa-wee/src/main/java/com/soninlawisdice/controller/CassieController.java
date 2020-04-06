@@ -2,8 +2,11 @@ package com.soninlawisdice.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,10 +21,13 @@ import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
+import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
+import com.soninlawisdice.vo.Trade_gameVO;
 
 @Controller
 public class CassieController {
@@ -36,13 +42,14 @@ public class CassieController {
 	private BoardService boardService;
 	@Autowired
 	private ContentService contentService;
+	
 
 	////////////////////////////////// 보부상 /////////////////////////////////////////////
 	
 	// 보부상 리스트
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
-	public String tlist(Model model, @ModelAttribute("scri") SearchCriteria scri,
-			/*@RequestParam(name="s_content", defaultValue = "n") String s_content, */ HttpServletRequest rq) {
+	public String tlist(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq
+			/*@RequestParam(name="s_content", defaultValue = "n") String s_content, */ ) {
 		//@RequestParam으로 받으면, 처음에 검색어 없이 /tlist로 갈때는 없는 파라미터 오류 발생
 		
 		// 스프링 컨테이너가
@@ -50,7 +57,7 @@ public class CassieController {
 		// model.attribute("scri", scri)
 		// 를 자동으로 해준다.
 
-		logger.info("tlist");
+		logger.info("tlist");	
 
 		scri.setPerPageNum(15);
 
@@ -107,9 +114,66 @@ public class CassieController {
 
 		secondhandService.deleteContent(tradeVO);
 
-		return "redirect:/tlist";
+		return "redirect:tlist";
+	}
+	
+	// 글쓰기 view
+	@RequestMapping(value = "/write_view_t", method = RequestMethod.GET)
+	public String write_view(Model model) {
+		logger.info("write_view_t");
+		
+//		로그인 된 상태라면 이렇게 해서 현재 로그인 한 회원의 MemberVO 가져올 수 있다.
+//		memberVO = (MemberVO) session.getAttribute("member");
+//		model.addAttribute("member", memberVO);	
+//		이렇게 넘겨야 m_no 받아올 수 있다.
+		
+		return "secondhand/write_view";
 	}
 
+	// 글 작성
+	@RequestMapping(value = "/trade_write", method = RequestMethod.POST)
+	public String write(HttpSession session, Model model, 
+						@ModelAttribute("tradeVO") TradeVO tradeVO, /* @ModelAttribute("tgVO") Trade_gameVO tgVO, */
+						String gameName) {
+
+//		로그인 된 상태라면 이렇게 해서 현재 로그인 한 회원의 MemberVO 가져올 수 있다.
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		model.addAttribute("memberVO", memberVO);	
+//		이렇게 넘겨야 m_no 받아올 수 있다.
+		
+		
+		secondhandService.insertTrade(tradeVO, memberVO.getM_no());	
+		
+		secondhandService.insertTrade_game(tradeVO, gameName);
+		
+		secondhandService.boardPointUpdate(memberVO.getM_no());		
+		
+				
+		return "redirect:tlist";
+
+	}
+
+	// 수정하기 view.
+	@RequestMapping(value = "/trade_modify_view", method = RequestMethod.GET)
+	public String modify_view(Model model, int bw_no) {
+		
+		model.addAttribute("content_view", boardService.modify_view(bw_no));
+
+		
+		return "board_hs/modify_view";
+	}
+	
+	
+	//수정하기
+	//수정했을때 수정된 content 보기
+	@RequestMapping(value = "/trade_modify", method = RequestMethod.POST)
+	public String modify(Board_writeVO board_writeVO, Model model) {
+		boardService.modify(board_writeVO);
+		int bw_no = board_writeVO.getBw_no();
+		
+		return "redirect:content_view_t?t_no"+bw_no;
+	}
+	
 	
 	////////////////////////////////// 무인도 /////////////////////////////////////////////
 
@@ -159,8 +223,8 @@ public class CassieController {
 			return "secondhand/content_view";
 			
 		}else if(bt_no==11) { // 카페리뷰
-			boardService.review_uphit(Integer.toString(i_no));
-			model.addAttribute("cafe_review", boardService.selectReviewOne(Integer.toString(i_no)));
+			boardService.review_uphit(i_no);
+			model.addAttribute("cafe_review", boardService.selectReviewOne(i_no));
 			
 			return "board_hs/cafe_review_content_view";
 			

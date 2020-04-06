@@ -244,8 +244,8 @@
 					        </li>
 					    </c:if>					   
 					</ul>
-					<!-- 글쓰기 버튼 -->
-					<button class="btn btn-primary write-btn lavender-btn ">글쓰기</button>
+					<!-- 글쓰기 버튼... 아니 무인도에서 글을 왜 쓰냐!! -->
+					<!-- <button class="btn btn-primary write-btn lavender-btn ">글쓰기</button> -->
                 </nav>
             </div>
         </div>    

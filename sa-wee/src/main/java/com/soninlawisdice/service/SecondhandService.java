@@ -24,5 +24,14 @@ public interface SecondhandService {
 	public void deleteContent(TradeVO tradeVO);
 	
 	// 조회수: hit
-	public void upHitContent(int t_no); 
+	public void upHitContent(int t_no);
+
+	// 글 insert
+	public void insertTrade(TradeVO tradeVO, int m_no);
+
+	// 판매 또는 구매할 보드게임 insert (multiple value)
+	public void insertTrade_game(TradeVO tradeVO, String gameName);
+
+	// 글 작성 포인트 update
+	public void boardPointUpdate(int m_no); 
 }
