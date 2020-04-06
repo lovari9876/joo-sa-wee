@@ -237,6 +237,14 @@ public class ContentServiceImpl implements ContentService {
 
 	}
 	
+	// 중고거래 신고수 증가
+	@Override
+	public void updateReportT(TradeVO tradeVO) {
+		
+		contentMapper.updateReportT(tradeVO);
+		
+	}
+	
 	// 중고거래 댓글 목록
 	@Override
 	public ArrayList<HashMap<String, Object>> selectCommentListT(String cm_no) {
@@ -346,6 +354,15 @@ public class ContentServiceImpl implements ContentService {
 
 	}
 	
+	// 카페리뷰 신소수 증가
+	@Override
+	public void updateReportCR(Cafe_reviewVO cafe_reviewVO) {
+		
+		contentMapper.updateReportCR(cafe_reviewVO);
+		
+	}
+
+	
 	// 카페리뷰 댓글 목록
 	@Override
 	public ArrayList<HashMap<String, Object>> selectCommentListCR(String cm_no) {
@@ -405,6 +422,9 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountCR(cm_no2);
 	}
+
+	
+	
 
 	
 

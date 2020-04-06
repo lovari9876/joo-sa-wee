@@ -334,12 +334,15 @@ public class HeeJeongController {
 
 	// 중고거래 신고글 쓰기
 	@RequestMapping(value = "/report_t", method = RequestMethod.GET)
-	public String report_t(ReportVO reportVO, Model model) {
+	public String report_t(ReportVO reportVO, Model model, TradeVO tradeVO) {
 		System.out.println("report_t");
 
 		System.out.println(reportVO.getR_type_no());
 
 		contentService.insertReportT(reportVO);
+		
+		// 중고거래 신고수 증가
+		contentService.updateReportT(tradeVO);
 
 		return "content/report_success";
 	}
@@ -503,12 +506,15 @@ public class HeeJeongController {
 
 	// 카페리뷰 신고글 쓰기
 	@RequestMapping(value = "/report_cr", method = RequestMethod.GET)
-	public String report_cr(ReportVO reportVO, Model model) {
+	public String report_cr(ReportVO reportVO, Model model, Cafe_reviewVO cafe_reviewVO) {
 		System.out.println("report_cr");
 
 		System.out.println(reportVO.getR_type_no());
 
 		contentService.insertReportCR(reportVO);
+		
+		// 카페리뷰 신고수 증가
+		contentService.updateReportCR(cafe_reviewVO);
 		
 		return "content/report_success";
 	}

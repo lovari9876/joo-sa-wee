@@ -71,6 +71,8 @@ public interface ContentService {
 	
 	public void insertReportT(ReportVO reportVO); // 중고거래 신고글 쓰기
 	
+	public void updateReportT(TradeVO tradeVO); // 중고거래 신고수 증가
+	
 	public ArrayList<HashMap<String, Object>> selectCommentListT(String cm_no); // 중고거래 댓글 목록
 	
 	public void insertCommentT(CM_commentVO cm_commentVO); // 중고거래 댓글 쓰기
@@ -100,6 +102,8 @@ public interface ContentService {
 	public String selectRecommendContentCR(String cr_no); // 카페리뷰 게시글 추천수 증가하는 거 받아옴
 	
 	public void insertReportCR(ReportVO reportVO); // 카페리뷰 신고글 쓰기
+	
+	public void updateReportCR(Cafe_reviewVO cafe_reviewVO); // 카페리뷰 신고수 증가
 	
 	public ArrayList<HashMap<String, Object>> selectCommentListCR(String cm_no); // 카페리뷰 댓글 목록
 	
