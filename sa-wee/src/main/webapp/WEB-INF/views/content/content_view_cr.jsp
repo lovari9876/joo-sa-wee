@@ -173,7 +173,7 @@
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item second">
-								<a href="#">수정</a>
+								<a href="review_modify_view?cr_no=${content_view_cr['CR_NO']}">수정</a>
 							</div>
 							<div class="test_item third">
 								<a href="delete_cr?cr_no=${content_view_cr['CR_NO']}">삭제</a>

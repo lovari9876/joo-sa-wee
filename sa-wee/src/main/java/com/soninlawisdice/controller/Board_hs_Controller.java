@@ -308,15 +308,6 @@ public class Board_hs_Controller {
 		return "board_hs/cafe_review_list";
 	}
 
-	// 카페 리뷰 하나 보기
-	@RequestMapping(value = "/selectReviewOne")
-	public String selectReviewOne(Model model, int cr_no) {
-		// 조회수 올리기
-		boardService.review_uphit(cr_no);
-
-		model.addAttribute("cafe_review", boardService.selectReviewOne(cr_no));
-		return "board_hs/cafe_review_content_view";
-	}
 	
 	//리뷰쓰는 view 로 가기
 	@RequestMapping(value = "/cafe_review_write", method = RequestMethod.GET)
@@ -360,7 +351,7 @@ public class Board_hs_Controller {
 		System.out.println(cr_no);
 		
 	
-		return "redirect:selectReviewOne?cr_no="+cr_no;
+		return "redirect:content_view_cr?cr_no="+cr_no;
 		
 	}
 	//리뷰 삭제하기
@@ -375,21 +366,6 @@ public class Board_hs_Controller {
 	// HttpServletRequest request, RedirectAttributes redirectAttributes
 	//String referer = request.getHeader("Referer");
 	
-	
-	// 카페 리뷰 글 추천
-	@ResponseBody
-	@RequestMapping(value = "/review_rec")
-	public String recommend(int cr_no, Model model) {
-		System.out.println("recommend");
-		boardService.review_recommend(cr_no);
-		return boardService.review_rec(cr_no);
-	}	
-	
-	
-
-	
-
-
 	
 	////////////////////////////////////////일단 1 : 1 문의 ///////////////////////////////////////
 
