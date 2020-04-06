@@ -26,13 +26,19 @@ public interface ContentService {
 	
 	public void insertReportBW(ReportVO reportVO); //  게시글 신고글 쓰기
 	
+	public void updateReportBW(Board_writeVO board_writeVO); // 게시글 신고수 증가
+	
 	public HashMap<String, Object> selectContentM(int m_no); // m_no를 가져오기 위해
 	
 	public void insertReportM(ReportVO reportVO); // 회원 신고글 쓰기
 	
+	public void updateReportM(MemberVO memberVO); // 회원 신고수 증가
+	
 	public HashMap<String, Object> selectContentCM(int cm_no); // cm_no를 가져오기 위해
 	
 	public void insertReportCM(ReportVO reportVO); // 댓글 신고글 쓰기
+	
+	public void updateReportCM(CM_commentVO cm_commentVO); // 댓글 신고수 증가
 	
 	public void insertCommentBW(CM_commentVO cm_commentVO); // 게시글 댓글 쓰기
 	

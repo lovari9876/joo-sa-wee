@@ -113,6 +113,11 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+	
+	<!-- 게시글 신고수 증가 -->
+	<update id="updateReportBW">
+		UPDATE BOARD_WRITE SET BW_REPORT_NUM = BW_REPORT_NUM +1 WHERE BW_NO = #{bw_no}
+	</update>
 
 	<!-- m_no를 가져오기 위해 -->
 	<select id="selectContentM"
@@ -128,6 +133,11 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+	
+	<!-- 회원 신고수 증가 -->
+	<update id="updateReportM">
+		UPDATE MEMBER SET M_REPORT_NUM = M_REPORT_NUM +1 WHERE M_NO = #{m_no}
+	</update>
 
 	<!-- cm_no를 가져오기 위해 -->
 	<select id="selectContentCM"
@@ -143,6 +153,11 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+	
+	<!-- 댓글 신고수 증가 -->
+	<update id="updateReportCM">
+		UPDATE CM_COMMENT SET CM_REPORT_NUM = CM_REPORT_NUM +1 WHERE CM_NO = #{cm_no}
+	</update>
 
 	<!-- CM_commentVO resultMap -->
 	<resultMap type="com.soninlawisdice.vo.CM_commentVO"

@@ -74,6 +74,14 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.insertReportBW(reportVO);
 
 	}
+	
+	// 게시글 신고수 증가
+	@Override
+	public void updateReportBW(Board_writeVO board_writeVO) {
+		
+		contentMapper.updateReportBW(board_writeVO);
+		
+	}
 
 	// m_no를 가져오기 위해
 	@Override
@@ -89,6 +97,14 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.insertReportM(reportVO);
 
 	}
+	
+	// 회원 신고수 증가
+	@Override
+	public void updateReportM(MemberVO memberVO) {
+		
+		contentMapper.updateReportM(memberVO);
+		
+	}
 
 	// cm_no를 가져오기 위해
 	@Override
@@ -103,6 +119,14 @@ public class ContentServiceImpl implements ContentService {
 
 		contentMapper.insertReportCM(reportVO);
 
+	}
+	
+	// 댓글 신고수 증가
+	@Override
+	public void updateReportCM(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateReportCM(cm_commentVO);
+		
 	}
 
 	// 게시글 댓글 쓰기
@@ -381,6 +405,12 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountCR(cm_no2);
 	}
+
+	
+
+	
+
+	
 
 	
 	

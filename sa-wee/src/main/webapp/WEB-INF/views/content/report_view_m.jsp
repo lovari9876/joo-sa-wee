@@ -38,6 +38,7 @@
 				<h3 class="mb-5">신고</h3>
 				<form action="report_m" method="get">
 					<input type="hidden" name="r_type_no" value="${member_view['M_NO']}">
+					<input type="hidden" name="m_no" value="${member_view['M_NO']}">
 					<div class="form-group">
 						<label for="message">신고하기</label>
 						<textarea name="r_content" id="message" cols="30" rows="10"

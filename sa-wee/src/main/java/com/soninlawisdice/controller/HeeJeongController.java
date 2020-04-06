@@ -202,12 +202,15 @@ public class HeeJeongController {
 
 	// 게시글 신고글 쓰기
 	@RequestMapping(value = "/report_bw", method = RequestMethod.GET)
-	public String report_bw(@ModelAttribute("reportVO") ReportVO reportVO, Model model) {
+	public String report_bw(@ModelAttribute("reportVO") ReportVO reportVO, Model model, Board_writeVO board_writeVO) {
 		System.out.println("report_bw");
 
 		System.out.println(reportVO.getR_type_no());
 
 		contentService.insertReportBW(reportVO);
+		
+		// 게시글 신고수 증가
+		contentService.updateReportBW(board_writeVO);
 
 		return "content/report_success";
 	}
@@ -228,12 +231,15 @@ public class HeeJeongController {
 
 	// 회원 신고글 쓰기
 	@RequestMapping(value = "/report_m", method = RequestMethod.GET)
-	public String report_m(@ModelAttribute("reportVO") ReportVO reportVO, Model model) {
+	public String report_m(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO) {
 		System.out.println("report_m");
 
 		System.out.println(reportVO.getR_type_no());
 
 		contentService.insertReportM(reportVO);
+		
+		// 회원 신고수 증가
+		contentService.updateReportM(memberVO);
 
 		return "redirect:list_home";
 	}
@@ -254,12 +260,15 @@ public class HeeJeongController {
 
 	// 댓글 신고글 쓰기
 	@RequestMapping(value = "/report_cm", method = RequestMethod.GET)
-	public String report_cm(@ModelAttribute("reportVO") ReportVO reportVO, Model model) {
+	public String report_cm(@ModelAttribute("reportVO") ReportVO reportVO, Model model, CM_commentVO cm_commentVO) {
 		System.out.println("report_cm");
 
 		System.out.println(reportVO.getR_type_no());
 
 		contentService.insertReportCM(reportVO);
+		
+		// 댓글 신고수 증가
+		contentService.updateReportCM(cm_commentVO);
 
 		return "content/report_success";
 	}
