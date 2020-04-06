@@ -294,7 +294,8 @@ public class HeeJeongController {
 	
 	// 중고거래 게시글 view
 	@RequestMapping(value = "/content_view_t", method = RequestMethod.GET)
-	public String content_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
+	public String content_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO,
+									@RequestParam("t_no") int pageNum) {
 		System.out.println("content_view_t");
 
 		System.out.println(request.getParameter("t_no"));
@@ -321,7 +322,7 @@ public class HeeJeongController {
 		return "redirect:/tlist";
 	}
 	
-	// 게시글 추천수 증가
+	// 중고거래 게시글 추천수 증가
 	@ResponseBody
 	@RequestMapping(value = "/rec_t", method = RequestMethod.GET)
 	public String recommend_t(String t_no, Model model) {
@@ -405,7 +406,7 @@ public class HeeJeongController {
 		return "redirect:/content_view_t";
 	}
 	
-	// 댓글 수정하기 view
+	// 중고거래 댓글 수정하기 view
 	@RequestMapping(value = "/comment_modify_view_t", method = RequestMethod.GET)
 	public String comment_modify_view_t(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
 		System.out.println("comment_modify_view_t");
@@ -419,7 +420,7 @@ public class HeeJeongController {
 		return "content/comment_modify_view_t";
 	}
 		
-	// 댓글 수정
+	// 중고거래 댓글 수정
 	@RequestMapping(value = "/comment_modify_t", method = RequestMethod.GET)
 	public String comment_modify_t(CM_commentVO cm_commentVO, Model model) {
 		System.out.println("comment_modify_t");
@@ -429,24 +430,24 @@ public class HeeJeongController {
 		return "content/comment_modi_success";
 	}
 	
-	// 댓글 삭제
+	// 중고거래 댓글 삭제
 	@RequestMapping(value = "/comment_delete_t", method = RequestMethod.GET)
 	public String comment_delete_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
 										Model model, @RequestParam int t_no, RedirectAttributes re) {
 		System.out.println("comment_delete_t");
 			
-		contentService.deleteComment(cm_commentVO);
+		contentService.deleteCommentT(cm_commentVO);
 		
 		re.addAttribute("t_no", t_no);
 				
 		return "redirect:/content_view_t";
 	}
 	
-	// 댓글 추천수 증가
+	// 중고거래 댓글 추천수 증가
 	@ResponseBody
 	@RequestMapping(value = "/rec_cm_t", method = RequestMethod.GET)
 	public String recommend_cm_t(String cm_no, Model model) {
-		System.out.println("recommend_cm");
+		System.out.println("recommend_cm_t");
 
 		contentService.upRecommendCommentT(cm_no);
 
@@ -457,20 +458,87 @@ public class HeeJeongController {
 	
 	/*============================== 카페리뷰 ===================================*/
 		
-	// 카페리뷰 댓글 view -> 이거 댓글 목록으로 고쳐야 함
+	// 카페리뷰 게시글 view
+	@RequestMapping(value = "/content_view_cr", method = RequestMethod.GET)
+	public String content_view_cr(Model model, HttpServletRequest request, CM_commentVO cm_commentVO,
+									@RequestParam("cr_no") int pageNum) {
+		System.out.println("content_view_cr");
+
+		System.out.println(request.getParameter("cr_no"));
+			
+		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
+				
+		System.out.println(cr_no);
+
+		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
+
+		// 게시글 조회수
+		contentService.upHitContentCR(cr_no);
+
+		return "content/content_view_cr";
+	}
+	
+	// 카페리뷰 게시글 삭제
+	@RequestMapping(value = "/delete_cr", method = RequestMethod.GET)
+	public String delete_cr(Cafe_reviewVO cafe_reviewVO, Model model) {
+		System.out.println("delete_cr");
+
+		contentService.deleteContentCR(cafe_reviewVO);
+
+		return "redirect:/cafe_map";
+	}
+	
+	// 카페리뷰 게시글 추천수 증가
+	@ResponseBody
+	@RequestMapping(value = "/rec_cr", method = RequestMethod.GET)
+	public String recommend_cr(String cr_no, Model model) {
+		System.out.println("recommend_cr");
+
+		contentService.upRecommendContentCR(cr_no);
+
+		return contentService.selectRecommendContentCR(cr_no);
+	}
+	
+	// 카페리뷰 신고글 view
+	@RequestMapping(value = "/report_view_cr", method = RequestMethod.GET)
+	public String report_view_cr(HttpServletRequest request, Model model) {
+		System.out.println("report_view_cr");
+
+		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
+
+		System.out.println(cr_no);
+
+		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
+
+		return "content/report_view_cr";
+	}
+
+	// 카페리뷰 신고글 쓰기
+	@RequestMapping(value = "/report_cr", method = RequestMethod.GET)
+	public String report_cr(ReportVO reportVO, Model model) {
+		System.out.println("report_cr");
+
+		System.out.println(reportVO.getR_type_no());
+
+		contentService.insertReportCR(reportVO);
+		
+		return "content/report_success";
+	}
+
+	// 카페리뷰 댓글 목록 view
 	@RequestMapping(value = "/comment_view_cr", method = RequestMethod.GET)
-	public String comment_view_cr(Model model, String bw_no, HttpServletRequest request, CM_commentVO cm_commentVO) {
+	public String comment_view_cr(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
 		System.out.println("comment_view_cr");
-				  
+				
 		String cm_no2 = request.getParameter("cm_no2");
 		System.out.println("cm_no2 : "+cm_no2);
-				  
-		model.addAttribute("cm_comment_view", contentService.selectCommentCR(cm_no2));
-		model.addAttribute("memberVO", cm_commentVO.getMemberVO());
-				  
+
+		model.addAttribute("comment_list_cr", contentService.selectCommentListCR(cm_no2));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+			  
 		return "content/comment_view_cr"; 
 	} 
-
+	
 	// 카페리뷰 댓글 쓰기 view
 	@RequestMapping(value = "/comment_write_view_cr", method = RequestMethod.GET)
 	public String comment_write_view_cr(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
@@ -480,7 +548,7 @@ public class HeeJeongController {
 
 		System.out.println(cr_no);
 
-		model.addAttribute("cafe_review_view", contentService.selectContentCR(cr_no));
+		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
 		model.addAttribute("cr_no", cr_no);
 		System.out.println(cm_commentVO.getCm_no2());
 
@@ -499,34 +567,56 @@ public class HeeJeongController {
 			
 		re.addAttribute("cr_no", cr_no);
 
-		return "content/content_view";
-	}
-		
-	// 카페리뷰 신고글 view
-	@RequestMapping(value = "/report_view_cr", method = RequestMethod.GET)
-	public String report_view_cr(HttpServletRequest request, Model model) {
-		System.out.println("report_view_cr");
-
-		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
-
-		System.out.println(cr_no);
-
-		model.addAttribute("cafe_review_view", contentService.selectContentCR(cr_no));
-
-		return "content/report_view_cr";
-	}
-
-	// 카페리뷰 신고글 쓰기
-	@RequestMapping(value = "/report_cr", method = RequestMethod.GET)
-	public String report_cr(ReportVO reportVO, Model model) {
-		System.out.println("report_cr");
-
-		System.out.println(reportVO.getR_type_no());
-
-		contentService.insertReportCR(reportVO);
-
-		return "content/report_success";
+		return "redirect:/content_view_cr";
 	}
 	
-		
+	// 카페리뷰 댓글 수정하기 view
+	@RequestMapping(value = "/comment_modify_view_cr", method = RequestMethod.GET)
+	public String comment_modify_view_cr(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
+		System.out.println("comment_modify_view_cr");
+			
+		String cm_no = request.getParameter("cm_no");
+		System.out.println("cm_no : "+cm_no);
+			
+		model.addAttribute("comment_modi_cr", contentService.selectCommentCR(cm_no));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+				
+		return "content/comment_modify_view_cr";
+	}
+			
+	// 카페리뷰 댓글 수정
+	@RequestMapping(value = "/comment_modify_cr", method = RequestMethod.GET)
+	public String comment_modify_cr(CM_commentVO cm_commentVO, Model model) {
+		System.out.println("comment_modify_cr");
+				
+		contentService.updateCommentCROne(cm_commentVO);
+				
+		return "content/comment_modi_success";
+	}
+	
+	// 카페리뷰 댓글 삭제
+	@RequestMapping(value = "/comment_delete_cr", method = RequestMethod.GET)
+	public String comment_delete_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
+											Model model, @RequestParam int cr_no, RedirectAttributes re) {
+		System.out.println("comment_delete_t");
+				
+		contentService.deleteCommentCR(cm_commentVO);
+			
+		re.addAttribute("cr_no", cr_no);
+					
+		return "redirect:/content_view_cr";
+	}
+	
+	// 카페리뷰 댓글 추천수 증가
+	@ResponseBody
+	@RequestMapping(value = "/rec_cm_cr", method = RequestMethod.GET)
+	public String recommend_cm_cr(String cm_no, Model model) {
+		System.out.println("recommend_cm_cr");
+
+		contentService.upRecommendCommentCR(cm_no);
+
+		return contentService.selectRecommendCommentCR(cm_no);
+	}
+	
+	
 }

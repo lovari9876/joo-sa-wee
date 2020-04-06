@@ -66,24 +66,41 @@ public interface ContentMapper {
 	
 	public void insertCommentT(CM_commentVO cm_commentVO); // 중고거래 댓글 쓰기
 	
-	public HashMap<String, Object> selectCommentT(String cm_no); // 중고거래 댓글 보기
+	public HashMap<String, Object> selectCommentT(String cm_no); // 중고거래 댓글 수정하기 view에서 사용
 	
 	public void updateCommentTOne(CM_commentVO cm_commentVO); // 중고거래 댓글 수정
 	
 	public void deleteCommentT(CM_commentVO cm_commentVO); // 중고거래 댓글 삭제
 	
-	public void upRecommendCommentT(String cm_no); // 댓글 추천수 증가
+	public void upRecommendCommentT(String cm_no); // 중고거래 댓글 추천수 증가
 	
-	public String selectRecommendCommentT(String cm_no); // 댓글 추천수 증가하는 거 받아옴
+	public String selectRecommendCommentT(String cm_no); // 중고거래 댓글 추천수 증가하는 거 받아옴
 	
 	
 	/*============================== 카페리뷰 ===================================*/
-	public HashMap<String, Object> selectContentCR(int cr_no); // cr_no를 가져오기 위해
+	public HashMap<String, Object> selectContentCROne(int cr_no); // 카페리뷰 게시글 보기(content_view)
+	
+	public void deleteContentCR(Cafe_reviewVO cafe_reviewVO); // 카페리뷰 게시글 삭제
+	
+	public void upHitContentCR(int cr_no); // 카페리뷰 게시글 조회수
+	
+	public void upRecommendContentCR(String cr_no); // 카페리뷰 게시글 추천수 증가
+	
+	public String selectRecommendContentCR(String cr_no); // 카페리뷰 게시글 추천수 증가하는 거 받아옴
 	
 	public void insertReportCR(ReportVO reportVO); // 카페리뷰 신고글 쓰기
 	
+	public ArrayList<HashMap<String, Object>> selectCommentListCR(String cm_no); // 카페리뷰 댓글 목록
+	
 	public void insertCommentCR(CM_commentVO cm_commentVO); // 카페리뷰 댓글 쓰기
 	
-	public HashMap<String, Object> selectCommentCR(String cm_no); // 카페리뷰 댓글 보기
+	public HashMap<String, Object> selectCommentCR(String cm_no); // 중고거래 댓글 수정하기 view에서 사용
 	
+	public void updateCommentCROne(CM_commentVO cm_commentVO); // 카페리뷰 댓글 수정
+	
+	public void deleteCommentCR(CM_commentVO cm_commentVO); // 카페리뷰 댓글 삭제
+	
+	public void upRecommendCommentCR(String cm_no); // 카페리뷰 댓글 추천수 증가
+	
+	public String selectRecommendCommentCR(String cm_no); // 카페리뷰 댓글 추천수 증가
 }

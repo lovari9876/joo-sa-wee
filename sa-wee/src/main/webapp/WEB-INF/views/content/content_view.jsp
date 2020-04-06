@@ -294,7 +294,7 @@
 	<script src="js/board_hj/main.js"></script>
 
 	<script src="js/board_hj/tooltip.js"></script>
-	<script src="js/board_hj/recommed.js"></script>
+	<script src="js/board_hj/recommend.js"></script>
 	<script src="js/board_hj/popover.js"></script>
 
 	<!-- Java Script for header

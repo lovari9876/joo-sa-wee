@@ -166,6 +166,6 @@
 	<script src="js/board_hj/tooltip.js"></script>
 	<script src="js/board_hj/popover.js"></script>
 
-	<script src="js/board_hj/recommed_cm_t.js"></script>
+	<script src="js/board_hj/recommend_cm_t.js"></script>
 </body>
 </html>

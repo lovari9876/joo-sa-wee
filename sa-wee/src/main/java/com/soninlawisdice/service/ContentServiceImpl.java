@@ -219,7 +219,7 @@ public class ContentServiceImpl implements ContentService {
 
 	}
 
-	// 중고거래 댓글 보기
+	// 중고거래 댓글 수정하기 view에서 사용
 	@Override
 	public HashMap<String, Object> selectCommentT(String cm_no) {
 
@@ -250,7 +250,7 @@ public class ContentServiceImpl implements ContentService {
 		
 	}
 
-	// 댓글 추천수 증가하는 거 받아옴
+	// 중고거래 댓글 추천수 증가하는 거 받아옴
 	@Override
 	public String selectRecommendCommentT(String cm_no) {
 		
@@ -259,11 +259,42 @@ public class ContentServiceImpl implements ContentService {
 
 	/* ============================== 카페리뷰 =================================== */
 
-	// cr_no를 가져오기 위해
+	// 카페리뷰 게시글 보기(content_view)
 	@Override
-	public HashMap<String, Object> selectContentCR(int cr_no) {
+	public HashMap<String, Object> selectContentCROne(int cr_no) {
+		
+		return contentMapper.selectContentCROne(cr_no);
+	}
+	
+	// 카페리뷰 게시글 삭제
+	@Override
+	public void deleteContentCR(Cafe_reviewVO cafe_reviewVO) {
+		
+		contentMapper.deleteContentCR(cafe_reviewVO);
+		
+	}
+	
+	// 카레리뷰 게시글 조회수
+	@Override
+	public void upHitContentCR(int cr_no) {
+		
+		contentMapper.upHitContentCR(cr_no);
+		
+	}
+	
+	// 카페리뷰 게시글 추천수 증가
+	@Override
+	public void upRecommendContentCR(String cr_no) {
+		
+		contentMapper.upRecommendContentCR(cr_no);
+		
+	}
 
-		return contentMapper.selectContentCR(cr_no);
+	// 카페리뷰 게시글 추천수 증가하는 거 받아옴
+	@Override
+	public String selectRecommendContentCR(String cr_no) {
+		
+		return contentMapper.selectRecommendContentCR(cr_no);
 	}
 
 	// 카페리뷰 신고글 쓰기
@@ -272,6 +303,13 @@ public class ContentServiceImpl implements ContentService {
 
 		contentMapper.insertReportCR(reportVO);
 
+	}
+	
+	// 카페리뷰 댓글 목록
+	@Override
+	public ArrayList<HashMap<String, Object>> selectCommentListCR(String cm_no) {
+		
+		return contentMapper.selectCommentListCR(cm_no);
 	}
 
 	// 카페리뷰 댓글 쓰기
@@ -282,12 +320,44 @@ public class ContentServiceImpl implements ContentService {
 
 	}
 
-	// 카페리뷰 댓글 보기
+	// 카페리뷰 댓글 수정하기 view에서 사용
 	@Override
 	public HashMap<String, Object> selectCommentCR(String cm_no) {
 
 		return contentMapper.selectCommentCR(cm_no);
 	}
 
+	// 카페리뷰 댓글 수정
+	@Override
+	public void updateCommentCROne(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateCommentCROne(cm_commentVO);
+		
+	}
+
+	// 카페리뷰 댓글 삭제
+	@Override
+	public void deleteCommentCR(CM_commentVO cm_commentVO) {
+		
+		contentMapper.deleteCommentCR(cm_commentVO);
+		
+	}
+
+	// 카페리뷰 댓글 추천수 증가
+	@Override
+	public void upRecommendCommentCR(String cm_no) {
+		
+		contentMapper.upRecommendCommentCR(cm_no);
+		
+	}
+
+	// 카페리뷰 댓글 추천수 증가
+	@Override
+	public String selectRecommendCommentCR(String cm_no) {
+		
+		return contentMapper.selectRecommendCommentCR(cm_no);
+	}
+
+	
 	
 }

@@ -47,7 +47,7 @@
 
 </head>
 <body id="top">
-	<input type="hidden" name="t_no" value="${content_view_t['T_NO']}"/>
+	<input type="hidden" name="cr_no" value="${content_view_cr['CR_NO']}"/>
 
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
@@ -64,27 +64,27 @@
 						<!-- 게시판이름과 게시글 작성자 -->
 						<div class="title">
 							<div class="title_item frist">
-								<h4 id="community">${content_view_t['BT_NAME']}</h4>
+								<h4 id="community">${content_view_cr['BT_NAME']}</h4>
 								<span class="slash">&bullet;</span> 
-								<span class="slash">${content_view_t['S_CONTENT']}</span>
+								<span class="slash">${content_view_cr['C_TITLE']}</span>
 							</div>
 							<div class="title_item second">
-								<span class="slash">추천수(</span><span class="slash rec">${content_view_t['T_RECOMMEND_NUM']}</span><span class="slash">)</span> 
+								<span class="slash">추천수(</span><span class="slash rec">${content_view_cr['CR_RECOMMEND_NUM']}</span><span class="slash">)</span> 
 								<span class="slash">&bullet;</span>
-								<span class="slash">조회수(${content_view_t['T_HIT']})</span>
+								<span class="slash">조회수(${content_view_cr['CR_HIT']})</span>
 							</div>
 						</div>
 						<div>
-							<span class="text-white">작성자 ${content_view_t['M_NICK']}</span>
+							<span class="text-white">작성자 ${content_view_cr['M_NICK']}</span>
 							<span class="slash">&bullet;</span> 
-							<span class="text-white">작성일 ${content_view_t['T_WRITTEN_DATE']}</span> 
+							<span class="text-white">작성일 ${content_view_cr['CR_WRITTEN_DATE']}</span> 
 							<span class="slash">&bullet;</span>
-							<span class="text-white">수정일 ${content_view_t['T_UPDATED_DATE']}</span>
+							<span class="text-white">수정일 ${content_view_cr['CR_UPDATED_DATE']}</span>
 						</div>
 					</div>
 					<br />
 					<!-- 게시글 제목 -->
-					<h2 class="text-white">${content_view_t['T_TITLE']}</h2>
+					<h2 class="text-white">${content_view_cr['CR_TITLE']}</h2>
 				</div>
 			</div>
 		</div>
@@ -106,7 +106,7 @@
 							class="img-fluid rounded">
 					</p>
 
-					<p>${content_view_t['T_CONTENT']}</p>
+					<p>${content_view_cr['CR_CONTENT']}</p>
 
 					<blockquote>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -156,18 +156,18 @@
 					<br /> <br />
 					<div align="center" class="tooltip-purple">
 						<input class="good" type="image" src="images/board_hj/good.png"
-							name="button" id="rec_btn_t" value="${content_view_t['T_NO']}"
+							name="button" id="rec_btn_cr" value="${content_view_cr['CR_NO']}"
 							data-toggle="tooltip" data-container=".tooltip-purple"
 							data-placement="top" title="추천 +1">
 						<p>
-							<span>(</span><span class="rec_t">${content_view_t['T_RECOMMEND_NUM']}</span><span>)</span>
+							<span>(</span><span class="rec_cr">${content_view_cr['CR_RECOMMEND_NUM']}</span><span>)</span>
 						</p>
 					</div>
 
 					<br />
 					<br />
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="/tlist" method="get">
+					<form action="cafe_map" method="get">
 						<div class="test">
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
@@ -176,10 +176,10 @@
 								<a href="#">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="delete_t?t_no=${content_view_t['T_NO']}">삭제</a>
+								<a href="delete_cr?cr_no=${content_view_cr['CR_NO']}">삭제</a>
 							</div>
 							<div class="test_item fourth">
-								<a href="report_view_t?t_no=${content_view_t['T_NO']}"
+								<a href="report_view_cr?cr_no=${content_view_cr['CR_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 							</div>
 						</div>
@@ -189,12 +189,12 @@
 					<!-- 댓글부분 -->
 					<%-- <%@ include file="/WEB-INF/views/content/comment_view_T.jsp" %> --%>
 						<c:choose>
-							<c:when test="${content_view_t['BT_NO'] == 9}">
-								<c:import url="/comment_view_t">
-									<c:param name="cm_type" value="중고거래"></c:param>
-									<c:param name="cm_no2" value="${content_view_t['T_NO']}"></c:param>
+							<c:when test="${content_view_cr['BT_NO'] == 11}">
+								<c:import url="/comment_view_cr">
+									<c:param name="cm_type" value="카페리뷰"></c:param>
+									<c:param name="cm_no2" value="${content_view_cr['CR_NO']}"></c:param>
 								</c:import>
-							</c:when>
+							</c:when> 
 							<c:otherwise>
 								<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
 							</c:otherwise>
@@ -205,7 +205,7 @@
 					
 					<!-- 댓글 쓰기 -->
 					<div class="comment-form-wrap pt-5">
-						<%@ include file="/WEB-INF/views/content/comment_write_view_t.jsp" %>
+						<%@ include file="/WEB-INF/views/content/comment_write_view_cr.jsp" %>
 					</div>
 				</div>
 			</div>
@@ -246,7 +246,7 @@
 	<script src="js/board_hj/main.js"></script>
 
 	<script src="js/board_hj/tooltip.js"></script>
-	<script src="js/board_hj/recommend_t.js"></script>
+	<script src="js/board_hj/recommend_cr.js"></script>
 	<script src="js/board_hj/popover.js"></script>
 
 	<!-- Java Script for header

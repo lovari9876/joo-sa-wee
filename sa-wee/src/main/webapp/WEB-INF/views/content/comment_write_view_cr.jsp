@@ -12,9 +12,9 @@
 <body>
 		<!-- 댓글 쓰기 -->
 			<h3 class="mb-5">Leave a comment</h3>
-			<form action="comment_write_bw" method="get">
-				<input type="hidden" name="cm_no2" value="${cafe_review_view['CR_NO']}">
-				<input type="hidden" name="cr_no" value="${cafe_review_view['CR_NO']}">
+			<form action="comment_write_cr" method="get">
+				<input type="hidden" name="cm_no2" value="${content_view_cr['CR_NO']}">
+				<input type="hidden" name="cr_no" value="${content_view_cr['CR_NO']}">
 				<div class="form-group">
 					<label for="message">Comment</label>
 					<textarea name="cm_content" id="message" cols="30" rows="10"

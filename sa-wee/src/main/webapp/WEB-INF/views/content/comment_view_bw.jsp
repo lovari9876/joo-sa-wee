@@ -153,6 +153,6 @@
 	<script src="js/board_hj/tooltip.js"></script>
 	<script src="js/board_hj/popover.js"></script>
 	
-	<script src="js/board_hj/recommed_cm.js"></script>
+	<script src="js/board_hj/recommend_cm.js"></script>
 </body>
 </html>
