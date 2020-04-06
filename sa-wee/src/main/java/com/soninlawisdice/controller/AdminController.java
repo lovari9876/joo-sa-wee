@@ -31,6 +31,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.FaqVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.ReportVO;
@@ -146,8 +147,7 @@ public class AdminController {
 	// 무인도행
 	@ResponseBody
 	@RequestMapping(value = "/updateIsland", method = RequestMethod.POST)
-	public int updateIsland(Board_writeVO boardVO, MemberVO memberVO, Cafe_reviewVO cafe_reviewVO, TradeVO tradeVO,
-			@RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+	public int updateIsland(@RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
 
 		int bt = 0;
 		int no = 0;
@@ -173,16 +173,52 @@ public class AdminController {
 			}
 		}
 		System.out.println(bt);
-		adminService.updateIsland_member(mem);
+		System.out.println("무인도행 갈 회원 : "+mem);
+		adminService.updateIsland_memberReport(mem);
 
 		return result;
 	}
+	
+		// 무인도행 - 수정완료 컨펌
+		@ResponseBody
+		@RequestMapping(value = "/updateIsland_confirm", method = RequestMethod.POST)
+		public int updateIsland_confirm(@RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+
+			int bt = 0;
+			int no = 0;
+			int mem = 0;
+			int result = 0;// 나중에 로그인여부, 관리자인지 여부를 확인하기 위함 >> 지금은 테이블별로 다른 링크 걸기 위함
+
+			StringTokenizer st;
+			for (String i : chArr) {
+				st = new StringTokenizer(i);
+				bt = Integer.parseInt(st.nextToken());
+				no = Integer.parseInt(st.nextToken());
+				mem = Integer.parseInt(st.nextToken());
+
+				if (1 <= bt && bt <= 6) { // bt_no이 1~6인 커뮤니티
+					adminService.updateIsland_bw(no);
+					result = 1;
+				} else if (bt == 11) { // bt_no이 11인 카페리뷰
+					adminService.updateIsland_cafe(no);
+					result = 2;
+				} else {// 중고거래는 bt 테이블과 조인하지않음
+					adminService.updateIsland_trade(no);
+					result = 3;
+				}
+			}
+			System.out.println(bt);
+			System.out.println("무인도행 갈 회원 : "+mem);
+			adminService.updateIsland_memberReport(mem);
+
+			return result;
+		}
 
 	
 	
-	//신고관리 : 무인도행
+	//신고관리 : 무인도행 - 글
 	@RequestMapping(value = "/island", method = RequestMethod.POST)
-	public String island(ReportVO reportVO, Board_writeVO board_writeVO, @RequestParam String r_no, @RequestParam String r_type, RedirectAttributes re ) throws Exception {
+	public String island(@RequestParam String r_no, @RequestParam String r_type, RedirectAttributes re ) throws Exception {
 
 		StringTokenizer st;
 		st = new StringTokenizer(r_no);
@@ -200,20 +236,42 @@ public class AdminController {
 			adminService.updateIsland_cafe(no);
 		}
 		
+		System.out.println("========r_type : " + r_type);
+		adminService.updateIsland_member(no, r_type);//해당 글을 쓴 멤버의 등급을 4로 만든다. 글 번호와 테이블 이름을 보내 처리 m_no을 구해 처리 
+		
 		re.addAttribute("r_no", r);
 		re.addAttribute("r_type", r_type);
 		
-		
-		//미완.... 무인도행 할 글을 쓴 작성자를 가져올 방법 고민하기 
-		//System.out.println("무인도행 할 멤버: " + board_writeVO.getM_no());
-		//adminService.updateIsland_member(board_writeVO.getM_no());
-
 		return "redirect:report_view";
 	}
 
 	
 	
-	
+		//신고관리 : 무인도행 - 회원
+		@RequestMapping(value = "/m_island", method = RequestMethod.POST)
+		public String m_island(@RequestParam String r_no, @RequestParam String r_type, RedirectAttributes re) throws Exception {
+			System.out.println("==============m_island================");
+			
+			StringTokenizer st;
+			st = new StringTokenizer(r_no);
+			int r = Integer.parseInt(st.nextToken());
+			System.out.println("r_no 신고번호 : " + r);
+			int no = Integer.parseInt(st.nextToken());
+			System.out.println("no 신고당한 회원번호 : " + no);
+			
+			
+			adminService.updateIsland_memberReport(no);
+			
+			
+
+			System.out.println("=========리다이렉트확인 : " + r);
+			System.out.println("=========리다이렉트확인 : " + r_type);
+			
+			re.addAttribute("r_no", r);
+			re.addAttribute("r_type", r_type);
+			
+			return "redirect:report_view";
+		}
 	
 	
 	
@@ -368,11 +426,11 @@ public class AdminController {
 	@RequestMapping(value = "/faq_list", method = RequestMethod.GET)
 	public String faq_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 
-		model.addAttribute("faq_list", adminService.boardList(scri, 8));
+		model.addAttribute("faq_list", adminService.faqList(scri));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 8));
+		pageMaker.setTotalCount(adminService.faq_listCount(scri));
 
 		model.addAttribute("pageMaker", pageMaker);
 		return "admin/faq_list";
@@ -381,7 +439,23 @@ public class AdminController {
 	
 	@RequestMapping("/faq")
 	public String faq(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		model.addAttribute("faq_list", adminService.boardList(scri, 8));
+		
+		model.addAttribute("faq_list", adminService.faqList(scri));
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.faq_listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "faq/faq";
+	}
+	
+	
+	@RequestMapping("/ask_list")
+	public String ask_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+
+		model.addAttribute("ask_list", adminService.boardList(scri, 8));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -389,7 +463,7 @@ public class AdminController {
 
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "faq/faq";
+		return "admin/ask_list";
 	}
 	
 	
@@ -467,6 +541,7 @@ public class AdminController {
 				adminService.selectDelete_trade(tradeVO);
 				result = 3;
 			}
+			
 		}
 		System.out.println(bt);
 
@@ -531,9 +606,9 @@ public class AdminController {
 
 	// 글쓰기 : faq 자주하는 질문 
 		@RequestMapping(value = "/faqInsert", method = RequestMethod.POST)
-		public String faqInsert(Board_writeVO board_writeVO) throws Exception {
+		public String faqInsert(FaqVO faqVO) throws Exception {
 
-			adminService.boardInsert(board_writeVO);
+			adminService.faqInsert(faqVO);
 
 			return "redirect:faq_list";
 		}
@@ -565,11 +640,7 @@ public class AdminController {
 		return "admin/cafe_list";
 	}
 
-	@RequestMapping("/ask_list")
-	public String ask_list() {
-
-		return "admin/ask_list";
-	}
+	
 
 	@RequestMapping("/cafe_write")
 	public String cafe_write() {

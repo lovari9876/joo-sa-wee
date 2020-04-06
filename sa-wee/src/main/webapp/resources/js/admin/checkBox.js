@@ -17,7 +17,7 @@ $(".chBox").click(function() {
 // 전송이 이상없이 되었다면 현재 페이지(board_list)를 새로고침
 $(".selectDelete_btn").click(function() {
 	var checkArr = new Array();
-	
+	var cate = $(this).val();
 	
 	$("input[class='chBox']:checked").each(function() {
 		checkArr.push($(this).attr("data-BW"));
@@ -40,17 +40,25 @@ $(".selectDelete_btn").click(function() {
 				},
 				success : function(result) {
 					alert("삭제되었습니다.");
-					if(result == 1) {
-						location.href = "http://localhost:8282/admin/board_list";
-					}else if(result == 2) {
-						location.href = "http://localhost:8282/admin/board_list_cafe";
-					}else if(result == 3) {
-						location.href = "http://localhost:8282/admin/board_list_trade";
-					} else {
-						alert("삭제 실패");
+					if(cate == 'island'){
+						location.href = "http://localhost:8282/admin/island_list";
+					}else {
+						if(result == 1) {
+							location.href = "http://localhost:8282/admin/board_list";
+						}else if(result == 2) {
+							location.href = "http://localhost:8282/admin/board_list_cafe";
+						}else if(result == 3) {
+							location.href = "http://localhost:8282/admin/board_list_trade";
+						} else {
+							alert("삭제 실패");
+						}
 					}
+					
+				
+					
 				}
-			});
+			});//ajax
+			
 		}
 	}
 	

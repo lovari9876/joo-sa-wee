@@ -91,25 +91,25 @@
 							<td class="cell">조회수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 
-						<c:forEach items="${faq_list}" var="board">
+						<c:forEach items="${faq_list}" var="faq">
 								<tr class="trow">
-									<td class="cell">${board['BW_NO']}</td>
-									<td class="cell">${board['S_CONTENT']}</td>
+									<td class="cell">${faq.faq_no}</td>
+									<td class="cell">${faq.s_no}</td>
 									<td class="cell"><a
-										href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
+										href="/faq/faq">${faq.faq_title}</a></td>
 									<td class="cell"> 
 										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 										<jsp:useBean id="today" class="java.util.Date" />
 										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+										<fmt:formatDate value="${faq.faq_written_date}" pattern="yyyy.MM.dd" var="date"/>
 										<c:choose>
 											<c:when test="${now ne date}">${date}</c:when>
 											<c:otherwise>
-												<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+												<fmt:formatDate value="${faq.faq_written_date}" pattern="HH:mm:ss"/>
 											</c:otherwise>
 										</c:choose>
 									</td>
-									<td class="cell">${board['BW_HIT']}</td>
+									<td class="cell">${faq.faq_hit}</td>
 								</tr>
 							</c:forEach>
 

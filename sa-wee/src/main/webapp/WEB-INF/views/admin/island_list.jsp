@@ -85,7 +85,7 @@
 					</form>
 					
 					<div class="btn-group pull-left" >
-						<button type="button" class="btn selectDelete_btn" data-BW="${island['BT_NO']} ${island['I_NO']}">선택 글 삭제</button>
+						<button type="button" value="island" class="btn selectDelete_btn" data-BW="${island['BT_NO']} ${island['I_NO']}">선택 글 삭제</button>
 						<button type="button" class="btn" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}">수정완료</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">

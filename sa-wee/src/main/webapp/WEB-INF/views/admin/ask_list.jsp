@@ -1,6 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
+	
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,136 +86,49 @@
 							<td class="cell">작성일</td>
 						</tr>
 
-						<tr class="trow">
-							<td class="cell">1</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">N</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">2</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">N</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">3</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">4</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">5</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">6</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">7</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">8</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">9</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">10</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">11</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">12</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">13</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">14</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
-						<tr class="trow">
-							<td class="cell">15</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Y</td>
-							<td class="cell">2020-02-22</td>
-						</tr>
-
+						<c:forEach items="${ask_list}" var="board">
+								<tr class="trow">
+									<td class="cell">${board['RNUM']}</td>
+									<td class="cell">${board['S_CONTENT']}</td>
+									<td class="cell"><a
+										href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
+									<td class="cell">${board['CM']}</td>
+									<td class="cell"> 
+										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+										<jsp:useBean id="today" class="java.util.Date" />
+										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+										<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+										<c:choose>
+											<c:when test="${now ne date}">${date}</c:when>
+											<c:otherwise>
+												<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+							</c:forEach>
+						
 					</table>
 					</div>
 
 					<div class="pagination pagination-centered">
 						<ul>
-							<li><a href="#"><i class="icon-double-angle-left"></i></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"></i></a></li>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="board_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="board_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="board_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 			</div>

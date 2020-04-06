@@ -121,7 +121,7 @@
 									<td class="cell">${trade['T_NO']}</td>
 									<td class="cell">${trade['S_CONTENT']}</td>
 									<td class="cell"><a
-										href="report_view?st_no=${trade['T_NO']}">${trade['T_TITLE']}</a></td>
+										href="report_view?st_no=${trade['T_NO']}">${trade['T_TITLE']} (${trade['CM']})</a></td>
 									<td class="cell">${trade['M_ID']}</td>
 									<td>
 										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->

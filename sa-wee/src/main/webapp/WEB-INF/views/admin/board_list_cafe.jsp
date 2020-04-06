@@ -122,7 +122,7 @@
 									<td class="cell">${cr['CR_NO']}</td>
 									<td class="cell">${cr['C_TITLE']}</td>
 									<td class="cell"><a
-										href="/selectReviewOne?cr_no=${cr['CR_NO']}">${cr['CR_TITLE']}</a></td>
+										href="/selectReviewOne?cr_no=${cr['CR_NO']}">${cr['CR_TITLE']} (${cr['CM']})</a></td>
 									<td class="cell">${cr['M_ID']}</td>
 									<td class="cell"> 
 										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->

@@ -47,31 +47,29 @@
 							<div class="write-view"> -->
 
 					<form action="/admin/faqInsert" method="post">
-						<input type="hidden" name = "bt_no" value="8" >
-						<input type="hidden" name = "m_no" value="0">
 						<table class="table">
 							 <tr class = "row">
 							<td class = "cell span2">말머리</td>
 							<td class = "cell span8">
 								<select name="s_no">
-										<option value="27" selected>회원관련문의</option>
-										<option value="28">결제관련문의</option>
-										<option value="29">정보수정요청</option>
-										<option value="30">무인도관련문의</option>
-										<option value="31">기타문의</option>
+										<option value="22" selected>회원</option>
+										<option value="23">결제</option>
+										<option value="24">정보수정</option>
+										<option value="25">무인도게시판</option>
+										<option value="26">기타</option>
 								</select>
 							</td>
 						</tr> 
 
 							<tr class="row">
 								<td class="cell span2">제목</td>
-								<td class="cell span8"><input type="text" name="bw_title"
+								<td class="cell span8"><input type="text" name="faq_title"
 									class="span6" placeholder="제목을 입력하세요"></td>
 							</tr>
 
 							<tr class="row">
 								<td class="cell">내용</td>
-								<td class="cell"><textarea id="editor" name="bw_content" class="span5"
+								<td class="cell"><textarea id="editor" name="faq_content" class="span5"
 										rows="10" placeholder="내용을 입력하세요"></textarea></td>
 							</tr>
 
