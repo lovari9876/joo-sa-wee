@@ -206,7 +206,8 @@
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
 		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
 		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
-		CM.CM_STEP, CM.CM_INDENT
+		CM.CM_STEP, CM.CM_INDENT, 
+		(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_TYPE = '게시판' AND CM_NO2 = BW.BW_NO) CM_COUNT
 		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = BW.BW_NO 
@@ -231,6 +232,12 @@
 		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
 	
+	<!-- 댓글 갯수 세기 -->
+	<select id="selectCommentCount" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM, BOARD_WRITE BW
+		WHERE CM.CM_NO2 = BW.BW_NO AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
+	</select>
 	
 <!-- ====================== 보부상 ======================== -->
 	

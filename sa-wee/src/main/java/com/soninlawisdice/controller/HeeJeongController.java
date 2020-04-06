@@ -97,6 +97,7 @@ public class HeeJeongController {
 
 		model.addAttribute("comment_list", contentService.selectCommentList(cm_no2));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		model.addAttribute("comment_count", contentService.selectCommentCount(cm_no2));
 	  
 		return "content/comment_view_bw"; 
 	 } 

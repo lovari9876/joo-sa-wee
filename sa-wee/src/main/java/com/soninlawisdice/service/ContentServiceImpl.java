@@ -158,6 +158,13 @@ public class ContentServiceImpl implements ContentService {
 
 		return contentMapper.selectRecommendComment(cm_no);
 	}
+	
+	// 댓글 갯수 세기
+	@Override
+	public HashMap<String, Object> selectCommentCount(String cm_no2) {
+		
+		return contentMapper.selectCommentCount(cm_no2);
+	}
 
 	/* ============================== 보부상 =================================== */
 
@@ -359,6 +366,8 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectRecommendCommentCR(cm_no);
 	}
+
+	
 
 	
 	

@@ -48,6 +48,8 @@ public interface ContentService {
 	
 	public String selectRecommendComment(String cm_no); // 댓글 추천수 증가하는 거 받아옴
 	
+	public HashMap<String, Object> selectCommentCount(String cm_no2); // 댓글 갯수 세기
+	
 
 	/*============================== 보부상 ===================================*/
 	// 밑에 3개 뽀려가욘 ^^ 
