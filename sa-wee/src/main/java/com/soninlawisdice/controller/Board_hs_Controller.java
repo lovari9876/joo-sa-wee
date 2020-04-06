@@ -44,7 +44,7 @@ public class Board_hs_Controller {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
-		model.addAttribute("hot", boardService.selectHotList());
+		model.addAttribute("hit", boardService.selectHitList());
 		model.addAttribute("best", boardService.selectBestList());
 
 		return "board_hs/index";
@@ -144,6 +144,17 @@ public class Board_hs_Controller {
 
 		return boardService.selectBoardList();
 	}
+	
+	@RequestMapping("/board_sub")
+	public String board_sub(Model model, int s_no){
+		
+		model.addAttribute("sub_list", boardService.selectBoardSub(s_no));
+		
+		
+		
+		return "board_hs/board_story";
+		
+	}
 
 	// 글쓰기 view
 	@RequestMapping(value = "/board_write_view", method = RequestMethod.GET)
@@ -161,9 +172,13 @@ public class Board_hs_Controller {
 		boardService.insertBoard(board_writeVO);
 
 		int bt_no = board_writeVO.getBt_no();
+		int m_no = board_writeVO.getM_no();
 
 		System.out.println(bt_no);
+		System.out.println(m_no);
 
+		boardService.boardPointUpdate(m_no);
+		
 		if (bt_no == 1) {
 			return "redirect:board_story";
 		} else if (bt_no == 2) {
@@ -184,7 +199,7 @@ public class Board_hs_Controller {
 
 	// 수정하기 view.
 	@RequestMapping(value = "/board_modify_view", method = RequestMethod.GET)
-	public String modify_view(Model model, String bw_no) {
+	public String modify_view(Model model, int bw_no) {
 		
 		model.addAttribute("content_view", boardService.modify_view(bw_no));
 
@@ -241,7 +256,7 @@ public class Board_hs_Controller {
 		
 	// 마커 클릭시 카페 상세정보(cafe_info)로 이동. 
 	@RequestMapping(value = "/cafe_info", method = RequestMethod.GET)
-	public String cafe_content_view(Model model, String c_no) {
+	public String cafe_content_view(Model model, int c_no) {
 
 		// 카페 정보 가져오기
 		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
@@ -277,7 +292,7 @@ public class Board_hs_Controller {
 
 	// 카페 리뷰 하나 보기
 	@RequestMapping(value = "/selectReviewOne")
-	public String selectReviewOne(Model model, String cr_no) {
+	public String selectReviewOne(Model model, int cr_no) {
 		// 조회수 올리기
 		boardService.review_uphit(cr_no);
 
@@ -287,7 +302,7 @@ public class Board_hs_Controller {
 	
 	//리뷰쓰는 view 로 가기
 	@RequestMapping(value = "/cafe_review_write", method = RequestMethod.GET)
-	public String cafe_review_write(Model model, String c_no) {
+	public String cafe_review_write(Model model, int c_no) {
 
 		System.out.println(c_no);
 
@@ -305,13 +320,16 @@ public class Board_hs_Controller {
 		boardService.insertReview(cafe_reviewVO);
 		
 		int c_no = cafe_reviewVO.getC_no();
+		int m_no = cafe_reviewVO.getM_no();
+		
+		boardService.boardPointUpdate(m_no);
 		
 		return "redirect:cafe_info?c_no="+c_no;
 	}
 	
 	// 리뷰 수정 view
 	@RequestMapping(value = "/review_modify_view")
-	public String review_modify_view(String cr_no, Model model) {
+	public String review_modify_view(int cr_no, Model model) {
 		model.addAttribute("cafe_review", boardService.selectReviewOne(cr_no));
 		return "board_hs/cafe_review_modify_view";
 	}
@@ -329,7 +347,7 @@ public class Board_hs_Controller {
 	}
 	//리뷰 삭제하기
 	@RequestMapping("/review_delete")
-	public String review_delete(String cr_no ) {
+	public String review_delete(int cr_no ) {
 		boardService.review_delete(cr_no);
 	
 		//경로 어떻게 할지 생각해봐야함.
@@ -343,7 +361,7 @@ public class Board_hs_Controller {
 	// 카페 리뷰 글 추천
 	@ResponseBody
 	@RequestMapping(value = "/review_rec")
-	public String recommend(String cr_no, Model model) {
+	public String recommend(int cr_no, Model model) {
 		System.out.println("recommend");
 		boardService.review_recommend(cr_no);
 		return boardService.review_rec(cr_no);
@@ -355,7 +373,7 @@ public class Board_hs_Controller {
 
 
 	
-	//////////////////일단 1 : 1 문의 /////////////////////////////////
+	////////////////////////////////////////일단 1 : 1 문의 ///////////////////////////////////////
 
 	//1 : 1 문의 리스트
 	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
@@ -374,12 +392,16 @@ public class Board_hs_Controller {
 	@RequestMapping(value = "/question_write", method = RequestMethod.POST)
 	public String question_write(Model model, Board_writeVO board_writeVO) {
 		boardService.insertQuestion(board_writeVO);
+		
+		int m_no = board_writeVO.getM_no();
+		boardService.boardPointUpdate(m_no);
+		
 		return "redirect:question_list";
 	}
 	
 	//문의 보기 (비밀글이면 작성자와 관리자만 볼 수 있음)
 	@RequestMapping("/question_content_view")
-	public String question_content_view(String bw_no,Model model) {
+	public String question_content_view(int bw_no,Model model) {
 		model.addAttribute("question", boardService.selectQuestionOne(bw_no));
 		return "board_hs/question_content_view";
 	}
@@ -387,7 +409,7 @@ public class Board_hs_Controller {
 	
 	//문의 수정 view
 	@RequestMapping(value = "/question_modify_view")
-	public String question_modify_view(String bw_no, Model model) {
+	public String question_modify_view(int bw_no, Model model) {
 		model.addAttribute("question", boardService.selectQuestionOne(bw_no));
 		return "board_hs/question_modify_view";
 	}
@@ -402,14 +424,14 @@ public class Board_hs_Controller {
 	
 	//문의 삭제(댓글 달렸으면 삭제 못하게 해야함)
 	@RequestMapping("/question_delete")
-	public String question_delte(String bw_no) {
+	public String question_delte(int bw_no) {
 		boardService.deleteQuestion(bw_no);
 		return "redirect:question_list";
 	}
 	
 	
-	
-	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 	/////////////////////////////////// 게시물 작성 시 파일 업로드 부분(DB에 넣는거 X)/////////////////////////////////
 

@@ -13,9 +13,9 @@ import com.soninlawisdice.vo.SearchCriteria;
 
 public interface BoardMapper {
 
-	//////////////////핫이슈, 베스트////////////
-	//핫이슈
-	public ArrayList<HashMap<String, Object>>  selectHotList();
+	//////////////////히트다 히트, 베스트////////////
+	//히트다히트
+	public ArrayList<HashMap<String, Object>>  selectHitList();
 	
 	//베스트
 	public ArrayList<HashMap<String, Object>>  selectBestList();
@@ -54,7 +54,7 @@ public interface BoardMapper {
 	public void insertBoard(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
 	//modify_view 에 불러오기
-	public Board_writeVO modify_view(@Param("bw_no")String bw_no);
+	public Board_writeVO modify_view(@Param("bw_no")int bw_no);
 	
 	//글 수정하기
 	public void modify(@Param("board_writeVO") Board_writeVO board_writeVO);
@@ -74,25 +74,25 @@ public interface BoardMapper {
 	public ArrayList<HashMap<String, Object>> selectAllReviewList();
 	
 	//카페 리뷰 리스트에서 review_content_view 로
-	public HashMap<String, Object> selectReviewOne(@Param("cr_no")String cr_no);
+	public HashMap<String, Object> selectReviewOne(@Param("cr_no")int cr_no);
 	
 	//카페별로 밑에 리뷰 리스트 있는거
-	public ArrayList<HashMap<String, Object>> selectCafeReviewList(@Param("c_no")String c_no);
+	public ArrayList<HashMap<String, Object>> selectCafeReviewList(@Param("c_no")int c_no);
 	
 	//카페정보 가져오기
-	public CafeVO selectCafeInfo(@Param("c_no")String c_no);
+	public CafeVO selectCafeInfo(@Param("c_no")int c_no);
 	
 	//카페 리뷰 조회수 올리기
-	public void review_uphit(@Param("cr_no")String cr_no);
+	public void review_uphit(@Param("cr_no")int cr_no);
 	
 	//카페 리뷰 추천수 올리기
-	public void review_recommend(@Param("cr_no")String cr_no);
+	public void review_recommend(@Param("cr_no")int cr_no);
 	
 	//올라간 추천수 가져오기
-	public String review_rec(@Param("cr_no")String cr_no);
+	public String review_rec(@Param("cr_no")int cr_no);
 	
 	//카페 번호로 카페 이름 가져오기
-	public String get_CafeName(@Param("c_no") String c_no);
+	public String get_CafeName(@Param("c_no") int c_no);
 	
 	//리뷰 작성하기
 	public void insertReview(@Param("cafe_reviewVO") Cafe_reviewVO cafe_reviewVO);
@@ -101,7 +101,7 @@ public interface BoardMapper {
 	public void review_modify(@Param("cafe_reivewVO")Cafe_reviewVO cafe_reviewVO);
 	
 	//리뷰 삭제하기
-	public void review_delete(@Param("cr_no")String cr_no);
+	public void review_delete(@Param("cr_no")int cr_no);
 	
 
 	////////////////////////// 1 : 1 문의 /////////////////////////////
@@ -112,15 +112,26 @@ public interface BoardMapper {
 	public void insertQuestion(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
 	//문의 보기//비밀글때문에 따로
-	public HashMap<String, Object> selectQuestionOne(@Param("bw_no")String bw_no);
+	public HashMap<String, Object> selectQuestionOne(@Param("bw_no")int bw_no);
 	//문의 수정
 	public void modifyQuestion(@Param("board_writeVO") Board_writeVO board_writeVO);
 	//문의 삭제
-	public void deleteQuestion(@Param("bw_no")String bw_no);
+	public void deleteQuestion(@Param("bw_no")int bw_no);
 	
 	
 	
+	////////////////////////////일단 댓글////////////////////////////
 	
+	//댓글 수 조회
+	public String countBoardComment(@Param("bw_no")int bw_no);
+
+	
+	//말머리....
+	public ArrayList<HashMap<String, Object>> selectBoardSub(@Param("s_no")int s_no);
+
+	///////////////////////////////포인트///////////////////////
+	//게시글 작성시 10 포인트
+	public void boardPointUpdate(@Param("m_no")int m_no);
 	
 	
 	

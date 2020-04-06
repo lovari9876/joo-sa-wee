@@ -44,14 +44,22 @@
 	
 	
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ메인:베스트,핫이슈ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->	
-	<!-- 핫이슈  : 조회순-->
-	<select id="selectHotList" resultType = "java.util.HashMap">
-		<![CDATA[ select * from (select * from board_write order by bw_hit desc) where rownum <= 10 ]]>
+	<!-- 히트다 히트  : 조회순-->
+	<select id="selectHitList" resultType = "java.util.HashMap">
+		<![CDATA[ 	select rownum, bw.*, bt.bt_name , m.m_nick
+					from (select * from board_write order by bw_hit desc) bw ,board_type bt,member m 
+					where bt.bt_no = bw.bt_no 
+					and m.m_no = bw.m_no 
+		 			and rownum <= 10  ]]>
 	</select>
 	 
 	<!-- 베스트 : 추천순 -->
 	<select id = "selectBestList" resultType = "java.util.HashMap">
-		<![CDATA[ select * from (select * from board_write order by bw_recommend_num desc) where rownum <= 10 ]]>
+		<![CDATA[ 	select rownum, bw.*, bt.bt_name , m.m_nick
+					from (select * from board_write order by bw_recommend_num desc) bw ,board_type bt,member m 
+					where bt.bt_no = bw.bt_no 
+					and m.m_no = bw.m_no 
+		 			and rownum <= 10  ]]>
 	</select>
 	
 	
@@ -68,63 +76,80 @@
 	
 	<!-- 보드이야기 전체 보기 -->
 	<select id = "selectBoard_Story" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m, subject s
-		where bw.m_no = m.m_no and bw.s_no = s.s_no
-		and bw.bw_island = 0
-		and bw.bt_no = 1 
-		order by bw.bw_no desc
+		
+		select * from
+		(
+			select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
+			, ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM
+			from board_write bw, member m, subject s 
+			where bw.m_no = m.m_no and bw.s_no = s.s_no
+			and bw.bt_no = 1
+			and bw.bw_island = 0
+			order by bw.bw_no desc )
+			
+			WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+	
 	</select>
 	
 	<!-- 개봉기 및 리뷰 전체보기  -->
 	<select id = "selectBoard_Open" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m, subject s
+		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
+		from board_write bw, member m, subject s 
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
+		and bw.bt_no = 2
 		and bw.bw_island = 0
-		and bw.bt_no = 2 
 		order by bw.bw_no desc
 	</select>
 	
 	<!-- 보드게임 모임 전체보기  -->
 	<select id = "selectBoard_Meet" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m, subject s
+		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
+		from board_write bw, member m, subject s 
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
-		and bw.bw_island = 0
 		and bw.bt_no = 3
+		and bw.bw_island = 0
 		order by bw.bw_no desc
 	</select>
 	
 	<!-- 보드 뉴스 전체 보기  -->
 	<select id = "selectBoard_News" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m, subject s
+		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
+		from board_write bw, member m, subject s 
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
+		and bw.bt_no = 4
 		and bw.bw_island = 0
-		and bw.bt_no = 4 
 		order by bw.bw_no desc
 	</select>
 	
 	<!-- 질문과 답변 전체보기  -->
 	<select id = "selectBoard_Qna" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m, subject s
+		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
+		from board_write bw, member m, subject s 
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
+		and bw.bt_no = 5
 		and bw.bw_island = 0
-		and bw.bt_no = 5 
 		order by bw.bw_no desc
 	</select>
 	
 	<!-- 창작 보드게임 전체보기  -->
 	<select id = "selectBoard_Creation" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.bw_no, m.m_nick, s.s_content, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m, subject s
+		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
+		from board_write bw, member m, subject s 
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
+		and bw.bt_no = 6
 		and bw.bw_island = 0
-		and bw.bt_no = 6 
 		order by bw.bw_no desc
 	</select>
+	
+	<!-- 일단일단일단 -->
+	<select id = "selectBoardSub" resultType = "java.util.HashMap" parameterType = "int">
+		select bw.*,  m.m_nick, s.s_content
+		from board_write bw, member m, subject s 
+		where bw.m_no = m.m_no and bw.s_no = s.s_no
+		and bw.s_no = #{s_no}
+		and bw.bw_island = 0
+		order by bw.bw_no desc
+	</select> 
 	
 	<select id="b_storyCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType = "int">
 		select count(bw_no) from board_write where bt_no = 1 and bw_island = 0
@@ -152,8 +177,10 @@
 	<!--비밀글 여부도  -->
 	<!-- seq 테이블 만들어서 bw_no  -->
 	<insert id="insertBoard" parameterType="com.soninlawisdice.vo.Board_writeVO">
-		insert into board_write (bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
-		values ( board_write_seq.nextval, 11, #{board_writeVO.bt_no}, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
+		insert into board_write 
+		(bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
+		values 
+		( board_write_seq.nextval, 11, #{board_writeVO.bt_no}, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
 	</insert>
 	
 	<!-- modify_view 로 불러오기 -->
@@ -165,7 +192,12 @@
 	
 	<!-- 글 수정하기 -->
 	<update id="modify" parameterType="com.soninlawisdice.vo.Board_writeVO">
-		update board_write set bt_no = #{board_writeVO.bt_no}, s_no = #{board_writeVO.s_no}, bw_title = #{board_writeVO.bw_title}, bw_content = #{board_writeVO.bw_content} where bw_no = #{board_writeVO.bw_no}
+		update board_write 
+		set bt_no = #{board_writeVO.bt_no}, 
+		s_no = #{board_writeVO.s_no}, 
+		bw_title = #{board_writeVO.bw_title}, 
+		bw_content = #{board_writeVO.bw_content} 
+		where bw_no = #{board_writeVO.bw_no}
 	</update>
 	
 	
@@ -270,13 +302,18 @@
 	<!-- 회원번호 수정해야함 -->
 	<!-- 카페 리뷰 작성하기 -->
 	<insert id="insertReview" parameterType="com.soninlawisdice.vo.Cafe_reviewVO">
-		insert into cafe_review (cr_no, m_no, bt_no, c_no,  cr_title, cr_content, cr_hit, cr_recommend_num, cr_report_num, cr_island) 
-		values ( cafe_review_seq.nextval, 5, 11, #{cafe_reviewVO.c_no}, #{cafe_reviewVO.cr_title}, #{cafe_reviewVO.cr_content}, 0, 0, 0, 0 ) 
+		insert into cafe_review 
+		(cr_no, m_no, bt_no, c_no,  cr_title, cr_content, cr_hit, cr_recommend_num, cr_report_num, cr_island) 
+		values 
+		( cafe_review_seq.nextval, 5, 11, #{cafe_reviewVO.c_no}, #{cafe_reviewVO.cr_title}, #{cafe_reviewVO.cr_content}, 0, 0, 0, 0 ) 
 	</insert>
 	
 	<!--리뷰 수정하기  -->
 	<update id="review_modify" parameterType="com.soninlawisdice.vo.Cafe_reviewVO">
-		update cafe_review set cr_title = #{cafe_reivewVO.cr_title}, cr_content = #{cafe_reivewVO.cr_content} where cr_no = #{cafe_reivewVO.cr_no}
+		update cafe_review 
+		set cr_title = #{cafe_reivewVO.cr_title},
+		 cr_content = #{cafe_reivewVO.cr_content} 
+		 where cr_no = #{cafe_reivewVO.cr_no}
 	</update>
 	
 	<!-- 리뷰삭제하기 -->
@@ -290,7 +327,7 @@
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 1 : 1 문의ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 1:1 문의 목록 -->
 	<select id = "selectQuestionList"  resultType = "java.util.HashMap">
-		select bw.bw_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, m.m_nick, s.s_content, bw.s_no
+		select bw.bw_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, m.m_nick, s.s_content, bw.s_no, bw.bw_secret
 		from board_write bw, member m, subject s 
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bt_no = 8
@@ -302,8 +339,10 @@
 		
 		<choose>
 			<when test="board_writeVO.bw_secret == null">
-				insert into board_write (bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
-				values (board_write_seq.nextval, 11, 8, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
+				insert into board_write 
+				(bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
+				values
+				(board_write_seq.nextval, 11, 8, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
 			</when>
 			<otherwise>
 				insert into board_write (bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
@@ -333,10 +372,20 @@
 		<choose>
 		
 			<when test="board_writeVO.bw_secret == null">
-				update board_write set s_no = #{board_writeVO.s_no}, bw_title = #{board_writeVO.bw_title}, bw_content = #{board_writeVO.bw_content}, bw_secret = 'n' where bw_no = #{board_writeVO.bw_no}
+				update board_write 
+				set s_no = #{board_writeVO.s_no}, 
+				bw_title = #{board_writeVO.bw_title}, 
+				bw_content = #{board_writeVO.bw_content}, 
+				bw_secret = 'n' 
+				where bw_no = #{board_writeVO.bw_no}
 			</when>
 			<otherwise>
-				update board_write set s_no = #{board_writeVO.s_no}, bw_title = #{board_writeVO.bw_title}, bw_content = #{board_writeVO.bw_content}, bw_secret = #{board_writeVO.bw_secret} where bw_no = #{board_writeVO.bw_no}
+				update board_write 
+				set s_no = #{board_writeVO.s_no}, 
+				bw_title = #{board_writeVO.bw_title}, 
+				bw_content = #{board_writeVO.bw_content}, 
+				bw_secret = #{board_writeVO.bw_secret} 
+				where bw_no = #{board_writeVO.bw_no}
 			</otherwise>
 		</choose>
 		
@@ -349,6 +398,13 @@
 	<delete id="deleteQuestion">
 		delete from board_write where bw_no = #{bw_no}<!--  and...... -->
 	</delete>
+	
+	
+	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ포인트ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ--> 
+	<!-- 글 작성시 10 포인트 적립 -->
+	<update id = "boardPointUpdate">
+		update member set m_point = m_point + 10 where m_no = #{m_no} 
+	</update>
 	
 	
 	

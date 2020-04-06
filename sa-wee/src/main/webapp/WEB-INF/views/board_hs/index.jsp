@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -40,7 +41,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
 <link rel="stylesheet" href="css/board_hs/style.css" />
-<link rel="stylesheet" href="css/css_header/header_hyesoo.css">
+<link rel="stylesheet" href="css/header/header_hyesoo.css">
 <link rel="stylesheet" href="css/board_hs/home-liststyle.css" />
 
 
@@ -211,15 +212,14 @@
 
 
 
-	<!-- 핫이슈 -->
+	<!-- 히트다 히트 --><!-- 조회순 -->
 	<!-- Blog section -->
 	<section id="hot-issue" class="blog-section spad">
 		<div class="container">
 			<!-- <div class="row"> -->
 			<div class="col-xl-12 col-lg-12 col-md-12 col-xs-12">
 				<div class="section-title">
-					(머리부터 발끝까지...)
-					<h2>핫 이 슈</h2>
+					<h2>히트다 히트</h2>
 				</div>
 
 				<div class="limiter">
@@ -231,16 +231,30 @@
 									<td class="cell">순위</td>
 									<td class="cell">게시판</td>
 									<td class="cell">제목</td>
+									<td class="cell">작성자 </td>
 									<td class="cell">작성일</td>
+									<td class="cell">조회수</td>
 								</tr>
-							<c:forEach items = "${hot}" var = "hot">
+							<c:forEach items = "${hit}" var = "hit">
 								<tr class="row">
 								<!-- 이거 1부터 10까지  -->
-									<td class="cell">1</td>
+									<td class="cell">${hit['ROWNUM'] }</td>
 									<!-- 게시판 이름 어찌 가져오냐..... -->
-									<td class="cell">${hot.bw_title}</td>
-									<td class="cell">${hot.bw_title}</td>
-									<td class="cell">${hot.bw_written_date}</td>
+									<td class="cell">${hit['BT_NAME']}</td>
+									<td class="cell"><a href = "content_view?bw_no=${hit['BW_NO']}">${hit['BW_TITLE']}</a></td>
+									<td class="cell">${hit['M_NICK']}</td>
+									<td class="cell">
+										<jsp:useBean id="today" class="java.util.Date" />
+										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+										<fmt:formatDate value="${hit['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+										<c:choose>
+											<c:when test="${now ne date}">${date}</c:when> 
+											<c:otherwise>
+												<fmt:formatDate value="${hit['BW_WRITTEN_DATE']}" pattern="HH:mm"/>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td class="cell">${hit['BW_HIT']}</td>
 								</tr>
 							</c:forEach>
 								
@@ -259,7 +273,7 @@
 
 
 
-	<!-- 베스트 -->
+	<!-- 베스트 --><!-- 추천순 -->
 	<!-- Blog section -->
 	<section id="best" class="blog-section spad">
 		<div class="container">
@@ -275,23 +289,36 @@
 
 							<table class="table">
 								<tr class="row header">
-									<td class="cell">글 번호</td>
-									<td class="cell">글 제목</td>
-									<td class="cell">작성자</td>
+									<td class="cell">순위</td>
+									<td class="cell">게시판</td>
+									<td class="cell">제목</td>
+									<td class="cell">작성자 </td>
 									<td class="cell">작성일</td>
+									<td class="cell">추천쑤</td>
 								</tr>
-
 							<c:forEach items = "${best}" var = "best">
 								<tr class="row">
 								<!-- 이거 1부터 10까지  -->
-									<td class="cell">1</td>
+									<td class="cell">${best['ROWNUM'] }</td>
 									<!-- 게시판 이름 어찌 가져오냐..... -->
-									<td class="cell">${best.bw_title}</td>
-									<td class="cell">${best.bw_title}</td>
-									<td class="cell">${best.bw_written_date}</td>
+									<td class="cell">${best['BT_NAME']}</td>
+									<td class="cell"><a href = "content_view?bw_no=${best['BW_NO']}">${best['BW_TITLE']}</a></td>
+									<td class="cell">${best['M_NICK']}</td>
+									<td class="cell">
+										
+										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+										<fmt:formatDate value="${best['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+										<c:choose>
+											<c:when test="${now ne date}">${date}</c:when> 
+											<c:otherwise>
+												<fmt:formatDate value="${best['BW_WRITTEN_DATE']}" pattern="HH:mm"/>
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td class="cell">${best['BW_RECOMMEND_NUM']}</td>
 								</tr>
 							</c:forEach>
-
+								
 							</table>
 						</div>
 					</div>

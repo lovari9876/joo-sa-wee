@@ -63,7 +63,7 @@
 			<div class="map_wrap">
 
 					<div class = "btn_div">
-						<button class ="list_btn" onclick="location.href='cafe_list'">리스트로 보기</button>
+						<button class ="list_btn" onclick="location.href='cafe_list'">리스트 보기</button>
 					</div>
 
 				<div id="menu_wrap" class="bg_white">

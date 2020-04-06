@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -120,9 +121,19 @@
 							<tr class="row">
 								<td class = "cell">${dto['BW_NO']}</td>
 								<td class = "cell">${dto['S_CONTENT']}</td>
-								<td class = "cell"><a href="content_view?bw_no=${dto['BW_NO']}">${dto['BW_TITLE']}</a></td>
+								<td class = "cell"><a href="content_view?bw_no=${dto['BW_NO']}">${dto['BW_TITLE']}</a>  [${dto['CM']}]</td>
 								<td class = "cell">${dto['M_NICK']}</td>
-								<td class = "cell">${dto['BW_WRITTEN_DATE']}</td>
+								<td class = "cell">
+									<jsp:useBean id="today" class="java.util.Date" />
+									<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+									<fmt:formatDate value="${dto['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+										<c:choose>
+											<c:when test="${now ne date}">${date}</c:when> 
+											<c:otherwise>
+												<fmt:formatDate value="${dto['BW_WRITTEN_DATE']}" pattern="HH:mm"/>
+											</c:otherwise>
+										</c:choose>
+								</td>
 								<td class = "cell">${dto['BW_HIT']}</td>
 								<td class = "cell">${dto['BW_RECOMMEND_NUM']}</td>
 							</tr>

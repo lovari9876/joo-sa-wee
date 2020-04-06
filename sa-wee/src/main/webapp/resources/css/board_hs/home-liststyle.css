@@ -159,7 +159,7 @@
 	/* padding-top: 19px;
 	padding-bottom: 19px; */
 }
-
+/* 
 .row .cell:nth-child(1) {
 	width: 150px;
 	padding-left: 50px;
@@ -175,7 +175,7 @@
 
 .row .cell:nth-child(4) {
 	width: 190px;
-}
+} */
 
 .table, .row {
 	width: 100% !important;
