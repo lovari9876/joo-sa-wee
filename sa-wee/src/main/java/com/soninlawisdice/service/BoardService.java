@@ -27,33 +27,10 @@ public interface BoardService {
 	
 	
 	
-	// 커뮤니티 게시판 전체보기
-	public ArrayList<HashMap<String, Object>> selectBoardList();
+	// 커뮤니티 게시판
+	public ArrayList<HashMap<String, Object>> selectBoardList(SearchCriteria scri, int bt_no);
+	public int cboard_listCount(SearchCriteria scri, int bt_no);
 
-	// 보드 이야기 전체보기
-	public ArrayList<HashMap<String, Object>> selectBoard_Story(SearchCriteria scri);
-	public int b_storyCount(SearchCriteria scri);
-
-	// 개봉기 및 리뷰 전체보기
-	public ArrayList<HashMap<String, Object>> selectBoard_Open(SearchCriteria scri);
-	public int b_openCount(SearchCriteria scri);
-	
-	// 보드게임 모임 전체보기
-	public ArrayList<HashMap<String, Object>> selectBoard_Meet(SearchCriteria scri);
-	public int b_meetCount(SearchCriteria scri);
-	
-	// 보드 뉴스 전체보기
-	public ArrayList<HashMap<String, Object>> selectBoard_News(SearchCriteria scri);
-	public int b_newsCount(SearchCriteria scri);
-	
-	// 질문 과 답변 전체보기
-	public ArrayList<HashMap<String, Object>> selectBoard_Qna(SearchCriteria scri);
-	public int b_qnaCount(SearchCriteria scri);
-	
-	// 창작 보드게임 전체보기
-	public ArrayList<HashMap<String, Object>> selectBoard_Creation(SearchCriteria scri);
-	public int b_creationCount(SearchCriteria scri);
-	
 	// 게시글 작성하기
 	public void insertBoard(Board_writeVO board_writeVO);
 	
