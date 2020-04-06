@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.JoinMapper;
 import com.soninlawisdice.vo.MemberVO;
+import com.soninlawisdice.vo.RankVO;
 
 @Service
 public class JoinServiceImpl implements JoinService {
@@ -52,6 +53,12 @@ public class JoinServiceImpl implements JoinService {
 	@Override
 	public MemberVO login(String m_id, String m_pw) throws Exception {
 		return joinMapper.login(m_id, m_pw);
+	}
+
+	// 랭크
+	@Override
+	public RankVO rank() throws Exception {
+		return joinMapper.rank();
 	}
 
 }

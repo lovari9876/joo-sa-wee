@@ -5,6 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import com.soninlawisdice.vo.MemberVO;
+
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
@@ -13,7 +15,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		 CustomUserDetails user = userAuthDAO.getUserById(username);
+		MemberVO user = userAuthDAO.getUserById(username);
 	        if(user==null) {
 	            throw new UsernameNotFoundException(username);
 	        }

@@ -1,9 +1,21 @@
 package com.soninlawisdice.vo;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.soninlawisdice.service.JoinService;
+import com.soninlawisdice.service.JoinServiceImpl;
 
 // 회원
-public class MemberVO {
+@SuppressWarnings("serial")
+public class MemberVO implements UserDetails{
 	private int m_no; // 회원번호
 	private String m_id; // 아이디
 	private String m_pw; // 비밀번호
@@ -30,6 +42,8 @@ public class MemberVO {
 	private String m_extra; // 비고
 	private int f_no; // 파일번호
 
+	private Set<GrantedAuthority> autorities;
+	
 	private RankVO rankVO;
 	private F_fileVO f_fileVO;
 
@@ -68,6 +82,71 @@ public class MemberVO {
 		this.f_no = f_no;
 	}
 
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
+		
+		String rank = "ROLE_GUEST";		
+		if (r_no == 0) {
+			rank ="ROLE_ADMIN";
+		}else if(r_no == 1){
+			rank ="ROLE_USER";
+		}else if(r_no == 2){
+			rank ="ROLE_USER";
+		}else if(r_no == 3){
+			rank ="ROLE_USER";
+		}else if(r_no == 4){
+			rank ="ROLE_CASTAWAY";
+		}		
+		
+		System.out.println("rank: " + rank);
+		auth.add(new SimpleGrantedAuthority(rank));
+		System.out.println("auth: " + auth);
+		
+		return auth;
+	}
+	
+	@Override
+	public String getPassword() {
+		return m_pw;
+	}
+
+	@Override
+	public String getUsername() {
+		return m_id;
+	}
+	
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	// 계정 활성 비활성 여부, 탈퇴 여부로 확인
+	@Override
+	public boolean isEnabled() {
+		boolean enabled = false;
+		System.out.println("enabled 1 : " + enabled);
+		System.out.println("m_out  : " + m_out);
+		
+		if (m_out.equals("1")) {
+			enabled = true;
+			System.out.println("enabled 2 : " + enabled);
+		}
+		
+		return enabled;
+	}
+	
 	public int getM_no() {
 		return m_no;
 	}

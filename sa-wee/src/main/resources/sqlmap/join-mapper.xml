@@ -50,6 +50,11 @@
 		<!-- and m_pw = #{m_pw} -->
 		<!-- 비밀번호를 체클할 때 입력된 비밀번호와 암호화된 비밀번호를 비교해주기 때문에 조건에 있는 비밀번호 주석 처리 -->
 	</select>
+	
+	<!-- 랭크 불러오기 -->
+	<select id="rank" resultType="com.soninlawisdice.vo.RankVO">
+		select * from rank		
+	</select>
 
 
 </mapper>

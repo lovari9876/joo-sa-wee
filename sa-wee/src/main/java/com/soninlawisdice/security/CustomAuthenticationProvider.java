@@ -8,6 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import com.soninlawisdice.vo.MemberVO;
+
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
@@ -19,7 +21,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         String username = (String) authentication.getPrincipal();
         String password = (String) authentication.getCredentials();
         
-        CustomUserDetails user = (CustomUserDetails) userDeSer.loadUserByUsername(username);
+        MemberVO user = (MemberVO) userDeSer.loadUserByUsername(username);
         
         if(!matchPassword(password, user.getPassword())) {
             throw new BadCredentialsException(username);
