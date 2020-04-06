@@ -24,6 +24,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 }
 
+a:hover {
+	text-decoration: none !important;
+}
+
 /* 여기서부터 */
 .site-navbar {
   margin-bottom: 0px;
@@ -1025,6 +1029,7 @@ dl, ol, ul {
 }
 .test_item a:hover  {
 	color: #400186 !important;
+	text-decoreation: none;
 }
 
 .test_item a.reply {
@@ -1033,6 +1038,7 @@ dl, ol, ul {
 
 .test_item a:hover.reply  {
 	color: #000000 !important;
+	text-decoreation: none;
 }
 
 /* 아이콘 폰트에 링크 걸 때 밑줄 때문에 점이 생기는 문제 해결 */

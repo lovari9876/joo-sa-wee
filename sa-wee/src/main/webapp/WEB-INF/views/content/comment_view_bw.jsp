@@ -72,7 +72,7 @@
 							</div>
 							<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
 							<div class="test_item reco tooltip-purple">
-								<input class="rec_cm_btn" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm.png"
+								<input class="rec_cm_btn" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
 									name="button" value="${comment_list[status.index]['CM_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm">${comment_list[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
@@ -153,6 +153,6 @@
 	<script src="js/board_hj/tooltip.js"></script>
 	<script src="js/board_hj/popover.js"></script>
 	
-	<script src="js/board_hj/recommed_cm.js"></script>
+	<script src="js/board_hj/recommend_cm.js"></script>
 </body>
 </html>

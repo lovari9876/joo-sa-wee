@@ -169,7 +169,7 @@
 	</resultMap>
 
 	<!-- 게시글 댓글 쓰기 -->
-	<!-- 현재 m_no 5로 되어있음. 나중에 #{m_no}으로 고쳐야 됨. -->
+	<!-- 현재 m_no 10으로 되어있음. 나중에 #{m_no}으로 고쳐야 됨. -->
 	<insert id="insertCommentBW">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
 		CM_WRITTEN_DATE,
@@ -244,7 +244,7 @@
 		BOARD_TYPE BT, SUBJECT S
 		WHERE T.M_NO = M.M_NO AND T.BT_NO = BT.BT_NO
 		AND T.S_NO = S.S_NO AND
-		T.T_NO = 2
+		T.T_NO = #{t_no}
 	</select> 
 	
 	<!-- 중고거래 게시글 삭제 -->
@@ -264,7 +264,7 @@
 		T_RECOMMEND_NUM +1 WHERE T_NO = #{t_no}
 	</update>
 
-	<!-- 중고거개 게시글 추천수 증가하는 거 받아옴 -->
+	<!-- 중고거래 게시글 추천수 증가하는 거 받아옴 -->
 	<select id="selectRecommendContentT" resultType="String">
 		SELECT
 		T_RECOMMEND_NUM FROM TRADE WHERE T_NO = #{t_no}
@@ -306,7 +306,7 @@
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
 
-	<!-- 중고거래 댓글 보기 -->
+	<!-- 중고거래 댓글 수정하기 view에서 사용 -->
 	<select id="selectCommentT" resultType="java.util.HashMap"
 		parameterType="String">
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
@@ -329,13 +329,13 @@
 		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</delete>
 	
-	<!-- 댓글 추천수 증가 -->
+	<!-- 중고거래 댓글 추천수 증가 -->
 	<update id="upRecommendCommentT">
 		UPDATE CM_COMMENT SET CM_RECOMMEND_NUM =
 		CM_RECOMMEND_NUM +1 WHERE CM_NO = #{cm_no}
 	</update>
 
-	<!-- 댓글 추천수 증가하는 거 받아옴 -->
+	<!-- 중고거래 댓글 추천수 증가하는 거 받아옴 -->
 	<select id="selectRecommendCommentT" resultType="String">
 		SELECT
 		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
@@ -343,10 +343,40 @@
 	
 <!-- ====================== 카페리뷰 ======================== -->
 	
-	<!-- cr_no를 가져오기 위해 -->
-	<select id="selectContentCR"
-		resultType="java.util.HashMap" parameterType="int">
-		SELECT CR_NO FROM CAFE_REVIEW WHERE CR_NO = #{cr_no}
+	<!-- 카페리뷰 게시글 보기(content_view) -->
+	<select id="selectContentCROne" resultType="java.util.HashMap" parameterType="int">
+		SELECT CR.CR_NO, CR.CR_TITLE, CR.CR_CONTENT,
+		CR.CR_WRITTEN_DATE, CR.CR_UPDATED_DATE, CR.CR_HIT,
+		CR.CR_RECOMMEND_NUM, CR.CR_REPORT_NUM, CR.CR_ISLAND,
+		M.M_NICK, BT.BT_NAME, BT.BT_NO, C.C_TITLE
+		FROM CAFE_REVIEW CR, MEMBER M,
+		BOARD_TYPE BT, CAFE C
+		WHERE CR.M_NO = M.M_NO AND CR.BT_NO = BT.BT_NO
+		AND CR.C_NO = C.C_NO AND
+		CR.CR_NO = #{cr_no}
+	</select>
+	
+	 <!-- 카페리뷰 게시글 삭제 -->
+	<delete id="deleteContentCR">
+		DELETE FROM CAFE_REVIEW WHERE CR_NO = #{cr_no}
+	</delete>
+	
+	<!-- 카페리뷰 게시글 조회수 -->
+	<update id="upHitContentCR">
+		UPDATE CAFE_REVIEW SET CR_HIT = CR_HIT + 1 WHERE
+		CR_NO = #{cr_no}
+	</update>
+	
+	<!-- 카페리뷰 게시글 추천수 증가 -->
+	<update id="upRecommendContentCR">
+		UPDATE CAFE_REVIEW SET CR_RECOMMEND_NUM =
+		CR_RECOMMEND_NUM +1 WHERE CR_NO = #{cr_no}
+	</update>
+
+	<!-- 카페리뷰 게시글 추천수 증가하는 거 받아옴 -->
+	<select id="selectRecommendContentCR" resultType="String">
+		SELECT
+		CR_RECOMMEND_NUM FROM CAFE_REVIEW WHERE CR_NO = #{cr_no}
 	</select>
 
 	<!-- 카페리뷰 신고글 쓰기 -->
@@ -357,6 +387,20 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+	
+	<!-- 카페리뷰 댓글 목록 -->
+	<select id="selectCommentListCR" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT
+		FROM CM_COMMENT CM, MEMBER M, CAFE_REVIEW CR
+		WHERE CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = CR.CR_NO 
+		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
+		ORDER BY CM.CM_WRITTEN_DATE DESC
+	</select>
 	
 	<!-- 카페리뷰 댓글 쓰기 -->
 	<insert id="insertCommentCR">
@@ -371,7 +415,7 @@
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
 
-	<!-- 카페리뷰 댓글 보기 -->
+	<!-- 카페리뷰 댓글 수정하기 view에서 사용 -->
 	<select id="selectCommentCR" resultType="java.util.HashMap"
 		parameterType="String">
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
@@ -381,7 +425,31 @@
 		FROM CM_COMMENT CM, MEMBER M, CAFE_REVIEW CR
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = CR.CR_NO 
-		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
+		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO = #{cm_no}
 	</select>
+	
+	<!-- 카페리뷰 댓글 수정 -->
+	<update id="updateCommentCROne">
+		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
+	</update>
+	
+	<!-- 카페리뷰 댓글 삭제 -->
+	<delete id="deleteCommentCR">
+		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+	</delete>
+	
+	<!-- 카페리뷰 댓글 추천수 증가 -->
+	<update id="upRecommendCommentCR">
+		UPDATE CM_COMMENT SET CM_RECOMMEND_NUM =
+		CM_RECOMMEND_NUM +1 WHERE CM_NO = #{cm_no}
+	</update>
+
+	<!-- 카페리뷰 댓글 추천수 증가하는 거 받아옴 -->
+	<select id="selectRecommendCommentCR" resultType="String">
+		SELECT
+		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+	</select>
+	
+	
 	
 </mapper>
