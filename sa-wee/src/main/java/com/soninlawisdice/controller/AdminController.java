@@ -31,6 +31,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.FaqVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.ReportVO;
@@ -146,8 +147,7 @@ public class AdminController {
 	// 무인도행
 	@ResponseBody
 	@RequestMapping(value = "/updateIsland", method = RequestMethod.POST)
-	public int updateIsland(Board_writeVO boardVO, MemberVO memberVO, Cafe_reviewVO cafe_reviewVO, TradeVO tradeVO,
-			@RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+	public int updateIsland(@RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
 
 		int bt = 0;
 		int no = 0;
@@ -178,6 +178,41 @@ public class AdminController {
 
 		return result;
 	}
+	
+		// 무인도행 - 수정완료 컨펌
+		@ResponseBody
+		@RequestMapping(value = "/updateIsland_confirm", method = RequestMethod.POST)
+		public int updateIsland_confirm(@RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+
+			int bt = 0;
+			int no = 0;
+			int mem = 0;
+			int result = 0;// 나중에 로그인여부, 관리자인지 여부를 확인하기 위함 >> 지금은 테이블별로 다른 링크 걸기 위함
+
+			StringTokenizer st;
+			for (String i : chArr) {
+				st = new StringTokenizer(i);
+				bt = Integer.parseInt(st.nextToken());
+				no = Integer.parseInt(st.nextToken());
+				mem = Integer.parseInt(st.nextToken());
+
+				if (1 <= bt && bt <= 6) { // bt_no이 1~6인 커뮤니티
+					adminService.updateIsland_bw(no);
+					result = 1;
+				} else if (bt == 11) { // bt_no이 11인 카페리뷰
+					adminService.updateIsland_cafe(no);
+					result = 2;
+				} else {// 중고거래는 bt 테이블과 조인하지않음
+					adminService.updateIsland_trade(no);
+					result = 3;
+				}
+			}
+			System.out.println(bt);
+			System.out.println("무인도행 갈 회원 : "+mem);
+			adminService.updateIsland_memberReport(mem);
+
+			return result;
+		}
 
 	
 	
@@ -391,11 +426,11 @@ public class AdminController {
 	@RequestMapping(value = "/faq_list", method = RequestMethod.GET)
 	public String faq_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 
-		model.addAttribute("faq_list", adminService.boardList(scri, 7));
+		model.addAttribute("faq_list", adminService.faqList(scri));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 7));
+		pageMaker.setTotalCount(adminService.faq_listCount(scri));
 
 		model.addAttribute("pageMaker", pageMaker);
 		return "admin/faq_list";
@@ -405,11 +440,11 @@ public class AdminController {
 	@RequestMapping("/faq")
 	public String faq(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 		
-		model.addAttribute("faq_list", adminService.boardList(scri, 7));
+		model.addAttribute("faq_list", adminService.faqList(scri));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 7));
+		pageMaker.setTotalCount(adminService.faq_listCount(scri));
 
 		model.addAttribute("pageMaker", pageMaker);
 		
@@ -571,9 +606,9 @@ public class AdminController {
 
 	// 글쓰기 : faq 자주하는 질문 
 		@RequestMapping(value = "/faqInsert", method = RequestMethod.POST)
-		public String faqInsert(Board_writeVO board_writeVO) throws Exception {
+		public String faqInsert(FaqVO faqVO) throws Exception {
 
-			adminService.boardInsert(board_writeVO);
+			adminService.faqInsert(faqVO);
 
 			return "redirect:faq_list";
 		}

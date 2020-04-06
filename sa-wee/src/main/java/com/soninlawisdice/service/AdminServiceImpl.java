@@ -16,6 +16,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.FaqVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
@@ -92,6 +93,17 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	
+	@Override
+	public List<FaqVO> faqList(SearchCriteria scri){
+		return adminMapper.faqList(scri);
+	}
+	@Override
+	public int faq_listCount(SearchCriteria scri){
+		return adminMapper.faq_listCount(scri);
+	}
+	
+	
+	
 	
 
 	// 차트 데이터
@@ -136,6 +148,12 @@ public class AdminServiceImpl implements AdminService {
 	public void cafeInsert(CafeVO cafeVO) {
 		adminMapper.cafeInsert(cafeVO);
 	}
+	
+	public void faqInsert(FaqVO faqVO) {
+		adminMapper.faqInsert(faqVO);
+	}
+	
+	
 	
 	
 	// 수정 : 회원정보

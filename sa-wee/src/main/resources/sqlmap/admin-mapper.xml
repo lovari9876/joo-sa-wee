@@ -111,13 +111,20 @@
 	</select>
 
 
+	<select id="faqList" resultType="com.soninlawisdice.vo.FaqVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
+			
+			SELECT * FROM(
+		         SELECT faq_no, s_no, faq_title, faq_content, faq_written_date, faq_updated_date, faq_hit,
+				               ROW_NUMBER() OVER(ORDER BY faq_no DESC) AS RNUM
+				         FROM faq 
+				         WHERE 1=1
+		         <include refid="faq_search"></include>
+		                       ) MP
+				WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+				ORDER BY faq_no DESC
+		
 	
-	
-	
-	
-	
-	
-	
+	</select>
 	
 	
 	
@@ -233,21 +240,31 @@
 	
 	
 	
+	<select id="faq_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
+			SELECT COUNT(faq_no)
+					  FROM faq
+					 WHERE 1=1
+				 <include refid="faq_search"></include>	
+					 AND faq_no > 0
+
+
+	</select>
+	
+	<sql id="faq_search">
+		<if test="searchType != null">
+			<if test="searchType == 'a'.toString()">AND m_id LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'b'.toString()">AND wr_reason LIKE '%' || #{keyword} || '%'</if>
+		</if>
+	</sql>
+	
+	
+	
 	<!-- =============================================== 글 보기  ====================================================== -->
 	
 
 	<select id="selectMemberView" parameterType="com.soninlawisdice.vo.MemberVO" resultType="com.soninlawisdice.vo.MemberVO">
 		select * from member where m_no=#{m_no}
 	</select>
-	
-	<!-- =============================================== 댓글 개수  ====================================================== -->
-	
-	<select id="commentCount" resultType="int">
-		SELECT COUNT(*) FROM cm_comment
-		WHERE bw_no = 
-	</select>
-	
-	
 	
 	
 	<!-- =============================================== 글 쓰기  ====================================================== -->
@@ -262,6 +279,13 @@
 	<insert id="cafeInsert" parameterType="com.soninlawisdice.vo.CafeVO" >
 		INSERT INTO cafe (c_no, c_title, c_add, c_phone, c_people, c_table, c_chair, c_open, c_close, c_rest, c_written_date, c_updated_date, c_hit, bt_no) 
 		VALUES (cafe_seq.nextval, #{cafeVO.c_title}, #{cafeVO.c_add}, #{cafeVO.c_phone}, #{cafeVO.c_people}, #{cafeVO.c_table}, #{cafeVO.c_chair}, #{cafeVO.c_open}, #{cafeVO.c_close}, #{cafeVO.c_rest}, sysdate, sysdate, 0, 10) 
+	
+	</insert>
+	
+	
+	<insert id="faqInsert" parameterType="com.soninlawisdice.vo.FaqVO" >
+		INSERT INTO faq (faq_no, s_no, faq_title, faq_content, faq_written_date, faq_updated_date, faq_hit) 
+		VALUES (faq_seq.nextval, #{faqVO.s_no}, #{faqVO.faq_title}, #{faqVO.faq_content}, sysdate, sysdate, 0) 
 	
 	</insert>
 	
@@ -322,12 +346,13 @@
 	<!-- =============================================== 회원 탈퇴처리 ====================================================== -->
 	
 	<update id="outMember" parameterType="com.soninlawisdice.vo.MemberVO" >
-		UPDATE member SET m_out = 'y', m_outdate = sysdate where m_no = #{m_no}
+		UPDATE member SET m_out = '0', m_outdate = sysdate where m_no = #{m_no}
 	</update>
 	
 
 	<!-- =============================================== 무인도행 ====================================================== -->
 	
+	<!-- 멤버 번호 바로 불러올수 없는 경우 : 글이 신고당함 - 글번호로 멤버번호를 가져옴 -->
 	<update id="updateIsland_member" >
 		UPDATE member
 		SET r_no =  4
@@ -348,6 +373,7 @@
 		</choose>
 	</update>
 	
+	<!-- 멤버 번호 바로 불러올수있는 경우  -->
 	<update id="updateIsland_memberReport" parameterType="com.soninlawisdice.vo.MemberVO" >
 		UPDATE member
 		SET r_no =  4 
@@ -374,6 +400,70 @@
 		WHERE t_no = #{t_no}
 	</update>
 
+	
+	<!-- =============================================== 무인도행 수정완료 컨펌 ====================================================== -->
+	
+<!-- 	
+	<update id="confirmIsland_member" >
+		UPDATE member
+		SET r_no =  4
+		<choose>
+			<when test='m_point lte 10000'>
+				board_write WHERE bw_no = #{bw_no})
+			</when>
+			
+			<when test='m_point == "카페리뷰"'>
+				cafe_review WHERE c_no = #{bw_no})
+			</when>
+			
+			<when test='r_type == "중고거래"'>
+				trade WHERE t_no = #{bw_no})
+			</when>
+		</choose>
+		
+		
+		WHERE m_no = (SELECT m_no FROM 
+		
+		<choose>
+			<when test='r_type == "게시글"'>
+				board_write WHERE bw_no = #{bw_no})
+			</when>
+			
+			<when test='r_type == "카페리뷰"'>
+				cafe_review WHERE c_no = #{bw_no})
+			</when>
+			
+			<when test='r_type == "중고거래"'>
+				trade WHERE t_no = #{bw_no})
+			</when>
+		</choose>
+	</update> -->
+	
+	
+	
+	<update id="confirmIsland_bw" parameterType="com.soninlawisdice.vo.Board_writeVO" >
+		UPDATE board_write 
+		SET bw_island =  0 
+		WHERE bw_no = #{bw_no}
+	</update>
+	
+	
+	<update id="confirmIsland_cafe" parameterType="com.soninlawisdice.vo.Cafe_reviewVO" >
+		UPDATE cafe_review
+		SET cr_island =  0 
+		WHERE cr_no = #{cr_no}
+	</update>
+	
+	
+	<update id="confirmIsland_trade" parameterType="com.soninlawisdice.vo.TradeVO" >
+		UPDATE trade
+		SET t_island =  0 
+		WHERE t_no = #{t_no}
+	</update>
+	
+	
+	
+	
 	
 	
 	<!-- =============================================== 글 삭제 ====================================================== -->
@@ -488,7 +578,7 @@
 	
 	
 	<select id="allMember" parameterType="com.soninlawisdice.vo.MemberVO" resultType="int">
-		SELECT COUNT(*) AS member_NUM FROM MEMBER WHERE M_OUT = 'n'
+		SELECT COUNT(*) AS member_NUM FROM MEMBER WHERE M_OUT = '1'
 	</select>
 	
 	

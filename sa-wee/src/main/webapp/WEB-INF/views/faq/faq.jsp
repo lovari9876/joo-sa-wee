@@ -25,107 +25,98 @@
 		class="cd-faq js-cd-faq container max-width-md margin-top-lg margin-bottom-lg">
 		<ul class="cd-faq__categories">
 			<li><a
-				class="cd-faq__category cd-faq__category-selected truncate_" href="#basics">회원</a></li>
-			<li><a class="cd-faq__category truncate" href="#account">결제</a></li>
-			<li><a class="cd-faq__category truncate" href="#payments">정보 수정</a></li>
-			<li><a class="cd-faq__category truncate" href="#privacy">무인도 게시판</a></li>
-			<li><a class="cd-faq__category truncate__" href="#delivery">기타</a></li>
+				class="cd-faq__category cd-faq__category-selected truncate_" href="#member">회원</a></li>
+			<li><a class="cd-faq__category truncate" href="#payment">결제</a></li>
+			<li><a class="cd-faq__category truncate" href="#info">정보 수정</a></li>
+			<li><a class="cd-faq__category truncate" href="#island">무인도 게시판</a></li>
+			<li><a class="cd-faq__category truncate__" href="#etc">기타</a></li>
 		</ul>
 		<!-- cd-faq__categories -->
 
 		<div class="cd-faq__items">
 		
-			<ul id="basics" class="cd-faq__group">
+			<ul id="member" class="cd-faq__group">
 				<li class="cd-faq__title"><h4>회원</h4></li>
-				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '회원'}">
+				<c:forEach items="${faq_list}" var="faq"> 
+				<c:if test="${faq.s_no == 22}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
-						<span>${board['BW_TITLE']}</span></a>
+						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
-							<p>${board['BW_CONTENT']}</p>
+							<p>${faq.faq_content}</p>
 						</div>
 					</div> <!-- cd-faq__content --></li>
 				</c:if>
-					</c:forEach>
-				
+				</c:forEach>
 			</ul>
 			<!-- cd-faq__group -->
 
-			<ul id="mobile" class="cd-faq__group">
+			<ul id="payment" class="cd-faq__group">
 				<li class="cd-faq__title"><h4>결제</h4></li>
-				
-				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '결제'}">
+				<c:forEach items="${faq_list}" var="faq"> 
+				<c:if test="${faq.s_no == 23}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
-						<span>${board['BW_TITLE']}</span></a>
+						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
-							<p>${board['BW_CONTENT']}</p>
+							<p>${faq.faq_content}</p>
 						</div>
 					</div> <!-- cd-faq__content --></li>
 				</c:if>
 				</c:forEach>
-
-				
 			</ul>
 			<!-- cd-faq__group -->
 
-			<ul id="payments" class="cd-faq__group">
+			<ul id="info" class="cd-faq__group">
 				<li class="cd-faq__title"><h4>정보 수정</h4></li>
-				
-				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '정보 수정'}">
+				<c:forEach items="${faq_list}" var="faq"> 
+				<c:if test="${faq.s_no == 24}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
-						<span>${board['BW_TITLE']}</span></a>
+						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
-							<p>${board['BW_CONTENT']}</p>
+							<p>${faq.faq_content}</p>
 						</div>
 					</div> <!-- cd-faq__content --></li>
 				</c:if>
 				</c:forEach>
-
-				
 			</ul>
 			<!-- cd-faq__group -->
 
-			<ul id="privacy" class="cd-faq__group">
+			<ul id="island" class="cd-faq__group">
 				<li class="cd-faq__title"><h4>무인도 게시판</h4></li>
-				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '무인도 게시판'}">
+				<c:forEach items="${faq_list}" var="faq"> 
+				<c:if test="${faq.s_no == 25}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
-						<span>${board['BW_TITLE']}</span></a>
+						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
-							<p>${board['BW_CONTENT']}</p>
+							<p>${faq.faq_content}</p>
 						</div>
 					</div> <!-- cd-faq__content --></li>
 				</c:if>
 				</c:forEach>
-
-				
 			</ul>
 			<!-- cd-faq__group -->
 			
 			
-			<ul id="delivery" class="cd-faq__group">
+			<ul id="etc" class="cd-faq__group">
 				<li class="cd-faq__title"><h4>기타</h4></li>
-				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '기타'}">
+				<c:forEach items="${faq_list}" var="faq"> 
+				<c:if test="${faq.s_no == 26}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
-						<span>${board['BW_TITLE']}</span></a>
+						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
-							<p>${board['BW_CONTENT']}</p>
+							<p>${faq.faq_content}</p>
 						</div>
 					</div> <!-- cd-faq__content --></li>
 				</c:if>
 				</c:forEach>
-
-				
 			</ul>
 			<!-- cd-faq__group -->
+			
+			
 		</div>
 		<!-- cd-faq__items -->
 

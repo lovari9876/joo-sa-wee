@@ -11,6 +11,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.FaqVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -37,6 +38,9 @@ public interface AdminService {
 	
 	public ArrayList<HashMap<String, Object>> cafe_reviewList(SearchCriteria scri);
 	public int cafe_review_listCount(SearchCriteria scri);	
+	
+	public List<FaqVO> faqList(SearchCriteria scri);
+	public int faq_listCount(SearchCriteria scri);
 	
 	
 	
@@ -81,6 +85,7 @@ public interface AdminService {
 	// 글쓰기 
 	public void boardInsert(Board_writeVO board_writeVO);
 	public void cafeInsert(CafeVO cafeVO);
+	public void faqInsert(FaqVO faqVO);
 	
 	
 	// 글삭제

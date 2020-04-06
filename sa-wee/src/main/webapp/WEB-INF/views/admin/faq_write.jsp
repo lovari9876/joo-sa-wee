@@ -47,8 +47,6 @@
 							<div class="write-view"> -->
 
 					<form action="/admin/faqInsert" method="post">
-						<input type="hidden" name = "bt_no" value="7" >
-						<input type="hidden" name = "m_no" value="0">
 						<table class="table">
 							 <tr class = "row">
 							<td class = "cell span2">말머리</td>
@@ -65,13 +63,13 @@
 
 							<tr class="row">
 								<td class="cell span2">제목</td>
-								<td class="cell span8"><input type="text" name="bw_title"
+								<td class="cell span8"><input type="text" name="faq_title"
 									class="span6" placeholder="제목을 입력하세요"></td>
 							</tr>
 
 							<tr class="row">
 								<td class="cell">내용</td>
-								<td class="cell"><textarea id="editor" name="bw_content" class="span5"
+								<td class="cell"><textarea id="editor" name="faq_content" class="span5"
 										rows="10" placeholder="내용을 입력하세요"></textarea></td>
 							</tr>
 
