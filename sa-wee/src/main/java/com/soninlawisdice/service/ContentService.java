@@ -79,6 +79,8 @@ public interface ContentService {
 	
 	public String selectRecommendCommentT(String cm_no); // 중고거래 댓글 추천수 증가하는 거 받아옴
 	
+	public HashMap<String, Object> selectCommentCountT(String cm_no2); // 중고거래 댓글 갯수 세기
+	
 	
 	/*============================== 카페리뷰 ===================================*/
 	public HashMap<String, Object> selectContentCROne(int cr_no); // 카페리뷰 게시글 보기(content_view)
@@ -106,4 +108,6 @@ public interface ContentService {
 	public void upRecommendCommentCR(String cm_no); // 카페리뷰 댓글 추천수 증가
 	
 	public String selectRecommendCommentCR(String cm_no); // 카페리뷰 댓글 추천수 증가하는 거 받아옴
+	
+	public HashMap<String, Object> selectCommentCountCR(String cm_no2); // 카페리뷰 댓글 갯수 세기
 }

@@ -265,6 +265,14 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectRecommendCommentT(cm_no);
 	}
+	
+	// 중고거래 댓글 갯수 세기
+	@Override
+	public HashMap<String, Object> selectCommentCountT(String cm_no2) {
+		
+		return contentMapper.selectCommentCountT(cm_no2);
+	}
+
 
 	/* ============================== 카페리뷰 =================================== */
 
@@ -367,6 +375,14 @@ public class ContentServiceImpl implements ContentService {
 		return contentMapper.selectRecommendCommentCR(cm_no);
 	}
 
+	// 카페리뷰 댓글 갯수 세기
+	@Override
+	public HashMap<String, Object> selectCommentCountCR(String cm_no2) {
+		
+		return contentMapper.selectCommentCountCR(cm_no2);
+	}
+
+	
 	
 
 	

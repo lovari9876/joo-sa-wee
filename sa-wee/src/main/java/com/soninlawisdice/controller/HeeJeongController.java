@@ -97,6 +97,8 @@ public class HeeJeongController {
 
 		model.addAttribute("comment_list", contentService.selectCommentList(cm_no2));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		
+		// 댓글 갯수 세기
 		model.addAttribute("comment_count", contentService.selectCommentCount(cm_no2));
 	  
 		return "content/comment_view_bw"; 
@@ -343,6 +345,9 @@ public class HeeJeongController {
 
 		model.addAttribute("comment_list_t", contentService.selectCommentListT(cm_no2));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		
+		// 중고거래 댓글 갯수 세기
+		model.addAttribute("comment_count_t", contentService.selectCommentCountT(cm_no2));
 		  
 		return "content/comment_view_t"; 
 	} 
@@ -509,6 +514,9 @@ public class HeeJeongController {
 
 		model.addAttribute("comment_list_cr", contentService.selectCommentListCR(cm_no2));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		
+		// 카페리뷰 댓글 갯수 세기
+		model.addAttribute("comment_count_cr", contentService.selectCommentCountCR(cm_no2));
 			  
 		return "content/comment_view_cr"; 
 	} 

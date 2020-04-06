@@ -55,7 +55,7 @@
 	<!-- 댓글 달기 -->
 	<div class="pt-5">
 		<form action="">
-			<label for="drop_list"><h3 class="mb-5">Comment</h3></label> <select
+			<label for="drop_list"><h3 class="mb-5">${comment_count_t['CM_COUNT']} Comment</h3></label> <select
 				id="drop_list" name="drop_list">
 				<option value="new">최신순</option>
 				<option value="best">인기순</option>

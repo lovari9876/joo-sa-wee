@@ -348,6 +348,13 @@
 		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
 	
+	<!-- 중고거래 댓글 갯수 세기 -->
+	<select id="selectCommentCountT" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM, BOARD_WRITE BW
+		WHERE CM.CM_NO2 = BW.BW_NO AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
+	</select>
+	
 <!-- ====================== 카페리뷰 ======================== -->
 	
 	<!-- 카페리뷰 게시글 보기(content_view) -->
@@ -457,6 +464,12 @@
 		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
 	
+	<!-- 카페리뷰 댓글 갯수 세기 -->
+	<select id="selectCommentCountCR" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM, BOARD_WRITE BW
+		WHERE CM.CM_NO2 = BW.BW_NO AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
+	</select>
 	
 	
 </mapper>
