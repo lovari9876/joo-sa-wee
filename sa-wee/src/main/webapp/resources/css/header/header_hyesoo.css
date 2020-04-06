@@ -227,6 +227,7 @@ button span.lnr-magnifier {
 	position: relative;
 	padding-right: 20px;
 	font: dunggeunmo;
+	text-decoration: none;
 }
 
 /* 상단바 서브메뉴 있는것들 뒤에 > 이미지 넣기*/
