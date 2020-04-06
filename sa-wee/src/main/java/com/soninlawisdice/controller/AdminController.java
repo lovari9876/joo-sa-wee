@@ -173,16 +173,17 @@ public class AdminController {
 			}
 		}
 		System.out.println(bt);
-		adminService.updateIsland_member(mem);
+		System.out.println("무인도행 갈 회원 : "+mem);
+		adminService.updateIsland_memberReport(mem);
 
 		return result;
 	}
 
 	
 	
-	//신고관리 : 무인도행
+	//신고관리 : 무인도행 - 글
 	@RequestMapping(value = "/island", method = RequestMethod.POST)
-	public String island(ReportVO reportVO, Board_writeVO board_writeVO, @RequestParam String r_no, @RequestParam String r_type, RedirectAttributes re ) throws Exception {
+	public String island(@RequestParam String r_no, @RequestParam String r_type, RedirectAttributes re ) throws Exception {
 
 		StringTokenizer st;
 		st = new StringTokenizer(r_no);
@@ -200,20 +201,42 @@ public class AdminController {
 			adminService.updateIsland_cafe(no);
 		}
 		
+		System.out.println("========r_type : " + r_type);
+		adminService.updateIsland_member(no, r_type);//해당 글을 쓴 멤버의 등급을 4로 만든다. 글 번호와 테이블 이름을 보내 처리 m_no을 구해 처리 
+		
 		re.addAttribute("r_no", r);
 		re.addAttribute("r_type", r_type);
 		
-		
-		//미완.... 무인도행 할 글을 쓴 작성자를 가져올 방법 고민하기 
-		//System.out.println("무인도행 할 멤버: " + board_writeVO.getM_no());
-		//adminService.updateIsland_member(board_writeVO.getM_no());
-
 		return "redirect:report_view";
 	}
 
 	
 	
-	
+		//신고관리 : 무인도행 - 회원
+		@RequestMapping(value = "/m_island", method = RequestMethod.POST)
+		public String m_island(@RequestParam String r_no, @RequestParam String r_type, RedirectAttributes re) throws Exception {
+			System.out.println("==============m_island================");
+			
+			StringTokenizer st;
+			st = new StringTokenizer(r_no);
+			int r = Integer.parseInt(st.nextToken());
+			System.out.println("r_no 신고번호 : " + r);
+			int no = Integer.parseInt(st.nextToken());
+			System.out.println("no 신고당한 회원번호 : " + no);
+			
+			
+			adminService.updateIsland_memberReport(no);
+			
+			
+
+			System.out.println("=========리다이렉트확인 : " + r);
+			System.out.println("=========리다이렉트확인 : " + r_type);
+			
+			re.addAttribute("r_no", r);
+			re.addAttribute("r_type", r_type);
+			
+			return "redirect:report_view";
+		}
 	
 	
 	
@@ -368,11 +391,11 @@ public class AdminController {
 	@RequestMapping(value = "/faq_list", method = RequestMethod.GET)
 	public String faq_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 
-		model.addAttribute("faq_list", adminService.boardList(scri, 8));
+		model.addAttribute("faq_list", adminService.boardList(scri, 7));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 8));
+		pageMaker.setTotalCount(adminService.board_listCount(scri, 7));
 
 		model.addAttribute("pageMaker", pageMaker);
 		return "admin/faq_list";
@@ -381,7 +404,23 @@ public class AdminController {
 	
 	@RequestMapping("/faq")
 	public String faq(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		model.addAttribute("faq_list", adminService.boardList(scri, 8));
+		
+		model.addAttribute("faq_list", adminService.boardList(scri, 7));
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.board_listCount(scri, 7));
+
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "faq/faq";
+	}
+	
+	
+	@RequestMapping("/ask_list")
+	public String ask_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+
+		model.addAttribute("ask_list", adminService.boardList(scri, 8));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -389,7 +428,7 @@ public class AdminController {
 
 		model.addAttribute("pageMaker", pageMaker);
 		
-		return "faq/faq";
+		return "admin/ask_list";
 	}
 	
 	
@@ -467,6 +506,7 @@ public class AdminController {
 				adminService.selectDelete_trade(tradeVO);
 				result = 3;
 			}
+			
 		}
 		System.out.println(bt);
 
@@ -565,11 +605,7 @@ public class AdminController {
 		return "admin/cafe_list";
 	}
 
-	@RequestMapping("/ask_list")
-	public String ask_list() {
-
-		return "admin/ask_list";
-	}
+	
 
 	@RequestMapping("/cafe_write")
 	public String cafe_write() {

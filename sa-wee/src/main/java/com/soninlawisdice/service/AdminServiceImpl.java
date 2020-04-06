@@ -153,8 +153,13 @@ public class AdminServiceImpl implements AdminService {
 	
 	//무인도행
 	@Override
-	public void updateIsland_member(int m_no) {
-		adminMapper.updateIsland_member(m_no);
+	public void updateIsland_member(int bw_no, String r_type) {
+		adminMapper.updateIsland_member(bw_no, r_type);
+	}
+	
+	@Override
+	public void updateIsland_memberReport(int m_no) {
+		adminMapper.updateIsland_memberReport(m_no);
 	}
 	
 	@Override

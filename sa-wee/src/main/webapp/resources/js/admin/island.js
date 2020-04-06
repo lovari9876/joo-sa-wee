@@ -9,7 +9,7 @@ $(".selectIsland_btn").click(function() {
 
 	if (checkArr == "") {
 		alert("게시글을 하나 이상 선택해주세요");
-	}else{s
+	}else{
 		var confirm_val = confirm("정말 무인도로 보내시겠습니까?");
 
 		if (confirm_val) {

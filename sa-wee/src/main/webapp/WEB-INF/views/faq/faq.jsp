@@ -25,20 +25,20 @@
 		class="cd-faq js-cd-faq container max-width-md margin-top-lg margin-bottom-lg">
 		<ul class="cd-faq__categories">
 			<li><a
-				class="cd-faq__category cd-faq__category-selected truncate_" href="#basics">회원 관련 문의</a></li>
-			<li><a class="cd-faq__category truncate" href="#account">결제 관련 문의</a></li>
-			<li><a class="cd-faq__category truncate" href="#payments">정보수정 요청</a></li>
-			<li><a class="cd-faq__category truncate" href="#privacy">무인도 관련 문의</a></li>
-			<li><a class="cd-faq__category truncate__" href="#delivery">기타 문의</a></li>
+				class="cd-faq__category cd-faq__category-selected truncate_" href="#basics">회원</a></li>
+			<li><a class="cd-faq__category truncate" href="#account">결제</a></li>
+			<li><a class="cd-faq__category truncate" href="#payments">정보 수정</a></li>
+			<li><a class="cd-faq__category truncate" href="#privacy">무인도 게시판</a></li>
+			<li><a class="cd-faq__category truncate__" href="#delivery">기타</a></li>
 		</ul>
 		<!-- cd-faq__categories -->
 
 		<div class="cd-faq__items">
 		
 			<ul id="basics" class="cd-faq__group">
-				<li class="cd-faq__title"><h4>회원 관련 문의</h4></li>
+				<li class="cd-faq__title"><h4>회원</h4></li>
 				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '회원 관련 문의'}">
+				<c:if test="${board['S_CONTENT'] == '회원'}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
 						<span>${board['BW_TITLE']}</span></a>
 					<div class="cd-faq__content">
@@ -53,10 +53,10 @@
 			<!-- cd-faq__group -->
 
 			<ul id="mobile" class="cd-faq__group">
-				<li class="cd-faq__title"><h4>결제 관련 문의</h4></li>
+				<li class="cd-faq__title"><h4>결제</h4></li>
 				
 				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '결제 관련 문의'}">
+				<c:if test="${board['S_CONTENT'] == '결제'}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
 						<span>${board['BW_TITLE']}</span></a>
 					<div class="cd-faq__content">
@@ -72,10 +72,10 @@
 			<!-- cd-faq__group -->
 
 			<ul id="payments" class="cd-faq__group">
-				<li class="cd-faq__title"><h4>정보수정 요청</h4></li>
+				<li class="cd-faq__title"><h4>정보 수정</h4></li>
 				
 				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '정보수정 요청'}">
+				<c:if test="${board['S_CONTENT'] == '정보 수정'}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
 						<span>${board['BW_TITLE']}</span></a>
 					<div class="cd-faq__content">
@@ -91,9 +91,9 @@
 			<!-- cd-faq__group -->
 
 			<ul id="privacy" class="cd-faq__group">
-				<li class="cd-faq__title"><h4>무인도 관련 문의</h4></li>
+				<li class="cd-faq__title"><h4>무인도 게시판</h4></li>
 				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '무인도 관련 문의'}">
+				<c:if test="${board['S_CONTENT'] == '무인도 게시판'}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
 						<span>${board['BW_TITLE']}</span></a>
 					<div class="cd-faq__content">
@@ -110,9 +110,9 @@
 			
 			
 			<ul id="delivery" class="cd-faq__group">
-				<li class="cd-faq__title"><h4>기타 문의</h4></li>
+				<li class="cd-faq__title"><h4>기타</h4></li>
 				<c:forEach items="${faq_list}" var="board"> 
-				<c:if test="${board['S_CONTENT'] == '기타 문의'}">
+				<c:if test="${board['S_CONTENT'] == '기타'}">
 					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
 						<span>${board['BW_TITLE']}</span></a>
 					<div class="cd-faq__content">

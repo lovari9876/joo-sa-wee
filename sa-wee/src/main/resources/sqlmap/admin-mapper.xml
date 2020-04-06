@@ -47,7 +47,9 @@
 	SELECT * FROM
 	(
          SELECT bw.bw_no, m.m_no, m.m_id, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island,
-		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM
+         			  (SELECT COUNT(*) FROM cm_comment WHERE cm_type ='게시판' AND cm_no2 = bw.bw_no) cm,
+		               ROW_NUMBER() OVER(ORDER BY bw.bw_no ASC) AS RNUM,
+		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM_COUNT 
 		          FROM board_write bw
                  INNER JOIN subject s
                  ON bw.s_no=s.s_no
@@ -56,18 +58,18 @@
                 INNER JOIN member m
                 ON bw.m_no=m.m_no
                 
-              <choose>
+             <choose>
                 	<when test = "bt_no == 13">
                 		WHERE bt.bt_no BETWEEN 1 and 6
                 	</when>
                 	<otherwise> 
                 		WHERE bt.bt_no = #{bt_no}
                 	</otherwise>
-                </choose> 
+             </choose> 
 		        
 		         <include refid="board_search"></include>
 		                       )
-		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+		WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 		ORDER BY bw_no DESC
 
 	</select>
@@ -93,6 +95,7 @@
 			
 			SELECT * FROM (
 				SELECT cr.*, m.m_id, c.c_title,
+				 (SELECT COUNT(*) FROM cm_comment WHERE cm_type ='카페리뷰' AND cm_no2 = c.c_no) cm,
 				ROW_NUMBER() OVER(ORDER BY m.m_no DESC) AS RNUM
 				FROM cafe_review cr
 				INNER JOIN member m
@@ -237,6 +240,15 @@
 		select * from member where m_no=#{m_no}
 	</select>
 	
+	<!-- =============================================== 댓글 개수  ====================================================== -->
+	
+	<select id="commentCount" resultType="int">
+		SELECT COUNT(*) FROM cm_comment
+		WHERE bw_no = 
+	</select>
+	
+	
+	
 	
 	<!-- =============================================== 글 쓰기  ====================================================== -->
 	
@@ -316,13 +328,31 @@
 
 	<!-- =============================================== 무인도행 ====================================================== -->
 	
-	<update id="updateIsland_member" parameterType="com.soninlawisdice.vo.MemberVO" >
+	<update id="updateIsland_member" >
 		UPDATE member
 		SET r_no =  4
-		WHERE m_no = #{m_no}
+		WHERE m_no = (SELECT m_no FROM 
+		
+		<choose>
+			<when test='r_type == "게시글"'>
+				board_write WHERE bw_no = #{bw_no})
+			</when>
+			
+			<when test='r_type == "카페리뷰"'>
+				cafe_review WHERE c_no = #{bw_no})
+			</when>
+			
+			<when test='r_type == "중고거래"'>
+				trade WHERE t_no = #{bw_no})
+			</when>
+		</choose>
 	</update>
 	
-	
+	<update id="updateIsland_memberReport" parameterType="com.soninlawisdice.vo.MemberVO" >
+		UPDATE member
+		SET r_no =  4 
+		WHERE m_no = #{m_no}
+	</update>
 	
 	<update id="updateIsland_bw" parameterType="com.soninlawisdice.vo.Board_writeVO" >
 		UPDATE board_write 

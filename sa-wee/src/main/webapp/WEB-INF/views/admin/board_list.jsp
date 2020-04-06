@@ -85,7 +85,7 @@
 					</form>
 					
 					<div class="btn-group pull-left" >
-						<button type="button" class="btn selectDelete_btn" data-BW="${board['BT_NO']} ${board['BW_NO']}">선택 글 삭제</button>
+						<button type="button" value="board" class="btn selectDelete_btn" data-BW="${board['BT_NO']} ${board['BW_NO']}">선택 글 삭제</button>
 						<button type="button" class="btn selectIsland_btn" data-BW="${board['BT_NO']} ${board['BW_NO']} ${board['M_NO']}">무인도 행</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
@@ -110,9 +110,9 @@
 						<tr class="trow header">
 							<td class="cell span1"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
 							<td class="cell">글 번호</td>
-							<td class="cell">게시판</td>
+							<td class="cell span2">게시판</td>
 							<td class="cell">말머리</td>
-							<td class="cell">글 제목</td>
+							<td class="cell title span4">글 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
 							<td class="cell">신고수</td>
@@ -125,8 +125,8 @@
 									<td class="cell">${board['BW_NO']}</td>
 									<td class="cell">${board['BT_NAME']}</td>
 									<td class="cell">${board['S_CONTENT']}</td>
-									<td class="cell"><a
-										href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
+									<td class="cell title"><a
+										href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']} (${board['CM']})</a></td>
 									<td class="cell">${board['M_ID']}</td>
 									<td class="cell"> 
 									

@@ -159,8 +159,8 @@ public class CassieController {
 			return "secondhand/content_view";
 			
 		}else if(bt_no==11) { // 카페리뷰
-			boardService.review_uphit(Integer.toString(i_no));
-			model.addAttribute("cafe_review", boardService.selectReviewOne(Integer.toString(i_no)));
+			boardService.review_uphit(i_no);
+			model.addAttribute("cafe_review", boardService.selectReviewOne(i_no));
 			
 			return "board_hs/cafe_review_content_view";
 			

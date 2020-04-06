@@ -93,7 +93,7 @@
 
 						<c:forEach items="${faq_list}" var="board">
 								<tr class="trow">
-									<td class="cell">${board['BW_NO']}</td>
+									<td class="cell">${board['RNUM']}</td>
 									<td class="cell">${board['S_CONTENT']}</td>
 									<td class="cell"><a
 										href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>

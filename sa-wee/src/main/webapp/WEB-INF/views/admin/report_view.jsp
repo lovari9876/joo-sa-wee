@@ -112,8 +112,8 @@
 													</c:when>
 												
 													<c:when test="${report_view['R_TYPE'] == '회원'}">
-														<button type="submit" class="btn  pull-right">무인도행</button>
-														<button type="submit" class="btn  pull-right" onClick='m_island()'>탈퇴</button>
+														<button type="submit" class="btn  pull-right" onClick='m_island()'>무인도행</button>
+														<button type="submit" class="btn  pull-right" onClick='m_out()'>탈퇴</button>
 													</c:when>
 													
 													<c:when test="${report_view['R_TYPE'] == '게시글' || report_view['R_TYPE'] == '중고거래' || report_view['R_TYPE'] == '카페리뷰'}">
@@ -160,7 +160,15 @@
 									out.action="<c:url value='/admin/island'/>";
 									out.submit();
 									console.log("out");
-									alert("해당 글이 삭제되었습니다.");
+									alert("해당 글이 무인도로 이동되었습니다.");
+								}
+								
+								function m_island(){
+									var out = document.getElementById("viewForm");
+									out.action="<c:url value='/admin/m_island'/>";
+									out.submit();
+									console.log("out");
+									alert("해당 회원이 무인도로 이동되었습니다.");
 								}
 							</script>
 

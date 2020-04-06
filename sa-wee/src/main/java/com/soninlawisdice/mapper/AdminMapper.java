@@ -75,7 +75,9 @@ public interface AdminMapper {
 	public void outMember(int m_no);
 	
 	// 무인도 member, board_write, cafe_review, trade 컬럼 변경
-	public void updateIsland_member(int m_no);
+	public void updateIsland_member(@Param("bw_no")int bw_no, @Param("r_type")String r_type);
+	
+	public void updateIsland_memberReport(int m_no);
 	public void updateIsland_bw(int bw_no);
 	public void updateIsland_cafe(int cr_no);
 	public void updateIsland_trade(int t_no);
