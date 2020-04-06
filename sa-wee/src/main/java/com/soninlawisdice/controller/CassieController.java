@@ -2,8 +2,11 @@ package com.soninlawisdice.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +23,11 @@ import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
+import com.soninlawisdice.vo.Trade_gameVO;
 
 @Controller
 public class CassieController {
@@ -52,7 +57,7 @@ public class CassieController {
 		// model.attribute("scri", scri)
 		// 를 자동으로 해준다.
 
-		logger.info("tlist");
+		logger.info("tlist");	
 
 		scri.setPerPageNum(15);
 
@@ -109,7 +114,7 @@ public class CassieController {
 
 		secondhandService.deleteContent(tradeVO);
 
-		return "redirect:/tlist";
+		return "redirect:tlist";
 	}
 	
 	// 글쓰기 view
@@ -117,23 +122,34 @@ public class CassieController {
 	public String write_view(Model model) {
 		logger.info("write_view_t");
 		
+//		로그인 된 상태라면 이렇게 해서 현재 로그인 한 회원의 MemberVO 가져올 수 있다.
+//		memberVO = (MemberVO) session.getAttribute("member");
+//		model.addAttribute("member", memberVO);	
+//		이렇게 넘겨야 m_no 받아올 수 있다.
+		
 		return "secondhand/write_view";
 	}
 
 	// 글 작성
 	@RequestMapping(value = "/trade_write", method = RequestMethod.POST)
-	public String write(Board_writeVO board_writeVO) {
-		boardService.insertBoard(board_writeVO);
+	public String write(HttpSession session, Model model, 
+						@ModelAttribute("tradeVO") TradeVO tradeVO, /* @ModelAttribute("tgVO") Trade_gameVO tgVO, */
+						String gameName) {
 
-		int bt_no = board_writeVO.getBt_no();
-		int m_no = board_writeVO.getM_no();
-
-		System.out.println(bt_no);
-		System.out.println(m_no);
-
-		boardService.boardPointUpdate(m_no);
+//		로그인 된 상태라면 이렇게 해서 현재 로그인 한 회원의 MemberVO 가져올 수 있다.
+		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+		model.addAttribute("memberVO", memberVO);	
+//		이렇게 넘겨야 m_no 받아올 수 있다.
+		
+		
+		secondhandService.insertTrade(tradeVO, memberVO.getM_no());	
+		
+		secondhandService.insertTrade_game(tradeVO, gameName);
+		
+		secondhandService.boardPointUpdate(memberVO.getM_no());		
+		
 				
-		return null;
+		return "redirect:tlist";
 
 	}
 
@@ -155,7 +171,7 @@ public class CassieController {
 		boardService.modify(board_writeVO);
 		int bw_no = board_writeVO.getBw_no();
 		
-		return "redirect:content_view?bw_no"+bw_no;
+		return "redirect:content_view_t?t_no"+bw_no;
 	}
 	
 	

@@ -39,6 +39,7 @@
 				
 	</select> <!-- 1=1 조건 달아야, 처음에 검색어 없이 호출시에도, WHERE 하나만 남아서 BadGrammarException이 뜨지 않는다.. -->
 	
+	
 	<!-- list count -->	
 	<select id="tradeListCount" resultType="int">
 
@@ -83,6 +84,7 @@
 			
 	</select> 
 	
+	
 	<!-- 글 삭제 -->
 	<delete id="deleteContent">
 	
@@ -93,6 +95,7 @@
 			T_NO = #{t_no}
 			
 	</delete>
+	
 	
 	<!-- 조회수 -->
 	<update id="upHitContent">
@@ -107,6 +110,64 @@
 	</update>
 	
 	
+	<!-- 글쓰기 -->
+	<insert id="insertTrade" >
+	
+		INSERT INTO
+			TRADE 
+			(T_NO, M_NO, S_NO, T_TITLE, T_CONTENT) 
+		VALUES 
+			(trade_seq.nextval, #{memberVO.m_no}, #{tradeVO.s_no},  #{tradeVO.t_title}, #{tradeVO.t_content}) 
+	
+	</insert>
+
+
+	<!-- 보드게임 다치 입력 -->
+	<insert id="insertTrade_game" >
+	
+		INSERT INTO
+			TRADE_GAME 
+			(TG_NO, T_NO, G_NO, TG_NAME ) 
+		VALUES 
+			(TRADE_GAME_SEQ.NEXTVAL, #{tradeVO.t_no}, 
+			<if test="gameVO.g_no != 0 or gameVO.g_no != null">#{gameVO.g_no}</if>
+			<if test="gameVO.g_no = 0 or gameVO.g_no = null">null</if>
+			, #{tgVO.tg_name} ) 
+	
+	</insert>
+	
+	
+	<!-- 글 작성시 10 포인트 적립 -->
+	<update id = "boardPointUpdate">
+		UPDATE 
+			MEMBER 
+		SET 
+			M_POINT = M_POINT + 10 
+		WHERE 
+			M_NO = #{memberVO.m_no} 
+	</update>
+	
+	
+	<!-- modify_view 로 불러오기 -->
+	<select id = "modify_view" resultType = "com.soninlawisdice.vo.TradeVO">
+		select bw_no, bt_no, s_no, bw_title, bw_content
+		from board_write
+		where bw_no = #{bw_no}
+	</select>
+	
+	
+	<!-- 글 수정 -->
+	<update id="modify" parameterType="com.soninlawisdice.vo.TradeVO">
+		update board_write 
+		set bt_no = #{board_writeVO.bt_no}, 
+		s_no = #{board_writeVO.s_no}, 
+		bw_title = #{board_writeVO.bw_title}, 
+		bw_content = #{board_writeVO.bw_content} 
+		where bw_no = #{board_writeVO.bw_no}
+	</update>
+	
+	
+	<!-- 검색조건 sql -->
 	<sql id="tradeSearch">
 		<if test="scri.searchType != null">
 			<if test="scri.searchType == 't'.toString()">AND T_TITLE LIKE '%' || #{scri.keyword} || '%'</if>

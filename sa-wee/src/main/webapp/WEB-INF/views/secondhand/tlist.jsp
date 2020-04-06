@@ -470,7 +470,7 @@
 					</ul>
 					<!-- 글쓰기 버튼 -->
 					<button class="btn btn-primary write-btn lavender-btn" type="button"
-							onclick="location.href='write_view_t?bt_no=9'">글쓰기</button>
+							onclick="location.href='write_view_t'">글쓰기</button>
                 </nav>
             </div>
         </div>
