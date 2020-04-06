@@ -292,34 +292,8 @@ public class HeeJeongController {
 	
 	/*============================== 보부상 ===================================*/
 	
-	// 중고거래 게시글 view
-	@RequestMapping(value = "/content_view_t", method = RequestMethod.GET)
-	public String content_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
-		System.out.println("content_view_t");
-
-		System.out.println(request.getParameter("t_no"));
-		
-		int t_no = Integer.parseInt(request.getParameter("t_no"));
-			
-		System.out.println(t_no);
-
-		model.addAttribute("content_view_t", contentService.selectContentTOne(t_no));
-
-		// 게시글 조회수
-		contentService.upHitContentT(t_no);
-
-		return "content/content_view_t";
-	}
+	// 보부상 컨텐트 뷰랑 삭제.. 뽀려갑니다^^
 	
-	// 중고거래 게시글 삭제
-	@RequestMapping(value = "/delete_t", method = RequestMethod.GET)
-	public String delete_t(TradeVO tradeVO, Model model) {
-		System.out.println("delete_t");
-
-		contentService.deleteContentT(tradeVO);
-
-		return "redirect:/tlist";
-	}
 	
 	// 게시글 추천수 증가
 	@ResponseBody

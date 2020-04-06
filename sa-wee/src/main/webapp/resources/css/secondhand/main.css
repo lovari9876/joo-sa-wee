@@ -2646,11 +2646,29 @@ to {
 	border-collapse: collapse ;
 }
 
+.trade--table td a {
+	color: #656565; /* body 기본 적용 컬러 */
+	text-decoration: none;
+}
+
 .trade--table tr:not(.table-header):hover {
 	background-color: rgba(149, 117, 223, 0.14);
 	cursor: pointer;
 	color: #9575df;
 }
+
+/* 해당 table row에 hover 할때 a 태그 접근 안해도 색 같이 바꿔주기 */
+.trade--table tr:hover a {
+	color: #9575df; 
+	text-decoration: none;
+}
+
+/* 해당 table row에 hover 하면서 a 에도 hove 할 때 a 강조 */
+.trade--table tr:hover a:hover {
+	color: #5b2ec7; 
+	text-decoration: none;
+}
+
 
 /* ============== responsive table =============================== */
 
@@ -2674,9 +2692,9 @@ to {
 }
 
 @media only screen and (max-width:800px) {
-	.s-content {
+/*	.s-content {
 		padding-top: 6rem;
-	}
+	} */ /* 안줘야 간격생김 */
 	.s-styles-header h1 {
 		font-size: 7rem;
 	}
@@ -3013,15 +3031,8 @@ select:hover {
     
     /* 검색 박스 가운데 정렬 */   
     .search--box form {
-    float: inherit;
+    	float: inherit;
 	}
-    
-    /* 뷰 전환 버튼 가운데 정렬.. 근데 없애려구.. */
-    button#view-btn { 
-    	margin: 0 auto 1.2rem auto;
-    	display: none;
-    	border-radius: 20px ;
-    }
     
 	.search--div .input-group {
 	    display: block;
@@ -3145,6 +3156,14 @@ button#view-btn:hover {
 	.write-btn {
 		float: inherit; /* 가운데로 가도록 */
 	}	
+}
+
+@media only screen and (max-width: 700px) {
+    /* 뷰 전환 버튼 가운데 정렬.. 근데 없애려구.. */
+    button#view-btn { 
+    	margin: 0 auto 1.2rem auto;
+    	display: none;
+    }
 }
 
 	

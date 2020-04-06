@@ -8,21 +8,8 @@
 	<!-- id를 service의 함수명과 맞춰주기 -->
 	<!-- resultType을 지정해주면 해당 클래스 타입으로 결과값이 저장된다. -->
 	
-	<!-- ========== for island list =========== -->
 
-<!-- 	<resultMap id="rankMap" type="com.soninlawisdice.vo.RankVO" >
-			<id column="r_no" property="r_no"/>
-			<result column="r_name" property="r_name"/>	
-	</resultMap>
-
-	<resultMap id="memberMap" type="com.soninlawisdice.vo.MemberVO" >
-			<id column="m_no" property="m_no"/>
-			<result column="m_id" property="m_id"/>	
-			<result column="m_nick" property="m_nick"/>
-			<result column="m_id" property="m_id"/>
-			<collection property="" ResultMap="해시맵ㄱㄱ"></collection>
-	</resultMap> -->
-	
+	<!-- list -->
 	<select id="selectTradeList" resultType="java.util.HashMap" >
 	
 		SELECT 
@@ -52,27 +39,73 @@
 				
 	</select> <!-- 1=1 조건 달아야, 처음에 검색어 없이 호출시에도, WHERE 하나만 남아서 BadGrammarException이 뜨지 않는다.. -->
 	
+	<!-- list count -->	
 	<select id="tradeListCount" resultType="int">
 
-			SELECT 
-				COUNT(T.T_NO)
-			FROM 
-				TRADE T
-			LEFT JOIN
-				MEMBER M
-			ON 
-				T.M_NO = M.M_NO
-			LEFT JOIN
-				SUBJECT S
-			ON 
-				T.S_NO = S.S_NO	
-			WHERE 
-				1=1 
-				<include refid="subjectSearch"></include>	
-				<include refid="tradeSearch"></include>
-				AND T_NO > 0
+		SELECT 
+			COUNT(T.T_NO)
+		FROM 
+			TRADE T
+		LEFT JOIN
+			MEMBER M
+		ON 
+			T.M_NO = M.M_NO
+		LEFT JOIN
+			SUBJECT S
+		ON 
+			T.S_NO = S.S_NO	
+		WHERE 
+			1=1 
+			<include refid="subjectSearch"></include>	
+			<include refid="tradeSearch"></include>
+			AND T_NO > 0
 
 	</select>
+	
+	
+	<!-- 글 보기(content_view) -->
+	<select id="selectContentOne" resultType="java.util.HashMap" parameterType="int">
+	
+		SELECT 
+			T.*, M.M_NICK, M.M_ID, S.S_CONTENT
+		FROM
+			TRADE T
+		LEFT JOIN
+			MEMBER M
+		ON 
+			T.M_NO = M.M_NO
+		LEFT JOIN
+			SUBJECT S
+		ON 
+			T.S_NO = S.S_NO
+		WHERE
+			T_NO = #{t_no}
+			
+	</select> 
+	
+	<!-- 글 삭제 -->
+	<delete id="deleteContent">
+	
+		DELETE 
+		FROM 
+			TRADE 
+		WHERE 
+			T_NO = #{t_no}
+			
+	</delete>
+	
+	<!-- 조회수 -->
+	<update id="upHitContent">
+	
+		UPDATE
+			TRADE 
+		SET 
+			T_HIT = T_HIT + 1 
+		WHERE
+			T_NO = #{t_no}
+			
+	</update>
+	
 	
 	<sql id="tradeSearch">
 		<if test="scri.searchType != null">

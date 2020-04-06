@@ -161,6 +161,7 @@ public class ContentServiceImpl implements ContentService {
 
 	/* ============================== 보부상 =================================== */
 
+	// 게시글 보기, 삭제, 조회수 뽀려가욘^^ 
 	// 중고거래 게시글 보기(content_view)
 	@Override
 	public HashMap<String, Object> selectContentTOne(int t_no) {
@@ -181,6 +182,7 @@ public class ContentServiceImpl implements ContentService {
 		
 		contentMapper.upHitContentT(t_no);	
 	}
+	/////// 여기까지 뽀려가욘
 	
 	// 중고거래 게시글 추천수 증가
 	@Override

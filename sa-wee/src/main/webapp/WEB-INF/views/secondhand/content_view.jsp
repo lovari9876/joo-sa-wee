@@ -12,6 +12,9 @@
 <!-- collapse -->
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
+
 <link rel="stylesheet" href="css/board_hj/custom-bs.css">
 <link rel="stylesheet" href="css/board_hj/jquery.fancybox.min.css">
 <link rel="stylesheet" href="css/board_hj/bootstrap-select.min.css">
@@ -41,14 +44,10 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-	
-<!-- 파비콘 -->
-<link rel="icon" type="image/png"
-	href="resources/images/share/wolf_logo.ico" />
 
 </head>
-
 <body id="top">
+	<input type="hidden" name="bw_no" value="${content_view['BW_NO']}"/>
 
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
@@ -65,27 +64,48 @@
 						<!-- 게시판이름과 게시글 작성자 -->
 						<div class="title">
 							<div class="title_item frist">
-								<h4 id="community">${board_typeVO.bt_name}</h4>
+								<h4 id="community">${content_view_t['S_CONTENT']}</h4> 
 								<span class="slash">&bullet;</span> 
-								<span class="slash">${subjectVO.s_content}</span>
+								<span class="slash"></span>
 							</div>
 							<div class="title_item second">
-								<span class="slash">추천수(</span><span class="slash rec">${content_view.bw_recommend_num}</span><span class="slash">)</span> 
+								<span class="slash">추천수(</span>
+									<span class="slash rec">${content_view_t['T_RECOMMEND_NUM']}</span>
+									<span class="slash">)</span> 
 								<span class="slash">&bullet;</span>
-								<span class="slash">조회수(${content_view.bw_hit})</span>
+								<span class="slash">조회수(${content_view_t['T_HIT']})</span>
 							</div>
 						</div>
 						<div>
-							<span class="text-white">작성자 ${memberVO.m_name}</span>
+							<span class="text-white">작성자 ${content_view_t['M_NICK']}</span>
 							<span class="slash">&bullet;</span> 
-							<span class="text-white">작성일 ${content_view.bw_written_date}</span> 
+							<span class="text-white">작성일 
+							    <!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+								<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+								<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+								<fmt:formatDate value="${content_view_t['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${content_view_t['T_WRITTEN_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	
+							</span> 
 							<span class="slash">&bullet;</span>
-							<span class="text-white">수정일 ${content_view.bw_updated_date}</span>
+							<span class="text-white">수정일 
+								<fmt:formatDate value="${content_view_t['T_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${content_view_t['T_UPDATED_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	
+							</span>
 						</div>
 					</div>
 					<br />
 					<!-- 게시글 제목 -->
-					<h2 class="text-white">${content_view.bw_title}</h2>
+					<h2 class="text-white">${content_view_t['T_TITLE']}</h2>
 				</div>
 			</div>
 		</div>
@@ -96,79 +116,26 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 blog-content">
-					<h3 class="mb-4">Lorem ipsum dolor sit amet consectetur
-						adipisicing elit</h3>
-					<p class="lead">Lorem ipsum dolor sit amet, consectetur
-						adipisicing elit. Assumenda nihil aspernatur nemo sunt, qui, harum
-						repudiandae quisquam eaque dolore itaque quod tenetur quo quos
-						labore?</p>
-					<p>
-						<img src="images/board_hj/job_single_img_1.jpg" alt="Image"
-							class="img-fluid rounded">
-					</p>
-
-					<p>${content_view.bw_content}</p>
-
-					<blockquote>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-							Provident vero tempora aliquam excepturi labore, ad soluta
-							voluptate necessitatibus. Nulla error beatae, quam, facilis
-							suscipit quaerat aperiam minima eveniet quis placeat.</p>
-					</blockquote>
-
-					<p>Eveniet deleniti accusantium nulla natus nobis nam
-						asperiores ipsa minima laudantium vero cumque cupiditate ipsum
-						ratione dicta, expedita quae, officiis provident harum nisi! Esse
-						eligendi ab molestias, quod nostrum hic saepe repudiandae non.
-						Suscipit reiciendis tempora ut, saepe temporibus nemo.</p>
-					<h4 class="mt-5 mb-4">Lorem ipsum dolor sit amet consectetur
-						adipisicing elit</h4>
-					<p>Accusamus, temporibus, ullam. Voluptate consectetur laborum
-						totam sunt culpa repellat, dolore voluptas. Quaerat cum ducimus
-						aut distinctio sit, facilis corporis ab vel alias, voluptas
-						aliquam, expedita molestias quisquam sequi eligendi nobis ea error
-						omnis consequatur iste deleniti illum, dolorum odit.</p>
-					<p>In adipisci corporis at delectus! Cupiditate, voluptas, in
-						architecto odit id error reprehenderit quam quibusdam excepturi
-						distinctio dicta laborum deserunt qui labore dignissimos
-						necessitatibus reiciendis tenetur corporis quas explicabo
-						exercitationem suscipit. Nisi quo nulla, nihil harum obcaecati vel
-						atque quos.</p>
-					<p>Amet sint explicabo maxime accusantium qui dicta enim quia,
-						nostrum id libero voluptates quae suscipit dolor quam tenetur
-						dolores inventore illo laborum, corporis non ex, debitis quidem
-						obcaecati! Praesentium maiores illo atque error! Earum, et, fugit.
-						Sint, delectus molestiae. Totam.</p>
-
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Culpa iste, repudiandae facere aperiam sapiente, officia delectus
-						soluta molestiae nihil corporis animi quos ratione qui labore?
-						Sint eaque perspiciatis minus illum.</p>
-					<p>Consectetur porro odio quod iure quaerat cupiditate
-						similique, dolor reprehenderit molestias provident, esse dolorum
-						omnis architecto magni amet corrupti neque ratione sunt beatae
-						perspiciatis? Iste pariatur omnis sed ut itaque.</p>
-					<p>Id similique, rem ipsam accusantium iusto dolores sit velit
-						ex quas ea atque, molestiae. Sint, sed. Quisquam, suscipit!
-						Quisquam quibusdam maiores fugiat eligendi eius consequuntur,
-						molestiae saepe commodi expedita nemo!</p>
+				
+					<p>${content_view_t['T_CONTENT']}</p>
 
 					<!-- 추천 -->
 					<br /> <br />
 					<div align="center" class="tooltip-purple">
 						<input class="good" type="image" src="images/board_hj/good.png"
-							name="button" id="rec_btn" value="${content_view.bw_no}"
+							name="button" id="rec_btn_t" value="${content_view_t['T_NO']}"
 							data-toggle="tooltip" data-container=".tooltip-purple"
 							data-placement="top" title="추천 +1">
 						<p>
-							<span>(</span><span class="rec">${content_view.bw_recommend_num}</span><span>)</span>
+							<span>(</span><span class="rec_t">${content_view_t['T_RECOMMEND_NUM']}</span><span>)</span>
 						</p>
 					</div>
 
 					<br />
 					<br />
+					
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="/list" method="get">
+					<form action="/tlist" method="get">
 						<div class="test">
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
@@ -177,17 +144,37 @@
 								<a href="#">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="delete?bw_no=${content_view.bw_no}">삭제</a>
+								<a href="delete_t?t_no=${content_view_t['T_NO']}">삭제</a>
 							</div>
 							<div class="test_item fourth">
-								<a href="content/report_view_t?t_no=${trade.t_no}"
+								<a href="report_view_t?t_no=${content_view_t['T_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 							</div>
 						</div>
 					</form>
 
+
 					<!-- 댓글부분 -->
-					<%@ include file="/WEB-INF/views/content/comment_write_view_t.jsp" %>
+					<%-- <%@ include file="/WEB-INF/views/content/comment_view_T.jsp" %> --%>
+						<c:choose>
+							<c:when test="${content_view_t['BT_NO'] == 9}">
+								<c:import url="/comment_view_t">
+									<c:param name="cm_type" value="중고거래"></c:param>
+									<c:param name="cm_no2" value="${content_view_t['T_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:otherwise>
+								<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
+							</c:otherwise>
+						</c:choose>
+						
+						<%-- <c:param name="cm_type" value="${board_typeVO.bt_no}"></c:param>
+						<c:param name="cm_no2" value="${content_view.bw_no}"></c:param> --%>
+					
+					<!-- 댓글 쓰기 -->
+					<div class="comment-form-wrap pt-5">
+						<%@ include file="/WEB-INF/views/content/comment_write_view_t.jsp" %>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -227,14 +214,13 @@
 	<script src="js/board_hj/main.js"></script>
 
 	<script src="js/board_hj/tooltip.js"></script>
-	<script src="js/board_hj/recommed.js"></script>
+	<script src="js/board_hj/recommed_t.js"></script>
 	<script src="js/board_hj/popover.js"></script>
 
 	<!-- Java Script for header
     ================================================== -->
 	<script src="js/header/jquery.slicknav.min.js"></script>
 	<script src="js/header/header_hyesoo.js"></script>
-	<!-- 이미 가지고 있음 js/board_hj/main.js -->
 	<script src="js/header/scroll.js"></script>
 
 	<!-- Java Script for footer

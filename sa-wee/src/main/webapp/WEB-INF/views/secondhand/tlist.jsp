@@ -151,7 +151,7 @@
 		                        <div class="entry__header">
 		                        	<div class="entry__excerpt">${tItem['T_NO']} | ${tItem['S_CONTENT']}</div>
 		                       		<div class="entry__date">
-		                                <a href="single-standard.html">	                                
+		                                <a href="content_view_t?t_no=${tItem['T_NO']}">	                                
 		                                	<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
 											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
@@ -161,11 +161,10 @@
 												<c:otherwise>
 													<fmt:formatDate value="${tItem['T_WRITTEN_DATE']}" pattern="HH:mm"/>
 												</c:otherwise>
-											</c:choose>
-											
+											</c:choose>										
 		                                </a>
 		                            </div>
-		                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
+		                            <h1 class="entry__title"><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']}</a></h1>
 		                            
 		                        </div>
 		                        <div class="entry__excerpt" style="font-family:ariel;">
@@ -189,7 +188,7 @@
 		                <article class="masonry__brick entry format-standard" >
 		                        
 		                    <div class="entry__thumb">
-		                        <a href="single-standard.html" class="entry__thumb-link">
+		                        <a href="content_view_t?t_no=${tItem['T_NO']}" class="entry__thumb-link">
 		                            <img src="images/cassie/thumbs/masonry/lamp-400.jpg" 
 		                                 srcset="images/cassie/thumbs/masonry/lamp-400.jpg 1x, images/cassie/thumbs/masonry/lamp-800.jpg 2x" alt="">
 		                        </a>
@@ -199,7 +198,7 @@
 		                        <div class="entry__header">
 		                            <div class="entry__excerpt">${tItem['T_NO']} | ${tItem['S_CONTENT']}</div>
 		                            <div class="entry__date">
-		                                <a href="single-standard.html">
+		                                <a href="content_view_t?t_no=${tItem['T_NO']}">
 											<c:choose>
 												<c:when test="${now ne date}">${date}</c:when> 
 												<c:otherwise>
@@ -208,7 +207,7 @@
 											</c:choose>
 		                                </a>
 		                            </div>
-		                            <h1 class="entry__title"><a href="single-standard.html">${tItem['T_TITLE']}</a></h1>
+		                            <h1 class="entry__title"><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']}</a></h1>
 		                            
 		                        </div>
 								<div class="entry__excerpt" style="font-family:ariel;">
@@ -400,10 +399,10 @@
 	                            <tbody>
 		              				<c:forEach items="${tList}" var="tItem">
 										<tr>											
-											<td>${tItem['T_NO']}</td>
+											<td><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_NO']}</a></td>
 											<td>${tItem['S_CONTENT']}</td>
 											<td>${tItem['M_NICK']}</td>
-											<td>${tItem['T_TITLE']}</td>
+											<td><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']}</a></td>
 											<td>
 												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 												<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
