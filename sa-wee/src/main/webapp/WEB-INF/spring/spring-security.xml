@@ -58,9 +58,8 @@
 	       
 	    <!-- 접속권한 없을 때 403 에러 페이지 대신 -->
 	    <security:access-denied-handler error-page="/access_denied_page"/>	    
-    </security:http> 
+    </security:http>
     
-       
 	<!-- <authentication-manager>
 		<authentication-provider>
 			<user-service>
@@ -76,13 +75,15 @@
 	</beans:bean> --> 
 	
 	<context:component-scan base-package="com.soninlawisdice.security"/>
-
+	        
 	<security:authentication-manager>
+	    <security:authentication-provider ref="userAuthProvider"/>
 	    <security:authentication-provider user-service-ref="userService">
 	    </security:authentication-provider>
 	</security:authentication-manager>
 	        
 	<beans:bean id="userService" class="com.soninlawisdice.security.CustomUserDetailsService"/>
+	<beans:bean id="userAuthProvider" class="com.soninlawisdice.security.CustomAuthenticationProvider"/>
 	
 	<!-- provider -->
 	<!-- <authentication-manager> 

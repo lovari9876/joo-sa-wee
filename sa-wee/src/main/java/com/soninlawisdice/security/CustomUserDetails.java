@@ -41,7 +41,18 @@ public class CustomUserDetails implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		ArrayList<GrantedAuthority> auth = new ArrayList<GrantedAuthority>();
-		auth.add(new SimpleGrantedAuthority(m_nick));
+		
+		String role = "ROLE_USER";
+		
+		if(r_no == 0) {
+			role = "ROLE_ADMIN";
+		}else if(r_no < 4){
+			role = "ROLE_USER";
+		}else if(r_no == 4) {
+			role = "ROLE_CASTAWAY";			
+		}
+		
+		auth.add(new SimpleGrantedAuthority(role));
 
 		return auth;
 	}
