@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -125,7 +126,17 @@
 								<td class = "cell">${question['S_CONTENT']}</td>
 								<td class = "cell"><c:if test = "${question['BW_SECRET'] eq 'y' }">  <img src="images/board_hs/lock.png"> </c:if> <a href="question_content_view?bw_no=${question['BW_NO']}">${question['BW_TITLE']}</a></td>
 								<td class = "cell">${question['M_NICK']}</td>
-								<td class = "cell">${question['BW_WRITTEN_DATE']}</td>
+								<td class = "cell">
+											<jsp:useBean id="today" class="java.util.Date" />
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${question['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${question['BW_WRITTEN_DATE']}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+								</td>
 								<td class = "cell">${question['BW_HIT']}</td>
 							</tr>
 							</c:forEach>

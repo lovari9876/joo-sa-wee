@@ -299,23 +299,32 @@
 							<c:forEach items = "${best}" var = "best">
 								<tr class="row">
 								<!-- 이거 1부터 10까지  -->
-									<td class="cell">${best['ROWNUM'] }</td>
+									<td class="cell">${best['RNUM'] }</td>
 									<!-- 게시판 이름 어찌 가져오냐..... -->
-									<td class="cell">${best['BT_NAME']}</td>
-									<td class="cell"><a href = "content_view?bw_no=${best['BW_NO']}">${best['BW_TITLE']}</a></td>
+									<td class="cell">${best['I_NAME']}</td>
+									<td class="cell">
+										<c:choose>
+											<c:when test = "${best['I_NAME'] eq '카페 리뷰'}">
+												<a href = "content_view_cr?cr_no=${best['I_NO']}">${best['I_TITLE']}</a>
+											</c:when>
+											<c:otherwise>
+												<a href = "content_view?bw_no=${best['I_NO']}">${best['I_TITLE']}</a>
+											</c:otherwise>
+										</c:choose>
+									</td>
 									<td class="cell">${best['M_NICK']}</td>
 									<td class="cell">
 										
 										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${best['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+										<fmt:formatDate value="${best['I_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 										<c:choose>
 											<c:when test="${now ne date}">${date}</c:when> 
 											<c:otherwise>
-												<fmt:formatDate value="${best['BW_WRITTEN_DATE']}" pattern="HH:mm"/>
+												<fmt:formatDate value="${best['I_WRITTEN_DATE']}" pattern="HH:mm"/>
 											</c:otherwise>
 										</c:choose>
 									</td>
-									<td class="cell">${best['BW_RECOMMEND_NUM']}</td>
+									<td class="cell">${best['I_RECOMMEND_NUM']}</td>
 								</tr>
 							</c:forEach>
 								

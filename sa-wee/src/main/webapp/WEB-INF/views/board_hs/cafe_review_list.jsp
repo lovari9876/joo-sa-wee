@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,9 +122,19 @@
 							<tr class="row">
 								<td class = "cell">${list['CR_NO']}</td>
 								<td class = "cell">${list['C_TITLE']}</td>
-								<td class = "cell"><a href="selectReviewOne?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a></td>
+								<td class = "cell"><a href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a></td>
 								<td class = "cell">${list['M_NICK']}</td>
-								<td class = "cell">${list['CR_WRITTEN_DATE']}</td>
+								<td class = "cell">
+											<jsp:useBean id="today" class="java.util.Date" />
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${list['CR_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${list['CR_WRITTEN_DATE']}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+								</td>
 								<td class = "cell">${list['CR_HIT']}</td>
 								<td class = "cell">${list['CR_RECOMMEND_NUM']}</td>
 							</tr>

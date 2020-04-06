@@ -55,11 +55,33 @@
 	 
 	<!-- 베스트 : 추천순 -->
 	<select id = "selectBestList" resultType = "java.util.HashMap">
-		<![CDATA[ 	select rownum, bw.*, bt.bt_name , m.m_nick
-					from (select * from board_write order by bw_recommend_num desc) bw ,board_type bt,member m 
-					where bt.bt_no = bw.bt_no 
-					and m.m_no = bw.m_no 
-		 			and rownum <= 10  ]]>
+		<![CDATA[ SELECT 
+					* 
+					FROM
+
+						(SELECT row_number() OVER(ORDER BY I_RECOMMEND_NUM DESC) AS RNUM, I.* 
+    						FROM
+    							(
+    								(SELECT bw.bw_no AS I_NO, bt.bt_name AS I_NAME, bw.bw_title AS I_TITLE,
+    								m.m_nick, bw.bw_written_date AS I_WRITTEN_DATE, bw.bw_recommend_num AS I_RECOMMEND_NUM
+        								
+        							FROM board_write bw , member m, board_type bt 
+        							WHERE bw.m_no = m.m_no AND bw.bt_no = bt.bt_no 
+        							AND bw.bw_island = 0)
+        
+        							UNION
+        
+        							(SELECT cr.cr_no AS I_NO, bt.bt_name AS I_NAME, cr.cr_title AS I_TITLE,
+        							m.m_nick, cr.cr_written_date AS I_WRITTEN_DATE, cr.cr_recommend_num AS I_RECOMMEND_NUM
+        
+        							FROM cafe_review cr, board_type bt , member m 
+        							WHERE cr.bt_no = bt.bt_no  AND cr.m_no = m.m_no 
+        							AND cr.cr_island = 0)
+        							)I
+								)
+							WHERE RNUM <= 10
+							ORDER BY I_RECOMMEND_NUM desc
+		]]>
 	</select>
 	
 	
@@ -70,7 +92,7 @@
 	<select id = "selectBoardList" resultType = "java.util.HashMap">
 		SELECT * FROM
 	(
-         SELECT bw.bw_no, m.m_no, m.m_id,m.m_nick, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island,
+         SELECT bw.bw_no, m.m_no, m.m_id,m.m_nick, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island, bw.bw_recommend_num,
          				(select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm,
 		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM
 		          FROM board_write bw

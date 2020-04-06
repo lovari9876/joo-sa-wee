@@ -68,10 +68,8 @@
 
 
 				<!-- Search Bar  -->
-			
-
-					<div class="search">
-								
+				<form>
+					<div class="search">		
 						 <div class="dropdown pull-right">
 								<select name="searchType" class="span2">
 									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
@@ -87,25 +85,8 @@
 								<i class="icon-search"></i>
 							</button>
 						</div>
-
-
-<!-- 
-						<select>
-							<option value="0" selected>전체</option>
-							<option value="1">제목</option>
-							<option value="2">내용</option>
-							<option value="3">닉네임</option>
-						</select> 
-						
-						<input id="searchBar" type="text">
-
-						여기 미쳐버렸음. 일단 버튼으로 만들어 놓고 다음에 해야함 타입이 submit 인줄도 모르겠음
-						<button type="submit" class="fa fa-fw fa-search"></button>
-
- -->
-						
 					 </div>
-				
+				</form>
 
 
 
@@ -297,18 +278,18 @@
 						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_story${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li class = "page-item"><a class = "page-link" href="board_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="board_story${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_story${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>
