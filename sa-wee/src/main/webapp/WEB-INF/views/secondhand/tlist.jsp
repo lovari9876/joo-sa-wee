@@ -469,7 +469,8 @@
 					    </c:if>					   
 					</ul>
 					<!-- 글쓰기 버튼 -->
-					<button class="btn btn-primary write-btn lavender-btn ">글쓰기</button>
+					<button class="btn btn-primary write-btn lavender-btn" type="button"
+							onclick="location.href='board_write_view?bt_no=9'">글쓰기</button>
                 </nav>
             </div>
         </div>

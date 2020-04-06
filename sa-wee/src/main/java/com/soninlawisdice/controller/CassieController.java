@@ -18,6 +18,7 @@ import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
+import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -36,13 +37,14 @@ public class CassieController {
 	private BoardService boardService;
 	@Autowired
 	private ContentService contentService;
+	
 
 	////////////////////////////////// 보부상 /////////////////////////////////////////////
 	
 	// 보부상 리스트
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
-	public String tlist(Model model, @ModelAttribute("scri") SearchCriteria scri,
-			/*@RequestParam(name="s_content", defaultValue = "n") String s_content, */ HttpServletRequest rq) {
+	public String tlist(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq
+			/*@RequestParam(name="s_content", defaultValue = "n") String s_content, */ ) {
 		//@RequestParam으로 받으면, 처음에 검색어 없이 /tlist로 갈때는 없는 파라미터 오류 발생
 		
 		// 스프링 컨테이너가
@@ -109,7 +111,7 @@ public class CassieController {
 
 		return "redirect:/tlist";
 	}
-
+	
 	
 	////////////////////////////////// 무인도 /////////////////////////////////////////////
 
@@ -159,8 +161,8 @@ public class CassieController {
 			return "secondhand/content_view";
 			
 		}else if(bt_no==11) { // 카페리뷰
-			boardService.review_uphit(Integer.toString(i_no));
-			model.addAttribute("cafe_review", boardService.selectReviewOne(Integer.toString(i_no)));
+			boardService.review_uphit(i_no);
+			model.addAttribute("cafe_review", boardService.selectReviewOne(i_no));
 			
 			return "board_hs/cafe_review_content_view";
 			
