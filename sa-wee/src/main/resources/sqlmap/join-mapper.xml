@@ -20,7 +20,7 @@
 		#{m_nick}, #{m_gender}, 0, #{m_phone}, #{m_email},
 		#{m_post},
 		#{m_addr1}, #{m_addr2}, 3, #{m_re_sms}, #{m_re_notice},
-		#{m_re_message}, #{m_info}, #{m_self}, sysdate, #{m_outdate}, 'n', 0,
+		#{m_re_message}, #{m_info}, #{m_self}, sysdate, #{m_outdate}, '1', 0,
 		0, 1)
 	</insert>
 
