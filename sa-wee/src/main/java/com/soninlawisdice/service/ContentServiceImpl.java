@@ -74,6 +74,14 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.insertReportBW(reportVO);
 
 	}
+	
+	// 게시글 신고수 증가
+	@Override
+	public void updateReportBW(Board_writeVO board_writeVO) {
+		
+		contentMapper.updateReportBW(board_writeVO);
+		
+	}
 
 	// m_no를 가져오기 위해
 	@Override
@@ -89,6 +97,14 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.insertReportM(reportVO);
 
 	}
+	
+	// 회원 신고수 증가
+	@Override
+	public void updateReportM(MemberVO memberVO) {
+		
+		contentMapper.updateReportM(memberVO);
+		
+	}
 
 	// cm_no를 가져오기 위해
 	@Override
@@ -103,6 +119,14 @@ public class ContentServiceImpl implements ContentService {
 
 		contentMapper.insertReportCM(reportVO);
 
+	}
+	
+	// 댓글 신고수 증가
+	@Override
+	public void updateReportCM(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateReportCM(cm_commentVO);
+		
 	}
 
 	// 게시글 댓글 쓰기
@@ -157,6 +181,13 @@ public class ContentServiceImpl implements ContentService {
 	public String selectRecommendComment(String cm_no) {
 
 		return contentMapper.selectRecommendComment(cm_no);
+	}
+	
+	// 댓글 갯수 세기
+	@Override
+	public HashMap<String, Object> selectCommentCount(String cm_no2) {
+		
+		return contentMapper.selectCommentCount(cm_no2);
 	}
 
 	/* ============================== 보부상 =================================== */
@@ -258,6 +289,14 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectRecommendCommentT(cm_no);
 	}
+	
+	// 중고거래 댓글 갯수 세기
+	@Override
+	public HashMap<String, Object> selectCommentCountT(String cm_no2) {
+		
+		return contentMapper.selectCommentCountT(cm_no2);
+	}
+
 
 	/* ============================== 카페리뷰 =================================== */
 
@@ -359,6 +398,22 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectRecommendCommentCR(cm_no);
 	}
+
+	// 카페리뷰 댓글 갯수 세기
+	@Override
+	public HashMap<String, Object> selectCommentCountCR(String cm_no2) {
+		
+		return contentMapper.selectCommentCountCR(cm_no2);
+	}
+
+	
+
+	
+
+	
+
+	
+	
 
 	
 	

@@ -26,13 +26,19 @@ public interface ContentMapper {
 	
 	public void insertReportBW(ReportVO reportVO); //  게시글 신고글 쓰기
 	
+	public void updateReportBW(Board_writeVO board_writeVO); // 게시글 신고수 증가
+	
 	public HashMap<String, Object> selectContentM(int m_no); // m_no를 가져오기 위해
 	
 	public void insertReportM(ReportVO reportVO); // 회원 신고글 쓰기
 	
+	public void updateReportM(MemberVO memberVO); // 회원 신고수 증가
+	
 	public HashMap<String, Object> selectContentCM(int cm_no); // cm_no를 가져오기 위해
 	
 	public void insertReportCM(ReportVO reportVO); // 댓글 신고글 쓰기
+	
+	public void updateReportCM(CM_commentVO cm_commentVO); // 댓글 신고수 증가
 	
 	public void insertCommentBW(CM_commentVO cm_commentVO); // 게시글 댓글 쓰기
 	
@@ -47,6 +53,8 @@ public interface ContentMapper {
 	public void upRecommendComment(String cm_no); // 댓글 추천수 증가
 	
 	public String selectRecommendComment(String cm_no); // 댓글 추천수 증가하는 거 받아옴
+	
+	public HashMap<String, Object> selectCommentCount(String cm_no2); // 댓글 갯수 세기
 	
 
 	/*============================== 보부상 ===================================*/
@@ -77,6 +85,8 @@ public interface ContentMapper {
 	
 	public String selectRecommendCommentT(String cm_no); // 중고거래 댓글 추천수 증가하는 거 받아옴
 	
+	public HashMap<String, Object> selectCommentCountT(String cm_no2); // 중고거래 댓글 갯수 세기
+	
 	
 	/*============================== 카페리뷰 ===================================*/
 	public HashMap<String, Object> selectContentCROne(int cr_no); // 카페리뷰 게시글 보기(content_view)
@@ -104,4 +114,6 @@ public interface ContentMapper {
 	public void upRecommendCommentCR(String cm_no); // 카페리뷰 댓글 추천수 증가
 	
 	public String selectRecommendCommentCR(String cm_no); // 카페리뷰 댓글 추천수 증가
+	
+	public HashMap<String, Object> selectCommentCountCR(String cm_no2); // 카페리뷰 댓글 갯수 세기
 }
