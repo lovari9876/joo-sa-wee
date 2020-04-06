@@ -20,10 +20,10 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardMapper boardMapper;
 
-	/////////////// 핫이슈, 베스트/////////////////////
+	/////////////// 히트다 히트, 베스트/////////////////////
 	@Override
-	public ArrayList<HashMap<String, Object>> selectHotList() {
-		return boardMapper.selectHotList();
+	public ArrayList<HashMap<String, Object>> selectHitList() {
+		return boardMapper.selectHitList();
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	// modify_view 에 불러오기
-	public Board_writeVO modify_view(String bw_no) {
+	public Board_writeVO modify_view(int bw_no) {
 		return boardMapper.modify_view(bw_no);
 	}
 
@@ -136,41 +136,41 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	// 카페 리뷰 리스트에서 review_content_view 로
-	public HashMap<String, Object> selectReviewOne(String cr_no) {
+	public HashMap<String, Object> selectReviewOne(int cr_no) {
 		return boardMapper.selectReviewOne(cr_no);
 	}
 
 	// 카페별로 밑에 리뷰 리스트 있는거
 	@Override
-	public ArrayList<HashMap<String, Object>> selectCafeReviewList(String c_no) {
+	public ArrayList<HashMap<String, Object>> selectCafeReviewList(int c_no) {
 		return boardMapper.selectCafeReviewList(c_no);
 	}
 
 	// 카페정보 가져오기
 	@Override
-	public CafeVO selectCafeInfo(String c_no) {
+	public CafeVO selectCafeInfo(int c_no) {
 		return boardMapper.selectCafeInfo(c_no);
 	}
 
 	// 카페 리뷰 조회수 올리기
-	public void review_uphit(String cr_no) {
+	public void review_uphit(int cr_no) {
 		boardMapper.review_uphit(cr_no);
 	}
 
 	// 카페 리뷰 추천수 올리기
 	@Override
-	public void review_recommend(String cr_no) {
+	public void review_recommend(int cr_no) {
 		boardMapper.review_recommend(cr_no);
 	}
 
 	// 카페 리뷰 추천수 가져오기
 	@Override
-	public String review_rec(String cr_no) {
+	public String review_rec(int cr_no) {
 		return boardMapper.review_rec(cr_no);
 	}
 
 	@Override
-	public String get_CafeName(String c_no) {
+	public String get_CafeName(int c_no) {
 		return boardMapper.get_CafeName(c_no);
 	}
 
@@ -188,7 +188,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	//리뷰 삭제하기
 	@Override
-	public void review_delete(String cr_no) {
+	public void review_delete(int cr_no) {
 		boardMapper.review_delete(cr_no);
 	}
 		
@@ -204,7 +204,7 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.insertQuestion(board_writeVO);
 	}
 	@Override
-	public HashMap<String, Object> selectQuestionOne(String bw_no) {
+	public HashMap<String, Object> selectQuestionOne(int bw_no) {
 		return boardMapper.selectQuestionOne(bw_no);
 	}
 	@Override
@@ -212,7 +212,25 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.modifyQuestion(board_writeVO);
 	}
 	@Override
-	public void deleteQuestion(String bw_no) {
+	public void deleteQuestion(int bw_no) {
 		boardMapper.deleteQuestion(bw_no);
+	}
+	
+	
+	/////////////////////////////////////////////////////////////////
+	@Override
+	public String countBoardComment(int bw_no) {
+		return boardMapper.countBoardComment(bw_no);
+	}
+	///////////////////////////////////////////////////////////
+	@Override
+	public ArrayList<HashMap<String, Object>> selectBoardSub(int s_no) {
+		return boardMapper.selectBoardSub(s_no);
+	}
+	
+	////////////////////////포인트 적립//////////////////////
+	@Override
+	public void boardPointUpdate(int m_no) {
+		boardMapper.boardPointUpdate(m_no);	
 	}
 }
