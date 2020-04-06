@@ -112,6 +112,52 @@ public class CassieController {
 		return "redirect:/tlist";
 	}
 	
+	// 글쓰기 view
+	@RequestMapping(value = "/write_view_t", method = RequestMethod.GET)
+	public String write_view(Model model) {
+		logger.info("write_view_t");
+		
+		return "secondhand/write_view";
+	}
+
+	// 글 작성
+	@RequestMapping(value = "/trade_write", method = RequestMethod.POST)
+	public String write(Board_writeVO board_writeVO) {
+		boardService.insertBoard(board_writeVO);
+
+		int bt_no = board_writeVO.getBt_no();
+		int m_no = board_writeVO.getM_no();
+
+		System.out.println(bt_no);
+		System.out.println(m_no);
+
+		boardService.boardPointUpdate(m_no);
+				
+		return null;
+
+	}
+
+	// 수정하기 view.
+	@RequestMapping(value = "/trade_modify_view", method = RequestMethod.GET)
+	public String modify_view(Model model, int bw_no) {
+		
+		model.addAttribute("content_view", boardService.modify_view(bw_no));
+
+		
+		return "board_hs/modify_view";
+	}
+	
+	
+	//수정하기
+	//수정했을때 수정된 content 보기
+	@RequestMapping(value = "/trade_modify", method = RequestMethod.POST)
+	public String modify(Board_writeVO board_writeVO, Model model) {
+		boardService.modify(board_writeVO);
+		int bw_no = board_writeVO.getBw_no();
+		
+		return "redirect:content_view?bw_no"+bw_no;
+	}
+	
 	
 	////////////////////////////////// 무인도 /////////////////////////////////////////////
 
