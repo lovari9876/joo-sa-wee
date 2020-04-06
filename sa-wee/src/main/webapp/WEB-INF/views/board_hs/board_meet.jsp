@@ -119,7 +119,7 @@
 						<tbody class = "tbody">
 							<c:forEach items="${list}" var="dto">
 							<tr class="row">
-								<td class = "cell">${dto['BW_NO']}</td>
+								<td class = "cell">${dto['RNUM']}</td>
 								<td class = "cell">${dto['S_CONTENT']}</td>
 								<td class = "cell"><a href="content_view?bw_no=${dto['BW_NO']}">${dto['BW_TITLE']}</a>  [${dto['CM']}]</td>
 								<td class = "cell">${dto['M_NICK']}</td>
@@ -189,9 +189,29 @@
 						</table>
 
 					</div>
-
-					
 				</div>
+				
+				<div class="pagination pagination-centered">
+						<ul>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="board_meet${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="board_meet${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="board_meet${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
+						</ul>
+					</div>
+				
 
 				<!-- 버튼에 링크 걸기 -->
 				<button class="write-view-btn" type="button"

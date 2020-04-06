@@ -94,10 +94,10 @@
 											night</span>
 									</p> -->
 									<h3 class="mb-3">
-										<a href="list">보드이야기</a>
+										<a href="board_story">보드이야기</a>
 									</h3>
 									<p class="pt-1">
-										<a href="list" class="btn-custom px-3 py-2">
+										<a href="board_story" class="btn-custom px-3 py-2">
 										<span class="far fa-hand-point-left"></span>  게시판 가기	
 										</a>
 									</p>
@@ -124,10 +124,10 @@
 											night</span>
 									</p> -->
 									<h3 class="mb-3">
-										<a href="list">개봉기 및 리뷰</a>
+										<a href="board_open_review">개봉기 및 리뷰</a>
 									</h3>
 									<p class="pt-1">
-										<a href="list" class="btn-custom px-3 py-2">
+										<a href="board_open_review" class="btn-custom px-3 py-2">
 											<span class="far fa-hand-point-left"></span>  게시판 가기	
 										</a>
 									</p>
@@ -155,10 +155,10 @@
 											night</span>
 									</p> -->
 									<h3 class="mb-3">
-										<a href="list">보드게임 모임</a>
+										<a href="board_meet">보드게임 모임</a>
 									</h3>
 									<p class="pt-1">
-										<a href="list" class="btn-custom px-3 py-2">게시판 가기
+										<a href="board_meet" class="btn-custom px-3 py-2">게시판 가기
 											 <span class="far fa-hand-point-right"></span>
 										</a>
 									</p>
@@ -185,10 +185,10 @@
 											night</span>
 									</p> -->
 									<h3 class="mb-3">
-										<a href="list">보드 뉴스</a>
+										<a href="board_news">보드 뉴스</a>
 									</h3>
 									<p class="pt-1">
-										<a href="list" class="btn-custom px-3 py-2">게시판 가기
+										<a href="board_news" class="btn-custom px-3 py-2">게시판 가기
 											 <span class="far fa-hand-point-right"></span>
 										</a>
 									</p>
@@ -215,10 +215,10 @@
 											night</span>
 									</p> -->
 									<h3 class="mb-3">
-										<a href="list">질문 & 답변</a>
+										<a href="board_qna">질문 & 답변</a>
 									</h3>
 									<p class="pt-1">
-										<a href="list" class="btn-custom px-3 py-2">
+										<a href="board_qna" class="btn-custom px-3 py-2">
 											<span class="far fa-hand-point-left"></span>  게시판 가기	
 										</a>
 									</p>
@@ -245,10 +245,10 @@
 											night</span>
 									</p> -->
 									<h3 class="mb-3">
-										<a href="list">창작 보드게임</a>
+										<a href="board_creation">창작 보드게임</a>
 									</h3>
 									<p class="pt-1">
-										<a href="list" class="btn-custom px-3 py-2">
+										<a href="board_creation" class="btn-custom px-3 py-2">
 											<span class="far fa-hand-point-left"></span>  게시판 가기	
 										</a>
 									</p>

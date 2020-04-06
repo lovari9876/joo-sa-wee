@@ -68,80 +68,69 @@
 	
 	<!-- 커뮤니티 전체보기 -->
 	<select id = "selectBoardList" resultType = "java.util.HashMap">
-		select bw.bw_no, m.m_nick, bw.s_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, bw.bw_recommend_num
-		from board_write bw, member m where bw.m_no = m.m_no 
-		and bw_island = 0  
-		order by bw_no desc
+		SELECT * FROM
+	(
+         SELECT bw.bw_no, m.m_no, m.m_id,m.m_nick, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island,
+         				(select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm,
+		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM
+		          FROM board_write bw
+                 INNER JOIN subject s
+                 ON bw.s_no=s.s_no
+                 INNER JOIN board_type bt
+                 ON bw.bt_no = bt.bt_no
+                INNER JOIN member m
+                ON bw.m_no=m.m_no
+                
+                
+              <choose>
+                	<when test = "bt_no == 13">
+                		WHERE bt.bt_no BETWEEN 1 and 6
+                	</when>
+                	<otherwise> 
+                		WHERE bt.bt_no = #{bt_no}
+                	</otherwise>
+                </choose> 
+		        AND bw.bw_island = 0
+		         <include refid="board_search"></include>
+		                       )
+		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+		ORDER BY bw_no DESC
 	</select>
 	
-	<!-- 보드이야기 전체 보기 -->
-	<select id = "selectBoard_Story" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		
-		select * from
-		(
-			select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
-			, ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM
-			from board_write bw, member m, subject s 
-			where bw.m_no = m.m_no and bw.s_no = s.s_no
-			and bw.bt_no = 1
-			and bw.bw_island = 0
-			order by bw.bw_no desc )
-			
-			WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-	
+	<select id="cboard_listCount" resultType="int">
+
+		SELECT COUNT(bw.bw_no)
+		  FROM board_write bw
+		  LEFT JOIN board_type bt
+		  ON bw.bt_no = bt.bt_no
+		 
+		 <choose>
+           <when test = "bt_no == 13"> <!-- 게시글 관리 : 커뮤니티 전체 불러오기  -->
+               WHERE bt.bt_no BETWEEN 1 and 6
+            </when>
+            <otherwise> 
+                WHERE bt.bt_no = #{bt_no}
+            </otherwise>
+         </choose> 
+         AND bw.bw_island = 0
+		 <include refid="board_search"></include>	
+		 AND bw.bw_no > 0
+
 	</select>
 	
-	<!-- 개봉기 및 리뷰 전체보기  -->
-	<select id = "selectBoard_Open" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
-		from board_write bw, member m, subject s 
-		where bw.m_no = m.m_no and bw.s_no = s.s_no
-		and bw.bt_no = 2
-		and bw.bw_island = 0
-		order by bw.bw_no desc
-	</select>
+	<sql id="board_search">
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 't'.toString()">AND bw_title LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND bw_content LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'w'.toString()">AND m_nick LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'tc'.toString()">AND (bw_title LIKE '%' || #{scri.keyword} || '%') or (bw_content LIKE '%' || #{scri.keyword} || '%')</if>
+		</if>
+	</sql>
 	
-	<!-- 보드게임 모임 전체보기  -->
-	<select id = "selectBoard_Meet" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
-		from board_write bw, member m, subject s 
-		where bw.m_no = m.m_no and bw.s_no = s.s_no
-		and bw.bt_no = 3
-		and bw.bw_island = 0
-		order by bw.bw_no desc
-	</select>
 	
-	<!-- 보드 뉴스 전체 보기  -->
-	<select id = "selectBoard_News" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
-		from board_write bw, member m, subject s 
-		where bw.m_no = m.m_no and bw.s_no = s.s_no
-		and bw.bt_no = 4
-		and bw.bw_island = 0
-		order by bw.bw_no desc
-	</select>
 	
-	<!-- 질문과 답변 전체보기  -->
-	<select id = "selectBoard_Qna" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
-		from board_write bw, member m, subject s 
-		where bw.m_no = m.m_no and bw.s_no = s.s_no
-		and bw.bt_no = 5
-		and bw.bw_island = 0
-		order by bw.bw_no desc
-	</select>
 	
-	<!-- 창작 보드게임 전체보기  -->
-	<select id = "selectBoard_Creation" resultType = "java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
-		select bw.*, (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm, m.m_nick, s.s_content
-		from board_write bw, member m, subject s 
-		where bw.m_no = m.m_no and bw.s_no = s.s_no
-		and bw.bt_no = 6
-		and bw.bw_island = 0
-		order by bw.bw_no desc
-	</select>
-	
-	<!-- 일단일단일단 -->
+	<!-- 일단일단일단... -->
 	<select id = "selectBoardSub" resultType = "java.util.HashMap" parameterType = "int">
 		select bw.*,  m.m_nick, s.s_content
 		from board_write bw, member m, subject s 
@@ -151,31 +140,11 @@
 		order by bw.bw_no desc
 	</select> 
 	
-	<select id="b_storyCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType = "int">
-		select count(bw_no) from board_write where bt_no = 1 and bw_island = 0
-	</select>
-	<select id="b_openCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType = "int">
-		select count(bw_no) from board_write where bt_no = 2 and bw_island = 0
-	</select>
-	<select id="b_meetCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType = "int">
-		select count(bw_no) from board_write where bt_no = 3 and bw_island = 0
-	</select>
-	<select id="b_newsCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType = "int">
-		select count(bw_no) from board_write where bt_no = 4 and bw_island = 0
-	</select>
-	<select id="b_qnaCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType = "int">
-		select count(bw_no) from board_write where bt_no = 5 and bw_island = 0
-	</select>
-	<select id="b_creationCount" parameterType="com.soninlawisdice.vo.SearchCriteria" resultType = "int">
-		select count(bw_no) from board_write where bt_no = 6 and bw_island = 0
-	</select>
-	
 	
 	
 	<!-- 게시글 작성하기  -->
 	<!--회원 번호 넣는 거 어떻게 할건디  -->
-	<!--비밀글 여부도  -->
-	<!-- seq 테이블 만들어서 bw_no  -->
+
 	<insert id="insertBoard" parameterType="com.soninlawisdice.vo.Board_writeVO">
 		insert into board_write 
 		(bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
@@ -396,7 +365,7 @@
 	<!--댓글 달렸을때는 삭제 불가능하게 해야함  -->
 	<!-- 1:1 문의 삭제하기 -->
 	<delete id="deleteQuestion">
-		delete from board_write where bw_no = #{bw_no}<!--  and...... -->
+		delete from board_write bw where bw.bw_no = #{bw_no} and (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = #{bw_no}) = 0
 	</delete>
 	
 	
@@ -406,6 +375,25 @@
 		update member set m_point = m_point + 10 where m_no = #{m_no} 
 	</update>
 	
+	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 검색 sql ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
+	<!-- <sql id="board_search">
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 't'.toString()">AND bw.bw_title LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND bw.bw_content LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'w'.toString()">AND m.m_nick LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'tc'.toString()">AND (bw.bw_title LIKE '%' || #{scri.keyword} || '%') or (bw.bw_content LIKE '%' || #{scri.keyword} || '%')</if>
+		</if>
+	</sql>
+	
+	<sql id="cafe_review_search">
+		<if test="searchType != null">
+			<if test="searchType == 'a'.toString()">AND c.c_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'b'.toString()">AND cr.cr_title LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'c'.toString()">AND cr.cr_content LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'd'.toString()">AND m.m_nick LIKE '%' || #{keyword} || '%'</if>
+			<if test="searchType == 'bc'.toString()">AND (cr.cr_title LIKE '%' || #{keyword} || '%') or (cr.cr_content LIKE '%' || #{keyword} || '%')</if>
+		</if>
+	</sql> -->
 	
 	
 	

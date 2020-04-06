@@ -68,10 +68,28 @@
 
 
 				<!-- Search Bar  -->
-				<form action="">
+			
 
 					<div class="search">
+								
+						 <div class="dropdown pull-right">
+								<select name="searchType" class="span2">
+									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+									<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+									<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+									<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+									<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+								</select>
+						</div> 
+						<div class="input-append pull-right"> 
+							<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
+							<button type="submit" class="btn" id="searchBtn">
+								<i class="icon-search"></i>
+							</button>
+						</div>
 
+
+<!-- 
 						<select>
 							<option value="0" selected>전체</option>
 							<option value="1">제목</option>
@@ -81,13 +99,13 @@
 						
 						<input id="searchBar" type="text">
 
-						<!-- 여기 미쳐버렸음. 일단 버튼으로 만들어 놓고 다음에 해야함 타입이 submit 인줄도 모르겠음-->
+						여기 미쳐버렸음. 일단 버튼으로 만들어 놓고 다음에 해야함 타입이 submit 인줄도 모르겠음
 						<button type="submit" class="fa fa-fw fa-search"></button>
 
-
-						<!-- <i class="fa fa-fw fa-search"></i> -->
-					</div>
-				</form>
+ -->
+						
+					 </div>
+				
 
 
 
@@ -121,7 +139,7 @@
 						<tbody class = "tbody">
 							<c:forEach items="${list}" var="dto">
 							<tr class="row">
-								<td class = "cell">${dto['BW_NO']}</td>
+								<td class = "cell">${dto['RNUM']}</td>
 								<td class = "cell">${dto['S_CONTENT']}</td>
 								<td class = "cell"><a href="content_view?bw_no=${dto['BW_NO']}">${dto['BW_TITLE']}</a>  [${dto['CM']}]</td>
 								<td class = "cell">${dto['M_NICK']}</td>
@@ -275,22 +293,22 @@
 					</div>
 				</div>
 				
-				<div class="pagination pagination-centered">
-						<ul>
+				<div class="Page navigation example">
+						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
-								<li><a
-									href="board_story${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+								<li class = "page-item"><a class = "page-link"
+									href="board_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="board_story${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="board_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li><a
-									href="board_story${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+								<li class = "page-item"><a class = "page-link"
+									href="board_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>
@@ -329,7 +347,7 @@
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	<!-- <script src="js/board_hs/tabdata.js" type="text/javascript"></script> -->
+	<script src="js/board_hs/tabdata.js" type="text/javascript"></script>
 	<script src="js/board_hs/button.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
 

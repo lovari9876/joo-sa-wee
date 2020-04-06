@@ -34,69 +34,12 @@ public class BoardServiceImpl implements BoardService {
 	//////////////////////// 커뮤니티////////////////////////
 
 	@Override
-	public  ArrayList<HashMap<String, Object>> selectBoardList() {
-		return boardMapper.selectBoardList();
-	}
-	
-
-
-	@Override
-	public ArrayList<HashMap<String, Object>> selectBoard_Story(SearchCriteria scri) {
-		return boardMapper.selectBoard_Story(scri);
+	public ArrayList<HashMap<String, Object>> selectBoardList(SearchCriteria scri, int bt_no){
+		return boardMapper.selectBoardList(scri, bt_no);
 	}
 	@Override
-	public int b_storyCount(SearchCriteria scri) {
-		return boardMapper.b_storyCount(scri);
-	}
-
-	
-	@Override
-	public ArrayList<HashMap<String, Object>> selectBoard_Open(SearchCriteria scri) {
-		return boardMapper.selectBoard_Open(scri);
-	}
-	@Override
-	public int b_openCount(SearchCriteria scri) {
-		return boardMapper.b_openCount(scri);
-	}
-	
-
-	@Override
-	public ArrayList<HashMap<String, Object>> selectBoard_Meet(SearchCriteria scri) {
-		return boardMapper.selectBoard_Meet(scri);
-	}
-	@Override
-	public int b_meetCount(SearchCriteria scri) {
-		return boardMapper.b_meetCount(scri);
-	}
-
-	
-	@Override
-	public ArrayList<HashMap<String, Object>> selectBoard_News(SearchCriteria scri) {
-		return boardMapper.selectBoard_News(scri);
-	}
-	@Override
-	public int b_newsCount(SearchCriteria scri) {
-		return boardMapper.b_newsCount(scri);
-	}
-
-	
-	@Override
-	public ArrayList<HashMap<String, Object>> selectBoard_Qna(SearchCriteria scri) {
-		return boardMapper.selectBoard_Qna(scri);
-	}
-	@Override
-	public int b_qnaCount(SearchCriteria scri) {
-		return boardMapper.b_qnaCount(scri);
-	}
-
-	
-	@Override
-	public ArrayList<HashMap<String, Object>> selectBoard_Creation(SearchCriteria scri) {
-		return boardMapper.selectBoard_Creation();
-	}
-	@Override
-	public int b_creationCount(SearchCriteria scri) {
-		return boardMapper.b_creationCount(scri);
+	public int cboard_listCount(SearchCriteria scri, int bt_no) {
+		return boardMapper.cboard_listCount(scri, bt_no);
 	}
 	
 

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
@@ -37,6 +38,9 @@ public class Board_hs_Controller {
 
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private AdminService adminService;
 
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
 
@@ -52,109 +56,123 @@ public class Board_hs_Controller {
 
 	///////////////////////////////////// 커뮤니티 관련//////////////////////////////////////
 
-	// 리스트 홈화면
-	@RequestMapping(value = "/list_home", method = RequestMethod.GET)
-	public String list_home(Model model) {
-		return "board_hs/list_home";
-	}
+		// 리스트 홈화면
+		@RequestMapping(value = "/list_home", method = RequestMethod.GET)
+		public String list_home(Model model) {
+			return "board_hs/list_home";
+		}
 
-	// 보드이야기 리스트
-	@RequestMapping(value = "/board_story", method = RequestMethod.GET)
-	public String board_story(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		model.addAttribute("list", boardService.selectBoard_Story(scri));
-		
-		PageMaker pageMaker  = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.b_storyCount(scri));
-		model.addAttribute("pageMaker", pageMaker);
-		
-		return "board_hs/board_story";
-	}
-
-	// 개봉기 및 리뷰 리스트
-	@RequestMapping(value = "/board_open_review", method = RequestMethod.GET)
-	public String board_open_review(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		model.addAttribute("list", boardService.selectBoard_Open(scri));
-		
-		PageMaker pageMaker  = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.b_openCount(scri));
-		model.addAttribute("pagemaker", pageMaker);
-		
-		return "board_hs/board_open_review";
-	}
-
-	// 보드게임 모임 리스트
-	@RequestMapping(value = "/board_meet", method = RequestMethod.GET)
-	public String board_meet(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		model.addAttribute("list", boardService.selectBoard_Meet(scri));
-		
-		PageMaker pageMaker  = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.b_meetCount(scri));
-		model.addAttribute("pagemaker", pageMaker);
-		
-		return "board_hs/board_meet";
-	}
-
-	// 보드뉴스 리스트
-	@RequestMapping(value = "/board_news", method = RequestMethod.GET)
-	public String board_news(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		model.addAttribute("list", boardService.selectBoard_News(scri));
-		
-		PageMaker pageMaker  = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.b_newsCount(scri));
-		model.addAttribute("pagemaker", pageMaker);
-		
-		return "board_hs/board_news";
-	}
+		// 보드이야기 리스트
+		@RequestMapping(value = "/board_story", method = RequestMethod.GET)
+		public String board_story(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+			
+			model.addAttribute("list", boardService.selectBoardList(scri, 1));
+			
+			PageMaker pageMaker  = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 1));
+			model.addAttribute("pageMaker", pageMaker);
+			
+			return "board_hs/board_story";
+		}
 	
-	//질문 과 답변 리스트
-	@RequestMapping(value = "/board_qna", method = RequestMethod.GET)
-	public String board_qna(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		model.addAttribute("list", boardService.selectBoard_Qna(scri));
+		//개봉기 및 리뷰
+		@RequestMapping(value = "/board_open_review", method = RequestMethod.GET)
+		public String board_open_review(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+			
+			model.addAttribute("list", boardService.selectBoardList(scri, 2));
+			
+			PageMaker pageMaker  = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 2));
+			model.addAttribute("pageMaker", pageMaker);
+			
+			return "board_hs/board_open_review";
+		}
 		
-		PageMaker pageMaker  = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.b_qnaCount(scri));
-		model.addAttribute("pagemaker", pageMaker);
+		//보드게임 모임
+		@RequestMapping(value = "/board_meet", method = RequestMethod.GET)
+		public String board_meet(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+			
+			model.addAttribute("list", boardService.selectBoardList(scri, 3));
+			
+			PageMaker pageMaker  = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 3));
+			model.addAttribute("pageMaker", pageMaker);
+			
+			return "board_hs/board_meet";
+		}
 		
-		return "board_hs/board_qna";
-	}
+		//보드 뉴스
+		@RequestMapping(value = "/board_news", method = RequestMethod.GET)
+		public String board_news(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+			
+			model.addAttribute("list", boardService.selectBoardList(scri, 4));
+			
+			PageMaker pageMaker  = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 4));
+			model.addAttribute("pageMaker", pageMaker);
+			
+			return "board_hs/board_news";
+		}
+		
+		//질문 답변
+		@RequestMapping(value = "/board_qna", method = RequestMethod.GET)
+		public String board_qna(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+			
+			model.addAttribute("list", boardService.selectBoardList(scri, 5));
+			
+			PageMaker pageMaker  = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 5));
+			model.addAttribute("pageMaker", pageMaker);
+			
+			return "board_hs/board_qna";
+		}
+		
+		//창작 보드게임
+		@RequestMapping(value = "/board_creation", method = RequestMethod.GET)
+		public String board_creation(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+			
+			model.addAttribute("list", boardService.selectBoardList(scri, 6));
+			
+			PageMaker pageMaker  = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 6));
+			model.addAttribute("pageMaker", pageMaker);
+			
+			return "board_hs/board_creation";
+		}
+		
+	
+	
+	
 
-	// 창작 보드게임 리스트
-	@RequestMapping(value = "/board_creation", method = RequestMethod.GET)
-	public String board_creation(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		model.addAttribute("list", boardService.selectBoard_Creation(scri));
-		
-		PageMaker pageMaker  = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.b_creationCount(scri));
-		model.addAttribute("pagemaker", pageMaker);
-		
-		return "board_hs/board_creation";
-	}
+	
 
 	// 말머리마다 다른 내용 보여주기
-	@ResponseBody
-	@RequestMapping("/board_list_sub")
-	public ArrayList<HashMap<String, Object>> list(Model model) {
-		System.out.println("test");
-
-		return boardService.selectBoardList();
-	}
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping("/board_list_sub") public ArrayList<HashMap<String, Object>>
+	 * list(Model model) { System.out.println("test");
+	 * 
+	 * return boardService.selectBoardList(); }
+	 */
 	
-	@RequestMapping("/board_sub")
-	public String board_sub(Model model, int s_no){
-		
-		model.addAttribute("sub_list", boardService.selectBoardSub(s_no));
-		
-		
-		
-		return "board_hs/board_story";
-		
-	}
+	/*
+	 * @RequestMapping("/board_sub") public String board_sub(Model model, int s_no){
+	 * 
+	 * model.addAttribute("sub_list", boardService.selectBoardSub(s_no));
+	 * 
+	 * 
+	 * 
+	 * return "board_hs/board_story";
+	 * 
+	 * }
+	 */
 
 	// 글쓰기 view
 	@RequestMapping(value = "/board_write_view", method = RequestMethod.GET)
