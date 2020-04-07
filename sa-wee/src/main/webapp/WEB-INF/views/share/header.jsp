@@ -61,7 +61,7 @@
 							</ul>
 						</li>
 						<li><a href="tlist">보부상</a></li>
-						<li><a class="help" href="contact">헬프데스크</a>
+						<li><a class="help" href="help_home">헬프데스크</a>
 							<ul class="sub-menu">
 								<li><a href="">자주하는 질문</a></li>
 								<li><a href="question_list">1 : 1 문의 </a></li>
