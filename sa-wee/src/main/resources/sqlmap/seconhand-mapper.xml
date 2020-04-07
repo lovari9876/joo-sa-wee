@@ -85,6 +85,21 @@
 	</select> 
 	
 	
+	<!-- 글 보기(content_view): 게임, 가격 가져오기 -->
+	<select id="selectTrade_gameList" resultType="java.util.HashMap" parameterType="int">
+	
+		SELECT 
+			*
+		FROM
+			TRADE_GAME TG
+		WHERE
+			T_NO = #{t_no}
+		ORDER BY 
+			TG_NO ASC
+			
+	</select> 
+	
+	
 	<!-- 글 삭제 -->
 	<delete id="deleteContent">
 	
@@ -110,32 +125,32 @@
 	</update>
 	
 	
-	<!-- 글쓰기 -->
+	<!-- 글쓰기 : 다중 INSERT -->
+	<!-- Map을 사용할때 index는 key객체가 되고 항목은 value객체 -->
 	<insert id="insertTrade" >
 	
-		INSERT INTO
+		INSERT ALL
+		INTO
 			TRADE 
 			(T_NO, M_NO, S_NO, T_TITLE, T_CONTENT) 
 		VALUES 
-			(trade_seq.nextval, #{memberVO.m_no}, #{tradeVO.s_no},  #{tradeVO.t_title}, #{tradeVO.t_content}) 
-	
-	</insert>
+			(trade_seq.nextval, #{m_no}, #{tradeVO.s_no},  #{tradeVO.t_title}, #{tradeVO.t_content}) 	
+		
+		<foreach collection="gamePrice" index="game" item="price">		
+			INTO
+				TRADE_GAME 
+				(TG_NO, T_NO, G_NO, TG_NAME, TG_PRICE ) 
+			VALUES 
+				(get_trade_seq, trade_seq.nextval, null, #{game}, #{price} )
+		</foreach>
+			
+		SELECT  
+			*
+		FROM 
+			DUAL			
+		
+	</insert>	
 
-
-	<!-- 보드게임 다치 입력 -->
-	<insert id="insertTrade_game" >
-	
-		INSERT INTO
-			TRADE_GAME 
-			(TG_NO, T_NO, G_NO, TG_NAME ) 
-		VALUES 
-			(TRADE_GAME_SEQ.NEXTVAL, #{tradeVO.t_no}, 
-			<if test="gameVO.g_no != 0 or gameVO.g_no != null">#{gameVO.g_no}</if>
-			<if test="gameVO.g_no = 0 or gameVO.g_no = null">null</if>
-			, #{tgVO.tg_name} ) 
-	
-	</insert>
-	
 	
 	<!-- 글 작성시 10 포인트 적립 -->
 	<update id = "boardPointUpdate">
@@ -144,7 +159,7 @@
 		SET 
 			M_POINT = M_POINT + 10 
 		WHERE 
-			M_NO = #{memberVO.m_no} 
+			M_NO = #{m_no} 
 	</update>
 	
 	

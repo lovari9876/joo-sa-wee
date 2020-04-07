@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 
@@ -20,6 +21,9 @@ public interface SecondhandService {
 	// content view
 	public HashMap<String, Object> selectContentOne(int t_no);
 	
+	// content view: selectTrade_game
+	public ArrayList<HashMap<String, Object>> selectTrade_gameList(int t_no); 
+	
 	// delete
 	public void deleteContent(TradeVO tradeVO);
 	
@@ -27,11 +31,11 @@ public interface SecondhandService {
 	public void upHitContent(int t_no);
 
 	// 글 insert
-	public void insertTrade(TradeVO tradeVO, int m_no);
+	public void insertTrade(TradeVO tradeVO, int m_no, String gameNames, String prices);
 
 	// 판매 또는 구매할 보드게임 insert (multiple value)
-	public void insertTrade_game(TradeVO tradeVO, String gameName);
+//	public void insertTrade_game(TradeVO tradeVO, int m_no, String gameName);
 
 	// 글 작성 포인트 update
-	public void boardPointUpdate(int m_no); 
+	public void boardPointUpdate(int m_no);
 }

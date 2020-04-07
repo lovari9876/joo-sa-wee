@@ -102,7 +102,7 @@
 						<tr class="row">
 							<td class="cell">보드게임</td>
 							<td class="cell">
-								<input type="text" name="gameName" 
+								<input type="text" name="gameNames" 
 									placeholder="보드게임의 이름을 쉼표(,)로 구분하여 입력하세요">
 							</td>
 						</tr>
@@ -110,7 +110,7 @@
 						<tr class="row">
 							<td class="cell">가격</td>
 							<td class="cell">
-								<input type="text" name="t_price" placeholder="희망 가격을 입력하세요">
+								<input type="text" name="prices" placeholder="보드게임의 희망 가격을 쉼표(,)로 구분하여 숫자로 입력하세요">
 							</td>
 						</tr>
 

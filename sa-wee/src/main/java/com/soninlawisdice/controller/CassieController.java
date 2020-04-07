@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
+import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -42,6 +44,8 @@ public class CassieController {
 	private BoardService boardService;
 	@Autowired
 	private ContentService contentService;
+	@Autowired
+	private MyPageService myPageService;
 	
 
 	////////////////////////////////// 보부상 /////////////////////////////////////////////
@@ -98,9 +102,12 @@ public class CassieController {
 		System.out.println(request.getParameter("t_no"));
 		
 		int t_no = Integer.parseInt(request.getParameter("t_no"));
-
+		
 		model.addAttribute("content_view_t", secondhandService.selectContentOne(t_no));
-
+		
+		// 게임, 가격 리스트
+		model.addAttribute("tgList", secondhandService.selectTrade_gameList(t_no));
+		
 		// 게시글 조회수
 		secondhandService.upHitContent(t_no);
 
@@ -134,38 +141,38 @@ public class CassieController {
 	@RequestMapping(value = "/trade_write", method = RequestMethod.POST)
 	public String write(HttpSession session, Model model, 
 						@ModelAttribute("tradeVO") TradeVO tradeVO, /* @ModelAttribute("tgVO") Trade_gameVO tgVO, */
-						String gameName) {
+						String gameNames, String prices) throws Exception {
 
 //		로그인 된 상태라면 이렇게 해서 현재 로그인 한 회원의 MemberVO 가져올 수 있다.
-		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-		model.addAttribute("memberVO", memberVO);	
+//		MemberVO memberVO = (MemberVO) session.getAttribute("member");
+//		model.addAttribute("memberVO", memberVO);	
 //		이렇게 넘겨야 m_no 받아올 수 있다.
 		
+//		System.out.println(memberVO.getM_no());
 		
-		secondhandService.insertTrade(tradeVO, memberVO.getM_no());	
+//		GameVO gameVO = new GameVO();
 		
-		secondhandService.insertTrade_game(tradeVO, gameName);
+		// 세션 매번하기 힘드니까 임의 값 부여
+		MemberVO memberVO = myPageService.mypage("test4");		
+		
+		secondhandService.insertTrade(tradeVO, memberVO.getM_no(), gameNames, prices);			
 		
 		secondhandService.boardPointUpdate(memberVO.getM_no());		
 		
 				
 		return "redirect:tlist";
-
 	}
 
-	// 수정하기 view.
+	// 수정하기 view
 	@RequestMapping(value = "/trade_modify_view", method = RequestMethod.GET)
 	public String modify_view(Model model, int bw_no) {
 		
 		model.addAttribute("content_view", boardService.modify_view(bw_no));
-
 		
 		return "board_hs/modify_view";
 	}
 	
-	
-	//수정하기
-	//수정했을때 수정된 content 보기
+	// 수정하기, 수정했을때 수정된 content 보기
 	@RequestMapping(value = "/trade_modify", method = RequestMethod.POST)
 	public String modify(Board_writeVO board_writeVO, Model model) {
 		boardService.modify(board_writeVO);

@@ -1,0 +1,227 @@
+/* =================================
+------------------------------------
+  EndGam - Gaming Magazine Template
+  Version: 1.0
+ ------------------------------------
+ ====================================*/
+
+/* 폰트 */
+@font-face {
+	font-family: 'designhouseBold';
+	src: url("designhouseBold.ttf") format('truetype');
+}
+
+@font-face {
+	font-family: 'dunggeunmo';
+	src: url("DungGeunMo.ttf") format('truetype');
+}
+
+@font-face { 
+	font-family: 'JSDongkang-Regular'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+
+/* 1 */
+.write-section {
+	width: 100%;
+	margin: 0 auto;
+	font-family : JSDongkang-Regular;
+	/* background : red; */
+}
+
+/* 2 */
+.write-container {
+	width: 100%;
+	min-height: 100vh;
+	/* background: #fff; */
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: start;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding-top : 90px;
+	/* margin-top: 90px; */
+	/* background : blue; */
+}
+
+/* 3 */
+.write-view {
+	width: 1200px;
+	margin-top: 10px;
+	padding-top : 10px;
+	padding-left : 80px;
+	padding-right : 80px;
+	padding-bottom : 30px;
+	overflow: hidden;
+	/* background : yellow; */
+	border-radius : 30px;
+}
+
+@media screen and (max-width : 768px) {
+	.write-view {
+		margin-left: 10px;
+		margin-right: 10px;
+		padding-left: 10px;
+	}
+}
+
+/* 3-1 */
+.writeName {
+	float: left;
+	margin: 20px 0 30px 0;
+	/* display : block; */
+	padding : 10px;
+	border-radius: 5px 25px 0 0;
+	background-color : #1E0A37;
+	opacity : 0.7;
+	/* color : #fff; */
+}
+
+.writeName h3{
+	color : #fff;
+	
+}
+
+@media screen and (max-width : 768px){
+	.write-view{
+		margin-left: 10px;
+    	margin-right: 10px;
+    	padding-right: 10px;
+    	padding-left: 10px;
+	}
+}
+
+.square{
+	width: 850px;
+    height: 10px;
+    background: #1E0A37;
+    opacity : 0.7;
+    float: left;
+    margin-top: 71px;
+ 	
+}
+
+@media screen and (max-width:120px){
+	.square{
+		display : none !important;
+	}
+	
+}
+/* question_write_view */
+.question-square {
+	width: 730px;
+    height: 10px;
+    background: #1E0A37;
+    opacity : 0.7;
+    float: left;
+    margin-top: 71px;
+ 	
+}
+
+@media screen and (max-width:1200px){
+	.question-square{
+		display : none !important;
+	}
+}
+
+/* cafe-review-write */
+.cafe-square{
+	width: 820px;
+    height: 10px;
+    background: #1E0A37;
+    opacity : 0.7;
+    float: left;
+    margin-top: 71px;
+}
+
+@media screen and (max-width:1200px){
+	.cafe-square{
+		display : none !important;
+	}
+}
+
+
+/* 내 테이블 관련 */
+.table--div {
+    background-color: #e8e5f4;
+}
+
+.write-table {
+	width: 100%;
+	display: table;
+	margin-bottom: 100px;
+}
+
+.write-table textarea {
+	width: 780px;
+	height: 400px;
+	resize: none;
+	border: none;
+}
+
+.write-table input {
+	width: 780px;
+	border: none;
+}
+
+
+.write-table input[type="file"] {
+	border: 1px solid #f2f2f2;
+}
+
+/* .write-table .row .file{
+	border : 1px solid #f2f2f2;
+	width : 600px;
+} */
+.write-table select {
+	height: 25px;
+	padding-left: 3px;
+	border-radius: 5px;
+	background: #fff;
+}
+
+.table--row {
+	display: table-row;
+	
+}
+
+.table--cell {
+	display: table-cell;
+}
+
+.table--row th {
+	background-color: #c6c0e4;
+	height: 50px;
+	font-weight: 100;
+}
+
+.table--row .table--cell {
+	font-size: 16px;
+	color: black;
+	line-height: 1.2;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+
+
+.table--row .table--cell:nth-child(1) {
+	width: 200px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left : 20px;
+}
+
+.table--row .table--cell:nth-child(2) {
+	width: 100px;
+	padding-left: 10px;
+	border-left: 1px solid #f2f2f2;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
