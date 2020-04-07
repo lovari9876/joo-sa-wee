@@ -120,7 +120,7 @@
 							</tr>
 
 						<tbody class = "tbody">
-							<c:forEach items="${question}" var="question">
+							<c:forEach items="${content_view}" var="question">
 							<tr class="row">
 								<td class = "cell">${question['BW_NO']}</td>
 								<td class = "cell">${question['S_CONTENT']}</td>

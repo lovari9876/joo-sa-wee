@@ -67,24 +67,24 @@
 							<div class="title_item frist">
 								<h4 id="community">132 : 111 문의</h4>
 								<span class="slash">&bullet;</span> 
-								<span class="slash">${question['S_CONTENT']}</span>
+								<span class="slash">${content_view['S_CONTENT']}</span>
 								
 							</div>
 							<div class="title_item second">
-								<span class="slash">조회수(${question['BW_HIT']})</span>
+								<span class="slash">조회수(${content_view['BW_HIT']})</span>
 							</div>
 						</div>
 						<div>
-							<span class="text-white">작성자 ${question['M_NICK']}</span>
+							<span class="text-white">작성자 ${content_view['M_NICK']}</span>
 							<span class="slash">&bullet;</span> 
-							<span class="text-white">작성일 ${question['BW_WRITTEN_DATE']}</span> 
+							<span class="text-white">작성일 ${content_view['BW_WRITTEN_DATE']}</span> 
 							<span class="slash">&bullet;</span>
-							<span class="text-white">수정일 ${question['BW_UPDATED_DATE']}</span>
+							<span class="text-white">수정일 ${content_view['BW_UPDATED_DATE']}</span>
 						</div>
 					</div>
 					<br />
 					<!-- 게시글 제목 -->
-					<h2 class="text-white">${question['BW_TITLE']}</h2>
+					<h2 class="text-white">${content_view['BW_TITLE']}</h2>
 				</div>
 			</div>
 		</div>
@@ -99,7 +99,7 @@
 						adipisicing elit</h3>
 					
 
-					<p>${question['BW_CONTENT']}</p>
+					<p>${content_view['BW_CONTENT']}</p>
 
 
 					<br />
@@ -111,20 +111,35 @@
 								<input type = "button" onclick ="location.href='question_list'" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item second">
-								<a href="question_modify_view?bw_no=${question['BW_NO']}">수정</a>
+								<a href="question_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="question_delete?bw_no=${question['BW_NO']}">삭제</a>
+								<a href="question_delete?bw_no=${content_view['BW_NO']}">삭제</a>
 							</div>
 							<div class="test_item fourth">
-								<a href="content/report_view_bw?bw_no=${question['BW_NO']}"
+								<a href="content/report_view_bw?bw_no=${content_view['BW_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 							</div>
 						</div>
 					</form>
 
 					<!-- 댓글부분 -->
-					<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
+					<c:choose>
+						<c:when test="${content_view['BT_NO'] == 8}">
+							<c:import url="/comment_view_bw">
+								<c:param name="cm_type" value="게시판"></c:param>
+								<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+							</c:import>
+						</c:when>
+						<c:otherwise>
+							<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
+						</c:otherwise>
+					</c:choose>
+					
+					<!-- 댓글 쓰기 -->
+					<div class="comment-form-wrap pt-5">
+						<%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %>
+					</div>
 				</div>
 			</div>
 		</div>

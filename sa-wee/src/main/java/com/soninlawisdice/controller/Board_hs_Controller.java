@@ -372,7 +372,7 @@ public class Board_hs_Controller {
 	//1 : 1 문의 리스트
 	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
 	public String question_list(Model model) {
-		model.addAttribute("question", boardService.selectQuestionList());
+		model.addAttribute("content_view", boardService.selectQuestionList());
 		return "board_hs/question_list";
 	}
 	
@@ -395,8 +395,11 @@ public class Board_hs_Controller {
 	
 	//문의 보기 (비밀글이면 작성자와 관리자만 볼 수 있음)
 	@RequestMapping("/question_content_view")
-	public String question_content_view(int bw_no,Model model) {
-		model.addAttribute("question", boardService.selectQuestionOne(bw_no));
+	public String question_content_view(HttpServletRequest request,Model model) {
+		
+		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
+		
+		model.addAttribute("content_view", boardService.selectQuestionOne(bw_no));
 		return "board_hs/question_content_view";
 	}
 	
@@ -404,7 +407,7 @@ public class Board_hs_Controller {
 	//문의 수정 view
 	@RequestMapping(value = "/question_modify_view")
 	public String question_modify_view(int bw_no, Model model) {
-		model.addAttribute("question", boardService.selectQuestionOne(bw_no));
+		model.addAttribute("content_view", boardService.selectQuestionOne(bw_no));
 		return "board_hs/question_modify_view";
 	}
 	

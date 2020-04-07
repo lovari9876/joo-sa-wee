@@ -53,7 +53,7 @@
 		BOARD_TYPE BT, SUBJECT S
 		WHERE BW.M_NO = M.M_NO AND BW.BT_NO = BT.BT_NO
 		AND BW.S_NO = S.S_NO AND
-		BW.BW_NO = #{bw_no} AND BT.BT_NO != 8
+		BW.BW_NO = #{bw_no}
 	</select> 
 
 	<!-- 게시글 삭제 -->

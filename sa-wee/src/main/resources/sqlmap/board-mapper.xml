@@ -349,7 +349,7 @@
 	<!-- content_view 따로 만들지, 있는거 수정할지. -->
 	<!-- 비밀글은 못보게 하는거.(따로 페이지로 보내야하는지 alert 띄워야하는지 -->
 	<select id = "selectQuestionOne" resultType = "java.util.HashMap">
-		select bw.bw_no, bw.bw_title, bw.bw_content, bw.m_no, bw.s_no, s.s_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_hit, m.m_nick
+		select bw.bw_no, bw.bw_title, bw.bw_content, bw.m_no, bw.s_no, s.s_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_hit, m.m_nick, bw.bt_no
 		from board_write bw, member m, subject s
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bt_no = 8
