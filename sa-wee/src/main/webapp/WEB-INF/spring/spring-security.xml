@@ -40,6 +40,7 @@
     <security:http pattern="/images/*" security="none"/>  
     <security:http auto-config="true" use-expressions="true">
 	    <security:intercept-url pattern="/loginView" access="permitAll" />
+	    <security:intercept-url pattern="/logoutSecurity" access="permitAll" />
 	   	<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 	   	<security:intercept-url pattern="/mypage" access="hasRole('ROLE_USER')" />
 	    <security:intercept-url pattern="/**" access="permitAll" />
@@ -56,11 +57,11 @@
 	    
 	    <security:logout 
 			logout-url="/logout"
-			logout-success-url="/loginView"
+			logout-success-url="/"
 		/>
 	       
 	    <!-- 접속권한 없을 때 403 에러 페이지 대신 -->
-	    <security:access-denied-handler error-page="/access_denied_page"/>	    
+	    <security:access-denied-handler error-page="/access_denied_page"/>    
     </security:http>
     
 	<!-- <authentication-manager>

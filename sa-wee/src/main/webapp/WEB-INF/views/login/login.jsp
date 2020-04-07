@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="org.springframework.security.core.Authentication" %>
 <%@ page import="com.soninlawisdice.vo.MemberVO" %>
@@ -128,13 +129,10 @@
 				<div class="text-center p-t-37 p-b-30">
 					<span class="txt1"> <%= name %>님 환영합니다 </span>
 				</div>
-				<!-- <a href="/logout" class="txt3 hov1">로그아웃</a>
-				 -->
-				<form action="/logout"
-					method="POST">
-					<input type="submit"  class="txt3 hov1" value="로그아웃" />
-				</form>
-				
+
+				<form:form action="/logout" method="POST">
+					<input type="submit" class="txt3 hov1" value="로그아웃" />
+				</form:form> 
 
 				<a href="/mypage" class="txt3 hov1">마이페이지</a>
 			<%-- </c:if> --%>
