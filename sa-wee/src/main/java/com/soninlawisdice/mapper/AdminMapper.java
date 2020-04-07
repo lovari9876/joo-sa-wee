@@ -84,6 +84,18 @@ public interface AdminMapper {
 	public void updateIsland_cafe(int cr_no);
 	public void updateIsland_trade(int t_no);
 	
+	
+	// 무인도 원상태 복구
+	public void confirmIsland_member(@Param("m_no")int m_no, @Param("m_point")int m_point);
+	
+	public void confirmIsland_bw(int bw_no);
+	public void confirmIsland_cafe(int cr_no);
+	public void confirmIsland_trade(int t_no);
+	
+	// 회원 포인트 구하기
+	public int memberPoint(int m_no);
+	
+	
 	// 삭제
 	public void selectDelete(Board_writeVO boardVO);
 	public void selectDelete_cafe(Cafe_reviewVO cafe_reviewVO);

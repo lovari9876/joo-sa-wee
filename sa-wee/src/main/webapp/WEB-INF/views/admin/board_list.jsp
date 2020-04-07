@@ -202,6 +202,7 @@
 	
 	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
 	<script src="js/admin/checkBox.js" type="text/javascript"></script>
+	<!-- 체크박스 선택한글 무인도행 -->
 	<script src="js/admin/island.js" type="text/javascript"></script>
 	
 	<!-- 말머리 탭 -->

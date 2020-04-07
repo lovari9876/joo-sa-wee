@@ -73,8 +73,17 @@ public interface AdminService {
 	public void updateIsland_cafe(int cr_no);
 	public void updateIsland_trade(int t_no);
 	
-	
+	// 무인도 원상태 복구
+	public void confirmIsland_member(int bw_no, int m_point);
 
+	public void confirmIsland_bw(int bw_no);
+	public void confirmIsland_cafe(int cr_no);
+	public void confirmIsland_trade(int t_no);
+	
+	// 회원 포인트 구하기
+	public int memberPoint(int m_no);
+	
+	
 	// 글보기
 
 	public MemberVO selectMemberView(int m_no);

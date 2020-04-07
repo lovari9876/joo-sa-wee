@@ -197,19 +197,21 @@ public class AdminController {
 				mem = Integer.parseInt(st.nextToken());
 
 				if (1 <= bt && bt <= 6) { // bt_no이 1~6인 커뮤니티
-					adminService.updateIsland_bw(no);
-					result = 1;
+					adminService.confirmIsland_bw(no);
 				} else if (bt == 11) { // bt_no이 11인 카페리뷰
-					adminService.updateIsland_cafe(no);
-					result = 2;
+					adminService.confirmIsland_cafe(no);
 				} else {// 중고거래는 bt 테이블과 조인하지않음
-					adminService.updateIsland_trade(no);
-					result = 3;
+					adminService.confirmIsland_trade(no);
 				}
 			}
-			System.out.println(bt);
-			System.out.println("무인도행 갈 회원 : "+mem);
-			adminService.updateIsland_memberReport(mem);
+			result = 1;
+			
+			int point = adminService.memberPoint(mem);
+			
+			System.out.println("bt : " + bt);
+			System.out.println("복구할 회원 : " + mem);
+			System.out.println("복구할 회원 포인트 : " + point);
+			adminService.confirmIsland_member(mem, point);
 
 			return result;
 		}
@@ -437,19 +439,7 @@ public class AdminController {
 	}
 
 	
-	@RequestMapping("/faq")
-	public String faq(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		
-		model.addAttribute("faq_list", adminService.faqList(scri));
 
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.faq_listCount(scri));
-
-		model.addAttribute("pageMaker", pageMaker);
-		
-		return "faq/faq";
-	}
 	
 	
 	@RequestMapping("/ask_list")

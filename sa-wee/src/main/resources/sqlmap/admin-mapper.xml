@@ -352,7 +352,7 @@
 
 	<!-- =============================================== 무인도행 ====================================================== -->
 	
-	<!-- 멤버 번호 바로 불러올수 없는 경우 : 글이 신고당함 - 글번호로 멤버번호를 가져옴 -->
+	<!-- 멤버 번호 바로 불러올수 없는 경우 : 신고관리 페이지 , 글이 신고당함 - 글번호로 멤버번호를 가져옴 -->
 	<update id="updateIsland_member" >
 		UPDATE member
 		SET r_no =  4
@@ -403,41 +403,21 @@
 	
 	<!-- =============================================== 무인도행 수정완료 컨펌 ====================================================== -->
 	
-<!-- 	
+	<!-- 회원 등급을 원상복귀 시키기 위해서 point에 따라 등급을 되돌려줌 -->
+	<select id="memberPoint" resultType="int">
+		SELECT m_point FROM member WHERE m_no = #{m_no}
+	</select>
+	
 	<update id="confirmIsland_member" >
 		UPDATE member
-		SET r_no =  4
+		SET r_no = 
 		<choose>
-			<when test='m_point lte 10000'>
-				board_write WHERE bw_no = #{bw_no})
-			</when>
-			
-			<when test='m_point == "카페리뷰"'>
-				cafe_review WHERE c_no = #{bw_no})
-			</when>
-			
-			<when test='r_type == "중고거래"'>
-				trade WHERE t_no = #{bw_no})
-			</when>
+			<when test='m_point lt 30000'>3</when>
+			<when test='m_point lt 100000'>2</when>
+			<otherwise>1</otherwise> 
 		</choose>
-		
-		
-		WHERE m_no = (SELECT m_no FROM 
-		
-		<choose>
-			<when test='r_type == "게시글"'>
-				board_write WHERE bw_no = #{bw_no})
-			</when>
-			
-			<when test='r_type == "카페리뷰"'>
-				cafe_review WHERE c_no = #{bw_no})
-			</when>
-			
-			<when test='r_type == "중고거래"'>
-				trade WHERE t_no = #{bw_no})
-			</when>
-		</choose>
-	</update> -->
+		WHERE m_no = #{m_no}
+	</update> 
 	
 	
 	
