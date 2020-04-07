@@ -28,6 +28,8 @@
 <!-- <link rel="stylesheet" href="css/board_hj/font-awesome.min.css"> -->
 <link rel="stylesheet" href="css/board_hj/magnific-popup.css">
 <link rel="stylesheet" href="css/board_hj/bootstrap.min.css" />
+<!-- 테이블 -->
+<link rel="stylesheet" href="css/secondhand/tablestyle.css" />
 
 <!-- tooltip, popover -->
 <link rel="stylesheet"
@@ -116,7 +118,22 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 blog-content">
-				
+					<!-- 게임, 가격 갖고오는 테이블 -->
+					<div class="table--div">
+						<table class="write-table">
+							<tr class="table--row">
+								<th class="table--cell">보드게임</th>
+								<th class="table--cell">희망가격</th>
+							</tr>
+							<c:forEach items="${tgList}" var="tgItem">
+								<tr class="table--row">
+									<td class="table--cell">${tgItem['TG_NAME']}</td>							
+									<td class="table--cell">${tgItem['TG_PRICE']}</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+					
 					<p>${content_view_t['T_CONTENT']}</p>
 
 					<!-- 추천 -->
