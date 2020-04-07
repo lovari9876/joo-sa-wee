@@ -84,7 +84,7 @@ public interface BoardMapper {
 	////////////////////////// 1 : 1 문의 /////////////////////////////
 	
 	//문의 리스트
-	public ArrayList<HashMap<String, Object>> selectQuestionList();
+	public ArrayList<HashMap<String, Object>> selectQuestionList(@Param("scri")SearchCriteria scri);
 	//문의 작성
 	public void insertQuestion(@Param("board_writeVO") Board_writeVO board_writeVO);
 	
@@ -95,9 +95,6 @@ public interface BoardMapper {
 	//문의 삭제
 	public void deleteQuestion(@Param("bw_no")int bw_no);
 	
-	
-	
-	////////////////////////////일단 댓글////////////////////////////
 	
 	//댓글 수 조회
 	public String countBoardComment(@Param("bw_no")int bw_no);

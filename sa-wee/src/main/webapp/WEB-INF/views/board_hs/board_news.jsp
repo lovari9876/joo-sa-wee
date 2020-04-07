@@ -260,21 +260,21 @@
 
 				</div>
 				
-				<div class="pagination pagination-centered">
-						<ul>
+				<div class="Page navigation example">
+						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
-								<li><a
+								<li class = "page-item"><a class = "page-link"
 									href="board_news${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="board_news${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="board_news${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li><a
+								<li class = "page-item"><a class = "page-link"
 									href="board_news${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>

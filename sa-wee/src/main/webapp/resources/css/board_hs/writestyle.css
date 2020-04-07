@@ -77,8 +77,8 @@
 	/* display : block; */
 	padding : 10px;
 	border-radius: 5px 25px 0 0;
-	background-color : #1E0A37;
-	opacity : 0.7;
+	background-color : rgb(98, 84, 115);
+	
 	/* color : #fff; */
 }
 
@@ -97,53 +97,37 @@
 }
 
 .square{
-	width: 850px;
+	width : 100%;
     height: 10px;
-    background: #1E0A37;
-    opacity : 0.7;
-    float: left;
+    background: rgb(98, 84, 115);
     margin-top: 71px;
  	
 }
 
-@media screen and (max-width:120px){
-	.square{
-		display : none !important;
-	}
-	
+form{
+	margin-top : -100px;
 }
+
+
 /* question_write_view */
 .question-square {
-	width: 730px;
+	width : 100%;
     height: 10px;
-    background: #1E0A37;
-    opacity : 0.7;
-    float: left;
+    background: rgb(98, 84, 115);
     margin-top: 71px;
  	
 }
 
-@media screen and (max-width:1200px){
-	.question-square{
-		display : none !important;
-	}
-}
 
 /* cafe-review-write */
 .cafe-square{
-	width: 820px;
+	width : 100%;
     height: 10px;
-    background: #1E0A37;
-    opacity : 0.7;
-    float: left;
+    background: rgb(98, 84, 115);
     margin-top: 71px;
 }
 
-@media screen and (max-width:1200px){
-	.cafe-square{
-		display : none !important;
-	}
-}
+
 
 
 /* 3-2 */

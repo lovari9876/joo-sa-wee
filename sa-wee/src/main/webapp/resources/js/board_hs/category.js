@@ -109,7 +109,7 @@ $(document).ready(function(){
 		
 		$("#board").empty().append(appendYear);
 	}
-g	
+
 	//여기까지 첫번째 함수.
 	
 	

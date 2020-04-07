@@ -369,10 +369,26 @@ public class Board_hs_Controller {
 	
 	////////////////////////////////////////일단 1 : 1 문의 ///////////////////////////////////////
 
+	// 리스트 홈화면
+	@RequestMapping(value = "/help_home", method = RequestMethod.GET)
+	public String help_home(Model model) {
+		return "board_hs/help_home";
+	}
+
+	
+	
 	//1 : 1 문의 리스트
 	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
-	public String question_list(Model model) {
-		model.addAttribute("content_view", boardService.selectQuestionList());
+
+	public String question_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+		model.addAttribute("content_view", boardService.selectQuestionList(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.cboard_listCount(scri, 8));
+		model.addAttribute("pageMaker", pageMaker);
+		
+
 		return "board_hs/question_list";
 	}
 	
