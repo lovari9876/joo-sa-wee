@@ -352,12 +352,41 @@ button span.lnr-magnifier {
 	color: #000;
 }
 
+.main-menu li .sub-menu li span {
+	display: block;
+	margin-right: 0;
+	padding: 8px 30px;
+	color: #000;
+}
+
+.main-menu li .sub-menu li form input{
+	background-color: transparent;
+	border: none;
+	display: block;
+	margin-right: 0;
+	padding: 8px 30px;
+	color: #000;
+}
+
 .main-menu li .sub-menu li a:after {
+	display: none;
+}
+
+.main-menu li .sub-menu li span:after {
+	display: none;
+}
+
+.main-menu li .sub-menu li form input:after {
 	display: none;
 }
 
 .main-menu li .sub-menu li a:hover {
 	color: #b01ba5;
+}
+
+.main-menu li .sub-menu li form input:hover {
+	color: #b01ba5;
+	cursor:pointer;
 }
 
 /* 로그인, 회원가입 창 부분 크기 조정 */
