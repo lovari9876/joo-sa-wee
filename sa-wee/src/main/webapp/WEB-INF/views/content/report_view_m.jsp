@@ -39,6 +39,8 @@
 				<form action="report_m" method="get">
 					<input type="hidden" name="r_type_no" value="${member_view['M_NO']}">
 					<input type="hidden" name="m_no" value="${member_view['M_NO']}">
+					<input type="hidden" name="m_report_num" value="${member_view['M_REPORT_NUM']}">
+					<input type="hidden" name="bw_no" value="${content_view['BW_NO']}">
 					<div class="form-group">
 						<label for="message">신고하기</label>
 						<textarea name="r_content" id="message" cols="30" rows="10"

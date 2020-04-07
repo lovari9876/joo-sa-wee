@@ -53,7 +53,7 @@
 		BOARD_TYPE BT, SUBJECT S
 		WHERE BW.M_NO = M.M_NO AND BW.BT_NO = BT.BT_NO
 		AND BW.S_NO = S.S_NO AND
-		BW.BW_NO = #{bw_no} AND BT.BT_NO != 7 AND BT.BT_NO != 8
+		BW.BW_NO = #{bw_no} AND BT.BT_NO != 8
 	</select> 
 
 	<!-- 게시글 삭제 -->
@@ -118,11 +118,16 @@
 	<update id="updateReportBW">
 		UPDATE BOARD_WRITE SET BW_REPORT_NUM = BW_REPORT_NUM +1 WHERE BW_NO = #{bw_no}
 	</update>
+	
+	<!-- 게시글 아일랜드 1로 변경 -->
+	<update id="updateIslandBW">
+		UPDATE BOARD_WRITE SET BW_ISLAND = 1 WHERE BW_NO = #{bw_no}
+	</update>
 
 	<!-- m_no를 가져오기 위해 -->
 	<select id="selectContentM"
 		resultType="java.util.HashMap" parameterType="int">
-		SELECT M_NO FROM MEMBER WHERE M_NO = #{m_no}
+		SELECT M_NO, M_REPORT_NUM FROM MEMBER WHERE M_NO = #{m_no}
 	</select>
 
 	<!-- 회원 신고글 쓰기 -->
@@ -138,11 +143,16 @@
 	<update id="updateReportM">
 		UPDATE MEMBER SET M_REPORT_NUM = M_REPORT_NUM +1 WHERE M_NO = #{m_no}
 	</update>
+	
+	<!-- 회원 등급 4로 변경 -->
+	<update id="updateIslandM">
+		UPDATE MEMBER SET R_NO = 4 WHERE M_NO = #{m_no}
+	</update>
 
 	<!-- cm_no를 가져오기 위해 -->
 	<select id="selectContentCM"
 		resultType="java.util.HashMap" parameterType="int">
-		SELECT CM_NO FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+		SELECT CM_NO, CM_REPORT_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
 
 	<!-- 댓글 신고글 쓰기 -->
@@ -184,7 +194,7 @@
 	</resultMap>
 
 	<!-- 게시글 댓글 쓰기 -->
-	<!-- 현재 m_no 10으로 되어있음. 나중에 #{m_no}으로 고쳐야 됨. -->
+	<!-- 현재 m_no 14으로 되어있음. 나중에 #{m_no}으로 고쳐야 됨. -->
 	<insert id="insertCommentBW">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
 		CM_WRITTEN_DATE,
@@ -192,7 +202,7 @@
 		CM_REPORT_NUM,
 		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
 		VALUES
-		(CM_COMMENT_SEQ.NEXTVAL, 10, #{cm_content}, SYSDATE, SYSDATE,
+		(CM_COMMENT_SEQ.NEXTVAL, 14, #{cm_content}, SYSDATE, SYSDATE,
 		'게시판',
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
@@ -300,6 +310,16 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+	
+	<!-- 중고거래 신고수 증가 -->
+	<update id="updateReportT">
+		UPDATE TRADE SET T_REPORT_NUM = T_REPORT_NUM +1 WHERE T_NO = #{t_no}
+	</update>
+	
+	<!-- 중고거래 아일랜드 1로 변경 -->
+	<update id="updateIslandT">
+		UPDATE TRADE SET T_ISLAND = 1 WHERE T_NO = #{t_no}
+	</update>
 	
 	<!-- 중고거래 댓글 목록 -->
 	<select id="selectCommentListT" resultType="java.util.HashMap"
@@ -416,6 +436,16 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
+	
+	<!-- 카페리뷰 신고수 증가 -->
+	<update id="updateReportCR">
+		UPDATE CAFE_REVIEW SET CR_REPORT_NUM = CR_REPORT_NUM +1 WHERE CR_NO = #{cr_no}
+	</update>
+	
+	<!-- 카페리뷰 아일랜드 1로 변경 -->
+	<update id="updateIslandCR">
+		UPDATE CAFE_REVIEW SET CR_ISLAND = 1 WHERE CR_NO = #{cr_no}
+	</update>
 	
 	<!-- 카페리뷰 댓글 목록 -->
 	<select id="selectCommentListCR" resultType="java.util.HashMap"

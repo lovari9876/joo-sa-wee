@@ -82,6 +82,14 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.updateReportBW(board_writeVO);
 		
 	}
+	
+	// 게시글 아일랜드 1로 변경
+	@Override
+	public void updateIslandBW(Board_writeVO board_writeVO) {
+		
+		contentMapper.updateIslandBW(board_writeVO);
+		
+	}
 
 	// m_no를 가져오기 위해
 	@Override
@@ -103,6 +111,14 @@ public class ContentServiceImpl implements ContentService {
 	public void updateReportM(MemberVO memberVO) {
 		
 		contentMapper.updateReportM(memberVO);
+		
+	}
+	
+	// 회원 등급 4로 변경
+	@Override
+	public void updateIslandM(MemberVO memberVO) {
+		
+		contentMapper.updateIslandM(memberVO);
 		
 	}
 
@@ -237,6 +253,22 @@ public class ContentServiceImpl implements ContentService {
 
 	}
 	
+	// 중고거래 신고수 증가
+	@Override
+	public void updateReportT(TradeVO tradeVO) {
+		
+		contentMapper.updateReportT(tradeVO);
+		
+	}
+	
+	// 중고거래 아일랜드 1로 변경
+	@Override
+	public void updateIslandT(TradeVO tradeVO) {
+	
+		contentMapper.updateIslandT(tradeVO);
+		
+	}
+	
 	// 중고거래 댓글 목록
 	@Override
 	public ArrayList<HashMap<String, Object>> selectCommentListT(String cm_no) {
@@ -346,6 +378,23 @@ public class ContentServiceImpl implements ContentService {
 
 	}
 	
+	// 카페리뷰 신고수 증가
+	@Override
+	public void updateReportCR(Cafe_reviewVO cafe_reviewVO) {
+		
+		contentMapper.updateReportCR(cafe_reviewVO);
+		
+	}
+	
+	// 카페리뷰 아일랜드 1로 변경
+	@Override
+	public void updateIslandCR(Cafe_reviewVO cafe_reviewVO) {
+		
+		contentMapper.updateIslandCR(cafe_reviewVO);
+		
+	}
+
+	
 	// 카페리뷰 댓글 목록
 	@Override
 	public ArrayList<HashMap<String, Object>> selectCommentListCR(String cm_no) {
@@ -412,9 +461,6 @@ public class ContentServiceImpl implements ContentService {
 
 	
 
-	
-	
 
-	
 	
 }
