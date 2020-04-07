@@ -32,8 +32,6 @@ public class JoinController {
 	public String Join(MemberVO memberVO) throws Exception {
 		System.out.println("join_check() 성공");
 
-		System.out.println(memberVO.getM_id());
-
 		return "join/join";
 	}
 
