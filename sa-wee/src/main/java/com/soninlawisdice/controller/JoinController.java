@@ -1,5 +1,6 @@
 package com.soninlawisdice.controller;
 
+import java.security.Principal;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -112,11 +113,10 @@ public class JoinController {
 	}
 
 	@RequestMapping(value = "/loginView", method = RequestMethod.GET)
-	public String login_check(MemberVO memberVO, Model model) throws Exception {
+	public String login_check(MemberVO memberVO, Model model, Principal principal) throws Exception {
 		System.out.println("login_check()");
 
-		System.out.println(memberVO.getM_id());
-
+		
 		return "login/login";
 	}
 
@@ -150,14 +150,14 @@ public class JoinController {
 //	}
 
 	// 로그아웃
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) throws Exception {
-		System.out.println("logout()");
-
-		session.invalidate();
-
-		return "login/login";
-	}
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+//	public String logout(HttpSession session) throws Exception {
+//		System.out.println("logout()");
+//
+//		session.invalidate();
+//
+//		return "login/login";
+//	}
 
 	@RequestMapping(value = "/forgot_id", method = RequestMethod.GET)
 	public String forgot_id(Locale locale, Model model) {
