@@ -1,5 +1,6 @@
 package com.soninlawisdice.controller;
 
+import java.security.Principal;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -80,12 +81,12 @@ public class JoinController {
 //
 //		return result;
 //	}
-	
+
 	// 패스워드 체크
 	@ResponseBody
 	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
 	public boolean passChk(MemberVO memberVO) throws Exception {
-		MemberVO login =  joinService.login(memberVO.getM_id(), memberVO.getM_pw());
+		MemberVO login = joinService.login(memberVO.getM_id(), memberVO.getM_pw());
 		boolean pwdMatch = pwdEncoder.matches(memberVO.getM_pw(), login.getM_pw());
 
 		return pwdMatch;
@@ -112,52 +113,51 @@ public class JoinController {
 	}
 
 	@RequestMapping(value = "/loginView", method = RequestMethod.GET)
-	public String login_check(MemberVO memberVO, Model model) throws Exception {
+	public String login_check(MemberVO memberVO, Model model, Principal principal) throws Exception {
 		System.out.println("login_check()");
 
-		System.out.println(memberVO.getM_id());
-
+		
 		return "login/login";
 	}
 
 	// 로그인
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest req, RedirectAttributes rttr, MemberVO memberVO) throws Exception {
-		System.out.println("POST login()");
-
-		HttpSession session = req.getSession();
-		String m_id = req.getParameter("m_id");
-		String m_pw = req.getParameter("m_pw");
-		System.out.println("m_id : " + m_id + ", m_pw : " + m_pw);
-
-		MemberVO login = joinService.login(m_id, m_pw);
-		System.out.println("loginService()");
-
-		boolean pwdMatch = pwdEncoder.matches(memberVO.getM_pw(), login.getM_pw());
-
-		if (login != null && pwdMatch == true) {
-			session.setAttribute("member", login);
-			System.out.println("login 성공");
-
-		} else {
-			session.setAttribute("member", null);
-			// RedirectAttributes 새로고침하면 날라가는 데이터(1회성)
-			rttr.addFlashAttribute("msg", false);
-			System.out.println("login == null");
-		}
-
-		return "redirect:/loginView";
-	}
+//	@RequestMapping(value = "/login", method = RequestMethod.POST)
+//	public String login(HttpServletRequest req, RedirectAttributes rttr, MemberVO memberVO) throws Exception {
+//		System.out.println("POST login()");
+//
+//		HttpSession session = req.getSession();
+//		String m_id = req.getParameter("m_id");
+//		String m_pw = req.getParameter("m_pw");
+//		System.out.println("m_id : " + m_id + ", m_pw : " + m_pw);
+//
+//		MemberVO login = joinService.login(m_id, m_pw);
+//		System.out.println("loginService()");
+//
+//		boolean pwdMatch = pwdEncoder.matches(memberVO.getM_pw(), login.getM_pw());
+//
+//		if (login != null && pwdMatch == true) {
+//			session.setAttribute("member", login);
+//			System.out.println("login 성공");
+//
+//		} else {
+//			session.setAttribute("member", null);
+//			// RedirectAttributes 새로고침하면 날라가는 데이터(1회성)
+//			rttr.addFlashAttribute("msg", false);
+//			System.out.println("login == null");
+//		}
+//
+//		return "redirect:/loginView";
+//	}
 
 	// 로그아웃
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) throws Exception {
-		System.out.println("logout()");
-
-		session.invalidate();
-
-		return "login/login";
-	}
+//	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+//	public String logout(HttpSession session) throws Exception {
+//		System.out.println("logout()");
+//
+//		session.invalidate();
+//
+//		return "login/login";
+//	}
 
 	@RequestMapping(value = "/forgot_id", method = RequestMethod.GET)
 	public String forgot_id(Locale locale, Model model) {
@@ -171,10 +171,10 @@ public class JoinController {
 		return "login/forgot_pw";
 	}
 
-	// 테스트
-	@RequestMapping(value = "/address", method = RequestMethod.GET)
-	public String address(Locale locale, Model model) {
+	// 접속권한 없을 때 403 에러 페이지 대신
+	@RequestMapping(value="/access_denied_page")
+    public String accessDeniedPage() throws Exception {
+        return "/share/access_denied_page";
+    }
 
-		return "join/address";
-	}
 }

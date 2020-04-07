@@ -1,11 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-    xmlns:beans="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans.xsd
-    http://www.springframework.org/schema/security
-    http://www.springframework.org/schema/security/spring-security.xsd">
-      
-    <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" /> 
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+	<beans:bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<!-- <http auto-config="true" use-expressions="true">
+	    <intercept-url pattern="/loginView" access="permitAll" />
+	   	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+	   	<intercept-url pattern="/mypage" access="hasRole('ROLE_USER')" />
+	    <intercept-url pattern="/**" access="permitAll" />
+	    
+	     권한 설정
+	    <form-login
+	        username-parameter="m_id"
+	        password-parameter="m_pw"
+	        login-processing-url="/loginSecurity"
+	        login-page="/loginView"
+	        default-target-url="/"
+	        authentication-failure-url="/loginView"
+	    />
+	    
+	    <logout
+	        logout-url="/logout"
+	        logout-success-url="/"
+	    />	 
+	       
+	    접속권한 없을 때 403 에러 페이지 대신
+	    <access-denied-handler error-page="/access_denied_page"/>	    
+    </http> -->
+    
+    <security:http pattern="/**/*.js" security="none"/>
+    <security:http pattern="/**/*.css" security="none"/>
+    <security:http pattern="/images/*" security="none"/>  
+    <security:http auto-config="true" use-expressions="true">
+	    <security:intercept-url pattern="/loginView" access="anonymous" />
+	   	<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/mypage" access="authenticated" />	   	
+		<!-- <security:intercept-url pattern="/mypage" access="hasRole('ROLE_USER, ROLE_ADMIN')" /> -->
+	    <security:intercept-url pattern="/**" access="permitAll" />
+	    
+	    <!-- 권한 설정 -->
+	    <security:form-login
+	        username-parameter="m_id"
+	        password-parameter="m_pw"
+	        login-processing-url="/loginSecurity"
+	        login-page="/loginView"
+	        default-target-url="/"
+	        authentication-failure-url="/loginView"
+	    />
+	    
+	    <security:logout 
+			logout-url="/logout"
+			logout-success-url="/"
+		/>
+	       
+	    <!-- 접속권한 없을 때 403 에러 페이지 대신 -->
+	    <security:access-denied-handler error-page="/access_denied_page"/>    
+    </security:http>
+    
+	<!-- <authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="user" password="pw" authorities="ROLE_USER" />
+				<user name="admin" password="pw" authorities="ROLE_ADMIN" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager> -->
+	
+	<!-- <beans:bean id="userDetailsService"
+		class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean> --> 
+	
+	<context:component-scan base-package="com.soninlawisdice.security"/>
+	        
+	<security:authentication-manager>
+	    <security:authentication-provider ref="userAuthProvider"/>
+	    <security:authentication-provider user-service-ref="userService">
+	    	<security:password-encoder ref="bcryptPasswordEncoder" />
+	    </security:authentication-provider>
+	</security:authentication-manager>
+	        
+	<beans:bean id="userService" class="com.soninlawisdice.security.CustomUserDetailsService"/>
+	<beans:bean id="userAuthProvider" class="com.soninlawisdice.security.CustomAuthenticationProvider"/>
+	
+	<!-- provider -->
+	<!-- <authentication-manager> 
+		<authentication-provider> 
+			<jdbc-user-service data-source-ref="dataSource" 
+				users-by-username-query="select m_id, m_pw, m_out from member where m_id = ?"
+				authorities-by-username-query="select m_id, case when r_no='0' then 'ROLE_ADMIN' else 'ROLE_USER' end authority from member where m_id=?" />		
+		</authentication-provider> 
+	</authentication-manager> -->
+	<!-- 로그인 쿼리: 쿼리에서 뽑을 컬럼을 차례로 username, password, enabled 순으로 지정해준다. -->
+	<!-- 권한 쿼리: 쿼리에서 뽑을 컬럼을 차례로 username, authority 순으로 지정해주면서, case when 문법으로 
+		사용하고 싶은 컬럼의 값을 authority 값의 형식으로 바꾸어주어 spring-security가 인식하도록 해준다! -->	
+		
+	<!-- 검사 URL -->
+	<!-- <http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/loginView" access="ROLE_USER" />
+		<intercept-url pattern="/admin/*" access="ROLE_USER" />
+		<intercept-url pattern="/*" access="permitAll" />
+
+		<form-login login-page="/loginView" default-target-url="/"
+			authentication-failure-url="/loginView?error"
+			username-parameter="m_id" password-parameter="m_pw" />
+
+		<logout logout-url="/logout" logout-success-url="/" />
+		<access-denied-handler
+			error-page="/login/accessDenied" />
+	</http>
+
+	<beans:bean id="userDetailsService"
+		class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean> -->
+
 </beans:beans>

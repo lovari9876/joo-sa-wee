@@ -20,6 +20,7 @@
 		<mapper resource="sqlmap/join-mapper.xml" />
 		<mapper resource="sqlmap/mypage-mapper.xml" />
 		<mapper resource="sqlmap/seconhand-mapper.xml" />
-
+		<mapper resource="sqlmap/security-mapper.xml" />
+		
 	</mappers>
 </configuration>

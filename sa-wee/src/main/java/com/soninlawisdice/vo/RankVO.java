@@ -3,8 +3,9 @@ package com.soninlawisdice.vo;
 // 회원등급
 public class RankVO {
 	private int r_no; // 등급 번호
-	private String r_name; // 등급 이름
-
+	private String r_name; // 등급 이름 0:ROLE_ADMIN, 1~3:ROLE_USER 4:ROLE_CASTAWAY
+	
+	
 	public RankVO() {
 	}
 

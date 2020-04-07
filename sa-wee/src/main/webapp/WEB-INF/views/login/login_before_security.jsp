@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page import="org.springframework.security.core.Authentication" %>
-<%@ page import="com.soninlawisdice.vo.MemberVO" %>
 <html>
 <head>
 <title>SON-IN-RAW IS DICE - LOGIN</title>
@@ -25,23 +20,11 @@
 	href="resources/css/login/background.css">
 </head>
 <body>
-	<%
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	
-		Object principal = auth.getPrincipal();
-		
-		String name = "";
-		
-		if(principal != null && principal instanceof MemberVO){
-			name = ((MemberVO)principal).getM_id();
-		}
-	%>
 
 	<div class="container-login100">
 		<!-- 메인페이지와 연결되게 -->
 		<div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-30">
-			<%-- <c:if test="${member == null}"> --%>
-			<sec:authorize access="isAnonymous()">
+			<c:if test="${member == null}">
 				<a href="#" class="wrap-input100 p-b-30"> <img
 					class="logo_image"
 					src="resources/images/bl_share/icons/login/wolf_logo.png"
@@ -121,22 +104,17 @@
 					</div>
 
 				</form>
-			<%-- </c:if> --%>
-			</sec:authorize>
+			</c:if>
 
-			<%-- <c:if test="${member != null}"> --%>
-			<sec:authorize access="isAuthenticated()">
+			<c:if test="${member != null}">
 				<div class="text-center p-t-37 p-b-30">
-					<span class="txt1"> <%= name %>님 환영합니다 </span>
+					<span class="txt1"> ${member.m_id}님 환영합니다 </span>
 				</div>
-
-				<form:form action="/logout" method="POST">
-					<input type="submit" class="txt3 hov1" value="로그아웃" />
-				</form:form> 
+				<a href="/logout" class="txt3 hov1">로그아웃</a>
 
 				<a href="/mypage" class="txt3 hov1">마이페이지</a>
-			<%-- </c:if> --%>
-			</sec:authorize>
+			</c:if>
+
 
 		</div>
 	</div>

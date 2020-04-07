@@ -20,7 +20,7 @@
 		#{m_nick}, #{m_gender}, 0, #{m_phone}, #{m_email},
 		#{m_post},
 		#{m_addr1}, #{m_addr2}, 3, #{m_re_sms}, #{m_re_notice},
-		#{m_re_message}, #{m_info}, #{m_self}, sysdate, #{m_outdate}, 'n', 0,
+		#{m_re_message}, #{m_info}, #{m_self}, sysdate, #{m_outdate}, '1', 0,
 		0, 1)
 	</insert>
 
@@ -49,6 +49,11 @@
 		where m_id = #{m_id}
 		<!-- and m_pw = #{m_pw} -->
 		<!-- 비밀번호를 체클할 때 입력된 비밀번호와 암호화된 비밀번호를 비교해주기 때문에 조건에 있는 비밀번호 주석 처리 -->
+	</select>
+	
+	<!-- 랭크 불러오기 -->
+	<select id="rank" resultType="com.soninlawisdice.vo.RankVO">
+		select * from rank		
 	</select>
 
 

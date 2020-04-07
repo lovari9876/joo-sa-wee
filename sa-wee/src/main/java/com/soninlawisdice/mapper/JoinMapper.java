@@ -3,6 +3,7 @@ package com.soninlawisdice.mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.soninlawisdice.vo.MemberVO;
+import com.soninlawisdice.vo.RankVO;
 
 public interface JoinMapper {
 
@@ -21,4 +22,6 @@ public interface JoinMapper {
  	// 로그인
   	public MemberVO login(@Param("m_id")String m_id, @Param("m_pw")String m_pw) throws Exception;
 
+  	// 랭크
+  	public RankVO rank() throws Exception;
 }
