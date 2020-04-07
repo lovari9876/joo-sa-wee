@@ -376,7 +376,7 @@ public class HeeJeongController {
 
 	// 중고거래 신고글 쓰기
 	@RequestMapping(value = "/report_t", method = RequestMethod.GET)
-	public String report_t(ReportVO reportVO, Model model, TradeVO tradeVO) {
+	public String report_t(ReportVO reportVO, Model model, TradeVO tradeVO, HttpServletRequest request) {
 		System.out.println("report_t");
 
 		System.out.println(reportVO.getR_type_no());
@@ -385,8 +385,64 @@ public class HeeJeongController {
 		
 		// 중고거래 신고수 증가
 		contentService.updateReportT(tradeVO);
+		
+		// 중고거래 아일랜드 1로 변경
+		int t_report_num = Integer.parseInt(request.getParameter("t_report_num"));
+		
+		model.addAttribute("content_view_ t", contentService.selectContentTOne(t_report_num));
+		
+		if (t_report_num == 6) {
+			contentService.updateIslandT(tradeVO);
+		}
 
 		return "content/report_success";
+	}
+	
+	// 중고거래 회원 신고글 view
+	@RequestMapping(value = "/report_view_m_t", method = RequestMethod.GET)
+	public String report_view_m_t(HttpServletRequest request, Model model) {
+		System.out.println("report_view_m_t");
+
+		int m_no = Integer.parseInt(request.getParameter("m_no"));
+
+		System.out.println(m_no);
+
+		model.addAttribute("member_view", contentService.selectContentM(m_no));
+			
+		// content_view_t로 redirect를 위해서
+		int t_no = Integer.parseInt(request.getParameter("t_no"));
+			
+		model.addAttribute("content_view_t", contentService.selectContentTOne(t_no));
+
+		return "content/report_view_m_t";
+	}
+
+	// 중고거래 회원 신고글 쓰기
+	@RequestMapping(value = "/report_m_t", method = RequestMethod.GET)
+	public String report_m_t(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO,
+								HttpServletRequest request, @RequestParam int t_no, RedirectAttributes re) {
+		System.out.println("report_m_t");
+
+		System.out.println(reportVO.getR_type_no());
+
+		contentService.insertReportM(reportVO);
+			
+		// 회원 신고수 증가
+		contentService.updateReportM(memberVO);
+			
+		// content_view로 redirect를 위해서
+		re.addAttribute("t_no", t_no);
+			
+		// 회원 등급 4로 변경
+		int m_report_num = Integer.parseInt(request.getParameter("m_report_num"));
+			
+		model.addAttribute("member_view", contentService.selectContentM(m_report_num));
+			
+		if(m_report_num == 6) {
+			contentService.updateIslandM(memberVO);
+		}
+
+		return "redirect:content_view_t";
 	}
 	
 	// 중고거래 댓글 목록 view
@@ -548,7 +604,7 @@ public class HeeJeongController {
 
 	// 카페리뷰 신고글 쓰기
 	@RequestMapping(value = "/report_cr", method = RequestMethod.GET)
-	public String report_cr(ReportVO reportVO, Model model, Cafe_reviewVO cafe_reviewVO) {
+	public String report_cr(ReportVO reportVO, Model model, Cafe_reviewVO cafe_reviewVO, HttpServletRequest request) {
 		System.out.println("report_cr");
 
 		System.out.println(reportVO.getR_type_no());
@@ -558,7 +614,62 @@ public class HeeJeongController {
 		// 카페리뷰 신고수 증가
 		contentService.updateReportCR(cafe_reviewVO);
 		
+		int cr_report_num = Integer.parseInt(request.getParameter("cr_report_num"));
+		
+		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_report_num));
+		
+		if (cr_report_num == 6) {
+			contentService.updateIslandCR(cafe_reviewVO);
+		}
+		
 		return "content/report_success";
+	}
+	
+	// 중고거래 회원 신고글 view
+	@RequestMapping(value = "/report_view_m_cr", method = RequestMethod.GET)
+	public String report_view_m_cr(HttpServletRequest request, Model model) {
+		System.out.println("report_view_m_cr");
+
+		int m_no = Integer.parseInt(request.getParameter("m_no"));
+
+		System.out.println(m_no);
+
+		model.addAttribute("member_view", contentService.selectContentM(m_no));
+				
+		// content_view_cr로 redirect를 위해서
+		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
+				
+		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
+
+		return "content/report_view_m_cr";
+	}
+
+	 // 중고거래 회원 신고글 쓰기
+	@RequestMapping(value = "/report_m_cr", method = RequestMethod.GET)
+	public String report_m_cr(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO,
+									HttpServletRequest request, @RequestParam int cr_no, RedirectAttributes re) {
+		System.out.println("report_m_cr");
+
+		System.out.println(reportVO.getR_type_no());
+
+		contentService.insertReportM(reportVO);
+				
+		// 회원 신고수 증가
+		contentService.updateReportM(memberVO);
+				
+		// content_view로 redirect를 위해서
+		re.addAttribute("cr_no", cr_no);
+				
+		// 회원 등급 4로 변경
+		int m_report_num = Integer.parseInt(request.getParameter("m_report_num"));
+				
+		model.addAttribute("member_view", contentService.selectContentM(m_report_num));
+				
+		if(m_report_num == 6) {
+			contentService.updateIslandM(memberVO);
+		}
+
+		return "redirect:content_view_cr";
 	}
 
 	// 카페리뷰 댓글 목록 view

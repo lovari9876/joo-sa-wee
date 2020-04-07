@@ -316,6 +316,11 @@
 		UPDATE TRADE SET T_REPORT_NUM = T_REPORT_NUM +1 WHERE T_NO = #{t_no}
 	</update>
 	
+	<!-- 중고거래 아일랜드 1로 변경 -->
+	<update id="updateIslandT">
+		UPDATE TRADE SET T_ISLAND = 1 WHERE T_NO = #{t_no}
+	</update>
+	
 	<!-- 중고거래 댓글 목록 -->
 	<select id="selectCommentListT" resultType="java.util.HashMap"
 		parameterType="String">
@@ -435,6 +440,11 @@
 	<!-- 카페리뷰 신고수 증가 -->
 	<update id="updateReportCR">
 		UPDATE CAFE_REVIEW SET CR_REPORT_NUM = CR_REPORT_NUM +1 WHERE CR_NO = #{cr_no}
+	</update>
+	
+	<!-- 카페리뷰 아일랜드 1로 변경 -->
+	<update id="updateIslandCR">
+		UPDATE CAFE_REVIEW SET CR_ISLAND = 1 WHERE CR_NO = #{cr_no}
 	</update>
 	
 	<!-- 카페리뷰 댓글 목록 -->

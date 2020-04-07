@@ -261,6 +261,14 @@ public class ContentServiceImpl implements ContentService {
 		
 	}
 	
+	// 중고거래 아일랜드 1로 변경
+	@Override
+	public void updateIslandT(TradeVO tradeVO) {
+	
+		contentMapper.updateIslandT(tradeVO);
+		
+	}
+	
 	// 중고거래 댓글 목록
 	@Override
 	public ArrayList<HashMap<String, Object>> selectCommentListT(String cm_no) {
@@ -370,11 +378,19 @@ public class ContentServiceImpl implements ContentService {
 
 	}
 	
-	// 카페리뷰 신소수 증가
+	// 카페리뷰 신고수 증가
 	@Override
 	public void updateReportCR(Cafe_reviewVO cafe_reviewVO) {
 		
 		contentMapper.updateReportCR(cafe_reviewVO);
+		
+	}
+	
+	// 카페리뷰 아일랜드 1로 변경
+	@Override
+	public void updateIslandCR(Cafe_reviewVO cafe_reviewVO) {
+		
+		contentMapper.updateIslandCR(cafe_reviewVO);
 		
 	}
 
@@ -438,6 +454,10 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountCR(cm_no2);
 	}
+
+	
+
+	
 
 	
 

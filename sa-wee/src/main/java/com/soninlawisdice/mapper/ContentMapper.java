@@ -77,6 +77,8 @@ public interface ContentMapper {
 	
 	public void updateReportT(TradeVO tradeVO); // 중고거래 신고수 증가
 	
+	public void updateIslandT(TradeVO tradeVO); // 중고거래 아일랜드 1로 변경
+	
 	public ArrayList<HashMap<String, Object>> selectCommentListT(String cm_no); // 중고거래 댓글 목록
 	
 	public void insertCommentT(CM_commentVO cm_commentVO); // 중고거래 댓글 쓰기
@@ -108,6 +110,8 @@ public interface ContentMapper {
 	public void insertReportCR(ReportVO reportVO); // 카페리뷰 신고글 쓰기
 	
 	public void updateReportCR(Cafe_reviewVO cafe_reviewVO); // 카페리뷰 신고수 증가
+	
+	public void updateIslandCR(Cafe_reviewVO cafe_reviewVO); // 카페리뷰 아일랜드 1로 변경
 	
 	public ArrayList<HashMap<String, Object>> selectCommentListCR(String cm_no); // 카페리뷰 댓글 목록
 	
