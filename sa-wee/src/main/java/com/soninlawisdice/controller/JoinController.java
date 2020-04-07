@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.JoinService;
 import com.soninlawisdice.vo.MemberVO;
@@ -31,8 +30,6 @@ public class JoinController {
 	@RequestMapping(value = "/joinView", method = RequestMethod.GET)
 	public String Join(MemberVO memberVO) throws Exception {
 		System.out.println("join_check() 성공");
-
-		System.out.println(memberVO.getM_id());
 
 		return "join/join";
 	}
