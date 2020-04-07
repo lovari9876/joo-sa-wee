@@ -139,8 +139,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	//////////////////////////1 : 1 문의 /////////////////////////////
 	@Override
-	public ArrayList<HashMap<String, Object>> selectQuestionList() {
-		return boardMapper.selectQuestionList();
+	public ArrayList<HashMap<String, Object>> selectQuestionList(SearchCriteria scri) {
+		return boardMapper.selectQuestionList(scri);
 	}
 	@Override
 	public void insertQuestion(Board_writeVO board_writeVO) {
@@ -159,8 +159,6 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.deleteQuestion(bw_no);
 	}
 	
-	
-	/////////////////////////////////////////////////////////////////
 	@Override
 	public String countBoardComment(int bw_no) {
 		return boardMapper.countBoardComment(bw_no);

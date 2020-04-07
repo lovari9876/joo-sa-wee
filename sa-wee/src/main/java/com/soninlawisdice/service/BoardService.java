@@ -89,7 +89,7 @@ public interface BoardService {
 	//////////////////////////1 : 1 문의 /////////////////////////////
 	
 	//문의 리스트
-	public ArrayList<HashMap<String, Object>> selectQuestionList();
+	public ArrayList<HashMap<String, Object>> selectQuestionList(SearchCriteria scri);
 	//문의 작성
 	public void insertQuestion(Board_writeVO board_writeVO);	
 	//문의 보기//비밀글때문에 따로

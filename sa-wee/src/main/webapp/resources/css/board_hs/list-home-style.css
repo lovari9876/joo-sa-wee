@@ -32,9 +32,24 @@ body{
 	padding : 100px 180px 100px 180px;
 }
 
+.ftco-section2 {
+	/* padding: 6em 0;
+	position: relative; */
+	position: relative;
+ 	width: 100%;
+	display: block;
+	padding : 110px 250px 90px 250px;
+}
+
+
+
 @media (max-width : 1416px){
 	.ftco-section{
 		padding : 6em 0;
+	}
+	
+	.ftco-section2 {
+		padding: 6em 0;
 	}
 }
 
@@ -43,11 +58,19 @@ body{
 	.ftco-section {
 		padding: 6em 0;
 	}
+	
+	.ftco-section2 {
+		padding: 6em 0;
+	}
+	
+	
 }
 
 .ftco-no-pb {
 	padding-bottom: 0px;
 }
+
+
 
 
 
