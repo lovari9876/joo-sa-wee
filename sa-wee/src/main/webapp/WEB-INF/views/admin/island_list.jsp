@@ -136,8 +136,7 @@
 												<c:otherwise>불명확</c:otherwise>
 											</c:choose>
 										</td>
-									<td class="cell"><a
-										href="report_view?_no=${report.st_no}">${island['I_TITLE']}</a></td>
+									<td class="cell"><a href="/content_view_i?i_no=${island['I_NO']}&bt_no=${island['BT_NO']}">${island['I_TITLE']}</a></td>
 									<td class="cell">${island['M_ID']}</td>
 									<td>
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->

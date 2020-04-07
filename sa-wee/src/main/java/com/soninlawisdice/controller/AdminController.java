@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.soninlawisdice.controller.AdminController;
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
+import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
@@ -57,7 +58,10 @@ public class AdminController {
 	private SecondhandService secondhandService;
 	@Autowired
 	private BoardService boardService;
-
+	@Autowired
+	private ContentService contentService;
+	
+	
 	@RequestMapping("/index")
 	public String index(Model model) {
 		// 전체 글, 회원, 댓글 개수 (방문자수는 session으로 출력)
