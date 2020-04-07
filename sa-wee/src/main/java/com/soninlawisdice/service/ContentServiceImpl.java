@@ -82,6 +82,14 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.updateReportBW(board_writeVO);
 		
 	}
+	
+	// 게시글 아일랜드 1로 변경
+	@Override
+	public void updateIslandBW(Board_writeVO board_writeVO) {
+		
+		contentMapper.updateIslandBW(board_writeVO);
+		
+	}
 
 	// m_no를 가져오기 위해
 	@Override
@@ -103,6 +111,14 @@ public class ContentServiceImpl implements ContentService {
 	public void updateReportM(MemberVO memberVO) {
 		
 		contentMapper.updateReportM(memberVO);
+		
+	}
+	
+	// 회원 등급 4로 변경
+	@Override
+	public void updateIslandM(MemberVO memberVO) {
+		
+		contentMapper.updateIslandM(memberVO);
 		
 	}
 
@@ -424,17 +440,7 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	
-	
 
-	
 
-	
-
-	
-
-	
-	
-
-	
 	
 }

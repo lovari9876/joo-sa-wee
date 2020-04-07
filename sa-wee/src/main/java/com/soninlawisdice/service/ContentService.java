@@ -28,11 +28,15 @@ public interface ContentService {
 	
 	public void updateReportBW(Board_writeVO board_writeVO); // 게시글 신고수 증가
 	
+	public void updateIslandBW(Board_writeVO board_writeVO); // 게시글 아일랜드 1로 변경
+	
 	public HashMap<String, Object> selectContentM(int m_no); // m_no를 가져오기 위해
 	
 	public void insertReportM(ReportVO reportVO); // 회원 신고글 쓰기
 	
 	public void updateReportM(MemberVO memberVO); // 회원 신고수 증가
+	
+	public void updateIslandM(MemberVO memberVO); // 회원 등급 4로 변경
 	
 	public HashMap<String, Object> selectContentCM(int cm_no); // cm_no를 가져오기 위해
 	

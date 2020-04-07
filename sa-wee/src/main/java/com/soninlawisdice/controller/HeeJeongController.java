@@ -98,6 +98,11 @@ public class HeeJeongController {
 		model.addAttribute("comment_list", contentService.selectCommentList(cm_no2));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
+		// content_view로 redirect를 위해서
+		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
+		
+		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
+		
 		// 댓글 갯수 세기
 		model.addAttribute("comment_count", contentService.selectCommentCount(cm_no2));
 	  
@@ -202,7 +207,8 @@ public class HeeJeongController {
 
 	// 게시글 신고글 쓰기
 	@RequestMapping(value = "/report_bw", method = RequestMethod.GET)
-	public String report_bw(@ModelAttribute("reportVO") ReportVO reportVO, Model model, Board_writeVO board_writeVO) {
+	public String report_bw(@ModelAttribute("reportVO") ReportVO reportVO, Model model, Board_writeVO board_writeVO,
+							HttpServletRequest request) {
 		System.out.println("report_bw");
 
 		System.out.println(reportVO.getR_type_no());
@@ -211,6 +217,15 @@ public class HeeJeongController {
 		
 		// 게시글 신고수 증가
 		contentService.updateReportBW(board_writeVO);
+		
+		// 게시글 아일랜드 1로 변경
+		int bw_report_num = Integer.parseInt(request.getParameter("bw_report_num"));
+		
+		model.addAttribute("content_view", contentService.selectContentOne(bw_report_num));
+		
+		if(bw_report_num == 6) {
+			contentService.updateIslandBW(board_writeVO);
+		}
 
 		return "content/report_success";
 	}
@@ -225,13 +240,19 @@ public class HeeJeongController {
 		System.out.println(m_no);
 
 		model.addAttribute("member_view", contentService.selectContentM(m_no));
+		
+		// content_view로 redirect를 위해서
+		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
+		
+		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
 
 		return "content/report_view_m";
 	}
 
 	// 회원 신고글 쓰기
 	@RequestMapping(value = "/report_m", method = RequestMethod.GET)
-	public String report_m(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO) {
+	public String report_m(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO,
+							HttpServletRequest request, @RequestParam int bw_no, RedirectAttributes re) {
 		System.out.println("report_m");
 
 		System.out.println(reportVO.getR_type_no());
@@ -240,8 +261,20 @@ public class HeeJeongController {
 		
 		// 회원 신고수 증가
 		contentService.updateReportM(memberVO);
+		
+		// content_view로 redirect를 위해서
+		re.addAttribute("bw_no", bw_no);
+		
+		// 회원 등급 4로 변경
+		int m_report_num = Integer.parseInt(request.getParameter("m_report_num"));
+		
+		model.addAttribute("member_view", contentService.selectContentM(m_report_num));
+		
+		if(m_report_num == 6) {
+			contentService.updateIslandM(memberVO);
+		}
 
-		return "redirect:list_home";
+		return "redirect:content_view";
 	}
 
 	// 댓글 신고글 view
@@ -260,7 +293,8 @@ public class HeeJeongController {
 
 	// 댓글 신고글 쓰기
 	@RequestMapping(value = "/report_cm", method = RequestMethod.GET)
-	public String report_cm(@ModelAttribute("reportVO") ReportVO reportVO, Model model, CM_commentVO cm_commentVO) {
+	public String report_cm(@ModelAttribute("reportVO") ReportVO reportVO, Model model, CM_commentVO cm_commentVO,
+							HttpServletRequest request) {
 		System.out.println("report_cm");
 
 		System.out.println(reportVO.getR_type_no());
@@ -269,6 +303,14 @@ public class HeeJeongController {
 		
 		// 댓글 신고수 증가
 		contentService.updateReportCM(cm_commentVO);
+		
+		int cm_report_num = Integer.parseInt(request.getParameter("cm_report_num"));
+		
+		model.addAttribute("comment_view", contentService.selectContentCM(cm_report_num));
+		
+		if (cm_report_num == 6) {
+			contentService.deleteComment(cm_commentVO);
+		}
 
 		return "content/report_success";
 	}
