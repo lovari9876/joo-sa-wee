@@ -4,6 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 403 에러 / csrf 토큰 문제 -->
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
+
 <title>Insert title here</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -33,6 +37,7 @@
 	href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="fonts/fonts_cassie/icomoon/style.css">
 <!-- <script src="https://kit.fontawesome.com/4b0668ef4e.js" crossorigin="anonymous"></script> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
@@ -44,11 +49,6 @@
 
 </head>
 <body id = "top">
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
 
 	<!-- Header section -->
 	
@@ -57,7 +57,7 @@
 	<!-- header include end -->
 	
 
-
+	<!-- 작성하는 부분 전체 -->
 	<div class="write-section">
 		<div class="write-container">
 
@@ -69,46 +69,71 @@
 				</div>
 				<div class = "square"></div>
 				
-				<!-- -->
-				<!-- 수정하는 부분의 각각 value 를 ex) ${detail.TITLE} 이런식으로 받아와야함-->
-				<!--  -->
 				
-				<form action="board_modify" method = "post" enctype="multipart/form-data">
-					<input type="hidden" name="bw_no" value="${content_view.bw_no}"/>
-					<input type="hidden" id="bt_no" value="${content_view.bt_no}"/>
-					<input type="hidden" id="s_no" value="${content_view.s_no}"/>
-					<table class="write-table">						
+				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
+				<form action="trade_modify" method="post" enctype="multipart/form-data">
+					<input type = "hidden" id = "bt_no" value = "9"/>
+					<input type = "hidden" id = "t_no" value = ${tradeVO['T_NO']}/>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
+					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
+					
+					<table class="write-table">
 						<tr class = "row">
-							<td class = "cell">
-								<select id = "board" name = "bt_no" ></select> 
-								<select id = "sub" name = "s_no"></select>
+							<td class = "cell">말머리 </td>
+							<td class = "cell"> 
+								<select name="s_no" >
+									<option value="32" <c:out value="${tradeVO['S_NO'] == 32 ? 'selected' : ''}"/>>판매중</option>
+									<option value="33" <c:out value="${tradeVO['S_NO'] == 33 ? 'selected' : ''}"/>>구매중</option>
+									<option value="34" <c:out value="${tradeVO['S_NO'] == 34 ? 'selected' : ''}"/>>거래완료</option>
+								</select> 								
+							</td>							
+						</tr>					
+						
+						<!-- 입력창 -->
+						<tr class="row">
+							<td class="cell">제목</td>
+							<td class="cell">
+								<input type="text" name="t_title" value="${tradeVO['T_TITLE']}" placeholder="제목을 입력하세요">
+							</td>
+						</tr>
+						
+						<!-- select 로 보드게임 번호 찍어줘야함... -->
+						<!-- 없으면 직접 입력 가능: 향후 방향성 모호하므로 일단 이름 하나만 입력하도록. -->
+						<tr class="row">
+							<td class="cell">보드게임</td>
+							<td class="cell">
+								<input type="text" name="gameNames" value="${gameNames}"
+									placeholder="보드게임의 이름을 쉼표(,)로 구분하여 입력하세요">
+							</td>
+						</tr>
+						
+						<tr class="row">
+							<td class="cell">가격</td>
+							<td class="cell">
+								<input type="text" name="prices" value="${prices}"
+										placeholder="보드게임의 희망 가격을 쉼표(,)로 구분하여 숫자로 입력하세요">
 							</td>
 						</tr>
 
+						<!-- 판매 원하거나 구매 원할 때 사진 여기에 첨부 -->
 						<tr class="row">
-							<td class="cell"><input type="text" name="bw_title" value = "${content_view.bw_title}"  placeholder = "제목을 입력하세요"></td>
-							
+							<td class="cell">내용</td>
+							<td class="cell">
+								<textarea id = "editor" name="t_content" placeholder="판매 혹은 구매하려는 보드게임의 사진과 함께 설명을 입력하세요">
+									${tradeVO['T_CONTENT']}
+								</textarea>
+							</td>
 						</tr>
-
-						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요">${content_view.bw_content}</textarea></td>
-							<%-- <td class="cell"><textarea name="bwTitle" placeholder = "내용을 입력하세요">이건 여기에 ${detail.CONTENTS } 이런식으로</textarea></td> --%>
-						</tr>
-
 						
 					</table>
-					<button class = "list" type="button" onclick="location.href='list'">목록</button>
-					<button class = "modify-btn" type = "submit">수정 완료</button>
+					<button class="list" type="button" onclick="self.location='tlist'">목록</button>
+					<button class="modify-btn" type="submit">수정 완료</button>
 				</form>
-
-
-
 
 			</div>
 		</div>
 	</div>
-
-	
 	
 	
 	<!-- footer 부분 -->
@@ -127,13 +152,12 @@
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
 	<script src="js/header/scroll.js"></script>
-	<!-- <script src ="js/file.js"></script> -->
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	<script src="js/board_hs/selected_category.js"></script>
+	<script src="js/board_hs/category.js"></script>
+	<script src="js/board_hs/toList.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
-	
 	
 	
 	<!-- ckEditor 관련 -->
@@ -173,6 +197,10 @@
 			    console.error( error );
 			} );
 		</script>
+	
+	
+	
+	
 
 </body>
 </html>

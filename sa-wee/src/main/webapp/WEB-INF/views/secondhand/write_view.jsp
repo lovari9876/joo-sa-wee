@@ -4,6 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 403 에러 / csrf 토큰 문제 -->
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
+
 <title>Insert title here</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,11 +49,6 @@
 
 </head>
 <body id = "top">
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
 
 	<!-- Header section -->
 	
@@ -74,6 +73,7 @@
 				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
 				<form action="trade_write" method="post" enctype="multipart/form-data">
 					<input type = "hidden" id = "bt_no" value = "9"/>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
 					

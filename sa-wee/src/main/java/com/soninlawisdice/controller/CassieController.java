@@ -139,8 +139,8 @@ public class CassieController {
 
 	// 글 작성
 	@RequestMapping(value = "/trade_write", method = RequestMethod.POST)
-	public String write(HttpSession session, Model model, 
-						@ModelAttribute("tradeVO") TradeVO tradeVO, /* @ModelAttribute("tgVO") Trade_gameVO tgVO, */
+	public String write(HttpSession session, Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, 
+						/* @ModelAttribute("tgVO") Trade_gameVO tgVO, */
 						String gameNames, String prices) throws Exception {
 
 //		로그인 된 상태라면 이렇게 해서 현재 로그인 한 회원의 MemberVO 가져올 수 있다.
@@ -165,20 +165,42 @@ public class CassieController {
 
 	// 수정하기 view
 	@RequestMapping(value = "/trade_modify_view", method = RequestMethod.GET)
-	public String modify_view(Model model, int bw_no) {
+	public String modify_view(Model model, int t_no) {
 		
-		model.addAttribute("content_view", boardService.modify_view(bw_no));
+		model.addAttribute("tradeVO", secondhandService.selectContentOne(t_no));
 		
-		return "board_hs/modify_view";
+		// 게임, 가격 가져와서 다시 string 으로 만들어준다.
+		ArrayList<Trade_gameVO> tgList = secondhandService.selectTrade_gameList(t_no);
+		String game= "";
+		String price = "";
+		
+		for(Trade_gameVO tg : tgList) {
+			game += tg.getTg_name();
+			price += tg.getTg_price();
+			
+			if(tgList.get(tgList.size()-1) != tg) { // 마지막 아니면
+				game += ", ";
+				price += ", ";
+			}
+		}
+		
+		model.addAttribute("gameNames", game);
+		model.addAttribute("prices", price);
+		
+		
+		return "secondhand/modify_view";
 	}
 	
 	// 수정하기, 수정했을때 수정된 content 보기
 	@RequestMapping(value = "/trade_modify", method = RequestMethod.POST)
-	public String modify(Board_writeVO board_writeVO, Model model) {
-		boardService.modify(board_writeVO);
-		int bw_no = board_writeVO.getBw_no();
+	public String modify(Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, @ModelAttribute("tgVO") Trade_gameVO tgVO,
+							String gameNames, String prices) {
+				
+		secondhandService.modify(tradeVO);
 		
-		return "redirect:content_view_t?t_no"+bw_no;
+		secondhandService.modifyTG(tradeVO.getT_no(), gameNames, prices);
+		
+		return "redirect:content_view_t?t_no=" + tradeVO.getT_no();
 	}
 	
 	
@@ -240,8 +262,7 @@ public class CassieController {
 			contentService.upHitContent(i_no);
 
 			return "content/content_view";
-		}
-		
+		}		
 		
 	}
 

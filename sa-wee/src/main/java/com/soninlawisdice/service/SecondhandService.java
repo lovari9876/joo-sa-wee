@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
+import com.soninlawisdice.vo.Trade_gameVO;
 
 public interface SecondhandService {
 	
@@ -22,7 +23,7 @@ public interface SecondhandService {
 	public HashMap<String, Object> selectContentOne(int t_no);
 	
 	// content view: selectTrade_game
-	public ArrayList<HashMap<String, Object>> selectTrade_gameList(int t_no); 
+	public ArrayList<Trade_gameVO> selectTrade_gameList(int t_no); 
 	
 	// delete
 	public void deleteContent(TradeVO tradeVO);
@@ -38,4 +39,10 @@ public interface SecondhandService {
 
 	// 글 작성 포인트 update
 	public void boardPointUpdate(int m_no);
+
+	// 글 수정: TRADE
+	public void modify(TradeVO tradeVO);
+
+	// 글 수정: TRADE_GAME
+	public void modifyTG(int t_no, String gameNames, String prices);
 }
