@@ -3,6 +3,8 @@ package com.soninlawisdice.mapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.soninlawisdice.vo.SearchCriteria;
 
 // 무인도 게시글 가져오기: 무인도 컬럼은 게시판에 따라 다 다른 이름으로 되어있는데, 1(무인도행), 2(수정함)인 글 다 가져와야함...
@@ -14,8 +16,9 @@ public interface IslandMapper {
 //	public ArrayList<Board_writeVO> selectBoard_writeIslandList(); // 게시글
 //	public ArrayList<Cafe_reviewVO> selectCafe_reviewIslandList(); // 카페리뷰
 	
-	public ArrayList<HashMap<String,Object>> selectIslandList(SearchCriteria scri);	
-	public int islandListCount(SearchCriteria scri);
+	public ArrayList<HashMap<String,Object>> selectIslandList(@Param("scri") SearchCriteria scri, 
+			@Param("bt_no") int bt_no);	
+	public int islandListCount(@Param("scri") SearchCriteria scri, @Param("bt_no") int bt_no);
 	
 // 참고	
 //	public DeptEmpVO selectEmpDeptName(int deptno);

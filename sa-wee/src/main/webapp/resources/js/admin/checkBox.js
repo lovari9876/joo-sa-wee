@@ -1,3 +1,16 @@
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(function() {
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
+
+
+
+
+
+
 //맨위의 모두선택 체크박스에 체크하면, 모든 개별 체크박스(.chBox)에 체크가 됨
 $("#allCheck").click(function() {
 	var chk = $("#allCheck").prop("checked");

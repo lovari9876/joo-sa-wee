@@ -208,12 +208,22 @@ public class CassieController {
 
 	// 무인도 리스트
 	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
-	public String island_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+	public String island_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 		logger.info("island_list");
 
 		scri.setPerPageNum(15);
+		
+		String b = rq.getParameter("bt_no");
+		int bt_no;
+		
+		if (b != null) {
+			bt_no = Integer.parseInt(rq.getParameter("bt_no")); 
+			System.out.println("===============bt_no" + bt_no);
+		}else {
+			bt_no = 0;
+		}
 
-		ArrayList<HashMap<String, Object>> iList = islandService.selectIslandList(scri);
+		ArrayList<HashMap<String, Object>> iList = islandService.selectIslandList(scri, bt_no);
 		model.addAttribute("iList", iList);
 
 		// 사이즈 찍어보기
@@ -223,7 +233,7 @@ public class CassieController {
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(islandService.islandListCount(scri));
+		pageMaker.setTotalCount(islandService.islandListCount(scri, bt_no));
 
 		// perPageNum 부여한 것 잘 가져오니? 네
 		// System.out.println(pageMaker.getCri().getPerPageNum());

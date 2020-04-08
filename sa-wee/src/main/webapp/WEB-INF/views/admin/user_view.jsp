@@ -12,6 +12,11 @@
 <link type="text/css" href="css/admin/theme.css" rel="stylesheet">
 <link type="text/css" href="images/admin/icons/css/font-awesome.css"rel="stylesheet">
 <link type="text/css"href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'rel='stylesheet'>
+
+<!-- 403 에러 / csrf 토큰 문제 -->
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
+
 <!-- <link rel="stylesheet" href="css/liststyle.css" /> -->
 </head>
 
@@ -42,6 +47,9 @@
 						<div class="content-view">
 
 							 <form id="viewForm" method="post">
+							 <!-- security -->
+							 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
 							 <input type = "hidden" name = "m_no" value = "${user_view.m_no}">
 							 <input type = "hidden" name = "cate" value = "user">
 								<table class="table user_view" >
@@ -122,7 +130,7 @@
 									<tr class="row">
 										<td class = "cell span1">비고</td>
 										<td colspan= "3" class="cell span8">
-											<textarea name = "m_extra" class="span5" rows="5"><c:if test="${user_view.m_extra != 'n'}">${user_view.m_extra}</c:if></textarea></td>
+											<textarea name = "m_extra" class="span5" rows="5"><c:if test="${user_view.m_extra != '0'}">${user_view.m_extra}</c:if></textarea></td>
 									</tr> <!-- default값이 n임 : n이면 안뜨게  -->
 
 									<tr class="row">
@@ -160,7 +168,6 @@
 								function m_update(){
 									var modify = document.getElementById("viewForm");
 									modify.action="<c:url value='/admin/updateMember'/>";
-									/* modify.setUrl("<c:url value='/admin/updateMember'/>"); */
 									modify.submit();
 									console.log("modify");
 								}

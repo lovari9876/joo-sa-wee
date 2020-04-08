@@ -122,17 +122,16 @@
 							<td class="cell">탈퇴일</td>
 							
 						</tr>
-
-						<c:forEach var="wd" items="${withdrawer_list}">
-						<tr class="trow">
-							<td class="cell">${wd['M_ID']}</td>
-							<td class="cell">${wd['WR_REASON']}</td><!-- view 따로 만들지 않고 내용 목록에서 다 볼 수 있도록 -->
-							<td class="cell">${wd['M_OUTDATE']}</td>
-						</tr>
-						
-						
-						</c:forEach>
-						
+						<tbody>
+		
+							<c:forEach var="wd" items="${withdrawer_list}">
+								<tr class="trow">
+									<td class="cell">${wd['M_ID']}</td>
+									<td class="cell title">${wd['WR_REASON']}</td><!-- view 따로 만들지 않고 내용 목록에서 다 볼 수 있도록 -->
+									<td class="cell">${wd['M_OUTDATE']}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
 						
 							
 						

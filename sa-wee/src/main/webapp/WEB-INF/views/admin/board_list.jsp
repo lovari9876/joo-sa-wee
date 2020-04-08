@@ -57,36 +57,15 @@
 												}); 
 								   </script>
 									
-							 
-								<select id = "board" name = "bt_no" class="span2 pull-left" data-bt="${bt_no}"></select>
-								<select id = "sub" name = "s_content" class="span2 pull-left" data-s="${s_content}"></select>
 							
-							 
-							
-							<%-- <select id="bt_no" name="bt_no" tabindex="1"  onchange="categoryChange(this)" data-placeholder="전체게시판" class="span2 pull-left">
-										<option value="" <c:out value="${bt_no == null ? 'selected' : ''}"/>>전체게시판</option>
-										<option value="1" <c:out value="${bt_no eq 1 ? 'selected' : ''}"/>>보드이야기</option>
-										<option value="2" <c:out value="${bt_no eq 2 ? 'selected' : ''}"/>>개봉기 및 리뷰</option>
-										<option value="3" <c:out value="${bt_no eq 3 ? 'selected' : ''}"/>>보드게임 모임</option>
-										<option value="4" <c:out value="${bt_no eq 4 ? 'selected' : ''}"/>>보드뉴스</option>
-										<option value="5" <c:out value="${bt_no eq 5 ? 'selected' : ''}"/>>질문과 답변</option>
-										<option value="6" <c:out value="${bt_no eq 6 ? 'selected' : ''}"/>>창작 보드게임</option>
-								</select>
-									
-								<select id="s_no" name="s_content" tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
-										<option>${s_content}</option>
-								</select>
-							 --%>
-								
-								
-								<div class="input-append pull-right"> 
+							<div class="input-append pull-right"> 
 									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
-									<button type="submit" class="btn" id="searchBtn" value="${s_content}" >
+									<button type="submit" class="btn" id="searchBtn">
 										<i class="icon-search"></i>
 									</button>
-								</div>
-								
-								 <div class="dropdown pull-right">
+							</div>
+							
+							 <div class="dropdown pull-right">
 										<select id="searchType" name="searchType" class="span2">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
@@ -95,11 +74,27 @@
 											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 											<option value = "tc" class="btn">제목+내용</option>
 										</select>
-								</div> 
+							</div> 
+								
+							<div class="dropdown pull-right">
+								<select id = "sub" name = "s_content" class="span2 pull-left" data-s="${s_content}"></select>
+							</div>	
+							
+							
+							<div class="dropdown pull-right">
+								<select id = "board" name = "bt_no" class="span2 pull-left" data-bt="${bt_no}"></select>
+							</div>	
+							
+							
+							
+								
+								
+								
 							</div>
 						</div>
 
 					</form>
+					<br><br>
 					
 					<div class="btn-group pull-left" >
 						<button type="button" value="board" class="btn selectDelete_btn" data-BW="${board['BT_NO']} ${board['BW_NO']}">선택 글 삭제</button>
@@ -135,35 +130,36 @@
 							<td class="cell">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
-						
-						<c:forEach items="${board_list}" var="board">
-								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${board['BT_NO']} ${board['BW_NO']} ${board['M_NO']}"></td>
-									<td class="cell">${board['BW_NO']}</td>
-									<td class="cell">${board['BT_NAME']}</td>
-									<td class="cell">${board['S_CONTENT']}</td>
-									<td class="cell title"><a
-										href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']} (${board['CM']})</a></td>
-									<td class="cell">${board['M_ID']}</td>
-									<td class="cell"> 
-									
-									
-										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-										<jsp:useBean id="today" class="java.util.Date" />
-										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-										<c:choose>
-											<c:when test="${now ne date}">${date}</c:when>
-											<c:otherwise>
-												<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
-											</c:otherwise>
-										</c:choose>
+						<tbody>
+							<c:forEach items="${board_list}" var="board">
+									<tr class="trow">
+										<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${board['BT_NO']} ${board['BW_NO']} ${board['M_NO']}"></td>
+										<td class="cell">${board['BW_NO']}</td>
+										<td class="cell">${board['BT_NAME']}</td>
+										<td class="cell">${board['S_CONTENT']}</td>
+										<td class="cell title"><a
+											href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']} (${board['CM']})</a></td>
+										<td class="cell">${board['M_ID']}</td>
+										<td class="cell"> 
 										
 										
-									</td>
-									<td class="cell">${board['BW_REPORT_NUM']}</td>
-								</tr>
-							</c:forEach>
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" />
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+												</c:otherwise>
+											</c:choose>
+											
+											
+										</td>
+										<td class="cell">${board['BW_REPORT_NUM']}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
 					</table>
 					</div>

@@ -115,31 +115,32 @@
 							<td class="cell">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
-						
-						<c:forEach items="${board_list_cafe}" var="cr">
-								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${cr['BT_NO']} ${cr['CR_NO']} ${cr['M_NO']}"></td>
-									<td class="cell">${cr['CR_NO']}</td>
-									<td class="cell">${cr['C_TITLE']}</td>
-									<td class="cell"><a
-										href="/selectReviewOne?cr_no=${cr['CR_NO']}">${cr['CR_TITLE']} (${cr['CM']})</a></td>
-									<td class="cell">${cr['M_ID']}</td>
-									<td class="cell"> 
-										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-										<jsp:useBean id="today" class="java.util.Date" />
-										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${cr['CR_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-										<c:choose>
-											<c:when test="${now ne date}">${date}</c:when>
-											<c:otherwise>
-												<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
-											</c:otherwise>
-										</c:choose>
-										
-									</td>
-									<td class="cell">${cr['CR_REPORT_NUM']}</td>
-								</tr>
-							</c:forEach>
+						<tbody>
+							<c:forEach items="${board_list_cafe}" var="cr">
+									<tr class="trow">
+										<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${cr['BT_NO']} ${cr['CR_NO']} ${cr['M_NO']}"></td>
+										<td class="cell">${cr['CR_NO']}</td>
+										<td class="cell">${cr['C_TITLE']}</td>
+										<td class="cell title"><a
+											href="/selectReviewOne?cr_no=${cr['CR_NO']}">${cr['CR_TITLE']} (${cr['CM']})</a></td>
+										<td class="cell">${cr['M_ID']}</td>
+										<td class="cell"> 
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" />
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${cr['CR_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+												</c:otherwise>
+											</c:choose>
+											
+										</td>
+										<td class="cell">${cr['CR_REPORT_NUM']}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
 					</table>
 					</div>

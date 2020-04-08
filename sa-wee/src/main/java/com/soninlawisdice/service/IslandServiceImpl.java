@@ -38,13 +38,13 @@ public class IslandServiceImpl implements IslandService {
 
 	// 무인도리스트 작성일 기준 최신순
 	@Override
-	public ArrayList<HashMap<String, Object>> selectIslandList(SearchCriteria scri) {
-		return islandMapper.selectIslandList(scri);
+	public ArrayList<HashMap<String, Object>> selectIslandList(SearchCriteria scri, int bt_no) {
+		return islandMapper.selectIslandList(scri, bt_no);
 	}
 	
 	@Override
-	public int islandListCount(SearchCriteria scri) {
-		return islandMapper.islandListCount(scri);
+	public int islandListCount(SearchCriteria scri, int bt_no) {
+		return islandMapper.islandListCount(scri, bt_no);
 	}
 
 }

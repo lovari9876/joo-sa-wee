@@ -101,36 +101,36 @@
 							<td class="cell"><button type="button" class="btn" >탈퇴</button></td> 정말 탈퇴???? 한번더 묻기 
 							
 						</tr> -->
-						
-						<c:forEach items="${user_list}" var="member">
-								<tr class="trow">
-									<td class="cell">${member.m_id}</td><!-- 해당 tr 클릭하면 메인사이트 회원정보 화면으로 이동  -->
-									<%-- <td class="cell">${member.m_name}</td> --%>
-									<td class="cell">${member.m_nick}</td>
-									<td class="cell">
-										<c:choose>
-											<c:when test="${member.r_no == '1'}">보드대마왕</c:when>
-											<c:when test="${member.r_no == '2'}">보드마스터</c:when>
-											<c:when test="${member.r_no == '3'}">보드게이머</c:when>
-											<c:when test="${member.r_no == '4'}">표류자</c:when>
-										</c:choose>
-									</td>
-									<td class="cell">${member.m_point}</td>
-									<td class="cell">${member.m_email}</td>
-									
-									<td class="cell"><fmt:formatDate value="${member.m_indate}" pattern="yyyy.MM.dd"/></td>
-									
-									<td class="cell">
-										<c:choose>
-											<c:when test="${member.m_out == '1'}">N</c:when>
-											<c:when test="${member.m_out == '0'}">Y</c:when>
-										</c:choose>
-									</td>
-									<td class="cell"><button type="button" class="btn user_list" onclick="location='user_view?m_no=${member.m_no}'">수정</button></td>
-									<!-- <td class="cell"><button type="button" class="btn user_list" >탈퇴</button></td> --> <!-- 정말 탈퇴???? 한번더 묻기  -->
-								</tr>
+						<tbody>
+							<c:forEach items="${user_list}" var="member">
+									<tr class="trow">
+										<td class="cell">${member.m_id}</td><!-- 해당 tr 클릭하면 메인사이트 회원정보 화면으로 이동  -->
+										<%-- <td class="cell">${member.m_name}</td> --%>
+										<td class="cell">${member.m_nick}</td>
+										<td class="cell">
+											<c:choose>
+												<c:when test="${member.r_no == '1'}">보드대마왕</c:when>
+												<c:when test="${member.r_no == '2'}">보드마스터</c:when>
+												<c:when test="${member.r_no == '3'}">보드게이머</c:when>
+												<c:when test="${member.r_no == '4'}">표류자</c:when>
+											</c:choose>
+										</td>
+										<td class="cell">${member.m_point}</td>
+										<td class="cell">${member.m_email}</td>
+										
+										<td class="cell"><fmt:formatDate value="${member.m_indate}" pattern="yyyy.MM.dd"/></td>
+										
+										<td class="cell">
+											<c:choose>
+												<c:when test="${member.m_out == '1'}">N</c:when>
+												<c:when test="${member.m_out == '0'}">Y</c:when>
+											</c:choose>
+										</td>
+										<td class="cell"><button type="button" class="btn user_list" onclick="location='user_view?m_no=${member.m_no}'">수정</button></td>
+										<!-- <td class="cell"><button type="button" class="btn user_list" >탈퇴</button></td> --> <!-- 정말 탈퇴???? 한번더 묻기  -->
+									</tr>
 							</c:forEach>
-						
+						</tbody>
 
 					</table>
 					</div>

@@ -36,30 +36,6 @@
 						<div class="control-group">
 
 							<div class="controls">
-							
-								<select tabindex="1" onchange="categoryChange(this)" data-placeholder="전체게시판" class="span2 pull-left">
-										<option value="">전체게시판</option>
-										<option value="category_1">보드이야기</option>
-										<option value="category_2">개봉기 및 리뷰</option>
-										<option value="category_3">보드게임 모임</option>
-										<option value="category_4">보드뉴스</option>
-										<option value="category_5">질문 n 답변</option>
-										<option value="category_6">창작 보드게임</option>
-								</select>
-									
-								<select tabindex="2" id="category" data-placeholder="전체말머리" class="span2 pull-left">
-										<option>전체말머리</option>
-								</select>
-									
-									
-								<!-- <select tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
-										<option value="">전체말머리</option>
-										<option value="Category 1">말머리1</option>
-										<option value="Category 2">말머리2</option>
-										<option value="Category 3">말머리3</option>
-										<option value="Category 4">말머리4</option>
-								</select> -->
-								
 								
 								<div class="input-append pull-right"> 
 									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
@@ -68,29 +44,48 @@
 									</button>
 								</div>
 								
-								  <div class="dropdown pull-right">
-										<select name="searchType" class="span2">
+								 <div class="dropdown pull-right">  
+										<select name="searchType" class="span2 pull-right select-right">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
 											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-										</select>
+										</select>	
 								</div> 
+								
+								  <div class="dropdown pull-right">
+								  
+								  	 <select id="s_content" name="s_content" class="span2 pull-right select-right">
+										  <option value="n" <c:out value="${s_content == null ? 'selected' : ''}"/>>말머리</option>
+									      <option value="s" <c:out value="${s_content eq 's' ? 'selected' : ''}"/>>판매중</option>
+									      <option value="b" <c:out value="${s_content eq 'b' ? 'selected' : ''}"/>>구매중</option>
+									      <option value="c" <c:out value="${s_content eq 'c' ? 'selected' : ''}"/>>거래완료</option>
+						              </select>	
+						          </div>  
+						          
+						         
+								
+								
 							</div>
 						</div>
 
 					</form>
+					<br><br>
+					<div class="control-group">
 					
-					<div class="btn-group pull-left" >
-						<button type="button" class="btn selectDelete_btn" data-BW="${trade['BT_NO']} ${trade['T_NO']}" >선택 글 삭제</button>
-						<button type="button" class="btn selectIsland_btn" data-BW="${trade['BT_NO']} ${trade['T_NO']} ${trade['M_NO']}">무인도 행</button>
+						<div class="btn-group pull-left" >
+							<button type="button" class="btn selectDelete_btn" data-BW="${trade['BT_NO']} ${trade['T_NO']}" >선택 글 삭제</button>
+							<button type="button" class="btn selectIsland_btn" data-BW="${trade['BT_NO']} ${trade['T_NO']} ${trade['M_NO']}">무인도 행</button>
+						</div>
+						
+						<div class="btn-group pull-right" data-toggle="buttons-radio">
+							<button type="button" class="btn">정렬</button>
+							<button type="button" class="btn">조회수</button>
+							<button type="button" class="btn">추천수</button>
+						</div>
 					</div>
-					<div class="btn-group pull-right" data-toggle="buttons-radio">
-						<button type="button" class="btn">정렬</button>
-						<button type="button" class="btn">조회수</button>
-						<button type="button" class="btn">추천수</button>
-					</div>
+					
 				</div>
 
 
@@ -114,30 +109,31 @@
 							<td class="cell">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
-						
-						<c:forEach items="${board_list_trade}" var="trade">
-								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${trade['BT_NO']} ${trade['T_NO']} ${trade['M_NO']}"></td>
-									<td class="cell">${trade['T_NO']}</td>
-									<td class="cell">${trade['S_CONTENT']}</td>
-									<td class="cell"><a
-										href="/content_view_t?t_no=${trade['T_NO']}">${trade['T_TITLE']} (${trade['CM']})</a></td>
-									<td class="cell">${trade['M_ID']}</td>
-									<td>
-										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-										<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
-										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-										<c:choose>
-											<c:when test="${now ne date}">${date}</c:when> 
-											<c:otherwise>
-												<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="HH:mm"/>
-											</c:otherwise>
-										</c:choose>
-									</td>
-									<td class="cell">${trade['T_REPORT_NUM']}</td>
-								</tr>
-							</c:forEach>
+						<tbody>
+							<c:forEach items="${board_list_trade}" var="trade">
+									<tr class="trow">
+										<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${trade['BT_NO']} ${trade['T_NO']} ${trade['M_NO']}"></td>
+										<td class="cell">${trade['T_NO']}</td>
+										<td class="cell">${trade['S_CONTENT']}</td>
+										<td class="cell title"><a
+											href="/content_view_t?t_no=${trade['T_NO']}">${trade['T_TITLE']} (${trade['CM']})</a></td>
+										<td class="cell">${trade['M_ID']}</td>
+										<td>
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+										<td class="cell">${trade['T_REPORT_NUM']}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
 					</table>
 					</div>

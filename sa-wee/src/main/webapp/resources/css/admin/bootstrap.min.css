@@ -1346,6 +1346,10 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 	vertical-align: middle;
 }
 
+div > .pull-right{
+	padding-left : 4px;
+}
+
 /* write : 작성페이지에 있는 입력창 text에만 균일한 margin 주기  */
 .cell input[type="text"] {
 	margin : 3px 5px;
@@ -2025,10 +2029,10 @@ input.search-query {
 	margin-right: 3px;
 	margin-left: 0;
 }
-
-/* .control-group {
+/*  .controls {
+ 	display : inline;
 	margin-bottom: 10px;
-} */
+}  */
 
 legend+.control-group {
 	margin-top: 20px;
@@ -5265,10 +5269,10 @@ to {
 
 
 
-.dropup, .dropdown {
+/* .dropup, .dropdown {
 	position: relative;
 	margin-left: 5px;
-}
+} */
 
 .dropdown-toggle {
 	*margin-bottom: -3px;
@@ -6308,6 +6312,13 @@ button.close {
 	.span2 {
 		width: 170px;
 	}
+
+	/* 게시판리스트 selectbox */
+	.dropdown > .span2 {
+		width: 130px;
+	}
+	
+	
 	.span1 {
 		width: 70px;
 	}

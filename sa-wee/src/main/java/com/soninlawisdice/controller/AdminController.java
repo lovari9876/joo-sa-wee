@@ -415,14 +415,28 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/island_list", method = RequestMethod.GET)
-	public String island_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String island_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) throws Exception {
 
 		scri.setPerPageNum(15);
-		model.addAttribute("island_list", islandService.selectIslandList(scri));
+		
+		System.out.println("s_content: " + rq.getParameter("s_content"));
+		String b = rq.getParameter("bt_no");
+		int bt_no;
+		
+		if (b != null) {
+			bt_no = Integer.parseInt(rq.getParameter("bt_no")); 
+			System.out.println("===============bt_no" + bt_no);
+		}else {
+			bt_no = 0;
+		}
+		
+		
+		model.addAttribute("island_list", islandService.selectIslandList(scri, bt_no));
+		model.addAttribute("bt_no", bt_no);
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(islandService.islandListCount(scri));
+		pageMaker.setTotalCount(islandService.islandListCount(scri, bt_no));
 
 		model.addAttribute("pageMaker", pageMaker);
 
