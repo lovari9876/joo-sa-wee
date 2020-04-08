@@ -66,8 +66,9 @@
                 		WHERE bt.bt_no = #{bt_no}
                 	</otherwise>
              </choose> 
-		        
-		         <include refid="board_search"></include>
+            	<include refid="boardType_search"></include>
+		        <include refid="subject_search"></include>
+		        <include refid="board_search"></include>
 		                       )
 		WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 		ORDER BY bw_no DESC
@@ -136,6 +137,10 @@
 		  FROM board_write bw
 		  LEFT JOIN board_type bt
 		  ON bw.bt_no = bt.bt_no
+		  INNER JOIN subject s
+           ON bw.s_no=s.s_no
+		  
+		  
 		 
 		 <choose>
            <when test = "bt_no == 13"> <!-- 게시글 관리 : 커뮤니티 전체 불러오기  -->
@@ -145,11 +150,15 @@
                 WHERE bt.bt_no = #{bt_no}
             </otherwise>
          </choose> 
-		 <include refid="board_search"></include>	
+				<include refid="boardType_search"></include>
+		        <include refid="subject_search"></include>
+		        <include refid="board_search"></include>
+		        
 		 AND bw.bw_no > 0
 
 	</select>
 	
+	<!-- ======================================================================================================== -->
 	<sql id="board_search">
 		<if test="scri.searchType != null">
 			<if test="scri.searchType == 't'.toString()">AND bw_title LIKE '%' || #{scri.keyword} || '%'</if>
@@ -158,6 +167,50 @@
 			<if test="scri.searchType == 'tc'.toString()">AND (bw_title LIKE '%' || #{scri.keyword} || '%') or (bw_content LIKE '%' || #{scri.keyword} || '%')</if>
 		</if>
 	</sql>
+	
+	
+	
+	<sql id="boardType_search">
+		<if test="bt_no != null">
+			<if test="bt_no == 1">AND bt.bt_no = 1 </if>
+			<if test="bt_no == 2">AND bt.bt_no = 2</if>
+			<if test="bt_no == 3">AND bt.bt_no = 3</if>
+			<if test="bt_no == 4">AND bt.bt_no = 4</if>
+			<if test="bt_no == 5">AND bt.bt_no = 5</if>
+			<if test="bt_no == 6">AND bt.bt_no = 6</if>
+		</if>
+	</sql>
+	
+	<sql id="subject_search">
+		<if test="s_content != null">
+			<if test="s_content == '전체보기'"> </if>
+			<if test="s_content == '잡담'">AND s.s_content = '잡담' </if>
+			<if test="s_content == '노하우'">AND s.s_content = '노하우'</if>
+			<if test="s_content == '토론'">AND s.s_content = '토론'</if>
+			
+			<if test="s_content == '개봉기'">AND s.s_content = '개봉기'</if>
+			<if test="s_content == '일 리뷰'">AND s.s_content = '일 리뷰'</if>
+			<if test="s_content == '다 리뷰'">AND s.s_content = '다 리뷰'</if>
+			
+			<if test="s_content == '모집'">AND s.s_content = '모집'</if>
+			<if test="s_content == '모임 후기'">AND s.s_content = '모임 후기'</if>
+			
+			<if test="s_content == '이벤트'">AND s.s_content = '이벤트'</if>
+			<if test="s_content == '대회'">AND s.s_content = '대회'</if>
+			<if test="s_content == '신작 소식'">AND s.s_content = '신작 소식'</if>
+			<if test="s_content == '세일'">AND s.s_content = '세일'</if>
+			<if test="s_content == '기타'">AND s.s_content = '기타'</if>
+			
+			
+			<if test="s_content == '계획'">AND s.s_content = '계획'</if>
+			<if test="s_content == '디자인'">AND s.s_content = '디자인'</if>
+			<if test="s_content == '완성'">AND s.s_content = '완성'</if>
+			<if test="s_content == '공유'">AND s.s_content = '공유'</if>
+			<if test="s_content == '테스트플레이'">AND s.s_content = '테스트플레이'</if>
+			
+		</if>
+	</sql>
+	
 	
 	
 	<select id="cafe_review_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">

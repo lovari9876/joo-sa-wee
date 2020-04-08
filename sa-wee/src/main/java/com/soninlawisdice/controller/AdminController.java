@@ -318,16 +318,28 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/board_list", method = RequestMethod.GET)
-	public String board_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String board_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) throws Exception {
 
 		scri.setPerPageNum(15);
-
-		// model.addAttribute("bt_no", 1);
-		model.addAttribute("board_list", adminService.boardList(scri, 13));
-
+		
+		System.out.println("s_content: " + rq.getParameter("s_content"));
+		String b = rq.getParameter("bt_no");
+		int bt_no;
+		
+		if (b != null) {
+			bt_no = Integer.parseInt(rq.getParameter("bt_no")); 
+			System.out.println("===============bt_no" + bt_no);
+		}else {
+			bt_no = 13;
+		}
+		
+		model.addAttribute("board_list", adminService.boardList(scri, bt_no, rq.getParameter("s_content")));
+		
+		model.addAttribute("s_content", rq.getParameter("s_content"));
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 13));
+		pageMaker.setTotalCount(adminService.board_listCount(scri, bt_no, rq.getParameter("s_content")));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -335,13 +347,15 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/notice_list", method = RequestMethod.GET)
-	public String notice_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+	public String notice_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 		scri.setPerPageNum(15);
-		model.addAttribute("notice_list", adminService.boardList(scri, 12)); // 공지사항은 bt_no 12임..
+		
+		//int s_no = Integer.parseInt(rq.getParameter("s_no"));
+		model.addAttribute("notice_list", adminService.boardList(scri, 12, rq.getParameter("s_content"))); // 공지사항은 bt_no 12임..
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 12));
+		pageMaker.setTotalCount(adminService.board_listCount(scri, 12, rq.getParameter("s_content")));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -447,13 +461,15 @@ public class AdminController {
 	
 	
 	@RequestMapping("/ask_list")
-	public String ask_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+	public String ask_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 
-		model.addAttribute("ask_list", adminService.boardList(scri, 8));
+		
+		//int s_no = Integer.parseInt(rq.getParameter("s_no"));
+		model.addAttribute("ask_list", adminService.boardList(scri, 8, rq.getParameter("s_content")));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 8));
+		pageMaker.setTotalCount(adminService.board_listCount(scri, 8, rq.getParameter("s_content")));
 
 		model.addAttribute("pageMaker", pageMaker);
 		

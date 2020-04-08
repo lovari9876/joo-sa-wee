@@ -29,9 +29,10 @@ public interface AdminMapper {
 	
 
 	// 페이징 처리 + 검색  List
-	public ArrayList<HashMap<String, Object>> boardList(@Param("scri") SearchCriteria scri, @Param("bt_no") int bt_no);
+	public ArrayList<HashMap<String, Object>> boardList(@Param("scri") SearchCriteria scri, 
+			@Param("bt_no") int bt_no, @Param("s_content") String s_content);
 	
-	public int board_listCount(@Param("scri") SearchCriteria scri, @Param("bt_no") int bt_no);
+	public int board_listCount(@Param("scri") SearchCriteria scri, @Param("bt_no") int bt_no, @Param("s_content") String s_content);
 	
 	public List<MemberVO> memberList(SearchCriteria scri);
 	public int member_listCount(SearchCriteria scri);

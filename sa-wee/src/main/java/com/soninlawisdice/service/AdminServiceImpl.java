@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,12 +65,12 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no){
-		return adminMapper.boardList(scri, bt_no);
+	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content){
+		return adminMapper.boardList(scri, bt_no, s_content);
 	}
 	@Override
-	public int board_listCount(SearchCriteria scri, int bt_no){
-		return adminMapper.board_listCount(scri, bt_no);
+	public int board_listCount(SearchCriteria scri, int bt_no, String s_content){
+		return adminMapper.board_listCount(scri, bt_no, s_content);
 	}
 	
 	

@@ -8,19 +8,53 @@
   var target = document.getElementById("category");
   
  
-  if(e.value == "category_1") var d = category_a;
-  else if(e.value == "category_2") var d = category_b;
-  else if(e.value == "category_3") var d = category_c;
-  else if(e.value == "category_4") var d = category_d;
-  else if(e.value == "category_5") var d = category_e;
-  else if(e.value == "category_6") var d = category_f;
+  if(e.value == "1") var d = category_a;
+  else if(e.value == "2") var d = category_b;
+  else if(e.value == "3") var d = category_c;
+  else if(e.value == "4") var d = category_d;
+  else if(e.value == "5") var d = category_e;
+  else if(e.value == "6") var d = category_f;
  
   target.options.length = 0;
+  
+  
  
+  
   for (x in d) {
     var opt = document.createElement("option");
     opt.value = d[x];
     opt.innerHTML = d[x];
+    
+   
+
+   
     target.appendChild(opt);
   } 
+  
+
+  //var s_content = $('#searchBtn').val();
+	//$('#category').val("s_content").prop("selected", true);
+	//console.log(s_content);
+  
 }
+
+
+/*$(document).ready(function() {
+	
+	
+	
+  
+});*/
+		  
+		
+
+
+/*
+$(".searchBtn").click(function() {
+	var s_content = $('#category').val();
+	if (s_content == "d[x]"){
+		$('#category').val("d[x]").prop("selected", true);
+	}
+	console.log(s_content);
+	
+});*/

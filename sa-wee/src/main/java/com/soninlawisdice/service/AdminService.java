@@ -24,8 +24,8 @@ public interface AdminService {
 
 	
 	// 페이징 처리 + 검색  List
-	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no);
-	public int board_listCount(SearchCriteria scri, int bt_no);
+	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content);
+	public int board_listCount(SearchCriteria scri, int bt_no, String s_content);
 	
 	public List<MemberVO> memberList(SearchCriteria scri);
 	public int member_listCount(SearchCriteria scri);
