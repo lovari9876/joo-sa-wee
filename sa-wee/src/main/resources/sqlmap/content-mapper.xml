@@ -5,7 +5,7 @@
 
 <mapper namespace="com.soninlawisdice.mapper.ContentMapper">
 
-<!-- ====================== 커뮤니티(일반 게시판) ======================== -->
+	<!-- ====================== 커뮤니티(일반 게시판) ======================== -->
 
 	<!-- Board_writeVO resultMap -->
 	<resultMap type="com.soninlawisdice.vo.Board_writeVO"
@@ -44,17 +44,20 @@
 	</resultMap>
 
 	<!-- 게시글 보기(content_view) -->
-	<select id="selectContentOne" resultType="java.util.HashMap" parameterType="int">
+	<select id="selectContentOne" resultType="java.util.HashMap"
+		parameterType="int">
 		SELECT BW.BW_NO, BW.BW_TITLE, BW.BW_CONTENT,
 		BW.BW_WRITTEN_DATE, BW.BW_UPDATED_DATE, BW.BW_HIT,
 		BW.BW_RECOMMEND_NUM, BW.BW_REPORT_NUM, BW.BW_ISLAND, BW.BW_SECRET,
 		M.M_NICK, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
-		FROM BOARD_WRITE BW, MEMBER M,
+		FROM BOARD_WRITE BW, MEMBER
+		M,
 		BOARD_TYPE BT, SUBJECT S
-		WHERE BW.M_NO = M.M_NO AND BW.BT_NO = BT.BT_NO
+		WHERE BW.M_NO = M.M_NO AND BW.BT_NO =
+		BT.BT_NO
 		AND BW.S_NO = S.S_NO AND
 		BW.BW_NO = #{bw_no}
-	</select> 
+	</select>
 
 	<!-- 게시글 삭제 -->
 	<delete id="deleteContent">
@@ -113,21 +116,24 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
-	
+
 	<!-- 게시글 신고수 증가 -->
 	<update id="updateReportBW">
-		UPDATE BOARD_WRITE SET BW_REPORT_NUM = BW_REPORT_NUM +1 WHERE BW_NO = #{bw_no}
+		UPDATE BOARD_WRITE SET BW_REPORT_NUM = BW_REPORT_NUM
+		+1 WHERE BW_NO = #{bw_no}
 	</update>
-	
+
 	<!-- 게시글 아일랜드 1로 변경 -->
 	<update id="updateIslandBW">
-		UPDATE BOARD_WRITE SET BW_ISLAND = 1 WHERE BW_NO = #{bw_no}
+		UPDATE BOARD_WRITE SET BW_ISLAND = 1 WHERE BW_NO =
+		#{bw_no}
 	</update>
 
 	<!-- m_no를 가져오기 위해 -->
-	<select id="selectContentM"
-		resultType="java.util.HashMap" parameterType="int">
-		SELECT M_NO, M_REPORT_NUM FROM MEMBER WHERE M_NO = #{m_no}
+	<select id="selectContentM" resultType="java.util.HashMap"
+		parameterType="int">
+		SELECT M_NO, M_REPORT_NUM FROM MEMBER WHERE M_NO =
+		#{m_no}
 	</select>
 
 	<!-- 회원 신고글 쓰기 -->
@@ -138,21 +144,23 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
-	
+
 	<!-- 회원 신고수 증가 -->
 	<update id="updateReportM">
-		UPDATE MEMBER SET M_REPORT_NUM = M_REPORT_NUM +1 WHERE M_NO = #{m_no}
+		UPDATE MEMBER SET M_REPORT_NUM = M_REPORT_NUM +1
+		WHERE M_NO = #{m_no}
 	</update>
-	
+
 	<!-- 회원 등급 4로 변경 -->
 	<update id="updateIslandM">
 		UPDATE MEMBER SET R_NO = 4 WHERE M_NO = #{m_no}
 	</update>
 
 	<!-- cm_no를 가져오기 위해 -->
-	<select id="selectContentCM"
-		resultType="java.util.HashMap" parameterType="int">
-		SELECT CM_NO, CM_REPORT_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+	<select id="selectContentCM" resultType="java.util.HashMap"
+		parameterType="int">
+		SELECT CM_NO, CM_REPORT_NUM FROM CM_COMMENT WHERE CM_NO
+		= #{cm_no}
 	</select>
 
 	<!-- 댓글 신고글 쓰기 -->
@@ -163,10 +171,11 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
-	
+
 	<!-- 댓글 신고수 증가 -->
 	<update id="updateReportCM">
-		UPDATE CM_COMMENT SET CM_REPORT_NUM = CM_REPORT_NUM +1 WHERE CM_NO = #{cm_no}
+		UPDATE CM_COMMENT SET CM_REPORT_NUM = CM_REPORT_NUM
+		+1 WHERE CM_NO = #{cm_no}
 	</update>
 
 	<!-- CM_commentVO resultMap -->
@@ -216,35 +225,39 @@
 		CM.CM_STEP, CM.CM_INDENT
 		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
 		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = BW.BW_NO 
+		CM.CM_NO2 = BW.BW_NO
 		AND CM.CM_TYPE = '게시판' AND CM.CM_NO = #{cm_no}
 	</select>
-	
+
 	<!-- 댓글 수정 -->
 	<update id="updateCommentOne">
-		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
+		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content},
+		CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
 	</update>
-	
+
 	<!-- 댓글 목록 -->
 	<select id="selectCommentList" resultType="java.util.HashMap"
 		parameterType="String">
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
 		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
 		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
-		CM.CM_STEP, CM.CM_INDENT, 
-		(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_TYPE = '게시판' AND CM_NO2 = BW.BW_NO) CM_COUNT
+		CM.CM_STEP, CM.CM_INDENT,
+		(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_TYPE = '게시판' AND CM_NO2 = BW.BW_NO)
+		CM_COUNT
 		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
-		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = BW.BW_NO 
+		WHERE CM.M_NO =
+		M.M_NO AND
+		CM.CM_NO2 = BW.BW_NO
 		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
-		ORDER BY CM.CM_WRITTEN_DATE DESC
+		ORDER BY
+		CM.CM_WRITTEN_DATE DESC
 	</select>
-	
+
 	<!-- 댓글 삭제 -->
 	<delete id="deleteComment">
 		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</delete>
-	
+
 	<!-- 댓글 추천수 증가 -->
 	<update id="upRecommendComment">
 		UPDATE CM_COMMENT SET CM_RECOMMEND_NUM =
@@ -256,44 +269,53 @@
 		SELECT
 		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
-	
+
 	<!-- 댓글 갯수 세기 -->
 	<select id="selectCommentCount" resultType="java.util.HashMap"
 		parameterType="String">
-		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM, BOARD_WRITE BW
-		WHERE CM.CM_NO2 = BW.BW_NO AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
+		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM,
+		BOARD_WRITE BW
+		WHERE CM.CM_NO2 = BW.BW_NO AND CM.CM_TYPE = '게시판' AND
+		CM.CM_NO2 = #{cm_no2}
 	</select>
-	
-<!-- ====================== 보부상 ======================== -->
-	
+
+	<!-- ====================== 보부상 ======================== -->
+
 	<!-- 중고거래 게시글 보기(content_view) -->
-	<select id="selectContentTOne" resultType="java.util.HashMap" parameterType="int">
+	<select id="selectContentTOne" resultType="java.util.HashMap"
+		parameterType="int">
 		SELECT T.T_NO, T.T_TITLE, T.T_CONTENT,
-		T.T_WRITTEN_DATE, T.T_UPDATED_DATE, T.T_HIT,
-		T.T_RECOMMEND_NUM, T.T_REPORT_NUM, T.T_ISLAND, T.T_PRICE,
+		T.T_WRITTEN_DATE,
+		T.T_UPDATED_DATE, T.T_HIT,
+		T.T_RECOMMEND_NUM, T.T_REPORT_NUM,
+		T.T_ISLAND, T.T_PRICE,
 		M.M_NICK, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
-		FROM TRADE T, MEMBER M,
+		FROM
+		TRADE T, MEMBER M,
 		BOARD_TYPE BT, SUBJECT S
-		WHERE T.M_NO = M.M_NO AND T.BT_NO = BT.BT_NO
+		WHERE T.M_NO = M.M_NO AND
+		T.BT_NO = BT.BT_NO
 		AND T.S_NO = S.S_NO AND
 		T.T_NO = #{t_no}
-	</select> 
-	
+	</select>
+
 	<!-- 중고거래 게시글 삭제 -->
 	<delete id="deleteContentT">
 		DELETE FROM TRADE WHERE T_NO = #{t_no}
 	</delete>
-	
+
 	<!-- 중고거래 게시글 조회수 -->
 	<update id="upHitContentT">
 		UPDATE TRADE SET T_HIT = T_HIT + 1 WHERE
-		T_NO = #{t_no}
+		T_NO =
+		#{t_no}
 	</update>
-	
+
 	<!-- 중고거래 게시글 추천수 증가 -->
 	<update id="upRecommendContentT">
 		UPDATE TRADE SET T_RECOMMEND_NUM =
-		T_RECOMMEND_NUM +1 WHERE T_NO = #{t_no}
+		T_RECOMMEND_NUM +1
+		WHERE T_NO = #{t_no}
 	</update>
 
 	<!-- 중고거래 게시글 추천수 증가하는 거 받아옴 -->
@@ -310,17 +332,18 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
-	
+
 	<!-- 중고거래 신고수 증가 -->
 	<update id="updateReportT">
-		UPDATE TRADE SET T_REPORT_NUM = T_REPORT_NUM +1 WHERE T_NO = #{t_no}
+		UPDATE TRADE SET T_REPORT_NUM = T_REPORT_NUM +1 WHERE
+		T_NO = #{t_no}
 	</update>
-	
+
 	<!-- 중고거래 아일랜드 1로 변경 -->
 	<update id="updateIslandT">
 		UPDATE TRADE SET T_ISLAND = 1 WHERE T_NO = #{t_no}
 	</update>
-	
+
 	<!-- 중고거래 댓글 목록 -->
 	<select id="selectCommentListT" resultType="java.util.HashMap"
 		parameterType="String">
@@ -329,12 +352,14 @@
 		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
 		CM.CM_STEP, CM.CM_INDENT
 		FROM CM_COMMENT CM, MEMBER M, TRADE T
-		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = T.T_NO 
+		WHERE
+		CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = T.T_NO
 		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
-		ORDER BY CM.CM_WRITTEN_DATE DESC
+		ORDER BY
+		CM.CM_WRITTEN_DATE DESC
 	</select>
-	
+
 	<!-- 중고거래 댓글 쓰기 -->
 	<insert id="insertCommentT">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
@@ -354,23 +379,27 @@
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
 		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
 		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
-		CM.CM_STEP, CM.CM_INDENT
-		FROM CM_COMMENT CM, MEMBER M, TRADE T
+		CM.CM_STEP, CM.CM_INDENT,
+		(SELECT COUNT(*) FROM CM_COMMENT WHERE
+		CM_TYPE = '중고거래' AND CM_NO2 = T.T_NO) CM_COUNT
+		FROM CM_COMMENT CM,
+		MEMBER M, TRADE T
 		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = T.T_NO 
+		CM.CM_NO2 = T.T_NO
 		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO = #{cm_no}
 	</select>
-	
+
 	<!-- 중고거래 댓글 수정 -->
 	<update id="updateCommentTOne">
-		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
+		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content},
+		CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
 	</update>
-	
+
 	<!-- 중고거래 댓글 삭제 -->
 	<delete id="deleteCommentT">
 		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</delete>
-	
+
 	<!-- 중고거래 댓글 추천수 증가 -->
 	<update id="upRecommendCommentT">
 		UPDATE CM_COMMENT SET CM_RECOMMEND_NUM =
@@ -382,40 +411,44 @@
 		SELECT
 		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
-	
+
 	<!-- 중고거래 댓글 갯수 세기 -->
 	<select id="selectCommentCountT" resultType="java.util.HashMap"
 		parameterType="String">
-		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM, BOARD_WRITE BW
-		WHERE CM.CM_NO2 = BW.BW_NO AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
+		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM,
+		TRADE T
+		WHERE CM.CM_NO2 = T.T_NO AND CM.CM_TYPE = '중고거래' AND
+		CM.CM_NO2 = #{cm_no2}
 	</select>
-	
-<!-- ====================== 카페리뷰 ======================== -->
-	
+
+	<!-- ====================== 카페리뷰 ======================== -->
+
 	<!-- 카페리뷰 게시글 보기(content_view) -->
-	<select id="selectContentCROne" resultType="java.util.HashMap" parameterType="int">
+	<select id="selectContentCROne" resultType="java.util.HashMap"
+		parameterType="int">
 		SELECT CR.CR_NO, CR.CR_TITLE, CR.CR_CONTENT,
 		CR.CR_WRITTEN_DATE, CR.CR_UPDATED_DATE, CR.CR_HIT,
 		CR.CR_RECOMMEND_NUM, CR.CR_REPORT_NUM, CR.CR_ISLAND,
-		M.M_NICK, BT.BT_NAME, BT.BT_NO, C.C_TITLE
+		M.M_NICK,
+		BT.BT_NAME, BT.BT_NO, C.C_TITLE
 		FROM CAFE_REVIEW CR, MEMBER M,
 		BOARD_TYPE BT, CAFE C
 		WHERE CR.M_NO = M.M_NO AND CR.BT_NO = BT.BT_NO
 		AND CR.C_NO = C.C_NO AND
 		CR.CR_NO = #{cr_no}
 	</select>
-	
-	 <!-- 카페리뷰 게시글 삭제 -->
+
+	<!-- 카페리뷰 게시글 삭제 -->
 	<delete id="deleteContentCR">
 		DELETE FROM CAFE_REVIEW WHERE CR_NO = #{cr_no}
 	</delete>
-	
+
 	<!-- 카페리뷰 게시글 조회수 -->
 	<update id="upHitContentCR">
 		UPDATE CAFE_REVIEW SET CR_HIT = CR_HIT + 1 WHERE
 		CR_NO = #{cr_no}
 	</update>
-	
+
 	<!-- 카페리뷰 게시글 추천수 증가 -->
 	<update id="upRecommendContentCR">
 		UPDATE CAFE_REVIEW SET CR_RECOMMEND_NUM =
@@ -436,31 +469,37 @@
 		#{r_type_no}, #{r_content},
 		SYSDATE)
 	</insert>
-	
+
 	<!-- 카페리뷰 신고수 증가 -->
 	<update id="updateReportCR">
-		UPDATE CAFE_REVIEW SET CR_REPORT_NUM = CR_REPORT_NUM +1 WHERE CR_NO = #{cr_no}
+		UPDATE CAFE_REVIEW SET CR_REPORT_NUM = CR_REPORT_NUM
+		+1 WHERE CR_NO = #{cr_no}
 	</update>
-	
+
 	<!-- 카페리뷰 아일랜드 1로 변경 -->
 	<update id="updateIslandCR">
-		UPDATE CAFE_REVIEW SET CR_ISLAND = 1 WHERE CR_NO = #{cr_no}
+		UPDATE CAFE_REVIEW SET CR_ISLAND = 1 WHERE CR_NO =
+		#{cr_no}
 	</update>
-	
+
 	<!-- 카페리뷰 댓글 목록 -->
 	<select id="selectCommentListCR" resultType="java.util.HashMap"
 		parameterType="String">
 		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
 		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
 		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
-		CM.CM_STEP, CM.CM_INDENT
-		FROM CM_COMMENT CM, MEMBER M, CAFE_REVIEW CR
+		CM.CM_STEP, CM.CM_INDENT,
+		(SELECT COUNT(*) FROM CM_COMMENT WHERE
+		CM_TYPE = '카페리뷰' AND CM_NO2 = CR.CR_NO) CM_COUNT
+		FROM CM_COMMENT CM,
+		MEMBER M, CAFE_REVIEW CR
 		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = CR.CR_NO 
+		CM.CM_NO2 = CR.CR_NO
 		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
-		ORDER BY CM.CM_WRITTEN_DATE DESC
+		ORDER BY
+		CM.CM_WRITTEN_DATE DESC
 	</select>
-	
+
 	<!-- 카페리뷰 댓글 쓰기 -->
 	<insert id="insertCommentCR">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
@@ -483,20 +522,21 @@
 		CM.CM_STEP, CM.CM_INDENT
 		FROM CM_COMMENT CM, MEMBER M, CAFE_REVIEW CR
 		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = CR.CR_NO 
+		CM.CM_NO2 = CR.CR_NO
 		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO = #{cm_no}
 	</select>
-	
+
 	<!-- 카페리뷰 댓글 수정 -->
 	<update id="updateCommentCROne">
-		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content}, CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
+		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content},
+		CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
 	</update>
-	
+
 	<!-- 카페리뷰 댓글 삭제 -->
 	<delete id="deleteCommentCR">
 		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</delete>
-	
+
 	<!-- 카페리뷰 댓글 추천수 증가 -->
 	<update id="upRecommendCommentCR">
 		UPDATE CM_COMMENT SET CM_RECOMMEND_NUM =
@@ -508,13 +548,103 @@
 		SELECT
 		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
-	
+
 	<!-- 카페리뷰 댓글 갯수 세기 -->
 	<select id="selectCommentCountCR" resultType="java.util.HashMap"
 		parameterType="String">
-		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM, BOARD_WRITE BW
-		WHERE CM.CM_NO2 = BW.BW_NO AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
+		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM,
+		CAFE_REVIEW CR
+		WHERE CM.CM_NO2 = CR.CR_NO AND CM.CM_TYPE = '카페리뷰' AND
+		CM.CM_NO2 = #{cm_no2}
+	</select>
+
+
+	<!-- ====================== 한줄평 ======================== -->
+
+	<!-- c_no을 가져오기 위해 -->
+	<select id="selectContentCOne" resultType="java.util.HashMap"
+		parameterType="int">
+		SELECT C.C_NO, C.C_TITLE, C.C_ADD, C.C_PHONE,
+		C.C_PEOPLE, C.C_TABLE, C.C_CHAIR, C.C_OPEN, C.C_CLOSE, C.C_REST,
+		C.C_WRITTEN_DATE, C.C_UPDATED_DATE, C.C_HIT, BT.BT_NO
+		FROM CAFE C, BOARD_TYPE BT
+		WHERE C.BT_NO = BT.BT_NO AND C.C_NO = #{c_no}
+	</select>
+
+	<!-- 한줄평 댓글 목록 -->
+	<select id="selectCommentListOR" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT,
+		(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_TYPE = '한줄평' AND CM_NO2 = C.C_NO)
+		CM_COUNT
+		FROM CM_COMMENT CM, MEMBER M, CAFE C
+		WHERE CM.M_NO =
+		M.M_NO AND
+		CM.CM_NO2 = C.C_NO
+		AND CM.CM_TYPE = '한줄평' AND CM.CM_NO2 = #{cm_no2}
+		ORDER BY
+		CM.CM_WRITTEN_DATE DESC
+	</select>
+
+	<!-- 한줄평 댓글 쓰기 -->
+	<insert id="insertCommentOR">
+		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
+		CM_WRITTEN_DATE,
+		CM_UPDATED_DATE, CM_TYPE, CM_NO2, CM_RECOMMEND_NUM,
+		CM_REPORT_NUM,
+		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
+		VALUES
+		(CM_COMMENT_SEQ.NEXTVAL, 5, #{cm_content}, SYSDATE, SYSDATE,
+		'한줄평',
+		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
+	</insert>
+	
+	<!-- 한줄평 댓글 수정하기 view에서 사용 -->
+	<select id="selectCommentOR" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
+		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
+		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
+		CM.CM_STEP, CM.CM_INDENT
+		FROM CM_COMMENT CM, MEMBER M, CAFE_REVIEW CR
+		WHERE CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = CR.CR_NO
+		AND CM.CM_TYPE = '한줄평' AND CM.CM_NO = #{cm_no}
+	</select>
+
+	<!-- 한줄평 댓글 수정 -->
+	<update id="updateCommentOROne">
+		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content},
+		CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
+	</update>
+	
+	<!-- 한줄평 댓글 삭제 -->
+	<delete id="deleteCommentOR">
+		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
+	</delete>
+	
+	<!-- 한줄평 댓글 추천수 증가 -->
+	<update id="upRecommendCommentOR">
+		UPDATE CM_COMMENT SET CM_RECOMMEND_NUM =
+		CM_RECOMMEND_NUM +1 WHERE CM_NO = #{cm_no}
+	</update>
+
+	<!-- 한줄평 댓글 추천수 증가하는 거 받아옴 -->
+	<select id="selectRecommendCommentOR" resultType="String">
+		SELECT
+		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
 	
-	
+	<!-- 한줄평 댓글 갯수 세기 -->
+	<select id="selectCommentCountOR" resultType="java.util.HashMap"
+		parameterType="String">
+		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM,
+		CAFE C
+		WHERE CM.CM_NO2 = C.C_NO AND CM.CM_TYPE = '한줄평' AND
+		CM.CM_NO2 = #{cm_no2}
+	</select>
+
 </mapper>

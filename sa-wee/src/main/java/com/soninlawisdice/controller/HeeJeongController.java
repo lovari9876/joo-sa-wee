@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.ContentServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
@@ -39,6 +40,9 @@ public class HeeJeongController {
 
 	@Autowired
 	ContentService contentService;
+	
+	@Autowired
+	private BoardService boardService;
 
 	private static final Logger logger = LoggerFactory.getLogger(HeeJeongController.class);
 
@@ -477,7 +481,7 @@ public class HeeJeongController {
 		
 		contentService.insertCommentT(cm_commentVO);
 
-		return "content/comment_write_view_t";
+		return "content/comment_write_t";
 	}
 	
 	// 중고거래 댓글 쓰기
@@ -625,7 +629,7 @@ public class HeeJeongController {
 		return "content/report_success";
 	}
 	
-	// 중고거래 회원 신고글 view
+	// 카페리뷰 회원 신고글 view
 	@RequestMapping(value = "/report_view_m_cr", method = RequestMethod.GET)
 	public String report_view_m_cr(HttpServletRequest request, Model model) {
 		System.out.println("report_view_m_cr");
@@ -644,7 +648,7 @@ public class HeeJeongController {
 		return "content/report_view_m_cr";
 	}
 
-	 // 중고거래 회원 신고글 쓰기
+	// 카페리뷰 회원 신고글 쓰기
 	@RequestMapping(value = "/report_m_cr", method = RequestMethod.GET)
 	public String report_m_cr(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO,
 									HttpServletRequest request, @RequestParam int cr_no, RedirectAttributes re) {
@@ -701,8 +705,10 @@ public class HeeJeongController {
 		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
 		model.addAttribute("cr_no", cr_no);
 		System.out.println(cm_commentVO.getCm_no2());
+		
+		contentService.insertCommentCR(cm_commentVO);
 
-		return "content/comment_write_view_cr";
+		return "content/comment_write_cr";
 	}
 
 	// 카페리뷰 댓글 쓰기
@@ -748,7 +754,7 @@ public class HeeJeongController {
 	@RequestMapping(value = "/comment_delete_cr", method = RequestMethod.GET)
 	public String comment_delete_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
 											Model model, @RequestParam int cr_no, RedirectAttributes re) {
-		System.out.println("comment_delete_t");
+		System.out.println("comment_delete_cr");
 				
 		contentService.deleteCommentCR(cm_commentVO);
 			
@@ -766,6 +772,154 @@ public class HeeJeongController {
 		contentService.upRecommendCommentCR(cm_no);
 
 		return contentService.selectRecommendCommentCR(cm_no);
+	}
+	
+	
+	/*============================== 한줄평 ===================================*/
+	
+	// 한줄평 댓글 목록 view
+	@RequestMapping(value = "/comment_view_or", method = RequestMethod.GET)
+	public String comment_view_or(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
+		System.out.println("comment_view_or");
+					
+		String cm_no2 = request.getParameter("cm_no2");
+		System.out.println("cm_no2 : "+cm_no2);
+
+		model.addAttribute("comment_list_or", contentService.selectCommentListOR(cm_no2));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+			
+		// 카페리뷰 댓글 갯수 세기
+		model.addAttribute("comment_count_or", contentService.selectCommentCountOR(cm_no2));
+				  
+		return "content/comment_view_or"; 
+	}
+	
+	// 한줄평 댓글 쓰기 view
+	@RequestMapping(value = "/comment_write_view_or", method = RequestMethod.GET)
+	public String comment_write_view_or(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
+		System.out.println("comment_write_view_or");
+
+		int c_no = Integer.parseInt(request.getParameter("c_no"));
+
+		System.out.println("c_no: "+c_no);
+
+		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
+		model.addAttribute("c_no", c_no);
+		System.out.println(cm_commentVO.getCm_no2());
+		
+		contentService.insertCommentOR(cm_commentVO);
+
+		return "content/comment_write_or";
+	}
+
+	// 한줄평 댓글 쓰기
+	@RequestMapping(value = "/comment_write_or", method = RequestMethod.GET)
+	public String comment_write_or(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
+											Model model, @RequestParam int c_no, RedirectAttributes re) {
+		System.out.println("comment_write_or");
+
+		System.out.println(cm_commentVO.getCm_no2());
+
+		contentService.insertCommentOR(cm_commentVO);
+				
+		re.addAttribute("c_no", c_no);
+
+		return "redirect:/cafe_info";
+	}
+	
+	// 한줄평 댓글 수정하기 view
+	@RequestMapping(value = "/comment_modify_view_or", method = RequestMethod.GET)
+	public String comment_modify_view_or(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
+		System.out.println("comment_modify_view_or");
+			
+		String cm_no = request.getParameter("cm_no");
+		System.out.println("cm_no : "+cm_no);
+			
+		model.addAttribute("comment_modi_or", contentService.selectCommentOR(cm_no));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+				
+		return "content/comment_modify_view_or";
+	}
+			
+	// 한줄평 댓글 수정
+	@RequestMapping(value = "/comment_modify_or", method = RequestMethod.GET)
+	public String comment_modify_or(CM_commentVO cm_commentVO, Model model) {
+		System.out.println("comment_modify_or");
+				
+		contentService.updateCommentOROne(cm_commentVO);
+				
+		return "content/comment_modi_success";
+	}
+	
+	// 한줄평 댓글 삭제
+	@RequestMapping(value = "/comment_delete_or", method = RequestMethod.GET)
+	public String comment_delete_or(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
+											Model model, @RequestParam int c_no, RedirectAttributes re) {
+		System.out.println("comment_delete_or");
+				
+		contentService.deleteCommentCR(cm_commentVO);
+			
+		re.addAttribute("c_no", c_no);
+					
+		return "redirect:/cafe_info";
+	}
+	
+	// 한줄평 댓글 추천수 증가
+	@ResponseBody
+	@RequestMapping(value = "/rec_cm_or", method = RequestMethod.GET)
+	public String recommend_cm_or(String cm_no, Model model) {
+		System.out.println("recommend_cm_or");
+
+		contentService.upRecommendCommentOR(cm_no);
+
+		return contentService.selectRecommendCommentOR(cm_no);
+	}
+	
+	// 한줄평 회원 신고글 view
+	@RequestMapping(value = "/report_view_m_or", method = RequestMethod.GET)
+	public String report_view_m_or(HttpServletRequest request, Model model) {
+		System.out.println("report_view_m_or");
+
+		int m_no = Integer.parseInt(request.getParameter("m_no"));
+
+		System.out.println(m_no);
+
+		model.addAttribute("member_view", contentService.selectContentM(m_no));
+				
+		// content_view_cr로 redirect를 위해서
+		int c_no = Integer.parseInt(request.getParameter("c_no"));
+				
+		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
+
+		return "content/report_view_m_or";
+	}
+
+	// 한줄평 회원 신고글 쓰기
+	@RequestMapping(value = "/report_m_or", method = RequestMethod.GET)
+	public String report_m_or(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO,
+									HttpServletRequest request, @RequestParam int c_no, RedirectAttributes re) {
+		System.out.println("report_m_or");
+
+		System.out.println(reportVO.getR_type_no());
+
+		contentService.insertReportM(reportVO);
+				
+		// 회원 신고수 증가
+		contentService.updateReportM(memberVO);
+				
+		// content_view로 redirect를 위해서
+		re.addAttribute("c_no", c_no);
+				
+		// 회원 등급 4로 변경
+		int m_report_num = Integer.parseInt(request.getParameter("m_report_num"));
+				
+		model.addAttribute("member_view", contentService.selectContentM(m_report_num));
+				
+		if(m_report_num == 6) {
+			contentService.updateIslandM(memberVO);
+		}
+
+		return "redirect:cafe_info";
 	}
 	
 	

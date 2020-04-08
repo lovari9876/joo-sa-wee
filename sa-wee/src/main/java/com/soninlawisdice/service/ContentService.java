@@ -128,4 +128,26 @@ public interface ContentService {
 	public String selectRecommendCommentCR(String cm_no); // 카페리뷰 댓글 추천수 증가하는 거 받아옴
 	
 	public HashMap<String, Object> selectCommentCountCR(String cm_no2); // 카페리뷰 댓글 갯수 세기
+	
+	
+	/*================================= 한줄평 =================================*/
+	
+	public HashMap<String, Object> selectContentCOne(int c_no); // c_no을 가져오기 위해
+	
+	public ArrayList<HashMap<String, Object>> selectCommentListOR(String cm_no); // 한줄평 댓글 목록
+	
+	public void insertCommentOR(CM_commentVO cm_commentVO); // 한줄평 댓글 쓰기
+	
+	public HashMap<String, Object> selectCommentOR(String cm_no); // 한줄평 댓글 수정하기 view에서 사용
+	
+	public void updateCommentOROne(CM_commentVO cm_commentVO); // 한줄평 댓글 수정
+	
+	public void deleteCommentOR(CM_commentVO cm_commentVO); // 한줄평 댓글 삭제
+	
+	public void upRecommendCommentOR(String cm_no); // 한줄평 댓글 추천수 증가
+	
+	public String selectRecommendCommentOR(String cm_no); // 한줄평 댓글 추천수 증가하는 거 받아옴
+	
+	public HashMap<String, Object> selectCommentCountOR(String cm_no2); // 한줄평 댓글 갯수 세기
+	
 }

@@ -40,10 +40,10 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 <!-- collapse -->
-<script
+<!-- <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 
 </head>
 <body id="top">
@@ -184,8 +184,6 @@
 							</div>
 						</div>
 					</form>
-
-
 					<!-- 댓글부분 -->
 					<%-- <%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %> --%>
 						<c:choose>
@@ -229,9 +227,6 @@
 								<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
 							</c:otherwise>
 						</c:choose>
-						
-						<%-- <c:param name="cm_type" value="${board_typeVO.bt_no}"></c:param>
-						<c:param name="cm_no2" value="${content_view.bw_no}"></c:param> --%>
 					
 					<!-- 댓글 쓰기 -->
 					<div class="comment-form-wrap pt-5">
@@ -260,7 +255,7 @@
 	<script src="js/board_hj/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hj/jquery.sticky-sidebar.min.js"></script>
 
-	<script src="js/board_hj/bootstrap.min.js"></script>
+	<!-- <script src="js/board_hj/bootstrap.min.js"></script> -->
 
 	<script src="js/board_hj/bootstrap.bundle.min.js"></script>
 	<script src="js/board_hj/isotope.pkgd.min.js"></script>
@@ -271,7 +266,7 @@
 
 	<script src="js/board_hj/bootstrap-select.min.js"></script>
 
-	<script src="js/board_hj/custom.js"></script>
+	<!-- <script src="js/board_hj/custom.js"></script> -->
 
 	<script src="js/board_hj/main.js"></script>
 
@@ -289,64 +284,6 @@
     ================================================== -->
 	<script src="js/footer/footer_hee.js"></script>
 	
-
-	<!-- modal 일단 실패... -->
-	<!--  <script>
-		// Get the modal
-		var modal = document.getElementById("myModal");
-
-		// Get the button that opens the modal
-		var btn = document.getElementById("myBtn");
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks the button, open the modal 
-		btn.onclick = function() {
-			modal.style.display = "block";
-		}
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-	</script> -->
-
-	<!-- 신고팝업창 / href="javascript:popupOpen();" 집어넣기 -->
-	<!-- <script type="text/javascript">
-		function popupOpen() {
-			var popUrl = "report"; //팝업창에 출력될 페이지 URL
-			var popOption = "width=500, height=600, top=150, left=150, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
-			window.open(popUrl, "", popOption);
-			close();
-		}
-	</script> -->
-
-	<!-- collapse 부분 -->
-	<!-- <script>
-	$('[data-toggle="collapse"]').on('click', function() {
-	    var $this = $(this),
-	  		 	 $parent = typeof $this.data('parent')!== 'undefined' ? $($this.data('parent')) : undefined;
-	    if($parent === undefined) { 
-	        $this.find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
-	        return true;
-	    }
-
-	    /* Open element will be close if parent !== undefined */
-	    var currentIcon = $this.find('.glyphicon');
-	    currentIcon.toggleClass('glyphicon-plus glyphicon-minus');
-	    $parent.find('.glyphicon').not(currentIcon).removeClass('glyphicon-minus').addClass('glyphicon-plus');
-
-	});
-	</script> -->
-
 
 </body>
 </html>

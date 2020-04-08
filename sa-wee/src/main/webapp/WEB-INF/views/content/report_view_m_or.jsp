@@ -36,11 +36,11 @@
 		<div class="pt-5">
 			<div class="comment-form-wrap pt-5">
 				<h3 class="mb-5">신고</h3>
-				<form action="report_m_cr" method="get">
+				<form action="report_m_or" method="get">
 					<input type="hidden" name="r_type_no" value="${member_view['M_NO']}">
 					<input type="hidden" name="m_no" value="${member_view['M_NO']}">
 					<input type="hidden" name="m_report_num" value="${member_view['M_REPORT_NUM']}">
-					<input type="hidden" name="cr_no" value="${content_view_cr['CR_NO']}">
+					<input type="hidden" name="c_no" value="${cafe_info.c_no}">
 					<div class="form-group">
 						<label for="message">신고하기</label>
 						<textarea name="r_content" id="message" cols="30" rows="10"

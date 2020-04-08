@@ -456,11 +456,74 @@ public class ContentServiceImpl implements ContentService {
 	}
 
 	
-
+	/*================================= 한줄평 =================================*/
 	
-
+	// c_no을 가져오기 위해
+	@Override
+	public HashMap<String, Object> selectContentCOne(int c_no) {
+		
+		return contentMapper.selectContentCOne(c_no);
+	}
 	
+	// 한줄평 댓글 목록
+	@Override
+	public ArrayList<HashMap<String, Object>> selectCommentListOR(String cm_no) {
+		
+		return contentMapper.selectCommentListOR(cm_no);
+	}
 
+	// 한줄평 댓글 쓰기
+	@Override
+	public void insertCommentOR(CM_commentVO cm_commentVO) {
+		
+		contentMapper.insertCommentOR(cm_commentVO);
+		
+	}
+
+	// 한줄평 댓글 수정하기 view에서 사용
+	@Override
+	public HashMap<String, Object> selectCommentOR(String cm_no) {
+		
+		return contentMapper.selectCommentOR(cm_no);
+	}
+
+	// 한줄평 댓글 수정
+	@Override
+	public void updateCommentOROne(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateCommentOROne(cm_commentVO);
+		
+	}
+
+	// 한줄평 댓글 삭제
+	@Override
+	public void deleteCommentOR(CM_commentVO cm_commentVO) {
+		
+		contentMapper.deleteCommentOR(cm_commentVO);
+		
+	}
+
+	// 한줄평 댓글 추천수 증가
+	@Override
+	public void upRecommendCommentOR(String cm_no) {
+		
+		contentMapper.upRecommendCommentOR(cm_no);
+		
+	}
+	
+	// 한줄평 댓글 추천수 증가하는 거 받아옴
+	@Override
+	public String selectRecommendCommentOR(String cm_no) {
+		
+		return contentMapper.selectRecommendCommentOR(cm_no);
+	}
+
+	// 한줄평 댓글 갯수 세기
+	@Override
+	public HashMap<String, Object> selectCommentCountOR(String cm_no2) {
+		
+		return contentMapper.selectCommentCountOR(cm_no2);
+	}
 
 	
 }

@@ -110,7 +110,7 @@
 							</div>
 						</div>
 						<div id="replyCommentT" class="collapse">
-							<%@ include file="reply.jsp"%>
+							<%@ include file="reply_view.jsp"%>
 						</div>
 					</form>
 				</div>
@@ -146,7 +146,7 @@
 
 	<script src="js/board_hj/bootstrap-select.min.js"></script>
 
-	<script src="js/board_hj/custom.js"></script>
+	<!-- <script src="js/board_hj/custom.js"></script> -->
 	
 	<script src="js/board_hj/main.js"></script>
 	
