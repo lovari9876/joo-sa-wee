@@ -15,8 +15,8 @@ $(document).ready(function(){
 					{"sub":"토론","board":"보드이야기"},
 					{"sub":"전체보기","board":"개봉기 및 리뷰"},
 					{"sub":"개봉기","board":"개봉기 및 리뷰"},
-					{"sub":"일리뷰","board":"개봉기 및 리뷰"},
-					{"sub":"다리뷰","board":"개봉기 및 리뷰"},
+					{"sub":"일 리뷰","board":"개봉기 및 리뷰"},
+					{"sub":"다 리뷰","board":"개봉기 및 리뷰"},
 					{"sub":"전체보기","board":"보드게임 모임"},
 					{"sub":"모집","board":"보드게임 모임"},
 					{"sub":"모임 후기","board":"보드게임 모임"},
@@ -45,16 +45,28 @@ $(document).ready(function(){
 
 		setSecondSelect(ARR,$("#board option:selected").text()); // subject 
 		
-		//글 작성시 게시판 bt_no 에 따라 첫번째 select box 선택되어지게 하는거.
-		var bt_no = $("#bt_no").val();
 		
-		for(i = 0; i<7; i++){
+		//전에 선택한 select 값
+		var bt_no = $("#board").attr("data-bt");
+		var s_content = $("#sub").attr("data-s"); 
+		
+		console.log('bt_no : '+bt_no);
+		console.log('s_content : '+s_content);
+		
+		
+		//전에 선택한 selectboxr 값 가져와서 첫번째, 두번째 select box 선택되어지게 하는거.
+	
+		for(i = 0; i<ARR.length; i++){
 			if(bt_no == i){
 				$("#board").val(i).attr("selected", "selected");
 				var selected = $("#board option:selected").text();
 				setSecondSelect(ARR,selected);
-				
-				break;
+				console.log('arr board: '+ARR[i].board);
+				console.log('arr sub: '+ARR[i].sub);
+			}
+			
+			if(s_content == ARR[i].sub){
+				$("#sub").val(ARR[i].sub).attr("selected", "selected");
 			}
 		}
 		
@@ -159,15 +171,20 @@ $(document).ready(function(){
 						
 		}
 
-		$(document).ready(function() {
-			$('#board').val("1").prop("selected", true);
-			 var s_content = $('#searchBtn').val();
-			console.log(s_content);
-			$('#category').val("s_content").prop("selected", true);
-		});
 				  
 		$("#sub").empty().append(appendSubject);
 
+		
+
+		/*	$(document).ready(function() {
+				$('#board').val("1").prop("selected", true);
+				 var s_content = $('#searchBtn').val();
+				console.log(s_content);
+				$('#category').val("s_content").prop("selected", true);
+				
+				
+			});*/
+		
 	}
 
 

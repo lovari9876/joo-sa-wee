@@ -46,9 +46,9 @@
 												    	self.location = "board_list" 
 												    				+ '${pageMaker.makeQuery(1)}' 
 												    				+ "&bt_no="
-												    				+ $("#bt_no option:selected").val() 
+												    				+ $("#board option:selected").val() 
 												    				+ "&s_content="
-												    				+ $("#category option:selected").val() 
+												    				+ $("#sub option:selected").val() 
 												    				+ "&searchType=" 
 												    				+ $("#searchType option:selected").val() 
 												    				+ "&keyword=" 
@@ -57,25 +57,26 @@
 												}); 
 								   </script>
 									
-							<!-- 
-								<select id = "board" name = "bt_no" class="span2 pull-left"></select>
-								<select id = "sub" name = "s_content" class="span2 pull-left"></select>
+							 
+								<select id = "board" name = "bt_no" class="span2 pull-left" data-bt="${bt_no}"></select>
+								<select id = "sub" name = "s_content" class="span2 pull-left" data-s="${s_content}"></select>
 							
-							 -->
-							<select id="bt_no" name="bt_no" tabindex="1" onchange="categoryChange(this)" data-placeholder="전체게시판" class="span2 pull-left">
-										<option value="">전체게시판</option>
-										<option value="1">보드이야기</option>
-										<option value="2">개봉기 및 리뷰</option>
-										<option value="3">보드게임 모임</option>
-										<option value="4">보드뉴스</option>
-										<option value="5">질문과 답변</option>
-										<option value="6">창작 보드게임</option>
+							 
+							
+							<%-- <select id="bt_no" name="bt_no" tabindex="1"  onchange="categoryChange(this)" data-placeholder="전체게시판" class="span2 pull-left">
+										<option value="" <c:out value="${bt_no == null ? 'selected' : ''}"/>>전체게시판</option>
+										<option value="1" <c:out value="${bt_no eq 1 ? 'selected' : ''}"/>>보드이야기</option>
+										<option value="2" <c:out value="${bt_no eq 2 ? 'selected' : ''}"/>>개봉기 및 리뷰</option>
+										<option value="3" <c:out value="${bt_no eq 3 ? 'selected' : ''}"/>>보드게임 모임</option>
+										<option value="4" <c:out value="${bt_no eq 4 ? 'selected' : ''}"/>>보드뉴스</option>
+										<option value="5" <c:out value="${bt_no eq 5 ? 'selected' : ''}"/>>질문과 답변</option>
+										<option value="6" <c:out value="${bt_no eq 6 ? 'selected' : ''}"/>>창작 보드게임</option>
 								</select>
 									
-								<select id="category" name="s_content" tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
-										<option>전체말머리</option><!-- ${s_content} -->
+								<select id="s_no" name="s_content" tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
+										<option>${s_content}</option>
 								</select>
-							
+							 --%>
 								
 								
 								<div class="input-append pull-right"> 
@@ -222,11 +223,11 @@
 	<script src="js/admin/island.js" type="text/javascript"></script>
 	
 	<!-- 말머리 탭 -->
-	<script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script>
+	<!-- <script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script> -->
 	
 	<!-- selectBox 카테고리  -->
-<!-- 	<script src="js/admin/category.js" type="text/javascript"></script>
- -->	
+	<script src="js/admin/category.js" type="text/javascript"></script>
+	
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
 

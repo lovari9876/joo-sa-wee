@@ -7,6 +7,7 @@
   var category_f = ["전체보기","계획", "디자인", "완성", "공유","테스트플레이"];
   var target = document.getElementById("category");
   
+  
  
   if(e.value == "1") var d = category_a;
   else if(e.value == "2") var d = category_b;
@@ -26,15 +27,18 @@
     opt.innerHTML = d[x];
     
    
-
-   
     target.appendChild(opt);
+   
+    var s_content = document.getElementById("category");
+    s_content.options[s_content.options.selectedIndex].setAttribute("selected", "selected");
+    console.log(s_content);
+    
   } 
   
-
+  
   //var s_content = $('#searchBtn').val();
-	//$('#category').val("s_content").prop("selected", true);
-	//console.log(s_content);
+ // var s_content = document.getElementById("category");
+  //s_content.options[s_content.options.selectedIndex].setAttribute("selected", "selected");
   
 }
 

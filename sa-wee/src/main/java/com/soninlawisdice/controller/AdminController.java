@@ -107,9 +107,9 @@ public class AdminController {
 	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
 	public String updateMember(MemberVO memberVO, @RequestParam int m_no, RedirectAttributes re) throws Exception {
 
-		String nick = memberVO.getM_nick();
-		System.out.println("updateMember()");
-		System.out.println(nick);
+//		String nick = memberVO.getM_nick();
+//		System.out.println("updateMember()");
+//		System.out.println(nick);
 
 		adminService.updateMember(memberVO);
 
@@ -336,6 +336,7 @@ public class AdminController {
 		model.addAttribute("board_list", adminService.boardList(scri, bt_no, rq.getParameter("s_content")));
 		
 		model.addAttribute("s_content", rq.getParameter("s_content"));
+		model.addAttribute("bt_no", rq.getParameter("bt_no"));
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
