@@ -37,30 +37,6 @@
 
 							<div class="controls">
 							
-								<select tabindex="1" onchange="categoryChange(this)" data-placeholder="전체게시판" class="span2 pull-left">
-										<option value="">전체게시판</option>
-										<option value="category_1">보드이야기</option>
-										<option value="category_2">개봉기 및 리뷰</option>
-										<option value="category_3">보드게임 모임</option>
-										<option value="category_4">보드뉴스</option>
-										<option value="category_5">질문 n 답변</option>
-										<option value="category_6">창작 보드게임</option>
-								</select>
-									
-								<select tabindex="2" id="category" data-placeholder="전체말머리" class="span2 pull-left">
-										<option>전체말머리</option>
-								</select>
-									
-									
-								<!-- <select tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
-										<option value="">전체말머리</option>
-										<option value="Category 1">말머리1</option>
-										<option value="Category 2">말머리2</option>
-										<option value="Category 3">말머리3</option>
-										<option value="Category 4">말머리4</option>
-								</select> -->
-								
-								
 								<div class="input-append pull-right"> 
 									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
 									<button type="submit" class="btn" id="serchBtn">
@@ -82,7 +58,7 @@
 						</div>
 
 					</form>
-					
+					<br><br>
 					<div class="btn-group pull-left" >
 						<button type="button" class="btn selectDelete_btn" data-BW="${cr['BT_NO']} ${cr['CR_NO']}" >선택 글 삭제</button>
 						<button type="button" class="btn selectIsland_btn" data-BW="${cr['BT_NO']} ${cr['CR_NO']} ${cr['M_NO']}">무인도 행</button>

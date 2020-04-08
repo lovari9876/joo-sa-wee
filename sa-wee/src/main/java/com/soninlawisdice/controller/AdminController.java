@@ -58,8 +58,6 @@ public class AdminController {
 	private SecondhandService secondhandService;
 	@Autowired
 	private BoardService boardService;
-	@Autowired
-	private ContentService contentService;
 	
 	
 	@RequestMapping("/index")
@@ -118,6 +116,25 @@ public class AdminController {
 		return "redirect:user_view";
 
 	}
+	
+	
+	// 회원정보 수정 - 표류자인 회원 등급 복구하기 
+		@RequestMapping(value = "/member_confirm", method = RequestMethod.POST)
+		public String member_confirm(MemberVO memberVO, @RequestParam int m_no, RedirectAttributes re) throws Exception {
+
+			int mem = memberVO.getM_no();
+			int point = memberVO.getM_point();			
+			System.out.println("복구할 회원 번호 : " + mem);
+			System.out.println("복구할 회원 포인트 : " + point);
+			
+			adminService.confirmIsland_member(mem, point);
+			
+
+			re.addAttribute("m_no", m_no);
+
+			return "redirect:user_view";
+
+		}
 
 	// 회원 탈퇴 : user_view
 	@RequestMapping(value = "/outMember_user", method = RequestMethod.POST)

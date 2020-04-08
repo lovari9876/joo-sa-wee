@@ -36,19 +36,18 @@
 						<div class="control-group">
 
 							<div class="controls">
-								<div class="dropdown">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">전체보기 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">글 제목</a></li>
-										<li><a href="#">글 내용</a></li>
-									
-									</ul>
 								
-									
-								</div>
 								
+								 <div class="dropdown pull-left">
+										<select id="searchType" name="searchType" class="span2">
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+											<option value = "tc" class="btn">제목+내용</option>
+										</select>
+								</div> 
 								 <div class="input-append pull-left">
 									<input type="text" class="span3" placeholder="검색을 해라">
 									<button type="submit" class="btn">

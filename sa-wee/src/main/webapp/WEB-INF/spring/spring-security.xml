@@ -45,16 +45,10 @@
 		<!-- <security:intercept-url pattern="/mypage" access="hasRole('ROLE_USER, ROLE_ADMIN')" /> -->
 	    <security:intercept-url pattern="/**" access="permitAll" />
 	    
-<<<<<<< HEAD
     	<!-- csrf 토큰 적용 x -->
 	    <security:csrf disabled="true" />
 	    
-=======
-	    
-	    <security:csrf disabled="true" />
-	    
-	    
->>>>>>> dev-js
+
 	    <!-- 권한 설정 -->
 	    <security:form-login
 	        username-parameter="m_id"

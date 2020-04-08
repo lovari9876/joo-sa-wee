@@ -159,6 +159,10 @@
 												onclick="location='user_list'">목록</button>
 											<button class="btn  pull-right" onclick='m_update()'>수정</button>
 											<button type="submit" class="btn  pull-right" onClick='m_out()'>탈퇴</button>
+											<c:if test="${user_view.r_no == '4'}"><!-- 등급이 표류자일 경우에만 버튼 출력  -->
+												<button class="btn  pull-right" onclick='m_confirm()'>등급복구</button>
+											</c:if>
+											
 
 										</div>
 									</div>
@@ -179,6 +183,15 @@
 									console.log("out");
 									alert("해당 회원이 탈퇴처리 되었습니다.");
 								}
+								
+								function m_confirm(){
+									var out = document.getElementById("viewForm");
+									out.action="<c:url value='/admin/member_confirm'/>";
+									out.submit();
+									console.log("out");
+									alert("해당 회원의 등급이 복구되었습니다.");
+								}
+								
 							</script>
 
 
