@@ -81,7 +81,7 @@
 
 		<li><a class="help" href="contact">헬프데스크</a>
 							<ul class="sub-menu">
-								<li><a href="">자주하는 질문</a></li>
+								<li><a href="faq">자주하는 질문</a></li>
 								<li><a href="question_list">1 : 1 문의 </a></li>
 								<li><a href="island_list">무인도 </a></li>
 							</ul></li>

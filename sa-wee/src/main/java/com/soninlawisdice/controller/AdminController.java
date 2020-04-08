@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.soninlawisdice.controller.AdminController;
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
+import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
@@ -57,7 +58,10 @@ public class AdminController {
 	private SecondhandService secondhandService;
 	@Autowired
 	private BoardService boardService;
-
+	@Autowired
+	private ContentService contentService;
+	
+	
 	@RequestMapping("/index")
 	public String index(Model model) {
 		// 전체 글, 회원, 댓글 개수 (방문자수는 session으로 출력)
@@ -103,9 +107,9 @@ public class AdminController {
 	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
 	public String updateMember(MemberVO memberVO, @RequestParam int m_no, RedirectAttributes re) throws Exception {
 
-		String nick = memberVO.getM_nick();
-		System.out.println("updateMember()");
-		System.out.println(nick);
+//		String nick = memberVO.getM_nick();
+//		System.out.println("updateMember()");
+//		System.out.println(nick);
 
 		adminService.updateMember(memberVO);
 
@@ -197,19 +201,21 @@ public class AdminController {
 				mem = Integer.parseInt(st.nextToken());
 
 				if (1 <= bt && bt <= 6) { // bt_no이 1~6인 커뮤니티
-					adminService.updateIsland_bw(no);
-					result = 1;
+					adminService.confirmIsland_bw(no);
 				} else if (bt == 11) { // bt_no이 11인 카페리뷰
-					adminService.updateIsland_cafe(no);
-					result = 2;
+					adminService.confirmIsland_cafe(no);
 				} else {// 중고거래는 bt 테이블과 조인하지않음
-					adminService.updateIsland_trade(no);
-					result = 3;
+					adminService.confirmIsland_trade(no);
 				}
 			}
-			System.out.println(bt);
-			System.out.println("무인도행 갈 회원 : "+mem);
-			adminService.updateIsland_memberReport(mem);
+			result = 1;
+			
+			int point = adminService.memberPoint(mem);
+			
+			System.out.println("bt : " + bt);
+			System.out.println("복구할 회원 : " + mem);
+			System.out.println("복구할 회원 포인트 : " + point);
+			adminService.confirmIsland_member(mem, point);
 
 			return result;
 		}
@@ -312,16 +318,29 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/board_list", method = RequestMethod.GET)
-	public String board_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String board_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) throws Exception {
 
 		scri.setPerPageNum(15);
-
-		// model.addAttribute("bt_no", 1);
-		model.addAttribute("board_list", adminService.boardList(scri, 13));
-
+		
+		System.out.println("s_content: " + rq.getParameter("s_content"));
+		String b = rq.getParameter("bt_no");
+		int bt_no;
+		
+		if (b != null) {
+			bt_no = Integer.parseInt(rq.getParameter("bt_no")); 
+			System.out.println("===============bt_no" + bt_no);
+		}else {
+			bt_no = 13;
+		}
+		
+		model.addAttribute("board_list", adminService.boardList(scri, bt_no, rq.getParameter("s_content")));
+		
+		model.addAttribute("s_content", rq.getParameter("s_content"));
+		model.addAttribute("bt_no", rq.getParameter("bt_no"));
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 13));
+		pageMaker.setTotalCount(adminService.board_listCount(scri, bt_no, rq.getParameter("s_content")));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -329,13 +348,15 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/notice_list", method = RequestMethod.GET)
-	public String notice_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+	public String notice_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 		scri.setPerPageNum(15);
-		model.addAttribute("notice_list", adminService.boardList(scri, 12)); // 공지사항은 bt_no 12임..
+		
+		//int s_no = Integer.parseInt(rq.getParameter("s_no"));
+		model.addAttribute("notice_list", adminService.boardList(scri, 12, rq.getParameter("s_content"))); // 공지사항은 bt_no 12임..
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 12));
+		pageMaker.setTotalCount(adminService.board_listCount(scri, 12, rq.getParameter("s_content")));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -437,29 +458,19 @@ public class AdminController {
 	}
 
 	
-	@RequestMapping("/faq")
-	public String faq(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-		
-		model.addAttribute("faq_list", adminService.faqList(scri));
 
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.faq_listCount(scri));
-
-		model.addAttribute("pageMaker", pageMaker);
-		
-		return "faq/faq";
-	}
 	
 	
 	@RequestMapping("/ask_list")
-	public String ask_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+	public String ask_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 
-		model.addAttribute("ask_list", adminService.boardList(scri, 8));
+		
+		//int s_no = Integer.parseInt(rq.getParameter("s_no"));
+		model.addAttribute("ask_list", adminService.boardList(scri, 8, rq.getParameter("s_content")));
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 8));
+		pageMaker.setTotalCount(adminService.board_listCount(scri, 8, rq.getParameter("s_content")));
 
 		model.addAttribute("pageMaker", pageMaker);
 		

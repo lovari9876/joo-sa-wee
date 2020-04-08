@@ -29,9 +29,10 @@ public interface AdminMapper {
 	
 
 	// 페이징 처리 + 검색  List
-	public ArrayList<HashMap<String, Object>> boardList(@Param("scri") SearchCriteria scri, @Param("bt_no") int bt_no);
+	public ArrayList<HashMap<String, Object>> boardList(@Param("scri") SearchCriteria scri, 
+			@Param("bt_no") int bt_no, @Param("s_content") String s_content);
 	
-	public int board_listCount(@Param("scri") SearchCriteria scri, @Param("bt_no") int bt_no);
+	public int board_listCount(@Param("scri") SearchCriteria scri, @Param("bt_no") int bt_no, @Param("s_content") String s_content);
 	
 	public List<MemberVO> memberList(SearchCriteria scri);
 	public int member_listCount(SearchCriteria scri);
@@ -83,6 +84,18 @@ public interface AdminMapper {
 	public void updateIsland_bw(int bw_no);
 	public void updateIsland_cafe(int cr_no);
 	public void updateIsland_trade(int t_no);
+	
+	
+	// 무인도 원상태 복구
+	public void confirmIsland_member(@Param("m_no")int m_no, @Param("m_point")int m_point);
+	
+	public void confirmIsland_bw(int bw_no);
+	public void confirmIsland_cafe(int cr_no);
+	public void confirmIsland_trade(int t_no);
+	
+	// 회원 포인트 구하기
+	public int memberPoint(int m_no);
+	
 	
 	// 삭제
 	public void selectDelete(Board_writeVO boardVO);

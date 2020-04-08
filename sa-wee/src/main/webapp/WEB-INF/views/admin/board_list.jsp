@@ -20,7 +20,7 @@
 
 
 <body>
-
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<%@include file="side.jsp"%>
 
 <!-- 카테고리, 게시판 별로 선택하기, 회원별(아이디, 닉네임), 제목, 내용별 검색... -->
@@ -39,44 +39,61 @@
 
 							<div class="controls">
 							
-								<select tabindex="1" onchange="categoryChange(this)" data-placeholder="전체게시판" class="span2 pull-left">
-										<option value="">전체게시판</option>
-										<option value="category_1">보드이야기</option>
-										<option value="category_2">개봉기 및 리뷰</option>
-										<option value="category_3">보드게임 모임</option>
-										<option value="category_4">보드뉴스</option>
-										<option value="category_5">질문 n 답변</option>
-										<option value="category_6">창작 보드게임</option>
+				 				 <script>
+								      $(function(){
+												  $('#searchBtn').click(function() {
+												  	event.preventDefault(); // event canceled 막기!
+												    	self.location = "board_list" 
+												    				+ '${pageMaker.makeQuery(1)}' 
+												    				+ "&bt_no="
+												    				+ $("#board option:selected").val() 
+												    				+ "&s_content="
+												    				+ $("#sub option:selected").val() 
+												    				+ "&searchType=" 
+												    				+ $("#searchType option:selected").val() 
+												    				+ "&keyword=" 
+												    				+ encodeURIComponent($('#keywordInput').val());
+												  });
+												}); 
+								   </script>
+									
+							 
+								<select id = "board" name = "bt_no" class="span2 pull-left" data-bt="${bt_no}"></select>
+								<select id = "sub" name = "s_content" class="span2 pull-left" data-s="${s_content}"></select>
+							
+							 
+							
+							<%-- <select id="bt_no" name="bt_no" tabindex="1"  onchange="categoryChange(this)" data-placeholder="전체게시판" class="span2 pull-left">
+										<option value="" <c:out value="${bt_no == null ? 'selected' : ''}"/>>전체게시판</option>
+										<option value="1" <c:out value="${bt_no eq 1 ? 'selected' : ''}"/>>보드이야기</option>
+										<option value="2" <c:out value="${bt_no eq 2 ? 'selected' : ''}"/>>개봉기 및 리뷰</option>
+										<option value="3" <c:out value="${bt_no eq 3 ? 'selected' : ''}"/>>보드게임 모임</option>
+										<option value="4" <c:out value="${bt_no eq 4 ? 'selected' : ''}"/>>보드뉴스</option>
+										<option value="5" <c:out value="${bt_no eq 5 ? 'selected' : ''}"/>>질문과 답변</option>
+										<option value="6" <c:out value="${bt_no eq 6 ? 'selected' : ''}"/>>창작 보드게임</option>
 								</select>
 									
-								<select tabindex="2" id="category" data-placeholder="전체말머리" class="span2 pull-left">
-										<option>전체말머리</option>
+								<select id="s_no" name="s_content" tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
+										<option>${s_content}</option>
 								</select>
-									
-									
-								<!-- <select tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
-										<option value="">전체말머리</option>
-										<option value="Category 1">말머리1</option>
-										<option value="Category 2">말머리2</option>
-										<option value="Category 3">말머리3</option>
-										<option value="Category 4">말머리4</option>
-								</select> -->
+							 --%>
 								
 								
 								<div class="input-append pull-right"> 
 									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
-									<button type="submit" class="btn" id="searchBtn">
+									<button type="submit" class="btn" id="searchBtn" value="${s_content}" >
 										<i class="icon-search"></i>
 									</button>
 								</div>
 								
 								 <div class="dropdown pull-right">
-										<select name="searchType" class="span2">
+										<select id="searchType" name="searchType" class="span2">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
 											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+											<option value = "tc" class="btn">제목+내용</option>
 										</select>
 								</div> 
 							</div>
@@ -198,14 +215,18 @@
 		</div>
 	</div>
 
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
+	
 	
 	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
 	<script src="js/admin/checkBox.js" type="text/javascript"></script>
+	<!-- 체크박스 선택한글 무인도행 -->
 	<script src="js/admin/island.js" type="text/javascript"></script>
 	
 	<!-- 말머리 탭 -->
-	<script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script>
+	<!-- <script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script> -->
+	
+	<!-- selectBox 카테고리  -->
+	<script src="js/admin/category.js" type="text/javascript"></script>
 	
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>

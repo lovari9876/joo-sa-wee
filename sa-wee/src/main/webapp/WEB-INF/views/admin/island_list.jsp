@@ -86,7 +86,7 @@
 					
 					<div class="btn-group pull-left" >
 						<button type="button" value="island" class="btn selectDelete_btn" data-BW="${island['BT_NO']} ${island['I_NO']}">선택 글 삭제</button>
-						<button type="button" class="btn" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}">수정완료</button>
+						<button type="button" class="btn selectConfirm_btn" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}">수정완료</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn">정렬</button>
@@ -136,8 +136,7 @@
 												<c:otherwise>불명확</c:otherwise>
 											</c:choose>
 										</td>
-									<td class="cell"><a
-										href="report_view?_no=${report.st_no}">${island['I_TITLE']}</a></td>
+									<td class="cell"><a href="/content_view_i?i_no=${island['I_NO']}&bt_no=${island['BT_NO']}">${island['I_TITLE']}</a></td>
 									<td class="cell">${island['M_ID']}</td>
 									<td>
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
@@ -214,6 +213,9 @@
 	
 	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
 	<script src="js/admin/checkBox.js" type="text/javascript"></script>
+	
+	<!-- 선택한 글들 무인도에서 원래있던곳으로 복구 -->
+	<script src="js/admin/island_confirm.js" type="text/javascript"></script>
 	
 	<script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script>
 	

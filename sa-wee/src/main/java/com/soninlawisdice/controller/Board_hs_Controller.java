@@ -443,9 +443,28 @@ public class Board_hs_Controller {
 	}
 	
 	
+	////////////////////////////////////////자주하는 질문 FAQ/////////////////////////////////////////////////////
+	
+	
+	@RequestMapping("/faq")
+	public String faq(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		
+		model.addAttribute("faq_list", adminService.faqList(scri));
+
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.faq_listCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "faq/faq";
+	}
+
+	
 	//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
+	
+	
+	
 	/////////////////////////////////// 게시물 작성 시 파일 업로드 부분(DB에 넣는거 X)/////////////////////////////////
 
 	/**

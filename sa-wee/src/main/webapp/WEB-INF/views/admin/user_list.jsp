@@ -120,7 +120,12 @@
 									
 									<td class="cell"><fmt:formatDate value="${member.m_indate}" pattern="yyyy.MM.dd"/></td>
 									
-									<td class="cell">${member.m_out}</td>
+									<td class="cell">
+										<c:choose>
+											<c:when test="${member.m_out == '1'}">N</c:when>
+											<c:when test="${member.m_out == '0'}">Y</c:when>
+										</c:choose>
+									</td>
 									<td class="cell"><button type="button" class="btn user_list" onclick="location='user_view?m_no=${member.m_no}'">수정</button></td>
 									<!-- <td class="cell"><button type="button" class="btn user_list" >탈퇴</button></td> --> <!-- 정말 탈퇴???? 한번더 묻기  -->
 								</tr>

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,12 +65,12 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no){
-		return adminMapper.boardList(scri, bt_no);
+	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content){
+		return adminMapper.boardList(scri, bt_no, s_content);
 	}
 	@Override
-	public int board_listCount(SearchCriteria scri, int bt_no){
-		return adminMapper.board_listCount(scri, bt_no);
+	public int board_listCount(SearchCriteria scri, int bt_no, String s_content){
+		return adminMapper.board_listCount(scri, bt_no, s_content);
 	}
 	
 	
@@ -195,6 +196,28 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.updateIsland_trade(t_no);
 	}
 
+	
+	// 무인도 원상태 복구
+	public void confirmIsland_member(int bw_no, int m_point) {
+		adminMapper.confirmIsland_member(bw_no, m_point);
+	}
+	
+	
+	public void confirmIsland_bw(int bw_no) {
+		adminMapper.confirmIsland_bw(bw_no);
+	}
+	public void confirmIsland_cafe(int cr_no) {
+		adminMapper.confirmIsland_cafe(cr_no);
+	}
+	public void confirmIsland_trade(int t_no) {
+		adminMapper.confirmIsland_trade(t_no);
+	}
+	
+	// 회원 포인트 구하기
+	public int memberPoint(int m_no) {
+		return adminMapper.memberPoint(m_no);
+	}
+	
 
 	
 	// 글삭제
