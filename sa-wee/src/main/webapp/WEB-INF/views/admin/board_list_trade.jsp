@@ -114,30 +114,31 @@
 							<td class="cell">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
-						
-						<c:forEach items="${board_list_trade}" var="trade">
-								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${trade['BT_NO']} ${trade['T_NO']} ${trade['M_NO']}"></td>
-									<td class="cell">${trade['T_NO']}</td>
-									<td class="cell">${trade['S_CONTENT']}</td>
-									<td class="cell"><a
-										href="/content_view_t?t_no=${trade['T_NO']}">${trade['T_TITLE']} (${trade['CM']})</a></td>
-									<td class="cell">${trade['M_ID']}</td>
-									<td>
-										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-										<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
-										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-										<c:choose>
-											<c:when test="${now ne date}">${date}</c:when> 
-											<c:otherwise>
-												<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="HH:mm"/>
-											</c:otherwise>
-										</c:choose>
-									</td>
-									<td class="cell">${trade['T_REPORT_NUM']}</td>
-								</tr>
-							</c:forEach>
+						<tbody>
+							<c:forEach items="${board_list_trade}" var="trade">
+									<tr class="trow">
+										<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${trade['BT_NO']} ${trade['T_NO']} ${trade['M_NO']}"></td>
+										<td class="cell">${trade['T_NO']}</td>
+										<td class="cell">${trade['S_CONTENT']}</td>
+										<td class="cell title"><a
+											href="/content_view_t?t_no=${trade['T_NO']}">${trade['T_TITLE']} (${trade['CM']})</a></td>
+										<td class="cell">${trade['M_ID']}</td>
+										<td>
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${trade['T_WRITTEN_DATE']}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+										<td class="cell">${trade['T_REPORT_NUM']}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
 					</table>
 					</div>

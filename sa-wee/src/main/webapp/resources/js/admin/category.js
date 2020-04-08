@@ -8,7 +8,7 @@ $(document).ready(function(){
 		//Jackson 이용 List<VO> or List<Map<String,String>> 형태 JSON
 
 		var ARR = [
-					{"sub":"선택하세요","board":"선택하세요"},
+					{"sub":"말머리","board":"카테고리"},
 					{"sub":"전체보기","board":"보드이야기"},
 					{"sub":"잡담","board":"보드이야기"},
 					{"sub":"노하우","board":"보드이야기"},

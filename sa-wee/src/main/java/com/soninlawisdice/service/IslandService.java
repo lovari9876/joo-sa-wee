@@ -20,8 +20,8 @@ public interface IslandService {
 //	public ArrayList<Cafe_reviewVO> selectCafe_reviewIslandList();
 
 	// 무인도리스트 작성일 기준 최신순
-	public ArrayList<HashMap<String, Object>> selectIslandList(SearchCriteria scri);
+	public ArrayList<HashMap<String, Object>> selectIslandList(SearchCriteria scri, int bt_no);
 
-	int islandListCount(SearchCriteria scri);
+	int islandListCount(SearchCriteria scri, int bt_no);
 
 }

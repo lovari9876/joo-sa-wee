@@ -112,156 +112,19 @@
 								<!-- 조회수, 추천수, 작성일, 수정일,,,, -->
 							</tr>
 							
+							<tbody>
+								<tr class="trow">
+									<td class="cell">1</td>
+									<td class="cell">Vincent</td>
+									<td class="cell">Williamson</td>
+									<td class="cell">3 ~ 5명</td>
+									<td class="cell">80분</td>
+									<td class="cell">0세 이상</td>
+									<td class="cell">4.5</td>
+								</tr>
+							</tbody>
 
-							<tr class="trow">
-								<td class="cell">1</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">2</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">3</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>							
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">4</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">5</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">6</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">7</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">8</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">9</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">10</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">11</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">12</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">13</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">14</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
-
-							<tr class="trow">
-								<td class="cell">15</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">Williamson</td>
-								<td class="cell">3 ~ 5명</td>
-								<td class="cell">80분</td>
-								<td class="cell">0세 이상</td>
-								<td class="cell">4.5</td>
-							</tr>
+							
 
 						</table>
 					</div>

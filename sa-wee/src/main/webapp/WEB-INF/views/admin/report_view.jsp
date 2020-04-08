@@ -18,6 +18,10 @@
 <link type="text/css"
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
 	rel='stylesheet'>
+	
+	<!-- 403 에러 / csrf 토큰 문제 -->
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
 <!-- <link rel="stylesheet" href="css/liststyle.css" /> -->
 </head>
 
@@ -48,6 +52,9 @@
 						<div class="content-view">
 
 							<form id="viewForm" method="post">
+							<!-- security -->
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+							
 							<input type = "hidden" name = "r_no" value = "${report_view['R_NO']} ${report_view['R_TYPE_NO']}">
 							<!-- get방식으로 url뒤에 붙는 값과 name이 맞지않으면 오류가난다. r_no, r_type외의 다른 값이 추가되면(해당 메소드에서 파라미터로 받으면) 오류가 난다... 
 							그래서 띄어쓰기 기준으로 값을 두가지 보내서 탈퇴처리할 신고당한 회원 번호를 가져옴  -->

@@ -98,15 +98,17 @@
 								<td class="cell">전화번호</td>
 								<td class="cell">주소</td>
 							</tr>
-							<c:forEach items="${cafe_list}" var="cafe">
-								<tr class="trow">
-									<td class="cell">${cafe.c_no}</td>
-									<td class="cell"><a
-										href="/cafe_info?c_no=${cafe.c_no}">${cafe.c_title}</a></td>
-									<td class="cell">${cafe.c_phone}</td>
-									<td class="cell">${cafe.c_add}</td>
-								</tr>
-							</c:forEach>
+							<tbody>
+								<c:forEach items="${cafe_list}" var="cafe">
+									<tr class="trow">
+										<td class="cell">${cafe.c_no}</td>
+										<td class="cell title"><a
+											href="/cafe_info?c_no=${cafe.c_no}">${cafe.c_title}</a></td>
+										<td class="cell">${cafe.c_phone}</td>
+										<td class="cell">${cafe.c_add}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
 						</table>
 					</div>

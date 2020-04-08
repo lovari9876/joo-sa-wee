@@ -80,28 +80,30 @@
 							<td class="cell">작성일</td>
 							<td class="cell">조회수</td>
 						</tr>
-
-						<c:forEach items="${notice_list}" var="board">
-								<tr class="trow">
-									<td class="cell">${board['BW_NO']}</td>
-									<td class="cell"><a
-										href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
-									<td class="cell">${board['M_ID']}</td>
-									<td class="cell"> 
-										<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-										<jsp:useBean id="today" class="java.util.Date" />
-										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-										<c:choose>
-											<c:when test="${now ne date}">${date}</c:when>
-											<c:otherwise>
-												<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
-											</c:otherwise>
-										</c:choose>
-									</td>
-									<td class="cell">${board['BW_HIT']}</td>
-								</tr>
-							</c:forEach>
+						<tbody>
+							
+							<c:forEach items="${notice_list}" var="board">
+									<tr class="trow">
+										<td class="cell">${board['BW_NO']}</td>
+										<td class="cell title"><a
+											href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
+										<td class="cell">${board['M_ID']}</td>
+										<td class="cell"> 
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" />
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${board['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+										<td class="cell">${board['BW_HIT']}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 
 					</table>
 					</div>

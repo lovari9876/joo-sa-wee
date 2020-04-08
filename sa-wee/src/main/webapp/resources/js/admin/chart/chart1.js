@@ -1,4 +1,6 @@
-﻿// 일간
+﻿
+
+// 일간
 $(document).ready(function chart1() {
 
 	var chartLabels = []; // 받아올 데이터를 저장할 배열 선언

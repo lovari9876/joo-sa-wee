@@ -37,48 +37,59 @@
 
 							<div class="controls">
 							
-								<select tabindex="1" onchange="categoryChange(this)" data-placeholder="전체게시판" class="span2 pull-left">
-										<option value="">전체게시판</option>
-										<option value="category_1">보드이야기</option>
-										<option value="category_2">개봉기 및 리뷰</option>
-										<option value="category_3">보드게임 모임</option>
-										<option value="category_4">보드뉴스</option>
-										<option value="category_5">질문 n 답변</option>
-										<option value="category_6">창작 보드게임</option>
-								</select>
+							<script>
+								      $(function(){
+												  $('#searchBtn').click(function() {
+												  	event.preventDefault(); // event canceled 막기!
+												    	self.location = "board_list" 
+												    				+ '${pageMaker.makeQuery(1)}' 
+												    				+ "&bt_no="
+												    				+ $("#board option:selected").val()
+												    				+ "&searchType=" 
+												    				+ $("#searchType option:selected").val() 
+												    				+ "&keyword=" 
+												    				+ encodeURIComponent($('#keywordInput').val());
+												  });
+												}); 
+								   </script>
+								   
+							
+							
 									
-								<select tabindex="2" id="category" data-placeholder="전체말머리" class="span2 pull-left">
-										<option>전체말머리</option>
-								</select>
-									
-									
-								<!-- <select tabindex="2" data-placeholder="전체말머리" class="span2 pull-left">
-										<option value="">전체말머리</option>
-										<option value="Category 1">말머리1</option>
-										<option value="Category 2">말머리2</option>
-										<option value="Category 3">말머리3</option>
-										<option value="Category 4">말머리4</option>
-								</select> -->
-								
+							
 								
 								<div class="input-append pull-right"> 
-									<input type="text" class="span3" placeholder="검색을해라">
-									<button type="submit" class="btn">
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
+									<button type="submit" class="btn" id="searchBtn">
 										<i class="icon-search"></i>
 									</button>
 								</div>
 								
 								 <div class="dropdown pull-right">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">전체보기 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">아이디</a></li>
-										<li><a href="#">닉네임</a></li>
-										<li><a href="#">글 제목</a></li>
-										<li><a href="#">글 내용</a></li>
-									</ul>
+										<select id="searchType" name="searchType" class="span2">
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
+										</select>
 								</div> 
+								
+								<select id="bt_no" name="bt_no" data-placeholder="전체게시판" class="span2 pull-right">
+									<option value="0" <c:out value="${bt_no == null ? 'selected' : ''}"/>>전체게시판</option>
+									<option value="1" <c:out value="${bt_no eq 1 ? 'selected' : ''}"/>>보드이야기</option>
+									<option value="2" <c:out value="${bt_no eq 2 ? 'selected' : ''}"/>>개봉기 및 리뷰</option>
+									<option value="3" <c:out value="${bt_no eq 3 ? 'selected' : ''}"/>>보드게임 모임</option>
+									<option value="4" <c:out value="${bt_no eq 4 ? 'selected' : ''}"/>>보드뉴스</option>
+									<option value="5" <c:out value="${bt_no eq 5 ? 'selected' : ''}"/>>질문과 답변</option>
+									<option value="6" <c:out value="${bt_no eq 6 ? 'selected' : ''}"/>>창작 보드게임</option>
+									<option value="8" <c:out value="${bt_no eq 8 ? 'selected' : ''}"/>>일대일 문의</option>
+									<option value="9" <c:out value="${bt_no eq 9 ? 'selected' : ''}"/>>보부상</option>
+									<option value="10" <c:out value="${bt_no eq 10 ? 'selected' : ''}"/>>카페</option>
+									<option value="11" <c:out value="${bt_no eq 11 ? 'selected' : ''}"/>>카페리뷰</option>
+								</select>
+								
+								
 							</div>
 						</div>
 
@@ -88,11 +99,11 @@
 						<button type="button" value="island" class="btn selectDelete_btn" data-BW="${island['BT_NO']} ${island['I_NO']}">선택 글 삭제</button>
 						<button type="button" class="btn selectConfirm_btn" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}">수정완료</button>
 					</div>
-					<div class="btn-group pull-right" data-toggle="buttons-radio">
+				<!-- 	<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn">정렬</button>
 						<button type="button" class="btn">조회수</button>
 						<button type="button" class="btn">추천수</button>
-					</div>
+					</div> -->
 				</div>
 
 
@@ -116,48 +127,48 @@
 							<td class="cell">신고수</td>
 							<td class="cell">상태</td>
 						</tr><!-- 조회수 추천수 추가..? -->
+						<tbody>
 						
-						
-						<c:forEach items="${island_list}" var="island">
-								<tr class="trow">
-									<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}"></td>
-									<td class="cell">${island['RNUM']}</td>
-									<td>
-										<c:choose>				
-												<c:when test="${island['BT_NO'] eq 1}">보드이야기</c:when>		
-												<c:when test="${island['BT_NO'] eq 2}">개봉기 및 리뷰</c:when>
-												<c:when test="${island['BT_NO'] eq 3}">보드게임 모임</c:when>
-												<c:when test="${island['BT_NO'] eq 4}">보드 뉴스</c:when>
-												<c:when test="${island['BT_NO'] eq 5}">질문&답변</c:when>
-												<c:when test="${island['BT_NO'] eq 6}">창작 보드게임</c:when>
-												<c:when test="${island['BT_NO'] eq 8}">일대일 문의</c:when>
-												<c:when test="${island['BT_NO'] eq 9}">보부상</c:when>
-												<c:when test="${island['BT_NO'] eq 11}">카페 리뷰</c:when>
-												<c:otherwise>불명확</c:otherwise>
+							<c:forEach items="${island_list}" var="island">
+									<tr class="trow">
+										<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}"></td>
+										<td class="cell">${island['RNUM']}</td>
+										<td>
+											<c:choose>				
+													<c:when test="${island['BT_NO'] eq 1}">보드이야기</c:when>		
+													<c:when test="${island['BT_NO'] eq 2}">개봉기 및 리뷰</c:when>
+													<c:when test="${island['BT_NO'] eq 3}">보드게임 모임</c:when>
+													<c:when test="${island['BT_NO'] eq 4}">보드 뉴스</c:when>
+													<c:when test="${island['BT_NO'] eq 5}">질문&답변</c:when>
+													<c:when test="${island['BT_NO'] eq 6}">창작 보드게임</c:when>
+													<c:when test="${island['BT_NO'] eq 8}">일대일 문의</c:when>
+													<c:when test="${island['BT_NO'] eq 9}">보부상</c:when>
+													<c:when test="${island['BT_NO'] eq 11}">카페 리뷰</c:when>
+													<c:otherwise>불명확</c:otherwise>
+												</c:choose>
+											</td>
+										<td class="cell title"><a href="/content_view_i?i_no=${island['I_NO']}&bt_no=${island['BT_NO']}">${island['I_TITLE']}</a></td>
+										<td class="cell">${island['M_ID']}</td>
+										<td>
+												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${island['I_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${island['I_WRITTEN_DATE']}" pattern="HH:mm"/>
+												</c:otherwise>
 											</c:choose>
 										</td>
-									<td class="cell"><a href="/content_view_i?i_no=${island['I_NO']}&bt_no=${island['BT_NO']}">${island['I_TITLE']}</a></td>
-									<td class="cell">${island['M_ID']}</td>
-									<td>
-											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-										<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
-										<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-										<fmt:formatDate value="${island['I_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-										<c:choose>
-											<c:when test="${now ne date}">${date}</c:when> 
-											<c:otherwise>
-												<fmt:formatDate value="${island['I_WRITTEN_DATE']}" pattern="HH:mm"/>
-											</c:otherwise>
-										</c:choose>
-									</td>
-									<td class="cell">${island['I_REPORT_NUM']}</td>
-									<td class="cell">
-										<c:if test="${island['I_ISLAND'] eq 1}">수정 전</c:if>	
-										<c:if test="${island['I_ISLAND'] eq 2}">수정 완료</c:if>
-									</td>
-								</tr>
-							</c:forEach>
-
+										<td class="cell">${island['I_REPORT_NUM']}</td>
+										<td class="cell">
+											<c:if test="${island['I_ISLAND'] eq 1}">수정 전</c:if>	
+											<c:if test="${island['I_ISLAND'] eq 2}">수정 완료</c:if>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
 					</table>
 					</div>
 
@@ -217,7 +228,6 @@
 	<!-- 선택한 글들 무인도에서 원래있던곳으로 복구 -->
 	<script src="js/admin/island_confirm.js" type="text/javascript"></script>
 	
-	<script src="js/admin/board_tab/selectbox.js" type="text/javascript"></script>
 	
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>

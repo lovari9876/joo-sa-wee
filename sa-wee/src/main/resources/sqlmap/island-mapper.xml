@@ -35,7 +35,7 @@
 	</select> 
 	
 	<!-- ========== for island list =========== -->
-	<select id="selectIslandList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria" >
+	<select id="selectIslandList" resultType="java.util.HashMap">
 		SELECT
 				*
 		FROM
@@ -90,11 +90,13 @@
 							WHERE 
 									CR_ISLAND != 0 ) 
 					) I
+			<include refid="boardType_search"></include>
 			ORDER BY 
 				RNUM DESC
 				) 
 		WHERE 
-			RNUM_COUNT BETWEEN ${rowStart} AND ${rowEnd} 
+			RNUM_COUNT BETWEEN ${scri.rowStart} AND ${scri.rowEnd} 
+			
 			<include refid="islandSearch"></include>
 		ORDER BY 
 			RNUM DESC
@@ -155,20 +157,53 @@
 			)			
 		WHERE 
 			1=1
+		 	<include refid="boardType_count_search"></include> 
 			<include refid="islandSearch"></include>
 
 	</select>
 	
 	
 	<sql id="islandSearch">
-		<if test="searchType != null">
-			<if test="searchType == 't'.toString()">AND I_TITLE LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND I_CONTENT LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'w'.toString()">AND M_NICK LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'tc'.toString()">
-				AND (I_TITLE LIKE '%' || #{keyword} || '%') or (I_CONTENT LIKE '%' || #{keyword} || '%')</if>
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 't'.toString()">AND I_TITLE LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND I_CONTENT LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'w'.toString()">AND M_NICK LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'tc'.toString()">
+				AND (I_TITLE LIKE '%' || #{scri.keyword} || '%') or (I_CONTENT LIKE '%' || #{scri.keyword} || '%')</if>
 		</if>
 	</sql>
 
+
+	<sql id="boardType_search">
+		<if test="bt_no != null">
+			<if test="bt_no == 1">WHERE i.bt_no = 1 </if>
+			<if test="bt_no == 2">WHERE i.bt_no = 2</if>
+			<if test="bt_no == 3">WHERE i.bt_no = 3</if>
+			<if test="bt_no == 4">WHERE i.bt_no = 4</if>
+			<if test="bt_no == 5">WHERE i.bt_no = 5</if>
+			<if test="bt_no == 6">WHERE i.bt_no = 6</if>
+			<if test="bt_no == 8">WHERE i.bt_no = 8</if>
+			<if test="bt_no == 9">WHERE i.bt_no = 9</if>
+			<if test="bt_no == 10">WHERE i.bt_no = 10</if>
+			<if test="bt_no == 11">WHERE i.bt_no = 11</if>
+		</if>
+	</sql>
+	
+	
+	<sql id="boardType_count_search">
+		<if test="bt_no != null">
+			<if test="bt_no == 1">AND bt_no = 1 </if>
+			<if test="bt_no == 2">AND bt_no = 2</if>
+			<if test="bt_no == 3">AND bt_no = 3</if>
+			<if test="bt_no == 4">AND bt_no = 4</if>
+			<if test="bt_no == 5">AND bt_no = 5</if>
+			<if test="bt_no == 6">AND bt_no = 6</if>
+			<if test="bt_no == 8">AND bt_no = 8</if>
+			<if test="bt_no == 9">AND bt_no = 9</if>
+			<if test="bt_no == 10">AND bt_no = 10</if>
+			<if test="bt_no == 11">AND bt_no = 11</if>
+		</if>
+	</sql>
+	
 
 </mapper>

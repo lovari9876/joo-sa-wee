@@ -1346,6 +1346,10 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 	vertical-align: middle;
 }
 
+.pull-right{
+	padding-left : 4px;
+}
+
 /* write : 작성페이지에 있는 입력창 text에만 균일한 margin 주기  */
 .cell input[type="text"] {
 	margin : 3px 5px;
@@ -5265,10 +5269,10 @@ to {
 
 
 
-.dropup, .dropdown {
+/* .dropup, .dropdown {
 	position: relative;
 	margin-left: 5px;
-}
+} */
 
 .dropdown-toggle {
 	*margin-bottom: -3px;
