@@ -74,7 +74,7 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 
-	// 회원정보 수정
+	// 회원정보 수정뷰
 	@RequestMapping(value = "/mypage_modifyview", method = RequestMethod.GET)
 	public String mypageModifyView(Principal principal, Model model, MemberVO memberVO) throws Exception{
 		System.out.println("mypage_modifyView()");
@@ -88,13 +88,11 @@ public class MyPageController {
 	}
 	
 	// 회원정보 수정
-	@RequestMapping(value = "/mypage_modify", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_modify", method = RequestMethod.POST)
 	public String modifyMember(Principal principal, MemberVO memberVO) throws Exception{
 		System.out.println("mypageModify()");
 		
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-
+		System.out.println(memberVO.getM_id());
 		myPageService.modifyMember(memberVO);
 		
 		return "redirect:/mypage";
