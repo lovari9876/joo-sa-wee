@@ -74,17 +74,23 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 
-	
-	@RequestMapping(value = "/modify_mypage", method = RequestMethod.GET)
-	public String modify_mypage(Locale locale, Model model)  throws Exception{
+	// 회원정보 수정
+	@RequestMapping(value = "/mypage_modifyview", method = RequestMethod.GET)
+	public String mypageModifyView(Principal principal, Model model, MemberVO memberVO) throws Exception{
+		System.out.println("mypage_modifyView()");
 		
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		
+		model.addAttribute("member", memberVO);
+
 		return "mypage/modify_mypage";
 	}
 	
 	// 회원정보 수정
-	@RequestMapping(value = "/modifyMember", method = RequestMethod.GET)
+	@RequestMapping(value = "/mypage_modify", method = RequestMethod.GET)
 	public String modifyMember(Principal principal, MemberVO memberVO) throws Exception{
-		System.out.println("modifyMember()");
+		System.out.println("mypageModify()");
 		
 		String m_id = principal.getName();
 		memberVO = myPageService.mypage(m_id);

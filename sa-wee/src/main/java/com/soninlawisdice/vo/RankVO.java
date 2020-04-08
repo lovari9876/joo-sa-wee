@@ -29,6 +29,5 @@ public class RankVO {
 
 	public void setR_name(String r_name) {
 		this.r_name = r_name;
-	}
-
+	}	
 }

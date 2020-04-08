@@ -4,7 +4,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
  
 <sec:authorize access="isAnonymous()">
-    <h5><a href='<c:url value="/loginView"/>'>LOGIN</a> 로그인 해주세요.</h5>
+    <h5><a href='<c:url value="/loginview"/>'>LOGIN</a> 로그인 해주세요.</h5>
 </sec:authorize>
 
 <sec:authorize access="isAuthenticated()">

@@ -72,7 +72,7 @@
 				</div>
 				<br/><br/><br/>
 				<div class="text-center">
-					<a href="login" class="txt2 hov1"> 로그인</a> / <a href="join" class="txt2 hov1">회원가입 </a>
+					<a href="/loginview" class="txt2 hov1"> 로그인</a> / <a href="/joinview" class="txt2 hov1">회원가입 </a>
 				</div>
 
 			</form>

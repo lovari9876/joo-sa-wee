@@ -102,8 +102,8 @@
 						<li><a class="fas fa-user" href="#"></a>
 							<ul class="sub-menu">
 								<sec:authorize access="isAnonymous()">
-									<li><a href="loginView">로그인</a></li>
-									<li><a href="joinView">회원가입</a></li>
+									<li><a href="/loginview">로그인</a></li>
+									<li><a href="/joinview">회원가입</a></li>
 								</sec:authorize>
 								<sec:authorize access="isAuthenticated()">
 									<li><span class="txt1"> <%=name%>
