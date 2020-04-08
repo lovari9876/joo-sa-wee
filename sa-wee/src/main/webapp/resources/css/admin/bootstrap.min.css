@@ -1346,7 +1346,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 	vertical-align: middle;
 }
 
-.pull-right{
+div > .pull-right{
 	padding-left : 4px;
 }
 
@@ -2029,10 +2029,10 @@ input.search-query {
 	margin-right: 3px;
 	margin-left: 0;
 }
-
-/* .control-group {
+/*  .controls {
+ 	display : inline;
 	margin-bottom: 10px;
-} */
+}  */
 
 legend+.control-group {
 	margin-top: 20px;
@@ -6312,6 +6312,13 @@ button.close {
 	.span2 {
 		width: 170px;
 	}
+
+	/* 게시판리스트 selectbox */
+	.dropdown > .span2 {
+		width: 130px;
+	}
+	
+	
 	.span1 {
 		width: 70px;
 	}

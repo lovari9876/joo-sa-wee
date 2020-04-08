@@ -57,21 +57,15 @@
 												}); 
 								   </script>
 									
-							 
-								<select id = "board" name = "bt_no" class="span2 pull-left" data-bt="${bt_no}"></select>
-								<select id = "sub" name = "s_content" class="span2 pull-left" data-s="${s_content}"></select>
 							
-							 
-							
-								
-								<div class="input-append pull-right"> 
+							<div class="input-append pull-right"> 
 									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
 									<button type="submit" class="btn" id="searchBtn">
 										<i class="icon-search"></i>
 									</button>
-								</div>
-								
-								 <div class="dropdown pull-right">
+							</div>
+							
+							 <div class="dropdown pull-right">
 										<select id="searchType" name="searchType" class="span2">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
@@ -80,11 +74,27 @@
 											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 											<option value = "tc" class="btn">제목+내용</option>
 										</select>
-								</div> 
+							</div> 
+								
+							<div class="dropdown pull-right">
+								<select id = "sub" name = "s_content" class="span2 pull-left" data-s="${s_content}"></select>
+							</div>	
+							
+							
+							<div class="dropdown pull-right">
+								<select id = "board" name = "bt_no" class="span2 pull-left" data-bt="${bt_no}"></select>
+							</div>	
+							
+							
+							
+								
+								
+								
 							</div>
 						</div>
 
 					</form>
+					<br><br>
 					
 					<div class="btn-group pull-left" >
 						<button type="button" value="board" class="btn selectDelete_btn" data-BW="${board['BT_NO']} ${board['BW_NO']}">선택 글 삭제</button>
