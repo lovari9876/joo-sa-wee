@@ -127,8 +127,8 @@
 							</tr>
 							<c:forEach items="${tgList}" var="tgItem">
 								<tr class="table--row">
-									<td class="table--cell">${tgItem['TG_NAME']}</td>							
-									<td class="table--cell">${tgItem['TG_PRICE']}</td>
+									<td class="table--cell">${tgItem.tg_name}</td>							
+									<td class="table--cell">${tgItem.tg_price}</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -158,7 +158,7 @@
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item second">
-								<a href="#">수정</a>
+								<a href="trade_modify_view?t_no=${content_view_t['T_NO']}">수정</a>
 							</div>
 							<div class="test_item third">
 								<a href="delete_t?t_no=${content_view_t['T_NO']}">삭제</a>

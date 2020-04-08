@@ -86,7 +86,7 @@
 	
 	
 	<!-- 글 보기(content_view): 게임, 가격 가져오기 -->
-	<select id="selectTrade_gameList" resultType="java.util.HashMap" parameterType="int">
+	<select id="selectTrade_gameList" resultType="com.soninlawisdice.vo.Trade_gameVO" parameterType="int">
 	
 		SELECT 
 			*
@@ -127,6 +127,16 @@
 	
 	<!-- 글쓰기 : 다중 INSERT -->
 	<!-- Map을 사용할때 index는 key객체가 되고 항목은 value객체 -->
+	
+	<!-- get_trade_seq 함수 생성하여 현재 trade_seq 리턴 -->
+	<!-- oracle db에 생성한 함수는 다음과 같다. -->
+	<!-- 		 
+		CREATE FUNCTION get_trade_seq RETURN NUMBER IS
+		BEGIN
+		  RETURN TRADE_GAME_SEQ.nextval;
+		END;
+		/
+	 -->
 	<insert id="insertTrade" >
 	
 		INSERT ALL
@@ -163,22 +173,99 @@
 	</update>
 	
 	
-	<!-- modify_view 로 불러오기 -->
-	<select id = "modify_view" resultType = "com.soninlawisdice.vo.TradeVO">
-		select bw_no, bt_no, s_no, bw_title, bw_content
-		from board_write
-		where bw_no = #{bw_no}
-	</select>
-	
-	
-	<!-- 글 수정 -->
+	<!-- 글 수정: TRADE -->
 	<update id="modify" parameterType="com.soninlawisdice.vo.TradeVO">
-		update board_write 
-		set bt_no = #{board_writeVO.bt_no}, 
-		s_no = #{board_writeVO.s_no}, 
-		bw_title = #{board_writeVO.bw_title}, 
-		bw_content = #{board_writeVO.bw_content} 
-		where bw_no = #{board_writeVO.bw_no}
+	
+		UPDATE 
+			TRADE
+		SET 
+			S_NO = #{s_no},
+			T_TITLE = #{t_title},
+			T_CONTENT = #{t_content},
+			T_UPDATED_DATE = SYSDATE,
+			T_ISLAND = 0
+		WHERE T_NO = #{t_no}	
+			
+	</update>
+	
+	
+	<!-- 글 수정: TRADE_GAME -->
+	<update id="modifyTG" >
+		
+		
+<!-- 		UPDATE 
+			TRADE_GAME
+			
+			SET 
+				TG_NAME = #{game},
+				TG_PRICE = #{price}
+			WHERE 
+				T_NO = #{t_no} AND 
+				
+				TG_NO = #{tg_no} -->	
+	
+{
+declare
+
+     -- 각 컬럼에서 사용할 테이블의 선언 (이 테이블은 sql의 테이블이 아니라 1차원 배열임)
+    TYPE tg_no_arr IS TABLE OF NUMBER(15,0)
+    INDEX BY BINARY_INTEGER;
+    
+    TYPE game_arr IS TABLE OF VARCHAR2(40 BYTE)
+    INDEX BY BINARY_INTEGER;
+    
+    TYPE price_arr IS TABLE OF NUMBER(10,0)
+    INDEX BY BINARY_INTEGER;
+
+     -- 테이블타입으로 변수를 선언해서 사용: 형식 [변수이름 테이블타입]
+    tg_no tg_no_arr;
+    game game_arr;
+    price price_arr;
+    
+     -- for 문 위한 변수 선언
+    i BINARY_INTEGER := 0;
+
+   BEGIN
+
+    -- mybatis foeach로 대입 일일이 돌리기
+    <foreach collection="gamePrice" index="game" item="price">	
+        game := #{game};
+        price := #{price};
+    </foreach>    
+      
+     
+
+    -- 수정한 개수만큼만 update
+    update trade_game tg set tg.tg_name = game(i), tg.tg_price = price(i) where tg.tg_no = tg_no(i);
+
+    END LOOP;
+   
+
+    -- 해당 글의 tg_no만 arr에 넣기
+     FOR tg_nolist IN (select tg_no from trade_game where t_no = 396 )  loop
+            
+            i := i + 1;
+
+           -- 테이블 변수에 검색된 결과를 넣는다
+            tg_no(i) := tg_nolist.tg_no ; 
+
+      END LOOP;
+      
+      -- 아나... 수정시 입력한 게임이름 개수가 기존것보다 많으면(초과) tg_no추가해서 새로 insert.
+      -- 같으면 그대로 update,
+      -- 적으면 게임 개수만큼만 update 후에 남는거 delete
+
+      -- 1부터 i까지 FOR 문을 실행 
+      FOR cnt IN 1..i LOOP
+
+    -- 수정한 개수만큼만 update
+    update trade_game tg set tg.tg_name = game(i), tg.tg_price = price(i) where tg.tg_no = tg_no(i);
+
+      END LOOP;
+
+  END 
+  }
+  
 	</update>
 	
 	

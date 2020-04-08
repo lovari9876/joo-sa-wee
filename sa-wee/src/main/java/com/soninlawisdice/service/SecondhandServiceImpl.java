@@ -44,7 +44,7 @@ public class SecondhandServiceImpl implements SecondhandService {
 	}
 	
 	// content view: selectTrade_game
-	public ArrayList<HashMap<String, Object>> selectTrade_gameList(int t_no) {
+	public ArrayList<Trade_gameVO> selectTrade_gameList(int t_no) {
 		
 		return secondhandMapper.selectTrade_gameList(t_no);
 	}
@@ -94,6 +94,37 @@ public class SecondhandServiceImpl implements SecondhandService {
 	// 글 작성 포인트 update
 	@Override
 	public void boardPointUpdate(int m_no) {
+		secondhandMapper.boardPointUpdate(m_no);
+	}
+	
+	// 글 수정: TRADE
+	public void modify(TradeVO tradeVO) {
+		secondhandMapper.modify(tradeVO);
+	}
+	
+	// 글 수정: TRADE_GAME
+	public void modifyTG(int t_no, String gameNames, String prices) {
+		// 쉼표로 구분하여 받은 gameNames을 잘라서 List에 담기
+		StringTokenizer gn = new StringTokenizer(gameNames, ",");
+		// 쉼표로 구분하여 받은 prices를 잘라서 List에 담기
+		StringTokenizer gp = new StringTokenizer(prices, ",");
 
+		LinkedHashMap<String, Integer> gamePrice = new LinkedHashMap<>();
+		
+		// 차례로 넣기...
+		while (gn.hasMoreTokens()) {
+			String gnt = null, gpt; // 커서 이동 막기
+			if (gp.hasMoreTokens() & ((gpt = gp.nextToken()).trim() != "" | gpt != "" | gpt != null | gpt.trim() != null)) {// if true
+				try {
+					gamePrice.put((gnt = gn.nextToken()).trim(), Integer.parseInt(gpt.trim()));
+				} catch (NumberFormatException e) { // 빈 문자열 넣거나, 숫자가 아닌 문자 넣을 때...
+					gamePrice.put(gnt.trim(), 0);
+				} catch (Exception e) {
+				}
+			} else // 가격 입력 개수 적으면 걍 0 넣어
+				gamePrice.put(gn.nextToken(), 0);
+		}
+
+		secondhandMapper.modifyTG(t_no, gamePrice);
 	}
 }
