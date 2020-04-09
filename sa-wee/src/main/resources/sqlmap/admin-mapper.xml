@@ -142,7 +142,8 @@
 			SELECT * FROM (
 				SELECT cr.*, m.m_id, c.c_title,
 				 (SELECT COUNT(*) FROM cm_comment WHERE cm_type ='카페리뷰' AND cm_no2 = c.c_no) cm,
-				ROW_NUMBER() OVER(ORDER BY m.m_no DESC) AS RNUM
+				ROW_NUMBER() OVER(ORDER BY cr.cr_no ASC) AS RNUM,
+				ROW_NUMBER() OVER(ORDER BY cr.cr_no DESC) AS RNUM_COUNT
 				FROM cafe_review cr
 				INNER JOIN member m
 				ON cr.m_no = m.m_no
@@ -150,7 +151,7 @@
 				On cr.c_no = c.c_no
 				<include refid="cafe_review_search"></include>
 			)MP
-			WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+			WHERE RNUM_COUNT BETWEEN #{rowStart} AND #{rowEnd}
 			ORDER BY cr_no DESC
 		
 	

@@ -255,14 +255,15 @@
 			(
 				select cr.cr_no, m.m_nick, cr.cr_title,  cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
 				, (select count(*) from cm_comment where cm_type = '카페리뷰' and cm_no2 = cr.cr_no) AS cm
-				, ROW_NUMBER() OVER(ORDER BY cr.cr_no DESC) AS RNUM
+				, ROW_NUMBER() OVER(ORDER BY cr.cr_no ASC) AS RNUM
+				, ROW_NUMBER() OVER(ORDER BY cr.cr_no DESC) AS RNUM_COUNT
 				from cafe_review cr, member m, cafe c 
 				where cr.m_no = m.m_no and cr.c_no = c.c_no
 				and cr.cr_island = 0
 				<include refid="cafeReview_search"></include>
 				order by cr.cr_no desc
 			)
-			WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+			WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 			ORDER BY cr_no DESC
 			
 	</select>
@@ -281,7 +282,8 @@
 			(	
 				select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
 				, (select count(*) from cm_comment where cm_type = '카페리뷰' and cm_no2 = cr.cr_no) AS cm
-				, ROW_NUMBER() OVER(ORDER BY cr.cr_no DESC) AS RNUM
+				, ROW_NUMBER() OVER(ORDER BY cr.cr_no ASC) AS RNUM
+				, ROW_NUMBER() OVER(ORDER BY cr.cr_no DESC) AS RNUM_COUNT
 				from cafe_review cr, member m, cafe c 
 				where cr.m_no = m.m_no and cr.c_no = c.c_no
 				and cr.c_no = #{c_no}
@@ -289,7 +291,7 @@
 				<include refid="cafeReview_search"></include>
 				order by cr_no desc
 			)
-			WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+			WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 	</select>
 	
 	<select id="cafe_listCount" resultType="int">
@@ -492,6 +494,7 @@
 			<if test="scri.searchType == 'tc'.toString()">AND (c_title LIKE '%' || #{scri.keyword} || '%') or (c_add LIKE '%' || #{scri.keyword} || '%')</if>
 		</if>
 	</sql>
+	
 	<!-- 카페리뷰 검색하기 -->
 	<sql id="cafeReview_search">
 		<if test="scri.searchType != null">

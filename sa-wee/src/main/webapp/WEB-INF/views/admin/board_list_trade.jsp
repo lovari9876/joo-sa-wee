@@ -36,7 +36,21 @@
 						<div class="control-group">
 
 							<div class="controls">
-							
+								<script>
+								      $(function(){
+												  $('#searchBtn').click(function() {
+												  	event.preventDefault(); // event canceled 막기!
+												    	self.location = "board_list_trade" 
+												    				+ '${pageMaker.makeQuery(1)}' 
+												    				+ "&s_content="
+												    				+ $("#sub option:selected").val() 
+												    				+ "&searchType=" 
+												    				+ $("#searchType option:selected").val() 
+												    				+ "&keyword=" 
+												    				+ encodeURIComponent($('#keywordInput').val());
+												  });
+												}); 
+								   </script>
 								<div class="dropdown pull-left">
 								  	 <select id="s_content" name="s_content" class="span2 pull-right select-right">
 										  <option value="n" <c:out value="${s_content == null ? 'selected' : ''}"/>>말머리</option>
@@ -47,7 +61,7 @@
 						          </div>  
 								
 								 <div class="dropdown pull-left">  
-										<select name="searchType" class="span2 pull-right select-right">
+										<select id="searchType" name="searchType" class="span2 pull-right select-right">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>

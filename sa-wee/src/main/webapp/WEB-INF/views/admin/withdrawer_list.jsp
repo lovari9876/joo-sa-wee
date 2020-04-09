@@ -67,9 +67,22 @@
 						<div class="control-group">
 
 							<div class="controls">
+								<script>
+								      $(function(){
+											  $('#searchBtn').click(function() {
+											  	event.preventDefault(); // event canceled 막기!
+											    	self.location = "withdrawer_list" 
+											    				+ '${pageMaker.makeQuery(1)}' 
+											    				+ "&searchType=" 
+											    				+ $("#searchType option:selected").val() 
+											    				+ "&keyword=" 
+											    				+ encodeURIComponent($('#keywordInput').val());
+											  });
+											}); 
+								   </script>
 								<div class="dropdown">
 									
-										<select name="searchType" class="span2">
+										<select id="searchType" name="searchType" class="span2">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>아이디</option><!-- memberVO랑 JOIN 한 값..!! -->
 											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>탈퇴 사유</option>

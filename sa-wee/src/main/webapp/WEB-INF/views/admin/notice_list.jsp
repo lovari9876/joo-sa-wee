@@ -36,7 +36,19 @@
 						<div class="control-group">
 
 							<div class="controls">
-								
+								<script>
+								      $(function(){
+											  $('#searchBtn').click(function() {
+											  	event.preventDefault(); // event canceled 막기!
+											    	self.location = "notice_list" 
+											    				+ '${pageMaker.makeQuery(1)}' 
+											    				+ "&searchType=" 
+											    				+ $("#searchType option:selected").val() 
+											    				+ "&keyword=" 
+											    				+ encodeURIComponent($('#keywordInput').val());
+											  });
+											}); 
+								   </script>
 								
 								 <div class="dropdown pull-left">
 										<select id="searchType" name="searchType" class="span2">

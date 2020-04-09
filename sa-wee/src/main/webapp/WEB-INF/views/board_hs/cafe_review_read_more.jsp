@@ -49,7 +49,7 @@
 	</div>
 
 	<!-- Header section -->
-
+		<script src="js/board_hs/jquery-3.2.1.min.js"></script>
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp"%>
 	<!-- header include end -->
@@ -74,8 +74,25 @@
 				<!-- Search Bar  -->
 				<form>
 					<div class="search">
+						<script>
+								      $(function(){
+												  $('#searchBtn').click(function() {
+												  	event.preventDefault(); // event canceled 막기!
+												    	self.location = "read_more" 
+												    				+ '${pageMaker.makeQuery(1)}' 
+												    				+ "&c_no="
+												    				+ ${c_no}
+												    				+ "&searchType=" 
+												    				+ $("#searchType option:selected").val() 
+												    				+ "&keyword=" 
+												    				+ encodeURIComponent($('#keywordInput').val());
+												  });
+												}); 
+								   </script>
+					
+					
 						<div class="dropdown pull-right">
-								<select name="searchType" class="span2">
+								<select id="searchType" name="searchType" class="span2">
 									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 									<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 									<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
@@ -150,18 +167,18 @@
 						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
 								<li class = "page-item"><a class = "page-link"
-									href="read_more?c_no=${c_no}${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="read_more${pageMaker.makeSearch(pageMaker.startPage - 1)}&c_no=${c_no}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li class = "page-item"><a class = "page-link" href="read_more?c_no=${c_no}${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="read_more${pageMaker.makeSearch(idx)}&c_no=${c_no}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class = "page-item"><a class ="page-link"
-									href="read_more?c_no=${c_no}${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="read_more${pageMaker.makeSearch(pageMaker.endPage + 1)}&c_no=${c_no}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>
@@ -185,7 +202,6 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
 	<script src="js/board_hs/bootstrap.min.js"></script>
 	<script src="js/board_hs/jquery.slicknav.min.js"></script>
 	<script src="js/board_hs/owl.carousel.min.js"></script>

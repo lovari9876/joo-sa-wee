@@ -36,8 +36,22 @@
 						<div class="control-group">
 
 							<div class="controls">
+							
+							<script>
+							      $(function(){
+											  $('#searchBtn').click(function() {
+											  	event.preventDefault(); // event canceled 막기!
+											    	self.location = "board_list_cafe" 
+											    				+ '${pageMaker.makeQuery(1)}' 
+											    				+ "&searchType=" 
+											    				+ $("#searchType option:selected").val() 
+											    				+ "&keyword=" 
+											    				+ encodeURIComponent($('#keywordInput').val());
+											  });
+											}); 
+								   </script>
 								<div class="dropdown pull-left">
-										<select name="searchType" class="span2">
+										<select id="searchType" name="searchType" class="span2">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>카페이름</option>
 											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>리뷰제목</option>
@@ -96,7 +110,7 @@
 							<c:forEach items="${board_list_cafe}" var="cr">
 									<tr class="trow">
 										<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${cr['BT_NO']} ${cr['CR_NO']} ${cr['M_NO']}"></td>
-										<td class="cell">${cr['CR_NO']}</td>
+										<td class="cell">${cr['RNUM']}</td>
 										<td class="cell">${cr['C_TITLE']}</td>
 										<td class="cell title"><a
 											href="/selectReviewOne?cr_no=${cr['CR_NO']}">${cr['CR_TITLE']} (${cr['CM']})</a></td>

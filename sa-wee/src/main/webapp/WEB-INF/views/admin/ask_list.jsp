@@ -40,7 +40,7 @@
 								      $(function(){
 												  $('#searchBtn').click(function() {
 												  	event.preventDefault(); // event canceled 막기!
-												    	self.location = "board_list" 
+												    	self.location = "ask_list" 
 												    				+ '${pageMaker.makeQuery(1)}' 
 												    				+ "&s_content="
 												    				+ $("#sub option:selected").val() 
