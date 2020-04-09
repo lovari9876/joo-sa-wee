@@ -102,7 +102,7 @@ public class MyPageController {
 		return "redirect:/mypage";
 	}
 	
-	// 회원 탈퇴 : user_view
+	// 회원 탈퇴
 	@RequestMapping(value = "/out", method = RequestMethod.POST)
 	public String out(MemberVO memberVO, Principal principal, HttpSession session) throws Exception {
 		System.out.println("out()");
@@ -115,6 +115,7 @@ public class MyPageController {
 		
 		return "redirect:/";
 	}
+	// ================================= 쪽지 =================================
 	
 	@RequestMapping(value = "/message", method = RequestMethod.GET)
 	public String message(Locale locale, Model model)  throws Exception{
