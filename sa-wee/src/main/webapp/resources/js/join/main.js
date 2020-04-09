@@ -1,25 +1,10 @@
-function fn_idCheck() {
-	$.ajax({
-		url : "/idCheck",
-		type : "post",
-		dataType : "json",
-		data : {
-			"m_id" : $("#m_id").val()
-		},
-
-		success : function(data) {
-			var m_id = $("#m_id").val();
-			console.log(m_id);
-
-			if (data == 1) {
-				alert("중복된 아이디입니다.");
-			} else if (data == 0) {
-				$("#idCheck").attr("value", "Y");
-				alert("사용가능한 아이디입니다.");
-			}
-		}
-	})
-}
+var token = $("meta[name='_csrf']").attr("content");
+var header = $("meta[name='_csrf_header']").attr("content");
+$(function() {
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+});
 
 $(function() {
 
@@ -95,19 +80,41 @@ $(function() {
 								$("#m_id").focus();
 								return false;
 							}
+							if($("#m_id_check").val() != ""){
+								alert("아이디를 확인해주세요.");
+								$("#m_id").focus();
+								return false;
+							}							
 
 							if ($("#m_nick").val() == "") {
 								alert("닉네임을 입력해주세요.");
 								$("#m_nick").focus();
 								return false;
-							}
+							}							
+							if($("#m_nick_check").val() != ""){
+								alert("닉네임을 확인해주세요.");
+								$("#m_nick").focus();
+								return false;
+							}	
+							
 							if ($("#m_pw").val() == "") {
 								alert("비밀번호를 입력해주세요.");
 								$("#m_pw").focus();
 								return false;
 							}
+							if ($("#m_pw_check").val() != "") {
+								alert("비밀번호를 확인해주세요.");
+								$("#m_pw").focus();
+								return false;
+							}
+							
 							if ($("#comfirm_password").val() == "") {
 								alert("비밀번호를 입력해주세요.");
+								$("#comfirm_password").focus();
+								return false;
+							}
+							if ($("#comfirm_password_check").val() != "") {
+								alert("비밀번호를 확인해주세요.");
 								$("#comfirm_password").focus();
 								return false;
 							}
@@ -117,9 +124,19 @@ $(function() {
 								$("#m_name").focus();
 								return false;
 							}
+							if ($("#m_name_check").val() != "") {
+								alert("이름을 확인해주세요.");
+								$("#m_name").focus();
+								return false;
+							}
 
 							if ($("#m_birth").val() == "") {
 								alert("생일을 입력해주세요.");
+								$("#m_birth").focus();
+								return false;
+							}
+							if ($("#m_birth_check").val() != "") {
+								alert("생일을 확인해주세요.");
 								$("#m_birth").focus();
 								return false;
 							}
@@ -129,8 +146,18 @@ $(function() {
 								$("#m_phone").focus();
 								return false;
 							}
+							if ($("#m_phone_check").val() != "") {
+								alert("핸드폰 번호를 확인해주세요.");
+								$("#m_phone").focus();
+								return false;
+							}
 							if ($("#m_email").val() == "") {
 								alert("이메일을 입력해주세요.");
+								$("#m_email").focus();
+								return false;
+							}
+							if ($("#m_email_check").val() != "") {
+								alert("이메일을 확인해주세요.");
 								$("#m_email").focus();
 								return false;
 							}
@@ -148,15 +175,11 @@ $(function() {
 								alert("상세주소를 입력해주세요.");
 								$("#m_addr2").focus();
 								return false;
-							}
-							var idCheckVal = $("#idCheck").val();
-							if (idCheckVal == "N") {
-								alert("중복확인 버튼을 눌러주세요.");
-								return false;
-							} else {
-								alert("Submitted!");
-								$("#form-register").submit();
-							}
+							}							
+							
+							alert("Submitted!");
+							$("#form-register").submit();
+						
 						}
 
 					});
@@ -183,7 +206,6 @@ $(function() {
 
 					} else if (m_id.length < 3 || !reg_m_id.test(m_id)) {
 						$('#m_id_check').text("아이디는 영어와 숫자 4~12자리만 가능합니다.");
-
 					}
 				}
 			},
@@ -219,9 +241,6 @@ $(function() {
 
 							}
 						}
-					},
-					error : function() {
-						console.log("실패");
 					}
 				});
 			});
@@ -242,15 +261,19 @@ $(function() {
 									.text(
 											"비밀번호는 영문, 숫자, 특수문자 !@#$%^&*_~- 를 사용한 8~20자리만 가능합니다.");
 						}
+						if($('#comfirm_password_check').val != ""){
+							if($('#m_pw').val() != $('#comfirm_password').val()){
+								$('#comfirm_password_check').text('비밀번호가 일치하지 않습니다.');
+								$("#comfirm_password_check").css("color", "red");
+							}
+						}
 					});
 
 	$('#comfirm_password').blur(function() {
 		if ($('#comfirm_password').val() == '') {
 			$('#comfirm_password_check').text('비밀번호를 입력해주세요.');
 		} else if ($('#m_pw').val() == $('#comfirm_password').val()) {
-			$('#comfirm_password_check').text('비밀번호가 일치합니다.');
-			$("#comfirm_password_check").css("color", "blue");
-
+			$('#comfirm_password_check').text('');
 		} else {
 			$('#comfirm_password_check').text('비밀번호가 일치하지 않습니다.');
 			$("#comfirm_password_check").css("color", "red");

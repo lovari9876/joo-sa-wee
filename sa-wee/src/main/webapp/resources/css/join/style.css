@@ -654,7 +654,7 @@ body {
 		padding: 15px 24px
 	}
 }
-
+/* 경고글자 사이즈, 색 조절 */
 .check_font {
 	color: red;
 	font-size: 13px

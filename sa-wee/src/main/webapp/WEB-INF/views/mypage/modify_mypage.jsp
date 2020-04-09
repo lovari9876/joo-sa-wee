@@ -12,13 +12,11 @@
 <link rel="icon" type="image/png" href="/images/share/wolf_logo.ico" />
 
 <link rel="stylesheet" href="/css/mypage/bootstrap.min.css">
-
 <link rel="stylesheet" type="text/css" href="/css/mypage/style.css" />
-
-<link rel="stylesheet" type="text/css" href="/css/mypage/liststyle.css" />
 <!-- 403 에러 / csrf 토큰 문제 -->
-<meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
-<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
 <!-- 우편번호 api -->
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -93,7 +91,7 @@
 		<div class="cover">
 			<div class="cover-layer">
 				<div class="container web-portion">
-					<form id="viewForm" class="form-register" action="/join"
+					<form id="viewForm" class="form-register" action="/mypage_modify"
 						method="post">
 						<div class="row top-det">
 							<div class="col-md-4">
@@ -114,9 +112,8 @@
 								<div class="pd">
 									<br />
 									<p>
-										<label>닉네임</label> <input placeholder="Nickname..."
-											class="w3-input" type="text" id="m_nick" name="m_nick"
-											value="${ member.m_nick }">
+										<label>아이디</label> <input class="form-control" type="text"
+											id="m_id" name="m_id" readonly value="${ member.m_id }">
 									</p>
 								</div>
 							</div>
@@ -124,17 +121,13 @@
 								<div class="pd">
 									<br />
 									<p>
-										<label>비밀번호</label> <input placeholder="password"
-											class="w3-input" type="password" id="m_pw" name="m_pw"
-											value="">
+										<label>닉네임</label> <input class="form-control" type="text"
+											id="m_nick" name="m_nick" value="${member.m_nick}">
 									</p>
-									<p>
-										<label>비밀번호 확인</label> <input placeholder="password check"
-											class="w3-input" type="password" id="m_pw2" name="m_pw2"
-											value="">
-									</p>
+									<div class="check_font" id="m_nick_check"></div>
 								</div>
 							</div>
+
 						</div>
 						<div class="nav-detail">
 							<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -149,40 +142,36 @@
 									aria-labelledby="home-tab">
 									<div class="row no-margin home-det">
 										<div class="col-md-4 eml-mob">
-											<br /> <br />
-											<p>
-												<label>아이디</label> <input class="w3-input" type="text"
-													id="m_id" name="m_id" readonly value="${ member.m_id }">
-											</p>
 											<br />
+
 											<p>
-												<label>이메일</label> <input class="w3-input" type="text"
+												<label>이메일</label> <input class="form-control" type="text"
 													id="m_email" name="m_email" value="${ member.m_email }">
 											</p>
-											<br />
+											<div class="check_font" id="m_email_check"></div>
+
 											<p>
-												<label>핸드폰</label> <input class="w3-input" type="text"
+												<label>핸드폰</label> <input class="form-control" type="text"
 													id="m_phone" name="m_phone" value="${ member.m_phone }">
 											</p>
-											<br /> <br /> <br />
-
-											<p>
-												<label>우편번호</label> <input class="w3-input" type="text"
-													id="m_nick" name="m_nick" value="${ member.m_post }">
-											</p>
+											<div class="check_font" id="m_phone_check"></div>
 											<br />
 											<p>
-												<label>주소</label> <input class="w3-input" type="text"
+												<label>우편번호</label> <input type="text" class="form-control"
+													id="m_post" name="m_post" required
+													value="${ member.m_post }">
+											</p>
+											<input type="button" onclick="sample4_execDaumPostcode()"
+												value="우편번호 찾기"> <br />
+											<p>
+												<label>주소</label> <input class="form-control" type="text"
 													id="m_addr1" name="m_addr1" value="${ member.m_addr1 }">
 											</p>
-											<br />
+
 											<p>
-												<label>상세주소</label> <input class="w3-input" type="text"
+												<label>상세주소</label> <input class="form-control" type="text"
 													id="m_addr2" name="m_addr2" value="${ member.m_addr2 }">
 											</p>
-											<br />
-
-
 
 
 										</div>
@@ -196,10 +185,10 @@
 												<br /> <br /> <br /> <br /> <br />
 											</div>
 
+
 											<div class="jumbo-address">
 												<div class="row no-margin">
 													<div class="col-lg-6 no-padding">
-
 														<table class="addrss-list">
 															<tbody>
 																<tr>
@@ -254,35 +243,63 @@
 																		</div></td>
 																</tr>
 															</tbody>
-														</table>													
+														</table>
 													</div>
 												</div>
 											</div>
-											<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-											<div class="links">
-												<div class="row ">
-													<div class="col-xl-6 col-md-12">
-														<ul class="btn-link">
 
-															<li><a href="/mypage_modifyview"><i
-																	class="fas fa-circle-notch"></i> 처음으로</a></li>
+											<input type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" />
 
-															<li><a href="#" onclick='m_update()'><i
-																	class="fas fa-circle-notch"></i> 수정하기</a></li>
-														</ul>
-														<br /> <br />
-														<ul class="btn-link">
-															<li><a href="/mypage"><i
-																	class="fas fa-address-card"></i> 마이페이지</a></li>
+											<div class="row no-margin home-det">
+												<div class="col-md-4 eml-mob">
+													<div class="pd">
+														<br /> <label>비밀번호</label> <input placeholder="password"
+															class="form-control" type="password" id="m_pw"
+															name="m_pw" value="">
+														<div class="check_font" id="m_pw_check"></div>
 
-															<li class="btn-shake"><a href="#" onclick='m_out()'><i
-																	class="fas fa-times"></i> 탈퇴</a></li>
-														</ul>
+													</div>
+												</div>
+												<div class="col-md-4 eml-mob">
+													<div class="pd">
+														<br /> <label>비밀번호 확인</label> <input
+															placeholder="comfirm password" class="form-control"
+															type="password" id="comfirm_password"
+															name="comfirm_password" value="">
+														<div class="check_font" id="comfirm_password_check"></div>
+													</div>
+												</div>
+												<div class="col-md-4 eml-mob">
+													<div class="pd">
+														<div class="links">
+															<div class="row">
+																<ul class="btn-link">
+																	<li><a href="/mypage_modifyview"><i
+																			class="fas fa-circle-notch"></i>처음으로</a></li>
+																	<li><button class='btn-a' onclick='m_update()'>
+																			<i class="fas fa-circle-notch"></i>수정하기
+																		</button></li>
 
+																	<li><a href="/mypage"><i
+																			class="fas fa-address-card"></i>마이페이지</a></li>
+																	<li class="btn-shake"><a onclick='m_out()'><i
+																			class="fas fa-times"></i>탈퇴</a></li>
+																</ul>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
+										<!-- <div class="links">
+											<div class="row ">
+												<ul class="btn-link">
+													<li class="btn-shake" ><a onclick='m_out()'><i
+															class="fas fa-times" ></i>탈퇴</a></li>
+												</ul>
+											</div>
+										</div> -->
 									</div>
 								</div>
 							</div>
@@ -292,25 +309,20 @@
 			</div>
 		</div>
 	</div>
-
 	<script>
-		function m_update() {
-			var modify = document.getElementById("viewForm");
-			modify.action = "<c:url value='/mypage_modify'/>";
-			/* modify.setUrl("<c:url value='/admin/updateMember'/>"); */
-			modify.submit();
-			console.log("modify");
-		}
-
 		function m_out() {
 			var out = document.getElementById("viewForm");
-			out.action = "<c:url value='/admin/outMember_user'/>";
-			out.submit();
 			console.log("out");
-			alert("해당 회원이 탈퇴처리 되었습니다.");
+			var result = confirm("사위님 정말 탈퇴하시겠습니까?");
+			if (result) {
+				alert("당신에게는 앞으로 주사위의 저주가 있을 것입니다. 탈퇴가 완료되었습니다.");
+				out.action = "<c:url value='/out'/>";
+				out.submit();
+			} else {
+				alert("탈퇴가 취소되었습니다. 내 사위는 주사위를 즐기세요!");
+			}
 		}
 	</script>
-
 </body>
 
 <script src="js/mypage/jquery-3.2.1.min.js"></script>
@@ -318,6 +330,7 @@
 <script src="js/mypage/popper.min.js"></script>
 <script src="js/mypage/bootstrap.min.js"></script>
 <script src="js/mypage/script.js"></script>
+<script src="js/mypage/main.js"></script>
 
 <!-- Java Script for header  ================================================== -->
 <script src="/js/header/jquery.slicknav.min.js"></script>

@@ -36,7 +36,7 @@
 								<div class="pd">
 									<h2>${member.m_nick}</h2>
 									<p>
-										${member.getR_name(member.r_no)}										
+										${member.getR_name(member.r_no)}
 										<%-- <c:if test="${member.r_no == 1}">
                                         	보드대마왕
                                         </c:if>
@@ -99,7 +99,7 @@
 											<br />
 											<li>핸드폰 : ${member.m_phone}</li>
 											<br />
-											<li>주소 : ${member.m_addr1} ${member.m_addr2}</li>
+											<li>주소 : ${member.m_addr1}, ${member.m_addr2}</li>
 											<br />
 											<li>가입일 : <fmt:formatDate pattern="yyyy-MM-dd"
 													value="${member.m_indate}" /></li>
