@@ -98,8 +98,8 @@ public class SecondhandServiceImpl implements SecondhandService {
 	}
 	
 	// 글 수정: TRADE
-	public void modify(TradeVO tradeVO) {
-		secondhandMapper.modify(tradeVO);
+	public void modify(TradeVO tradeVO, String fromIsland) {
+		secondhandMapper.modify(tradeVO, fromIsland);
 	}
 	
 	// 글 수정: TRADE_GAME

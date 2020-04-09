@@ -41,7 +41,7 @@ public interface SecondhandService {
 	public void boardPointUpdate(int m_no);
 
 	// 글 수정: TRADE
-	public void modify(TradeVO tradeVO);
+	public void modify(TradeVO tradeVO, String fromIsland);
 
 	// 글 수정: TRADE_GAME
 	public void modifyTG(int t_no, String gameNames, String prices);
