@@ -27,8 +27,8 @@ public interface AdminService {
 	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content);
 	public int board_listCount(SearchCriteria scri, int bt_no, String s_content);
 	
-	public List<MemberVO> memberList(SearchCriteria scri);
-	public int member_listCount(SearchCriteria scri);
+	public List<MemberVO> memberList(SearchCriteria scri, String sort);
+	public int member_listCount(SearchCriteria scri, String sort);
 	
 	public ArrayList<HashMap<String, Object>> reportList(SearchCriteria scri, String r_type);
 	public int report_listCount(SearchCriteria scri, String r_type);

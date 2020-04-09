@@ -45,12 +45,12 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public List<MemberVO> memberList(SearchCriteria scri){
-		return adminMapper.memberList(scri);
+	public List<MemberVO> memberList(SearchCriteria scri, String sort){
+		return adminMapper.memberList(scri, sort);
 	}
 	@Override
-	public int member_listCount(SearchCriteria scri){
-		return adminMapper.member_listCount(scri);
+	public int member_listCount(SearchCriteria scri, String sort){
+		return adminMapper.member_listCount(scri, sort);
 	}
 	
 	

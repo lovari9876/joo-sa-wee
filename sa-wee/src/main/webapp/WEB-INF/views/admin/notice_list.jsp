@@ -18,7 +18,7 @@
 
 
 <body>
-
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<%@include file="side.jsp"%>
 
 
@@ -172,7 +172,6 @@
 		</div>
 	</div>
 
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>

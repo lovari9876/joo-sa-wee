@@ -34,10 +34,10 @@ public interface AdminMapper {
 	
 	public int board_listCount(@Param("scri") SearchCriteria scri, @Param("bt_no") int bt_no, @Param("s_content") String s_content);
 	
-	public List<MemberVO> memberList(SearchCriteria scri);
-	public int member_listCount(SearchCriteria scri);
+	public List<MemberVO> memberList(@Param("scri") SearchCriteria scri, @Param("sort") String sort);
+	public int member_listCount(@Param("scri")SearchCriteria scri, @Param("sort") String sort);
 	
-	public ArrayList<HashMap<String, Object>> reportList(@Param("scri")SearchCriteria scri,  @Param("r_type")String r_type);
+	public ArrayList<HashMap<String, Object>> reportList(@Param("scri")SearchCriteria scri, @Param("r_type")String r_type);
 	public int report_listCount(@Param("scri")SearchCriteria scri,  @Param("r_type")String r_type);
 	
 	public  ArrayList<HashMap<String, Object>> wd_recordList(SearchCriteria scri);

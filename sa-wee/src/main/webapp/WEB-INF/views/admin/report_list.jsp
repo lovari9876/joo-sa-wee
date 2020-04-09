@@ -14,6 +14,8 @@
 <link type="text/css" href="images/admin/icons/css/font-awesome.css"rel="stylesheet">
 <link type="text/css"href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'rel='stylesheet'>
 <!-- <link rel="stylesheet" href="css/liststyle.css" /> -->
+
+    
 </head>
 
 
@@ -46,12 +48,19 @@
 								      $(function(){
 								        $('#searchBtn').click(function() {
 								          self.location = "report_list" + '${pageMaker.makeQuery(1)}' 
-								          + "&r_type="+ $("#member").val() 
+								        /*   + "&r_type="+ $("#member").val()  */
 								          + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 								        });
 								      });   
 								      
 								      console.log($("#member").val());
+								      
+								      /* $('button').click(function() {
+								          $('#member').addClass('active');
+								       }) */
+								    
+								      
+								      
 								    </script> 
 								</div>
 

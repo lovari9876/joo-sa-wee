@@ -23,7 +23,7 @@
 
 
 <body>
-
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<%@include file="side.jsp"%>
 
 	<!-- 카테고리, 게시판 별로 선택하기, 회원별(아이디, 닉네임), 제목, 내용별 검색... -->
@@ -162,7 +162,6 @@
 		</div>
 	</div>
 
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>

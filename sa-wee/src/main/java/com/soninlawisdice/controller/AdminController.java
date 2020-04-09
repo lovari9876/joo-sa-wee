@@ -326,13 +326,21 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/user_list", method = RequestMethod.GET)
-	public String user_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String user_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) throws Exception {
 
+		
 		scri.setPerPageNum(15);
-		model.addAttribute("user_list", adminService.memberList(scri));
+		
+		//정렬을 하기 위한 임의의 값 sort를 지정
+		String sort = rq.getParameter("sort");
+		System.out.println("sort : " + sort);
+		
+		model.addAttribute("user_list", adminService.memberList(scri, sort));
+		model.addAttribute("sort", sort);
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.member_listCount(scri));
+		pageMaker.setTotalCount(adminService.member_listCount(scri, sort));
 
 		model.addAttribute("pageMaker", pageMaker);
 

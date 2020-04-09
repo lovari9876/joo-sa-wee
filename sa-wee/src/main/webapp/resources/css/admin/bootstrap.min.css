@@ -1347,11 +1347,11 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 }
 
 /* selectbox 간격 */
-div > .pull-right{
+div > .pull-right:not(.btn){
 	padding-left : 4px;
 }
 
-div > .pull-left{
+div > .pull-left:not(.btn){
 	padding-right : 4px;
 }
 

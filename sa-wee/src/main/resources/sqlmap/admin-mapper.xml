@@ -6,10 +6,10 @@
 	<mapper namespace="com.soninlawisdice.mapper.AdminMapper">
 
 
-	<!-- ================================================List 출력====================================================== -->
+	<!-- ================================================MemberList, userList====================================================== -->
 
 	
-	<select id="memberList" resultType="com.soninlawisdice.vo.MemberVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
+	<select id="memberList" resultType="com.soninlawisdice.vo.MemberVO">
 
 	SELECT * FROM
 	(
@@ -17,15 +17,57 @@
 			m_gender, m_point, m_phone, m_email, m_post, m_addr1, m_addr2,
 			r_no, m_re_sms, m_re_notice, m_re_message, m_info, m_self,
 			m_indate, m_outdate, m_out, m_report_num, m_extra, f_no,
-		               ROW_NUMBER() OVER(ORDER BY m_no DESC) AS RNUM
+		               ROW_NUMBER() OVER(
+		                <choose>
+							<when test = "sort == 'rank'">ORDER BY m_point DESC</when>
+							<when test = "sort == 'm_id'">ORDER BY m_id </when>
+							<when test = "sort == 'indate'">ORDER BY m_indate DESC</when>
+							
+							<otherwise>ORDER BY m_no DESC</otherwise>
+						</choose>
+		               ) AS RNUM
 		         FROM member 
 		         WHERE 1=1
 		         <include refid="member_search"></include>
 		                       ) MP
-		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
-		ORDER BY m_no DESC
+		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+		
+		
+		<choose>
+			<when test = "sort == 'rank'">ORDER BY m_point DESC</when>
+			<when test = "sort == 'm_id'">ORDER BY m_id </when>
+			<when test = "sort == 'indate'">ORDER BY m_indate DESC</when>
+			
+			<otherwise>ORDER BY m_no DESC</otherwise>
+		</choose>
+		
 
 	</select>
+	
+	<select id="member_listCount" resultType="int">
+		SELECT COUNT(m_no)
+		  FROM member
+		 WHERE 1=1
+		 
+		 <include refid="member_search"></include>	
+
+	</select>
+	
+	<sql id="member_search">
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 'a'.toString()">AND m_id LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'b'.toString()">AND m_name LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND m_nick LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'd'.toString()">AND r_no LIKE '%' || #{scri.keyword} || '%'</if>
+		</if>
+	</sql>
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<!-- ================================================ reportList ====================================================== -->
@@ -292,23 +334,7 @@
 	
 	
 	
-	<select id="member_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
-		SELECT COUNT(m_no)
-		  FROM member
-		 WHERE 1=1
-		 <include refid="member_search"></include>	
-		 AND m_no > 0
-
-	</select>
 	
-	<sql id="member_search">
-		<if test="searchType != null">
-			<if test="searchType == 'a'.toString()">AND m_id LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'b'.toString()">AND m_name LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND m_nick LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'd'.toString()">AND r_no LIKE '%' || #{keyword} || '%'</if>
-		</if>
-	</sql>
 	
 	
 	
