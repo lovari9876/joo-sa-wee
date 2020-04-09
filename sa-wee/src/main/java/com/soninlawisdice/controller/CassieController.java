@@ -233,11 +233,14 @@ public class CassieController {
 			bt_no = 0;
 		}
 
+		// <c:out selected>를 위한 값..
+		model.addAttribute("bt_no", bt_no);
+		
 		ArrayList<HashMap<String, Object>> iList = islandService.selectIslandList(scri, bt_no);
 		model.addAttribute("iList", iList);
 
 		// 사이즈 찍어보기
-		System.out.println(iList.size());
+		System.out.println("리스트 개수"+iList.size());
 //		System.out.println(iList.get(0).toString()); // String key는 반드시 대문자로! 
 //		이 시험 출력을 계속 두면, 받아올 리스트가 없는 상황에서는 index 없다고 오류난다....	
 
@@ -250,7 +253,7 @@ public class CassieController {
 
 		model.addAttribute("pageMaker", pageMaker);
 
-		System.out.println(((SearchCriteria) (pageMaker.getCri())).getSearchType());
+		System.out.println("서치타입"+((SearchCriteria) (pageMaker.getCri())).getSearchType());
 
 		return "island/island_list";
 	}
