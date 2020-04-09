@@ -55,12 +55,12 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> reportList(SearchCriteria scri){
-		return adminMapper.reportList(scri);
+	public ArrayList<HashMap<String, Object>> reportList(SearchCriteria scri, String r_type){
+		return adminMapper.reportList(scri, r_type);
 	}
 	@Override
-	public int report_listCount(SearchCriteria scri){
-		return adminMapper.report_listCount(scri);
+	public int report_listCount(SearchCriteria scri, String r_type){
+		return adminMapper.report_listCount(scri, r_type);
 	}
 	
 	
@@ -95,12 +95,12 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public List<FaqVO> faqList(SearchCriteria scri){
-		return adminMapper.faqList(scri);
+	public List<FaqVO> faqList(SearchCriteria scri, int s_no){
+		return adminMapper.faqList(scri, s_no);
 	}
 	@Override
-	public int faq_listCount(SearchCriteria scri){
-		return adminMapper.faq_listCount(scri);
+	public int faq_listCount(SearchCriteria scri, int s_no){
+		return adminMapper.faq_listCount(scri, s_no);
 	}
 	
 	

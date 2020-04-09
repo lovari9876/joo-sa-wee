@@ -27,7 +27,10 @@
 
 	</select>
 	
-	<select id="reportList" resultType="java.util.HashMap" parameterType="com.soninlawisdice.vo.SearchCriteria">
+	
+	<!-- ================================================ reportList ====================================================== -->
+	
+	<select id="reportList" resultType="java.util.HashMap" >
 
 	SELECT * FROM
 	(
@@ -36,17 +39,56 @@
 		         FROM report 
 		         WHERE 1=1
 		         <include refid="report_search"></include>
+		         <include refid="report_type"></include>
 		                       ) MP
-		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 		ORDER BY r_no DESC
 
 	</select>
+	
+	
+	<select id="report_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
+
+		SELECT COUNT(r_no)
+		  FROM report
+		 WHERE 1=1
+		 <include refid="report_search"></include>	
+		 <include refid="report_type"></include>
+		 AND r_no > 0
+
+	</select>
+	
+	<sql id="report_search">
+		<if test="scri.keyword != null">
+			AND r_content LIKE '%' || #{scri.keyword} || '%'
+		</if>
+	</sql>
+	
+	<sql id="report_type">
+		<if test="r_type != null">
+			<if test="r_type == '게시글'">AND r_type = '게시글'</if>
+			<if test="r_type == '카페리뷰'">AND r_type = '카페리뷰'</if>
+			<if test="r_type == '중고거래'">AND r_type = '중고거래'</if>
+			<if test="r_type == '회원'">AND r_type = '회원' </if>
+			<if test="r_type == '댓글'">AND r_type = '댓글'</if>
+		</if>
+	</sql>
+		
+	
+	
+	<!-- ================================================ boardList ====================================================== -->
+	
+	
+	
+	
+	
 	
 	<select id="boardList" resultType="java.util.HashMap">
 
 	SELECT * FROM
 	(
-         SELECT bw.bw_no, m.m_no, m.m_id, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island,
+         SELECT bw.bw_no, m.m_no, m.m_id, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, 
+         bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island, bw.bw_secret,
          			  (SELECT COUNT(*) FROM cm_comment WHERE cm_type ='게시판' AND cm_no2 = bw.bw_no) cm,
 		               ROW_NUMBER() OVER(ORDER BY bw.bw_no ASC) AS RNUM,
 		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM_COUNT 
@@ -60,6 +102,9 @@
                 
              <choose>
                 	<when test = "bt_no == 13">
+                		WHERE bt.bt_no BETWEEN 1 and 6
+                	</when>
+                	<when test = "bt_no == 0">
                 		WHERE bt.bt_no BETWEEN 1 and 6
                 	</when>
                 	<otherwise> 
@@ -112,16 +157,18 @@
 	</select>
 
 
-	<select id="faqList" resultType="com.soninlawisdice.vo.FaqVO" parameterType="com.soninlawisdice.vo.SearchCriteria">
+	<select id="faqList" resultType="com.soninlawisdice.vo.FaqVO">
 			
 			SELECT * FROM(
 		         SELECT faq_no, s_no, faq_title, faq_content, faq_written_date, faq_updated_date, faq_hit,
 				               ROW_NUMBER() OVER(ORDER BY faq_no DESC) AS RNUM
 				         FROM faq 
 				         WHERE 1=1
+				         
+				 <include refid="faq_subject_search"></include>       
 		         <include refid="faq_search"></include>
 		                       ) MP
-				WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd}
+				WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 				ORDER BY faq_no DESC
 		
 	
@@ -140,10 +187,11 @@
 		  INNER JOIN subject s
            ON bw.s_no=s.s_no
 		  
-		  
-		 
 		 <choose>
            <when test = "bt_no == 13"> <!-- 게시글 관리 : 커뮤니티 전체 불러오기  -->
+               WHERE bt.bt_no BETWEEN 1 and 6
+            </when>
+             <when test = "bt_no == 0"> <!-- 게시글 관리 : 커뮤니티 전체 불러오기  -->
                WHERE bt.bt_no BETWEEN 1 and 6
             </when>
             <otherwise> 
@@ -172,6 +220,7 @@
 	
 	<sql id="boardType_search">
 		<if test="bt_no != null">
+			<if test="bt_no == 0"> </if>
 			<if test="bt_no == 1">AND bt.bt_no = 1 </if>
 			<if test="bt_no == 2">AND bt.bt_no = 2</if>
 			<if test="bt_no == 3">AND bt.bt_no = 3</if>
@@ -207,6 +256,13 @@
 			<if test="s_content == '완성'">AND s.s_content = '완성'</if>
 			<if test="s_content == '공유'">AND s.s_content = '공유'</if>
 			<if test="s_content == '테스트플레이'">AND s.s_content = '테스트플레이'</if>
+			
+			<!-- 1대1문의  -->
+			<if test="s_content == '27'">AND s.s_content = '회원 관련 문의'</if>
+			<if test="s_content == '28'">AND s.s_content = '결제 관련 문의'</if>
+			<if test="s_content == '29'">AND s.s_content = '정보수정 요청'</if>
+			<if test="s_content == '30'">AND s.s_content = '무인도 관련 문의'</if>
+			<if test="s_content == '31'">AND s.s_content = '기타 문의'</if>
 			
 		</if>
 	</sql>
@@ -255,25 +311,7 @@
 	
 	
 	
-	<select id="report_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
-		SELECT COUNT(r_no)
-		  FROM report
-		 WHERE 1=1
-		 <include refid="report_search"></include>	
-		 AND r_no > 0
-
-	</select>
-	
-	<sql id="report_search">
-		<if test="searchType != null">
-			<if test="searchType == 'a'.toString()">AND m_no LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'b'.toString()">AND r_type_no LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND r_content LIKE '%' || #{keyword} || '%'</if>
-		</if>
-	</sql>
-	
-	
 	
 	<select id="wd_record_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
 
@@ -293,10 +331,11 @@
 	
 	
 	
-	<select id="faq_listCount" parameterType = "com.soninlawisdice.vo.SearchCriteria" resultType="int">
+	<select id="faq_listCount" resultType="int">
 			SELECT COUNT(faq_no)
 					  FROM faq
 					 WHERE 1=1
+				 <include refid="faq_subject_search"></include>    
 				 <include refid="faq_search"></include>	
 					 AND faq_no > 0
 
@@ -304,12 +343,22 @@
 	</select>
 	
 	<sql id="faq_search">
-		<if test="searchType != null">
-			<if test="searchType == 'a'.toString()">AND m_id LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'b'.toString()">AND wr_reason LIKE '%' || #{keyword} || '%'</if>
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 'a'.toString()">AND faq_title LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'b'.toString()">AND faq_content LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'ab'.toString()">AND (faq_title LIKE '%' || #{scri.keyword} || '%') or (faq_content LIKE '%' || #{scri.keyword} || '%')</if>
 		</if>
 	</sql>
 	
+	<sql id="faq_subject_search">
+		<if test="s_no != null">
+			<if test="s_no == '22'">AND s_no = '22' </if>
+			<if test="s_no == '23'">AND s_no = '23'</if>
+			<if test="s_no == '24'">AND s_no = '24'</if>
+			<if test="s_no == '25'">AND s_no = '25'</if>
+			<if test="s_no == '26'">AND s_no = '26'</if>
+		</if>
+	</sql>
 	
 	
 	<!-- =============================================== 글 보기  ====================================================== -->

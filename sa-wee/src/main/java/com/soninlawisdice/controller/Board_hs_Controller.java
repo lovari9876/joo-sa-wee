@@ -447,13 +447,22 @@ public class Board_hs_Controller {
 	
 	
 	@RequestMapping("/faq")
-	public String faq(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+	public String faq(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 		
-		model.addAttribute("faq_list", adminService.faqList(scri));
+		String temp = rq.getParameter("s_no");
+		int s_no;
+		if (temp != null) {
+			s_no = Integer.parseInt(temp);
+		}else {
+			s_no=0;
+		}
+		
+		model.addAttribute("faq_list", adminService.faqList(scri, s_no));
+		model.addAttribute("s_no", s_no);
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.faq_listCount(scri));
+		pageMaker.setTotalCount(adminService.faq_listCount(scri, s_no));
 
 		model.addAttribute("pageMaker", pageMaker);
 		

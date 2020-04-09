@@ -41,7 +41,7 @@
 								      $(function(){
 												  $('#searchBtn').click(function() {
 												  	event.preventDefault(); // event canceled 막기!
-												    	self.location = "board_list" 
+												    	self.location = "island_list" 
 												    				+ '${pageMaker.makeQuery(1)}' 
 												    				+ "&bt_no="
 												    				+ $("#board option:selected").val()
@@ -56,16 +56,23 @@
 							
 							
 									
-							
-								
-								<div class="input-append pull-right"> 
-									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
-									<button type="submit" class="btn" id="searchBtn">
-										<i class="icon-search"></i>
-									</button>
+								<div class="dropdown pull-left">
+									<select id="bt_no" name="bt_no" data-placeholder="전체게시판" class="span2 pull-left">
+										<option value="0" <c:out value="${bt_no == null ? 'selected' : ''}"/>>전체게시판</option>
+										<option value="1" <c:out value="${bt_no eq 1 ? 'selected' : ''}"/>>보드이야기</option>
+										<option value="2" <c:out value="${bt_no eq 2 ? 'selected' : ''}"/>>개봉기 및 리뷰</option>
+										<option value="3" <c:out value="${bt_no eq 3 ? 'selected' : ''}"/>>보드게임 모임</option>
+										<option value="4" <c:out value="${bt_no eq 4 ? 'selected' : ''}"/>>보드뉴스</option>
+										<option value="5" <c:out value="${bt_no eq 5 ? 'selected' : ''}"/>>질문과 답변</option>
+										<option value="6" <c:out value="${bt_no eq 6 ? 'selected' : ''}"/>>창작 보드게임</option>
+										<option value="8" <c:out value="${bt_no eq 8 ? 'selected' : ''}"/>>일대일 문의</option>
+										<option value="9" <c:out value="${bt_no eq 9 ? 'selected' : ''}"/>>보부상</option>
+										<option value="10" <c:out value="${bt_no eq 10 ? 'selected' : ''}"/>>카페</option>
+										<option value="11" <c:out value="${bt_no eq 11 ? 'selected' : ''}"/>>카페리뷰</option>
+									</select>	
 								</div>
 								
-								 <div class="dropdown pull-right">
+								 <div class="dropdown pull-left">
 										<select id="searchType" name="searchType" class="span2">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
@@ -75,27 +82,19 @@
 										</select>
 								</div> 
 								
-								<select id="bt_no" name="bt_no" data-placeholder="전체게시판" class="span2 pull-right">
-									<option value="0" <c:out value="${bt_no == null ? 'selected' : ''}"/>>전체게시판</option>
-									<option value="1" <c:out value="${bt_no eq 1 ? 'selected' : ''}"/>>보드이야기</option>
-									<option value="2" <c:out value="${bt_no eq 2 ? 'selected' : ''}"/>>개봉기 및 리뷰</option>
-									<option value="3" <c:out value="${bt_no eq 3 ? 'selected' : ''}"/>>보드게임 모임</option>
-									<option value="4" <c:out value="${bt_no eq 4 ? 'selected' : ''}"/>>보드뉴스</option>
-									<option value="5" <c:out value="${bt_no eq 5 ? 'selected' : ''}"/>>질문과 답변</option>
-									<option value="6" <c:out value="${bt_no eq 6 ? 'selected' : ''}"/>>창작 보드게임</option>
-									<option value="8" <c:out value="${bt_no eq 8 ? 'selected' : ''}"/>>일대일 문의</option>
-									<option value="9" <c:out value="${bt_no eq 9 ? 'selected' : ''}"/>>보부상</option>
-									<option value="10" <c:out value="${bt_no eq 10 ? 'selected' : ''}"/>>카페</option>
-									<option value="11" <c:out value="${bt_no eq 11 ? 'selected' : ''}"/>>카페리뷰</option>
-								</select>
-								
+								<div class="input-append pull-left"> 
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회  / 검색어입력">
+									<button type="submit" class="btn" id="searchBtn">
+										<i class="icon-search"></i>
+									</button>
+								</div>
 								
 							</div>
 						</div>
 
 					</form>
 					
-					<div class="btn-group pull-left" >
+					<div class="btn-group pull-right" >
 						<button type="button" value="island" class="btn selectDelete_btn" data-BW="${island['BT_NO']} ${island['I_NO']}">선택 글 삭제</button>
 						<button type="button" class="btn selectConfirm_btn" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}">수정완료</button>
 					</div>

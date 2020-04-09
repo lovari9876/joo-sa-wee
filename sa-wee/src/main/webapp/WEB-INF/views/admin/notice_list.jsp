@@ -45,11 +45,10 @@
 											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
 											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-											<option value = "tc" class="btn">제목+내용</option>
 										</select>
 								</div> 
 								 <div class="input-append pull-left">
-									<input type="text" class="span3" placeholder="검색을 해라">
+									<input type="text" class="span2" placeholder="조회  / 검색어입력">
 									<button type="submit" class="btn">
 										<i class="icon-search"></i>
 									</button>

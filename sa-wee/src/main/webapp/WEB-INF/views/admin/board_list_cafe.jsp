@@ -36,15 +36,7 @@
 						<div class="control-group">
 
 							<div class="controls">
-							
-								<div class="input-append pull-right"> 
-									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
-									<button type="submit" class="btn" id="serchBtn">
-										<i class="icon-search"></i>
-									</button>
-								</div>
-								
-								  <div class="dropdown pull-right">
+								<div class="dropdown pull-left">
 										<select name="searchType" class="span2">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>카페이름</option>
@@ -54,6 +46,15 @@
 											<option value = "bc" class="btn" <c:out value="${scri.searchType eq 'bc' ? 'selected' : ''}"/>>제목+내용</option>
 										</select>
 								</div> 
+								
+								<div class="input-append pull-left"> 
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회  / 검색어입력">
+									<button type="submit" class="btn" id="serchBtn">
+										<i class="icon-search"></i>
+									</button>
+								</div>
+								
+								
 							</div>
 						</div>
 

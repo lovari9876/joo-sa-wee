@@ -54,7 +54,7 @@ $(document).ready(function(){
 		console.log('s_content : '+s_content);
 		
 		
-		//전에 선택한 selectboxr 값 가져와서 첫번째, 두번째 select box 선택되어지게 하는거.
+		//전에 선택한 selectbox 값 가져와서 첫번째, 두번째 select box 선택되어지게 하는거.
 	
 		for(i = 0; i<ARR.length; i++){
 			if(bt_no == i){
