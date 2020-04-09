@@ -98,11 +98,6 @@ public class HeeJeongController {
 		model.addAttribute("comment_list", contentService.selectCommentList(cm_no2));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
-		// content_view로 redirect를 위해서
-		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
-		
-		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
-		
 		// 댓글 갯수 세기
 		model.addAttribute("comment_count", contentService.selectCommentCount(cm_no2));
 	  

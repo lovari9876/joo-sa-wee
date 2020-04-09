@@ -78,6 +78,7 @@
 						<input type="hidden" name="bw_no" value="${content_view.bw_no}"/>
 						<input type="hidden" id="bt_no" value="${content_view.bt_no}"/>
 						<input type="hidden" id="s_no" value="${content_view.s_no}"/>
+						<input type = "hidden" name="bw_island" value = "${content_view.bw_island}" />
 						<tr class = "row">
 							<td class = "cell">
 								<select id = "board" name = "bt_no" ></select> 

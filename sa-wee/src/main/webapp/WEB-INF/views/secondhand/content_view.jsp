@@ -158,7 +158,7 @@
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item second">
-								<a href="trade_modify_view?t_no=${content_view_t['T_NO']}&fi=${fromIsland}">수정</a>
+								<a href="trade_modify_view?t_no=${content_view_t['T_NO']}">수정</a>
 							</div>
 							<div class="test_item third">
 								<a href="delete_t?t_no=${content_view_t['T_NO']}">삭제</a>

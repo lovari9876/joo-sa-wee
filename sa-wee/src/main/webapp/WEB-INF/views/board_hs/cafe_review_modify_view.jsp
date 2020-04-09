@@ -76,7 +76,7 @@
 				<form action="review_modify" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
 						<input type="hidden" name="cr_no" value="${cafe_review['CR_NO']}"/>
-						
+						<input type = "hidden" name="cr_island" value = "${cafe_review['CR_ISLAND']}" />
 
 						<tr class="row">
 							<td class="cell"><input type="text" name="cr_title" value = "${cafe_review['CR_TITLE']}"  placeholder = "제목을 입력하세요"></td>

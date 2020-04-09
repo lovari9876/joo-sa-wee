@@ -184,8 +184,8 @@
 			T_CONTENT = #{tradeVO.t_content},
 			T_UPDATED_DATE = SYSDATE
 			
-			<if	test="fromIsland=='tr'">
-				T_ISLAND = 2
+			<if	test="tradeVO.t_island == 1">
+				, T_ISLAND = 2
 			</if>
 		WHERE T_NO = #{tradeVO.t_no}
 		

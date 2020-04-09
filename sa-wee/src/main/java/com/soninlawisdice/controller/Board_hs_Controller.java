@@ -229,10 +229,9 @@ public class Board_hs_Controller {
 
 	// 수정하기 view.
 	@RequestMapping(value = "/board_modify_view", method = RequestMethod.GET)
-	public String modify_view(Model model, int bw_no) {
+	public String modify_view(Model model, HttpServletRequest rq, int bw_no) {
 		
 		model.addAttribute("content_view", boardService.modify_view(bw_no));
-
 		
 		return "board_hs/modify_view";
 	}
@@ -245,7 +244,7 @@ public class Board_hs_Controller {
 		boardService.modify(board_writeVO);
 		int bw_no = board_writeVO.getBw_no();
 		
-		return "redirect:content_view?bw_no"+bw_no;
+		return "redirect:content_view?bw_no="+bw_no;
 	}
 	
 	/* 수정했을때 각각 게시판으로 가기
@@ -383,8 +382,9 @@ public class Board_hs_Controller {
 	
 	// 리뷰 수정 view
 	@RequestMapping(value = "/review_modify_view")
-	public String review_modify_view(int cr_no, Model model) {
+	public String review_modify_view(int cr_no, Model model, HttpServletRequest rq) {
 		model.addAttribute("cafe_review", boardService.selectReviewOne(cr_no));
+		
 		return "board_hs/cafe_review_modify_view";
 	}
 	

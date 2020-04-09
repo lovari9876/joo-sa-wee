@@ -166,7 +166,7 @@
 	
 	<!-- modify_view 로 불러오기 -->
 	<select id = "modify_view" resultType = "com.soninlawisdice.vo.Board_writeVO">
-		select bw_no, bt_no, s_no, bw_title, bw_content
+		select bw_no, bt_no, s_no, bw_title, bw_content, bw_island
 		from board_write
 		where bw_no = #{bw_no}
 	</select>
@@ -178,8 +178,10 @@
 		s_no = #{board_writeVO.s_no}, 
 		bw_title = #{board_writeVO.bw_title}, 
 		bw_content = #{board_writeVO.bw_content},
-		bw_updated_date = SYSDATE,
-		bw_island = 0
+		bw_updated_date = SYSDATE
+		<if test="board_writeVO.bw_island==1" >
+			, bw_island = 2
+		</if> 
 		where bw_no = #{board_writeVO.bw_no}
 	</update>
 	
@@ -267,7 +269,7 @@
 	
 	<!-- 카페 리뷰 리스트에서 review_content_view 로-->
 	<select id = "selectReviewOne"  resultType = "java.util.HashMap">
-		select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_content, cr.cr_hit, cr.cr_written_date, cr.cr_updated_date, cr.cr_recommend_num, cr.cr_hit, c.c_title 
+		select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_content, cr.cr_hit, cr.cr_written_date, cr.cr_updated_date, cr.cr_recommend_num, cr.cr_hit, cr.cr_island, c.c_title 
 		from cafe_review cr, member m, cafe c
 		where cr.m_no = m.m_no and cr.c_no = c.c_no
 		and cr_no = #{cr_no}
@@ -370,8 +372,10 @@
 		update cafe_review 
 		set cr_title = #{cafe_reivewVO.cr_title},
 		 cr_content = #{cafe_reivewVO.cr_content},
-		 cr_updated_date = SYSDATE,
-		 cr_island = 0
+		 cr_updated_date = SYSDATE
+		 <if test="cafe_reivewVO.cr_island == 1" >
+			, cr_island = 2
+		</if>
 		 where cr_no = #{cafe_reivewVO.cr_no}
 	</update>
 	

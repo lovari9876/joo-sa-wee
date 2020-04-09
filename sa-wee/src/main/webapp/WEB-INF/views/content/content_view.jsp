@@ -172,8 +172,8 @@
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
 							</div>
-							<div class="test_item second">
-								<a href="#">수정</a>
+							<div class="test_item second"> 
+								<a href="board_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
 							</div>
 							<div class="test_item third">
 								<a href="delete?bw_no=${content_view['BW_NO']}">삭제</a>
