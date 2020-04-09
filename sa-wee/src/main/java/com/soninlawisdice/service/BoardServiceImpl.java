@@ -62,20 +62,29 @@ public class BoardServiceImpl implements BoardService {
 
 	//카페 목록 싹다 보기
 	@Override
-	public List<CafeVO> selectAllCafeList(){
-		return boardMapper.selectAllCafeList();
+	public List<CafeVO> selectAllCafeList(SearchCriteria scri){
+		return boardMapper.selectAllCafeList(scri);
 	}
+	@Override
+	public int cafe_listCount(SearchCriteria scri) {
+		return boardMapper.cafe_listCount(scri);
+	}
+
 	
 	//카페 지역별로 보기
 	@Override
-	public List<CafeVO> selectCafeLoc(String c_add){
-		return boardMapper.selectCafeLoc(c_add);
+	public List<CafeVO> selectCafeLoc(SearchCriteria scri,String c_add){
+		return boardMapper.selectCafeLoc(scri,c_add);
 	}
 	
 	// 카페 리뷰 전체 리스트 보기
 	@Override
-	public ArrayList<HashMap<String, Object>> selectAllReviewList() {
-		return boardMapper.selectAllReviewList();
+	public ArrayList<HashMap<String, Object>> selectAllReviewList(SearchCriteria scri) {
+		return boardMapper.selectAllReviewList(scri);
+	}
+	@Override
+	public int allCafeReview_Count(SearchCriteria scri) {
+		return boardMapper.allCafeReview_Count(scri);
 	}
 
 	// 카페 리뷰 리스트에서 review_content_view 로
@@ -85,8 +94,18 @@ public class BoardServiceImpl implements BoardService {
 
 	// 카페별로 밑에 리뷰 리스트 있는거
 	@Override
-	public ArrayList<HashMap<String, Object>> selectCafeReviewList(int c_no) {
-		return boardMapper.selectCafeReviewList(c_no);
+	public ArrayList<HashMap<String, Object>> selectCafeReviewList(SearchCriteria scri,int c_no) {
+		return boardMapper.selectCafeReviewList(scri,c_no);
+	}
+	@Override
+	public int cafeReview_Count(SearchCriteria scri, int c_no) {
+		return boardMapper.cafeReview_Count(scri, c_no);
+	}
+	
+	//카페 리뷰 댓글 개수
+	@Override
+	public int countCafeReview(int cr_no) {
+		return boardMapper.countCafeReview(cr_no);
 	}
 
 	// 카페정보 가져오기
@@ -112,6 +131,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.review_rec(cr_no);
 	}
 
+	//카페 번호로 카페 이름 가져오기
 	@Override
 	public String get_CafeName(int c_no) {
 		return boardMapper.get_CafeName(c_no);
@@ -174,4 +194,9 @@ public class BoardServiceImpl implements BoardService {
 	public void boardPointUpdate(int m_no) {
 		boardMapper.boardPointUpdate(m_no);	
 	}
+
+	
+
+	
+	
 }

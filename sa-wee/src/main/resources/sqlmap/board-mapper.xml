@@ -125,6 +125,8 @@
 		  FROM board_write bw
 		  LEFT JOIN board_type bt
 		  ON bw.bt_no = bt.bt_no
+		  LEFT JOIN member m
+		  ON bw.m_no = m.m_no
 		 
 		 <choose>
            <when test = "bt_no == 13"> <!-- 게시글 관리 : 커뮤니티 전체 불러오기  -->
@@ -139,18 +141,6 @@
 		 AND bw.bw_no > 0
 
 	</select>
-	
-	<sql id="board_search">
-		<if test="scri.searchType != null">
-			<if test="scri.searchType == 't'.toString()">AND bw_title LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'c'.toString()">AND bw_content LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'w'.toString()">AND m_nick LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'tc'.toString()">AND (bw_title LIKE '%' || #{scri.keyword} || '%') or (bw_content LIKE '%' || #{scri.keyword} || '%')</if>
-		</if>
-	</sql>
-	
-	
-	
 	
 	<!-- 일단일단일단... -->
 	<select id = "selectBoardSub" resultType = "java.util.HashMap" parameterType = "int">
@@ -187,7 +177,9 @@
 		set bt_no = #{board_writeVO.bt_no}, 
 		s_no = #{board_writeVO.s_no}, 
 		bw_title = #{board_writeVO.bw_title}, 
-		bw_content = #{board_writeVO.bw_content} 
+		bw_content = #{board_writeVO.bw_content},
+		bw_updated_date = SYSDATE,
+		bw_island = 0
 		where bw_no = #{board_writeVO.bw_no}
 	</update>
 	
@@ -226,25 +218,51 @@
 	</resultMap>
 	
 	<!-- 카페 목록들 싹다 -->
-	<select id = "selectAllCafeList" resultType = "com.soninlawisdice.vo.CafeVO">
-		select * from cafe
+	<select id = "selectAllCafeList" resultType = "java.util.HashMap" parameterType = "com.soninlawisdice.vo.SearchCriteria">
+		
+		SELECT * FROM
+		(select c.* , ROW_NUMBER() OVER(ORDER BY c.c_no DESC) AS RNUM 
+		from cafe c
+		where c.c_no > 0
+		<include refid="cafe_search"></include>
+		)
+		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+		ORDER BY c_no DESC
+		
 	</select>
 	
 	<!-- 카페 지역별로 나누기 -->
-	<select id = "selectCafeLoc" resultType = "com.soninlawisdice.vo.CafeVO">
-		
-		select * from cafe where substr(c_add,1,3) like #{c_add}||'%'
+	<select id = "selectCafeLoc" resultType = "java.util.HashMap">
+	
+		SELECT * FROM
+			<choose>
+				<when test="c_add == '전체'">
+					(select c.*, ROW_NUMBER() OVER(ORDER BY c.c_no DESC) AS RNUM from cafe c)
+				</when>
+				<otherwise>
+					(select c.*, ROW_NUMBER() OVER(ORDER BY c.c_no DESC) AS RNUM 
+					from cafe c where substr(c_add,1,3) like #{c_add}||'%')
+				</otherwise>
+			</choose>
+			WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 	</select>
 	
-	
-	
 	<!-- 카페리뷰 리스트 전체보기 / 모든 카페에 관한 리뷰들 싹다-->
-	<select id = "selectAllReviewList"  resultType = "java.util.HashMap">
-		select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_hit, cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
-		from cafe_review cr, member m, cafe c 
-		where cr.m_no = m.m_no and cr.c_no = c.c_no
-		and cr.cr_island = 0
-		order by cr.cr_no desc
+	<select id = "selectAllReviewList"  resultType = "java.util.HashMap" parameterType = "com.soninlawisdice.vo.SearchCriteria">
+		SELECT * FROM
+			(
+				select cr.cr_no, m.m_nick, cr.cr_title,  cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
+				, (select count(*) from cm_comment where cm_type = '카페리뷰' and cm_no2 = cr.cr_no) AS cm
+				, ROW_NUMBER() OVER(ORDER BY cr.cr_no DESC) AS RNUM
+				from cafe_review cr, member m, cafe c 
+				where cr.m_no = m.m_no and cr.c_no = c.c_no
+				and cr.cr_island = 0
+				<include refid="cafeReview_search"></include>
+				order by cr.cr_no desc
+			)
+			WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+			ORDER BY cr_no DESC
+			
 	</select>
 	
 	<!-- 카페 리뷰 리스트에서 review_content_view 로-->
@@ -257,13 +275,61 @@
 	
 	<!-- 카페별로 밑에 리뷰 리스트 있는거 -->
 	<select id = "selectCafeReviewList" resultType = "java.util.HashMap">
-		select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_hit, cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
-		from cafe_review cr, member m, cafe c 
-		where cr.m_no = m.m_no and cr.c_no = c.c_no
-		and cr.c_no = #{c_no}
-		and cr.cr_island = 0
-		order by cr.cr_no desc
+		SELECT * FROM		
+			(	
+				select cr.cr_no, m.m_nick, cr.cr_title, cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
+				, (select count(*) from cm_comment where cm_type = '카페리뷰' and cm_no2 = cr.cr_no) AS cm
+				, ROW_NUMBER() OVER(ORDER BY cr.cr_no DESC) AS RNUM
+				from cafe_review cr, member m, cafe c 
+				where cr.m_no = m.m_no and cr.c_no = c.c_no
+				and cr.c_no = #{c_no}
+				and cr.cr_island = 0
+				<include refid="cafeReview_search"></include>
+				order by cr_no desc
+			)
+			WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 	</select>
+	
+	<select id="cafe_listCount" resultType="int">
+
+		SELECT COUNT(c.c_no)
+		  FROM cafe c
+          WHERE c.c_no > 0
+		 <include refid="cafe_search"></include>
+	</select>
+	
+	<select id="allCafeReview_Count" resultType="int">
+
+		SELECT COUNT(cr.cr_no)
+		  FROM cafe_review cr
+		  LEFT JOIN cafe c
+		  ON cr.c_no = c.c_no
+		  LEFT JOIN member m
+		  ON cr.m_no = m.m_no
+		 
+         WHERE cr.cr_island = 0
+		<include refid="cafeReview_search"></include>
+		 AND cr.cr_no > 0
+
+	</select>
+	
+	<select id="cafeReview_Count" resultType="int">
+
+		SELECT COUNT(cr.cr_no)
+		  FROM cafe_review cr
+		  LEFT JOIN cafe c
+		  ON cr.c_no = c.c_no
+		  LEFT JOIN member m
+		  ON cr.m_no = m.m_no
+		 
+		 WHERE cr.c_no = #{c_no}
+         AND cr.cr_island = 0
+		 <!-- <include refid="board_search"></include>	 -->
+		 AND cr.cr_no > 0
+
+	</select>
+	
+	
 	
 	<!-- 카페 정보(하나) 가져오기 -->
 	<select id = "selectCafeInfo" resultType = "com.soninlawisdice.vo.CafeVO">
@@ -303,7 +369,9 @@
 	<update id="review_modify" parameterType="com.soninlawisdice.vo.Cafe_reviewVO">
 		update cafe_review 
 		set cr_title = #{cafe_reivewVO.cr_title},
-		 cr_content = #{cafe_reivewVO.cr_content} 
+		 cr_content = #{cafe_reivewVO.cr_content},
+		 cr_updated_date = SYSDATE,
+		 cr_island = 0
 		 where cr_no = #{cafe_reivewVO.cr_no}
 	</update>
 	
@@ -312,15 +380,13 @@
 		delete from cafe_review where cr_no = #{cr_no}
 	</delete>
 	
-	
-	
-	
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 1 : 1 문의ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 1:1 문의 목록 -->
 	<select id = "selectQuestionList"  resultType = "java.util.HashMap">
 		SELECT * FROM(
 		select bw.bw_no, bw.bw_title, bw.bw_written_date, bw.bw_hit, m.m_nick, s.s_content, bw.s_no, bw.bw_secret,
-		ROW_NUMBER() OVER(ORDER BY BW.BW_NO DESC) AS RNUM
+		ROW_NUMBER() OVER(ORDER BY BW.BW_NO DESC) AS RNUM,
+		(select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm
 		from board_write bw, member m, subject s 
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bt_no = 8
@@ -329,10 +395,6 @@
 		)
 		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 	</select>
-	
-	
-	
-	
 	
 	<!--1:1문의 작성하기  m_no 수정해야함 //bt_no 은 수정할 필요 없을 듯-->
 	<insert id = "insertQuestion" parameterType="com.soninlawisdice.vo.Board_writeVO">
@@ -352,7 +414,7 @@
 	</insert>
 	
 	<!-- content_view 따로 만들지, 있는거 수정할지. -->
-	<!-- 비밀글은 못보게 하는거.(따로 페이지로 보내야하는지 alert 띄워야하는지 -->
+	<!-- 비밀글은 못보게 하는거.(내용이 -비밀글 입니다- 이렇게 뜨게 -->
 	<select id = "selectQuestionOne" resultType = "java.util.HashMap">
 		select bw.bw_no, bw.bw_title, bw.bw_content, bw.m_no, bw.s_no, s.s_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_hit, m.m_nick, bw.bt_no
 		from board_write bw, member m, subject s
@@ -366,13 +428,14 @@
 	<!-- 1:1 문의 수정하기 -->
 	<update id="modifyQuestion" parameterType="com.soninlawisdice.vo.Board_writeVO">
 		<choose>
-		
 			<when test="board_writeVO.bw_secret == null">
 				update board_write 
 				set s_no = #{board_writeVO.s_no}, 
 				bw_title = #{board_writeVO.bw_title}, 
 				bw_content = #{board_writeVO.bw_content}, 
-				bw_secret = 'n' 
+				bw_secret = 'n',
+				bw_updated_date = SYSDATE,
+				bw_island = 0 
 				where bw_no = #{board_writeVO.bw_no}
 			</when>
 			<otherwise>
@@ -380,22 +443,21 @@
 				set s_no = #{board_writeVO.s_no}, 
 				bw_title = #{board_writeVO.bw_title}, 
 				bw_content = #{board_writeVO.bw_content}, 
-				bw_secret = #{board_writeVO.bw_secret} 
+				bw_secret = #{board_writeVO.bw_secret},
+				bw_updated_date = SYSDATE,
+				bw_island = 0
 				where bw_no = #{board_writeVO.bw_no}
 			</otherwise>
 		</choose>
-		
 	</update>
 	
 	
-	
-	<!--댓글 달렸을때는 삭제 불가능하게 해야함  -->
 	<!-- 1:1 문의 삭제하기 -->
 	<delete id="deleteQuestion">
-		delete from board_write bw where bw.bw_no = #{bw_no} <!-- and (select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = #{bw_no}) = 0 -->
+		delete from board_write bw where bw.bw_no = #{bw_no}
 	</delete>
 	
-	<!-- 댓글 개수  -->
+	<!-- 댓글 개수 (댓글 달려있으면 삭제 안되게 하려고)  -->
 	<select id = "countBoardComment" resultType = "string">
 		select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = #{bw_no}
 	</select>
@@ -407,25 +469,34 @@
 	</update>
 	
 	<!--ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 검색 sql ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ-->
-	<!-- <sql id="board_search">
+	
+	<sql id="board_search">
 		<if test="scri.searchType != null">
-			<if test="scri.searchType == 't'.toString()">AND bw.bw_title LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'c'.toString()">AND bw.bw_content LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'w'.toString()">AND m.m_nick LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'tc'.toString()">AND (bw.bw_title LIKE '%' || #{scri.keyword} || '%') or (bw.bw_content LIKE '%' || #{scri.keyword} || '%')</if>
+			<if test="scri.searchType == 't'.toString()">AND bw_title LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND bw_content LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'w'.toString()">AND m_nick LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'tc'.toString()">AND (bw_title LIKE '%' || #{scri.keyword} || '%') or (bw_content LIKE '%' || #{scri.keyword} || '%')</if>
 		</if>
 	</sql>
 	
-	<sql id="cafe_review_search">
-		<if test="searchType != null">
-			<if test="searchType == 'a'.toString()">AND c.c_title LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'b'.toString()">AND cr.cr_title LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND cr.cr_content LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'd'.toString()">AND m.m_nick LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'bc'.toString()">AND (cr.cr_title LIKE '%' || #{keyword} || '%') or (cr.cr_content LIKE '%' || #{keyword} || '%')</if>
+	<!--카페 검색하기  -->
+	<sql id="cafe_search">
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 't'.toString()">AND c_title LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND c_add LIKE '%' || #{scri.keyword} || '%'</if>
+			<!-- <if test="scri.searchType == 'w'.toString()">AND m_nick LIKE '%' || #{scri.keyword} || '%'</if> -->
+			<if test="scri.searchType == 'tc'.toString()">AND (c_title LIKE '%' || #{scri.keyword} || '%') or (c_add LIKE '%' || #{scri.keyword} || '%')</if>
 		</if>
-	</sql> -->
-	
+	</sql>
+	<!-- 카페리뷰 검색하기 -->
+	<sql id="cafeReview_search">
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 't'.toString()">AND cr_title LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND cr_content LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'w'.toString()">AND m_nick LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'tc'.toString()">AND (cr_title LIKE '%' || #{scri.keyword} || '%') or (cr_content LIKE '%' || #{scri.keyword} || '%')</if>
+		</if>
+	</sql> 
 	
 	
 </mapper>

@@ -47,7 +47,7 @@
 
 </head>
 <body id="top">
-	<%-- <input type="hidden" name="cr_no" value="${cafe_review['CR_NO']}"> --%>
+	<input type="hidden" class = "bw_no" name="bw_no" value="${content_view['BW_NO']}">
 
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
@@ -101,9 +101,10 @@
 
 					<p>${content_view['BW_CONTENT']}</p>
 
-
+	
 					<br />
 					<br />
+					<input type = "hidden" class = "countComment" value = "${count}">
 					<!-- 목록보기와 수정, 삭제, 신고 -->
 					<form action="" method="get">
 						<div class="test">
@@ -114,7 +115,7 @@
 								<a href="question_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
 							</div>
 							<div class="test_item third">
-								<a href="question_delete?bw_no=${content_view['BW_NO']}">삭제</a>
+								<a style = "cursor:pointer;"onclick = "commentDelete();"<%-- href="question_delete?bw_no=${content_view['BW_NO']}" --%>>삭제</a>
 							</div>
 							<div class="test_item fourth">
 								<a href="content/report_view_bw?bw_no=${content_view['BW_NO']}"
@@ -122,7 +123,7 @@
 							</div>
 						</div>
 					</form>
-
+					
 					<!-- 댓글부분 -->
 					<c:choose>
 						<c:when test="${content_view['BT_NO'] == 8}">
@@ -181,6 +182,8 @@
 	<script src="js/board_hj/tooltip.js"></script>
 	<script src="js/board_hs/review_recommend.js"></script>
 	<script src="js/board_hj/popover.js"></script>
+	
+	<script src="js/board_hs/delete.js"></script>
 
 	<!-- Java Script for header
     ================================================== -->

@@ -172,13 +172,6 @@
 
 					<div id="tab3" class="tabcontent">
 						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
 						<table class="table">
 
 
@@ -222,14 +215,6 @@
 					</div>
 					
 					<div id="tab5" class="tabcontent">
-						
-						<div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div>
-						
-						
 						<table class="table">
 
 

@@ -60,9 +60,14 @@
 		<div class="container-table100">
 			<div class="wrap-table100">
 
+				<!-- 여기 어쩐담 -->
 				<div class="listName">
-					<h3>카페 리뷰 리스트</h3>
-					<p>카페 리뷰 리스트임</p>
+					<c:forEach items = "${list}" var ="list" begin="0" end="0">
+						<h3>${list['C_TITLE']}</h3>
+						<p>${list['C_TITLE'] } 리뷰 입니다.</p>
+					</c:forEach>
+					<!-- <a href="javascript:history.back();">이전페이지</a> -->
+
 				</div>
 
 
@@ -89,7 +94,6 @@
 
 
 
-
 				<!-- 리스트 -->
 				<div class=tab-table>
 					<!-- 탭부분 -->
@@ -98,11 +102,7 @@
 
 					<!-- 테이블  -->
 					<div id="tab1" class="tabcontent current">
-						<!-- <div class="orderby">
-							<button class ="orderbutton">최신순</button>
-							<button class ="orderbutton">조회순</button>
-							<button class ="orderbutton">추천순</button>
-						</div> -->
+						
 						<table class="table">
 
 
@@ -150,22 +150,25 @@
 						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
 								<li class = "page-item"><a class = "page-link"
-									href="selectAllReviewList${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="read_more?c_no=${c_no}${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li class = "page-item"><a class = "page-link" href="selectAllReviewList${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="read_more?c_no=${c_no}${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class = "page-item"><a class ="page-link"
-									href="selectAllReviewList${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="read_more?c_no=${c_no}${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>
 					</div>
+					
+					<button class="write-view-btn" type="button" style="margin-top:0px !important;"
+							onclick="location.href='cafe_review_write?c_no='+${c_no}">글쓰기</button>
 
 				
 			</div>
