@@ -78,7 +78,10 @@
 				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
 				<form action="board_write" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
+						<!-- 첫번째 select box 선택되어져있게 -->
 						<input id = "bt_no" type = "hidden"  value = "${bt_no}"/>
+						<!-- 일단 이렇게 안넘기면 board_writeVO 에서 m_no 을 가져오지 못함. -->
+						<input name = "m_no" type = "hidden" value = "11"/>
 						<tr class = "row">
 							<td class = "cell">
 								<select id = "board" name = "bt_no" ></select> 

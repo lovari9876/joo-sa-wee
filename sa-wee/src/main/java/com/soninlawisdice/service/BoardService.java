@@ -45,21 +45,26 @@ public interface BoardService {
 	///////////////////// 카페 리뷰///////////////////////////
 	
 	//카페 리뷰 전체 리스트 보기
-	public ArrayList<HashMap<String, Object>> selectAllReviewList();
+	public ArrayList<HashMap<String, Object>> selectAllReviewList(SearchCriteria scri);
+	public int allCafeReview_Count(SearchCriteria scri);
 	
 	//카페 목록 싹다 보기
-	public List<CafeVO> selectAllCafeList();
-		
+	public List<CafeVO> selectAllCafeList(SearchCriteria scri);
+	public int cafe_listCount(SearchCriteria scri);
 	
 	//카페 지역별로 보기
-	public List<CafeVO> selectCafeLoc(String c_add);
+	public List<CafeVO> selectCafeLoc(SearchCriteria scri,String c_add);
 	
 	//카페 리뷰 리스트에서 review_content_view 로
 	//public Cafe_reviewVO selectReviewOne(String cr_no);
 	public HashMap<String, Object> selectReviewOne(int cr_no);
 	
 	//카페별로 밑에 리뷰 리스트 있는거
-	public ArrayList<HashMap<String, Object>> selectCafeReviewList(int c_no);
+	public ArrayList<HashMap<String, Object>> selectCafeReviewList(SearchCriteria scri,int c_no);
+	public int cafeReview_Count(SearchCriteria scri,@Param("c_no")int c_no);
+	
+	//카페 리뷰 댓글 개수
+	public int countCafeReview(int cr_no);
 		
 	//카페정보 가져오기
 	public CafeVO selectCafeInfo(int c_no);

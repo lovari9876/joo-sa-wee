@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
+import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.PageMaker;
@@ -41,6 +42,9 @@ public class Board_hs_Controller {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private ContentService	contentService;
 
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
 
@@ -183,6 +187,11 @@ public class Board_hs_Controller {
 		
 		return "board_hs/write_view";
 	}
+	
+	@RequestMapping(value = "/bw")
+	public String bw() {
+		return "board_hs/write_view2";
+	}
 
 	// 글 작성
 	@RequestMapping(value = "/board_write", method = RequestMethod.POST)
@@ -191,11 +200,14 @@ public class Board_hs_Controller {
 
 		int bt_no = board_writeVO.getBt_no();
 		int m_no = board_writeVO.getM_no();
+		
+		System.out.println(board_writeVO.getBw_secret());
 
 		System.out.println(bt_no);
 		System.out.println(m_no);
 
 		boardService.boardPointUpdate(m_no);
+		
 		
 		if (bt_no == 1) {
 			return "redirect:board_story";
@@ -274,40 +286,73 @@ public class Board_hs_Controller {
 		
 	// 마커 클릭시 카페 상세정보(cafe_info)로 이동. 
 	@RequestMapping(value = "/cafe_info", method = RequestMethod.GET)
-	public String cafe_content_view(Model model, int c_no) {
+	public String cafe_content_view(Model model, int c_no, @ModelAttribute("scri") SearchCriteria scri) {
 
 		// 카페 정보 가져오기
 		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
 		// 댓글 불러오는것도 추가해야함
 
 		// 밑에 관련 리스트 가져오기
-		model.addAttribute("list", boardService.selectCafeReviewList(c_no));
-
+		model.addAttribute("list", boardService.selectCafeReviewList(scri,c_no));
+		
+		
 		return "board_hs/cafe_info";
 	}
 	
+	//카페 info 에 있는 리뷰리스트 --> 더보기
+		@RequestMapping("/read_more")
+		public String read_more(Model model, @ModelAttribute("scri")SearchCriteria scri, int c_no) throws Exception{
+			model.addAttribute("list", boardService.selectCafeReviewList(scri, c_no));
+			model.addAttribute("c_no", c_no);
+			System.out.println("c_no : " + c_no);
+			PageMaker pageMaker = new PageMaker();
+			pageMaker.setCri(scri);
+			pageMaker.setTotalCount(boardService.cafeReview_Count(scri, c_no));
+			model.addAttribute("pageMaker", pageMaker);
+			
+			return "board_hs/cafe_review_read_more";
+		}
+	
 	//카페목록 싹다 표로 보기
 	@RequestMapping("/cafe_list")
-	public String cafe_list(Model model) {
-		model.addAttribute("list", boardService.selectAllCafeList());		
+	public String cafe_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		model.addAttribute("list", boardService.selectAllCafeList(scri));		
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.cafe_listCount(scri));
+		model.addAttribute("pageMaker", pageMaker);
+		
 		return "board_hs/cafe_list";
 	}
 	
 	//카페 목록 지역별로 보기
 	@RequestMapping("/cafe_list_loc")
-	public String cafe_list_loc(Model model, String c_add) {
-		model.addAttribute("list", boardService.selectCafeLoc(c_add));
+	public String cafe_list_loc(Model model, String c_add, @ModelAttribute("scri") SearchCriteria scri) {
+		model.addAttribute("list", boardService.selectCafeLoc(scri,c_add));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.cafe_listCount(scri));
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "board_hs/cafe_list";
 	}
 
 	// 카페 리뷰들 싹다 리스트(표)로 보기
 	@RequestMapping(value = "/selectAllReviewList")
-	public String selectAllReviewList(Model model) {
-		model.addAttribute("list", boardService.selectAllReviewList());
+	public String selectAllReviewList(Model model, @ModelAttribute("scri") SearchCriteria scri) {
+		model.addAttribute("list", boardService.selectAllReviewList(scri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.allCafeReview_Count(scri));
+		model.addAttribute("pageMaker", pageMaker);
+		
 		return "board_hs/cafe_review_list";
 	}
-
+	
+	
 	
 	//리뷰쓰는 view 로 가기
 	@RequestMapping(value = "/cafe_review_write", method = RequestMethod.GET)
@@ -342,6 +387,7 @@ public class Board_hs_Controller {
 		model.addAttribute("cafe_review", boardService.selectReviewOne(cr_no));
 		return "board_hs/cafe_review_modify_view";
 	}
+	
 	//리뷰 수정 (수정 완료시 수정된 content_view 로 감.)
 	@RequestMapping(value = "/review_modify", method = RequestMethod.POST)
 	public String review_modify(Cafe_reviewVO cafe_reviewVO) {
@@ -413,9 +459,13 @@ public class Board_hs_Controller {
 	@RequestMapping("/question_content_view")
 	public String question_content_view(HttpServletRequest request,Model model) {
 		
-		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
+		int bw_no = Integer.parseInt(request.getParameter("bw_no").trim());
 		
+		contentService.upHitContent(bw_no);
 		model.addAttribute("content_view", boardService.selectQuestionOne(bw_no));
+		model.addAttribute("count", boardService.countBoardComment(bw_no));
+		
+		
 		return "board_hs/question_content_view";
 	}
 	

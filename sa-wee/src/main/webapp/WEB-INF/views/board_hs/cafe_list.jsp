@@ -73,25 +73,24 @@
 				</div>
 
 				<!-- Search Bar  -->
-				<form action="">
-
+				<!-- Search Bar  -->
+				<form>
 					<div class="search">
-
-						<!-- 어떤거로 검색할지 정해야함 -->
-						<select>
-							<option value="0" selected>전체</option>
-							<option value="1">제목</option>
-							<option value="2">내용</option>
-							<option value="3">닉네임</option>
-						</select> 
-						
-						<input id="searchBar" type="text">
-
-						<!-- 여기 미쳐버렸음. 일단 버튼으로 만들어 놓고 다음에 해야함 타입이 submit 인줄도 모르겠음-->
-						<button type="submit" class="fa fa-fw fa-search"></button>
-
-
-						<!-- <i class="fa fa-fw fa-search"></i> -->
+						<div class="dropdown pull-right">
+								<select name="searchType" class="span2">
+									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+									<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>카페이름</option>
+									<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>지역...</option>
+									<%-- <option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option> --%>
+									<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>카페이름+지역..</option>
+								</select>
+						</div> 
+						<div class="input-append pull-right"> 
+							<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
+							<button type="submit" class="btn" id="searchBtn">
+								<i class="icon-search"></i>
+							</button>
+						</div>
 					</div>
 				</form>
 
@@ -100,10 +99,7 @@
 
 				<!-- 리스트 -->
 				<div class=tab-table>
-					<!-- 탭부분 -->
 					
-
-
 					<!-- 테이블  -->
 					<div id="tab1" class="tabcontent current">
 						<div class = "location">
@@ -111,6 +107,7 @@
 						 
 							<select onchange ="location.href='cafe_list_loc?c_add='+this.value">
 								<option value="">지역선택</option>
+								<option value="전체">전체보기</option>
 								<option value="서울">서울특별시</option>
 								<option value="인천">인천광역시</option>
 								<option value="대전">대전광역시</option>
@@ -132,9 +129,7 @@
 						
 						</div>
 						
-						<div class="orderby">
-							<button class ="orderbutton">조회순</button>
-						</div>
+						
 						<table class="table">
 
 
@@ -149,18 +144,37 @@
 						<tbody class = "tbody">
 							<c:forEach items="${list}" var="list">
 							<tr class="row">
-								<td class = "cell">${list.c_no}</td>
-								<td class = "cell">${list.c_add}</td>
-								<td class = "cell"><a href="cafe_info?c_no=${list.c_no}">${list.c_title}</a></td>
-								<td class = "cell">${list.c_hit}</td>
+								<td class = "cell">${list['RNUM']}</td>
+								<td class = "cell">${list['C_ADD']}</td>
+								<td class = "cell"><a href="cafe_info?c_no=${list['C_NO']}">${list['C_TITLE']}</a></td>
+								<td class = "cell">${list['C_HIT']}</td>
 								
 							</tr>
 							</c:forEach>
 						</tbody>
 
 						</table>
-
 					</div>
+					<div class="Page navigation example">
+							<ul class = "pagination">
+								<c:if test="${pageMaker.prev}">
+									<li class = "page-item"><a class = "page-link"
+										href="cafe_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+											class="icon-double-angle-left"></i></a></li>
+								</c:if>
+	
+								<c:forEach begin="${pageMaker.startPage}" 
+									end="${pageMaker.endPage}" var="idx">
+									<li class = "page-item"><a class = "page-link" href="cafe_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								</c:forEach>
+	
+								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+									<li class = "page-item"><a class ="page-link"
+										href="cafe_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+											class="icon-double-angle-right"></i></a></li>
+								</c:if>
+							</ul>
+						</div>
 
 				</div>
 
