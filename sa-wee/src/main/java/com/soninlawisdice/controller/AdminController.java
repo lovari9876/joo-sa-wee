@@ -464,7 +464,7 @@ public class AdminController {
 	public String cafe_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
 		scri.setPerPageNum(15);
-		model.addAttribute("cafe_list", boardService.selectAllCafeList());
+		model.addAttribute("cafe_list", boardService.selectAllCafeList(scri));
 
 		/*
 		 * PageMaker pageMaker = new PageMaker(); pageMaker.setCri(scri);
