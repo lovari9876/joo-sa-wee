@@ -45,7 +45,10 @@
 		<!-- <security:intercept-url pattern="/mypage" access="hasRole('ROLE_USER, ROLE_ADMIN')" /> -->
 	    <security:intercept-url pattern="/**" access="permitAll" />
 	    
-	    <!-- 권한 설정 -->
+	    <!-- csrf 토큰 설정 x -->
+	    <!-- <security:csrf disabled="true" /> -->
+	    
+		<!-- 권한 설정 -->
 	    <security:form-login
 	        username-parameter="m_id"
 	        password-parameter="m_pw"
@@ -61,7 +64,7 @@
 		/>
 	       
 	    <!-- 접속권한 없을 때 403 에러 페이지 대신 -->
-	    <security:access-denied-handler error-page="/access_denied_page"/>    
+		<!-- <security:access-denied-handler error-page="/access_denied_page"/> -->    
     </security:http>
     
 	<!-- <authentication-manager>
