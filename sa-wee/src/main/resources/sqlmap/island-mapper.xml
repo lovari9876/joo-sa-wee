@@ -90,14 +90,19 @@
 							WHERE 
 									CR_ISLAND != 0 ) 
 					) I
-			<include refid="boardType_search"></include>
+			
+			WHERE 
+				1=1
+				<include refid="boardType_search"></include>
+				<include refid="islandSearch"></include>
+			
 			ORDER BY 
 				RNUM DESC
 				) 
 		WHERE 
-			RNUM_COUNT BETWEEN ${scri.rowStart} AND ${scri.rowEnd} 
+			RNUM_COUNT BETWEEN ${scri.rowStart} AND ${scri.rowEnd} 	
+					
 			
-			<include refid="islandSearch"></include>
 		ORDER BY 
 			RNUM DESC
 					
@@ -157,7 +162,7 @@
 			)			
 		WHERE 
 			1=1
-		 	<include refid="boardType_count_search"></include> 
+		 	<include refid="boardType_search"></include> 
 			<include refid="islandSearch"></include>
 
 	</select>
@@ -173,24 +178,8 @@
 		</if>
 	</sql>
 
-
+	
 	<sql id="boardType_search">
-		<if test="bt_no != null">
-			<if test="bt_no == 1">WHERE i.bt_no = 1 </if>
-			<if test="bt_no == 2">WHERE i.bt_no = 2</if>
-			<if test="bt_no == 3">WHERE i.bt_no = 3</if>
-			<if test="bt_no == 4">WHERE i.bt_no = 4</if>
-			<if test="bt_no == 5">WHERE i.bt_no = 5</if>
-			<if test="bt_no == 6">WHERE i.bt_no = 6</if>
-			<if test="bt_no == 8">WHERE i.bt_no = 8</if>
-			<if test="bt_no == 9">WHERE i.bt_no = 9</if>
-			<if test="bt_no == 10">WHERE i.bt_no = 10</if>
-			<if test="bt_no == 11">WHERE i.bt_no = 11</if>
-		</if>
-	</sql>
-	
-	
-	<sql id="boardType_count_search">
 		<if test="bt_no != null">
 			<if test="bt_no == 1">AND bt_no = 1 </if>
 			<if test="bt_no == 2">AND bt_no = 2</if>

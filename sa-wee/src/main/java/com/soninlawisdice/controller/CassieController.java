@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
@@ -165,10 +167,11 @@ public class CassieController {
 
 	// 수정하기 view
 	@RequestMapping(value = "/trade_modify_view", method = RequestMethod.GET)
-	public String modify_view(Model model, int t_no, HttpServletRequest rq) {
-			
-		model.addAttribute("tradeVO", secondhandService.selectContentOne(t_no));
-		model.addAttribute("fromIsland", rq.getParameter("fi")); // 무인도에서 수정하기 누를경우 true ("tr")
+	public String modify_view(Model model, @RequestParam("t_no") int t_no, HttpServletRequest rq) {
+		
+		logger.info("trade_modify_view");
+		
+		model.addAttribute("tradeVO", secondhandService.selectContentOne(t_no)); // hashmap 리턴
 		
 		// 게임, 가격 가져와서 다시 string 으로 만들어준다.
 		ArrayList<Trade_gameVO> tgList = secondhandService.selectTrade_gameList(t_no);
@@ -196,12 +199,17 @@ public class CassieController {
 	@RequestMapping(value = "/trade_modify", method = RequestMethod.POST)
 	public String modify(Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, @ModelAttribute("tgVO") Trade_gameVO tgVO,
 							String fromIsland, String gameNames, String prices) {
-				
+		
+		logger.info("trade_modify");
+		
 		secondhandService.modify(tradeVO, fromIsland);
 		
 //		secondhandService.modifyTG(tradeVO.getT_no(), gameNames, prices);
 		
-		return "redirect:content_view_t?t_no=" + tradeVO.getT_no();
+		int t_no = tradeVO.getT_no();   
+		System.out.println("t_no = "+t_no );
+		
+		return "redirect:content_view_t?t_no="+t_no;
 	}
 	
 	
@@ -214,6 +222,7 @@ public class CassieController {
 
 		scri.setPerPageNum(15);
 		
+		// 검색 기능 게시판별 추가..
 		String b = rq.getParameter("bt_no");
 		int bt_no;
 		
@@ -256,26 +265,21 @@ public class CassieController {
 		int i_no = Integer.parseInt(request.getParameter("i_no"));
 		int bt_no = Integer.parseInt(request.getParameter("bt_no"));
 		
-		String fromIsland = "tr"; // 무인도에서 왔니? 네
-		
 		if (bt_no==9) { // 보부상
 			model.addAttribute("content_view_t", secondhandService.selectContentOne(i_no));
 			secondhandService.upHitContent(i_no);
-			model.addAttribute("fromIsland", fromIsland);
 
 			return "secondhand/content_view";
 			
 		}else if(bt_no==11) { // 카페리뷰			
-			model.addAttribute("cafe_review", boardService.selectReviewOne(i_no));
+			model.addAttribute("content_view_cr", boardService.selectReviewOne(i_no));
 			boardService.review_uphit(i_no);
-			model.addAttribute("fromIsland", fromIsland);
 			
-			return "board_hs/cafe_review_content_view";
+			return "content/content_view_cr";
 			
 		}else { // 게시글
 			model.addAttribute("content_view", contentService.selectContentOne(i_no));
 			contentService.upHitContent(i_no);
-			model.addAttribute("fromIsland", fromIsland);
 
 			return "content/content_view";
 		}		
