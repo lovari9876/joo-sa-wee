@@ -10,14 +10,15 @@ public class NoteVO {
 	private String n_title;
 	private String n_content;
 	private Timestamp n_written_date;
-	
+	private int n_check;
+
 	MemberVO memberVO;
 
 	
 	public NoteVO() {}
 	
 	
-	public NoteVO(int n_no, int m_no, int m_no2, String n_title, String n_content, Timestamp n_written_date,
+	public NoteVO(int n_no, int m_no, int m_no2, String n_title, String n_content, Timestamp n_written_date, int n_check,
 			MemberVO memberVO) {
 		super();
 		this.n_no = n_no;
@@ -26,6 +27,7 @@ public class NoteVO {
 		this.n_title = n_title;
 		this.n_content = n_content;
 		this.n_written_date = n_written_date;
+		this.n_check = n_check;
 		this.memberVO = memberVO;
 	}
 
@@ -84,6 +86,13 @@ public class NoteVO {
 	public void setMemberVO(MemberVO memberVO) {
 		this.memberVO = memberVO;
 	}
-	
+
+	public int getN_check() {
+		return n_check;
+	}
+
+	public void setN_check(int n_check) {
+		this.n_check = n_check;
+	}
 
 }

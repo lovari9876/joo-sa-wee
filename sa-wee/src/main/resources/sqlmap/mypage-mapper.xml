@@ -59,6 +59,7 @@
 			)
 		WHERE m_no = #{m_no}
 	</select>		
+	
 	<!-- 내 댓글 갯수 -->
 	<select id="myReplyCount" resultType="int">
 		SELECT COUNT(*) FROM CM_COMMENT
@@ -82,5 +83,23 @@
 				m_info = #{m_info}
 						where m_id = #{m_id}
 	</update>
+	
+	<!-- ================================= 쪽지 ================================= -->
+	<!-- 쪽지 보기 -->
+	<select id="noteView" resultType="java.util.HashMap">
+		select n.*, m1.m_nick AS M1_NICK, m2.m_nick AS M2_NICK from note n 
+			left join member m1 on n.m_no = m1.m_no 
+			left join member m2 on n.m_no2 = m2.m_no 
+			where n.m_no = #{m_no} order by n_written_date desc
+	</select>
+	
+	<!-- 쪽지 내용 보기 -->
+	<select id="noteContent" resultType="java.util.HashMap">
+		select n.*, m1.m_nick AS M1_NICK, m2.m_nick AS M2_NICK from note n 
+			left join member m1 on n.m_no = m1.m_no 
+			left join member m2 on n.m_no2 = m2.m_no 
+			where n.n_no = #{n_no}
+	</select>
+	
 
 </mapper>

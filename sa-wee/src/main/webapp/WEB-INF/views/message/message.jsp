@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
 <meta charset="utf-8">
@@ -25,6 +26,12 @@
 <link rel="stylesheet" href="css/mypage/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/mypage/style.css" />
 <link rel="stylesheet" type="text/css" href="css/mypage/liststyle.css" />
+
+<!-- 403 에러 / csrf 토큰 문제 -->
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	content="${_csrf.headerName}" />
+
 </head>
 
 <body>
@@ -35,115 +42,65 @@
 	<div class="container web-portion">
 		<h3 class=" text-center"></h3>
 		<div class="messaging">
-			<div class="inbox_msg">
-				<div class="inbox_people">
-					<div class="headind_srch">
-						<div class="recent_heading">
-							<h4>Recent</h4>
-						</div>
-						<div class="srch_bar">
-							<div class="stylish-input-group">
-								<input type="text" class="search-bar" placeholder="Search">
-								<span class="input-group-addon">
-									<button type="button">
-										<i class="fa fa-search" aria-hidden="true"></i>
-									</button>
-								</span>
+			<form id="viewForm" method="post">
+				<div class="inbox_msg">
+					<div class="inbox_people">
+						<div class="headind_srch">
+							<div class="recent_heading">
+								<h4>Recent</h4>
 							</div>
+							<div class="srch_bar">
+								<div class="stylish-input-group">
+									<input type="text" class="search-bar" placeholder="Search">
+									<span class="input-group-addon">
+										<button type="button">
+											<i class="fa fa-search" aria-hidden="true"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="inbox_chat">
+							<c:forEach items="${message}" var="message">
+								<div class="chat_list active_chat">
+									<div class="chat_people">
+										<div class="chat_img">
+											<img src="images/bl_share/icons/login/wolf_logo.png"
+												alt="sunil">
+										</div>
+										<input id="n_no" type="hidden" value="${message['N_NO']}" />
+										<div class="chat_ib">
+											<h5>
+												<a href="#" id="n_title">${message['N_TITLE']}</a> <span
+													class="chat_date"> <fmt:formatDate
+														pattern="yyyy-MM-dd HH:mm"
+														value="${message['N_WRITTEN_DATE']}" />
+												</span>
+											</h5>
+											<p>${message['M2_NICK']}</p>
+										</div>
+									</div>
+								</div>
+								<!-- security -->
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+							</c:forEach>
+
 						</div>
 					</div>
-					<div class="inbox_chat">
-						<div class="chat_list active_chat">
-							<div class="chat_people">
-								<div class="chat_img">
-									<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">
-								</div>
-								<div class="chat_ib">
-									<h5>
-										쪽지 제목 <span class="chat_date">날짜</span>
-									</h5>
-									<p>쪽지 보낸사람</p>
-								</div>
-							</div>
-						</div>
-						<div class="chat_list">
-							<div class="chat_people">
-								<div class="chat_img">
-									<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">
-								</div>
-								<div class="chat_ib">
-									<h5>
-										Narin Kim <span class="chat_date">Dec 25</span>
-									</h5>
-									<p>쿠키사랑해 헉헉</p>
-								</div>
-							</div>
-						</div>
-						<div class="chat_list">
-							<div class="chat_people">
-								<div class="chat_img">
-									<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">
-								</div>
-								<div class="chat_ib">
-									<h5>
-										Sunil Rajput <span class="chat_date">Dec 25</span>
-									</h5>
-									<p>Test, which is a new approach to have all solutions
-										astrology under one roof.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
 
-
-				<div class="mesgs">
-					<div class="msg_history">
-						<h3 class="text-center">대화 기록</h3>
-						<br />
-						<div class="incoming_msg">
-							<div class="incoming_msg_img">
-								<img src="https://ptetutorials.com/images/user-profile.png"
-									alt="sunil">
-							</div>
-							<div class="received_msg">
-								<div class="received_withd_msg">
-									<p>테스트입니닷</p>
-									<span class="time_date"> 03:57 PM | June 9</span>
-								</div>
-							</div>
-						</div>
-						<div class="outgoing_msg">
-							<div class="sent_msg">
-								<p>Test which is a new approach to have all solutions</p>
-								<span class="time_date"> 11:01 AM | June 9</span>
-							</div>
-						</div>
-						<div class="incoming_msg">
-							<div class="incoming_msg_img">
-								<img src="https://ptetutorials.com/images/user-profile.png"
-									alt="sunil">
-							</div>
-							<div class="received_msg">
-								<div class="received_withd_msg">
-									<p>Test, which is a new approach to have</p>
-									<span class="time_date"> 11:01 AM | Yesterday</span>
-								</div>
-							</div>
-						</div>
-
-						<div class="incoming_msg">
-							<div class="incoming_msg_img">
-								<img src="https://ptetutorials.com/images/user-profile.png"
-									alt="sunil">
-							</div>
-							<div class="received_msg">
-								<div class="received_withd_msg">
-									<p>We work directly with our designers and suppliers, and
-										sell direct to you, which means quality, exclusive products,
-										at a price anyone can afford.</p>
-									<span class="time_date"> 11:01 AM | Today</span>
-								</div>
+					<div class="mesgs">
+						<div class="msg_history">
+							<div id="note_content">
+								<h5 class="text-center">${noteContent['N_TITLE']}</h5>
+								<hr />
+								<p>${noteContent['M2_NICK']}
+									<span class="time_date"><fmt:formatDate
+											pattern="yyyy-MM-dd HH:mm"
+											value="${noteContent['N_WRITTEN_DATE']}" /></span>
+								</p>
+								<hr />
+								<p>${noteContent['N_CONTENT']}</p>
 							</div>
 						</div>
 					</div>
@@ -154,16 +111,17 @@
 						</a></li>
 					</ul>
 				</div>
-			</div>
 
+
+			</form>
 
 			<p class="text-center top_spac">
 				Design by <a target="_blank" href="#">Sunil Rajput</a>
 			</p>
 		</div>
 	</div>
-	
-	
+
+
 </body>
 
 <script src="resources/js/mypage/jquery-3.2.1.min.js"></script>
@@ -177,7 +135,9 @@
 <!-- header 200317 새로 추가해야할 js -->
 <script src="js/header/scroll.js"></script>
 
-<script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js" integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js"
+	integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8="
+	crossorigin="anonymous"></script>
 
 
 </html>

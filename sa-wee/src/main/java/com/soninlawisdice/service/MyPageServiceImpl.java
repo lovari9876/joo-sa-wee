@@ -1,12 +1,15 @@
 package com.soninlawisdice.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.soninlawisdice.mapper.MyPageMapper;
-import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
+import com.soninlawisdice.vo.NoteVO;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -45,6 +48,17 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public int myReplyCount(int m_no) throws Exception {
 		return myPageMapper.myReplyCount(m_no);
+	}
+	
+	// 쪽지 보여주기
+	@Override
+	public ArrayList<HashMap<String, Object>> noteView(int m_no) throws Exception{
+		return myPageMapper.noteView(m_no);
+	}
+	
+	// 쪽지 내용 보기
+	public HashMap<String, Object> noteContent(@Param("n_no") int n_no) throws Exception{
+		return myPageMapper.noteContent(n_no);
 	}
 
 }
