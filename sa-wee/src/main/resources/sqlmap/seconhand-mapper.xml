@@ -174,17 +174,22 @@
 	
 	
 	<!-- 글 수정: TRADE -->
-	<update id="modify" parameterType="com.soninlawisdice.vo.TradeVO">
+	<update id="modify" >
 	
 		UPDATE 
 			TRADE
 		SET 
-			S_NO = #{s_no},
-			T_TITLE = #{t_title},
-			T_CONTENT = #{t_content},
-			T_UPDATED_DATE = SYSDATE,
-			T_ISLAND = 0
-		WHERE T_NO = #{t_no}	
+			S_NO = #{tradeVO.s_no},
+			T_TITLE = #{tradeVO.t_title},
+			T_CONTENT = #{tradeVO.t_content},
+			T_UPDATED_DATE = SYSDATE
+			
+			<if	test="fromIsland=='tr'">
+				T_ISLAND = 2
+			</if>
+		WHERE T_NO = #{tradeVO.t_no}
+		
+		
 			
 	</update>
 	

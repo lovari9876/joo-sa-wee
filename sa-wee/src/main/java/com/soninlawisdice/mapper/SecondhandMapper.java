@@ -43,7 +43,7 @@ public interface SecondhandMapper {
 	public void boardPointUpdate(@Param("m_no") int m_no);
 
 	// 글 수정: TRADE
-	public void modify(TradeVO tradeVO);
+	public void modify(@Param("tradeVO") TradeVO tradeVO, @Param("fromIsland") String fromIsland);
 	
 	// 글 수정: TRADE_GAME
 	public void modifyTG(@Param("t_no") int t_no, @Param("gamePrice") LinkedHashMap<String, Integer> gamePrice);

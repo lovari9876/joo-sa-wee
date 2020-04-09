@@ -73,7 +73,8 @@
 				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
 				<form action="trade_modify" method="post" enctype="multipart/form-data">
 					<input type = "hidden" id = "bt_no" value = "9"/>
-					<input type = "hidden" id = "t_no" value = ${tradeVO['T_NO']}/>
+					<input type = "hidden" id = "t_no" name="t_no" value = ${tradeVO['T_NO']}/>
+					<input type = "hidden" id = "fromIsland" name="fromIsland" value = "${fromIsland}" />
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									

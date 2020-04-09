@@ -165,9 +165,10 @@ public class CassieController {
 
 	// 수정하기 view
 	@RequestMapping(value = "/trade_modify_view", method = RequestMethod.GET)
-	public String modify_view(Model model, int t_no) {
-		
+	public String modify_view(Model model, int t_no, HttpServletRequest rq) {
+			
 		model.addAttribute("tradeVO", secondhandService.selectContentOne(t_no));
+		model.addAttribute("fromIsland", rq.getParameter("fi")); // 무인도에서 수정하기 누를경우 true ("tr")
 		
 		// 게임, 가격 가져와서 다시 string 으로 만들어준다.
 		ArrayList<Trade_gameVO> tgList = secondhandService.selectTrade_gameList(t_no);
@@ -194,11 +195,11 @@ public class CassieController {
 	// 수정하기, 수정했을때 수정된 content 보기
 	@RequestMapping(value = "/trade_modify", method = RequestMethod.POST)
 	public String modify(Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, @ModelAttribute("tgVO") Trade_gameVO tgVO,
-							String gameNames, String prices) {
+							String fromIsland, String gameNames, String prices) {
 				
-		secondhandService.modify(tradeVO);
+		secondhandService.modify(tradeVO, fromIsland);
 		
-		secondhandService.modifyTG(tradeVO.getT_no(), gameNames, prices);
+//		secondhandService.modifyTG(tradeVO.getT_no(), gameNames, prices);
 		
 		return "redirect:content_view_t?t_no=" + tradeVO.getT_no();
 	}
@@ -244,22 +245,27 @@ public class CassieController {
 		
 		int i_no = Integer.parseInt(request.getParameter("i_no"));
 		int bt_no = Integer.parseInt(request.getParameter("bt_no"));
-			
+		
+		String fromIsland = "tr"; // 무인도에서 왔니? 네
+		
 		if (bt_no==9) { // 보부상
 			model.addAttribute("content_view_t", secondhandService.selectContentOne(i_no));
 			secondhandService.upHitContent(i_no);
+			model.addAttribute("fromIsland", fromIsland);
 
 			return "secondhand/content_view";
 			
-		}else if(bt_no==11) { // 카페리뷰
-			boardService.review_uphit(i_no);
+		}else if(bt_no==11) { // 카페리뷰			
 			model.addAttribute("cafe_review", boardService.selectReviewOne(i_no));
+			boardService.review_uphit(i_no);
+			model.addAttribute("fromIsland", fromIsland);
 			
 			return "board_hs/cafe_review_content_view";
 			
 		}else { // 게시글
 			model.addAttribute("content_view", contentService.selectContentOne(i_no));
 			contentService.upHitContent(i_no);
+			model.addAttribute("fromIsland", fromIsland);
 
 			return "content/content_view";
 		}		
