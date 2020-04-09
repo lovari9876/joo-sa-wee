@@ -50,12 +50,11 @@
 											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
 											<option value = "tc" class="btn" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-											<option value = "tc" class="btn">제목+내용</option>
 										</select>
 								</div> 
 								
 								<div class="input-append pull-left">
-									<input type="text" class="span3" placeholder="검색을해라">
+									<input type="text" class="span2" placeholder="조회  / 검색어입력">
 									<button type="submit" class="btn">
 										<i class="icon-search"></i>
 									</button>
@@ -69,15 +68,6 @@
 						</div>
 
 					</form>
-					
-					<!-- <div class="btn-group pull-left">
-						<button type="button" class="btn">선택 글 삭제</button>
-					</div> -->
-					<!-- <div class="btn-group pull-right" data-toggle="buttons-radio">
-						<button type="button" class="btn">정렬</button>
-						<button type="button" class="btn">조회수</button>
-						<button type="button" class="btn">작성일</button>
-					</div> -->
 				</div>
 
 

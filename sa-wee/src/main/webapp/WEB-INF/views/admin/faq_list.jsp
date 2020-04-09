@@ -33,40 +33,55 @@
 					<form>
 
 						<div class="control-group">
-
 							<div class="controls">
-							
-								<select tabindex="1" data-placeholder="전체말머리" class="span2 pull-left">
-										<option value="">전체말머리</option>
-										<option value="Category 1">말머리1</option>
-										<option value="Category 2">말머리2</option>
-										<option value="Category 3">말머리3</option>
-										<option value="Category 4">말머리4</option>
-								</select>
-									
-				
-								<div class="input-append pull-right"> 
-									<input type="text" class="span3" placeholder="검색을해라">
+								
+				 				 <script>
+								      $(function(){
+												  $('#searchBtn').click(function() {
+												  	event.preventDefault(); // event canceled 막기!
+												    	self.location = "faq_list" 
+												    				+ '${pageMaker.makeQuery(1)}' 
+												    				+ "&s_no="
+												    				+ $("#s_no option:selected").val() 
+												    				+ "&searchType=" 
+												    				+ $("#searchType option:selected").val() 
+												    				+ "&keyword=" 
+												    				+ encodeURIComponent($('#keywordInput').val());
+												  });
+												}); 
+								   </script>	
+							 	<div class="dropdown pull-left">
+									<select id="s_no" name="s_no" data-placeholder="전체말머리" class="span2">
+											<option value="0" <c:out value="${s_no == null ? 'selected' : ''}"/>>전체말머리</option>
+											<option value="22" <c:out value="${s_no eq '22' ? 'selected' : ''}"/>>회원</option>
+											<option value="23" <c:out value="${s_no eq '23' ? 'selected' : ''}"/>>결제</option>
+											<option value="24" <c:out value="${s_no eq '24' ? 'selected' : ''}"/>>정보 수정</option>
+											<option value="25" <c:out value="${s_no eq '25' ? 'selected' : ''}"/>>무인도 게시판</option>
+											<option value="26" <c:out value="${s_no eq '26' ? 'selected' : ''}"/>>기타</option>
+									</select>
+								</div>
+								
+								<div class="dropdown pull-left">
+										<select id="searchType" name="searchType" class="span2">
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>제목</option>
+											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>내용</option>
+											<option value = "ab" class="btn" <c:out value="${scri.searchType eq 'ab' ? 'selected' : ''}"/>>작성자</option>
+										</select>
+								</div> 
+								
+								<div class="input-append pull-left"> 
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회  / 검색어입력">
 									<button type="submit" class="btn">
 										<i class="icon-search"></i>
 									</button>
 								</div>
 								
-								 <div class="dropdown pull-right">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">전체보기 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">글 제목</a></li>
-										<li><a href="#">글 내용</a></li>
-									</ul>
-								</div> 
+								 
 							</div>
 						</div>
 
 					</form>
-					
-					
 					<div class="btn-group pull-right" >
 						<button type="button" class="btn" onclick = "location = 'faq_write'"  >글 작성</button>
 					</div>
@@ -95,7 +110,16 @@
 							<c:forEach items="${faq_list}" var="faq">
 									<tr class="trow">
 										<td class="cell">${faq.faq_no}</td>
-										<td class="cell">${faq.s_no}</td>
+										<td class="cell">
+											<c:choose>				
+													<c:when test="${faq.s_no eq 22}">회원</c:when>
+													<c:when test="${faq.s_no eq 23}">결제</c:when>
+													<c:when test="${faq.s_no eq 24}">정보 수정</c:when>
+													<c:when test="${faq.s_no eq 25}">무인도 게시판</c:when>
+													<c:when test="${faq.s_no eq 26}">기타</c:when>
+												</c:choose>
+										</td>
+											
 										<td class="cell title"><a
 											href="/faq/faq">${faq.faq_title}</a></td>
 										<td class="cell"> 

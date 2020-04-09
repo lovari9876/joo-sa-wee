@@ -37,8 +37,8 @@ public interface AdminMapper {
 	public List<MemberVO> memberList(SearchCriteria scri);
 	public int member_listCount(SearchCriteria scri);
 	
-	public ArrayList<HashMap<String, Object>> reportList(SearchCriteria scri);
-	public int report_listCount(SearchCriteria scri);
+	public ArrayList<HashMap<String, Object>> reportList(@Param("scri")SearchCriteria scri,  @Param("r_type")String r_type);
+	public int report_listCount(@Param("scri")SearchCriteria scri,  @Param("r_type")String r_type);
 	
 	public  ArrayList<HashMap<String, Object>> wd_recordList(SearchCriteria scri);
 	public int wd_record_listCount(SearchCriteria scri);
@@ -46,9 +46,8 @@ public interface AdminMapper {
 	public ArrayList<HashMap<String, Object>> cafe_reviewList(SearchCriteria scri);
 	public int cafe_review_listCount(SearchCriteria scri);
 	
-	public List<FaqVO> faqList(SearchCriteria scri);
-	public int faq_listCount(SearchCriteria scri);
-
+	public List<FaqVO> faqList(@Param("scri")SearchCriteria scri, @Param("s_no") int s_no);
+	public int faq_listCount(@Param("scri")SearchCriteria scri, @Param("s_no") int s_no);
 
 	
 	

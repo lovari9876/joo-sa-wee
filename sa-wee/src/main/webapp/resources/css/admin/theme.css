@@ -110,7 +110,7 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	font-size: 13px;
+	font-size: 11.5px;
 	font-family: 'Open Sans', Tahoma, Arial, sans-serif
 }
 .input-append input, .input-prepend input, .input-append select, .input-prepend select, .input-append .uneditable-input, .input-prepend .uneditable-input {
@@ -440,7 +440,7 @@ transition: all .2s ease-in-out;
 	text-shadow: 0 0 1px #ccc, 0 0 0 #000, 0 0 1px #fff
 }
 .btn-group>.btn, .btn-group>.dropdown-menu, .btn-group>.popover {
-	font-size: 13px
+	font-size: 12px
 }
 
 
@@ -459,7 +459,7 @@ transition: all .2s ease-in-out;
 	border: 1px solid #e0e0e0;/* transparent */
 	white-space: nowrap;
 	padding: 4px 10px;
-	font-size: 13px;
+	font-size: 11.5px;
 	line-height: 1.42857;
 	border-radius: 4px;
 	-webkit-user-select: none;

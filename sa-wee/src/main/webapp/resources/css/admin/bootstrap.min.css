@@ -1346,9 +1346,15 @@ select, textarea, input[type="text"], input[type="password"], input[type="dateti
 	vertical-align: middle;
 }
 
+/* selectbox 간격 */
 div > .pull-right{
 	padding-left : 4px;
 }
+
+div > .pull-left{
+	padding-right : 4px;
+}
+
 
 /* write : 작성페이지에 있는 입력창 text에만 균일한 margin 주기  */
 .cell input[type="text"] {

@@ -18,7 +18,7 @@
 
 
 <body>
-	
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<%@include file="side.jsp"%>
 
 
@@ -36,19 +36,8 @@
 						<div class="control-group">
 
 							<div class="controls">
-								<div class="dropdown">
-									
-										<select name="searchType" class="span2">
-											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
-											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>신고한 회원 아이디</option><!-- memberVO랑 JOIN 한 값..!! -->
-											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>신고당한 회원 아이디</option>
-											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>신고 내용</option>
-										</select>
-								
-								</div>
-							
 								<div class="input-append pull-left">
-									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span3" placeholder="검색을 해라">
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="신고내용 검색">
 									<button type="submit" class="btn" id="serchBtn">
 										<i class="icon-search"></i>
 									</button>
@@ -56,9 +45,13 @@
 							 		<script>
 								      $(function(){
 								        $('#searchBtn').click(function() {
-								          self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+								          self.location = "report_list" + '${pageMaker.makeQuery(1)}' 
+								          + "&r_type="+ $("#member").val() 
+								          + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 								        });
 								      });   
+								      
+								      console.log($("#member").val());
 								    </script> 
 								</div>
 
@@ -66,10 +59,14 @@
 							</div>
 						</div>
 						<div class="btn-group pull-right" data-toggle="buttons-radio">
-						<button type="button" class="btn __all" value="">전체보기</button>
-						<button type="button" class="btn __member" value="회원">회원</button>
-						<button type="button" class="btn __board" value="게시글">게시글</button>
-						<button type="button" class="btn __comment" value="댓글">댓글</button>
+						<button type="button" class="btn r_type" value="" 
+							onclick ="location.href='report_list?page=1&perPageNum=15&keyword='">전체보기</button>
+						<button id="member" type="button" class="btn r_type" value="회원" 
+							onclick ="location.href='report_list?page=1&perPageNum=15&r_type=회원&keyword='">회원</button>
+						<button type="button" class="btn r_type" value="게시글"
+							onclick ="location.href='report_list?page=1&perPageNum=15&r_type=게시글&keyword='">게시글</button>
+						<button type="button" class="btn r_type" value="댓글"
+							onclick ="location.href='report_list?page=1&perPageNum=15&r_type=댓글&keyword='">댓글</button>
 					</div>
 					</div>
 					</form>
@@ -158,11 +155,12 @@
 		</div>
 	</div>
 
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
+	
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
-	<script src="js/admin/board_tab/tab.js" type="text/javascript"></script>
+	
+	<!-- <script src="js/admin/board_tab/tab.js" type="text/javascript"></script> -->
 	
 	
 	

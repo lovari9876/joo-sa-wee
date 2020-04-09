@@ -45,7 +45,7 @@
 										</select>
 								</div>
 									<div class="input-append pull-left">
-									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span3" placeholder="검색을 해라">
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span3" placeholder="조회  / 검색어입력">
 									<button type="submit" class="btn" id="serchBtn">
 										<i class="icon-search"></i>
 									</button>
@@ -87,20 +87,6 @@
 							<!-- <td class="cell span1">탈퇴</td> -->
 							
 						</tr>
-
-						<!-- <tr class="trow">
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">Vincent</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell">보드마스터</td>
-							<td class="cell">1000p</td>
-							<td class="cell">01000000000</td>
-							<td class="cell">abc@gmail.com</td>
-							<td class="cell">00-00-00</td>
-							<td class="cell"><button type="button" class="btn" >탈퇴</button></td> 정말 탈퇴???? 한번더 묻기 
-							
-						</tr> -->
 						<tbody>
 							<c:forEach items="${user_list}" var="member">
 									<tr class="trow">

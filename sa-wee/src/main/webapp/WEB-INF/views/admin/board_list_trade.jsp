@@ -36,15 +36,17 @@
 						<div class="control-group">
 
 							<div class="controls">
+							
+								<div class="dropdown pull-left">
+								  	 <select id="s_content" name="s_content" class="span2 pull-right select-right">
+										  <option value="n" <c:out value="${s_content == null ? 'selected' : ''}"/>>말머리</option>
+									      <option value="s" <c:out value="${s_content eq 's' ? 'selected' : ''}"/>>판매중</option>
+									      <option value="b" <c:out value="${s_content eq 'b' ? 'selected' : ''}"/>>구매중</option>
+									      <option value="c" <c:out value="${s_content eq 'c' ? 'selected' : ''}"/>>거래완료</option>
+						              </select>	
+						          </div>  
 								
-								<div class="input-append pull-right"> 
-									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
-									<button type="submit" class="btn" id="serchBtn">
-										<i class="icon-search"></i>
-									</button>
-								</div>
-								
-								 <div class="dropdown pull-right">  
+								 <div class="dropdown pull-left">  
 										<select name="searchType" class="span2 pull-right select-right">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
@@ -54,15 +56,12 @@
 										</select>	
 								</div> 
 								
-								  <div class="dropdown pull-right">
-								  
-								  	 <select id="s_content" name="s_content" class="span2 pull-right select-right">
-										  <option value="n" <c:out value="${s_content == null ? 'selected' : ''}"/>>말머리</option>
-									      <option value="s" <c:out value="${s_content eq 's' ? 'selected' : ''}"/>>판매중</option>
-									      <option value="b" <c:out value="${s_content eq 'b' ? 'selected' : ''}"/>>구매중</option>
-									      <option value="c" <c:out value="${s_content eq 'c' ? 'selected' : ''}"/>>거래완료</option>
-						              </select>	
-						          </div>  
+								 <div class="input-append pull-left"> 
+									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
+									<button type="submit" class="btn" id="serchBtn">
+										<i class="icon-search"></i>
+									</button>
+								</div>
 						          
 						         
 								

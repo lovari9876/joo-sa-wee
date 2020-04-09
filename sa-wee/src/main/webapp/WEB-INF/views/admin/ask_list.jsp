@@ -36,41 +36,55 @@
 						<div class="control-group">
 
 							<div class="controls">
+								<script>
+								      $(function(){
+												  $('#searchBtn').click(function() {
+												  	event.preventDefault(); // event canceled 막기!
+												    	self.location = "board_list" 
+												    				+ '${pageMaker.makeQuery(1)}' 
+												    				+ "&s_content="
+												    				+ $("#sub option:selected").val() 
+												    				+ "&searchType=" 
+												    				+ $("#searchType option:selected").val() 
+												    				+ "&keyword=" 
+												    				+ encodeURIComponent($('#keywordInput').val());
+												  });
+												}); 
+								   </script>
 							
-								<select tabindex="1" data-placeholder="전체말머리" class="span2 pull-left">
-										<option value="">전체말머리</option>
-										<option value="Category 1">말머리1</option>
-										<option value="Category 2">말머리2</option>
-										<option value="Category 3">말머리3</option>
-										<option value="Category 4">말머리4</option>
-								</select>
-									
+								<div class="dropdown pull-left">
+									<select id="s_content" name="s_content" data-placeholder="전체말머리" class="span2">
+											<option value="0" <c:out value="${s_content == null ? 'selected' : ''}"/>>전체말머리</option>
+											<option value="27" <c:out value="${s_content eq '27' ? 'selected' : ''}"/>>회원관련문의</option>
+											<option value="28" <c:out value="${s_content eq '28' ? 'selected' : ''}"/>>결제관련문의</option>
+											<option value="29" <c:out value="${s_content eq '29' ? 'selected' : ''}"/>>정보수정요청</option>
+											<option value="30" <c:out value="${s_content eq '30' ? 'selected' : ''}"/>>무인도관련문의</option>
+											<option value="31" <c:out value="${s_content eq '31' ? 'selected' : ''}"/>>기타문의</option>
+									</select>
+								</div>
+								
+								
+								<div class="dropdown pull-left">
+										<select id="searchType" name="searchType" class="span2">
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>제목</option>
+											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>내용</option>
+											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>작성자</option>
+											<option value = "ab" class="btn" <c:out value="${scri.searchType eq 'ab' ? 'selected' : ''}"/>>제목+내용</option>
+										</select>
+								</div> 	
 				
-								<div class="input-append pull-right"> 
-									<input type="text" class="span3" placeholder="검색을해라">
+								<div class="input-append pull-left"> 
+									<input type="text" class="span2" placeholder="조회  / 검색어입력">
 									<button type="submit" class="btn">
 										<i class="icon-search"></i>
 									</button>
 								</div>
 								
-								 <div class="dropdown pull-right">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">전체보기 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">글 제목</a></li>
-										<li><a href="#">글 내용</a></li>
-									</ul>
-								</div> 
 							</div>
 						</div>
 
 					</form>
-					
-					
-					<!-- <div class="btn-group pull-right" >
-						<button type="button" class="btn" onclick = "location = 'faq_write'"  >글 작성</button>
-					</div> -->
 				</div>
 
 
@@ -91,7 +105,9 @@
 										<td class="cell">${board['RNUM']}</td>
 										<td class="cell">${board['S_CONTENT']}</td>
 										<td class="cell title"><a
-											href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
+											href="/content_view?bw_no=${board['BW_NO']}">
+											<c:if test = "${board['BW_SECRET'] eq 'y' }"><img src="images/board_hs/lock.png"> </c:if>
+											${board['BW_TITLE']}</a></td>
 										<td class="cell">${board['CM']}</td>
 										<td class="cell"> 
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
