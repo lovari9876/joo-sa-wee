@@ -198,11 +198,11 @@ public class CassieController {
 	// 수정하기, 수정했을때 수정된 content 보기
 	@RequestMapping(value = "/trade_modify", method = RequestMethod.POST)
 	public String modify(Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, @ModelAttribute("tgVO") Trade_gameVO tgVO,
-							String fromIsland, String gameNames, String prices) {
+							String gameNames, String prices) {
 		
 		logger.info("trade_modify");
 		
-		secondhandService.modify(tradeVO, fromIsland);
+		secondhandService.modify(tradeVO);
 		
 //		secondhandService.modifyTG(tradeVO.getT_no(), gameNames, prices);
 		

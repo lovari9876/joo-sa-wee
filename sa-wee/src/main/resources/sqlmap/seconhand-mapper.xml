@@ -64,6 +64,27 @@
 	</select>
 	
 	
+	<!-- 검색조건 sql -->
+	<sql id="tradeSearch">
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 't'.toString()">AND T_TITLE LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND T_CONTENT LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'w'.toString()">AND M_NICK LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'tc'.toString()">
+					AND (T_TITLE LIKE '%' || #{scri.keyword} || '%') or (T_CONTENT LIKE '%' || #{scri.keyword} || '%')</if>
+		</if>
+	</sql>
+	
+	<sql id="subjectSearch">
+		<if test="s_content != null">
+			<if test="s_content == 's'.toString()">AND S_CONTENT LIKE '판매중'</if>
+			<if test="s_content == 'b'.toString()">AND S_CONTENT LIKE '구매중'</if>
+			<if test="s_content == 'c'.toString()">AND S_CONTENT LIKE '거래완료'</if>
+		</if>
+	</sql>
+	
+	
+<!-- =================================================================================================== -->	
 	<!-- 글 보기(content_view) -->
 	<select id="selectContentOne" resultType="java.util.HashMap" parameterType="int">
 	
@@ -173,6 +194,7 @@
 	</update>
 	
 	
+<!-- =================================================================================================== -->	
 	<!-- 글 수정: TRADE -->
 	<update id="modify" >
 	
@@ -274,23 +296,6 @@ declare
 	</update>
 	
 	
-	<!-- 검색조건 sql -->
-	<sql id="tradeSearch">
-		<if test="scri.searchType != null">
-			<if test="scri.searchType == 't'.toString()">AND T_TITLE LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'c'.toString()">AND T_CONTENT LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'w'.toString()">AND M_NICK LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'tc'.toString()">
-					AND (T_TITLE LIKE '%' || #{scri.keyword} || '%') or (T_CONTENT LIKE '%' || #{scri.keyword} || '%')</if>
-		</if>
-	</sql>
-	
-	<sql id="subjectSearch">
-		<if test="s_content != null">
-			<if test="s_content == 's'.toString()">AND S_CONTENT LIKE '판매중'</if>
-			<if test="s_content == 'b'.toString()">AND S_CONTENT LIKE '구매중'</if>
-			<if test="s_content == 'c'.toString()">AND S_CONTENT LIKE '거래완료'</if>
-		</if>
-	</sql>
+
 
 </mapper>

@@ -220,7 +220,7 @@
 					    <!-- 검색 결과에 대해 페이징 처리된 페이지 번호 목록 -->
 					    <c:if test="${pageMaker.prev}">
 					        <li>
-					            <a class="pgn__prev" href="island_list${pageMaker.makeSearch(pageMaker.startPage - 1)}">
+					            <a class="pgn__prev" href="island_list${pageMaker.makeSearch(pageMaker.startPage - 1)}&bt_no=${bt_no}">
 					                &laquo;
 					            </a>
 					        </li>
@@ -233,7 +233,7 @@
 					        			<span class="pgn__num current">${idx}</span>
 					        		</c:when>
 					        		<c:otherwise>
-					        			<a class="pgn__num" href="island_list${pageMaker.makeSearch(idx)}">${idx}</a>
+					        			<a class="pgn__num" href="island_list${pageMaker.makeSearch(idx)}&bt_no=${bt_no}">${idx}</a>
 					        		</c:otherwise>					        
 					        	</c:choose>
 					        </li>
@@ -241,7 +241,7 @@
 					 
 					    <c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 					        <li>
-					            <a class="pgn__next" href="island_list${pageMaker.makeSearch(pageMaker.endPage +1)}">
+					            <a class="pgn__next" href="island_list${pageMaker.makeSearch(pageMaker.endPage +1)}&bt_no=${bt_no}">
 					                &raquo;
 					            </a>
 					        </li>
