@@ -141,18 +141,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="board_list_trade${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_list_trade${pageMaker.makeSearch(pageMaker.startPage - 1)}&s_content=${s_content}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="board_list_trade${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li><a href="board_list_trade${pageMaker.makeSearch(idx)}&s_content=${s_content}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="board_list_trade${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_list_trade${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content=${s_content}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

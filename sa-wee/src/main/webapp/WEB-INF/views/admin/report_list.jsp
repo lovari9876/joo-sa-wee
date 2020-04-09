@@ -111,18 +111,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="report_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="report_list${pageMaker.makeSearch(pageMaker.startPage - 1)}&r_type=${r_type}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="report_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li><a href="report_list${pageMaker.makeSearch(idx)}&r_type=${r_type}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="report_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="report_list${pageMaker.makeSearch(pageMaker.endPage + 1)}&r_type=${r_type}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

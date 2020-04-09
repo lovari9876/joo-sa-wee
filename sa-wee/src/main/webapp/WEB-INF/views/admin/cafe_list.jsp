@@ -90,11 +90,11 @@
 							<tbody>
 								<c:forEach items="${cafe_list}" var="cafe">
 									<tr class="trow">
-										<td class="cell">${cafe.c_no}</td>
+										<td class="cell">${cafe['C_NO']}</td>
 										<td class="cell title"><a
-											href="/cafe_info?c_no=${cafe.c_no}">${cafe.c_title}</a></td>
-										<td class="cell">${cafe.c_phone}</td>
-										<td class="cell">${cafe.c_add}</td>
+											href="/cafe_info?c_no=${cafe['C_NO']}">${cafe['C_TITLE']}</a></td>
+										<td class="cell">${cafe['C_PHONE']}</td>
+										<td class="cell">${cafe['C_ADD']}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -104,11 +104,22 @@
 
 					<div class="pagination pagination-centered">
 						<ul>
-							<li><a href="#"><i class="icon-double-angle-left"></i></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"></i></a></li>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="cafe_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="cafe_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="cafe_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 			</div>
