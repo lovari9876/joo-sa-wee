@@ -254,6 +254,23 @@ public class MemberVO implements UserDetails{
 	public int getR_no() {
 		return r_no;
 	}
+	
+	public String getR_name(int r_no) {
+		String rank = "";
+		
+		if (r_no == 0) {
+			rank ="관리자";
+		}else if(r_no == 1){
+			rank ="보드대마왕";
+		}else if(r_no == 2){
+			rank ="보드마스터";
+		}else if(r_no == 3){
+			rank ="보드게이머";
+		}else if(r_no == 4){
+			rank ="표류자";
+		}	
+		return rank;
+	}
 
 	public void setR_no(int r_no) {
 		this.r_no = r_no;

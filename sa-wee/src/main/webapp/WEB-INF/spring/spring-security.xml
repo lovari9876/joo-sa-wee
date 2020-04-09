@@ -11,7 +11,7 @@
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 	<!-- <http auto-config="true" use-expressions="true">
-	    <intercept-url pattern="/loginView" access="permitAll" />
+	    <intercept-url pattern="/loginview" access="permitAll" />
 	   	<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
 	   	<intercept-url pattern="/mypage" access="hasRole('ROLE_USER')" />
 	    <intercept-url pattern="/**" access="permitAll" />
@@ -21,9 +21,9 @@
 	        username-parameter="m_id"
 	        password-parameter="m_pw"
 	        login-processing-url="/loginSecurity"
-	        login-page="/loginView"
+	        login-page="/loginview"
 	        default-target-url="/"
-	        authentication-failure-url="/loginView"
+	        authentication-failure-url="/loginview"
 	    />
 	    
 	    <logout
@@ -47,16 +47,14 @@
 	    
     	<!-- csrf 토큰 적용 x -->
 	    <security:csrf disabled="true" />
-	    
 
-	    <!-- 권한 설정 -->
 	    <security:form-login
 	        username-parameter="m_id"
 	        password-parameter="m_pw"
 	        login-processing-url="/loginSecurity"
-	        login-page="/loginView"
+	        login-page="/loginview"
 	        default-target-url="/"
-	        authentication-failure-url="/loginView"
+	        authentication-failure-url="/loginview"
 	    />
 	    
 	    <security:logout 
@@ -66,6 +64,7 @@
 	       
 	    <!-- 접속권한 없을 때 403 에러 페이지 대신 -->
 	    <!-- <security:access-denied-handler error-page="/access_denied_page"/> -->    
+
     </security:http>
     
 	<!-- <authentication-manager>
@@ -108,12 +107,12 @@
 		
 	<!-- 검사 URL -->
 	<!-- <http auto-config="true" use-expressions="true">
-		<intercept-url pattern="/loginView" access="ROLE_USER" />
+		<intercept-url pattern="/loginview" access="ROLE_USER" />
 		<intercept-url pattern="/admin/*" access="ROLE_USER" />
 		<intercept-url pattern="/*" access="permitAll" />
 
-		<form-login login-page="/loginView" default-target-url="/"
-			authentication-failure-url="/loginView?error"
+		<form-login login-page="/loginview" default-target-url="/"
+			authentication-failure-url="/loginview?error"
 			username-parameter="m_id" password-parameter="m_pw" />
 
 		<logout logout-url="/logout" logout-success-url="/" />

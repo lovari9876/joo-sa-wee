@@ -80,7 +80,7 @@
 				m_re_notice = #{m_re_notice},
 				m_re_message = #{m_re_message}, 
 				m_info = #{m_info}
-						where m_id = 'test';
+						where m_id = #{m_id}
 	</update>
 
 </mapper>

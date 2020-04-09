@@ -244,7 +244,7 @@ body {
 
 .form-control:focus {
 	box-shadow: none !important;
-	border: 2px solid #00a8df;
+	border: 2px solid #8861B4;
 }
 
 .btn-light {
@@ -258,7 +258,7 @@ body {
 
 .form-control:focus {
 	box-shadow: none;
-	border: 2px solid #0d7a40 !important;
+	border: 2px solid #8861B4 !important;
 }
 
 .form-control {
@@ -482,7 +482,7 @@ body {
 }
 
 .home-det .home-dat .links {
-	padding: 50px 0px;
+	padding: 10px 0px;
 }
 
 .home-det .home-dat .links .btn-link li {
@@ -491,6 +491,8 @@ body {
 	border-radius: 15px;
 	border: 1px solid #888;
 	margin-right: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
 	color: #888;
 }
 
@@ -666,4 +668,38 @@ input[type=text] {
 #footer{
 	float:center;
 }
+/* 경고글자 사이즈, 색 조절 */
+.check_font {
+	color: red;
+	font-size: 13px
+}
+/* 버튼태그 a태그 같이 보이게 하기 */
+.btn-a{
+	background-color: transparent;
+    border: none;
+}
+
+/* 탈퇴 버튼 흔들리는 효과 */
+.btn-shake{
+	width: 100px;
+	cursor:pointer;
+}
+.btn-shake:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
 /*# sourceMappingURL=style.css.map */

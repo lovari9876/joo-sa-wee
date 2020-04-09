@@ -27,9 +27,9 @@ public class JoinController {
 	BCryptPasswordEncoder pwdEncoder;
 
 	// 회원가입
-	@RequestMapping(value = "/joinView", method = RequestMethod.GET)
+	@RequestMapping(value = "/joinview", method = RequestMethod.GET)
 	public String Join(MemberVO memberVO) throws Exception {
-		System.out.println("join_check() 성공");
+		System.out.println("join view");
 
 		return "join/join";
 	}
@@ -57,17 +57,9 @@ public class JoinController {
 		// 입력된 아이디가 존재한다면 -> 다시 회원가입 페이지로 돌아가기
 		// 존재하지 않는다면 -> join
 
-		return "redirect:/loginView";
+		return "redirect:/loginview";
 
 	}
-
-	@RequestMapping(value = "/join_success", method = RequestMethod.GET)
-	public String join_success() throws Exception {
-		System.out.println("join_success() 성공");
-
-		return "join/join_success";
-	}
-
 	// 패스워드 체크
 //	@ResponseBody
 //	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
@@ -109,9 +101,9 @@ public class JoinController {
 		return result;
 	}
 
-	@RequestMapping(value = "/loginView", method = RequestMethod.GET)
+	@RequestMapping(value = "/loginview", method = RequestMethod.GET)
 	public String login_check(MemberVO memberVO, Model model, Principal principal) throws Exception {
-		System.out.println("login_check()");
+		System.out.println("login view");
 
 		
 		return "login/login";
@@ -143,7 +135,7 @@ public class JoinController {
 //			System.out.println("login == null");
 //		}
 //
-//		return "redirect:/loginView";
+//		return "redirect:/loginview";
 //	}
 
 	// 로그아웃

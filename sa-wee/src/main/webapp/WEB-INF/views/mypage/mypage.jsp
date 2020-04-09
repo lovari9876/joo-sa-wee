@@ -36,18 +36,19 @@
 								<div class="pd">
 									<h2>${member.m_nick}</h2>
 									<p>
-										<c:if test="${member.r_no == 1}">
-										보드대마왕
-										</c:if>
+										${member.getR_name(member.r_no)}
+										<%-- <c:if test="${member.r_no == 1}">
+                                        	보드대마왕
+                                        </c:if>
 										<c:if test="${member.r_no == 2}">
-										보드마스터
-										</c:if>
+                                      		보드마스터
+                                        </c:if>
 										<c:if test="${member.r_no == 3}">
-										보드게이머
-										</c:if>
+                                        	보드게이머
+                                        </c:if>
 										<c:if test="${member.r_no == 4}">
-										표류자
-										</c:if>
+                                       		표류자
+                                        </c:if> --%>
 									</p>
 								</div>
 							</div>
@@ -60,8 +61,8 @@
 						</div>
 						<div class="col-md-4 eml-mob">
 							<ul>
-								<li>포인트 : ${member.m_point} </li>
-								<li>안 본 쪽지 : </li>
+								<li>포인트 : ${member.m_point}</li>
+								<li>안 본 쪽지 :</li>
 							</ul>
 						</div>
 					</div>
@@ -98,9 +99,10 @@
 											<br />
 											<li>핸드폰 : ${member.m_phone}</li>
 											<br />
-											<li>주소 : ${member.m_addr1} ${member.m_addr2}</li>
+											<li>주소 : ${member.m_addr1}, ${member.m_addr2}</li>
 											<br />
-											<li >가입일 : <fmt:formatDate pattern="yyyy-MM-dd" value="${member.m_indate}"/></li>
+											<li>가입일 : <fmt:formatDate pattern="yyyy-MM-dd"
+													value="${member.m_indate}" /></li>
 											<br />
 											<li>신고당한 수 : ${member.m_report_num}</li>
 											<br />
@@ -109,7 +111,7 @@
 									<div class="col-md-8 home-dat">
 										<div class="detal-jumbo">
 											<h3>자기소개</h3>
-											<p> ${member.m_self}</p>
+											<p>${member.m_self}</p>
 											<br /> <br /> <br /> <br /> <br />
 										</div>
 
@@ -125,7 +127,7 @@
 															</tr>
 															<tr>
 																<th>메일수신여부</th>
-																<td> ${member.m_re_notice}</td>
+																<td>${member.m_re_notice}</td>
 															</tr>
 														</tbody>
 													</table>
@@ -136,11 +138,11 @@
 														<tbody>
 															<tr>
 																<th>쪽지수신여부</th>
-																<td> ${member.m_re_message}</td>
+																<td>${member.m_re_message}</td>
 															</tr>
 															<tr>
 																<th>회원정보공개여부</th>
-																<td> ${member.m_info}</td>
+																<td>${member.m_info}</td>
 															</tr>
 														</tbody>
 													</table>
@@ -152,9 +154,9 @@
 											<div class="row ">
 												<div class="col-xl-6 col-md-12">
 													<ul class="btn-link">
-														<li><a href="message"><i
+														<li><a href="/message"><i
 																class="fas fa-paper-plane"></i> 쪽지함</a></li>
-														<li><a href="modify_mypage"> <i
+														<li><a href="/mypage_modifyview"> <i
 																class="fas fa-address-card"></i> 회원정보수정
 														</a></li>
 														<!-- <li><a href="#modify_mypage"> <i class="fas fa-cloud-download-alt"></i>
