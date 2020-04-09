@@ -88,10 +88,10 @@
 					        	event.preventDefault(); // event canceled 막기!
 					          	self.location = "/island_list" 
 					          				+ '${pageMaker.makeQuery(1)}' 
-					          				/* + "&bt="
-					          				+ $("#s_content option:selected").val()  */
+					          				+ "&bt_no="
+					          				+ $("#bt_no option:selected").val()  
 					          				+ "&searchType=" 
-					          				+ $("select option:selected").val() 
+					          				+ $("#searchType option:selected").val() 
 					          				+ "&keyword=" 
 					          				+ encodeURIComponent($('#keywordInput').val());
 					        });
@@ -99,27 +99,30 @@
 					    </script>
 		              
 		            </div>
-		            
-		            <!-- 게시판도 동시 검색해야 할 때 추가하기... -->
-		<%--             <div class="custom-select">
-		              <select id="searchType" name="searchType"><!-- data-trigger="" name="choices-single-defaul" -->
-						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>게시판</option>
-					      <option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
-					      <option value="c" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-					      <option value="w" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-					      <option value="tc" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-		                  <option>말머리</option>
+			            
+	          		<div class="custom-select">
+		              <select id="bt_no" name="bt_no"><!-- data-trigger="" name="choices-single-defaul" -->
+						<option value="0" <c:out value="${bt_no == null ? 'selected' : ''}"/>>전체게시판</option>
+						<option value="1" <c:out value="${bt_no eq 1 ? 'selected' : ''}"/>>보드이야기</option>
+						<option value="2" <c:out value="${bt_no eq 2 ? 'selected' : ''}"/>>개봉기 및 리뷰</option>
+						<option value="3" <c:out value="${bt_no eq 3 ? 'selected' : ''}"/>>보드게임 모임</option>
+						<option value="4" <c:out value="${bt_no eq 4 ? 'selected' : ''}"/>>보드뉴스</option>
+						<option value="5" <c:out value="${bt_no eq 5 ? 'selected' : ''}"/>>질문과 답변</option>
+						<option value="6" <c:out value="${bt_no eq 6 ? 'selected' : ''}"/>>창작 보드게임</option>
+						<option value="8" <c:out value="${bt_no eq 8 ? 'selected' : ''}"/>>일대일 문의</option>
+						<option value="9" <c:out value="${bt_no eq 9 ? 'selected' : ''}"/>>보부상</option>
+						<option value="10" <c:out value="${bt_no eq 10 ? 'selected' : ''}"/>>카페</option>
+						<option value="11" <c:out value="${bt_no eq 11 ? 'selected' : ''}"/>>카페리뷰</option>
 		              </select>		      
 		              <div class="select__arrow"></div>
-		            </div>  --%> 
+		            </div>  
 		            <div class="custom-select">
 		              <select id="searchType" name="searchType"><!-- data-trigger="" name="choices-single-defaul" -->
-						  <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
-					      <option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
-					      <option value="c" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
-					      <option value="w" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-					      <option value="tc" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
-		                  <option>말머리</option>
+						 <option value="n" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>선택하세요</option>
+					     <option value="t" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
+					     <option value="c" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+					     <option value="w" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
+					     <option value="tc" <c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 		              </select>		      
 		              <div class="select__arrow"></div>        
 		              
