@@ -45,10 +45,8 @@
 <body>
 
 	<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
-	<input type="hidden" name="cm_type"
-		value="<c:out value="${param['CM_TYPE']}"/>">
-	<input type="hidden" name="cm_no2"
-		value="<c:out value="${param['CM_NO2']}"/>">
+	<input type="hidden" name="cm_type" value="<c:out value='${param["CM_TYPE"]}'/>">
+	<input type="hidden" name="cm_no2" value="<c:out value='${param["CM_NO2"]}'/>"> 
 
 
 
@@ -123,7 +121,7 @@
 								</div>
 							</div>
 							<div id="replyCommentT" class="collapse">
-								<%@ include file="reply.jsp"%>
+								<%@ include file="reply_view.jsp"%>
 							</div>
 						</form>
 					</div>

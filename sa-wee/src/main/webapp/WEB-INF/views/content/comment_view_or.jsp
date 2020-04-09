@@ -59,8 +59,8 @@
 
 </head>
 <body>
-	<input type="hidden" name="cm_type" value="<c:out value="${param['CM_TYPE']}"/>">
-	<input type="hidden" name="cm_no2" value="<c:out value="${param['CM_NO2']}"/>"> 
+	<input type="hidden" name="cm_type" value="<c:out value='${param["CM_TYPE"]}'/>">
+	<input type="hidden" name="cm_no2" value="<c:out value='${param["CM_NO2"]}'/>"> 
 	
 	<!-- 한줄평 부분 전체 -->
 	<div class="oneline" id="oneline">

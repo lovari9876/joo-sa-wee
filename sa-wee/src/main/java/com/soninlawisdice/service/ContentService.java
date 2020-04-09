@@ -60,6 +60,8 @@ public interface ContentService {
 	
 	public HashMap<String, Object> selectCommentCount(String cm_no2); // 댓글 갯수 세기
 	
+	public void writeReply (CM_commentVO cm_commentVO); // 대댓글 쓰기(update+insert)
+	
 
 	/*============================== 보부상 ===================================*/
 	// 밑에 3개 뽀려가욘 ^^ 

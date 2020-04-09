@@ -205,7 +205,16 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCount(cm_no2);
 	}
-
+	
+	// 대댓글 쓰기(update + insert)
+	@Override
+	public void writeReply(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateReply(cm_commentVO); // step +1
+		contentMapper.insertReply(cm_commentVO); // 대댓글 쓰기
+		
+	}
+	
 	/* ============================== 보부상 =================================== */
 
 	// 게시글 보기, 삭제, 조회수 뽀려가욘^^ 
@@ -524,6 +533,12 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountOR(cm_no2);
 	}
+
+	
+
+	
+
+	
 
 	
 }

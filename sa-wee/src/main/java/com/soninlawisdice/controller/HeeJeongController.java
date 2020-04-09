@@ -103,10 +103,12 @@ public class HeeJeongController {
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
 		// content_view로 redirect를 위해서
-		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
 		
-		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
-		
+		  int bw_no = Integer.parseInt(cm_no2);
+		  
+		  model.addAttribute("content_view", contentService.selectContentOne(bw_no));
+		 
+		 
 		// 댓글 갯수 세기
 		model.addAttribute("comment_count", contentService.selectCommentCount(cm_no2));
 	  
@@ -327,11 +329,28 @@ public class HeeJeongController {
 		return "content/report_success";
 	}
 	
-	@RequestMapping(value = "/reply", method = RequestMethod.GET)
-	public String reply(Locale locale, Model model) {
-		logger.info("reply");
+	// 대댓글 view
+	@RequestMapping(value = "/reply_view", method = RequestMethod.GET)
+	public String reply_view(HttpServletRequest request, Model model, @ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO) {
+		System.out.println("reply_view");
+		
+		String cm_no = request.getParameter("cm_no");
+		System.out.println("cm_no : "+cm_no);
 
-		return "content/reply";
+		model.addAttribute("comment_view", contentService.selectCommentOne(cm_no));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+
+		return "content/reply_view";
+	}
+	
+	// 대댓글 쓰기(update + insert)
+	@RequestMapping(value = "/reply", method = RequestMethod.GET)
+	public String reply(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model) {
+		System.out.println("reply");
+		
+		contentService.writeReply(cm_commentVO);
+		
+		return "content/reply_success";
 	}
 
 	@RequestMapping(value = "/game_info", method = RequestMethod.GET)

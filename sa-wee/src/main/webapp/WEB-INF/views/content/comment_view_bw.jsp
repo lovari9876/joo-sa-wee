@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- collapse -->
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
 
 <link rel="stylesheet" href="css/board_hj/custom-bs.css">
 <link rel="stylesheet" href="css/board_hj/jquery.fancybox.min.css">
@@ -37,14 +38,14 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	
 <!-- collapse -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
 </head>
 <body>
 
 	<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
-	<input type="hidden" name="cm_type" value="<c:out value="${param['CM_TYPE']}"/>">
-	<input type="hidden" name="cm_no2" value="<c:out value="${param['CM_NO2']}"/>"> 
+	<input type="hidden" name="cm_type" value="<c:out value='${param["CM_TYPE"]}'/>">
+	<input type="hidden" name="cm_no2" value="<c:out value='${param["CM_NO2"]}'/>"> 
 	
 
 	
@@ -61,9 +62,8 @@
 		<ul class="comment-list">
 		<c:forEach items="${comment_list}" var="cm_comment_list" varStatus="status">
 		<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
-			<li class="comment">
+			<li class="comment" style="margin-left:<c:out value="${40*comment_list[status.index]['CM_INDENT']}px;"/>">
 				<div class="comment-body">
-					<form>
 						<div class="comment_test">
 							<div class="test_item name" id="pop">
 								<span role="button" class="pop_btn popovers"
@@ -79,15 +79,16 @@
 								<input type="hidden" name="bw_no" class="rec_cm_btn" value="${content_view['BW_NO']}">
 							</div>
 						</div>
-						<div class="meta">작성일 ${comment_list[status.index]['CM_WRITTEN_DATE']} 수정일 ${comment_list[status.index]['CM_UPDATED_DATE']}</div>
+						<div class="meta">작성일 <fmt:formatDate pattern="yyyy/MM/dd" value="${comment_list[status.index]['CM_WRITTEN_DATE']}"/> 수정일 <fmt:formatDate pattern="yyyy/MM/dd" value="${comment_list[status.index]['CM_UPDATED_DATE']}"/></div>
+						
 						<p>${comment_list[status.index]['CM_CONTENT']}</p>
 
 						<div class="reply_test">
 							<div class="test_item rp">
 								<p>
-									<a role="button" data-toggle="collapse" href="#replyCommentT"
-										class="reply" aria-expanded="false"
-										aria-controls="replyCommentT">Reply</a>
+									<a role="button" class="reply" href="reply_view?cm_no=${comment_list[status.index]['CM_NO']}"
+										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
+										>Reply</a>
 								</p>
 							</div>
 
@@ -109,10 +110,12 @@
 									data-placement="top" title="신고"> </a>
 							</div>
 						</div>
-						<div id="replyCommentT" class="collapse">
-							<%@ include file="reply_view.jsp"%>
-						</div>
-					</form>
+						<%-- <div id="replyComment" class="collapse">
+							<c:import url="/reply_view">
+								<c:param name="cm_no" value="${comment_list[status.index]['CM_NO']}"></c:param>
+							</c:import>
+							<%@ include file="/WEB-INF/views/content/reply_view.jsp" %>
+						</div> --%>
 				</div>
 			</li>
 			</c:forEach>
@@ -134,7 +137,7 @@
 	<script src="js/board_hj/jquery.magnific-popup.min.js"></script>
 	<script src="js/board_hj/jquery.sticky-sidebar.min.js"></script>
 	
-	<script src="js/board_hj/bootstrap.min.js"></script>
+	<!-- <script src="js/board_hj/bootstrap.min.js"></script> -->
 	
 	<script src="js/board_hj/bootstrap.bundle.min.js"></script>
 	<script src="js/board_hj/isotope.pkgd.min.js"></script>

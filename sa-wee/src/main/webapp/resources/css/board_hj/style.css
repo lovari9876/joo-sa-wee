@@ -1209,8 +1209,7 @@ dl, ol, ul {
 }
 
 .test_item.reco {
-	width:75%;
-	text-align: right;
+	float: right;
 }
 
 @media (max-width: 1199.98px) {
