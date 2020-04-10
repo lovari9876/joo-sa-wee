@@ -30,6 +30,7 @@
 		<form action="comment_write_or" method="get">
 			<input type="hidden" name="cm_no2" value="${cafe_info.c_no}">
 			<input type="hidden" name="c_no" value="${cafe_info.c_no}">
+			<input type="hidden" name="m_no" value="${m_no}">
 			<div class="form-group">
 				<label for="message">Comment</label> <input type="text" id="message"
 					class="form-control" name="cm_content" placeholder="내용을 입력하세요">

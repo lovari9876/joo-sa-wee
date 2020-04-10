@@ -9,7 +9,8 @@
 <meta name="keywords" content="endGam,gGaming, magazine, html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Favicon -->
-<link href="images/board_hj/favicon.ico" rel="shortcut icon" />
+<link rel="icon" type="image/png"
+	href="resources/images/share/wolf_logo.ico" />
 
 <!-- Google Font -->
 <link
@@ -41,10 +42,6 @@
 	<![endif]-->
 </head>
 <body id="top">
-	<!-- Page Preloder -->
-	<!-- <div id="preloder">
-		<div class="loader"></div>
-	</div> -->
 
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>

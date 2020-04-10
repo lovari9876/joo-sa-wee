@@ -152,6 +152,14 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.insertCommentBW(cm_commentVO);
 
 	}
+	
+	// 댓글쓰면 +5 point
+	@Override
+	public void updatePoint(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updatePoint(cm_commentVO);
+		
+	}
 
 	// 게시글 댓글 수정하기 view에서 사용
 	@Override
@@ -337,6 +345,15 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountT(cm_no2);
 	}
+	
+	// 중고거래 대댓글 쓰기(update+insert)
+	@Override
+	public void writeReplyT(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateReplyT(cm_commentVO);
+		contentMapper.insertReplyT(cm_commentVO);
+		
+	}
 
 
 	/* ============================== 카페리뷰 =================================== */
@@ -463,6 +480,15 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountCR(cm_no2);
 	}
+	
+	// 카페리뷰 대댓글 쓰기(update+insert)
+	@Override
+	public void writeReplyCR(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateReplyCR(cm_commentVO);
+		contentMapper.insertReplyCR(cm_commentVO);
+		
+	}
 
 	
 	/*================================= 한줄평 =================================*/
@@ -534,11 +560,5 @@ public class ContentServiceImpl implements ContentService {
 		return contentMapper.selectCommentCountOR(cm_no2);
 	}
 
-	
 
-	
-
-	
-
-	
 }

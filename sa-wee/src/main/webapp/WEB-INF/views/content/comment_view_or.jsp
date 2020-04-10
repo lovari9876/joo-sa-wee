@@ -73,14 +73,8 @@
 
 			<!-- 한줄평 리스트 -->
 
-			<!-- 최신순, 인기순으로 보기 -->
-			<form class="category" action="">
-				<label for="drop_list"><h3 class="mb-5">${comment_count_or['CM_COUNT']} 한줄평</h3></label> <select
-					id="drop_list" name="drop_list">
-					<option value="new">최신순</option>
-					<option value="best">인기순</option>
-				</select>
-			</form>
+			<!-- 한줄평 count -->
+				<h3 class="mb-5">${comment_count_or['CM_COUNT']} 한줄평</h3>
 
 			<!-- 한줄평 리스트 -->
 			<ul class="comment-list">
@@ -114,7 +108,23 @@
 							</div>
 
 							<!-- 작성일자 -->
-							<div class="meta">>작성일 ${comment_list_or[status.index]['CM_WRITTEN_DATE']} 수정일 ${comment_list_or[status.index]['CM_UPDATED_DATE']}</div>
+							<div class="meta">>작성일 <jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+							 <fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+								<fmt:formatDate value="${comment_list_or[status.index]['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${comment_list_or[status.index]['CM_WRITTEN_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	 
+						수정일
+							<fmt:formatDate value="${comment_list_or[status.index]['CM_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${comment_list_or[status.index]['CM_UPDATED_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	</div>
 
 
 
@@ -125,23 +135,22 @@
 
 							<!-- 수정, 삭제, 신고 버튼부분 -->
 							<div class="reply_test">
-
-								<div class="test_item modi tooltip-purple">
-									<a class="fas fa-edit fa-lg no-text-deco" href="comment_modify_view_or?cm_no=${comment_list_or[status.index]['CM_NO']}"
+								<div class="test_item rep tooltip-purple">
+									<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_list_or[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 										data-toggle="tooltip" data-container=".tooltip-purple"
-										data-placement="top" title="수정"></a>
+										data-placement="top" title="신고"> </a>
 								</div>
 								<div class="test_item del tooltip-purple">
 									<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete_or?cm_no=${comment_list_or[status.index]['CM_NO']}&c_no=${cafe_info.c_no}"
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="삭제"></a>
 								</div>
-								<div class="test_item rep tooltip-purple">
-									<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_list_or[status.index]['CM_NO']}"
+								<div class="test_item modi tooltip-purple">
+									<a class="fas fa-edit fa-lg no-text-deco" href="comment_modify_view_or?cm_no=${comment_list_or[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 										data-toggle="tooltip" data-container=".tooltip-purple"
-										data-placement="top" title="신고"> </a>
+										data-placement="top" title="수정"></a>
 								</div>
 							</div>
 

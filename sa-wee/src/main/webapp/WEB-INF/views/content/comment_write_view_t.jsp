@@ -15,6 +15,7 @@
 			<form action="comment_write_t" method="get">
 				<input type="hidden" name="cm_no2" value="${content_view_t['T_NO']}">
 				<input type="hidden" name="t_no" value="${content_view_t['T_NO']}">
+				<input type="hidden" name="m_no" value="${m_no}">
 				<div class="form-group">
 					<label for="message">Comment</label>
 					<textarea name="cm_content" id="message" cols="30" rows="10"

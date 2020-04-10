@@ -46,6 +46,8 @@ public interface ContentService {
 	
 	public void insertCommentBW(CM_commentVO cm_commentVO); // 게시글 댓글 쓰기
 	
+	public void updatePoint(CM_commentVO cm_commentVO); // 댓글쓰면 +5 point
+	
 	public HashMap<String, Object> selectCommentOne(String cm_no); // 게시글 댓글 수정하기 view에서 사용
 	
 	public void updateCommentOne(CM_commentVO cm_commentVO); // 댓글 수정
@@ -97,6 +99,8 @@ public interface ContentService {
 	
 	public HashMap<String, Object> selectCommentCountT(String cm_no2); // 중고거래 댓글 갯수 세기
 	
+	public void writeReplyT (CM_commentVO cm_commentVO); // 중고거래 대댓글 쓰기(update+insert)
+	
 	
 	/*============================== 카페리뷰 ===================================*/
 	public HashMap<String, Object> selectContentCROne(int cr_no); // 카페리뷰 게시글 보기(content_view)
@@ -130,6 +134,8 @@ public interface ContentService {
 	public String selectRecommendCommentCR(String cm_no); // 카페리뷰 댓글 추천수 증가하는 거 받아옴
 	
 	public HashMap<String, Object> selectCommentCountCR(String cm_no2); // 카페리뷰 댓글 갯수 세기
+	
+	public void writeReplyCR (CM_commentVO cm_commentVO); // 카페리뷰 대댓글 쓰기(update+insert)
 	
 	
 	/*================================= 한줄평 =================================*/

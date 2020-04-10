@@ -113,6 +113,10 @@ public class CassieController {
 		// 게임, 가격 리스트
 		model.addAttribute("tgList", secondhandService.selectTrade_gameList(t_no));
 		
+		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
+		int m_no = 9;
+		model.addAttribute("m_no", m_no);
+		
 		// 게시글 조회수
 		secondhandService.upHitContent(t_no);
 

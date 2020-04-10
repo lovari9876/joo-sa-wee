@@ -49,7 +49,7 @@
 		SELECT BW.BW_NO, BW.BW_TITLE, BW.BW_CONTENT,
 		BW.BW_WRITTEN_DATE, BW.BW_UPDATED_DATE, BW.BW_HIT,
 		BW.BW_RECOMMEND_NUM, BW.BW_REPORT_NUM, BW.BW_ISLAND, BW.BW_SECRET,
-		M.M_NICK, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
+		M.M_NO, M.M_NICK, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
 		FROM BOARD_WRITE BW, MEMBER M,
 		BOARD_TYPE BT, SUBJECT S
 		WHERE BW.M_NO = M.M_NO AND BW.BT_NO =
@@ -202,7 +202,7 @@
 	</resultMap>
 
 	<!-- 게시글 댓글 쓰기 -->
-	<!-- 현재 m_no 14으로 되어있음. 나중에 #{m_no}으로 고쳐야 됨. -->
+	<!-- 현재 m_no 3으로 되어있음. 나중에 #{m_no}으로 고쳐야 됨. -->
 	<insert id="insertCommentBW">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
 		CM_WRITTEN_DATE,
@@ -210,22 +210,27 @@
 		CM_REPORT_NUM,
 		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
 		VALUES
-		(CM_COMMENT_SEQ.NEXTVAL, 14, #{cm_content}, SYSDATE, SYSDATE,
+		(CM_COMMENT_SEQ.NEXTVAL, #{m_no}, #{cm_content}, SYSDATE, SYSDATE,
 		'게시판',
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
+	
+	<!-- 댓글쓰면 +5 point -->
+	<update id="updatePoint">
+		UPDATE MEMBER SET M_POINT = M_POINT + 5 WHERE M_NO = #{m_no} 
+	</update>
 
 	<!-- 게시글 댓글 수정하기 view에서 사용 -->
 	<select id="selectCommentOne" resultType="java.util.HashMap"
 		parameterType="String">
-		SELECT CM.CM_NO, M.M_NO, M.M_NICK, CM.CM_CONTENT,
-		CM.CM_WRITTEN_DATE, CM.CM_UPDATED_DATE, CM.CM_TYPE, CM.CM_NO2,
-		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
-		CM.CM_STEP, CM.CM_INDENT
-		FROM CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
-		WHERE CM.M_NO = M.M_NO AND
-		CM.CM_NO2 = BW.BW_NO
-		AND CM.CM_TYPE = '게시판' AND CM.CM_NO = #{cm_no}
+		SELECT 
+			CM.*, M.M_NO, M.M_NICK
+		FROM 
+			CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
+		WHERE 
+			CM.M_NO = M.M_NO AND
+			CM.CM_NO2 = BW.BW_NO
+			AND CM.CM_TYPE = '게시판' AND CM.CM_NO = #{cm_no}
 	</select>
 
 	<!-- 댓글 수정 -->
@@ -290,7 +295,7 @@
 		CM_REPORT_NUM,
 		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
 		VALUES
-		(CM_COMMENT_SEQ.NEXTVAL, 14, #{cm_content}, SYSDATE, SYSDATE,
+		(CM_COMMENT_SEQ.NEXTVAL, #{m_no}, #{cm_content}, SYSDATE, SYSDATE,
 		'게시판',
 		#{cm_no2}, 0, 0, 0, #{cm_group}, #{cm_step}+1, #{cm_indent}+1)
 	</insert>
@@ -374,7 +379,7 @@
 		CM.CM_NO2 = T.T_NO
 		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
 		ORDER BY
-		CM.CM_WRITTEN_DATE DESC
+		CM.CM_GROUP ASC, CM.CM_STEP ASC
 	</select>
 
 	<!-- 중고거래 댓글 쓰기 -->
@@ -385,7 +390,7 @@
 		CM_REPORT_NUM,
 		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
 		VALUES
-		(CM_COMMENT_SEQ.NEXTVAL, 5, #{cm_content}, SYSDATE, SYSDATE,
+		(CM_COMMENT_SEQ.NEXTVAL, #{m_no}, #{cm_content}, SYSDATE, SYSDATE,
 		'중고거래',
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
@@ -435,6 +440,25 @@
 		WHERE CM.CM_NO2 = T.T_NO AND CM.CM_TYPE = '중고거래' AND
 		CM.CM_NO2 = #{cm_no2}
 	</select>
+	
+	<!-- 중고거래 댓글 우선순위 -->
+	<update id="updateReplyT">
+		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE CM_GROUP = #{cm_group}
+		AND CM_STEP > #{cm_step}
+	</update>
+	
+	<!-- 중고거래 대댓글 쓰기 -->
+	<insert id="insertReplyT">
+		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
+		CM_WRITTEN_DATE,
+		CM_UPDATED_DATE, CM_TYPE, CM_NO2, CM_RECOMMEND_NUM,
+		CM_REPORT_NUM,
+		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
+		VALUES
+		(CM_COMMENT_SEQ.NEXTVAL, #{m_no}, #{cm_content}, SYSDATE, SYSDATE,
+		'중고거래',
+		#{cm_no2}, 0, 0, 0, #{cm_group}, #{cm_step}+1, #{cm_indent}+1)
+	</insert>
 
 	<!-- ====================== 카페리뷰 ======================== -->
 
@@ -510,7 +534,7 @@
 		CM.CM_NO2 = CR.CR_NO
 		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
 		ORDER BY
-		CM.CM_WRITTEN_DATE DESC
+		CM.CM_GROUP ASC, CM.CM_STEP ASC
 	</select>
 
 	<!-- 카페리뷰 댓글 쓰기 -->
@@ -521,7 +545,7 @@
 		CM_REPORT_NUM,
 		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
 		VALUES
-		(CM_COMMENT_SEQ.NEXTVAL, 5, #{cm_content}, SYSDATE, SYSDATE,
+		(CM_COMMENT_SEQ.NEXTVAL, #{m_no}, #{cm_content}, SYSDATE, SYSDATE,
 		'카페리뷰',
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
@@ -570,6 +594,25 @@
 		WHERE CM.CM_NO2 = CR.CR_NO AND CM.CM_TYPE = '카페리뷰' AND
 		CM.CM_NO2 = #{cm_no2}
 	</select>
+	
+	<!-- 카페리뷰 댓글 우선순위 -->
+	<update id="updateReplyCR">
+		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE CM_GROUP = #{cm_group}
+		AND CM_STEP > #{cm_step}
+	</update>
+	
+	<!-- 카페리뷰 대댓글 쓰기 -->
+	<insert id="insertReplyCR">
+		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
+		CM_WRITTEN_DATE,
+		CM_UPDATED_DATE, CM_TYPE, CM_NO2, CM_RECOMMEND_NUM,
+		CM_REPORT_NUM,
+		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
+		VALUES
+		(CM_COMMENT_SEQ.NEXTVAL, #{m_no}, #{cm_content}, SYSDATE, SYSDATE,
+		'카페리뷰',
+		#{cm_no2}, 0, 0, 0, #{cm_group}, #{cm_step}+1, #{cm_indent}+1)
+	</insert>
 
 
 	<!-- ====================== 한줄평 ======================== -->
@@ -608,7 +651,7 @@
 		CM_REPORT_NUM,
 		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
 		VALUES
-		(CM_COMMENT_SEQ.NEXTVAL, 5, #{cm_content}, SYSDATE, SYSDATE,
+		(CM_COMMENT_SEQ.NEXTVAL, #{m_no}, #{cm_content}, SYSDATE, SYSDATE,
 		'한줄평',
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +29,10 @@
 	<div class="pt-5">
 		<div class="comment-form-wrap pt-5">
 			<h3 class="mb-5">Leave a comment</h3>
-			<form action="comment_write_bw" method="GET">
+			<form action="comment_write_bw" method="post">
 				<input type="hidden" name="cm_no2" value="${content_view['BW_NO']}">
 				<input type="hidden" name="bw_no" value="${content_view['BW_NO']}">
+				<input type="hidden" name="m_no" value="${m_no}">
 				<div class="form-group">
 					<label for="message">Comment</label>
 					<textarea name="cm_content" id="message" cols="30" rows="10"

@@ -55,7 +55,6 @@
 		
 		<ul class="comment-list">
 		<c:forEach items="${comment_list}" var="cm_comment_list" varStatus="status">
-		<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
 			<li class="comment" style="margin-left:<c:out value="${40*comment_list[status.index]['CM_INDENT']}"/>px; padding-right:<c:out value="${40*comment_list[status.index]['CM_INDENT']}"/>px;">
 				<div class="comment-body">
 						<div class="comment_test">
@@ -73,7 +72,23 @@
 								<input type="hidden" name="bw_no" class="rec_cm_btn" value="${content_view['BW_NO']}">
 							</div>
 						</div>
-						<div class="meta">작성일 <fmt:formatDate pattern="yyyy/MM/dd" value="${comment_list[status.index]['CM_WRITTEN_DATE']}"/> 수정일 <fmt:formatDate pattern="yyyy/MM/dd" value="${comment_list[status.index]['CM_UPDATED_DATE']}"/></div>
+						<div class="meta">작성일
+								<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+								<fmt:formatDate value="${comment_list[status.index]['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${comment_list[status.index]['CM_WRITTEN_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	 
+						수정일
+							<fmt:formatDate value="${comment_list[status.index]['CM_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${comment_list[status.index]['CM_UPDATED_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	</div>
 						
 						<p>${comment_list[status.index]['CM_CONTENT']}</p>
 

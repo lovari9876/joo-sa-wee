@@ -63,7 +63,11 @@ public class HeeJeongController {
 		System.out.println(bw_no);
 
 		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
-
+		
+		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
+		int m_no = 9;
+		model.addAttribute("m_no", m_no);
+		
 		// 게시글 조회수
 		contentService.upHitContent(bw_no);
 
@@ -108,33 +112,45 @@ public class HeeJeongController {
 		return "content/comment_view_bw"; 
 	 } 
 
-	// 게시글 댓글 쓰기 view
-	@RequestMapping(value = "/comment_write_view_bw", method = RequestMethod.GET)
-	public String comment_write_view_bw(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
-		System.out.println("comment_write_view_bw");
-
-		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
-
-		System.out.println(bw_no);
-
-		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
-		model.addAttribute("bw_no", bw_no);
-		System.out.println(cm_commentVO.getCm_no2());
-
-		contentService.insertCommentBW(cm_commentVO);
-
-		return "content/comment_write_bw";
-	}
+	// 게시글 댓글 쓰기 view 안써
+	/*
+	 * @RequestMapping(value = "/comment_write_view_bw", method = RequestMethod.GET)
+	 * public String comment_write_view_bw(HttpServletRequest request, Model
+	 * model, @ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO) {
+	 * System.out.println("comment_write_view_bw");
+	 * 
+	 * int bw_no = Integer.parseInt(request.getParameter("bw_no"));
+	 * 
+	 * System.out.println(bw_no);
+	 * 
+	 * model.addAttribute("content_view", contentService.selectContentOne(bw_no));
+	 * model.addAttribute("bw_no", bw_no);
+	 * System.out.println(cm_commentVO.getCm_no2());
+	 * 
+	 * String cm_no = request.getParameter("cm_no");
+	 * System.out.println("cm_no : "+cm_no);
+	 * 
+	 * 
+	 * 
+	 * return "content/comment_write_bw";
+	
+	}  */
 
 	// 게시글 댓글 쓰기
-	@RequestMapping(value = "/comment_write_bw", method = RequestMethod.GET)
+	@RequestMapping(value = "/comment_write_bw", method = RequestMethod.POST)
 	public String comment_write_bw(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
-									Model model, @RequestParam int bw_no, RedirectAttributes re) {
+									Model model, @RequestParam int bw_no, @RequestParam("m_no") int m_no, RedirectAttributes re) {
 		System.out.println("comment_write_bw");
-
+		
 		System.out.println(cm_commentVO.getCm_no2());
-
+		System.out.println(cm_commentVO.getM_no());
+		
+		// content_view에서 가져온 m_no을 cm_commentVO에 저장
+		System.out.println("m_no = " + m_no);
+		cm_commentVO.setM_no(m_no);
+		
 		contentService.insertCommentBW(cm_commentVO);
+		contentService.updatePoint(cm_commentVO);
 		
 //		int bw_no = Integer.parseInt(rq.getParameter("bw_no"));
 		re.addAttribute("bw_no", bw_no);
@@ -332,16 +348,24 @@ public class HeeJeongController {
 
 		model.addAttribute("comment_view", contentService.selectCommentOne(cm_no));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		
+		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
+		int m_no = 9;
+		model.addAttribute("m_no", m_no);
 
 		return "content/reply_view";
 	}
 	
 	// 대댓글 쓰기(update + insert)
 	@RequestMapping(value = "/reply", method = RequestMethod.GET)
-	public String reply(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model) {
+	public String reply(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model, @RequestParam("m_no") int m_no) {
 		System.out.println("reply");
 		
+		System.out.println("m_no = " + m_no);
+		cm_commentVO.setM_no(m_no);
+		
 		contentService.writeReply(cm_commentVO);
+		contentService.updatePoint(cm_commentVO);
 		
 		return "content/reply_success";
 	}
@@ -479,32 +503,37 @@ public class HeeJeongController {
 	} 
 
 	// 중고거래 댓글 쓰기 view
-	@RequestMapping(value = "/comment_write_view_t", method = RequestMethod.GET)
-	public String comment_write_view_t(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
-		System.out.println("comment_write_view_t");
-
-		int t_no = Integer.parseInt(request.getParameter("t_no"));
-
-		System.out.println(t_no);
-
-		model.addAttribute("content_view_t", contentService.selectContentTOne(t_no));
-		model.addAttribute("t_no", t_no);
-		System.out.println(cm_commentVO.getCm_no2());
-		
-		contentService.insertCommentT(cm_commentVO);
-
-		return "content/comment_write_t";
-	}
+	/*
+	 * @RequestMapping(value = "/comment_write_view_t", method = RequestMethod.GET)
+	 * public String comment_write_view_t(HttpServletRequest request, Model model,
+	 * CM_commentVO cm_commentVO) { System.out.println("comment_write_view_t");
+	 * 
+	 * int t_no = Integer.parseInt(request.getParameter("t_no"));
+	 * 
+	 * System.out.println(t_no);
+	 * 
+	 * model.addAttribute("content_view_t", contentService.selectContentTOne(t_no));
+	 * model.addAttribute("t_no", t_no);
+	 * System.out.println(cm_commentVO.getCm_no2());
+	 * 
+	 * contentService.insertCommentT(cm_commentVO);
+	 * 
+	 * return "content/comment_write_t"; }
+	 */
 	
 	// 중고거래 댓글 쓰기
 	@RequestMapping(value = "/comment_write_t", method = RequestMethod.GET)
 	public String comment_write_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
-										Model model, @RequestParam int t_no, RedirectAttributes re) {
+										Model model, @RequestParam int t_no, @RequestParam("m_no") int m_no, RedirectAttributes re) {
 		System.out.println("comment_write_t");
 
 		System.out.println(cm_commentVO.getCm_no2());
+		
+		System.out.println("m_no = " + m_no);
+		cm_commentVO.setM_no(m_no);
 
 		contentService.insertCommentT(cm_commentVO);
+		contentService.updatePoint(cm_commentVO);
 			
 		re.addAttribute("t_no", t_no);
 
@@ -559,6 +588,38 @@ public class HeeJeongController {
 		return contentService.selectRecommendCommentT(cm_no);
 	}
 	
+	// 중고거래 대댓글 view
+	@RequestMapping(value = "/reply_view_t", method = RequestMethod.GET)
+	public String reply_view_t(HttpServletRequest request, Model model, @ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO) {
+		System.out.println("reply_view_t");
+		
+		String cm_no = request.getParameter("cm_no");
+		System.out.println("cm_no : "+cm_no);
+
+		model.addAttribute("comment_view", contentService.selectCommentT(cm_no));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		
+		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
+		int m_no = 9;
+		model.addAttribute("m_no", m_no);
+
+		return "content/reply_view_t";
+	}
+	
+	// 중고거래 대댓글 쓰기(update + insert)
+	@RequestMapping(value = "/reply_t", method = RequestMethod.GET)
+	public String reply_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model, @RequestParam("m_no") int m_no) {
+		System.out.println("reply_t");
+		
+		System.out.println("m_no = " + m_no);
+		cm_commentVO.setM_no(m_no);
+		
+		contentService.writeReplyT(cm_commentVO);
+		contentService.updatePoint(cm_commentVO);
+		
+		return "content/reply_success";
+	}
+	
 	
 	
 	/*============================== 카페리뷰 ===================================*/
@@ -576,6 +637,10 @@ public class HeeJeongController {
 		System.out.println(cr_no);
 
 		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
+		
+		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
+		int m_no = 9;
+		model.addAttribute("m_no", m_no);
 
 		// 게시글 조회수
 		contentService.upHitContentCR(cr_no);
@@ -706,32 +771,37 @@ public class HeeJeongController {
 	} 
 	
 	// 카페리뷰 댓글 쓰기 view
-	@RequestMapping(value = "/comment_write_view_cr", method = RequestMethod.GET)
-	public String comment_write_view_cr(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
-		System.out.println("comment_write_view_cr");
-
-		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
-
-		System.out.println(cr_no);
-
-		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
-		model.addAttribute("cr_no", cr_no);
-		System.out.println(cm_commentVO.getCm_no2());
-		
-		contentService.insertCommentCR(cm_commentVO);
-
-		return "content/comment_write_cr";
-	}
+	/*
+	 * @RequestMapping(value = "/comment_write_view_cr", method = RequestMethod.GET)
+	 * public String comment_write_view_cr(HttpServletRequest request, Model model,
+	 * CM_commentVO cm_commentVO) { System.out.println("comment_write_view_cr");
+	 * 
+	 * int cr_no = Integer.parseInt(request.getParameter("cr_no"));
+	 * 
+	 * System.out.println(cr_no);
+	 * 
+	 * model.addAttribute("content_view_cr",
+	 * contentService.selectContentCROne(cr_no)); model.addAttribute("cr_no",
+	 * cr_no); System.out.println(cm_commentVO.getCm_no2());
+	 * 
+	 * contentService.insertCommentCR(cm_commentVO);
+	 * 
+	 * return "content/comment_write_cr"; }
+	 */
 
 	// 카페리뷰 댓글 쓰기
 	@RequestMapping(value = "/comment_write_cr", method = RequestMethod.GET)
 	public String comment_write_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
-										Model model, @RequestParam int cr_no, RedirectAttributes re) {
+										Model model, @RequestParam int cr_no, @RequestParam("m_no") int m_no, RedirectAttributes re) {
 		System.out.println("comment_write_cr");
 
 		System.out.println(cm_commentVO.getCm_no2());
+		
+		System.out.println("m_no = " + m_no);
+		cm_commentVO.setM_no(m_no);
 
 		contentService.insertCommentCR(cm_commentVO);
+		contentService.updatePoint(cm_commentVO);
 			
 		re.addAttribute("cr_no", cr_no);
 
@@ -786,6 +856,38 @@ public class HeeJeongController {
 		return contentService.selectRecommendCommentCR(cm_no);
 	}
 	
+	// 카페리뷰 대댓글 view
+	@RequestMapping(value = "/reply_view_cr", method = RequestMethod.GET)
+	public String reply_view_cr(HttpServletRequest request, Model model, @ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO) {
+		System.out.println("reply_view_cr");
+		
+		String cm_no = request.getParameter("cm_no");
+		System.out.println("cm_no : "+cm_no);
+
+		model.addAttribute("comment_view", contentService.selectCommentCR(cm_no));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		
+		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
+		int m_no = 9;
+		model.addAttribute("m_no", m_no);
+
+		return "content/reply_view_cr";
+	}
+	
+	// 카페리뷰 대댓글 쓰기(update + insert)
+	@RequestMapping(value = "/reply_cr", method = RequestMethod.GET)
+	public String reply_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, @RequestParam("m_no") int m_no, Model model) {
+		System.out.println("reply_cr");
+		
+		System.out.println("m_no = " + m_no);
+		cm_commentVO.setM_no(m_no);
+		
+		contentService.writeReplyCR(cm_commentVO);
+		contentService.updatePoint(cm_commentVO);
+		
+		return "content/reply_success";
+	}
+	
 	
 	/*============================== 한줄평 ===================================*/
 	
@@ -799,6 +901,10 @@ public class HeeJeongController {
 
 		model.addAttribute("comment_list_or", contentService.selectCommentListOR(cm_no2));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		
+		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
+		int m_no = 9;
+		model.addAttribute("m_no", m_no);
 			
 		// 카페리뷰 댓글 갯수 세기
 		model.addAttribute("comment_count_or", contentService.selectCommentCountOR(cm_no2));
@@ -827,12 +933,16 @@ public class HeeJeongController {
 	// 한줄평 댓글 쓰기
 	@RequestMapping(value = "/comment_write_or", method = RequestMethod.GET)
 	public String comment_write_or(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
-											Model model, @RequestParam int c_no, RedirectAttributes re) {
+											Model model, @RequestParam int c_no, @RequestParam("m_no") int m_no, RedirectAttributes re) {
 		System.out.println("comment_write_or");
 
 		System.out.println(cm_commentVO.getCm_no2());
+		
+		System.out.println("m_no = " + m_no);
+		cm_commentVO.setM_no(m_no);
 
 		contentService.insertCommentOR(cm_commentVO);
+		contentService.updatePoint(cm_commentVO);
 				
 		re.addAttribute("c_no", c_no);
 
