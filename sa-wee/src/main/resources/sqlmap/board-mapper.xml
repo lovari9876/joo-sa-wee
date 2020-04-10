@@ -506,4 +506,30 @@
 	</sql> 
 	
 	
+	<!--/////////////////////////////////////////////////////////////////////  -->
+	
+	<insert id="insertGame">
+		<foreach collection = "gameList" item = "game" open = "INSERT ALL" close="SELECT * FROM SYS.DUAL" >
+        	INTO GAME
+        		(g_no, g_name, g_min, g_max, g_playtime, g_release, g_image, g_thumbnail)
+        	VALUES
+        		(get_game_seq, #{game.g_name}, #{game.g_min}, #{game.g_max}, #{game.g_playtime}, #{game.g_release}, #{game.g_image}, #{game.g_thumbnail})
+        </foreach>
+	</insert>
+	
+	<select id="gameNameList" resultType = "String">
+		SELECT G_NAME_KOR FROM GAME WHERE G_NAME_KOR IS NOT NULL
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

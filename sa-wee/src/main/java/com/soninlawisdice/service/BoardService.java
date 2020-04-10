@@ -116,6 +116,17 @@ public interface BoardService {
 	//////////////////////포인트 적립//////////////////////
 	//글 작성시 10 포인트
 	public void boardPointUpdate(int m_no);
-		
-	//댓글 작성시 5 포인트
+
+	
+	
+	
+	
+	
+	public ArrayList<String> gameNameList();
+	/////////////////////////////////////////////////
+	//public void insertGame();
+	/////////////////////////////////////////////	
+	
+	
+	
 }
