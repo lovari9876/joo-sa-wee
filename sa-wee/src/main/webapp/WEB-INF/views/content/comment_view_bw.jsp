@@ -51,18 +51,12 @@
 	
 	<!-- 댓글 달기 -->
 	<div class="pt-5">
-		<form action="">
-			<label for="drop_list"><h3 class="mb-5">${comment_count['CM_COUNT']} Comment</h3></label> <select
-				id="drop_list" name="drop_list">
-				<option value="new">최신순</option>
-				<option value="best">인기순</option>
-			</select>
-		</form>
+		<h3 class="mb-5">${comment_count['CM_COUNT']} Comments</h3>
 		
 		<ul class="comment-list">
 		<c:forEach items="${comment_list}" var="cm_comment_list" varStatus="status">
 		<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
-			<li class="comment" style="margin-left:<c:out value="${40*comment_list[status.index]['CM_INDENT']}px;"/>">
+			<li class="comment" style="margin-left:<c:out value="${40*comment_list[status.index]['CM_INDENT']}"/>px; padding-right:<c:out value="${40*comment_list[status.index]['CM_INDENT']}"/>px;">
 				<div class="comment-body">
 						<div class="comment_test">
 							<div class="test_item name" id="pop">
@@ -91,23 +85,22 @@
 										>Reply</a>
 								</p>
 							</div>
-
-							<div class="test_item modi tooltip-purple">
-								<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi" href="comment_modify_view?cm_no=${comment_list[status.index]['CM_NO']}"
+							<div class="test_item rep tooltip-purple">
+								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_list[status.index]['CM_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="수정"></a>
+									data-placement="top" title="신고"> </a>
 							</div>
 							<div class="test_item del tooltip-purple">
 								<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete?cm_no=${comment_list[status.index]['CM_NO']}&bw_no=${content_view['BW_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="삭제"></a>
 							</div>
-							<div class="test_item rep tooltip-purple">
-								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_list[status.index]['CM_NO']}"
+							<div class="test_item modi tooltip-purple">
+								<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi" href="comment_modify_view?cm_no=${comment_list[status.index]['CM_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="신고"> </a>
+									data-placement="top" title="수정"></a>
 							</div>
 						</div>
 						<%-- <div id="replyComment" class="collapse">
