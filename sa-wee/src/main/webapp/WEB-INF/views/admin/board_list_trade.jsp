@@ -18,7 +18,7 @@
 
 
 <body>
-
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<%@include file="side.jsp"%>
 
 <!-- 카테고리, 게시판 별로 선택하기, 회원별(아이디, 닉네임), 제목, 내용별 검색... -->
@@ -199,7 +199,6 @@
 		</div>
 	</div>
 
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	
 	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
 	<script src="js/admin/checkBox.js" type="text/javascript"></script>

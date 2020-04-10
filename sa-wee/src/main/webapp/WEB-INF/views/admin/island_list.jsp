@@ -18,7 +18,7 @@
 
 
 <body>
-
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<%@include file="side.jsp"%>
 
 <!-- 카테고리, 게시판 별로 선택하기, 회원별(아이디, 닉네임), 제목, 내용별 검색... -->
@@ -38,19 +38,19 @@
 							<div class="controls">
 							
 							<script>
-								      $(function(){
-												  $('#searchBtn').click(function() {
-												  	event.preventDefault(); // event canceled 막기!
-												    	self.location = "island_list" 
-												    				+ '${pageMaker.makeQuery(1)}' 
-												    				+ "&bt_no="
-												    				+ $("#board option:selected").val()
-												    				+ "&searchType=" 
-												    				+ $("#searchType option:selected").val() 
-												    				+ "&keyword=" 
-												    				+ encodeURIComponent($('#keywordInput').val());
-												  });
-												}); 
+							      $(function(){
+									  $('#searchBtn').click(function() {
+									  	event.preventDefault(); // event canceled 막기!
+									    	self.location = "island_list" 
+									    				+ '${pageMaker.makeQuery(1)}' 
+									    				+ "&bt_no="
+									    				+ $("#bt_no option:selected").val()
+									    				+ "&searchType=" 
+									    				+ $("#searchType option:selected").val() 
+									    				+ "&keyword=" 
+									    				+ encodeURIComponent($('#keywordInput').val());
+									  });
+									}); 
 								   </script>
 								   
 							
@@ -219,7 +219,6 @@
 		</div>
 	</div>
 
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	
 	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
 	<script src="js/admin/checkBox.js" type="text/javascript"></script>

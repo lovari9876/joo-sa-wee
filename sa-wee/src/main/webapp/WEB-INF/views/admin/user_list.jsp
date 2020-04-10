@@ -17,7 +17,7 @@
 
 
 <body>
-
+	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
 	<%@include file="side.jsp"%>
 
 
@@ -71,9 +71,12 @@
 
 					</form>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
-						<button type="button" class="btn">가입일 순</button>
-						<button type="button" class="btn">아이디 순</button>
-						<button type="button" class="btn">등급 순</button>
+						<button type="button" class="btn"
+							onclick ="location.href='user_list?page=1&perPageNum=15&sort=in_date'">가입일 순</button>
+						<button type="button" class="btn" 
+							onclick ="location.href='user_list?page=1&perPageNum=15&sort=m_id'">아이디 순</button>
+						<button type="button" class="btn"
+							onclick ="location.href='user_list?page=1&perPageNum=15&sort=rank'">등급 순</button>
 					</div>
 				</div>
 
@@ -139,18 +142,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="user_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="user_list${pageMaker.makeSearch(pageMaker.startPage - 1)}&sort=${sort}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="user_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li><a href="user_list${pageMaker.makeSearch(idx)}&sort=${sort}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="user_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="user_list${pageMaker.makeSearch(pageMaker.endPage + 1)}&sort=${sort}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>
@@ -183,7 +186,7 @@
 		</div>
 	</div>
 
-	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
+	
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script> 

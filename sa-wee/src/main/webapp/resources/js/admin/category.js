@@ -61,6 +61,8 @@ $(document).ready(function(){
 				$("#board").val(i).attr("selected", "selected");
 				var selected = $("#board option:selected").text();
 				setSecondSelect(ARR,selected);
+				
+				
 				console.log('arr board: '+ARR[i].board);
 				console.log('arr sub: '+ARR[i].sub);
 			}
