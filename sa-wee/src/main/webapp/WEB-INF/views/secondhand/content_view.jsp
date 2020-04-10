@@ -28,10 +28,13 @@
 <!-- <link rel="stylesheet" href="css/board_hj/font-awesome.min.css"> -->
 <link rel="stylesheet" href="css/board_hj/magnific-popup.css">
 <link rel="stylesheet" href="css/board_hj/bootstrap.min.css" />
+
 <!-- 테이블 -->
 <link rel="stylesheet" href="css/secondhand/tablestyle.css" />
+<!-- 버튼 -->
+<link rel="stylesheet" href="css/secondhand/buttonstyle.css" />
 
-<!-- tooltip, popover -->
+<!-- tooltip, popover, modal -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script
@@ -46,6 +49,9 @@
 	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	
+<!-- modal -->	
+<link rel="stylesheet" href="css/secondhand/modalstyle.css" />
 
 </head>
 <body id="top">
@@ -136,22 +142,11 @@
 					
 					<p>${content_view_t['T_CONTENT']}</p>
 
-					<!-- 추천 --> <!-- 중고거래는 추천없다 -->
-<%-- 					<br /> <br />
-					<div align="center" class="tooltip-purple">
-						<input class="good" type="image" src="images/board_hj/good.png"
-							name="button" id="rec_btn_t" value="${content_view_t['T_NO']}"
-							data-toggle="tooltip" data-container=".tooltip-purple"
-							data-placement="top" title="추천 +1">
-						<p>
-							<span>(</span><span class="rec_t">${content_view_t['T_RECOMMEND_NUM']}</span><span>)</span>
-						</p>
-					</div> --%>
 					
-					<br />
-					<br />
-					<br />
-					<br />
+					<!-- header include start -->
+						<%@ include file="/WEB-INF/views/secondhand/modal_view.jsp" %>
+					<!-- header include end -->
+										  
 					
 					<!-- 목록보기와 수정, 삭제, 신고 -->
 					<form action="/tlist" method="get">

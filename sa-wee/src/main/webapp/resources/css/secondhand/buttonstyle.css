@@ -1,0 +1,86 @@
+
+/* -------------------------------------------------------------------
+ * 버튼 모음!
+ *
+ * philosophy main.css 없는 view 위한 버튼 css
+ *
+ * ------------------------------------------------------------------- */
+ 
+/* 리스트 뷰와 masonry 뷰를 switch하기 위한 버튼(뷰 버튼)  */
+button#view-btn {
+	border-radius: 12px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    margin-right: 10px;
+    padding: 0 10px;
+    box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    background-color: rgba(149, 117, 223, 0.14)/* #9575df24 */; /* 투명도 조절한 색.. */
+    border-color: transparent;   
+    font-size: 20px;
+    color: #9575df;
+} 
+
+button#view-btn:hover {
+	background-color: rgba(149, 117, 223, 0.30);
+	
+}
+ 
+/* 페이지 번호 오른쪽에 위치 */
+.write-btn {
+	/* float: right; */
+    border-radius: 12px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding: 0 10px;
+    font-weight: 700;
+}
+
+.write-btn:hover {
+
+}
+
+/* 색깔 조정 */
+.lavender-btn {
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    background-color: rgba(149, 117, 223, 0.14)/* #9575df24 */; /* 투명도 조절한 색.. */
+    border-color: transparent;
+    border-radius: 12px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    padding: 0 10px;
+    font-weight: 300;
+    color: #400186;
+}
+
+.lavender-btn:hover {
+	background-color: rgba(149, 117, 223, 0.30);
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    border-color: transparent;
+}
+
+.lavender-btn:focus {
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    background-color: rgba(149, 117, 223, 0.30);
+    border-color: transparent;
+	
+}
+
+/* -----------------------------------------------------------------------  
+ * 버튼 responsible 하게 만들기...
+ * ----------------------------------------------------------------------- */
+@media only screen and (max-width: 770px) {
+	.write-btn {
+		float: inherit; /* 가운데로 가도록 */
+	}	
+}
+
+@media only screen and (max-width: 700px) {
+    /* 뷰 전환 버튼 가운데 정렬.. 근데 없애려구.. */
+    button#view-btn { 
+    	margin: 0 auto 1.2rem auto;
+    	display: none;
+    }
+}
