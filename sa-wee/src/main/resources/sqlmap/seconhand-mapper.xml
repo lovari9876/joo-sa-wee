@@ -152,7 +152,7 @@
 	<!-- get_trade_seq 함수 생성하여 현재 trade_seq 리턴 -->
 	<!-- oracle db에 생성한 함수는 다음과 같다. -->
 	<!-- 		 
-		CREATE FUNCTION get_trade_seq RETURN NUMBER IS
+		CREATE FUNCTION get_trade_game_seq RETURN NUMBER IS
 		BEGIN
 		  RETURN TRADE_GAME_SEQ.nextval;
 		END;
@@ -172,7 +172,7 @@
 				TRADE_GAME 
 				(TG_NO, T_NO, G_NO, TG_NAME, TG_PRICE ) 
 			VALUES 
-				(get_trade_seq, trade_seq.nextval, null, #{game}, #{price} )
+				(get_trade_game_seq, trade_seq.nextval, null, #{game}, #{price} )
 		</foreach>
 			
 		SELECT  
@@ -196,102 +196,104 @@
 	
 <!-- =================================================================================================== -->	
 	<!-- 글 수정: TRADE -->
-	<update id="modify" >
-	
-		UPDATE 
-			TRADE
-		SET 
-			S_NO = #{tradeVO.s_no},
-			T_TITLE = #{tradeVO.t_title},
-			T_CONTENT = #{tradeVO.t_content},
-			T_UPDATED_DATE = SYSDATE
+	<update id="modify" statementType="CALLABLE" >
+		{ CALL
+			DECLARE
+			      
+			      TYPE tg_no_table IS TABLE OF trade_game.tg_no%TYPE 
+			            INDEX BY BINARY_INTEGER;             
+			      TYPE tg_name_table IS TABLE OF trade_game.tg_name%TYPE 
+			            INDEX BY BINARY_INTEGER;       
+			      TYPE tg_price_table IS TABLE OF trade_game.tg_price%TYPE 
+			            INDEX BY BINARY_INTEGER;      
+
 			
-			<if	test="tradeVO.t_island == 1">
-				, T_ISLAND = 2
-			</if>
-		WHERE T_NO = #{tradeVO.t_no}
-		
-		
+				    tg_no_tab       tg_no_table;       	<!--  해당 글에 이미 있는 tg_no 담기 -->
+				    tg_name_tab    tg_name_table;		<!--  mybatis  foreach 로 게임 담기 -->
+				    tg_price_tab    tg_price_table;     <!--  mybatis  foreach 로 가격 담기 -->
+				     
+				     nocnt binary_integer :=0;
+				     gcnt binary_integer :=0;
+				     j binary_integer :=0;
+				     
+				     <!-- 글번호 넣기-->
+				     v_t_no     trade_game.t_no%type := #{tradeVO.t_no};
+			     
 			
-	</update>
-	
-	
-	<!-- 글 수정: TRADE_GAME -->
-	<update id="modifyTG" >
-		
-		
-<!-- 		UPDATE 
-			TRADE_GAME
+			   BEGIN
+			    
+			      <!-- trade(보부상) 글 수정 -->
+				  UPDATE 
+				  	TRADE
+				  SET 
+					S_NO = #{tradeVO.s_no},
+					T_TITLE = #{tradeVO.t_title},
+					T_CONTENT = #{tradeVO.t_content},
+					T_UPDATED_DATE = SYSDATE						
+				  	<if	test="tradeVO.t_island == 1">
+							, T_ISLAND = 2
+					</if>
+				  WHERE 
+				  	T_NO = v_t_no;
+				  
+				  commit;
+			    
+			     <!-- 여기부턴 trade_game(게임, 가격) 수정 -->
+			    
+			     <!-- 해당 글의 tg_no 가져오기.. -->
+			     for tg_nolist in (select tg_no from trade_game where t_no = v_t_no) loop			     
+			        nocnt := nocnt +1;			        
+			        tg_no_tab(nocnt) := tg_nolist.tg_no;			        
+			     end loop; 
+			          
+			     <!-- mybatis  foreach 로 게임 담기-->
+					<foreach collection="gamePrice" index="game" item="price">	
+					    gcnt := gcnt +1;
+					    tg_name_tab(gcnt) := #{game};
+					    tg_price_tab(gcnt)  := #{price};
+					</foreach>
+ 		        
+			     <!-- 조건 3가지에 따른 update -->
+			        IF tg_name_tab.count = tg_no_tab.count THEN
 			
-			SET 
-				TG_NAME = #{game},
-				TG_PRICE = #{price}
-			WHERE 
-				T_NO = #{t_no} AND 
-				
-				TG_NO = #{tg_no} -->	
-	
-{
-declare
-
-     -- 각 컬럼에서 사용할 테이블의 선언 (이 테이블은 sql의 테이블이 아니라 1차원 배열임)
-    TYPE tg_no_arr IS TABLE OF NUMBER(15,0)
-    INDEX BY BINARY_INTEGER;
-    
-    TYPE game_arr IS TABLE OF VARCHAR2(40 BYTE)
-    INDEX BY BINARY_INTEGER;
-    
-    TYPE price_arr IS TABLE OF NUMBER(10,0)
-    INDEX BY BINARY_INTEGER;
-
-     -- 테이블타입으로 변수를 선언해서 사용: 형식 [변수이름 테이블타입]
-    tg_no tg_no_arr;
-    game game_arr;
-    price price_arr;
-    
-     -- for 문 위한 변수 선언
-    i BINARY_INTEGER := 0;
-
-   BEGIN
-
-    -- mybatis foeach로 대입 일일이 돌리기
-    <foreach collection="gamePrice" index="game" item="price">	
-        game := #{game};
-        price := #{price};
-    </foreach>    
-      
-     
-
-    -- 수정한 개수만큼만 update
-    update trade_game tg set tg.tg_name = game(i), tg.tg_price = price(i) where tg.tg_no = tg_no(i);
-
-    END LOOP;
-   
-
-    -- 해당 글의 tg_no만 arr에 넣기
-     FOR tg_nolist IN (select tg_no from trade_game where t_no = 396 )  loop
-            
-            i := i + 1;
-
-           -- 테이블 변수에 검색된 결과를 넣는다
-            tg_no(i) := tg_nolist.tg_no ; 
-
-      END LOOP;
-      
-      -- 아나... 수정시 입력한 게임이름 개수가 기존것보다 많으면(초과) tg_no추가해서 새로 insert.
-      -- 같으면 그대로 update,
-      -- 적으면 게임 개수만큼만 update 후에 남는거 delete
-
-      -- 1부터 i까지 FOR 문을 실행 
-      FOR cnt IN 1..i LOOP
-
-    -- 수정한 개수만큼만 update
-    update trade_game tg set tg.tg_name = game(i), tg.tg_price = price(i) where tg.tg_no = tg_no(i);
-
-      END LOOP;
-
-  END 
-  }
+			           for cnt in 1..tg_no_tab.count  loop     
+			                -- j := j +1;             
+			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			
+			        ELSIF tg_name_tab.count > tg_no_tab.count THEN
+			
+			           for cnt in 1..tg_no_tab.count  loop     
+			                -- j := j +1;             
+			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			            
+			           for cnt in tg_no_tab.count+1..tg_name_tab.count  loop     
+			                -- j := j +1;             
+			                insert into trade_game (tg_no, t_no, g_no, tg_name, tg_price) values (get_trade_game_seq, v_t_no, null,  tg_name_tab(cnt), tg_price_tab(cnt));
+			                commit;        
+			           end loop;
+			
+			        ELSE
+			
+			           for cnt in 1..tg_name_tab.count  loop     
+			                -- j := j +1;             
+			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			            
+			           for cnt in tg_name_tab.count+1..tg_no_tab.count  loop     
+			                -- j := j +1;                    
+			                DELETE 	FROM trade_game WHERE tg_no = tg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			
+			        END IF;
+			
+			   END		 
+		}
   
 	</update>
 	
