@@ -202,9 +202,7 @@ public class CassieController {
 		
 		logger.info("trade_modify");
 		
-		secondhandService.modify(tradeVO);
-		
-//		secondhandService.modifyTG(tradeVO.getT_no(), gameNames, prices);
+		secondhandService.modify(tradeVO, gameNames, prices);
 		
 		int t_no = tradeVO.getT_no();   
 		System.out.println("t_no = "+t_no );

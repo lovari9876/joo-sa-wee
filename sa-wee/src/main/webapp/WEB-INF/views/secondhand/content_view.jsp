@@ -136,8 +136,8 @@
 					
 					<p>${content_view_t['T_CONTENT']}</p>
 
-					<!-- 추천 -->
-					<br /> <br />
+					<!-- 추천 --> <!-- 중고거래는 추천없다 -->
+<%-- 					<br /> <br />
 					<div align="center" class="tooltip-purple">
 						<input class="good" type="image" src="images/board_hj/good.png"
 							name="button" id="rec_btn_t" value="${content_view_t['T_NO']}"
@@ -146,8 +146,10 @@
 						<p>
 							<span>(</span><span class="rec_t">${content_view_t['T_RECOMMEND_NUM']}</span><span>)</span>
 						</p>
-					</div>
-
+					</div> --%>
+					
+					<br />
+					<br />
 					<br />
 					<br />
 					
