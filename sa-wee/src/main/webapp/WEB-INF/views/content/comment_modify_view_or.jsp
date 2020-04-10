@@ -37,19 +37,20 @@
 	<div class="container">
 		<div class="pt-5">
 			<div class="comment-form-wrap pt-5">
-				<form action="comment_modify" method="get">
-					<input type="hidden" name="cm_no" value="${comment_modi['CM_NO']}">
-					<input type="hidden" name="cm_type" value="게시판">
-					<input type="hidden" name="cm_no2" value="${comment_modi['CM_NO2']}">
+				<form action="comment_modify_or" method="get">
+					<input type="hidden" name="cm_no" value="${comment_modi_or['CM_NO']}">
+					<input type="hidden" name="cm_type" value="한줄평">
+					<input type="hidden" name="cm_no2" value="${comment_modi_or['CM_NO2']}">
 					<div class="form-group">
 						<label for="message">내 댓글 수정하기</label>
 						<textarea name="cm_content" id="message" cols="30" rows="10"
-							class="form-control" placeholder="${comment_modi['CM_CONTENT']}"></textarea>
+							class="form-control" placeholder="${comment_modi_or['CM_CONTENT']}"></textarea>
 					</div>
 					<div class="form-group">
+						<input type="submit" value="수정"
+							class="btn btn-lavender btn-md text-white" id="btn-color">
 						<input type="button" value="닫기" onClick='window.close()'
-							class="btn btn-lavender btn-md text-white" id="btn-color">		
-						<input type="submit" value="수정" class="btn btn-lavender btn-md text-white" id="btn-color">		
+							class="btn btn-lavender btn-md text-white" id="btn-color">
 					</div>
 				</form>
 			</div>

@@ -1209,8 +1209,7 @@ dl, ol, ul {
 }
 
 .test_item.reco {
-	width:75%;
-	text-align: right;
+	float: right;
 }
 
 @media (max-width: 1199.98px) {
@@ -1275,31 +1274,6 @@ dl, ol, ul {
 } */
 
 /* 댓글-수정, 삭제, 신고 */
- .reply_test {
-	text-align: left;
- }
- 
-.test_item {
-	display: inline-block;
-	
-}
-
-.test_item.modi {
-	width:70%;
-	text-align: right;
-}
-
-.test_item.del {
-	width:5%;
-	text-align: right;
-}
-
-.test_item.rep {
-	width:6%;
-	text-align: right;
-}
-
-@media (max-width: 1199.98px) {
 .reply_test {
 	text-align: left;
  }
@@ -1310,69 +1284,21 @@ dl, ol, ul {
 }
 
 .test_item.modi {
-	width:65%;
-	text-align: right;
+	float: right;
+
 }
 
 .test_item.del {
-	width:5%;
-	text-align: right;
-}
-
-.test_item.rep {
-	width:6%;
-	text-align: right;
-} }
-
-@media (max-width: 991.98px) {
-.reply_test {
-	text-align: left;
- }
- 
-.test_item {
-	display: inline-block;
+	float: right;
+	padding-left:15px;
 	
 }
 
-.test_item.modi {
-	width:70%;
-	text-align: right;
-}
-
-.test_item.del {
-	width:5%;
-	text-align: right;
-}
-
 .test_item.rep {
-	width:6%;
-	text-align: right;
-} }
+	float: right;
+	padding-left:15px;
 
-@media (max-width: 767.98px) {
-.reply_test {
-	text-align: left;
- }
- 
-.test_item {
-	display: inline-block;
-	
 }
-
-.test_item.modi {
-	width:65%;
-	text-align: right;
-}
-
-.test_item.del {
-	width:5%;
-	text-align: right;
-}
-
-.test_item.rep {
-	width:6%;
-	text-align: right;
-} }
 
 /* 댓글 추천하기 */
 #rec_cm_btn {
@@ -1439,54 +1365,8 @@ dl, ol, ul {
 	{
 	top: 0;
 	border-width: .4rem .4rem 0;
-	border-top-color: #400186; /* 툴팁 화살표 색깔  */
+	border-top-color: #400186 !important; /* 툴팁 화살표 색깔  */
 }
-
-/* tooltip 화살표 색 바꾸기 실패... */
-/* .tooltip-purple .tooltip-arrow {
-	border-bottom-color: #5f00bd;
-} */
-
-
-/* tooltip2 js로 안하는 tooltip 일단 실패..(화살표 색 바꾸기...) */
-
-/* .tooltip {
-    position: relative;
-    display: inline-block;
-    visibility: visible;
-} 
-
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #5f00bd;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -60px;
-}
-
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #5f00bd transparent transparent transparent;
-}
-
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-
-}
- */
  
 /* 댓글-신고 modal */
 .modal {
@@ -1502,30 +1382,19 @@ dl, ol, ul {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-
-/* Modal Content (일단 실패... modal대신 popup 사용...)*/
- /* .modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 100px;
-  border: 1px solid #888;
-  width: 80%;
+/* 버튼들 */
+.btn.btn-lavender.btn-md {
+	float: right;
 }
 
-The Close Button
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+.input-group {
+     display: inline-block;
 }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}  */
+input[type=button]:first-child {
+     margin-left: 20px;
+}
+/**/
 
 .btn:after, .btn:before {
   display: none; }

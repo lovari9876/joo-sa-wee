@@ -163,19 +163,23 @@
 				<div id="blank1"></div>
 
 
-
-			
-
-
+						<!-- 한줄평 리스트 -->
+						
+						<c:import url="/comment_view_or">
+							<c:param name="cm_type" value="한줄평"></c:param>
+							<c:param name="cm_no2" value="${cafe_info.c_no}"></c:param>
+						</c:import>
 
 
 				<!-- 빈공간 -->
+
 				<div id="blank2"></div>
 
 
 
 				<!-- 카페 리뷰 부분 -->
 				<div class="cafe-review" id="cafe-review">
+
 					<div class="review-wrap">
 
 
@@ -189,7 +193,10 @@
 
 
 
-						<div class="review-table">
+
+						
+						<div class = "review-table">
+
 							<table class="table">
 
 								<tr class="row header">
