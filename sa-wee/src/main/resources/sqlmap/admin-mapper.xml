@@ -121,10 +121,6 @@
 	<!-- ================================================ boardList ====================================================== -->
 	
 	
-	
-	
-	
-	
 	<select id="boardList" resultType="java.util.HashMap">
 
 	SELECT * FROM
@@ -320,6 +316,8 @@
 			<if test="s_content == '세일'">AND s.s_content = '세일'</if>
 			<if test="s_content == '기타'">AND s.s_content = '기타'</if>
 			
+			<if test="s_content == '게임룰'">AND s.s_content = '룰'</if>
+			<if test="s_content == '추천'">AND s.s_content = '추천'</if>
 			
 			<if test="s_content == '계획'">AND s.s_content = '계획'</if>
 			<if test="s_content == '디자인'">AND s.s_content = '디자인'</if>

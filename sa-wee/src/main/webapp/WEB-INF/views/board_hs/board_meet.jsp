@@ -95,8 +95,10 @@
 					<!-- 탭부분 -->
 					<ul class="tab">
 						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "7" class = "select">모집</button></li>
-						<li data-tab="tab3"><button type = "button" value = "8" class= "select">모임후기</button></li>
+						<li data-tab="tab2"><button type = "button" value = "7" class = "select"
+							onclick ="location.href='board_meet?s_content=모집'">모집</button></li>
+						<li data-tab="tab3"><button type = "button" value = "8" class= "select"
+							onclick ="location.href='board_meet?s_content=모임후기'">모임후기</button></li>
 					</ul>
 
 
@@ -194,18 +196,18 @@
 						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_meet${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_meet${pageMaker.makeSearch(pageMaker.startPage - 1)}&s_content${s_content}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li class = "page-item"><a class = "page-link" href="board_meet${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="board_meet${pageMaker.makeSearch(idx)}&s_content${s_content}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_meet${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_meet${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content${s_content}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

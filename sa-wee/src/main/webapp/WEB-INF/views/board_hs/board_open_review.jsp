@@ -94,10 +94,14 @@
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
-						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "4" class = "select">개봉기</button></li>
-						<li data-tab="tab3"><button type = "button" value = "5" class= "select">일(一)리뷰</button></li>
-						<li data-tab="tab4"><button type = "button" value = "6" class = "select">다(多)리뷰</button></li>
+						<li class="current" data-tab="tab1"><button type = "button" 
+							onclick ="location.href='board_open_review'" >전체보기</button></li>
+						<li data-tab="tab2"><button type = "button" value = "4" class = "select"
+							onclick ="location.href='board_open_review?s_content=개봉기'" >개봉기</button></li>
+						<li data-tab="tab3"><button type = "button" value = "5" class= "select"
+							onclick ="location.href='board_open_review?s_content=일 리뷰'" >일(一)리뷰</button></li>
+						<li data-tab="tab4"><button type = "button" value = "6" class = "select"
+							onclick ="location.href='board_open_review?s_content=다 리뷰'" >다(多)리뷰</button></li>
 					</ul>
 
 
@@ -222,18 +226,18 @@
 						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_open_review${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_open_review${pageMaker.makeSearch(pageMaker.startPage - 1)}&s_content${s_content}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li class = "page-item"><a class = "page-link" href="board_open_review${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="board_open_review${pageMaker.makeSearch(idx)}&s_content${s_content}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_open_review${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_open_review${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content${s_content}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

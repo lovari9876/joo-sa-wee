@@ -36,12 +36,12 @@ public class BoardServiceImpl implements BoardService {
 	//////////////////////// 커뮤니티////////////////////////
 
 	@Override
-	public ArrayList<HashMap<String, Object>> selectBoardList(SearchCriteria scri, int bt_no){
-		return boardMapper.selectBoardList(scri, bt_no);
+	public ArrayList<HashMap<String, Object>> selectBoardList(SearchCriteria scri, int bt_no, String s_content){
+		return boardMapper.selectBoardList(scri, bt_no, s_content);
 	}
 	@Override
-	public int cboard_listCount(SearchCriteria scri, int bt_no) {
-		return boardMapper.cboard_listCount(scri, bt_no);
+	public int cboard_listCount(SearchCriteria scri, int bt_no, String s_content) {
+		return boardMapper.cboard_listCount(scri, bt_no, s_content);
 	}
 	
 

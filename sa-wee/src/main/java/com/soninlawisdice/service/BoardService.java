@@ -28,8 +28,8 @@ public interface BoardService {
 	
 	
 	// 커뮤니티 게시판
-	public ArrayList<HashMap<String, Object>> selectBoardList(SearchCriteria scri, int bt_no);
-	public int cboard_listCount(SearchCriteria scri, int bt_no);
+	public ArrayList<HashMap<String, Object>> selectBoardList(SearchCriteria scri, int bt_no, String s_content);
+	public int cboard_listCount(SearchCriteria scri, int bt_no, String s_content);
 
 	// 게시글 작성하기
 	public void insertBoard(Board_writeVO board_writeVO);

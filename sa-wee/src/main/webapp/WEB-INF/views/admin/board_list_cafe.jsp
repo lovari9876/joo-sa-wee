@@ -80,9 +80,9 @@
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
 							<button type="button" class="btn"
-								onclick ="location.href='board_list_cafe?page=1&perPageNum=15&sort=hit'">조회수</button>
+								onclick ="location.href='board_list_cafe?sort=hit'">조회수</button>
 							<button type="button" class="btn"
-								onclick ="location.href='board_list_cafe?page=1&perPageNum=15&sort=report'">신고수</button>
+								onclick ="location.href='board_list_cafe?sort=report'">신고수</button>
 						</div> 
 				</div>
 
