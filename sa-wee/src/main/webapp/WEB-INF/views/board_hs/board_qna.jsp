@@ -92,10 +92,14 @@
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
-						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "14" class = "select">룰</button></li>
-						<li data-tab="tab3"><button type = "button" value = "15" class= "select">추천</button></li>
-						<li data-tab="tab4"><button type = "button" value = "16" class = "select">기타</button></li>
+						<li class="current" data-tab="tab1"><button type = "button" 
+							onclick ="location.href='board_qna'" >전체보기</button></li>
+						<li data-tab="tab2"><button type = "button" value = "14" class = "select"
+							onclick ="location.href='board_qna?s_content=룰'">룰</button></li>
+						<li data-tab="tab3"><button type = "button" value = "15" class= "select"
+							onclick ="location.href='board_qna?s_content=추천'">추천</button></li>
+						<li data-tab="tab4"><button type = "button" value = "16" class = "select"
+							onclick ="location.href='board_qna?s_content=기타'">기타</button></li>
 					</ul>
 
 
@@ -218,18 +222,18 @@
 						<ul class ="pagination">
 							<c:if test="${pageMaker.prev}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_qna${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_qna${pageMaker.makeSearch(pageMaker.startPage - 1)}&s_content${s_content}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li class = "page-item"><a class = "page-link" href="board_qna${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="board_qna${pageMaker.makeSearch(idx)}&s_content${s_content}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_qna${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_qna${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content${s_content}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

@@ -72,11 +72,11 @@
 					</form>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn"
-							onclick ="location.href='user_list?page=1&perPageNum=15&sort=in_date'">가입일 순</button>
+							onclick ="location.href='user_list?sort=in_date'">가입일 순</button>
 						<button type="button" class="btn" 
-							onclick ="location.href='user_list?page=1&perPageNum=15&sort=m_id'">아이디 순</button>
+							onclick ="location.href='user_list?sort=m_id'">아이디 순</button>
 						<button type="button" class="btn"
-							onclick ="location.href='user_list?page=1&perPageNum=15&sort=rank'">등급 순</button>
+							onclick ="location.href='user_list?sort=rank'">등급 순</button>
 					</div>
 				</div>
 

@@ -68,13 +68,17 @@ public class Board_hs_Controller {
 
 		// 보드이야기 리스트
 		@RequestMapping(value = "/board_story", method = RequestMethod.GET)
-		public String board_story(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+		public String board_story(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
 			
-			model.addAttribute("list", boardService.selectBoardList(scri, 1));
+			String s_content = rq.getParameter("s_content");
+			
+			
+			model.addAttribute("list", boardService.selectBoardList(scri, 1, s_content));
+			model.addAttribute("s_content", s_content);
 			
 			PageMaker pageMaker  = new PageMaker();
 			pageMaker.setCri(scri);
-			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 1));
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 1, s_content));
 			model.addAttribute("pageMaker", pageMaker);
 			
 			return "board_hs/board_story";
@@ -82,13 +86,17 @@ public class Board_hs_Controller {
 	
 		//개봉기 및 리뷰
 		@RequestMapping(value = "/board_open_review", method = RequestMethod.GET)
-		public String board_open_review(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+		public String board_open_review(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
 			
-			model.addAttribute("list", boardService.selectBoardList(scri, 2));
+			String s_content = rq.getParameter("s_content");
+			
+			model.addAttribute("list", boardService.selectBoardList(scri, 2, s_content));
+			model.addAttribute("s_content", s_content);
+			
 			
 			PageMaker pageMaker  = new PageMaker();
 			pageMaker.setCri(scri);
-			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 2));
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 2, s_content));
 			model.addAttribute("pageMaker", pageMaker);
 			
 			return "board_hs/board_open_review";
@@ -96,13 +104,16 @@ public class Board_hs_Controller {
 		
 		//보드게임 모임
 		@RequestMapping(value = "/board_meet", method = RequestMethod.GET)
-		public String board_meet(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+		public String board_meet(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
 			
-			model.addAttribute("list", boardService.selectBoardList(scri, 3));
-			
+			String s_content = rq.getParameter("s_content");
+			model.addAttribute("list", boardService.selectBoardList(scri, 3, s_content));
+			model.addAttribute("s_content", s_content);
+
+		
 			PageMaker pageMaker  = new PageMaker();
 			pageMaker.setCri(scri);
-			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 3));
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 3, s_content));
 			model.addAttribute("pageMaker", pageMaker);
 			
 			return "board_hs/board_meet";
@@ -110,13 +121,16 @@ public class Board_hs_Controller {
 		
 		//보드 뉴스
 		@RequestMapping(value = "/board_news", method = RequestMethod.GET)
-		public String board_news(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+		public String board_news(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
 			
-			model.addAttribute("list", boardService.selectBoardList(scri, 4));
+			String s_content = rq.getParameter("s_content");
+			model.addAttribute("list", boardService.selectBoardList(scri, 4, s_content));
+			model.addAttribute("s_content", s_content);
+
 			
 			PageMaker pageMaker  = new PageMaker();
 			pageMaker.setCri(scri);
-			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 4));
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 4, s_content));
 			model.addAttribute("pageMaker", pageMaker);
 			
 			return "board_hs/board_news";
@@ -124,13 +138,15 @@ public class Board_hs_Controller {
 		
 		//질문 답변
 		@RequestMapping(value = "/board_qna", method = RequestMethod.GET)
-		public String board_qna(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+		public String board_qna(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
 			
-			model.addAttribute("list", boardService.selectBoardList(scri, 5));
+			String s_content = rq.getParameter("s_content");
+			model.addAttribute("list", boardService.selectBoardList(scri, 5, s_content));
+			model.addAttribute("s_content", s_content);
 			
 			PageMaker pageMaker  = new PageMaker();
 			pageMaker.setCri(scri);
-			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 5));
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 5, s_content));
 			model.addAttribute("pageMaker", pageMaker);
 			
 			return "board_hs/board_qna";
@@ -138,13 +154,16 @@ public class Board_hs_Controller {
 		
 		//창작 보드게임
 		@RequestMapping(value = "/board_creation", method = RequestMethod.GET)
-		public String board_creation(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+		public String board_creation(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
 			
-			model.addAttribute("list", boardService.selectBoardList(scri, 6));
+			String s_content = rq.getParameter("s_content");
+			model.addAttribute("list", boardService.selectBoardList(scri, 6, s_content));
+			model.addAttribute("s_content", s_content);
+			
 			
 			PageMaker pageMaker  = new PageMaker();
 			pageMaker.setCri(scri);
-			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 6));
+			pageMaker.setTotalCount(boardService.cboard_listCount(scri, 6, s_content));
 			model.addAttribute("pageMaker", pageMaker);
 			
 			return "board_hs/board_creation";
@@ -426,12 +445,15 @@ public class Board_hs_Controller {
 	//1 : 1 문의 리스트
 	@RequestMapping(value = "/question_list", method = RequestMethod.GET)
 
-	public String question_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
-		model.addAttribute("content_view", boardService.selectQuestionList(scri));
+	public String question_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) throws Exception {
+		
+		String s_content = rq.getParameter("s_content");
+		model.addAttribute("list", boardService.selectBoardList(scri, 8, s_content));
+		model.addAttribute("s_content", s_content);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.cboard_listCount(scri, 8));
+		pageMaker.setTotalCount(boardService.cboard_listCount(scri, 8, s_content));
 		model.addAttribute("pageMaker", pageMaker);
 		
 

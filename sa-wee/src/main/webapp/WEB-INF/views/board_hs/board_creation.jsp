@@ -93,12 +93,18 @@
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
-						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "17" class = "select">계획</button></li>
-						<li data-tab="tab3"><button type = "button" value = "18" class= "select">디자인</button></li>
-						<li data-tab="tab4"><button type = "button" value = "19" class = "select">완성</button></li>
-						<li data-tab="tab5"><button type = "button" value = "20" class = "select">공유</button></li>
-						<li data-tab="tab6"><button type = "button" value = "21" class = "select">테스트 플레이</button></li>
+						<li class="current" data-tab="tab1"><button type = "button" 
+							onclick ="location.href='board_creation'">전체보기</button></li>
+						<li data-tab="tab2"><button type = "button" value = "17" class = "select"
+							onclick ="location.href='board_creation?s_content=계획'">계획</button></li>
+						<li data-tab="tab3"><button type = "button" value = "18" class= "select"
+							onclick ="location.href='board_creation?s_content=디자인'">디자인</button></li>
+						<li data-tab="tab4"><button type = "button" value = "19" class = "select"
+							onclick ="location.href='board_creation?s_content=완성'">완성</button></li>
+						<li data-tab="tab5"><button type = "button" value = "20" class = "select"
+							onclick ="location.href='board_creation?s_content=공유'">공유</button></li>
+						<li data-tab="tab6"><button type = "button" value = "21" class = "select"
+							onclick ="location.href='board_creation?s_content=테스트플레이'">테스트 플레이</button></li>
 					</ul>
 
 
@@ -264,18 +270,18 @@
 						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_creation${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_creation${pageMaker.makeSearch(pageMaker.startPage - 1)}&s_content${s_content}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li class = "page-item"><a class = "page-link" href="board_creation${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="board_creation${pageMaker.makeSearch(idx)}&s_content${s_content}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class = "page-item"><a class ="page-link"
-									href="board_creation${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_creation${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content${s_content}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

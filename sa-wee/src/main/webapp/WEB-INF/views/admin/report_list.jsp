@@ -69,13 +69,13 @@
 						</div>
 						<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn r_type" value="" 
-							onclick ="location.href='report_list?page=1&perPageNum=15&keyword='">전체보기</button>
+							onclick ="location.href='report_list'">전체보기</button>
 						<button id="member" type="button" class="btn r_type" value="회원" 
-							onclick ="location.href='report_list?page=1&perPageNum=15&r_type=회원&keyword='">회원</button>
+							onclick ="location.href='report_list?&r_type=회원&keyword='">회원</button>
 						<button type="button" class="btn r_type" value="게시글"
-							onclick ="location.href='report_list?page=1&perPageNum=15&r_type=게시글&keyword='">게시글</button>
+							onclick ="location.href='report_list?&r_type=게시글&keyword='">게시글</button>
 						<button type="button" class="btn r_type" value="댓글"
-							onclick ="location.href='report_list?page=1&perPageNum=15&r_type=댓글&keyword='">댓글</button>
+							onclick ="location.href='report_list?&r_type=댓글&keyword='">댓글</button>
 					</div>
 					</div>
 					</form>

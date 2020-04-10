@@ -26,8 +26,8 @@ public interface BoardMapper {
 	/////////////////////커뮤니티/////////////////////////
 	
 	//커뮤니티 게시판 보기
-	public ArrayList<HashMap<String, Object>> selectBoardList(@Param("scri")SearchCriteria scri, @Param("bt_no")int bt_no);
-	public int cboard_listCount(@Param("scri")SearchCriteria scri, @Param("bt_no") int bt_no);
+	public ArrayList<HashMap<String, Object>> selectBoardList(@Param("scri")SearchCriteria scri, @Param("bt_no")int bt_no,  @Param("s_content")String s_content);
+	public int cboard_listCount(@Param("scri")SearchCriteria scri, @Param("bt_no") int bt_no, @Param("s_content")String s_content);
 	
 	//게시글 작성하기
 	public void insertBoard(@Param("board_writeVO") Board_writeVO board_writeVO);

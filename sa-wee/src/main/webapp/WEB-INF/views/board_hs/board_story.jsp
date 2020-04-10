@@ -96,9 +96,9 @@
 					<!-- 탭부분 -->
 					<ul class="tab">
 						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" onclick ="location.href='board_sub?s_no=1'" class = "select">잡담</button></li>
-						<li data-tab="tab3"><button type = "button" onclick ="location.href='board_sub?s_no=2'" class= "select">노하우</button></li>
-						<li data-tab="tab4"><button type = "button" onclick ="location.href='board_sub?s_no=3'" class = "select">토론</button></li>
+						<li data-tab="tab2"><button type = "button" onclick ="location.href='board_story?s_content=잡담'" class = "select">잡담</button></li>
+						<li data-tab="tab3"><button type = "button" onclick ="location.href='board_story?s_content=노하우'" class= "select">노하우</button></li>
+						<li data-tab="tab4"><button type = "button" onclick ="location.href='board_story?s_content=토론'" class = "select">토론</button></li>
 					</ul>
 
 
@@ -278,18 +278,18 @@
 						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_story${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_story${pageMaker.makeSearch(pageMaker.startPage - 1)}&s_content${s_content}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li class = "page-item"><a class = "page-link" href="board_story${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="board_story${pageMaker.makeSearch(idx)}&s_content${s_content}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class = "page-item"><a class = "page-link"
-									href="board_story${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_story${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content${s_content}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>
