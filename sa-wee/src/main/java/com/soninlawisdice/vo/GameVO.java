@@ -16,7 +16,7 @@ public class GameVO {
 	private	int	g_playtime;	// 플레이시간
 	private	int	g_age; // 사용연령
 	private	int	g_difficulty; // 게임난이도
-	private	Timestamp g_release; // 출시일
+	private	int g_release; // 출시일
 	private	int	g_level; //	게임난이도합
 	private	int	g_ruletime;	// 룰설명시간합
 	private	int	g_lang;	// 언어의존도합
@@ -26,15 +26,16 @@ public class GameVO {
 	private	int	g_artwork; // 아트웍합
 	private	int	g_contents;	//	내용물구성합
 	private	int	g_num; // 득표수
-	private	int	f_no; // 파일번호
+	private String g_image;
+	private String g_thumbnail;
 	
 	// constructors
 	public GameVO() {}
 	
 	public GameVO(int g_no, String g_name, Timestamp g_written_date, Timestamp g_updated_date, int g_hit,
 			int g_recommend_num, String g_designer, int g_min, int g_max, int g_playtime, int g_age, int g_difficulty,
-			Timestamp g_release, int g_level, int g_ruletime, int g_lang, int g_inter, int g_theme, int g_replay,
-			int g_artwork, int g_contents, int g_num, int f_no) {
+			int g_release, int g_level, int g_ruletime, int g_lang, int g_inter, int g_theme, int g_replay,
+			int g_artwork, int g_contents, int g_num, String g_image, String g_thumbnail) {
 		this.g_no = g_no;
 		this.g_name = g_name;
 		this.g_written_date = g_written_date;
@@ -57,7 +58,9 @@ public class GameVO {
 		this.g_artwork = g_artwork;
 		this.g_contents = g_contents;
 		this.g_num = g_num;
-		this.f_no = f_no;
+		this.g_image = g_image;
+		this.g_thumbnail = g_thumbnail;
+		
 	}
 
 
@@ -133,10 +136,10 @@ public class GameVO {
 	public void setG_difficulty(int g_difficulty) {
 		this.g_difficulty = g_difficulty;
 	}
-	public Timestamp getG_release() {
+	public int getG_release() {
 		return g_release;
 	}
-	public void setG_release(Timestamp g_release) {
+	public void setG_release(int g_release) {
 		this.g_release = g_release;
 	}
 	public int getG_level() {
@@ -193,11 +196,17 @@ public class GameVO {
 	public void setG_num(int g_num) {
 		this.g_num = g_num;
 	}
-	public int getF_no() {
-		return f_no;
+	public String getG_image() {
+		return g_image;
 	}
-	public void setF_no(int f_no) {
-		this.f_no = f_no;
+	public void setG_image(String g_image) {
+		this.g_image = g_image;
 	}
-
+	public String getG_thumbnail() {
+		return g_thumbnail;
+	}
+	public void setG_thumbnail(String g_thumbnail) {
+		this.g_thumbnail = g_thumbnail;
+	}
+	
 }

@@ -1,12 +1,14 @@
 package com.soninlawisdice.service;
 
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 import com.soninlawisdice.mapper.BoardMapper;
 import com.soninlawisdice.vo.Board_writeVO;
@@ -196,6 +198,69 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public ArrayList<String> gameNameList() {
+		return boardMapper.gameNameList();
+	}
+	
+	
+	
+	/////////////////////////////////////////////
+	/*
+	@Override
+	public void insertGame() {
+		
+		ArrayList<GameVO> gameList = new ArrayList<GameVO>();
+		
+		try {
+			JsonParser jsonParser = new JsonParser();
+			JsonReader jsonReader = new JsonReader(new FileReader("C:\\Users\\user\\games.json"));
+			JsonArray jsonArray = (JsonArray)jsonParser.parse(jsonReader);
+			
+			GameVO gameVO= null;
+			
+			for(Object object : jsonArray) {
+				JsonObject jsonObject = (JsonObject)object;
+				
+				gameVO = new GameVO();
+				
+				gameVO.setG_name(jsonObject.get("name").getAsString());
+				gameVO.setG_min(Integer.parseInt(jsonObject.get("minPlayers").getAsString()));
+				gameVO.setG_max(Integer.parseInt(jsonObject.get("maxPlayers").getAsString()));
+				gameVO.setG_playtime(Integer.parseInt(jsonObject.get("playingTime").getAsString()));
+				gameVO.setG_release(Integer.parseInt(jsonObject.get("yearPublished").getAsString()));
+				gameVO.setG_image(jsonObject.get("image").getAsString());
+				gameVO.setG_thumbnail(jsonObject.get("thumbnail").getAsString());
+			
+			
+				System.out.println(gameVO.getG_name());
+				System.out.println(gameVO.getG_min());
+				System.out.println(gameVO.getG_image());
+				
+				gameList.add(gameVO);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		boardMapper.insertGame(gameList);
+	}
+	
+	*/
 
 	
 	

@@ -3,12 +3,14 @@ package com.soninlawisdice.mapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.SearchCriteria;
 
 public interface BoardMapper {
@@ -112,8 +114,16 @@ public interface BoardMapper {
 	///////////////////////////////포인트///////////////////////
 	//게시글 작성시 10 포인트
 	public void boardPointUpdate(@Param("m_no")int m_no);
+
 	
 	
 	
 	
+	
+	
+	
+	/////////////////////////////////////////////////
+	public ArrayList<String> gameNameList();
+	///////////////////////////////////////////////////////////////////////////////
+	//public void insertGame(@Param("gameList") ArrayList<GameVO> gameList);
 }

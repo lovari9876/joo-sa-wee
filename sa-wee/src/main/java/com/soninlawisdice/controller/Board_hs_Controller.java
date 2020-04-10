@@ -510,11 +510,19 @@ public class Board_hs_Controller {
 		return "faq/faq";
 	}
 
+	@RequestMapping("/wr")
+	public String wr() {
+		return "board_hs/write_view2";
+	}
 	
-	//////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	
-	
+	@ResponseBody
+	@RequestMapping("/gameList")
+	public ArrayList<String> gameNameList(){
+		System.out.println("gameList");
+		System.out.println(boardService.gameNameList());
+		return boardService.gameNameList();
+	}
 	/////////////////////////////////// 게시물 작성 시 파일 업로드 부분(DB에 넣는거 X)/////////////////////////////////
 
 	/**
