@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -77,9 +78,27 @@
 						<div>
 							<span class="text-white">작성자 ${content_view_cr['M_NICK']}</span>
 							<span class="slash">&bullet;</span> 
-							<span class="text-white">작성일 ${content_view_cr['CR_WRITTEN_DATE']}</span> 
+							<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+								<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+								<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+								<fmt:formatDate value="${content_view_cr['CR_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${content_view_cr['CR_WRITTEN_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	
+							</span> 
 							<span class="slash">&bullet;</span>
-							<span class="text-white">수정일 ${content_view_cr['CR_UPDATED_DATE']}</span>
+							<span class="text-white">수정일 
+								<fmt:formatDate value="${content_view_cr['CR_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${content_view_cr['CR_UPDATED_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	
+							</span>
 						</div>
 					</div>
 					<br />

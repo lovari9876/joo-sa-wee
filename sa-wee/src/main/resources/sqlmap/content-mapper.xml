@@ -374,7 +374,7 @@
 		CM.CM_NO2 = T.T_NO
 		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
 		ORDER BY
-		CM.CM_WRITTEN_DATE DESC
+		CM.CM_GROUP ASC, CM.CM_STEP ASC
 	</select>
 
 	<!-- 중고거래 댓글 쓰기 -->
@@ -435,6 +435,25 @@
 		WHERE CM.CM_NO2 = T.T_NO AND CM.CM_TYPE = '중고거래' AND
 		CM.CM_NO2 = #{cm_no2}
 	</select>
+	
+	<!-- 중고거래 댓글 우선순위 -->
+	<update id="updateReplyT">
+		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE CM_GROUP = #{cm_group}
+		AND CM_STEP > #{cm_step}
+	</update>
+	
+	<!-- 중고거래 대댓글 쓰기 -->
+	<insert id="insertReplyT">
+		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
+		CM_WRITTEN_DATE,
+		CM_UPDATED_DATE, CM_TYPE, CM_NO2, CM_RECOMMEND_NUM,
+		CM_REPORT_NUM,
+		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
+		VALUES
+		(CM_COMMENT_SEQ.NEXTVAL, 14, #{cm_content}, SYSDATE, SYSDATE,
+		'중고거래',
+		#{cm_no2}, 0, 0, 0, #{cm_group}, #{cm_step}+1, #{cm_indent}+1)
+	</insert>
 
 	<!-- ====================== 카페리뷰 ======================== -->
 
@@ -510,7 +529,7 @@
 		CM.CM_NO2 = CR.CR_NO
 		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
 		ORDER BY
-		CM.CM_WRITTEN_DATE DESC
+		CM.CM_GROUP ASC, CM.CM_STEP ASC
 	</select>
 
 	<!-- 카페리뷰 댓글 쓰기 -->
@@ -570,6 +589,25 @@
 		WHERE CM.CM_NO2 = CR.CR_NO AND CM.CM_TYPE = '카페리뷰' AND
 		CM.CM_NO2 = #{cm_no2}
 	</select>
+	
+	<!-- 카페리뷰 댓글 우선순위 -->
+	<update id="updateReplyCR">
+		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE CM_GROUP = #{cm_group}
+		AND CM_STEP > #{cm_step}
+	</update>
+	
+	<!-- 카페리뷰 대댓글 쓰기 -->
+	<insert id="insertReplyCR">
+		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
+		CM_WRITTEN_DATE,
+		CM_UPDATED_DATE, CM_TYPE, CM_NO2, CM_RECOMMEND_NUM,
+		CM_REPORT_NUM,
+		CM_RATING, CM_GROUP, CM_STEP, CM_INDENT)
+		VALUES
+		(CM_COMMENT_SEQ.NEXTVAL, 14, #{cm_content}, SYSDATE, SYSDATE,
+		'카페리뷰',
+		#{cm_no2}, 0, 0, 0, #{cm_group}, #{cm_step}+1, #{cm_indent}+1)
+	</insert>
 
 
 	<!-- ====================== 한줄평 ======================== -->

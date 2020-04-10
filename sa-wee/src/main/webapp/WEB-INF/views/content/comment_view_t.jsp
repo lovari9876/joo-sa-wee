@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,21 +53,12 @@
 
 	<!-- 댓글 달기 -->
 	<div class="pt-5">
-		<form action="">
-			<label for="drop_list"><h3 class="mb-5">${comment_count_t['CM_COUNT']} Comment</h3></label> <select
-				id="drop_list" name="drop_list">
-				<option value="new">최신순</option>
-				<option value="best">인기순</option>
-			</select>
-		</form>
+		<h3 class="mb-5">${comment_count_t['CM_COUNT']} Comments</h3>
 
 		<ul class="comment-list">
-			<c:forEach items="${comment_list_t}" var="cm_comment_list_t"
-				varStatus="status">
-				<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
-				<li class="comment">
+			<c:forEach items="${comment_list_t}" var="cm_comment_list_t" varStatus="status">
+				<li class="comment" style="margin-left:<c:out value="${40*comment_list_t[status.index]['CM_INDENT']}"/>px; padding-right:<c:out value="${40*comment_list_t[status.index]['CM_INDENT']}"/>px;">
 					<div class="comment-body">
-						<form>
 							<div class="comment_test">
 								<div class="test_item name" id="pop">
 									<span role="button" class="pop_btn popovers"
@@ -86,31 +78,32 @@
 								</div>
 							</div>
 							<div class="meta">작성일
-								${comment_list_t[status.index]['CM_WRITTEN_DATE']} 수정일
-								${comment_list_t[status.index]['CM_UPDATED_DATE']}</div>
+								<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+								<fmt:formatDate value="${comment_list_t[status.index]['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${comment_list_t[status.index]['CM_WRITTEN_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	 
+						수정일
+							<fmt:formatDate value="${comment_list_t[status.index]['CM_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${comment_list_t[status.index]['CM_UPDATED_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	</div>
+							
 							<p>${comment_list_t[status.index]['CM_CONTENT']}</p>
 
 							<div class="reply_test">
 								<div class="test_item rp">
 									<p>
-										<a role="button" data-toggle="collapse" href="#replyCommentT"
-											class="reply" aria-expanded="false"
-											aria-controls="replyCommentT">Reply</a>
-									</p>
-								</div>
-
-								<div class="test_item modi tooltip-purple">
-									<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi"
-										href="comment_modify_view_t?cm_no=${comment_list_t[status.index]['CM_NO']}"
+										<a role="button" class="reply" href="reply_view_t?cm_no=${comment_list_t[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
-										data-toggle="tooltip" data-container=".tooltip-purple"
-										data-placement="top" title="수정"></a>
-								</div>
-								<div class="test_item del tooltip-purple">
-									<a class="fas fa-trash-alt fa-lg no-text-deco"
-										href="comment_delete_t?cm_no=${comment_list_t[status.index]['CM_NO']}&t_no=${content_view_t['T_NO']}"
-										data-toggle="tooltip" data-container=".tooltip-purple"
-										data-placement="top" title="삭제"></a>
+										>Reply</a>
+									</p>
 								</div>
 								<div class="test_item rep tooltip-purple">
 									<a class="fas fa-skull fa-lg no-text-deco"
@@ -119,11 +112,23 @@
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="신고"> </a>
 								</div>
+								<div class="test_item del tooltip-purple">
+									<a class="fas fa-trash-alt fa-lg no-text-deco"
+										href="comment_delete_t?cm_no=${comment_list_t[status.index]['CM_NO']}&t_no=${content_view_t['T_NO']}"
+										data-toggle="tooltip" data-container=".tooltip-purple"
+										data-placement="top" title="삭제"></a>
+								</div>
+								<div class="test_item modi tooltip-purple">
+									<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi"
+										href="comment_modify_view_t?cm_no=${comment_list_t[status.index]['CM_NO']}"
+										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
+										data-toggle="tooltip" data-container=".tooltip-purple"
+										data-placement="top" title="수정"></a>
+								</div>
 							</div>
-							<div id="replyCommentT" class="collapse">
+							<%-- <div id="replyCommentT" class="collapse">
 								<%@ include file="reply_view.jsp"%>
-							</div>
-						</form>
+							</div> --%>
 					</div>
 				</li>
 			</c:forEach>

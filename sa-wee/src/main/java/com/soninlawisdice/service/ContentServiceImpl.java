@@ -337,6 +337,15 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountT(cm_no2);
 	}
+	
+	// 중고거래 대댓글 쓰기(update+insert)
+	@Override
+	public void writeReplyT(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateReplyT(cm_commentVO);
+		contentMapper.insertReplyT(cm_commentVO);
+		
+	}
 
 
 	/* ============================== 카페리뷰 =================================== */
@@ -463,6 +472,15 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountCR(cm_no2);
 	}
+	
+	// 카페리뷰 대댓글 쓰기(update+insert)
+	@Override
+	public void writeReplyCR(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updateReplyCR(cm_commentVO);
+		contentMapper.insertReplyCR(cm_commentVO);
+		
+	}
 
 	
 	/*================================= 한줄평 =================================*/
@@ -533,12 +551,5 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountOR(cm_no2);
 	}
-
-	
-
-	
-
-	
-
 	
 }

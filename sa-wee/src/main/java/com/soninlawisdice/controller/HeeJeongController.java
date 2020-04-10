@@ -559,6 +559,30 @@ public class HeeJeongController {
 		return contentService.selectRecommendCommentT(cm_no);
 	}
 	
+	// 중고거래 대댓글 view
+	@RequestMapping(value = "/reply_view_t", method = RequestMethod.GET)
+	public String reply_view_t(HttpServletRequest request, Model model, @ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO) {
+		System.out.println("reply_view_t");
+		
+		String cm_no = request.getParameter("cm_no");
+		System.out.println("cm_no : "+cm_no);
+
+		model.addAttribute("comment_view", contentService.selectCommentT(cm_no));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+
+		return "content/reply_view_t";
+	}
+	
+	// 중고거래 대댓글 쓰기(update + insert)
+	@RequestMapping(value = "/reply_t", method = RequestMethod.GET)
+	public String reply_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model) {
+		System.out.println("reply_t");
+		
+		contentService.writeReplyT(cm_commentVO);
+		
+		return "content/reply_success";
+	}
+	
 	
 	
 	/*============================== 카페리뷰 ===================================*/
@@ -784,6 +808,30 @@ public class HeeJeongController {
 		contentService.upRecommendCommentCR(cm_no);
 
 		return contentService.selectRecommendCommentCR(cm_no);
+	}
+	
+	// 카페리뷰 대댓글 view
+	@RequestMapping(value = "/reply_view_cr", method = RequestMethod.GET)
+	public String reply_view_cr(HttpServletRequest request, Model model, @ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO) {
+		System.out.println("reply_view_cr");
+		
+		String cm_no = request.getParameter("cm_no");
+		System.out.println("cm_no : "+cm_no);
+
+		model.addAttribute("comment_view", contentService.selectCommentCR(cm_no));
+		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+
+		return "content/reply_view_cr";
+	}
+	
+	// 카페리뷰 대댓글 쓰기(update + insert)
+	@RequestMapping(value = "/reply_cr", method = RequestMethod.GET)
+	public String reply_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model) {
+		System.out.println("reply_cr");
+		
+		contentService.writeReplyCR(cm_commentVO);
+		
+		return "content/reply_success";
 	}
 	
 	

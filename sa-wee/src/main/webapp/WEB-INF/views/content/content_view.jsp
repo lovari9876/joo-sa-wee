@@ -78,9 +78,28 @@
 						<div>
 							<span class="text-white">작성자 ${content_view['M_NICK']}</span>
 							<span class="slash">&bullet;</span> 
-							<span class="text-white">작성일 <fmt:formatDate pattern="yyyy/MM/dd" value="${content_view['BW_WRITTEN_DATE']}"/></span> 
+							<span class="text-white">작성일 
+							    <!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+								<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+								<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+								<fmt:formatDate value="${content_view['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${content_view['BW_WRITTEN_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	
+							</span> 
 							<span class="slash">&bullet;</span>
-							<span class="text-white">수정일 <fmt:formatDate pattern="yyyy/MM/dd" value="${content_view['BW_UPDATED_DATE']}"/></span>
+							<span class="text-white">수정일 
+								<fmt:formatDate value="${content_view['BW_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${content_view['BW_UPDATED_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	
+							</span>
 						</div>
 					</div>
 					<br />

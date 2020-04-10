@@ -100,6 +100,10 @@ public interface ContentMapper {
 	
 	public HashMap<String, Object> selectCommentCountT(String cm_no2); // 중고거래 댓글 갯수 세기
 	
+	public void updateReplyT(CM_commentVO cm_commentVO); // 중고거래 댓글 우선순위
+	
+	public void insertReplyT(CM_commentVO cm_commentVO); // 중고거래 대댓글 쓰기
+	
 	
 	/*============================== 카페리뷰 ===================================*/
 	public HashMap<String, Object> selectContentCROne(int cr_no); // 카페리뷰 게시글 보기(content_view)
@@ -133,6 +137,10 @@ public interface ContentMapper {
 	public String selectRecommendCommentCR(String cm_no); // 카페리뷰 댓글 추천수 증가하는 거 받아옴
 	
 	public HashMap<String, Object> selectCommentCountCR(String cm_no2); // 카페리뷰 댓글 갯수 세기
+	
+	public void updateReplyCR(CM_commentVO cm_commentVO); // 카페리뷰 댓글 우선순위
+	
+	public void insertReplyCR(CM_commentVO cm_commentVO); // 카페리뷰 대댓글 쓰기
 	
 	
 	/*================================= 한줄평 =================================*/
