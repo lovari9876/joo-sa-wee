@@ -1,4 +1,6 @@
-﻿// 일간
+﻿
+
+// 일간
 $(document).ready(function chart1() {
 
 	var chartLabels = []; // 받아올 데이터를 저장할 배열 선언
@@ -6,28 +8,26 @@ $(document).ready(function chart1() {
 	// 차트 생성
 	function createChart() {
 		var ctx = document.getElementById('myChart').getContext('2d');
-		new Chart(ctx, {
-			type : 'pie',
-			data : pieChartData,
+		LineChartDemo = Chart.Line(ctx, {
+			data : lineChartData,
 			options : {
-				/*scales : {
+				scales : {
 					yAxes : [ {
 						ticks : {
 							beginAtZero : true
 						}
 					} ]
-				}, */
+				}, 
 				legend: {
-		            position: 'right'
+		            display: false //라벨가리기
 		          }
 			}
 		});
-		
 	}
 
 	// json 데이터 가져오기
 	$.ajax({
-		url : "http://localhost:8282/rest/wd_data",
+		url : "http://localhost:8282/rest/chart_data",
 		type : "post",
 		cache : false,
 		dataType : "json",
@@ -36,12 +36,15 @@ $(document).ready(function chart1() {
 		success : function(data) {
 			$.each(data, function(key, value) {
 				
-				chartLabels.push(value.W_REASON);
-				chartData.push(value.W_NO_COUNT);
+				chartLabels.push(value.st_date);
+				chartData.push(value.st_trade_num);
 				
 				
 			});
-		
+			
+			//최근 값 7개가 최근순으로 불러와지므로 reverse를 이용해 역순으로 바꿔줌
+			chartLabels.reverse();
+			chartData.reverse();
 			// ajax로 불러온 데이터 콘솔에 출력해서 확인
 			console.log(chartLabels);
 			console.log(chartData);
@@ -57,7 +60,7 @@ $(document).ready(function chart1() {
 
 	});
 
-	var pieChartData = {
+	var lineChartData = {
 			
 		
 		labels : chartLabels,
@@ -66,16 +69,9 @@ $(document).ready(function chart1() {
 				display : false,
 				position : 'bottom'
 			},
-			label : '방문자수',
+			label : '거래완료 수',
 			backgroundColor : 'transparent',
-			borderColor : 'white',
-			fillColor : "#FAB79E", 
-			strokeColor : "rgba(220,220,220,1)", 
-			pointColor : "rgba(220,220,220,1)", 
-			pointStrokeColor : "#fff", 
-			pointHighlightFill : "#fff", 
-			pointHighlightStroke : "rgba(220,220,220,1)", 
-			backgroundColor: [ "#FAB79E", "#5C85AD", "#B2D6FA", "#7981B3", "#9578BF" ],
+			borderColor : '#FAB79E',
 			data : chartData
 		} ],
 

@@ -694,6 +694,43 @@ public class AdminController {
 		}
 	////////////////////////////////////////////////////////////////////////////
 
+		
+		
+	@RequestMapping("/chart_visitor")
+	public String chart_visitor() {
+
+		return "admin/chart_visitor";
+	}
+		
+	
+	@RequestMapping("/chart_post")
+	public String chart_post() {
+
+		return "admin/chart_post";
+	}
+	
+	@RequestMapping("/chart_comment")
+	public String chart_comment() {
+
+		return "admin/chart_comment";
+	}
+	
+	@RequestMapping("/chart_trade")
+	public String chart_trade() {
+
+		return "admin/chart_trade";
+	}
+		
+		
+	////////////////////////////////////////////////////////////////////////////	
+		
+		
+		
+		
+		
+		
+		
+		
 	@RequestMapping("/notice_write")
 	public String notice_write() {
 
@@ -719,8 +756,6 @@ public class AdminController {
 
 		return "admin/cafe_list";
 	}
-
-	
 
 	@RequestMapping("/cafe_write")
 	public String cafe_write() {
@@ -764,11 +799,6 @@ public class AdminController {
 		return "admin/trade_list";
 	}
 
-	@RequestMapping("/chart")
-	public String chart() {
-
-		return "admin/chart";
-	}
 
 	@RequestMapping("/search")
 	public String search() {

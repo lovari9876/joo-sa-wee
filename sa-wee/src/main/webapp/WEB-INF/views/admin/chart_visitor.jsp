@@ -25,7 +25,7 @@
 	<script src="js/admin/chart/tab.js" type="text/javascript"></script>
 	<!-- 차트 Chart.js -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="js/admin/chart/chart1.js" type="text/javascript"></script>
+	<script src="js/admin/chart/chart_visitor.js" type="text/javascript"></script>
 
 
 
@@ -38,7 +38,7 @@
 			<div class="module">
 
 				<div class="module-head">
-					<h3>방문자수</h3>
+					<h3>방문자</h3>
 				</div>
 
 				<div class="module-option clearfix">
@@ -51,9 +51,6 @@
 						</p>
 						<p class="btn">
 							<a href="#tab3">월간</a>
-						</p>
-						<p class="btn">
-							<a href="#tab4">연간</a>
 						</p>
 					</div>
 				</div>
@@ -71,10 +68,6 @@
 						
 						<div class="chart tab_content" id="tab3">
 							<canvas id="myChart3"></canvas>
-						</div>
-						
-						<div class="chart tab_content" id="tab4">
-							<canvas id="myChart4"></canvas>
 						</div>
 					</div>
 					
