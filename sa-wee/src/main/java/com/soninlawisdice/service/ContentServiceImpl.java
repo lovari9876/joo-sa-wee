@@ -152,6 +152,14 @@ public class ContentServiceImpl implements ContentService {
 		contentMapper.insertCommentBW(cm_commentVO);
 
 	}
+	
+	// 댓글쓰면 +5 point
+	@Override
+	public void updatePoint(CM_commentVO cm_commentVO) {
+		
+		contentMapper.updatePoint(cm_commentVO);
+		
+	}
 
 	// 게시글 댓글 수정하기 view에서 사용
 	@Override
@@ -551,5 +559,6 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountOR(cm_no2);
 	}
-	
+
+
 }

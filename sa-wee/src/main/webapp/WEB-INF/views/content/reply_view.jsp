@@ -30,6 +30,7 @@
 					<input type="hidden" name="cm_group" value="${comment_view['CM_GROUP']}"> 
 					<input type="hidden" name="cm_step" value="${comment_view['CM_STEP']}"> 
 					<input type="hidden" name="cm_indent" value="${comment_view['CM_INDENT']}">
+					<input type="hidden" name="m_no" value="${m_no}">
 					<div class="form-group">
 						<label for="message">Reply</label>
 						<textarea name="cm_content" id="message" cols="30" rows="5"
