@@ -15,7 +15,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.soninlawisdice.controller.AdminController;
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
-import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
@@ -119,22 +117,22 @@ public class AdminController {
 	
 	
 	// 회원정보 수정 - 표류자인 회원 등급 복구하기 
-		@RequestMapping(value = "/member_confirm", method = RequestMethod.POST)
-		public String member_confirm(MemberVO memberVO, @RequestParam int m_no, RedirectAttributes re) throws Exception {
+	@RequestMapping(value = "/member_confirm", method = RequestMethod.POST)
+	public String member_confirm(MemberVO memberVO, @RequestParam int m_no, RedirectAttributes re) throws Exception {
 
-			int mem = memberVO.getM_no();
-			int point = memberVO.getM_point();			
-			System.out.println("복구할 회원 번호 : " + mem);
-			System.out.println("복구할 회원 포인트 : " + point);
-			
-			adminService.confirmIsland_member(mem, point);
-			
+		int mem = memberVO.getM_no();
+		int point = memberVO.getM_point();			
+		System.out.println("복구할 회원 번호 : " + mem);
+		System.out.println("복구할 회원 포인트 : " + point);
+		
+		adminService.confirmIsland_member(mem, point);
+		
 
-			re.addAttribute("m_no", m_no);
+		re.addAttribute("m_no", m_no);
 
-			return "redirect:user_view";
+		return "redirect:user_view";
 
-		}
+	}
 
 	// 회원 탈퇴 : user_view
 	@RequestMapping(value = "/outMember_user", method = RequestMethod.POST)
@@ -340,7 +338,7 @@ public class AdminController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.member_listCount(scri, sort));
+		pageMaker.setTotalCount(adminService.member_listCount(scri));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -352,25 +350,30 @@ public class AdminController {
 
 		scri.setPerPageNum(15);
 		
-		System.out.println("s_content: " + rq.getParameter("s_content"));
-		String bt = rq.getParameter("bt_no");
+		String s_content = rq.getParameter("s_content"); //말머리 
+		String sort = rq.getParameter("sort");
+		String bt = rq.getParameter("bt_no"); //board_type 번호 (카테고리) >> int변환 
+		
 		int bt_no;
 		
 		if (bt != null) {
 			bt_no = Integer.parseInt(rq.getParameter("bt_no")); 
-			System.out.println("===============bt_no" + bt_no);
+			System.out.println("bt_no : " + bt_no);
 		}else {
 			bt_no = 13;
 		}
 		
-		model.addAttribute("board_list", adminService.boardList(scri, bt_no, rq.getParameter("s_content")));
 		
-		model.addAttribute("s_content", rq.getParameter("s_content"));
-		model.addAttribute("bt_no", rq.getParameter("bt_no"));
+		model.addAttribute("board_list", adminService.boardList(scri, bt_no, s_content, sort));
+		
+		//select box, 검색내용 등등 링크로 넘기기 위해서 
+		model.addAttribute("s_content", s_content);
+		model.addAttribute("bt_no", bt_no);
+		model.addAttribute("sort", sort);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, bt_no, rq.getParameter("s_content")));
+		pageMaker.setTotalCount(adminService.board_listCount(scri, bt_no, s_content));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -381,12 +384,15 @@ public class AdminController {
 	public String notice_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 		scri.setPerPageNum(15);
 		
-		//int s_no = Integer.parseInt(rq.getParameter("s_no"));
-		model.addAttribute("notice_list", adminService.boardList(scri, 12, rq.getParameter("s_content"))); // 공지사항은 bt_no 12임..
+		String s_content = rq.getParameter("s_content");
+		String sort = rq.getParameter("sort");
+		
+		model.addAttribute("notice_list", adminService.boardList(scri, 12, s_content, sort)); // 공지사항은 bt_no 12임..
+		
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(adminService.board_listCount(scri, 12, rq.getParameter("s_content")));
+		pageMaker.setTotalCount(adminService.board_listCount(scri, 12, s_content));
 
 		model.addAttribute("pageMaker", pageMaker);
 
@@ -518,10 +524,12 @@ public class AdminController {
 	@RequestMapping("/ask_list")
 	public String ask_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 
-		String s_content = rq.getParameter("s_content");
-		//int s_no = Integer.parseInt(rq.getParameter("s_no"));
+		scri.setPerPageNum(15);
 		
-		model.addAttribute("ask_list", adminService.boardList(scri, 8, s_content));
+		String s_content = rq.getParameter("s_content");
+		String sort = rq.getParameter("sort");
+		
+		model.addAttribute("ask_list", adminService.boardList(scri, 8, s_content, sort));
 		model.addAttribute("s_content", s_content);
 
 		PageMaker pageMaker = new PageMaker();

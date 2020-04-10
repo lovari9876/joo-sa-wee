@@ -38,19 +38,19 @@
 							<div class="controls">
 							
 							<script>
-								      $(function(){
-												  $('#searchBtn').click(function() {
-												  	event.preventDefault(); // event canceled 막기!
-												    	self.location = "island_list" 
-												    				+ '${pageMaker.makeQuery(1)}' 
-												    				+ "&bt_no="
-												    				+ $("#board option:selected").val()
-												    				+ "&searchType=" 
-												    				+ $("#searchType option:selected").val() 
-												    				+ "&keyword=" 
-												    				+ encodeURIComponent($('#keywordInput').val());
-												  });
-												}); 
+							      $(function(){
+									  $('#searchBtn').click(function() {
+									  	event.preventDefault(); // event canceled 막기!
+									    	self.location = "island_list" 
+									    				+ '${pageMaker.makeQuery(1)}' 
+									    				+ "&bt_no="
+									    				+ $("#bt_no option:selected").val()
+									    				+ "&searchType=" 
+									    				+ $("#searchType option:selected").val() 
+									    				+ "&keyword=" 
+									    				+ encodeURIComponent($('#keywordInput').val());
+									  });
+									}); 
 								   </script>
 								   
 							

@@ -133,7 +133,15 @@
          bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island, bw.bw_secret,
          			  (SELECT COUNT(*) FROM cm_comment WHERE cm_type ='게시판' AND cm_no2 = bw.bw_no) cm,
 		               ROW_NUMBER() OVER(ORDER BY bw.bw_no ASC) AS RNUM,
-		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM_COUNT 
+		               ROW_NUMBER() OVER(
+		               
+		               	<choose>
+							<when test = "sort == 'hit'">ORDER BY bw.bw_hit DESC</when>
+							<when test = "sort == 'report'">ORDER BY bw.bw_report_num DESC </when>
+							<otherwise>ORDER BY bw.bw_no DESC</otherwise>
+						</choose>
+		               
+		               ) AS RNUM_COUNT 
 		          FROM board_write bw
                  INNER JOIN subject s
                  ON bw.s_no=s.s_no
@@ -153,12 +161,18 @@
                 		WHERE bt.bt_no = #{bt_no}
                 	</otherwise>
              </choose> 
+             
             	<include refid="boardType_search"></include>
 		        <include refid="subject_search"></include>
 		        <include refid="board_search"></include>
 		                       )
 		WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
-		ORDER BY bw_no DESC
+		
+		<choose>
+			<when test = "sort == 'hit'">ORDER BY bw_hit DESC</when>
+			<when test = "sort == 'report'">ORDER BY bw_report_num DESC </when>
+			<otherwise>ORDER BY bw_no DESC</otherwise>
+		</choose>
 
 	</select>
 	

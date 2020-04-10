@@ -905,6 +905,13 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@topColor', end
 
 }
 
+.trow .subject {
+	font-size : 9.5px;
+
+}
+
+
+
 .row .span7 {
 	/* faq 작성 write_view 말머리 선택 */
 	text-align: left;
@@ -922,7 +929,7 @@ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='@topColor', end
 }
 
  .trow.header{
- 	font-size: 15px;
+ 	font-size: 13.5px;
 	/* background-color : #ECECFF; */
 } 
 

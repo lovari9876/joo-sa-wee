@@ -49,8 +49,8 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.memberList(scri, sort);
 	}
 	@Override
-	public int member_listCount(SearchCriteria scri, String sort){
-		return adminMapper.member_listCount(scri, sort);
+	public int member_listCount(SearchCriteria scri){
+		return adminMapper.member_listCount(scri);
 	}
 	
 	
@@ -65,8 +65,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content){
-		return adminMapper.boardList(scri, bt_no, s_content);
+	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content, String sort){
+		return adminMapper.boardList(scri, bt_no, s_content, sort);
 	}
 	@Override
 	public int board_listCount(SearchCriteria scri, int bt_no, String s_content){
