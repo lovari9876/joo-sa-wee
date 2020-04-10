@@ -199,7 +199,14 @@
 				SELECT cr.*, m.m_id, c.c_title,
 				 (SELECT COUNT(*) FROM cm_comment WHERE cm_type ='카페리뷰' AND cm_no2 = c.c_no) cm,
 				ROW_NUMBER() OVER(ORDER BY cr.cr_no ASC) AS RNUM,
-				ROW_NUMBER() OVER(ORDER BY cr.cr_no DESC) AS RNUM_COUNT
+				ROW_NUMBER() OVER(
+					<choose>
+						<when test = "sort == 'hit'">ORDER BY cr.cr_hit DESC</when>
+						<when test = "sort == 'report'">ORDER BY cr.cr_report_num DESC </when>
+						<otherwise>ORDER BY cr.cr_no DESC</otherwise>
+					</choose>
+				
+				) AS RNUM_COUNT
 				FROM cafe_review cr
 				INNER JOIN member m
 				ON cr.m_no = m.m_no
@@ -207,8 +214,14 @@
 				On cr.c_no = c.c_no
 				<include refid="cafe_review_search"></include>
 			)MP
-			WHERE RNUM_COUNT BETWEEN #{rowStart} AND #{rowEnd}
-			ORDER BY cr_no DESC
+			WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+			
+			<choose>
+				<when test = "sort == 'hit'">ORDER BY cr_hit DESC</when>
+				<when test = "sort == 'report'">ORDER BY cr_report_num DESC </when>
+				<otherwise>ORDER BY cr_no DESC</otherwise>
+			</choose>
+			
 		
 	
 	</select>
@@ -337,12 +350,12 @@
 	</select>
 	
 	<sql id="cafe_review_search">
-		<if test="searchType != null">
-			<if test="searchType == 'a'.toString()">AND c.c_title LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'b'.toString()">AND cr.cr_title LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'c'.toString()">AND cr.cr_content LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'd'.toString()">AND m.m_id LIKE '%' || #{keyword} || '%'</if>
-			<if test="searchType == 'bc'.toString()">AND (cr.cr_title LIKE '%' || #{keyword} || '%') or (cr.cr_content LIKE '%' || #{keyword} || '%')</if>
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 'a'.toString()">AND c.c_title LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'b'.toString()">AND cr.cr_title LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'c'.toString()">AND cr.cr_content LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'd'.toString()">AND m.m_id LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'bc'.toString()">AND (cr.cr_title LIKE '%' || #{scri.keyword} || '%') or (cr.cr_content LIKE '%' || #{scri.keyword} || '%')</if>
 		</if>
 	</sql>
 	

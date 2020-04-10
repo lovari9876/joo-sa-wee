@@ -118,12 +118,12 @@
 					<table class="table">
 						<tr class="trow header">
 							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
-							<td class="cell">글 번호</td>
+							<td class="cell span1">번호</td>
 							<td class="cell">게시판</td>
 							<td class="cell span4">글 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
-							<td class="cell">신고수</td>
+							<td class="cell span1">신고수</td>
 							<td class="cell">상태</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						<tbody>
@@ -161,7 +161,7 @@
 											</c:choose>
 										</td>
 										<td class="cell">${island['I_REPORT_NUM']}</td>
-										<td class="cell">
+										<td class="cell subject">
 											<c:if test="${island['I_ISLAND'] eq 1}">수정 전</c:if>	
 											<c:if test="${island['I_ISLAND'] eq 2}">수정 완료</c:if>
 										</td>

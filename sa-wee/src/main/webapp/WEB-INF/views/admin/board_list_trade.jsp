@@ -92,11 +92,12 @@
 							<button type="button" class="btn selectIsland_btn" data-BW="${trade['BT_NO']} ${trade['T_NO']} ${trade['M_NO']}">무인도 행</button>
 						</div>
 						
-						<div class="btn-group pull-right" data-toggle="buttons-radio">
-							<button type="button" class="btn">정렬</button>
-							<button type="button" class="btn">조회수</button>
-							<button type="button" class="btn">추천수</button>
-						</div>
+					 	<div class="btn-group pull-right" data-toggle="buttons-radio">
+							<button type="button" class="btn"
+								onclick ="location.href='board_list_trade?page=1&perPageNum=15&sort=hit'">조회수</button>
+							<button type="button" class="btn"
+								onclick ="location.href='board_list_trade?page=1&perPageNum=15&sort=report'">신고수</button>
+						</div> 
 					</div>
 					
 				</div>
@@ -114,12 +115,13 @@
 					<table class="table">
 						<tr class="trow header">
 							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
-							<td class="cell">글 번호</td>
+							<td class="cell span1">번호</td>
 							<td class="cell">말머리</td>
 							<td class="cell span3">글 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
-							<td class="cell">신고수</td>
+							<td class="cell span1">조회수</td>
+							<td class="cell span1">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						<tbody>
@@ -143,6 +145,7 @@
 												</c:otherwise>
 											</c:choose>
 										</td>
+										<td class="cell span1">${trade['T_HIT']}</td>
 										<td class="cell">${trade['T_REPORT_NUM']}</td>
 									</tr>
 								</c:forEach>
@@ -155,18 +158,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="board_list_trade${pageMaker.makeSearch(pageMaker.startPage - 1)}&s_content=${s_content}"><i
+									href="board_list_trade${pageMaker.makeSearch(pageMaker.startPage - 1)}&s_content=${s_content}&sort=${sort}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="board_list_trade${pageMaker.makeSearch(idx)}&s_content=${s_content}">${idx}</a></li>
+								<li><a href="board_list_trade${pageMaker.makeSearch(idx)}&s_content=${s_content}&sort=${sort}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="board_list_trade${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content=${s_content}"><i
+									href="board_list_trade${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content=${s_content}&sort=${sort}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

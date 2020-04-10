@@ -93,7 +93,7 @@
 					<div style="overflow-x: auto;">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell">글 번호</td>
+							<td class="cell span1">번호</td>
 							<td class="cell">말머리</td>
 							<td class="cell span5">글 제목</td> <!-- 메인 사이트의 ask 1대1문의 게시판 링크 걸기 -->
 							<td class="cell">답변여부</td> <!-- 댓글 유무 -->
@@ -103,12 +103,19 @@
 							<c:forEach items="${ask_list}" var="board">
 									<tr class="trow">
 										<td class="cell">${board['RNUM']}</td>
-										<td class="cell">${board['S_CONTENT']}</td>
+										<td class="cell subject">${board['S_CONTENT']}</td>
 										<td class="cell title"><a
 											href="/content_view?bw_no=${board['BW_NO']}">
 											<c:if test = "${board['BW_SECRET'] eq 'y' }"><img src="images/board_hs/lock.png"> </c:if>
 											${board['BW_TITLE']}</a></td>
-										<td class="cell">${board['CM']}</td>
+										<td class="cell">
+											<c:choose>
+												<c:when test="${board['CM'] eq 0}">N</c:when>
+												<c:otherwise>Y</c:otherwise>
+												
+											</c:choose>
+											
+										</td>
 										<td class="cell"> 
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" />

@@ -415,10 +415,13 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/board_list_cafe", method = RequestMethod.GET)
-	public String board_list_cafe(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String board_list_cafe(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) throws Exception {
 
 		scri.setPerPageNum(15);
-		model.addAttribute("board_list_cafe", adminService.cafe_reviewList(scri));
+		String sort = rq.getParameter("sort");
+		
+		model.addAttribute("board_list_cafe", adminService.cafe_reviewList(scri, sort));
+		model.addAttribute("sort", sort);
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -436,10 +439,12 @@ public class AdminController {
 		// @RequestParam으로 받으면, 처음에 검색어 없이 /tlist로 갈때는 없는 파라미터 오류 발생
 
 		String s_content = rq.getParameter("s_content");
+		String sort = rq.getParameter("sort");
 
 		scri.setPerPageNum(15);
-		model.addAttribute("board_list_trade", secondhandService.selectTradeList(scri, s_content));
+		model.addAttribute("board_list_trade", secondhandService.selectTradeList(scri, s_content, sort));
 		model.addAttribute("s_content", s_content);
+		model.addAttribute("sort", sort);
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -689,6 +694,43 @@ public class AdminController {
 		}
 	////////////////////////////////////////////////////////////////////////////
 
+		
+		
+	@RequestMapping("/chart_visitor")
+	public String chart_visitor() {
+
+		return "admin/chart_visitor";
+	}
+		
+	
+	@RequestMapping("/chart_post")
+	public String chart_post() {
+
+		return "admin/chart_post";
+	}
+	
+	@RequestMapping("/chart_comment")
+	public String chart_comment() {
+
+		return "admin/chart_comment";
+	}
+	
+	@RequestMapping("/chart_trade")
+	public String chart_trade() {
+
+		return "admin/chart_trade";
+	}
+		
+		
+	////////////////////////////////////////////////////////////////////////////	
+		
+		
+		
+		
+		
+		
+		
+		
 	@RequestMapping("/notice_write")
 	public String notice_write() {
 
@@ -714,8 +756,6 @@ public class AdminController {
 
 		return "admin/cafe_list";
 	}
-
-	
 
 	@RequestMapping("/cafe_write")
 	public String cafe_write() {
@@ -759,11 +799,6 @@ public class AdminController {
 		return "admin/trade_list";
 	}
 
-	@RequestMapping("/chart")
-	public String chart() {
-
-		return "admin/chart";
-	}
 
 	@RequestMapping("/search")
 	public String search() {

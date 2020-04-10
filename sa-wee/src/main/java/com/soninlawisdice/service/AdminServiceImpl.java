@@ -85,8 +85,8 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> cafe_reviewList(SearchCriteria scri){
-		return adminMapper.cafe_reviewList(scri);
+	public ArrayList<HashMap<String, Object>> cafe_reviewList(SearchCriteria scri, String sort){
+		return adminMapper.cafe_reviewList(scri, sort);
 	}
 	@Override
 	public int cafe_review_listCount(SearchCriteria scri){

@@ -25,9 +25,9 @@ public class SecondhandServiceImpl implements SecondhandService {
 
 	// list
 	@Override
-	public ArrayList<HashMap<String, Object>> selectTradeList(SearchCriteria scri, String s_content) {
+	public ArrayList<HashMap<String, Object>> selectTradeList(SearchCriteria scri, String s_content, String sort) {
 
-		return secondhandMapper.selectTradeList(scri, s_content);
+		return secondhandMapper.selectTradeList(scri, s_content, sort);
 	}
 
 	// list count

@@ -121,10 +121,10 @@
                                 </i>통계 </a>
                                     <ul id="togglePages3" class="collapse unstyled">
                                         <li><a href="withdrawer_list"><i class="icon-time"></i> 탈퇴사유 </a></li>
-                                        <li><a href="chart"><i class="icon-group"></i> 접속자  </a></li>
-                                        <li><a href="chart"><i class="icon-list-ul"></i> 게시글 </a></li>
-                                        <li><a href="chart"><i class="icon-comments"></i> 댓글 </a></li>
-                                        <li><a href="chart"><i class="icon-shopping-cart"></i> 중고거래 </a></li>
+                                        <li><a href="chart_visitor"><i class="icon-group"></i> 접속자  </a></li>
+                                        <li><a href="chart_post"><i class="icon-list-ul"></i> 게시글 </a></li>
+                                        <li><a href="chart_comment"><i class="icon-comments"></i> 댓글 </a></li>
+                                        <li><a href="chart_trade"><i class="icon-shopping-cart"></i> 중고거래 </a></li>
                                     </ul>
                                 </li>
                        <!--          <li><a href="#"><i class="menu-icon icon-signout"></i>Logout </a></li> -->

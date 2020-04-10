@@ -23,13 +23,11 @@
 <body>
 
 	<script src="js/admin/jquery-1.9.1.min.js" type="text/javascript"></script>
-	
 	<!-- 탭 -->
 	<script src="js/admin/chart/tab.js" type="text/javascript"></script> 
-
 	<!-- 차트 Chart.js -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="js/admin/chart/chart1.js" type="text/javascript"></script>
+	<script src="js/admin/chart/chart_visitor.js" type="text/javascript"></script>
 
 	<%@include file="side.jsp"%>
 
@@ -105,9 +103,6 @@
 						<p class="btn">
 							<a href="#tab3">월간</a>
 						</p>
-						<p class="btn">
-							<a href="#tab4">연간</a>
-						</p>
 					</div>
 				</div>
 				<div class="module-body">
@@ -123,10 +118,6 @@
 						<div class="chart tab_content" id="tab3">
 							<canvas id="myChart3"></canvas>
 						</div>
-						
-						<div class="chart tab_content" id="tab4">
-							<canvas id="myChart4"></canvas>
-						</div> 
 					</div>
 
 				</div>
