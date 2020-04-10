@@ -14,7 +14,7 @@ public interface SecondhandMapper {
 	
 	// list
 	public ArrayList<HashMap<String, Object>> selectTradeList(
-			@Param("scri") SearchCriteria scri, @Param("s_content") String s_content);	
+			@Param("scri") SearchCriteria scri, @Param("s_content") String s_content, @Param("sort") String sort);	
 	
 	// list count
 	public int tradeListCount(

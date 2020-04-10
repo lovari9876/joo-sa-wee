@@ -79,10 +79,11 @@
 						<button type="button" class="btn selectIsland_btn" data-BW="${cr['BT_NO']} ${cr['CR_NO']} ${cr['M_NO']}">무인도 행</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
-						<button type="button" class="btn">정렬</button>
-						<button type="button" class="btn">조회수</button>
-						<button type="button" class="btn">추천수</button>
-					</div>
+							<button type="button" class="btn"
+								onclick ="location.href='board_list_cafe?page=1&perPageNum=15&sort=hit'">조회수</button>
+							<button type="button" class="btn"
+								onclick ="location.href='board_list_cafe?page=1&perPageNum=15&sort=report'">신고수</button>
+						</div> 
 				</div>
 
 
@@ -98,12 +99,13 @@
 					<table class="table">
 						<tr class="trow header">
 							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
-							<td class="cell">글 번호</td>
+							<td class="cell span1">번호</td>
 							<td class="cell">카페 이름</td>
-							<td class="cell span4">리뷰 제목</td>
+							<td class="cell title span4">리뷰 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
-							<td class="cell">신고수</td>
+							<td class="cell span1">조회수</td>
+							<td class="cell span1">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						<tbody>
@@ -113,7 +115,7 @@
 										<td class="cell">${cr['RNUM']}</td>
 										<td class="cell">${cr['C_TITLE']}</td>
 										<td class="cell title"><a
-											href="/selectReviewOne?cr_no=${cr['CR_NO']}">${cr['CR_TITLE']} (${cr['CM']})</a></td>
+											href="/content_view_cr?cr_no=${cr['CR_NO']}">${cr['CR_TITLE']} (${cr['CM']})</a></td>
 										<td class="cell">${cr['M_ID']}</td>
 										<td class="cell"> 
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
@@ -128,6 +130,7 @@
 											</c:choose>
 											
 										</td>
+										<td class="cell">${cr['CR_HIT']}</td>
 										<td class="cell">${cr['CR_REPORT_NUM']}</td>
 									</tr>
 								</c:forEach>
@@ -140,18 +143,18 @@
 						<ul>
 							<c:if test="${pageMaker.prev}">
 								<li><a
-									href="board_list_cafe${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="board_list_cafe${pageMaker.makeSearch(pageMaker.startPage - 1)}&sort=${sort}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li><a href="board_list_cafe${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li><a href="board_list_cafe${pageMaker.makeSearch(idx)}&sort=${sort}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li><a
-									href="board_list_cafe${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="board_list_cafe${pageMaker.makeSearch(pageMaker.endPage + 1)}&sort=${sort}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

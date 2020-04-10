@@ -77,10 +77,13 @@ public class CassieController {
 //		
 		String s_content = rq.getParameter("s_content");
 //		search.put("s_content", s_content);
+		
+		String sort = rq.getParameter("sort");
 
-		ArrayList<HashMap<String, Object>> tList = secondhandService.selectTradeList(scri, s_content);
+		ArrayList<HashMap<String, Object>> tList = secondhandService.selectTradeList(scri, s_content, sort);
 		model.addAttribute("tList", tList);
 		model.addAttribute("s_content", s_content); // 단순히 jsp에서 select 선택 반영 위한 넘기기
+		model.addAttribute("sort", sort);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);

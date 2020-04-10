@@ -16,7 +16,15 @@
 			*
 		FROM (
 				SELECT 
-					T.*, M.M_NICK, M.M_ID, S.S_CONTENT, ROW_NUMBER() OVER(ORDER BY T_NO DESC) AS RNUM 
+					T.*, M.M_NICK, M.M_ID, S.S_CONTENT, 
+					ROW_NUMBER() OVER(
+						<choose>
+							<when test = "sort == 'hit'">ORDER BY T_HIT DESC</when>
+							<when test = "sort == 'report'">ORDER BY T_REPORT_NUM DESC </when>
+							<otherwise>ORDER BY T_NO DESC</otherwise>
+						</choose>
+						
+					) AS RNUM 
 				FROM
 					TRADE T
 				LEFT JOIN
@@ -34,9 +42,12 @@
 			) 
 		WHERE 
 			RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
-		ORDER BY
-			T_NO DESC
-				
+			<choose>
+				<when test = "sort == 'hit'">ORDER BY T_HIT DESC</when>
+				<when test = "sort == 'report'">ORDER BY T_REPORT_NUM DESC </when>
+				<otherwise>ORDER BY T_NO DESC</otherwise>
+			</choose>
+		
 	</select> <!-- 1=1 조건 달아야, 처음에 검색어 없이 호출시에도, WHERE 하나만 남아서 BadGrammarException이 뜨지 않는다.. -->
 	
 	

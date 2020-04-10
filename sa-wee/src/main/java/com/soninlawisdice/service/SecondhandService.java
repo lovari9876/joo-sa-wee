@@ -14,7 +14,7 @@ import com.soninlawisdice.vo.Trade_gameVO;
 public interface SecondhandService {
 	
 	// list
-	public ArrayList<HashMap<String, Object>> selectTradeList(SearchCriteria scri, String s_content);
+	public ArrayList<HashMap<String, Object>> selectTradeList(SearchCriteria scri, String s_content, String sort);
 	
 	// list count
 	public int tradeListCount(SearchCriteria scri, String s_content);

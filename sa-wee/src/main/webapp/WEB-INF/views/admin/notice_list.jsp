@@ -84,7 +84,7 @@
 					<div class = "table_mobile">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell">글 번호</td>
+							<td class="cell span1">번호</td>
 							<td class="cell">글 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>

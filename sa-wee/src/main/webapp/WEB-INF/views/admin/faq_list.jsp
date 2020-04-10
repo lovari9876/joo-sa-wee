@@ -99,18 +99,18 @@
 					<div style="overflow-x: auto;">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell">글 번호</td>
+							<td class="cell span1">번호</td>
 							<td class="cell">말머리</td>
 							<td class="cell span5">글 제목</td>
 							<td class="cell">작성일</td>
-							<td class="cell">조회수</td>
+							<td class="cell span1">조회수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						<tbody>
 							<c:forEach items="${faq_list}" var="faq">
 									<tr class="trow">
 										<td class="cell">${faq.faq_no}</td>
-										<td class="cell">
+										<td class="cell subject">
 											<c:choose>				
 													<c:when test="${faq.s_no eq 22}">회원</c:when>
 													<c:when test="${faq.s_no eq 23}">결제</c:when>

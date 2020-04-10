@@ -415,10 +415,13 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/board_list_cafe", method = RequestMethod.GET)
-	public String board_list_cafe(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String board_list_cafe(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) throws Exception {
 
 		scri.setPerPageNum(15);
-		model.addAttribute("board_list_cafe", adminService.cafe_reviewList(scri));
+		String sort = rq.getParameter("sort");
+		
+		model.addAttribute("board_list_cafe", adminService.cafe_reviewList(scri, sort));
+		model.addAttribute("sort", sort);
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
@@ -436,10 +439,12 @@ public class AdminController {
 		// @RequestParam으로 받으면, 처음에 검색어 없이 /tlist로 갈때는 없는 파라미터 오류 발생
 
 		String s_content = rq.getParameter("s_content");
+		String sort = rq.getParameter("sort");
 
 		scri.setPerPageNum(15);
-		model.addAttribute("board_list_trade", secondhandService.selectTradeList(scri, s_content));
+		model.addAttribute("board_list_trade", secondhandService.selectTradeList(scri, s_content, sort));
 		model.addAttribute("s_content", s_content);
+		model.addAttribute("sort", sort);
 
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
