@@ -2,8 +2,6 @@ package com.soninlawisdice.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,16 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
-import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
-import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -195,7 +190,7 @@ public class CassieController {
 		return "secondhand/modify_view";
 	}
 	
-	// 수정하기, 수정했을때 수정된 content 보기
+	// 수정하고나서 content_view 리다이렉트
 	@RequestMapping(value = "/trade_modify", method = RequestMethod.POST)
 	public String modify(Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, @ModelAttribute("tgVO") Trade_gameVO tgVO,
 							String gameNames, String prices) {

@@ -130,6 +130,7 @@
 		<!-- 검색 끝 -->       
               
         
+        <!-- 리스트 시작! -->
 		<div class="switch-view">
 
           <div id="view1" class="view--content">
@@ -174,6 +175,7 @@
 		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}
 		                        </div>
 		                        
+		                        <!-- 파란색 태그 부분=> 여기에다가 관련게임이름과 링크 박기 -->
 		                        <div class="entry__meta">
 		                            <span class="entry__meta-links">
 		                                <a href="category.html">Design</a> 
