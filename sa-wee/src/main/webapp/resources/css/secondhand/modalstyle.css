@@ -1,7 +1,8 @@
 
 /* -------------------------------------------------------------------
  * 모달!!!!!!!
- *
+ * 
+ * .header-warp {z-index:0} 주기
  *
  * ------------------------------------------------------------------- */
  
@@ -9,7 +10,7 @@
 .modal--trade {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
+	z-index: 200; /* Sit on top *//* header가 99라서 200으로 설정 */
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -25,7 +26,8 @@
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */                          
+    width: 50%;
+    z-index: 100; /* Could be more or less, depending on screen size */                          
 }
 
 /* The Close Button */

@@ -19,30 +19,66 @@
 
 </head>
 <body >
-
-
-	<!-- 구매하기 버튼: open modal -->
-	<br />
-	<br />
-	<div align="center" class="buy--button" >
-		<button id ="myBtn" class="write-btn lavender-btn" type="button" > 거래하기</button> 
-		<!-- <a class="" data-modal href="#myModal">거래하기</a>  -->
-	</div>					
-	<br />
-	<br />
 						
 	<!-- Modal HTML embedded directly into document -->
 	<div id="myModal" class="modal--trade">
 	
 		<div class="modal--content">						
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-			<span id="modal--close">close</span>
-			</p>
+			<div>
+				<!-- 폼 수정해서 살 것 select, 가격 select하도록.. -->
+				<form action="trade_modify" method="post" enctype="multipart/form-data">
+					<input type = "hidden" id = "bt_no" value = "9"/>
+					<input type = "hidden" id = "t_no" name="t_no" value = "${tradeVO['T_NO']}"/>
+					<input type = "hidden" name="t_island" value = "${tradeVO['T_ISLAND']}" />
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
+					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
+					
+					<table class="write-table">
+						<tr class = "row">
+							<td class = "cell">말머리 </td>
+							<td class = "cell"> 
+								<select name="s_no" >
+									<option value="32" <c:out value="${tradeVO['S_NO'] == 32 ? 'selected' : ''}"/>>판매중</option>
+									<option value="33" <c:out value="${tradeVO['S_NO'] == 33 ? 'selected' : ''}"/>>구매중</option>
+									<option value="34" <c:out value="${tradeVO['S_NO'] == 34 ? 'selected' : ''}"/>>거래완료</option>
+								</select> 								
+							</td>							
+						</tr>					
+						
+						<!-- 입력창 -->
+						<tr class="row">
+							<td class="cell">제목</td>
+							<td class="cell">
+								<input type="text" name="t_title" value="${tradeVO['T_TITLE']}" placeholder="제목을 입력하세요">
+							</td>
+						</tr>
+						
+						<!-- select 로 보드게임 번호 찍어줘야함... -->
+						<!-- 없으면 직접 입력 가능: 향후 방향성 모호하므로 일단 이름 하나만 입력하도록. -->
+						<tr class="row">
+							<td class="cell">보드게임</td>
+							<td class="cell">
+								<input type="text" name="gameNames" value="${gameNames}"
+									placeholder="보드게임의 이름을 쉼표(,)로 구분하여 입력하세요">
+							</td>
+						</tr>
+						
+						<tr class="row">
+							<td class="cell">가격</td>
+							<td class="cell">
+								<input type="text" name="prices" value="${prices}"
+										placeholder="보드게임의 희망 가격을 쉼표(,)로 구분하여 숫자로 입력하세요">
+							</td>
+						</tr>
+						
+					</table>
+					<button class="list" type="button" onclick="self.location='tlist'">목록</button>
+					<button class="modify-btn" type="submit">수정 완료</button>
+				</form>
+			
+				<span id="modal--close">close</span>
+			</div>
 		</div>
 		
 	</div>

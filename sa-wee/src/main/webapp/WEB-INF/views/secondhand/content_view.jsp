@@ -56,7 +56,7 @@
 </head>
 <body id="top">
 	<input type="hidden" name="bw_no" value="${content_view['BW_NO']}"/>
-
+	
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
 	<!-- header include end -->
@@ -142,11 +142,20 @@
 					
 					<p>${content_view_t['T_CONTENT']}</p>
 
-					
-					<!-- header include start -->
-						<%@ include file="/WEB-INF/views/secondhand/modal_view.jsp" %>
-					<!-- header include end -->
-										  
+					<br/>
+					<br/>
+	
+					<!-- ** 거래하기 버튼 및 모달: 일단 판매시에만 나타나도록! -->		
+					<c:if test="${content_view_t['S_NO']==32}" > 	
+						<!-- 구매하기 버튼: open modal -->
+						<div align="center" class="buy--button" >
+							<button id ="myBtn" class="write-btn lavender-btn" type="button" > 거래하기</button> 
+							<!-- <a class="" data-modal href="#myModal">거래하기</a>  -->
+						</div>
+					</c:if>					  
+					<br />							
+					<br />	
+
 					
 					<!-- 목록보기와 수정, 삭제, 신고 -->
 					<form action="/tlist" method="get">
@@ -194,6 +203,11 @@
 		</div>
 	</section>
 
+	<!-- 모달은 바디 바로 안쪽에 넣어야 헤더 및 다른 최상위 객체가 위로 올라오지 않음!! -->
+	<!-- modal include start -->
+	<%@ include file="/WEB-INF/views/secondhand/modal_view.jsp" %>
+	<!-- modal include end -->
+
 	<!-- footer include start -->
 	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
 	<!-- footer include end -->
@@ -240,65 +254,6 @@
 	<!-- Java Script for footer
     ================================================== -->
 	<script src="js/footer/footer_hee.js"></script>
-	
-
-	<!-- modal 일단 실패... -->
-	<!--  <script>
-		// Get the modal
-		var modal = document.getElementById("myModal");
-
-		// Get the button that opens the modal
-		var btn = document.getElementById("myBtn");
-
-		// Get the <span> element that closes the modal
-		var span = document.getElementsByClassName("close")[0];
-
-		// When the user clicks the button, open the modal 
-		btn.onclick = function() {
-			modal.style.display = "block";
-		}
-
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-			modal.style.display = "none";
-		}
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-	</script> -->
-
-	<!-- 신고팝업창 / href="javascript:popupOpen();" 집어넣기 -->
-	<!-- <script type="text/javascript">
-		function popupOpen() {
-			var popUrl = "report"; //팝업창에 출력될 페이지 URL
-			var popOption = "width=500, height=600, top=150, left=150, resizable=no, scrollbars=no, status=no;"; //팝업창 옵션(optoin)
-			window.open(popUrl, "", popOption);
-			close();
-		}
-	</script> -->
-
-	<!-- collapse 부분 -->
-	<!-- <script>
-	$('[data-toggle="collapse"]').on('click', function() {
-	    var $this = $(this),
-	  		 	 $parent = typeof $this.data('parent')!== 'undefined' ? $($this.data('parent')) : undefined;
-	    if($parent === undefined) { 
-	        $this.find('.glyphicon').toggleClass('glyphicon-plus glyphicon-minus');
-	        return true;
-	    }
-
-	    /* Open element will be close if parent !== undefined */
-	    var currentIcon = $this.find('.glyphicon');
-	    currentIcon.toggleClass('glyphicon-plus glyphicon-minus');
-	    $parent.find('.glyphicon').not(currentIcon).removeClass('glyphicon-minus').addClass('glyphicon-plus');
-
-	});
-	</script> -->
-
 
 </body>
 </html>
