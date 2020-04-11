@@ -164,4 +164,9 @@ public interface ContentMapper {
 	public String selectRecommendCommentOR(String cm_no); // 한줄평 댓글 추천수 증가하는 거 받아옴
 	
 	public HashMap<String, Object> selectCommentCountOR(String cm_no2); // 한줄평 댓글 갯수 세기
+
+	
+	/*================================= 게임 상세정보 =================================*/
+	
+	public HashMap<String, Object> selectGameDetailOne(int g_no); // 게임 상세정보 view
 }

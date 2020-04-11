@@ -28,6 +28,7 @@ import com.soninlawisdice.service.ContentServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.TradeVO;
@@ -377,12 +378,6 @@ public class HeeJeongController {
 		return "game_info/game_info";
 	}
 
-	@RequestMapping(value = "/game_detail", method = RequestMethod.GET)
-	public String game_detail(Locale locale, Model model) {
-		System.out.println("game_detail");
-
-		return "game_detail/game_detail";
-	}
 	
 	/*============================== 보부상 ===================================*/
 
@@ -522,7 +517,7 @@ public class HeeJeongController {
 	 */
 	
 	// 중고거래 댓글 쓰기
-	@RequestMapping(value = "/comment_write_t", method = RequestMethod.GET)
+	@RequestMapping(value = "/comment_write_t", method = RequestMethod.POST)
 	public String comment_write_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
 										Model model, @RequestParam int t_no, @RequestParam("m_no") int m_no, RedirectAttributes re) {
 		System.out.println("comment_write_t");
@@ -790,7 +785,7 @@ public class HeeJeongController {
 	 */
 
 	// 카페리뷰 댓글 쓰기
-	@RequestMapping(value = "/comment_write_cr", method = RequestMethod.GET)
+	@RequestMapping(value = "/comment_write_cr", method = RequestMethod.POST)
 	public String comment_write_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
 										Model model, @RequestParam int cr_no, @RequestParam("m_no") int m_no, RedirectAttributes re) {
 		System.out.println("comment_write_cr");
@@ -913,7 +908,7 @@ public class HeeJeongController {
 	}
 	
 	// 한줄평 댓글 쓰기 view
-	@RequestMapping(value = "/comment_write_view_or", method = RequestMethod.GET)
+	@RequestMapping(value = "/comment_write_view_or", method = RequestMethod.POST)
 	public String comment_write_view_or(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
 		System.out.println("comment_write_view_or");
 
@@ -1045,4 +1040,30 @@ public class HeeJeongController {
 	}
 	
 	
+	/*================================= 게임 상세정보 =================================*/
+	
+	// 게임 상세정보 view
+	@RequestMapping(value = "/game_detail", method = RequestMethod.GET)
+	public String game_detail(Model model, HttpServletRequest request, @ModelAttribute("gameVO") GameVO gameVO,
+							@RequestParam("g_no") int pageNumG) {
+		System.out.println("game_detail");
+
+		int g_no = Integer.parseInt(request.getParameter("g_no"));
+		
+		System.out.println(g_no);
+
+		model.addAttribute("game_detail_view", contentService.selectGameDetailOne(g_no));
+		
+		// game_info에서 g_no 받아 오기
+		g_no = 520;
+		model.addAttribute("g_no", g_no);
+		
+		System.out.println("g_no = " + g_no);
+		gameVO.setG_no(g_no);
+		
+		// 게시글 조회수
+		/* contentService.upHitContent(bw_no); */
+
+		return "game_detail/game_detail";
+	}
 }

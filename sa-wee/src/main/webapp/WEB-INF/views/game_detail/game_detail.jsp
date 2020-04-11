@@ -42,7 +42,9 @@
 	<![endif]-->
 </head>
 <body id="top">
-
+	
+	<input type="hidden" name="g_no" value="${game_detail_view['G_NO']}">
+	
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
 	<!-- header include end -->
@@ -64,23 +66,23 @@
 			<div class="g_info">
 				<div class="rating-widget">
 					<div class="gameSingle-content">
-						<h4 class="gs-title">Final Appocalipse 2.1</h4>
+						<h4 class="gs-title">${game_detail_view['G_NAME']}</h4>
 					</div>
 					<div class="gameSingle-preview game_item first">
-						<img src="images/board_hj/games/big.jpg" alt="" class="g_photo">
+						<!-- 이미지 넣어야 함 -->
+						<img src="${game_detail_view['G_IMAGE']}" alt="" class="g_photo">
 						<div class="game_item second">
 							<div class="widget-item" style="text-align: left">
 								<h4 class="widget-title">상세정보</h4>
 								<ul>
-									<li>게임이름<span>3.5/5</span></li>
-									<li>디자이너<span>4.5/5</span></li>
-									<li>최소인원<span>3.5/5</span></li>
-									<li>최대인원<span>4.5/5</span></li>
-									<li>플레이시간<span>4.5/5</span></li>
-									<li>사용연령<span>4.5/5</span></li>
-									<li>게임난이도<span>4.5/5</span></li>
-									<li>출시일<span>4.5/5</span></li>
-									<li>플레이시간<span>4.5/5</span></li>
+									<li>작성일<span>${game_detail_view['G_WRITTEN_DATE']}</span></li>
+									<li>수정일<span>${game_detail_view['G_UPDATED_DATE']}</span></li>
+									<li>조회수<span>${game_detail_view['G_HIT']}</span></li>
+									<li>추천수<span>${game_detail_view['G_RECOMMEND_NUM']}</span></li>
+									<li>최소인원<span>${game_detail_view['G_MIN']}</span></li>
+									<li>최대인원<span>${game_detail_view['G_MAX']}</span></li>
+									<li>플레이시간<span>${game_detail_view['G_PLAYTIME']}</span></li>
+									<li>출시일<span>${game_detail_view['G_RELEASE']}</span></li>
 								</ul>
 							</div>
 						</div>

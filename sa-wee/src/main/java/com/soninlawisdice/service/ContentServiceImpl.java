@@ -559,6 +559,16 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectCommentCountOR(cm_no2);
 	}
+	
+	
+	/*================================= 게임 상세정보 =================================*/
+
+	// 게임 상세정보 view
+	@Override
+	public HashMap<String, Object> selectGameDetailOne(int g_no) {
+		
+		return contentMapper.selectGameDetailOne(g_no);
+	}
 
 
 }
