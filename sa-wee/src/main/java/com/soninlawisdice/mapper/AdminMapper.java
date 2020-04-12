@@ -143,6 +143,7 @@ public interface AdminMapper {
 	
 	
 	public ArrayList<HashMap<String, String>> getWeekStatistics();
+	public ArrayList<HashMap<String, String>> getMonthStatistics();
 	
 
 }

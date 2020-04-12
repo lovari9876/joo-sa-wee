@@ -123,5 +123,6 @@ public interface AdminService {
 	public int allBoard();	//전체 게시글수
 
 	public ArrayList<HashMap<String, String>> getWeekStatistics();
+	public ArrayList<HashMap<String, String>> getMonthStatistics();
 	
 }

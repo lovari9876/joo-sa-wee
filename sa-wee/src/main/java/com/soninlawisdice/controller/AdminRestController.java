@@ -51,9 +51,15 @@ public class AdminRestController {
 	@RequestMapping("/chart_data_week")
 	public ArrayList<HashMap<String, String>> chart_data_week(Model model) throws Exception {
 		
-		//ArrayList<HashMap<String, String>> list = adminService.getWeekStatistics();
 		
 		return adminService.getWeekStatistics();
+	}
+	
+	@RequestMapping("/chart_data_month")
+	public ArrayList<HashMap<String, String>> chart_data_month(Model model) throws Exception {
+		
+		
+		return adminService.getMonthStatistics();
 	}
 	
 	

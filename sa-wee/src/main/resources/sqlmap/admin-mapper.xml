@@ -712,14 +712,31 @@
 	
 	
 	<select id="getWeekStatistics" resultType="java.util.HashMap">
-		
-		SELECT TO_CHAR(st_date, 'yymmiw') AS week, SUM(st_visitor_num)AS st_visitor_num, SUM(st_post_num)AS st_post_num, 
-        SUM(st_trade_num)AS st_trade_num, SUM(st_comment_num)AS st_comment_num FROM statistics
-		WHERE TO_CHAR(st_date, 'yyyymmww')
-		between '20190101' AND '20201231'
-		GROUP BY TO_CHAR(st_date, 'yymmiw')
-		ORDER BY TO_CHAR(st_date, 'yymmiw')
+		<![CDATA[
+			SELECT * FROM
+		        (SELECT TO_CHAR(st_date, 'yy-mm-iw') AS week, SUM(st_visitor_num) AS st_visitor_num, SUM(st_post_num) AS st_post_num, 
+		                SUM(st_trade_num)AS st_trade_num, SUM(st_comment_num)AS st_comment_num FROM statistics
+		        WHERE TO_CHAR(st_date, 'yyyymmww')
+		        between '20190101' AND '20201231'
+		        GROUP BY TO_CHAR(st_date, 'yy-mm-iw')
+		        ORDER BY TO_CHAR(st_date, 'yy-mm-iw') DESC
+		        )
+    		WHERE ROWNUM <= 8
+		 ]]>
+	</select>
 	
+	<select id="getMonthStatistics" resultType="java.util.HashMap">
+		<![CDATA[
+			SELECT * FROM
+		        (SELECT TO_CHAR(st_date, 'yy-mm') AS month, SUM(st_visitor_num) AS st_visitor_num, SUM(st_post_num) AS st_post_num, 
+		                SUM(st_trade_num)AS st_trade_num, SUM(st_comment_num)AS st_comment_num FROM statistics
+		        WHERE TO_CHAR(st_date, 'yyyymmww')
+		        between '20190101' AND '20201231'
+		        GROUP BY TO_CHAR(st_date, 'yy-mm')
+		        ORDER BY TO_CHAR(st_date, 'yy-mm') DESC
+		        )
+    		WHERE ROWNUM <= 8
+		 ]]>
 	</select>
 	
 	

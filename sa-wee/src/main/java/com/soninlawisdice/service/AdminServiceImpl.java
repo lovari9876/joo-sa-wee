@@ -301,6 +301,10 @@ public class AdminServiceImpl implements AdminService {
 	public ArrayList<HashMap<String, String>> getWeekStatistics() {
 		return adminMapper.getWeekStatistics();
 	}
+	@Override
+	public ArrayList<HashMap<String, String>> getMonthStatistics() {
+		return adminMapper.getMonthStatistics();
+	}
 	
 	
 }
