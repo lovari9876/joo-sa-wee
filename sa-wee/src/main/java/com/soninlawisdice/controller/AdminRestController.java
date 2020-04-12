@@ -42,13 +42,18 @@ public class AdminRestController {
 	
 	@RequestMapping("/chart_data")
 	public List<StatisticsVO> chart_data(Model model) throws Exception {
-		
-		List<StatisticsVO> list = adminService.chartData();
-		model.addAttribute("report_list", list);
-		
-		
+	
 		return adminService.chartData();
 		//return 값은 String이 아닌 객체로 
+	}
+	
+	
+	@RequestMapping("/chart_data_week")
+	public ArrayList<HashMap<String, String>> chart_data_week(Model model) throws Exception {
+		
+		//ArrayList<HashMap<String, String>> list = adminService.getWeekStatistics();
+		
+		return adminService.getWeekStatistics();
 	}
 	
 	

@@ -708,6 +708,21 @@
 	
 	
 	
+	<!-- =============================================== 통계 : 주간 월간  ====================================================== -->	
+	
+	
+	<select id="getWeekStatistics" resultType="java.util.HashMap">
+		
+		SELECT TO_CHAR(st_date, 'yymmiw') AS week, SUM(st_visitor_num)AS st_visitor_num, SUM(st_post_num)AS st_post_num, 
+        SUM(st_trade_num)AS st_trade_num, SUM(st_comment_num)AS st_comment_num FROM statistics
+		WHERE TO_CHAR(st_date, 'yyyymmww')
+		between '20190101' AND '20201231'
+		GROUP BY TO_CHAR(st_date, 'yymmiw')
+		ORDER BY TO_CHAR(st_date, 'yymmiw')
+	
+	</select>
+	
+	
 	<!-- =============================================== index에 출력할 데이터 : 글, 댓글, 회원 전체 수 ====================================================== -->	
 	
 	

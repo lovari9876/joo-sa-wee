@@ -73,11 +73,21 @@
 										<td class="cell" colspan= "3">
 											<c:if test="${report_view['R_ID'] eq null}">삭제된 글입니다....</c:if>
 											<c:choose>
-												<c:when test="${report_view['R_TYPE'] == '회원'}">${report_view['R_ID']}</c:when>
-												<c:when test="${report_view['R_TYPE'] == '댓글'}">${report_view['CM_CONTENT']}</c:when>
-												<c:when test="${report_view['R_TYPE'] == '게시글'}">${report_view['BW_TITLE']}</c:when>
-												<c:when test="${report_view['R_TYPE'] == '카페리뷰'}">${report_view['CR_TITLE']}</c:when>
-												<c:when test="${report_view['R_TYPE'] == '중고거래'}">${report_view['T_TITLE']}</c:when>
+												<c:when test="${report_view['R_TYPE'] == '회원'}">
+													<a href="">${report_view['R_ID']}</a>
+												</c:when>
+												<c:when test="${report_view['R_TYPE'] == '댓글'}">
+													<a href="">${report_view['CM_CONTENT']}</a>
+												</c:when>
+												<c:when test="${report_view['R_TYPE'] == '게시글'}">
+													<a href="/content_view?bw_no=${report_view['BW_NO']}">${report_view['BW_TITLE']}</a>
+												</c:when>
+												<c:when test="${report_view['R_TYPE'] == '카페리뷰'}">
+													<a href="/content_view_cr?cr_no=${report_view['CR_NO']}">${report_view['CR_TITLE']}</a>
+												</c:when>
+												<c:when test="${report_view['R_TYPE'] == '중고거래'}">
+													<a href="/content_view_t?t_no=${report_view['T_NO']}">${report_view['T_TITLE']}</a>
+												</c:when>
 											</c:choose>
 										
 										</td>

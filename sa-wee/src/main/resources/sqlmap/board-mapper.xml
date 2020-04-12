@@ -94,7 +94,8 @@
 	(
          SELECT bw.bw_no, m.m_no, m.m_id,m.m_nick, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island, bw.bw_recommend_num,
          				(select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm,
-		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM
+		               ROW_NUMBER() OVER(ORDER BY bw.bw_no ASC) AS RNUM,
+		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM_COUNT
 		          FROM board_write bw
                  INNER JOIN subject s
                  ON bw.s_no=s.s_no
@@ -116,7 +117,7 @@
 		         <include refid="subject_search"></include>
 		         <include refid="board_search"></include>
 		                       )
-		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+		WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 		ORDER BY bw_no DESC
 	</select>
 	
