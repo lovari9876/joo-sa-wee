@@ -36,6 +36,7 @@
 <!-- <script src="https://kit.fontawesome.com/4b0668ef4e.js" crossorigin="anonymous"></script> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel = "stylesheet" href = "css/board_hs/tagsinput.css" />
 <!-- Main Stylesheets -->
 
 <link rel="stylesheet" href="css/board_hs/writestyle.css" />
@@ -83,6 +84,13 @@
 							<td class = "cell">
 								<select id = "board" name = "bt_no" ></select> 
 								<select id = "sub" name = "s_no"></select>
+							</td>
+						</tr>
+						
+						<tr class="row">
+							<td class="cell" id = "bloodhound">
+								<input data-role = "tagsinput" name="gameNames" value = "${gameNames}" class = "typeahead" type = "text">
+								
 							</td>
 						</tr>
 
@@ -134,6 +142,8 @@
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	<script src="js/board_hs/selected_category.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
+	<script src ="js/board_hs/tagsinput.js"></script>
+	<script src="js/board_hs/typeahead.js"></script>
 	
 	
 	
@@ -174,6 +184,45 @@
 			    console.error( error );
 			} );
 		</script>
+		
+		
+	
+	<script>
+		
+		var games = new Bloodhound({
+			datumTokenizer : Bloodhound.tokenizers.obj.whitespace('name'),
+			queryTokenizer : Bloodhound.tokenizers.whitespace,
+			/* prefetch : '/gameList' */
+			
+			prefetch : {
+				url : '/gameList',
+				filter : function(list){
+					return $.map(list, function(game){
+						return {name : game};
+					});
+				}
+			} 
+		});
+		games.initialize();
+		console.log("games : " + games);
+		console.log("name : " + name);
+		
+		$('.typeahead').tagsinput({
+			
+			typeaheadjs : {
+				name : 'games',
+				displayKey : 'name',
+				valueKey : 'name',
+				source : games.ttAdapter(),
+				
+				hint: true,
+				highlight: true,
+				minLength: 1
+			}
+		});
+	
+	
+	</script>
 
 </body>
 </html>

@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -214,17 +215,12 @@ public class Board_hs_Controller {
 
 	// 글 작성
 	@RequestMapping(value = "/board_write", method = RequestMethod.POST)
-	public String write(Board_writeVO board_writeVO) {
-		boardService.insertBoard(board_writeVO);
+	public String write(Board_writeVO board_writeVO, String gameNames) {
+		boardService.insertBoard(board_writeVO, gameNames);
 
 		int bt_no = board_writeVO.getBt_no();
 		int m_no = board_writeVO.getM_no();
-		
-		System.out.println(board_writeVO.getBw_secret());
-
-		System.out.println(bt_no);
-		System.out.println(m_no);
-
+		//회원 포인트 올리기
 		boardService.boardPointUpdate(m_no);
 		
 		
@@ -246,11 +242,25 @@ public class Board_hs_Controller {
 
 	}
 
-	// 수정하기 view.
+	// 수정하기 view 로 정보 다 보내기
 	@RequestMapping(value = "/board_modify_view", method = RequestMethod.GET)
 	public String modify_view(Model model, HttpServletRequest rq, int bw_no) {
 		
 		model.addAttribute("content_view", boardService.modify_view(bw_no));
+		
+		ArrayList<HashMap<String, Object>> gameNamesList = boardService.selectGameNameCom(bw_no);
+		
+		String gameName = "";
+		
+		
+		for(HashMap<String, Object> gameNames : gameNamesList) {
+			System.out.println("1 : " + gameNames);			//{G_NAME_KOR = aa, G_NO = 1} 이런식으로 출력
+			System.out.println("2 : " + gameNames.get("G_NAME_KOR"));
+			gameName += (String) gameNames.get("G_NAME_KOR") + ","; 
+		}
+		
+		System.out.println(gameName);
+		model.addAttribute("gameNames", gameName);
 		
 		return "board_hs/modify_view";
 	}
@@ -259,41 +269,16 @@ public class Board_hs_Controller {
 	//수정하기
 	//수정했을때 수정된 content 보기
 	@RequestMapping(value = "/board_modify", method = RequestMethod.POST)
-	public String modify(Board_writeVO board_writeVO, Model model) {
+	public String modify(Board_writeVO board_writeVO, String gameNames, Model model) {
 		boardService.modify(board_writeVO);
 		int bw_no = board_writeVO.getBw_no();
+		
+		boardService.modifyGameName(gameNames, board_writeVO);
 		
 		return "redirect:content_view?bw_no="+bw_no;
 	}
 	
-	/* 수정했을때 각각 게시판으로 가기
-	@RequestMapping(value = "/board_modify", method = RequestMethod.POST)
-	public String modify(Board_writeVO board_writeVO, Model model) {
-
-		System.out.println("modify()");
-
-		boardService.modify(board_writeVO);
-		
-		int bt_no = board_writeVO.getBt_no();
-		
-		if (bt_no == 1) {
-			return "redirect:board_story";
-		} else if (bt_no == 2) {
-			return "redirect:board_open_review";
-		} else if (bt_no == 3) {
-			return "redirect:board_meet";
-		} else if (bt_no == 4) {
-			return "redirect:board_news";
-		} else if (bt_no == 5) {
-			return "redirect:board_qna";
-		} else if(bt_no == 6){
-			return "redirect:board_creation";
-		}
-		return null;
-	}
-	*/
-
-	///////////////////////////////////////// 카페리뷰, 카페정보 관련/////////////////////////////////////
+///////////////////////////////////////// 카페리뷰, 카페정보 관련/////////////////////////////////////
 
 	
 	// 지도
@@ -386,10 +371,10 @@ public class Board_hs_Controller {
 	}
 	
 	// 리뷰 작성하기
-	@RequestMapping("/insertReview")
-	public String insertReview(Cafe_reviewVO cafe_reviewVO) {
+	@RequestMapping( value = "/insertReview", method = RequestMethod.POST)
+	public String insertReview(Cafe_reviewVO cafe_reviewVO, String gameNames) {
 
-		boardService.insertReview(cafe_reviewVO);
+		boardService.insertReview(cafe_reviewVO, gameNames);
 		
 		int c_no = cafe_reviewVO.getC_no();
 		int m_no = cafe_reviewVO.getM_no();
@@ -403,6 +388,21 @@ public class Board_hs_Controller {
 	@RequestMapping(value = "/review_modify_view")
 	public String review_modify_view(int cr_no, Model model, HttpServletRequest rq) {
 		model.addAttribute("cafe_review", boardService.selectReviewOne(cr_no));
+		
+		ArrayList<HashMap<String, Object>> gameNamesList = boardService.selectGameNameCR(cr_no);
+		System.out.println(gameNamesList);
+		String gameName = "";
+		
+		for(HashMap<String, Object> gameNames : gameNamesList) {
+			System.out.println(gameNames);
+			System.out.println(gameNamesList);
+			gameName += (String) gameNames.get("G_NAME_KOR") + ","; 
+			System.out.println(gameName);
+		}
+		
+		System.out.println(gameName);
+		
+		model.addAttribute("gameNames", gameName);
 		
 		return "board_hs/cafe_review_modify_view";
 	}
@@ -546,7 +546,7 @@ public class Board_hs_Controller {
 		return "board_hs/write_view2";
 	}
 	
-	
+	//태그. 자동완성기능시 이용
 	@ResponseBody
 	@RequestMapping("/gameList")
 	public ArrayList<String> gameNameList(){
@@ -554,6 +554,9 @@ public class Board_hs_Controller {
 		System.out.println(boardService.gameNameList());
 		return boardService.gameNameList();
 	}
+	
+	
+	
 	/////////////////////////////////// 게시물 작성 시 파일 업로드 부분(DB에 넣는거 X)/////////////////////////////////
 
 	/**

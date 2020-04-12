@@ -36,11 +36,12 @@
 <!-- <script src="https://kit.fontawesome.com/4b0668ef4e.js" crossorigin="anonymous"></script> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel = "stylesheet" href = "css/board_hs/tagsinput.css" />
 <!-- Main Stylesheets -->
 
 <link rel="stylesheet" href="css/board_hs/writestyle.css" />
 
-
+<script src = "js/board_hs/ckeditor.js" ></script>
 
 </head>
 <body id = "top">
@@ -71,10 +72,16 @@
 				<div class = "cafe-square"></div>
 				
 				
-				<form action="insertReview" enctype="multipart/form-data">
+				<form action="insertReview" enctype="multipart/form-data" method = "post">
 					<table class="write-table">
 						
 						<input type = "hidden" name = "c_no" value = "${c_no}">
+						
+						<tr class = "row">
+							<td class = "cell" id = "bloodhound">
+								<input name = "gameNames" class = "typeahead" type = "text" data-role = "tagsinput">
+							</td>
+						</tr>
 						
 						<!-- 입력창 -->
 						<tr class = "row">
@@ -124,5 +131,81 @@
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	
 	<script src="js/footer/footer_hee.js"></script>
+	<script src ="js/board_hs/tagsinput.js"></script>
+	<script src="js/board_hs/typeahead.js"></script>
+	
+		<script>
+		
+		var games = new Bloodhound({
+			datumTokenizer : Bloodhound.tokenizers.obj.whitespace('name'),
+			queryTokenizer : Bloodhound.tokenizers.whitespace,
+			/* prefetch : '/gameList' */
+			
+			prefetch : {
+				url : '/gameList',
+				filter : function(list){
+					return $.map(list, function(game){
+						return {name : game};
+					});
+				}
+			} 
+		});
+		games.initialize();
+		console.log("games : " + games);
+		console.log("name : " + name);
+		
+		$('.typeahead').tagsinput({
+			
+			typeaheadjs : {
+				name : 'games',
+				displayKey : 'name',
+				valueKey : 'name',
+				source : games.ttAdapter(),
+				
+				hint: true,
+				highlight: true,
+				minLength: 1
+			}
+		});
+	
+	
+	</script> 
+	<script type="text/javascript">
+			var myEditor;
+			ClassicEditor
+				.create( document.querySelector( '#editor' ), {
+					
+					
+					
+					
+					ckfinder: {
+				        uploadUrl: '${pageContext.request.contextPath}/fileupload' // 내가 지정한 업로드 url (post로 요청감)
+				       
+					},
+					
+					toolbar: [ 'heading', '|',  'bold', 'italic','fontSize','fontColor', 'fontFamily', 'alignment:left', 'alignment:center', 'alignment:right','link', 'bulletedList', 'numberedList', 'blockQuote','insertTable',  'imageUpload', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
+
+					image : {
+						styles : ['full', 'alignLeft', 'alignRight']
+					},
+					
+					uiClor : '#FFFFFF',
+					
+					removePlugins: [ 'ImageCaption' ],
+					
+					alignment: {
+			            options: [ 'left', 'center', 'right' ]
+			        }
+				} )
+				.then( editor => {
+			        console.log( 'Editor was initialized', editor );
+			        myEditor = editor;
+		    } )
+			.catch( error => {
+			    console.error( error );
+			} );
+		</script>
+	
+	
 </body>
 </html>

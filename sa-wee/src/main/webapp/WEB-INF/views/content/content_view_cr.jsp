@@ -116,6 +116,13 @@
 				<div class="col-lg-8 blog-content">
 					
 					<p>${content_view_cr['CR_CONTENT']}</p>
+					
+					
+					<!-- 태그 -->
+					<c:forEach items = "${gameName}" var = "gameName" >
+						<a href = "gameInfo?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']}&nbsp;</a>&nbsp;
+					</c:forEach>
+					
 
 					<!-- 추천 -->
 					<br /> <br />
