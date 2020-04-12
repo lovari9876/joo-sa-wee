@@ -471,7 +471,7 @@
 			</when>
 			
 			<when test='r_type == "댓글"'>
-				m.m_id, cm.cm_content, cm.cm_report_num, cm.cm_no, cm.m_no AS r_id
+				m.m_id, cm.cm_content, cm.cm_report_num, cm.cm_no, cm.cm_no2, cm.cm_type, cm.m_no AS r_id
 				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
                 LEFT JOIN cm_comment cm ON r.r_type_no = cm.cm_no WHERE
 			</when>

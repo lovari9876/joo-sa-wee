@@ -71,11 +71,11 @@
 
 					</form>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
-						<button type="button" class="btn"
+						<button id="in_date" type="button" class="btn <c:out value="${sort == 'in_date' ? 'active' : ''}"/>" value="in_date" 
 							onclick ="location.href='user_list?sort=in_date'">가입일 순</button>
-						<button type="button" class="btn" 
+						<button id="m_id" type="button" class="btn <c:out value="${sort == 'm_id' ? 'active' : ''}"/>" value="m_id"
 							onclick ="location.href='user_list?sort=m_id'">아이디 순</button>
-						<button type="button" class="btn"
+						<button id="rank" type="button" class="btn <c:out value="${sort == 'rank' ? 'active' : ''}"/>" value="rank"
 							onclick ="location.href='user_list?sort=rank'">등급 순</button>
 					</div>
 				</div>
@@ -83,9 +83,7 @@
 
 				<section class="list-section">
 
-					<!-- 	<div class="limiter">
-						<div class="container-table100">
-							<div class="wrap-table100"> -->
+				
 
 
 					<!-- 리스트 -->
@@ -186,7 +184,7 @@
 		</div>
 	</div>
 
-	
+	<script src="js/admin/addTab.js" type="text/javascript"></script> 
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script> 

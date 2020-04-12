@@ -105,10 +105,10 @@
 						<button type="button" class="btn selectIsland_btn" data-BW="${board['BT_NO']} ${board['BW_NO']} ${board['M_NO']}">무인도 행</button>
 					</div>
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
-						<button type="button" class="btn"
+						<button type="button" class="btn <c:out value="${sort == 'hit' ? 'active' : ''}"/>"
 							onclick ="location.href='board_list?sort=hit'">조회수</button>
-						<button type="button" class="btn"
-							onclick ="location.href='board_list?sort=report'">신고수</button>
+						<button type="button" class="btn <c:out value="${sort == 'report' ? 'active' : ''}"/>"
+							onclick ="location.href='board_list?sort=report'">신고수</button>s
 					</div>
 				</div>
 
