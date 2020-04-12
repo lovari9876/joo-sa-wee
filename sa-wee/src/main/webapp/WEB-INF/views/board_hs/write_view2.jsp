@@ -82,9 +82,11 @@
 					<table class="write-table">
 						<!-- 첫번째 select box 선택되어져있게 -->
 						<input id = "bt_no" type = "hidden"  value = "${bt_no}"/>
-						<!-- 일단 이렇게 안넘기면 board_writeVO 에서 m_no 을 가져오지 못함. -->
+						<!-- 일단 이렇게 안넘기면 회원 포인트 올릴때 board_writeVO 에서 m_no 을 가져오지 못함. -->
 						<input name = "m_no" type = "hidden" value = "11"/>
 						<tr class = "row">
+							
+							<td class = "cell">말머리 선택</td>
 							<td class = "cell">
 								<select id = "board" name = "bt_no" ></select> 
 								<select id = "sub" name = "s_no"></select>
@@ -92,28 +94,25 @@
 							
 						</tr>
 						
+						<!-- 입력창 -->
+						<tr class="row">
+							<td class = "cell">제목</td>
+							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요"></td>
+						</tr>
+
+						<tr class="row">
+							<td class = "cell">내용</td>
+							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요"></textarea></td>
+						</tr>
+						
 						<tr class = "row">
+							<td class = "cell">태그</td>
 							<td class = "cell" id = "bloodhound">
-								<input name = "bw_title" class = "typeahead" type = "text" data-role = "tagsinput">
-								<!-- <input data-role = "tagsinput" type = "text"> -->
-								<!-- <select multiple data-role = "tagsinput">
-									
-								</select> -->
-								
+								<input name = "gameNames" class = "typeahead" type = "text" data-role = "tagsinput">
 							</td>
 						</tr>
 						
-						<!-- 입력창 -->
-						<!-- <tr class="row">
-							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요"></td>
-						</tr> -->
 
-						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요"></textarea></td>
-						</tr>
-
-
-						
 					</table>
 					<button class = "list" type="button" onclick="toList()">목록</button>
 					<button class = "write-btn" type = "submit">작성완료</button>

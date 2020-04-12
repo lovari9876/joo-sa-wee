@@ -36,6 +36,7 @@
 <!-- <script src="https://kit.fontawesome.com/4b0668ef4e.js" crossorigin="anonymous"></script> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel = "stylesheet" href = "css/board_hs/tagsinput.css" />
 <!-- Main Stylesheets -->
 
 <link rel="stylesheet" href="css/board_hs/writestyle.css" />
@@ -78,6 +79,13 @@
 						<input type="hidden" name="cr_no" value="${cafe_review['CR_NO']}"/>
 						<input type = "hidden" name="cr_island" value = "${cafe_review['CR_ISLAND']}" />
 
+						<tr class="row">
+							<td class="cell" id = "bloodhound">
+								<input data-role = "tagsinput" name="gameNames" value = "${gameNames}" class = "typeahead" type = "text">
+								
+							</td>
+						</tr>
+						
 						<tr class="row">
 							<td class="cell"><input type="text" name="cr_title" value = "${cafe_review['CR_TITLE']}"  placeholder = "제목을 입력하세요"></td>
 							
@@ -126,7 +134,8 @@
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	<script src="js/board_hs/category.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
-	
+	<script src ="js/board_hs/tagsinput.js"></script>
+	<script src="js/board_hs/typeahead.js"></script>
 	
 	
 	<!-- ckEditor 관련 -->
@@ -166,6 +175,46 @@
 			    console.error( error );
 			} );
 		</script>
+		
+		
+	
+	<script>
+		
+		var games = new Bloodhound({
+			datumTokenizer : Bloodhound.tokenizers.obj.whitespace('name'),
+			queryTokenizer : Bloodhound.tokenizers.whitespace,
+			/* prefetch : '/gameList' */
+			
+			prefetch : {
+				url : '/gameList',
+				filter : function(list){
+					return $.map(list, function(game){
+						return {name : game};
+					});
+				}
+			} 
+		});
+		games.initialize();
+		console.log("games : " + games);
+		console.log("name : " + name);
+		
+		$('.typeahead').tagsinput({
+			
+			typeaheadjs : {
+				name : 'games',
+				displayKey : 'name',
+				valueKey : 'name',
+				source : games.ttAdapter(),
+				
+				hint: true,
+				highlight: true,
+				minLength: 1
+			}
+		});
+	
+	
+	</script>
+	
 
 </body>
 </html>

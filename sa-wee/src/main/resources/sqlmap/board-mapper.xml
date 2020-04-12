@@ -154,15 +154,34 @@
 	
 	
 	
-	<!-- 게시글 작성하기  -->
+	<!-- 커뮤니티 게시글 작성하기  -->
 	<!--회원 번호 넣는 거 어떻게 할건디  -->
-
-	<insert id="insertBoard" parameterType="com.soninlawisdice.vo.Board_writeVO">
-		insert into board_write 
-		(bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
-		values 
-		( board_write_seq.nextval, 11, #{board_writeVO.bt_no}, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
+	<!-- parameterType="com.soninlawisdice.vo.Board_writeVO" -->
+	<insert id="insertBoard" >
+		INSERT ALL
+		INTO
+			BOARD_WRITE
+			(BW_NO, M_NO, BT_NO, S_NO, BW_TITLE, BW_CONTENT, BW_HIT, BW_RECOMMEND_NUM, BW_REPORT_NUM, BW_ISLAND, BW_SECRET)
+			
+			VALUES
+			(BOARD_WRITE_SEQ.NEXTVAL, 11, #{board_writeVO.bt_no}, #{board_writeVO.s_no}, #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n')
+		
+		<foreach collection="gameName" item = "gameName">
+		INTO
+			BOARD_GAME
+			(G_NO, BT_NO, BG_WNO)
+			VALUES
+			(
+				(SELECT G.G_NO FROM GAME G WHERE G.G_NAME_KOR = #{gameName}),
+				#{board_writeVO.bt_no},
+				board_write_seq.nextval
+				
+			)	
+		</foreach>
+			SELECT * FROM DUAL
 	</insert>
+	
+	
 	
 	<!-- modify_view 로 불러오기 -->
 	<select id = "modify_view" resultType = "com.soninlawisdice.vo.Board_writeVO">
@@ -171,8 +190,129 @@
 		where bw_no = #{bw_no}
 	</select>
 	
+	<!-- ......이거 하나로 어찌해야하나..bt_no 을 어디서 받아오나..bt_no 못불러 와서 걍 테이브별로.... -->
+	<!-- (커뮤니티 게시판)수정하는 페이지에 게임 이름들 가져오기 --> 
+	<select id="selectGameNameCom" resultType = "java.util.HashMap">
+		SELECT 
+		G.G_NAME_KOR, G.G_NO 
+		FROM GAME G, BOARD_GAME BG 
+		WHERE 
+		BG.G_NO = G.G_NO 
+		AND BG.BT_NO BETWEEN 1 AND 6
+		AND BG.BG_WNO = #{bw_no}
+	</select>
+	
+	
+	
+	
+
+	<update id="modify" statementType="CALLABLE" >
+		{ CALL
+			DECLARE
+			      
+			      TYPE bg_no_table IS TABLE OF trade_game.tg_no%TYPE 
+			            INDEX BY BINARY_INTEGER;             
+			      TYPE tg_name_table IS TABLE OF trade_game.tg_name%TYPE 
+			            INDEX BY BINARY_INTEGER;       
+			     
+			
+				    tg_no_tab       tg_no_table;       	 해당 글에 이미 있는 tg_no 담기
+				    tg_name_tab    tg_name_table;		 mybatis  foreach 로 게임 담기
+				    tg_price_tab    tg_price_table;      mybatis  foreach 로 가격 담기
+				     
+				     nocnt binary_integer :=0;
+				     gcnt binary_integer :=0;
+				     j binary_integer :=0;
+				     
+				     글번호 넣기
+				     v_t_no     trade_game.t_no%type := #{tradeVO.t_no};
+			     
+			
+			   BEGIN
+			    
+			      trade(보부상) 글 수정
+				  UPDATE 
+				  	TRADE
+				  SET 
+					S_NO = #{tradeVO.s_no},
+					T_TITLE = #{tradeVO.t_title},
+					T_CONTENT = #{tradeVO.t_content},
+					T_UPDATED_DATE = SYSDATE						
+				  	<if	test="tradeVO.t_island == 1">
+							, T_ISLAND = 2
+					</if>
+				  WHERE 
+				  	T_NO = v_t_no;
+				  
+				  commit;
+			    
+			     여기부턴 trade_game(게임, 가격) 수정
+			    
+			     해당 글의 tg_no 가져오기..
+			     for tg_nolist in (select tg_no from trade_game where t_no = v_t_no) loop			     
+			        nocnt := nocnt +1;			        
+			        tg_no_tab(nocnt) := tg_nolist.tg_no;			        
+			     end loop; 
+			          
+			     mybatis  foreach 로 게임 담기
+					<foreach collection="gamePrice" index="game" item="price">	
+					    gcnt := gcnt +1;
+					    tg_name_tab(gcnt) := #{game};
+					    tg_price_tab(gcnt)  := #{price};
+					</foreach>
+ 		        
+			     조건 3가지에 따른 update
+			        IF tg_name_tab.count = tg_no_tab.count THEN
+			
+			           for cnt in 1..tg_no_tab.count  loop     
+			               -- j := j +1;             
+			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			
+			        ELSIF tg_name_tab.count > tg_no_tab.count THEN
+			
+			           for cnt in 1..tg_no_tab.count  loop     
+			                -- j := j +1;             
+			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			            
+			           for cnt in tg_no_tab.count+1..tg_name_tab.count  loop     
+			                -- j := j +1;             
+			                insert into trade_game (tg_no, t_no, g_no, tg_name, tg_price) values (get_trade_game_seq, v_t_no, null,  tg_name_tab(cnt), tg_price_tab(cnt));
+			                commit;        
+			           end loop;
+			
+			        ELSE
+			
+			           for cnt in 1..tg_name_tab.count  loop     
+			                -- j := j +1;             
+			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			            
+			           for cnt in tg_name_tab.count+1..tg_no_tab.count  loop     
+			                -- j := j +1;                    
+			                DELETE 	FROM trade_game WHERE tg_no = tg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			
+			        END IF;
+			
+			   END		 
+		}
+  
+	</update>
+
+	
+
+	
+	
+	
 	<!-- 글 수정하기 -->
-	<update id="modify" parameterType="com.soninlawisdice.vo.Board_writeVO">
+	<!-- <update id="modify" parameterType="com.soninlawisdice.vo.Board_writeVO">
+		
 		update board_write 
 		set bt_no = #{board_writeVO.bt_no}, 
 		s_no = #{board_writeVO.s_no}, 
@@ -183,11 +323,30 @@
 			, bw_island = 2
 		</if> 
 		where bw_no = #{board_writeVO.bw_no}
+	</update> -->
+	
+	<!-- 게임 이름 수정하기 -->
+	<!-- <update id="modifyGameName">
+		DELETE FROM BOARD_GAME WHERE bt_no = #{board_writeVO.bt_no} AND bg_wno = #{board_writeVO.bw_no}
+		
+		commit
+		
+		INSERT ALL
+		
+		<foreach collection="gameName" item = "gameName">
+		INTO
+			BOARD_GAME
+			(G_NO, BT_NO, BG_WNO)
+			VALUES
+			(
+				(SELECT G.G_NO FROM GAME G WHERE G.G_NAME_KOR = #{gameName}),
+				#{board_writeVO.bt_no},
+				#{board_writeVO.bw_no}
+			)
+		</foreach>
+		SELECT * FROM DUAL	
 	</update>
-	
-	
-	
-	
+	 -->
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ카페 리뷰, 카페정보ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	
 	<!-- 카페리뷰 게시판 -->
@@ -360,14 +519,34 @@
 		select c_title from cafe where c_no = #{c_no}
 	</select>
 	
-	<!-- 회원번호 수정해야함 -->
-	<!-- 카페 리뷰 작성하기 -->
-	<insert id="insertReview" parameterType="com.soninlawisdice.vo.Cafe_reviewVO">
-		insert into cafe_review 
-		(cr_no, m_no, bt_no, c_no,  cr_title, cr_content, cr_hit, cr_recommend_num, cr_report_num, cr_island) 
-		values 
-		( cafe_review_seq.nextval, 5, 11, #{cafe_reviewVO.c_no}, #{cafe_reviewVO.cr_title}, #{cafe_reviewVO.cr_content}, 0, 0, 0, 0 ) 
+	
+	
+	<!-- 카페 리뷰 게시글 작성하기  -->
+	<!--회원 번호 넣는 거 어떻게 할건디  -->
+	<insert id="insertReview" >
+		INSERT ALL
+		INTO
+			CAFE_REVIEW
+			(CR_NO, M_NO, BT_NO, C_NO, CR_TITLE, CR_CONTENT, CR_HIT, CR_RECOMMEND_NUM, CR_REPORT_NUM, CR_ISLAND)
+			
+			VALUES
+			(CAFE_REVIEW_SEQ.NEXTVAL, 5, 11, #{cafe_reviewVO.c_no}, #{cafe_reviewVO.cr_title}, #{cafe_reviewVO.cr_content}, 0, 0, 0, 0)
+		
+		<foreach collection="gameName" item = "gameName">
+		INTO
+			BOARD_GAME
+			(G_NO, BT_NO, BG_WNO)
+			VALUES
+			(
+				(SELECT G.G_NO FROM GAME G WHERE G.G_NAME_KOR = #{gameName}),
+				11,
+				CAFE_REVIEW_SEQ.NEXTVAL
+			)	
+		</foreach>
+			SELECT * FROM DUAL
 	</insert>
+	
+	
 	
 	<!--리뷰 수정하기  -->
 	<update id="review_modify" parameterType="com.soninlawisdice.vo.Cafe_reviewVO">
@@ -385,6 +564,20 @@
 	<delete id="review_delete">
 		delete from cafe_review where cr_no = #{cr_no}
 	</delete>
+	
+	
+	<!-- ......이거 하나로 어찌해야하나..bt_no 을 어디서 받아오나..bt_no 못불러 와서 걍 테이브별로.... -->
+	<!-- (카페리뷰)수정하는 페이지에 게임 이름들 가져오기 --> 
+	<select id="selectGameNameCR" resultType = "java.util.HashMap">
+		SELECT 
+		G.G_NAME_KOR, G.G_NO 
+		FROM GAME G, BOARD_GAME BG 
+		WHERE 
+		BG.G_NO = G.G_NO 
+		AND BG.BT_NO = 11
+		AND BG.BG_WNO = #{cr_no}
+	</select>
+	
 	
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 1 : 1 문의ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	<!-- 1:1 문의 목록 -->

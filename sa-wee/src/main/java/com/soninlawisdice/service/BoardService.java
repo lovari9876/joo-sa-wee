@@ -32,7 +32,12 @@ public interface BoardService {
 	public int cboard_listCount(SearchCriteria scri, int bt_no);
 
 	// 게시글 작성하기
-	public void insertBoard(Board_writeVO board_writeVO);
+	public void insertBoard(Board_writeVO board_writeVO, String gameNames);
+	
+
+	//게임 이름들 가져오기
+	public ArrayList<HashMap<String, Object>> selectGameNameCom(int bw_no);
+	
 	
 	//modify_view 에 불러오기
 	public Board_writeVO modify_view(int bw_no);
@@ -40,7 +45,9 @@ public interface BoardService {
 	// 글 수정하기
 	public void modify(Board_writeVO board_writeVO);
 	
-	
+
+	//게임 이름 수정하기
+	public void modifyGameName(String gameNames, Board_writeVO board_writeVO);
 
 	///////////////////// 카페 리뷰///////////////////////////
 	
@@ -82,13 +89,16 @@ public interface BoardService {
 	public String get_CafeName(int c_no);
 	
 	//리뷰 작성하기
-	public void insertReview(Cafe_reviewVO cafe_reviewVO);
+	public void insertReview(Cafe_reviewVO cafe_reviewVO, String gameNames);
 		
 	//리뷰 수정하기
 	public void review_modify(Cafe_reviewVO cafe_reviewVO);
 	
 	//리뷰 삭제하기
 	public void review_delete(int cr_no);
+	
+	//게임 이름들 가져오기(modify_view 에)
+	public ArrayList<HashMap<String, Object>> selectGameNameCR(int cr_no);
 	
 	
 	//////////////////////////1 : 1 문의 /////////////////////////////

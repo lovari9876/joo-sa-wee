@@ -145,7 +145,7 @@ form{
 }
 
 .write-table input {
-	width: 780px;
+	
 	border: none;
 }
 
@@ -399,12 +399,15 @@ input:focus, select:focus, button:focus, textarea:focus {
   transform: rotate(45deg);
 }
 
-
+/*tagsinput 부분  */
+.badge-info {
+	background : red !important;
+}
 
 /* ckEditor 부분 */
 
 .ck.ck-editor{
-	max-width : 1000px;
+	max-width : 1200px;
 }
 
 .ck-editor__editable{

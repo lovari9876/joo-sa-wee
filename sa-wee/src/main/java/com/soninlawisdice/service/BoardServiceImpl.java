@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,10 +45,25 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.cboard_listCount(scri, bt_no);
 	}
 	
-
+	//게시글 작성.
 	@Override
-	public void insertBoard(Board_writeVO board_writeVO) {
-		boardMapper.insertBoard(board_writeVO);
+	public void insertBoard(Board_writeVO board_writeVO, String gameNames) {
+		
+		//쉼표로 구분하여 받은 gameNames 잘라서 List 에 담기
+		StringTokenizer gns = new StringTokenizer(gameNames, ",");
+		
+		ArrayList<String> gameName = new ArrayList<String>();
+		
+		while(gns.hasMoreTokens()) {
+			gameName.add(gns.nextToken().trim());
+		}
+		boardMapper.insertBoard(board_writeVO, gameName);
+	}
+	
+	//content_view 랑 modify_view 에 게임 이름들 가져오기
+	@Override
+	public ArrayList<HashMap<String, Object>> selectGameNameCom(int bw_no) {
+		return boardMapper.selectGameNameCom(bw_no);
 	}
 
 	// modify_view 에 불러오기
@@ -58,6 +74,21 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void modify(Board_writeVO board_writeVO) {
 		boardMapper.modify(board_writeVO);
+	}
+	
+	//게임이름 수정하기
+	@Override
+	public void modifyGameName(String gameNames, Board_writeVO board_writeVO) {
+		//쉼표로 구분하여 받은 gameNames 잘라서 List 에 담기
+		StringTokenizer gns = new StringTokenizer(gameNames, ",");
+				
+		ArrayList<String> gameName = new ArrayList<String>();
+				
+		while(gns.hasMoreTokens()) {
+			gameName.add(gns.nextToken().trim());
+		}
+		
+		boardMapper.modifyGameName(gameName, board_writeVO);
 	}
 
 	///////////////////// 카페리뷰////////////////////////
@@ -104,6 +135,7 @@ public class BoardServiceImpl implements BoardService {
 		return boardMapper.cafeReview_Count(scri, c_no);
 	}
 	
+
 	//카페 리뷰 댓글 개수
 	@Override
 	public int countCafeReview(int cr_no) {
@@ -141,8 +173,17 @@ public class BoardServiceImpl implements BoardService {
 
 	// 카페 리뷰 작성하기
 	@Override
-	public void insertReview(Cafe_reviewVO cafe_reviewVO) {
-		boardMapper.insertReview(cafe_reviewVO);
+	public void insertReview(Cafe_reviewVO cafe_reviewVO, String gameNames) {
+		
+		//쉼표로 구분하여 받은 gameNames 잘라서 List 에 담기
+		StringTokenizer gns = new StringTokenizer(gameNames, ",");
+		
+		ArrayList<String> gameName = new ArrayList<String>();
+		
+		while(gns.hasMoreTokens()) {
+			gameName.add(gns.nextToken().trim());
+		}
+		boardMapper.insertReview(cafe_reviewVO, gameName);
 	}
 
 	// 리뷰 수정하기
@@ -156,7 +197,12 @@ public class BoardServiceImpl implements BoardService {
 	public void review_delete(int cr_no) {
 		boardMapper.review_delete(cr_no);
 	}
-		
+	
+	//게임 이름들 가져오기
+	@Override
+	public ArrayList<HashMap<String, Object>> selectGameNameCR(int cr_no) {
+		return boardMapper.selectGameNameCR(cr_no);
+	}
 
 	
 	//////////////////////////1 : 1 문의 /////////////////////////////
@@ -216,8 +262,6 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<String> gameNameList() {
 		return boardMapper.gameNameList();
 	}
-	
-	
 	
 	/////////////////////////////////////////////
 	/*

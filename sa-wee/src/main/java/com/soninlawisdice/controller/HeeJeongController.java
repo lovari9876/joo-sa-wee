@@ -63,7 +63,9 @@ public class HeeJeongController {
 		System.out.println(bw_no);
 
 		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
-
+		//게임번호, 게임이름 불러오기
+		model.addAttribute("gameName", boardService.selectGameNameCom(bw_no));
+		System.out.println(boardService.selectGameNameCom(bw_no));
 		// 게시글 조회수
 		contentService.upHitContent(bw_no);
 
@@ -576,7 +578,8 @@ public class HeeJeongController {
 		System.out.println(cr_no);
 
 		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
-
+		model.addAttribute("gameName", boardService.selectGameNameCR(cr_no));
+		
 		// 게시글 조회수
 		contentService.upHitContentCR(cr_no);
 
