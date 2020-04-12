@@ -47,7 +47,7 @@
 	    <security:intercept-url pattern="/**" access="permitAll" />
 	    
     	<!-- csrf 토큰 적용 x -->
-	    <security:csrf disabled="true" />
+    	<security:csrf disabled="true" />
 
 	    <security:form-login
 	        username-parameter="m_id"

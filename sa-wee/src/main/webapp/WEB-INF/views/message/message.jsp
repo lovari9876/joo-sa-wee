@@ -16,9 +16,9 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
 <link href="css/message/message.css" type="text/css" rel="stylesheet">
 
@@ -31,7 +31,6 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" />
-
 </head>
 
 <body>
@@ -61,37 +60,50 @@
 							</div>
 						</div>
 						<div class="inbox_chat">
-							<c:forEach items="${message}" var="message">
-								<div class="chat_list active_chat">
-									<div class="chat_people">
-										<div class="chat_img">
-											<img src="images/bl_share/icons/login/wolf_logo.png"
-												alt="sunil">
-										</div>
-										<input id="n_no" type="hidden" value="${message['N_NO']}" />
-										<div class="chat_ib">
-											<h5>
-												<a href="#" id="n_title">${message['N_TITLE']}</a> <span
-													class="chat_date"> <fmt:formatDate
-														pattern="yyyy-MM-dd HH:mm"
-														value="${message['N_WRITTEN_DATE']}" />
-												</span>
-											</h5>
-											<p>${message['M2_NICK']}</p>
+							<div id="ajax_test">
+								<%-- <c:forEach items="${message}" var="message">
+									<div class="chat_list active_chat">
+										<div class="chat_people">
+											<div class="chat_img">
+												<img src="images/bl_share/icons/login/wolf_logo.png"
+													alt="sunil">
+											</div>
+											<input id="n_no" type="hidden" value="${message['N_NO']}" />
+											<div class="chat_ib">
+												<h5>
+													<a href="#one_note" class="select_note">${message['N_TITLE']}
+														<input id="n_no" type="hidden" value="${message['N_NO']}" />
+													</a> <span class="chat_date"> <fmt:formatDate
+															pattern="yyyy-MM-dd HH:mm"
+															value="${message['N_WRITTEN_DATE']}" />
+													</span>
+												</h5>
+												<p>${message['M2_NICK']}</p>
+											</div>
 										</div>
 									</div>
-								</div>
-								<!-- security -->
-								<input type="hidden" name="${_csrf.parameterName}"
-									value="${_csrf.token}" />
-							</c:forEach>
-
+								</c:forEach> --%>
+							</div>
+							<!-- security -->
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
 						</div>
 					</div>
 
-					<div class="mesgs">
+					<div id="ajax_content" class="mesgs">
 						<div class="msg_history">
-							<div id="note_content">
+							<div id="one_note">
+								<h5 class="text-center" id="one_n_title">${noteContent['N_TITLE']}</h5>
+								<hr />
+								<p>${noteContent['M2_NICK']}
+									<span class="time_date" id="one_n_date"><fmt:formatDate
+											pattern="yyyy-MM-dd HH:mm"
+											value="${noteContent['N_WRITTEN_DATE']}" /></span>
+								</p>
+								<hr />
+								<p id="one_n_content">${noteContent['N_CONTENT']}</p>
+							</div>
+							<%-- <div id="note_content">
 								<h5 class="text-center">${noteContent['N_TITLE']}</h5>
 								<hr />
 								<p>${noteContent['M2_NICK']}
@@ -101,7 +113,7 @@
 								</p>
 								<hr />
 								<p>${noteContent['N_CONTENT']}</p>
-							</div>
+							</div> --%>
 						</div>
 					</div>
 					<ul class="notebox">
@@ -122,12 +134,14 @@
 	</div>
 
 
+
 </body>
 
-<script src="resources/js/mypage/jquery-3.2.1.min.js"></script>
-<script src="resources/js/mypage/popper.min.js"></script>
-<script src="resources/js/mypage/bootstrap.min.js"></script>
-<script src="resources/js/mypage/script.js"></script>
+<script src="js/mypage/jquery-3.2.1.min.js"></script>
+<script src="js/mypage/popper.min.js"></script>
+<script src="js/mypage/bootstrap.min.js"></script>
+<script src="js/mypage/script.js"></script>
+<script src="js/message/content.js"></script>
 
 <!-- Java Script for header  ================================================== -->
 <script src="js/header/jquery.slicknav.min.js"></script>

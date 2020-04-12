@@ -1,6 +1,7 @@
 package com.soninlawisdice.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.MyPageService;
@@ -115,21 +117,37 @@ public class MyPageController {
 	}
 	// ================================= 쪽지 =================================
 
-	@RequestMapping(value = "/message", method = RequestMethod.GET)
+	@RequestMapping(value = "/message", method = {RequestMethod.GET, RequestMethod.POST})
 	public String message(NoteVO noteVO, MemberVO memberVO, Principal principal, Model model) throws Exception {
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
+//		String m_id = principal.getName();
+//		memberVO = myPageService.mypage(m_id);
+//		
+//		int m_no = memberVO.getM_no();
+//		model.addAttribute("message", myPageService.noteView(m_no));
+		return "message/message";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/select_message", method = {RequestMethod.GET,RequestMethod.POST})
+	public HashMap<String, Object> select_message(int n_no, Principal principal, Model model) throws Exception {
+		System.out.println("select_message"+n_no);
 		
-		int m_no = memberVO.getM_no();
-		model.addAttribute("message", myPageService.noteView(m_no));
-		
-		int n_no = 20;
 		model.addAttribute("noteContent", myPageService.noteContent(n_no));
 		
-		return "message/message";
-
+		return myPageService.noteContent(n_no);		
 	}
-
+	
+	
+//	@ResponseBody
+//	@RequestMapping(value = "/select_message", method = {RequestMethod.GET,RequestMethod.POST})
+//	public String select_message(int n_no, Principal principal, Model model) throws Exception {
+//		System.out.println("select_message"+n_no);
+//		
+//		model.addAttribute("noteContent", myPageService.noteContent(n_no));
+//		
+//		return "redirect:/message";		
+//	}
+	
 	@RequestMapping(value = "/send_message", method = RequestMethod.GET)
 	public String send_message(Locale locale, Model model) throws Exception {
 
