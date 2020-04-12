@@ -95,12 +95,18 @@
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
-						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "27" class = "select">회원 관련 문의</button></li>
-						<li data-tab="tab3"><button type = "button" value = "28" class= "select">결제 관련 문의</button></li>
-						<li data-tab="tab4"><button type = "button" value = "29" class = "select">정보수정 요청</button></li>
-						<li data-tab="tab5"><button type = "button" value = "30" class = "select">무인도 관련 문의</button></li>
-						<li data-tab="tab6"><button type = "button" value = "31" class= "select">기타 문의</button></li>
+						<li class="current" data-tab="tab1"><button type = "button" 
+							onclick ="location.href='question_list'">전체보기</button></li>
+						<li data-tab="tab2"><button type = "button" value = "27" class = "select"
+							onclick ="location.href='question_list?s_content=27'">회원 관련 문의</button></li>
+						<li data-tab="tab3"><button type = "button" value = "28" class= "select"
+							onclick ="location.href='question_list?s_content=28'">결제 관련 문의</button></li>
+						<li data-tab="tab4"><button type = "button" value = "29" class = "select"
+							onclick ="location.href='question_list?s_content=29'">정보수정 요청</button></li>
+						<li data-tab="tab5"><button type = "button" value = "30" class = "select"
+							onclick ="location.href='question_list?s_content=30'">무인도 관련 문의</button></li>
+						<li data-tab="tab6"><button type = "button" value = "31" class= "select"
+							onclick ="location.href='question_list?s_content=31'">기타 문의</button></li>
 					</ul>
 
 
@@ -119,7 +125,7 @@
 							</tr>
 
 						<tbody class = "tbody">
-							<c:forEach items="${content_view}" var="question">
+							<c:forEach items="${list}" var="question">
 							<tr class="row">
 								<td class = "cell">${question['RNUM']}</td>
 								<td class = "cell">${question['S_CONTENT']}</td>
@@ -267,18 +273,18 @@
 						<ul class = "pagination">
 							<c:if test="${pageMaker.prev}">
 								<li class = "page-item"><a class = "page-link"
-									href="question_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+									href="question_list${pageMaker.makeSearch(pageMaker.startPage - 1)}&s_content=${s_content}"><i
 										class="icon-double-angle-left"></i></a></li>
 							</c:if>
 
 							<c:forEach begin="${pageMaker.startPage}"
 								end="${pageMaker.endPage}" var="idx">
-								<li class = "page-item"><a class = "page-link" href="question_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<li class = "page-item"><a class = "page-link" href="question_list${pageMaker.makeSearch(idx)}&s_content=${s_content}">${idx}</a></li>
 							</c:forEach>
 
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 								<li class = "page-item"><a class = "page-link"
-									href="question_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+									href="question_list${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content=${s_content}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
 						</ul>

@@ -140,5 +140,9 @@ public interface AdminMapper {
 	public int allMember(); //전체 회원수
 	public int allComment();//전체 댓글수
 	public int allBoard();	//전체 게시글수
+	
+	
+	public ArrayList<HashMap<String, String>> getWeekStatistics();
+	
 
 }

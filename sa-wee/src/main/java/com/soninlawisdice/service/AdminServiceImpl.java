@@ -297,4 +297,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.allBoard();
 	}
 	
+	@Override
+	public ArrayList<HashMap<String, String>> getWeekStatistics() {
+		return adminMapper.getWeekStatistics();
+	}
+	
+	
 }
