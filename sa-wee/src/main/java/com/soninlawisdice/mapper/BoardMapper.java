@@ -17,10 +17,10 @@ public interface BoardMapper {
 
 	//////////////////히트다 히트, 베스트////////////
 	//히트다히트
-	public ArrayList<HashMap<String, Object>>  selectHitList();
+	public ArrayList<HashMap<String, Object>> selectHitList();
 	
 	//베스트
-	public ArrayList<HashMap<String, Object>>  selectBestList();
+	public ArrayList<HashMap<String, Object>> selectBestList();
 	
 	
 	/////////////////////커뮤니티/////////////////////////

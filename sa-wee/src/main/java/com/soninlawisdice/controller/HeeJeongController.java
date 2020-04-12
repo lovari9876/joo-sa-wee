@@ -63,17 +63,17 @@ public class HeeJeongController {
 		System.out.println(bw_no);
 
 		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
-<<<<<<< HEAD
+
 		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
 		int m_no = 9;
 		model.addAttribute("m_no", m_no);
 		
-=======
+
 		//게임번호, 게임이름 불러오기
 		model.addAttribute("gameName", boardService.selectGameNameCom(bw_no));
 		System.out.println(boardService.selectGameNameCom(bw_no));
->>>>>>> dev-hs
+
 		// 게시글 조회수
 		contentService.upHitContent(bw_no);
 
