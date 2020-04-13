@@ -28,4 +28,10 @@ public interface MyPageMapper {
 	// 쪽지 내용 보기
 	public HashMap<String, Object> noteContent(@Param("n_no") int n_no) throws Exception;
 
+	// 쪽지 보내기
+	public void sendMessage(@Param("m_no") int m_no, @Param("noteVO")NoteVO noteVO) throws Exception; 
+	
+	// 닉네임으로 회원정보 검색
+	public MemberVO mypageNick(@Param("m_nick") String m_nick) throws Exception;
+
 }

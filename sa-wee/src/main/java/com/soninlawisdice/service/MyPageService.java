@@ -3,8 +3,6 @@ package com.soninlawisdice.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.NoteVO;
 
@@ -23,11 +21,15 @@ public interface MyPageService {
 	public void modifyMember(MemberVO memberVO) throws Exception;
 
 	// 쪽지 보여주기
-	public ArrayList<HashMap<String, Object>> noteView(@Param("m_no") int m_no) throws Exception;
+	public ArrayList<HashMap<String, Object>> noteView(int m_no) throws Exception;
 	
 	// 쪽지 내용 보기
-	public HashMap<String, Object> noteContent(@Param("n_no") int n_no) throws Exception;
+	public HashMap<String, Object> noteContent(int n_no) throws Exception;
 
-	
-	
+	// 쪽지 보내기
+	public void  sendMessage(int m_no, NoteVO noteVO) throws Exception; 
+		
+	// 닉네임으로 회원정보 검색
+	public MemberVO mypageNick(String m_nick) throws Exception;
+
 }

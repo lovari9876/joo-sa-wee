@@ -45,16 +45,18 @@
 			data-scrollwhell="0" data-draggable="1"></div>
 
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form">
+			<form class="contact100-form validate-form" action="/send_message" >
 				<span class="contact100-form-title"> send message </span>
-
+				
+				<input type="hidden" id="m_no2" name="m_no2" value="${member.m_no}"/>
+				
 				<div class="wrap-input100 validate-input" data-validate="닉네임을 입력하세요">
-					<input class="input100" type="text" name="name" placeholder="닉네임">
+					<input class="input100" type="text" name="m_nick" placeholder="닉네임">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="wrap-input100 validate-input" data-validate="제목을 입력하세요">
-					<input class="input100" type="text" name="name" placeholder="제목">
+					<input class="input100" type="text" name="n_title" id="n_title" placeholder="제목">
 					<span class="focus-input100"></span>
 				</div>
 
@@ -65,7 +67,7 @@
 				</div> -->
 
 				<div class="wrap-input100 validate-input" data-validate="메세지를 입력하세요">
-					<textarea class="input100" name="message" placeholder="내용"></textarea>
+					<textarea class="input100" name="n_content" id="n_content" placeholder="내용"></textarea>
 					<span class="focus-input100"></span>
 				</div>
 

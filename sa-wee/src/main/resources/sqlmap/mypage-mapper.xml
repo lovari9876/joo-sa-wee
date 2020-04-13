@@ -101,5 +101,21 @@
 			where n.n_no = #{n_no}
 	</select>
 	
+	<!-- <insert id="sendMessage">
+	insert into note 
+		(n_no, m_no, m_no2, n_title, n_content, n_written_date, n_check) 
+	select NOTE_SEQ.nextval, m_no , #{m_no2}, #{n_title}, #{n_content}, sysdate, 1 from member 
+		 where m_no = (select m_no from member where m_nick = #{m_nick})
+	</insert> -->
+	
+	<insert id="sendMessage">
+	insert into note 
+		(n_no, m_no, m_no2, n_title, n_content, n_written_date, n_check) 
+	values (NOTE_SEQ.nextval, #{m_no}, #{noteVO.m_no2}, #{noteVO.n_title}, #{noteVO.n_content}, sysdate, 1) 
+	</insert>
+	
+	<select id="mypageNick" resultType="com.soninlawisdice.vo.MemberVO">
+		select * from member where m_nick = #{m_nick}
+	</select>
 
 </mapper>

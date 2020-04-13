@@ -117,7 +117,7 @@
 						</div>
 					</div>
 					<ul class="notebox">
-						<li><a href="send_message"
+						<li><a href="send_messageview"
 							onClick="window.open(this.href, '', 'width=900, height=800, left=400, top=100'); return false;">
 								<i class="fas fa-paper-plane"></i> 쪽지 보내기
 						</a></li>

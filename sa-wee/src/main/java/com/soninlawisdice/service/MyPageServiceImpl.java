@@ -57,8 +57,22 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	// 쪽지 내용 보기
-	public HashMap<String, Object> noteContent(@Param("n_no") int n_no) throws Exception{
+	@Override
+	public HashMap<String, Object> noteContent(int n_no) throws Exception{
 		return myPageMapper.noteContent(n_no);
 	}
 
+	// 쪽지 보내기
+	@Override
+	public void sendMessage(int m_no, NoteVO noteVO) throws Exception{
+		myPageMapper.sendMessage(m_no, noteVO);
+	}
+	
+	// 닉네임으로 회원정보 검색
+	@Override
+	public MemberVO mypageNick(String m_nick) throws Exception{
+		return myPageMapper.mypageNick(m_nick);
+	}
+
+	
 }

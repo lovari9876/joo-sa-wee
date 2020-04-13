@@ -148,10 +148,39 @@ public class MyPageController {
 //		return "redirect:/message";		
 //	}
 	
-	@RequestMapping(value = "/send_message", method = RequestMethod.GET)
-	public String send_message(Locale locale, Model model) throws Exception {
+	@RequestMapping(value = "/send_messageview", method = RequestMethod.GET)
+	public String send_messageview(Principal principal, MemberVO memberVO, Model model) throws Exception {
+		System.out.println("send_messageview()" + memberVO.getM_no());
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
 
+		model.addAttribute("member", memberVO);
+		
+		
 		return "message/send_message";
 	}
-
+	
+//	@RequestMapping(value = "/send_message", method = RequestMethod.GET)
+//	public String send_message(NoteVO noteVO) throws Exception {
+//		System.out.println("send_message()");
+//		
+//		myPageService.sendMessage(noteVO);
+//		
+//		return "message/send_message";
+//	}
+	
+	@RequestMapping(value = "/send_message", method = RequestMethod.GET)
+	public String send_message(String m_nick, NoteVO noteVO) throws Exception {
+		System.out.println("send_message()");
+		
+		System.out.println(m_nick);
+		MemberVO memberVO = myPageService.mypageNick(m_nick);
+		int m_no = memberVO.getM_no();
+		
+		System.out.println(noteVO.getM_no2());
+		
+		myPageService.sendMessage(m_no, noteVO);
+		
+		return "message/send_message";
+	}
 }
