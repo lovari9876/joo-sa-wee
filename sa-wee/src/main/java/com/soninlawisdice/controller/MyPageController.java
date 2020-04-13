@@ -119,11 +119,14 @@ public class MyPageController {
 
 	@RequestMapping(value = "/message", method = {RequestMethod.GET, RequestMethod.POST})
 	public String message(NoteVO noteVO, MemberVO memberVO, Principal principal, Model model) throws Exception {
-//		String m_id = principal.getName();
-//		memberVO = myPageService.mypage(m_id);
-//		
-//		int m_no = memberVO.getM_no();
-//		model.addAttribute("message", myPageService.noteView(m_no));
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		
+		model.addAttribute("member", myPageService.mypage(m_id));
+		
+		int m_no = memberVO.getM_no();
+		model.addAttribute("message", myPageService.noteView(m_no));
+		
 		return "message/message";
 	}
 	

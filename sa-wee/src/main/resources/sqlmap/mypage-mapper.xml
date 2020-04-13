@@ -85,12 +85,12 @@
 	</update>
 	
 	<!-- ================================= 쪽지 ================================= -->
-	<!-- 쪽지 보기 -->
+	<!-- 쪽지 리스트 보기 -->
 	<select id="noteView" resultType="java.util.HashMap">
 	select n.*, m1.m_nick AS M1_NICK, m2.m_nick AS M2_NICK, TO_CHAR(n.n_written_date, 'YYYY/MM/DD HH24:MI') as written_date from note n 
 			left join member m1 on n.m_no = m1.m_no 
 			left join member m2 on n.m_no2 = m2.m_no 
-			where n.m_no = #{m_no} order by n_written_date desc
+			where n.m_no = #{m_no} or n.m_no2 = #{m_no} order by n_written_date desc
 	</select>
 	
 	<!-- 쪽지 내용 보기 -->
@@ -110,8 +110,8 @@
 	
 	<insert id="sendMessage">
 	insert into note 
-		(n_no, m_no, m_no2, n_title, n_content, n_written_date, n_check) 
-	values (NOTE_SEQ.nextval, #{m_no}, #{noteVO.m_no2}, #{noteVO.n_title}, #{noteVO.n_content}, sysdate, 1) 
+		(n_no, m_no, m_no2, n_title, n_content, n_written_date, n_check, n_blind) 
+	values (NOTE_SEQ.nextval, #{m_no}, #{noteVO.m_no2}, #{noteVO.n_title}, #{noteVO.n_content}, sysdate, 1, 1) 
 	</insert>
 	
 	<select id="mypageNick" resultType="com.soninlawisdice.vo.MemberVO">

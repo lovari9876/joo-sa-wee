@@ -11,6 +11,7 @@ public class NoteVO {
 	private String n_content;
 	private Timestamp n_written_date;
 	private int n_check;
+	private int n_blind;
 
 	MemberVO memberVO;
 
@@ -19,7 +20,7 @@ public class NoteVO {
 	
 	
 	public NoteVO(int n_no, int m_no, int m_no2, String n_title, String n_content, Timestamp n_written_date, int n_check,
-			MemberVO memberVO) {
+			int n_blind, MemberVO memberVO) {
 		super();
 		this.n_no = n_no;
 		this.m_no = m_no;
@@ -28,6 +29,7 @@ public class NoteVO {
 		this.n_content = n_content;
 		this.n_written_date = n_written_date;
 		this.n_check = n_check;
+		this.n_blind = n_blind;
 		this.memberVO = memberVO;
 	}
 
@@ -94,5 +96,14 @@ public class NoteVO {
 	public void setN_check(int n_check) {
 		this.n_check = n_check;
 	}
+	
+	public int getN_blind() {
+		return n_blind;
+	}
+
+	public void setN_blind(int n_blind) {
+		this.n_blind = n_blind;
+	}
+	
 
 }

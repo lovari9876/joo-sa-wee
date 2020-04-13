@@ -26,11 +26,12 @@
 <link rel="stylesheet" href="css/mypage/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/mypage/style.css" />
 <link rel="stylesheet" type="text/css" href="css/mypage/liststyle.css" />
+<link rel="stylesheet" type="text/css" href="css/message/check.css" />
 
 <!-- 403 에러 / csrf 토큰 문제 -->
-<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<%-- <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
-	content="${_csrf.headerName}" />
+	content="${_csrf.headerName}" /> --%>	
 </head>
 
 <body>
@@ -45,49 +46,88 @@
 				<div class="inbox_msg">
 					<div class="inbox_people">
 						<div class="headind_srch">
-							<div class="recent_heading">
-								<h4>Recent</h4>
+							<div class="recent_heading">							
+								<div>									
+									<button type="button" class="btn-receive" value="${member.m_no}">receive</button>
+								</div>
+								<div>
+									<button type="button" class="btn-send" value="${member.m_no}">send</button>
+								</div>
 							</div>
 							<div class="srch_bar">
-								<div class="stylish-input-group">
-									<input type="text" class="search-bar" placeholder="Search">
-									<span class="input-group-addon">
-										<button type="button">
-											<i class="fa fa-search" aria-hidden="true"></i>
-										</button>
-									</span>
-								</div>
+								<!-- <div class="stylish-input-group"> -->									
+									<div class="delBtn">
+										<button type="button" class="selectDelete_btn">delete</button>
+									</div>
+								<!-- </div> -->
 							</div>
 						</div>
 						<div class="inbox_chat">
+							<div class="allCheck">
+								<input type="checkbox" name="allCheck" id="allCheck" /><label
+									for="allCheck">모두 선택</label>
+							</div>
+							<script>
+								$("#allCheck").click(function() {
+									var chk = $("#allCheck").prop("checked");
+									if (chk) {
+										$(".chBox").prop("checked", true);
+									} else {
+										$(".chBox").prop("checked", false);
+									}
+								});
+							</script>
+							<div class="delBtn">
+								<button type="button" class="selectDelete_btn"></button>
+							</div>
+							<br/>
+
 							<div id="ajax_test">
-								<%-- <c:forEach items="${message}" var="message">
-									<div class="chat_list active_chat">
-										<div class="chat_people">
-											<div class="chat_img">
-												<img src="images/bl_share/icons/login/wolf_logo.png"
-													alt="sunil">
-											</div>
-											<input id="n_no" type="hidden" value="${message['N_NO']}" />
-											<div class="chat_ib">
-												<h5>
-													<a href="#one_note" class="select_note">${message['N_TITLE']}
-														<input id="n_no" type="hidden" value="${message['N_NO']}" />
-													</a> <span class="chat_date"> <fmt:formatDate
-															pattern="yyyy-MM-dd HH:mm"
-															value="${message['N_WRITTEN_DATE']}" />
-													</span>
-												</h5>
-												<p>${message['M2_NICK']}</p>
-											</div>
+							<c:forEach items="${message}" var="message">
+								<c:if test="${message['M_NO'] == member.m_no}">
+								<div class="checkBox">
+									<input type="checkbox" name="chBox" class="chBox"
+										data-cartNum="${message['N_NO']}" />
+								</div>
+								<script>
+									$(".chBox").click(function() {
+										$("#allCheck").prop("checked", false);
+									});
+									$(".btn-receive").click(function() {
+										$("#allCheck").prop("checked", false);										
+									});
+									$(".btn-send").click(function() {
+										$("#allCheck").prop("checked", false);										
+									});
+								</script>
+
+								<div class="chat_list active_chat">
+									<div class="chat_people">
+										<div class="chat_img">
+											<img src="images/bl_share/icons/login/wolf_logo.png"
+												alt="sunil">
+										</div>
+										<div class="chat_ib">
+											<h5>
+												<a href="/rest/message?n_no=${message['N_NO']}">${message['N_TITLE']}
+													<input id="n_no" type="hidden" value="${message['N_NO']}" />
+												</a> <span class="chat_date"> <fmt:formatDate
+														pattern="yyyy-MM-dd HH:mm"
+														value="${message['N_WRITTEN_DATE']}" />
+												</span>
+											</h5>
+											<p>${message['M2_NICK']}</p>
+
 										</div>
 									</div>
-								</c:forEach> --%>
+								</div>
+								</c:if>
+							</c:forEach>
 							</div>
-							<!-- security -->
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
 						</div>
+						<!-- security -->
+						<%-- <input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" /> --%>
 					</div>
 
 					<div id="ajax_content" class="mesgs">
@@ -137,11 +177,12 @@
 
 </body>
 
-<script src="js/mypage/jquery-3.2.1.min.js"></script>
+
 <script src="js/mypage/popper.min.js"></script>
 <script src="js/mypage/bootstrap.min.js"></script>
 <script src="js/mypage/script.js"></script>
 <script src="js/message/content.js"></script>
+<!-- <script src="js/message/checkBox.js"></script> -->
 
 <!-- Java Script for header  ================================================== -->
 <script src="js/header/jquery.slicknav.min.js"></script>
@@ -152,6 +193,5 @@
 <script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js"
 	integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8="
 	crossorigin="anonymous"></script>
-
 
 </html>
