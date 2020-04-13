@@ -95,9 +95,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 blog-content">
-					<h3 class="mb-4">Lorem ipsum dolor sit amet consectetur
-						adipisicing elit</h3>
 					
+					
+					<h3>비밀글입니다</h3>
 
 					<p>${content_view['BW_CONTENT']}</p>
 

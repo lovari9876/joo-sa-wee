@@ -96,11 +96,11 @@
 					<ul class="tab">
 						<li class="current" data-tab="tab1"><button type = "button" 
 							onclick ="location.href='board_open_review'" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "4" class = "select"
+						<li data-tab="tab2" id = "개봉기"><button type = "button" value = "4" class = "select"
 							onclick ="location.href='board_open_review?s_content=개봉기'" >개봉기</button></li>
-						<li data-tab="tab3"><button type = "button" value = "5" class= "select"
+						<li data-tab="tab3" id = "일리뷰"><button type = "button" value = "5" class= "select"
 							onclick ="location.href='board_open_review?s_content=일 리뷰'" >일(一)리뷰</button></li>
-						<li data-tab="tab4"><button type = "button" value = "6" class = "select"
+						<li data-tab="tab4" id = "다리뷰"><button type = "button" value = "6" class = "select"
 							onclick ="location.href='board_open_review?s_content=다 리뷰'" >다(多)리뷰</button></li>
 					</ul>
 

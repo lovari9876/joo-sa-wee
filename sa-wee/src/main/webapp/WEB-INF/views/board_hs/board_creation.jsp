@@ -87,23 +87,22 @@
 					 </div>
 				</form>
 
-
-
+			
 				<!-- 리스트 -->
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
 						<li class="current" data-tab="tab1"><button type = "button" 
 							onclick ="location.href='board_creation'">전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "17" class = "select"
+						<li data-tab="tab2" id = "계획"><button type = "button" value = "17" class = "select"
 							onclick ="location.href='board_creation?s_content=계획'">계획</button></li>
-						<li data-tab="tab3"><button type = "button" value = "18" class= "select"
+						<li data-tab="tab3" id = "디자인"><button type = "button" value = "18" class= "select"
 							onclick ="location.href='board_creation?s_content=디자인'">디자인</button></li>
-						<li data-tab="tab4"><button type = "button" value = "19" class = "select"
+						<li data-tab="tab4" id = "완성"><button type = "button" value = "19" class = "select"
 							onclick ="location.href='board_creation?s_content=완성'">완성</button></li>
-						<li data-tab="tab5"><button type = "button" value = "20" class = "select"
+						<li data-tab="tab5" id = "공유"><button type = "button" value = "20" class = "select"
 							onclick ="location.href='board_creation?s_content=공유'">공유</button></li>
-						<li data-tab="tab6"><button type = "button" value = "21" class = "select"
+						<li data-tab="tab6" id = "테스트플레이"><button type = "button" value = "21" class = "select"
 							onclick ="location.href='board_creation?s_content=테스트플레이'">테스트 플레이</button></li>
 					</ul>
 

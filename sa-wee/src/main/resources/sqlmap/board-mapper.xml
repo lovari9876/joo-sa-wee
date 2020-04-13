@@ -43,7 +43,7 @@
 	
 	
 	
-<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ메인:베스트,핫이슈ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->	
+<!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ메인:베스트,핫이슈,랭킹ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->	
 	<!-- 히트다 히트  : 조회순-->
 	<select id="selectHitList" resultType = "java.util.HashMap">
 		<![CDATA[ 	select rownum, bw.*, bt.bt_name , m.m_nick
@@ -85,6 +85,56 @@
 	</select>
 	
 	
+	<!-- 랭킹 : 글 많이 쓴 사람. -->
+	<select id = "rankWrite" resultType = "java.util.HashMap">
+	<![CDATA[
+			SELECT 
+			*
+					FROM
+
+						(SELECT row_number() OVER(ORDER BY COUNT(*) DESC) AS RNUM, I_NICK, COUNT(*) 
+    						FROM
+    							(
+    								(SELECT bw.bw_no AS I_NO,  bw.bw_title AS I_TITLE, m.m_no AS I_MNO,
+    								m.m_nick as I_NICK, bw.bw_written_date AS I_WRITTEN_DATE, bw.bw_recommend_num AS I_RECOMMEND_NUM
+        								
+        							FROM board_write bw , member m
+        							WHERE bw.m_no = m.m_no 
+        							AND bw.bw_island = 0)
+        
+        							UNION
+        
+        							(SELECT cr.cr_no AS I_NO, cr.cr_title AS I_TITLE, m.m_no AS I_MNO,
+        							m.m_nick as I_NICK, cr.cr_written_date AS I_WRITTEN_DATE, cr.cr_recommend_num AS I_RECOMMEND_NUM
+        
+        							FROM cafe_review cr, member m 
+        							WHERE cr.m_no = m.m_no 
+        							AND cr.cr_island = 0)
+        							)I
+                                    GROUP BY I_NICK
+								)
+                                
+                             WHERE RNUM <= 1
+							
+	]]>
+	</select>
+	
+	<!-- 댓글 많이 쓴 사람 -->
+	<select id = "rankWriteCo" resultType = "String">
+	<![CDATA[
+		SELECT m_nick 
+			FROM
+			(
+				SELECT count(*), m.m_nick, row_number() over(ORDER by COUNT(*) desc) RNUM
+				FROM cm_comment cm, member m
+				WHERE cm.m_no = m.m_no
+				GROUP BY m.m_nick
+				ORDER BY COUNT(*) DESC
+				
+			)
+			WHERE RNUM <= 1
+	]]>
+	</select>
 
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ커뮤니티ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->	
 	
@@ -185,7 +235,7 @@
 		</foreach>
 			SELECT * FROM DUAL
 	</insert>
-	
+	 
 	
 	
 	<!-- modify_view 로 불러오기 -->

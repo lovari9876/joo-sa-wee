@@ -94,11 +94,11 @@
 					<ul class="tab">
 						<li class="current" data-tab="tab1"><button type = "button" 
 							onclick ="location.href='board_qna'" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "14" class = "select"
+						<li data-tab="tab2" id = "룰"><button type = "button" value = "14" class = "select"
 							onclick ="location.href='board_qna?s_content=룰'">룰</button></li>
-						<li data-tab="tab3"><button type = "button" value = "15" class= "select"
+						<li data-tab="tab3" id = "추천"><button type = "button" value = "15" class= "select"
 							onclick ="location.href='board_qna?s_content=추천'">추천</button></li>
-						<li data-tab="tab4"><button type = "button" value = "16" class = "select"
+						<li data-tab="tab4" id = "기타"><button type = "button" value = "16" class = "select"
 							onclick ="location.href='board_qna?s_content=기타'">기타</button></li>
 					</ul>
 

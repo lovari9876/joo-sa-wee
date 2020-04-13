@@ -23,16 +23,29 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardMapper boardMapper;
 
-	/////////////// 히트다 히트, 베스트/////////////////////
+	/////////////// 메인/////////////////////
+	//히트다 히트
 	@Override
 	public ArrayList<HashMap<String, Object>> selectHitList() {
 		return boardMapper.selectHitList();
 	}
 
+	//베스트
 	@Override
 	public ArrayList<HashMap<String, Object>> selectBestList() {
 		return boardMapper.selectBestList();
 	}
+	
+	//글 많이 쓴 사람
+	public ArrayList<HashMap<String, Object>> rankWrite(){
+		return boardMapper.rankWrite();
+	}
+	
+	//댓글 많이 쓴 사람
+	public String rankWriteCo() {
+		return boardMapper.rankWriteCo();
+	}
+		
 
 	//////////////////////// 커뮤니티////////////////////////
 

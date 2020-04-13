@@ -49,13 +49,18 @@ public class Board_hs_Controller {
 
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
 
-	// 베스트 + 핫이슈 + 홈화면
+	// 베스트 + 핫이슈 + 랭킹+홈화면
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
+		//히트다 히트
 		model.addAttribute("hit", boardService.selectHitList());
+		//베스트
 		model.addAttribute("best", boardService.selectBestList());
-
+		//랭킹(글 많이 쓴)
+		model.addAttribute("rankW", boardService.rankWrite());
+		//랭킹(댓글 많이 쓴)
+		model.addAttribute("rankWC", boardService.rankWriteCo());
 		return "board_hs/index";
 	}
 

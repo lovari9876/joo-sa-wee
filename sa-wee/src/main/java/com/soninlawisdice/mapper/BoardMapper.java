@@ -15,12 +15,18 @@ import com.soninlawisdice.vo.SearchCriteria;
 
 public interface BoardMapper {
 
-	//////////////////히트다 히트, 베스트////////////
+	//////////////////메인////////////
 	//히트다히트
 	public ArrayList<HashMap<String, Object>> selectHitList();
 	
 	//베스트
 	public ArrayList<HashMap<String, Object>> selectBestList();
+	
+	//글 많이 쓴 사람
+	public ArrayList<HashMap<String, Object>> rankWrite();
+	
+	//댓글 많이 쓴 사람
+	public String rankWriteCo();
 	
 	
 	/////////////////////커뮤니티/////////////////////////

@@ -95,10 +95,10 @@
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
-						<li class="current" data-tab="tab1"><button type = "button" >전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" onclick ="location.href='board_story?s_content=잡담'" class = "select">잡담</button></li>
-						<li data-tab="tab3"><button type = "button" onclick ="location.href='board_story?s_content=노하우'" class= "select">노하우</button></li>
-						<li data-tab="tab4"><button type = "button" onclick ="location.href='board_story?s_content=토론'" class = "select">토론</button></li>
+						<li class="current" data-tab="tab1"><button type = "button" onclick ="location.href='board_story'">전체보기</button></li>
+						<li data-tab="tab2" id = "잡담"><button type = "button" onclick ="location.href='board_story?s_content=잡담'" class = "select" >잡담</button></li>
+						<li data-tab="tab3" id = "노하우"><button type = "button" onclick ="location.href='board_story?s_content=노하우'" class= "select">노하우</button></li>
+						<li data-tab="tab4" id = "토론"><button type = "button" onclick ="location.href='board_story?s_content=토론'" class = "select">토론</button></li>
 					</ul>
 
 

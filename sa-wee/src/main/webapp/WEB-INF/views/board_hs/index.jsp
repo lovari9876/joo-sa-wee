@@ -185,19 +185,21 @@
 
 				<div class="rank medal">
 					<img src="images/board_hs/gold-medal128.png">
-					<div class="rank-name">어쩌고 1위</div>
-					<div class="rank-name">누구</div>
+					<div class="rank-name">댓글 많이 씀</div>
+					<div class="rank-name">${rankWC}</div>
 				</div>
 
 				<div class="rank shield">
 					<img src="images/board_hs/shield128.png">
-					<div class="rank-name">어쩌고 1위</div>
-					<div class="rank-name">누구</div>
+					<div class="rank-name">글 많이 씀</div>
+					<c:forEach items = "${rankW}" var = "rankW">
+					<div class="rank-name">${rankW['I_NICK']}</div>
+					</c:forEach>
 				</div>
 
 				<div class="rank siren">
 					<img src="images/board_hs/alert.png">
-					<div class="rank-name">어쩌고 1위</div>
+					<div class="rank-name">신고 많이 받음...</div>
 					<div class="rank-name">누구</div>
 					
 
