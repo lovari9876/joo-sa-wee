@@ -49,13 +49,18 @@ public class Board_hs_Controller {
 
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
 
-	// 베스트 + 핫이슈 + 홈화면
+	// 베스트 + 핫이슈 + 랭킹+홈화면
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
+		//히트다 히트
 		model.addAttribute("hit", boardService.selectHitList());
+		//베스트
 		model.addAttribute("best", boardService.selectBestList());
-
+		//랭킹(글 많이 쓴)
+		model.addAttribute("rankW", boardService.rankWrite());
+		//랭킹(댓글 많이 쓴)
+		model.addAttribute("rankWC", boardService.rankWriteCo());
 		return "board_hs/index";
 	}
 
@@ -212,6 +217,10 @@ public class Board_hs_Controller {
 	public String bw() {
 		return "board_hs/write_view2";
 	}
+	@RequestMapping(value = "/tg")
+	public String tg() {
+		return "board_hs/todayGame";
+	}
 
 	// 글 작성
 	@RequestMapping(value = "/board_write", method = RequestMethod.POST)
@@ -270,10 +279,10 @@ public class Board_hs_Controller {
 	//수정했을때 수정된 content 보기
 	@RequestMapping(value = "/board_modify", method = RequestMethod.POST)
 	public String modify(Board_writeVO board_writeVO, String gameNames, Model model) {
-		boardService.modify(board_writeVO);
+		boardService.modify(board_writeVO, gameNames);
 		int bw_no = board_writeVO.getBw_no();
 		
-		boardService.modifyGameName(gameNames, board_writeVO);
+		//boardService.modifyGameName(gameNames, board_writeVO);
 		
 		return "redirect:content_view?bw_no="+bw_no;
 	}
@@ -409,8 +418,8 @@ public class Board_hs_Controller {
 	
 	//리뷰 수정 (수정 완료시 수정된 content_view 로 감.)
 	@RequestMapping(value = "/review_modify", method = RequestMethod.POST)
-	public String review_modify(Cafe_reviewVO cafe_reviewVO) {
-		boardService.review_modify(cafe_reviewVO);
+	public String review_modify(Cafe_reviewVO cafe_reviewVO, String gameNames) {
+		boardService.review_modify(cafe_reviewVO, gameNames);
 		
 		int cr_no = cafe_reviewVO.getCr_no();
 		System.out.println(cr_no);

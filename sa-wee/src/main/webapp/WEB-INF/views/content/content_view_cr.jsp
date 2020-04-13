@@ -118,9 +118,12 @@
 					<p>${content_view_cr['CR_CONTENT']}</p>
 					
 					
+					
+					
+					<br/><br/><br/><br/><br/>
 					<!-- 태그 -->
 					<c:forEach items = "${gameName}" var = "gameName" >
-						<a href = "gameInfo?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']}&nbsp;</a>&nbsp;
+						<a href = "game_detail?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']}&nbsp;</a>&nbsp;
 					</c:forEach>
 					
 

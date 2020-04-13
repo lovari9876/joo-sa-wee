@@ -277,6 +277,7 @@
 			kakao.maps.event.addListener(marker, 'click', function(){
 				//일단 이렇게는 해놓는데, 
 				//var url = 'https://map.kakao.com/link/map/'+position.getLat()+','+position.getLng(); 이런식으로 처리하라함
+				//문제되는 부분............
 				var url = '/cafe_info?c_no='+(idx+1);
 				window.open(url, '_self');
 			})
