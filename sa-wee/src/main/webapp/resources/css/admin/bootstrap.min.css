@@ -1047,7 +1047,7 @@ table {
 }
 
 .table .header {
-	font-family: 'dunggeunmo';
+	font-family: 'NanumSquareRound';
 	/* background: #ECECFF; */
 }
 
@@ -3927,8 +3927,9 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 	text-shadow: 0 1px 0 #ffffff;
 }
 
+/* 헤더 header 맨 오른쪽 화살표 */
 .navbar .nav .dropdown-toggle .caret {
-	margin-top: 8px;
+	margin-top: 14px;
 }
 
 .navbar .nav>li>a:focus, .navbar .nav>li>a:hover {

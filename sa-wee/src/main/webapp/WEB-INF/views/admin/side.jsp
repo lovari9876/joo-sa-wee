@@ -7,9 +7,10 @@
             <div class="navbar-inner">
                 <div class="container">
                     <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                        <i class="icon-reorder shaded"></i></a><a class="brand" href="index"><img src="images/admin
-                        /wolf_logo.png" width="30" class="logo_image" alt="logo">
-                       ADMIN | 내사위는주사위</a>
+                        <i class="icon-reorder shaded"></i></a>
+                        
+                        <a class="brand" href="index"><img src="images/admin/wolf_logo.png" width="30" class="logo_image" alt="logo">
+                       <a class="brand text"> ADMIN</a></a>
                         <!-- home >> 사이트 메인화면으로  -->
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                        <!--  <ul class="nav nav-icons">
@@ -24,7 +25,7 @@
                         </button>
                         </form> -->
                         <ul class="nav pull-right">
-                            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
+                            <!-- <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Item No. 1</a></li>
@@ -33,21 +34,19 @@
                                     <li class="nav-header">Example Header</li>
                                     <li><a href="#">A Separated link</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="#">Support </a></li>
-                            <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                               <!--  <img src="images/user.png" class="nav-avatar" /> -->
-                                
-                                <i class="icon-desktop"></i>
+                            </li> -->
+                            <!-- <li><a href="/"><i class="menu-icon icon-home"></i> MAIN </a></li> -->
+                            <li class="nav-user dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">
+                             		내 사위는 주사위 <!--  <i class="icon-desktop"></i>  -->
                              
                                 
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Your Profile</a></li>
+                                    <li><a href="/"><i class="menu-icon icon-home"></i> MAIN </a></li>
                                     <li><a href="#">Edit Profile</a></li>
                                     <li><a href="#">Account Settings</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#">Logout <i class="menu-icon icon-signout"></i></a></li>
+                                    <li><a href="#"> <i class="menu-icon icon-signout"></i>Logout </a></li>
                                 </ul>
                             </li>
                         </ul>

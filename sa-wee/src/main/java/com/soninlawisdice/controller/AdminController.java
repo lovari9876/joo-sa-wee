@@ -658,7 +658,7 @@ public class AdminController {
 		return "redirect:index";
 	}
 
-	// statistic_count() 하루에 한번 11시 59분에 실행
+	// statistic_count() 하루에 한번 11시 59분에 실행 //@Scheduled(cron = "0 59 23 * * * ")
 	@Scheduled(cron = "0 59 23 * * * ")
 	public void testt() throws Exception {
 		statistic_count();
