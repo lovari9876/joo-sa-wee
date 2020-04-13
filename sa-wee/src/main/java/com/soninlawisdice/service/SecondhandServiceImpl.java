@@ -42,10 +42,10 @@ public class SecondhandServiceImpl implements SecondhandService {
 
 		return secondhandMapper.selectContentOne(t_no);
 	}
-	
+
 	// content view: selectTrade_game
 	public ArrayList<Trade_gameVO> selectTrade_gameList(int t_no) {
-		
+
 		return secondhandMapper.selectTrade_gameList(t_no);
 	}
 
@@ -73,13 +73,16 @@ public class SecondhandServiceImpl implements SecondhandService {
 		StringTokenizer gp = new StringTokenizer(prices, ",");
 
 		LinkedHashMap<String, Integer> gamePrice = new LinkedHashMap<>();
-		
+
 		// 차례로 넣기...
 		while (gn.hasMoreTokens()) {
 			String gnt = null;
 			String gpt = null; // 커서 이동 막기
-			
-			if (gp.hasMoreTokens() /* & ((gpt = gp.nextToken()).trim() != "" | gpt != "" | gpt != null | gpt.trim() != null) */) {// if true
+
+			if (gp.hasMoreTokens() /*
+									 * & ((gpt = gp.nextToken()).trim() != "" | gpt != "" | gpt != null | gpt.trim()
+									 * != null)
+									 */) {// if true
 				try {
 					gamePrice.put((gnt = gn.nextToken()).trim(), Integer.parseInt((gpt = gp.nextToken()).trim()));
 				} catch (NumberFormatException e) { // 빈 문자열 넣거나, 숫자가 아닌 문자 넣을 때...
@@ -98,7 +101,7 @@ public class SecondhandServiceImpl implements SecondhandService {
 	public void boardPointUpdate(int m_no) {
 		secondhandMapper.boardPointUpdate(m_no);
 	}
-	
+
 	// 글 수정: TRADE
 	public void modify(TradeVO tradeVO, String gameNames, String prices) {
 		// 쉼표로 구분하여 받은 gameNames을 잘라서 List에 담기
@@ -107,12 +110,12 @@ public class SecondhandServiceImpl implements SecondhandService {
 		StringTokenizer gp = new StringTokenizer(prices, ",");
 
 		LinkedHashMap<String, Integer> gamePrice = new LinkedHashMap<>();
-		
+
 		// 차례로 넣기...
 		while (gn.hasMoreTokens()) {
 			String gnt = null;
 			String gpt = null; // 커서 이동 막기
-			
+
 			if (gp.hasMoreTokens()) {// if true
 				try {
 					gamePrice.put((gnt = gn.nextToken()).trim(), Integer.parseInt((gpt = gp.nextToken()).trim()));
@@ -125,5 +128,20 @@ public class SecondhandServiceImpl implements SecondhandService {
 		}
 
 		secondhandMapper.modify(tradeVO, gamePrice);
+	}
+
+	// 구매요청(판매중-> 거래하기 modal-> checkbox 구매요청)
+	public void call_buy(TradeVO tradeVO, String[] tgArr, int buyer) {
+		ArrayList<Integer> tg_noList = new ArrayList<>();
+
+		// tg_no만 담은 ArrayList 만들어서 넘기기
+		for (int i = 0; i < tgArr.length; i++) {
+//			Trade_gameVO tgVO = new Trade_gameVO();
+//			tgVO.setTg_no(Integer.parseInt(tgArr[i]));
+
+			tg_noList.add(Integer.parseInt(tgArr[i]));
+		}
+
+		secondhandMapper.call_buy(tradeVO, tg_noList, buyer);
 	}
 }

@@ -4,18 +4,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>SON-IN-LAW IS DISE</title>
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="UTF-8">
+	<title>SON-IN-LAW IS DISE</title>
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- LOGO
+    ================================================== -->
+    <link rel="icon" type="image/png"
+		href="resources/images/share/wolf_logo.ico" />
+	
+	<!-- content_view에 있는 css 공유중.. -->	
+	<!-- modal -->	
+	<link rel="stylesheet" href="css/secondhand/modalstyle.css" />
 
-<link rel="icon" type="image/png"
-	href="resources/images/share/wolf_logo.ico" />
-
-<!-- 버튼 -->
-<link rel="stylesheet" href="css/secondhand/buttonstyle.css" />
-<!-- modal -->	
-<link rel="stylesheet" href="css/secondhand/modalstyle.css" />
 
 </head>
 <body >
@@ -25,59 +27,46 @@
 	
 		<div class="modal--content">						
 			<div>
-				<!-- 폼 수정해서 살 것 select, 가격 select하도록.. -->
-				<form action="trade_modify" method="post" enctype="multipart/form-data">
-					<input type = "hidden" id = "bt_no" value = "9"/>
-					<input type = "hidden" id = "t_no" name="t_no" value = "${tradeVO['T_NO']}"/>
-					<input type = "hidden" name="t_island" value = "${tradeVO['T_ISLAND']}" />
+				<!-- 폼: 물품 checkbox로 선택 후(가격 조정 아직..) 컨텐트 리다이렉트(성공시 alert한번 해주기)  -->
+				<form action="call_buy" method="post" enctype="multipart/form-data">
+					<input type = "hidden" name="t_no" value = "${content_view_t['T_NO']}"/> <!-- 글번호 -->
+					<input type = "hidden" name="m_no" value = "${content_view_t['M_NO']}"/> <!-- 판매자 -->
+					
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					
 					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
+					<div class="table--div">
+						<div class="modal--info">구매를 원하시는 물품에 체크 후, '구매요청' 버튼을 눌러주세요.<br/>
+							판매자의 가격 조정이 끝나면, [마이페이지 -> 내 구매] 에서 배송지를 입력하실 수 있습니다.														
+						</div>
+						<br/>
+						<table>
+							<tr class="table--row">
+								<th class="table--cell">보드게임</th>
+								<th class="table--cell">희망가격</th>
+							</tr>
+															
+							<c:forEach items="${tgList}" var="tgItem" varStatus="status">
+								<tr class = "table--row">
+									<td class = "table--cell"> <!-- tg => tg_no -->
+										<input type="checkbox" id="tg${status.count}" name="tg" value="${tgItem.tg_no}">
+										<label for="tg">${tgItem.tg_name}</label><br>
+									</td>
+									<td class="table--cell">${tgItem.tg_price}원</td>
+								</tr>
+							</c:forEach>						
+						</table>
+						<br/>
+						<br/>						
+						<button class="write-btn lavender-btn" type="submit">구매 요청</button>	
+						<!-- modal close -->
+						<span id="modal--close">close</span>
+					</div>
 					
-					<table class="write-table">
-						<tr class = "row">
-							<td class = "cell">말머리 </td>
-							<td class = "cell"> 
-								<select name="s_no" >
-									<option value="32" <c:out value="${tradeVO['S_NO'] == 32 ? 'selected' : ''}"/>>판매중</option>
-									<option value="33" <c:out value="${tradeVO['S_NO'] == 33 ? 'selected' : ''}"/>>구매중</option>
-									<option value="34" <c:out value="${tradeVO['S_NO'] == 34 ? 'selected' : ''}"/>>거래완료</option>
-								</select> 								
-							</td>							
-						</tr>					
-						
-						<!-- 입력창 -->
-						<tr class="row">
-							<td class="cell">제목</td>
-							<td class="cell">
-								<input type="text" name="t_title" value="${tradeVO['T_TITLE']}" placeholder="제목을 입력하세요">
-							</td>
-						</tr>
-						
-						<!-- select 로 보드게임 번호 찍어줘야함... -->
-						<!-- 없으면 직접 입력 가능: 향후 방향성 모호하므로 일단 이름 하나만 입력하도록. -->
-						<tr class="row">
-							<td class="cell">보드게임</td>
-							<td class="cell">
-								<input type="text" name="gameNames" value="${gameNames}"
-									placeholder="보드게임의 이름을 쉼표(,)로 구분하여 입력하세요">
-							</td>
-						</tr>
-						
-						<tr class="row">
-							<td class="cell">가격</td>
-							<td class="cell">
-								<input type="text" name="prices" value="${prices}"
-										placeholder="보드게임의 희망 가격을 쉼표(,)로 구분하여 숫자로 입력하세요">
-							</td>
-						</tr>
-						
-					</table>
-					<button class="list" type="button" onclick="self.location='tlist'">목록</button>
-					<button class="modify-btn" type="submit">수정 완료</button>
-				</form>
+				</form>				
 			
-				<span id="modal--close">close</span>
+				
 			</div>
 		</div>
 		

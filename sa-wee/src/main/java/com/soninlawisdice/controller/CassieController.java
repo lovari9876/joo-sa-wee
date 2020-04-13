@@ -199,7 +199,8 @@ public class CassieController {
 	
 	// 수정하고나서 content_view 리다이렉트
 	@RequestMapping(value = "/trade_modify", method = RequestMethod.POST)
-	public String modify(Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, @ModelAttribute("tgVO") Trade_gameVO tgVO,
+	public String modify(Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, 
+							@ModelAttribute("tgVO") Trade_gameVO tgVO,
 							String gameNames, String prices) {
 		
 		logger.info("trade_modify");
@@ -211,6 +212,32 @@ public class CassieController {
 		
 		return "redirect:content_view_t?t_no="+t_no;
 	}
+
+	// 결제 modal 구매요청 시, 결제 생성 및 처리 후 content_view 리다이렉트
+	@RequestMapping(value = "/call_buy", method = RequestMethod.POST)
+	public String modify(Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, 
+							HttpServletRequest rq) {
+		// jsp에서 tg_no하고 t_no 넘어온 상태..
+		logger.info("call_buy");
+		
+		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
+		int m_no = 9;
+		int buyer = m_no;
+		
+		// checkbox에서 넘긴 tg_no 배열 갖고오기
+		String[] tgArr = rq.getParameterValues("tg");
+		
+		
+		// 결제 insert/ tg_no으로 select해서 한 줄 씩 불러오기.
+		secondhandService.call_buy(tradeVO, tgArr, buyer);
+		
+		
+		int t_no = tradeVO.getT_no();   
+		System.out.println("t_no = "+t_no );
+		
+		return "redirect:content_view_t?t_no="+t_no;
+	}
+
 	
 	
 	////////////////////////////////// 무인도 /////////////////////////////////////////////
