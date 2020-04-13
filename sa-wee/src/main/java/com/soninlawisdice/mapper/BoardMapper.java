@@ -39,18 +39,18 @@ public interface BoardMapper {
 	public void insertBoard(@Param("board_writeVO") Board_writeVO board_writeVO, @Param("gameName") ArrayList<String> gameName);
 	
 	
-	//게임 이름들 가져오기(modify_view 에)
+	//게임 이름들 가져오기(커뮤니티 modify_view 에)
 	public ArrayList<HashMap<String, Object>> selectGameNameCom(@Param("bw_no") int bw_no);
 	
 	//modify_view 에 불러오기
 	public Board_writeVO modify_view(@Param("bw_no")int bw_no);
 	
 	//글 수정하기
-	public void modify(@Param("board_writeVO") Board_writeVO board_writeVO);
+	public void modify(@Param("board_writeVO") Board_writeVO board_writeVO, @Param("gameName")ArrayList<String> gameName);
 	
 	
 	//게임 이름 수정하기
-	public void modifyGameName(@Param("gameName") ArrayList<String> gameName, @Param("board_writeVO")Board_writeVO board_writeVO);
+	//public void modifyGameName(@Param("gameName") ArrayList<String> gameName, @Param("board_writeVO")Board_writeVO board_writeVO);
 	
 	/////////////////////카페 리뷰///////////////////////////
 	
@@ -94,7 +94,7 @@ public interface BoardMapper {
 	public void insertReview(@Param("cafe_reviewVO") Cafe_reviewVO cafe_reviewVO, @Param("gameName") ArrayList<String> gameName);
 	
 	//리뷰 수정하기
-	public void review_modify(@Param("cafe_reivewVO")Cafe_reviewVO cafe_reviewVO);
+	public void review_modify(@Param("cafe_reviewVO") Cafe_reviewVO cafe_reviewVO, @Param("gameName")ArrayList<String> gameName);
 	
 	//리뷰 삭제하기
 	public void review_delete(@Param("cr_no")int cr_no);

@@ -183,17 +183,15 @@
 					<div class="review-wrap">
 
 
-						<form class="category" action="">
+						<!-- <form class="category" action="">
 							<label for="drop_list"><h3 class="mb-5">리뷰부분입니다.</h3></label> <select
 								id="drop_list" name="drop_list">
-								<option value="new">최신순</option>
-								<option value="best">인기순</option>
+								
 							</select>
-						</form>
-
-
-
-
+						</form> -->
+					
+						<h3 class = "mb-5 review">리뷰부분입니다.</h3>
+					
 						
 						<div class = "review-table">
 

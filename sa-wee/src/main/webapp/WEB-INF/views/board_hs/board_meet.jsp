@@ -245,7 +245,7 @@
 	<script src="js/board_hs/tab.js"></script>
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
-	<script src="js/board_hs/tabdata.js" type="text/javascript"></script>
+	
 	<script src="js/footer/footer_hee.js"></script>
 	<script src="js/board_hs/button.js"></script>
 

@@ -89,7 +89,7 @@
 	<select id = "rankWrite" resultType = "java.util.HashMap">
 	<![CDATA[
 			SELECT 
-			*
+				*
 					FROM
 
 						(SELECT row_number() OVER(ORDER BY COUNT(*) DESC) AS RNUM, I_NICK, COUNT(*) 
@@ -122,16 +122,17 @@
 	<!-- 댓글 많이 쓴 사람 -->
 	<select id = "rankWriteCo" resultType = "String">
 	<![CDATA[
-		SELECT m_nick 
-			FROM
-			(
-				SELECT count(*), m.m_nick, row_number() over(ORDER by COUNT(*) desc) RNUM
-				FROM cm_comment cm, member m
-				WHERE cm.m_no = m.m_no
-				GROUP BY m.m_nick
-				ORDER BY COUNT(*) DESC
-				
-			)
+		SELECT 
+			m_nick 
+				FROM
+				(
+					SELECT count(*), m.m_nick, row_number() over(ORDER by COUNT(*) desc) RNUM
+					FROM cm_comment cm, member m
+					WHERE cm.m_no = m.m_no
+					GROUP BY m.m_nick
+					ORDER BY COUNT(*) DESC
+					
+				)
 			WHERE RNUM <= 1
 	]]>
 	</select>
@@ -224,9 +225,10 @@
 		<foreach collection="gameName" item = "gameName">
 		INTO
 			BOARD_GAME
-			(G_NO, BT_NO, BG_WNO)
+			(BG_NO, G_NO, BT_NO, BG_WNO)
 			VALUES
 			(
+				get_board_game_seq,
 				(SELECT G.G_NO FROM GAME G WHERE G.G_NAME_KOR = #{gameName}),
 				#{board_writeVO.bt_no},
 				board_write_seq.nextval
@@ -260,28 +262,28 @@
 	
 	
 	
-
+	<!-- 커뮤니티 수정  -->
 	<update id="modify" statementType="CALLABLE" >
 		{ CALL
 			DECLARE
 			      
-			      TYPE bg_no_table IS TABLE OF trade_game.tg_no%TYPE 
+			      TYPE bg_no_table IS TABLE OF board_game.bg_no%TYPE 
 			            INDEX BY BINARY_INTEGER;             
-			      TYPE tg_name_table IS TABLE OF trade_game.tg_name%TYPE 
-			            INDEX BY BINARY_INTEGER;       
+			      TYPE g_no_table IS TABLE OF board_game.g_no%TYPE 
+			            INDEX BY BINARY_INTEGER;      
 			     
 			
-				    tg_no_tab       tg_no_table;       	<!--  해당 글에 이미 있는 tg_no 담기 -->
-				    tg_name_tab    tg_name_table;		<!--  mybatis  foreach 로 게임 담기 -->
-				    tg_price_tab    tg_price_table;      <!-- mybatis  foreach 로 가격 담기 -->
+				    bg_no_tab       bg_no_table;       	<!--  해당 글에 이미 있는 bg_no 담기 -->
+				 
+				    g_no_tab    g_no_table;      <!-- mybatis  foreach 로 게임 담기 -->
 				     
 				     nocnt binary_integer :=0;
 				     gcnt binary_integer :=0;
 				     j binary_integer :=0;
 				     
 				    <!--  글번호 넣기 -->
-				     v_t_no     trade_game.t_no%type := #{tradeVO.t_no};
-			     
+				    v_bg_wno     board_game.bg_wno%type := #{board_writeVO.bw_no};
+			     	v_bt_no		board_game.bt_no%type := #{board_writeVO.bt_no};
 			
 			   BEGIN
 			    
@@ -305,53 +307,52 @@
 			    
 			     <!-- 여기부턴 trade_game(게임, 가격) 수정 -->
 			    
-			     <!-- 해당 글의 tg_no 가져오기.. -->
-			     for tg_nolist in (select tg_no from trade_game where t_no = v_t_no) loop			     
+			     <!-- 해당 글의 bg_no 가져오기.. -->
+			     for bg_nolist in (select bg_no from board_game where bg_wno = v_bg_wno) loop			     
 			        nocnt := nocnt +1;			        
-			        tg_no_tab(nocnt) := tg_nolist.tg_no;			        
+			        bg_no_tab(nocnt) := bg_nolist.bg_no;			        
 			     end loop; 
 			          
 			    <!--  mybatis  foreach 로 게임 담기 -->
-					<foreach collection="gamePrice" index="game" item="price">	
+					<foreach collection="gameName" item="gameName">	
 					    gcnt := gcnt +1;
-					    tg_name_tab(gcnt) := #{game};
-					    tg_price_tab(gcnt)  := #{price};
+					   	select g_no into g_no_tab(gcnt) from game where g_name_kor=#{gameName};
 					</foreach>
  		        
 			   <!--   조건 3가지에 따른 update -->
-			        IF tg_name_tab.count = tg_no_tab.count THEN
+			        IF g_no_tab.count = bg_no_tab.count THEN
 			
-			           for cnt in 1..tg_no_tab.count  loop     
+			           for cnt in 1..bg_no_tab.count  loop     
 			               -- j := j +1;             
-			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
+			                update board_game SET g_no = g_no_tab(cnt) where bg_no = bg_no_tab(cnt);
 			                commit;        
 			           end loop;
 			
-			        ELSIF tg_name_tab.count > tg_no_tab.count THEN
+			        ELSIF g_no_tab.count > bg_no_tab.count THEN
 			
-			           for cnt in 1..tg_no_tab.count  loop     
+			           for cnt in 1..bg_no_tab.count  loop     
 			                -- j := j +1;             
-			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
+			                update board_game SET g_no = g_no_tab(cnt) where bg_no = bg_no_tab(cnt);
 			                commit;        
 			           end loop;
 			            
-			           for cnt in tg_no_tab.count+1..tg_name_tab.count  loop     
+			           for cnt in bg_no_tab.count+1..g_no_tab.count  loop     
 			                -- j := j +1;             
-			                insert into trade_game (tg_no, t_no, g_no, tg_name, tg_price) values (get_trade_game_seq, v_t_no, null,  tg_name_tab(cnt), tg_price_tab(cnt));
+			                insert into board_game (bg_no, bg_wno, bt_no, g_no) values (get_board_game_seq, v_bg_wno, v_bt_no,  g_no_tab(cnt));
 			                commit;        
 			           end loop;
 			
 			        ELSE
 			
-			           for cnt in 1..tg_name_tab.count  loop     
+			           for cnt in 1..g_no_tab.count  loop     
 			                -- j := j +1;             
-			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
+			                update board_game SET g_no = g_no_tab(cnt) where bg_no = bg_no_tab(cnt);
 			                commit;        
 			           end loop;
-			            
-			           for cnt in tg_name_tab.count+1..tg_no_tab.count  loop     
+			            <!-- 여기까지-->
+			           for cnt in g_no_tab.count+1..bg_no_tab.count  loop     
 			                -- j := j +1;                    
-			                DELETE 	FROM trade_game WHERE tg_no = tg_no_tab(cnt);
+			                DELETE 	FROM board_game WHERE bg_no = bg_no_tab(cnt);
 			                commit;        
 			           end loop;
 			
@@ -361,49 +362,6 @@
 		}
   
 	</update>
-
-	
-
-	
-	
-	
-	<!-- 글 수정하기 -->
-	<!-- <update id="modify" parameterType="com.soninlawisdice.vo.Board_writeVO">
-		
-		update board_write 
-		set bt_no = #{board_writeVO.bt_no}, 
-		s_no = #{board_writeVO.s_no}, 
-		bw_title = #{board_writeVO.bw_title}, 
-		bw_content = #{board_writeVO.bw_content},
-		bw_updated_date = SYSDATE
-		<if test="board_writeVO.bw_island==1" >
-			, bw_island = 2
-		</if> 
-		where bw_no = #{board_writeVO.bw_no}
-	</update> -->
-	
-	<!-- 게임 이름 수정하기 -->
-	<!-- <update id="modifyGameName">
-		DELETE FROM BOARD_GAME WHERE bt_no = #{board_writeVO.bt_no} AND bg_wno = #{board_writeVO.bw_no}
-		
-		commit
-		
-		INSERT ALL
-		
-		<foreach collection="gameName" item = "gameName">
-		INTO
-			BOARD_GAME
-			(G_NO, BT_NO, BG_WNO)
-			VALUES
-			(
-				(SELECT G.G_NO FROM GAME G WHERE G.G_NAME_KOR = #{gameName}),
-				#{board_writeVO.bt_no},
-				#{board_writeVO.bw_no}
-			)
-		</foreach>
-		SELECT * FROM DUAL	
-	</update>
-	 -->
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ카페 리뷰, 카페정보ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	
 	<!-- 카페리뷰 게시판 -->
@@ -592,9 +550,10 @@
 		<foreach collection="gameName" item = "gameName">
 		INTO
 			BOARD_GAME
-			(G_NO, BT_NO, BG_WNO)
+			(BG_NO, G_NO, BT_NO, BG_WNO)
 			VALUES
 			(
+				get_board_game_seq,
 				(SELECT G.G_NO FROM GAME G WHERE G.G_NAME_KOR = #{gameName}),
 				11,
 				CAFE_REVIEW_SEQ.NEXTVAL
@@ -603,18 +562,102 @@
 			SELECT * FROM DUAL
 	</insert>
 	
-	
-	
-	<!--리뷰 수정하기  -->
-	<update id="review_modify" parameterType="com.soninlawisdice.vo.Cafe_reviewVO">
-		update cafe_review 
-		set cr_title = #{cafe_reivewVO.cr_title},
-		 cr_content = #{cafe_reivewVO.cr_content},
-		 cr_updated_date = SYSDATE
-		 <if test="cafe_reivewVO.cr_island == 1" >
-			, cr_island = 2
-		</if>
-		 where cr_no = #{cafe_reivewVO.cr_no}
+	<!-- 카페리뷰 수정  -->
+	<update id="review_modify" statementType="CALLABLE" >
+		{ CALL
+			DECLARE
+			      
+			      TYPE bg_no_table IS TABLE OF board_game.bg_no%TYPE 
+			            INDEX BY BINARY_INTEGER;             
+			      TYPE g_no_table IS TABLE OF board_game.g_no%TYPE 
+			            INDEX BY BINARY_INTEGER;      
+			     
+			
+				    bg_no_tab       bg_no_table;       	<!--  해당 글에 이미 있는 bg_no 담기 -->
+				 
+				    g_no_tab    g_no_table;      <!-- mybatis  foreach 로 게임 담기 -->
+				     
+				     nocnt binary_integer :=0;
+				     gcnt binary_integer :=0;
+				     j binary_integer :=0;
+				     
+				    <!--  글번호 넣기 -->
+				    v_bg_wno     board_game.bg_wno%type := #{cafe_reviewVO.cr_no};
+			     	
+			
+			   BEGIN
+			    
+			     <!-- CAFE_REVIEW 글 수정 -->
+				  UPDATE 
+				  	CAFE_REVIEW
+				  SET 
+					CR_TITLE = #{cafe_reviewVO.cr_title},
+					CR_CONTENT = #{cafe_reviewVO.cr_content},
+					CR_UPDATED_DATE = SYSDATE
+											
+				  	<if	test="cafe_reviewVO.cr_island == 1">
+							, cr_island = 2
+					</if>
+				  WHERE 
+				  	CR_NO = #{cafe_reviewVO.cr_no};
+				  
+				  commit;
+			    
+			    
+			     <!-- 해당 글의 bg_no 가져오기.. -->
+			     for bg_nolist in (select bg_no from board_game where bg_wno = v_bg_wno) loop			     
+			        nocnt := nocnt +1;			        
+			        bg_no_tab(nocnt) := bg_nolist.bg_no;			        
+			     end loop; 
+			          
+			    <!--  mybatis  foreach 로 게임 담기 -->
+					<foreach collection="gameName" item="gameName">	
+					    gcnt := gcnt +1;
+					   	select g_no into g_no_tab(gcnt) from game where g_name_kor=#{gameName};
+					</foreach>
+ 		        
+			   <!--   조건 3가지에 따른 update -->
+			        IF g_no_tab.count = bg_no_tab.count THEN
+			
+			           for cnt in 1..bg_no_tab.count  loop     
+			               -- j := j +1;             
+			                update board_game SET g_no = g_no_tab(cnt) where bg_no = bg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			
+			        ELSIF g_no_tab.count > bg_no_tab.count THEN
+			
+			           for cnt in 1..bg_no_tab.count  loop     
+			                -- j := j +1;             
+			                update board_game SET g_no = g_no_tab(cnt) where bg_no = bg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			            
+			           for cnt in bg_no_tab.count+1..g_no_tab.count  loop     
+			                -- j := j +1;             
+			                insert into board_game (bg_no, bg_wno, bt_no, g_no) values (get_board_game_seq, v_bg_wno, 11,  g_no_tab(cnt));
+			                commit;        
+			           end loop;
+			
+			        ELSE
+			
+			           for cnt in 1..g_no_tab.count  loop     
+			                -- j := j +1;             
+			                update board_game SET g_no = g_no_tab(cnt) where bg_no = bg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			            <!-- 여기까지-->
+			           for cnt in g_no_tab.count+1..bg_no_tab.count  loop     
+			                -- j := j +1;                    
+			                DELETE 	FROM board_game WHERE bg_no = bg_no_tab(cnt);
+			                commit;        
+			           end loop;
+			
+			        END IF;
+			
+			   END		 
+		}
+  
 	</update>
 	
 	<!-- 리뷰삭제하기 -->
@@ -672,7 +715,8 @@
 	<!-- content_view 따로 만들지, 있는거 수정할지. -->
 	<!-- 비밀글은 못보게 하는거.(내용이 -비밀글 입니다- 이렇게 뜨게 -->
 	<select id = "selectQuestionOne" resultType = "java.util.HashMap">
-		select bw.bw_no, bw.bw_title, bw.bw_content, bw.m_no, bw.s_no, s.s_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_hit, m.m_nick, bw.bt_no
+		select 
+		bw.bw_no, bw.bw_title, bw.bw_content, bw.m_no, bw.s_no, s.s_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_hit, m.m_nick, bw.bt_no
 		from board_write bw, member m, subject s
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bt_no = 8

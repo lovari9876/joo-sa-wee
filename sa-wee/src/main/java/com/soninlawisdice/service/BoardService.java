@@ -49,11 +49,11 @@ public interface BoardService {
 	public Board_writeVO modify_view(int bw_no);
 
 	// 글 수정하기
-	public void modify(Board_writeVO board_writeVO);
+	public void modify(Board_writeVO board_writeVO, String gameNames);
 	
 
 	//게임 이름 수정하기
-	public void modifyGameName(String gameNames, Board_writeVO board_writeVO);
+	//public void modifyGameName(String gameNames, Board_writeVO board_writeVO);
 
 	///////////////////// 카페 리뷰///////////////////////////
 	
@@ -98,7 +98,7 @@ public interface BoardService {
 	public void insertReview(Cafe_reviewVO cafe_reviewVO, String gameNames);
 		
 	//리뷰 수정하기
-	public void review_modify(Cafe_reviewVO cafe_reviewVO);
+	public void review_modify(Cafe_reviewVO cafe_reviewVO, String gameNames);
 	
 	//리뷰 삭제하기
 	public void review_delete(int cr_no);
