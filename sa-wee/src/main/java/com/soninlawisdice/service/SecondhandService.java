@@ -33,13 +33,13 @@ public interface SecondhandService {
 
 	// 글 insert
 	public void insertTrade(TradeVO tradeVO, int m_no, String gameNames, String prices);
-
-	// 판매 또는 구매할 보드게임 insert (multiple value)
-//	public void insertTrade_game(TradeVO tradeVO, int m_no, String gameName);
-
+	
 	// 글 작성 포인트 update
 	public void boardPointUpdate(int m_no);
 
 	// 글 수정: TRADE
 	public void modify(TradeVO tradeVO, String gameNames, String prices);
+
+	// 구매요청(판매중-> 거래하기 modal-> checkbox 구매요청)
+	public void call_buy(TradeVO tradeVO, String[] tgArr, int buyer);
 }

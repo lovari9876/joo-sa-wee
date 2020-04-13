@@ -134,7 +134,7 @@
 							<c:forEach items="${tgList}" var="tgItem">
 								<tr class="table--row">
 									<td class="table--cell">${tgItem.tg_name}</td>							
-									<td class="table--cell">${tgItem.tg_price}</td>
+									<td class="table--cell">${tgItem.tg_price}원</td>
 								</tr>
 							</c:forEach>
 						</table>

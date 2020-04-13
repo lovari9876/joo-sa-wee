@@ -33,16 +33,17 @@ public interface SecondhandMapper {
 	public void upHitContent(int t_no); 
 
 	// 글 insert
-	public void insertTrade(@Param("tradeVO") TradeVO tradeVO, @Param("m_no") int m_no, @Param("gamePrice") LinkedHashMap<String, Integer> gamePrice);
-
-	// 판매 또는 구매할 보드게임 insert (multiple value)
-//	public void insertTrade_game(@Param("tradeVO") TradeVO tradeVO, @Param("m_no") int m_no, @Param("tgVO") Trade_gameVO tgVO);
-	// @Param("gameVO") GameVO gameVO,
+	public void insertTrade(@Param("tradeVO") TradeVO tradeVO, @Param("m_no") int m_no, 
+								@Param("gamePrice") LinkedHashMap<String, Integer> gamePrice);
 
 	// 글 작성 포인트 update
 	public void boardPointUpdate(@Param("m_no") int m_no);
 
 	// 글 수정: TRADE
 	public void modify(@Param("tradeVO") TradeVO tradeVO, @Param("gamePrice") LinkedHashMap<String, Integer> gamePrice);
+	
+	// 구매요청(판매중-> 거래하기 modal-> checkbox 구매요청)
+	public void call_buy(@Param("tradeVO") TradeVO tradeVO, @Param("tg_noList") ArrayList<Integer> tg_noList, 
+							@Param("buyer") int buyer);
 	
 }

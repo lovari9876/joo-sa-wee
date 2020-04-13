@@ -1,9 +1,6 @@
 /* =================================
-------------------------------------
-  EndGam - Gaming Magazine Template
-  Version: 1.0
- ------------------------------------
- ====================================*/
+ * 테이블 css
+ * =================================*/
 
 /* 폰트 */
 @font-face {
@@ -96,55 +93,6 @@
 	}
 }
 
-.square{
-	width: 850px;
-    height: 10px;
-    background: #1E0A37;
-    opacity : 0.7;
-    float: left;
-    margin-top: 71px;
- 	
-}
-
-@media screen and (max-width:120px){
-	.square{
-		display : none !important;
-	}
-	
-}
-/* question_write_view */
-.question-square {
-	width: 730px;
-    height: 10px;
-    background: #1E0A37;
-    opacity : 0.7;
-    float: left;
-    margin-top: 71px;
- 	
-}
-
-@media screen and (max-width:1200px){
-	.question-square{
-		display : none !important;
-	}
-}
-
-/* cafe-review-write */
-.cafe-square{
-	width: 820px;
-    height: 10px;
-    background: #1E0A37;
-    opacity : 0.7;
-    float: left;
-    margin-top: 71px;
-}
-
-@media screen and (max-width:1200px){
-	.cafe-square{
-		display : none !important;
-	}
-}
-
 
 /* 내 테이블 관련 */
 .table--div {
@@ -225,3 +173,4 @@
 	padding-top: 3px;
 	padding-bottom: 3px;
 }
+
