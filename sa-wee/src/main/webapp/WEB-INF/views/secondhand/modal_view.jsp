@@ -59,7 +59,7 @@
 						</table>
 						<br/>
 						<br/>						
-						<button class="write-btn lavender-btn" type="submit">구매 요청</button>	
+						<button id="buy-btn" class="write-btn lavender-btn" type="submit" onClick="return isChecked()">구매 요청</button>	
 						<!-- modal close -->
 						<span id="modal--close">close</span>
 					</div>
@@ -91,6 +91,36 @@
 		span.onclick = function() {
 		    modal.style.display = "none";
 		}
+	</script>
+	
+	<script>
+		
+		// 구매요청 버튼 누를 때, 체크 안된 것이 있으면 alert 띄우고 모달 유지, 
+		// 1개 이상 체크하면 완료 alert 띄우고 form action 주소 이동
+		function isChecked() {
+			var checkBoxes = document.getElementsByName("tg");	
+			var msg = "구매 요청이 완료되었습니다.\n마이페이지에서 확인해보세요.";
+			var chk = false;
+			var count = 0;
+			
+			for(var i=0; i<checkBoxes.length; i++){
+				if(checkBoxes[i].checked){
+					count = count +1; 
+				}
+			}
+			
+			if(count != 0) {
+				alert(msg);	
+				return;
+			} else {
+				msg = "구매할 상품을 선택하세요.";
+				alert(msg);	
+				return false;
+			}			
+			
+		} // 버튼에 onClick="return isChecked()" 이렇게 해야 
+		  // 미체크 시 alert 띄우고 모달로 돌아온다!
+		
 	</script>
 					
 
