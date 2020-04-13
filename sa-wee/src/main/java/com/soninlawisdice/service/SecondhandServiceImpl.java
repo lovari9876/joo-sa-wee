@@ -136,12 +136,20 @@ public class SecondhandServiceImpl implements SecondhandService {
 
 		// tg_no만 담은 ArrayList 만들어서 넘기기
 		for (int i = 0; i < tgArr.length; i++) {
-//			Trade_gameVO tgVO = new Trade_gameVO();
-//			tgVO.setTg_no(Integer.parseInt(tgArr[i]));
-
 			tg_noList.add(Integer.parseInt(tgArr[i]));
 		}
 
 		secondhandMapper.call_buy(tradeVO, tg_noList, buyer);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -225,12 +225,15 @@ public class CassieController {
 		int buyer = m_no;
 		
 		// checkbox에서 넘긴 tg_no 배열 갖고오기
-		String[] tgArr = rq.getParameterValues("tg");
-		
-		
-		// 결제 insert/ tg_no으로 select해서 한 줄 씩 불러오기.
-		secondhandService.call_buy(tradeVO, tgArr, buyer);
-		
+		try {
+			String[] tgArr = rq.getParameterValues("tg");
+			
+			// 결제 insert/ tg_no으로 select해서 한 줄 씩 불러오기.
+			secondhandService.call_buy(tradeVO, tgArr, buyer);
+		}catch(NullPointerException e) { // 체크 안하고 구매요청 시
+			// 그냥 content view 리턴
+		}catch(Exception e) {
+		}		
 		
 		int t_no = tradeVO.getT_no();   
 		System.out.println("t_no = "+t_no );
