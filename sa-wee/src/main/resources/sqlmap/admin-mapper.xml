@@ -509,7 +509,7 @@
 	<!-- 멤버 번호 바로 불러올수 없는 경우 : 신고관리 페이지 , 글이 신고당함 - 글번호로 멤버번호를 가져옴 -->
 	<update id="updateIsland_member" >
 		UPDATE member
-		SET r_no =  4
+		SET r_no =  4, m_point = m_point -5
 		WHERE m_no = (SELECT m_no FROM 
 		
 		<choose>

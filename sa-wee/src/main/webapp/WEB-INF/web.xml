@@ -80,5 +80,19 @@
 	    <filter-name>cors</filter-name>
 	    <url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	
+	<!-- errorController를 통해 /error/404 로 매핑하여 에러페이지를 띄운다. -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error/404</location>
+	</error-page>
+	
+	<!-- 일단은 404만 살려두고 다른 에러페이지들은 작업 마무리되면 추가합시다 -->
+<!-- 	<error-page>
+		<error-code>500</error-code>
+		<location>/error/500</location>
+	</error-page> -->
+	
 
 </web-app>
