@@ -10,7 +10,7 @@
                         <i class="icon-reorder shaded"></i></a>
                         
                         <a class="brand" href="index"><img src="images/admin/wolf_logo.png" width="30" class="logo_image" alt="logo">
-                       <a class="brand text"> ADMIN</a></a>
+                       <a class="brand text" href="index"> ADMIN</a></a>
                         <!-- home >> 사이트 메인화면으로  -->
                     <div class="nav-collapse collapse navbar-inverse-collapse">
                        <!--  <ul class="nav nav-icons">

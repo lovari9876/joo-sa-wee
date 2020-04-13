@@ -3485,8 +3485,11 @@ mark {
 }
 
 @media ( min-width : 80rem) {
+	/* 왼쪽카테고리  */
 	.cd-faq__categories {
-		width: 200px
+		width: 230px;
+		padding-left:30px;
+		
 	}
 }
 
@@ -3643,6 +3646,8 @@ li:last-child .cd-faq__category {
 		padding: 0 0 0 var(- -space-sm);
 		background: transparent;
 		margin-top: 40px;
+		margin-left: 40px;
+		
 		
 	}
 }
@@ -3671,6 +3676,14 @@ html:not (.js ) .cd-faq__items {
 	.cd-faq__group {
 		display: block;
 		padding-top: 1px;
+		padiing-left:60px;
+		margin-top: 30px;
+	}
+	/* 헤더 도로록 때문에... 첫번째만 패딩 적게!  */
+	.cd-faq__group:not(#member){
+		display: block;
+		padding-top:55px;
+		padiing-left:60px;
 		margin-top: 30px;
 	}
 }
@@ -3723,6 +3736,9 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 		transition: box-shadow .2s;
 		border-radius : 20px;
+		/* 가운데 본문 width 너비 */
+		width : 700px;
+		
 	}
 	.cd-faq__item:hover { -
 		-box-shadow: hsla(210, 14%, 49%, 0.3); -

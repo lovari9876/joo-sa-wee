@@ -638,7 +638,11 @@
 	
 	<insert id="statisticsInsert" parameterType="com.soninlawisdice.vo.StatisticsVO">
 		INSERT INTO statistics (st_no, st_date, st_visitor_num, st_post_num, st_trade_num, st_comment_num)
-		VALUES (statistics_seq.nextval, sysdate, #{st_visitor_num}, #{st_post_num}, #{st_trade_num}, #{st_comment_num})
+		SELECT statistics_seq.nextval, sysdate, #{st_visitor_num}, #{st_post_num}, #{st_trade_num}, #{st_comment_num}
+		FROM DUAL A WHERE NOT EXISTS(
+			  SELECT st_date FROM statistics
+			  WHERE TO_DATE(st_date, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD'))
+		
 	
 	</insert>
 	
