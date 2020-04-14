@@ -37,14 +37,15 @@
 <!-- <script src="https://kit.fontawesome.com/4b0668ef4e.js" crossorigin="anonymous"></script> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel = "stylesheet" href = "css/board_hs/tagsinput.css" />
 <!-- Main Stylesheets -->
 
 <link rel="stylesheet" href="css/board_hs/writestyle.css" />
 
-<script src = "js/board_hs/ckeditor.js" ></script>
+<script src="js/board_hs/ckeditor.js"></script>
 
 </head>
-<body id = "top">
+<body id="top">
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -52,11 +53,11 @@
 
 
 	<!-- Header section -->
-	
+
 	<!-- header include start -->
-	<%@ include file="/WEB-INF/views/share/header.jsp" %>
+	<%@ include file="/WEB-INF/views/share/header.jsp"%>
 	<!-- header include end -->
-	
+
 
 
 
@@ -72,40 +73,48 @@
 				<div class="writeName">
 					<h3>글 작성하기</h3>
 				</div>
-				<div class = "square"></div>
-				
-				
+				<div class="square"></div>
+
+
 				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
-				<form action="board_write" method = "post" enctype="multipart/form-data">
+				<form name = "form" action="board_write" method="post" enctype="multipart/form-data">
 					<table class="write-table">
 						<!-- 첫번째 select box 선택되어져있게 -->
-						<input id = "bt_no" type = "hidden"  value = "${bt_no}"/>
+						<input id="bt_no" type="hidden" value="${bt_no}" />
 						<!-- 일단 이렇게 안넘기면 board_writeVO 에서 m_no 을 가져오지 못함. -->
-						<input name = "m_no" type = "hidden" value = "11"/>
-						<tr class = "row">
-							<td class = "cell">
-								<select id = "board" name = "bt_no" ></select> 
-								<select id = "sub" name = "s_no"></select>
+						<input name="m_no" type="hidden" value="11" />
+						<tr class="row">
+							<td class = "cell">말머리 선택</td>
+							<td class="cell">
+								<select id="board" name="bt_no"></select>
+								<select id="sub" name="s_no"></select>
 							</td>
-							
+
 						</tr>
-						
-						
-						
+
 						<!-- 입력창 -->
 						<tr class="row">
-							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요"></td>
+							<td class="cell">제목</td>
+							<td class="cell"><input type="text" id = "title" name="bw_title"
+								placeholder="제목을 입력하세요"></td>
 						</tr>
 
 						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요"></textarea></td>
+							<td class="cell">내용</td>
+							<td class="cell"><textarea id="editor" name="bw_content"
+									placeholder="내용을 입력하세요"></textarea></td>
 						</tr>
 
+						<tr class = "row">
+							<td class = "cell">태그</td>
+							<td class = "cell" id = "bloodhound">
+								<input name = "gameNames" class = "typeahead" type = "text" data-role = "tagsinput">
+							</td>
+						</tr>
 
-						
 					</table>
-					<button class = "list" type="button" onclick="toList()">목록</button>
-					<button class = "write-btn" type = "submit">작성완료</button>
+					<button class="list" type="button" onclick="toList()">목록</button>
+					<button class="write-btn">작성완료</button>
 				</form>
 
 
@@ -115,13 +124,13 @@
 		</div>
 	</div>
 
-	
-	
+
+
 	<!-- footer 부분 -->
 	<!-- footer include start -->
-	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
+	<%@ include file="/WEB-INF/views/share/footer.jsp"%>
 	<!-- footer include end -->
-	
+
 
 
 
@@ -142,10 +151,47 @@
 	<script src="js/board_hs/category.js"></script>
 	<script src="js/board_hs/toList.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
+	<script src ="js/board_hs/tagsinput.js"></script>
+	<script src="js/board_hs/typeahead.js"></script>
+	<script src="js/board_hs/alertEmpty.js"></script>
+	<script>
+		
+		var games = new Bloodhound({
+			datumTokenizer : Bloodhound.tokenizers.obj.whitespace('name'),
+			queryTokenizer : Bloodhound.tokenizers.whitespace,
+			prefetch : {
+				url : '/gameList',
+				filter : function(list){
+					return $.map(list, function(game){
+						return {name : game};
+					});
+				}
+			} 
+		});
+		games.initialize();
+		console.log("games : " + games);
+		console.log("name : " + name);
+		
+		$('.typeahead').tagsinput({
+			
+			typeaheadjs : {
+				name : 'games',
+				displayKey : 'name',
+				valueKey : 'name',
+				source : games.ttAdapter(),
+				
+				hint: true,
+				highlight: true,
+				minLength: 1
+			}
+		});
 	
 	
+	</script> 
+	
+
 	<!-- ckEditor 관련 -->
-	
+
 	<script type="text/javascript">
 			var myEditor;
 			ClassicEditor
@@ -181,10 +227,10 @@
 			    console.error( error );
 			} );
 		</script>
-	
-	
-	
-	
+
+
+
+
 
 </body>
 </html>

@@ -89,7 +89,7 @@
 						
 						<!-- 입력창 -->
 						<tr class="row">
-							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요"></td>
+							<td class="cell"><input type="text" id = "title" name="bw_title" placeholder = "제목을 입력하세요"></td>
 						</tr> 
 						
 						
@@ -117,7 +117,7 @@
 						
 					</table>
 					<button class = "list" type="button" onclick="location.href='question_list'">목록</button>
-					<button class = "write-btn" type = "submit">작성완료</button>
+					<button class = "write-btn">작성완료</button>
 				</form>
 
 
@@ -156,7 +156,7 @@
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	<script src="js/board_hs/secret_box.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
-	
+	<script src="js/board_hs/alertEmpty.js"></script>
 	
 		
 	<script type="text/javascript">

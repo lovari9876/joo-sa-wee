@@ -68,6 +68,21 @@ $(document).ready(function(){
 	}else if(check == 's_content=테스트플레이'){
 		$('.tab li').removeClass('current');
 		$('#테스트플레이').addClass('current');
+	}else if(check == 's_content=27'){
+		$('.tab li').removeClass('current');
+		$('#27').addClass('current');
+	}else if(check == 's_content=28'){
+		$('.tab li').removeClass('current');
+		$('#28').addClass('current');
+	}else if(check == 's_content=29'){
+		$('.tab li').removeClass('current');
+		$('#29').addClass('current');
+	}else if(check == 's_content=30'){
+		$('.tab li').removeClass('current');
+		$('#30').addClass('current');
+	}else if(check == 's_content=31'){
+		$('.tab li').removeClass('current');
+		$('#31').addClass('current');
 	}
 	
 	

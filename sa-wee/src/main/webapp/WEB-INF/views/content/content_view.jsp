@@ -123,7 +123,7 @@
 					<br/><br/><br/><br/><br/>
 					<!-- 태그 -->
 					<c:forEach items = "${gameName}" var = "gameName" >
-						<a href = "game_detail?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']}&nbsp;</a>&nbsp;
+						<a href = "game_detail?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']} &emsp;</a> &nbsp;
 					</c:forEach>
 
 					<!-- 추천 -->
@@ -146,15 +146,27 @@
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
 							</div>
+							
 							<div class="test_item second"> 
-								<a href="board_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
+								<c:if test = "${content_view['M_NO'] eq m_no}">
+									<a href="board_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
+								</c:if>
 							</div>
 							<div class="test_item third">
-								<a href="delete?bw_no=${content_view['BW_NO']}">삭제</a>
+								<c:if test = "${content_view['M_NO'] eq m_no}">
+									<a href="delete?bw_no=${content_view['BW_NO']}">삭제</a>
+								</c:if>	
 							</div>
+							
+							
 							<div class="test_item fourth">
-								<a href="report_view_bw?bw_no=${content_view['BW_NO']}"
+								<sec:authorize access="isAuthenticated()">
+									<a href="report_view_bw?bw_no=${content_view['BW_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<a href="loginview">신고</a>
+								</sec:authorize>
 							</div>
 						</div>
 					</form>

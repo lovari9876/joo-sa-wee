@@ -81,33 +81,36 @@
 						<input type="hidden" id="s_no" value="${content_view.s_no}"/>
 						<input type = "hidden" name="bw_island" value = "${content_view.bw_island}" />
 						<tr class = "row">
+							<td class = "cell">말머리 선택</td>
 							<td class = "cell">
 								<select id = "board" name = "bt_no" ></select> 
 								<select id = "sub" name = "s_no"></select>
 							</td>
 						</tr>
 						
+						
 						<tr class="row">
+							<td class= "cell">제목</td>
+							<td class="cell"><input type="text" id = "title" name="bw_title" value = "${content_view.bw_title}"  placeholder = "제목을 입력하세요"></td>
+						</tr>
+
+						<tr class="row">
+							<td class="cell">내용</td>
+							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요">${content_view.bw_content}</textarea></td>
+						</tr>
+						
+						<tr class="row">
+							<td class = "cell">태그</td>
 							<td class="cell" id = "bloodhound">
 								<input data-role = "tagsinput" name="gameNames" value = "${gameNames}" class = "typeahead" type = "text">
 								
 							</td>
 						</tr>
-
-						<tr class="row">
-							<td class="cell"><input type="text" name="bw_title" value = "${content_view.bw_title}"  placeholder = "제목을 입력하세요"></td>
-							
-						</tr>
-
-						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요">${content_view.bw_content}</textarea></td>
-							<%-- <td class="cell"><textarea name="bwTitle" placeholder = "내용을 입력하세요">이건 여기에 ${detail.CONTENTS } 이런식으로</textarea></td> --%>
-						</tr>
-
+						
 						
 					</table>
-					<button class = "list" type="button" onclick="location.href='list'">목록</button>
-					<button class = "modify-btn" type = "submit">수정 완료</button>
+					<button class = "list" type="button" onclick="toList();">목록</button>
+					<button class = "write-btn">수정 완료</button>
 				</form>
 
 
@@ -144,8 +147,8 @@
 	<script src="js/footer/footer_hee.js"></script>
 	<script src ="js/board_hs/tagsinput.js"></script>
 	<script src="js/board_hs/typeahead.js"></script>
-	
-	
+	<script src="js/board_hs/toList.js"></script>
+	<script src="js/board_hs/alertEmpty.js"></script>
 	
 	<!-- ckEditor 관련 -->
 	

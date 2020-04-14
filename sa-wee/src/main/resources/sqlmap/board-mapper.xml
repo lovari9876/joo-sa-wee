@@ -143,7 +143,7 @@
 	<select id = "selectBoardList" resultType = "java.util.HashMap">
 		SELECT * FROM
 	(
-         SELECT bw.bw_no, m.m_no, m.m_id,m.m_nick, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island, bw.bw_recommend_num,
+         SELECT bw.bw_no, m.m_no, m.m_id,m.m_nick, bt.bt_name, bt.bt_no, s.s_content , bw.bw_title, bw.bw_hit, bw.bw_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_report_num, bw.bw_island, bw.bw_recommend_num,bw.bw_secret,
          				(select count(*) from cm_comment where cm_type = '게시판' and cm_no2 = bw.bw_no) cm,
 		               ROW_NUMBER() OVER(ORDER BY bw.bw_no ASC) AS RNUM,
 		               ROW_NUMBER() OVER(ORDER BY bw.bw_no DESC) AS RNUM_COUNT
@@ -220,7 +220,7 @@
 			(BW_NO, M_NO, BT_NO, S_NO, BW_TITLE, BW_CONTENT, BW_HIT, BW_RECOMMEND_NUM, BW_REPORT_NUM, BW_ISLAND, BW_SECRET)
 			
 			VALUES
-			(BOARD_WRITE_SEQ.NEXTVAL, 11, #{board_writeVO.bt_no}, #{board_writeVO.s_no}, #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n')
+			(BOARD_WRITE_SEQ.NEXTVAL, #{m_no}, #{board_writeVO.bt_no}, #{board_writeVO.s_no}, #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n')
 		
 		<foreach collection="gameName" item = "gameName">
 		INTO
@@ -427,7 +427,7 @@
 	<select id = "selectAllReviewList"  resultType = "java.util.HashMap" parameterType = "com.soninlawisdice.vo.SearchCriteria">
 		SELECT * FROM
 			(
-				select cr.cr_no, m.m_nick, cr.cr_title,  cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title  
+				select cr.cr_no, m.m_nick, cr.cr_title,  cr.cr_written_date, cr.cr_recommend_num, cr.cr_hit, c.c_title , c.c_no
 				, (select count(*) from cm_comment where cm_type = '카페리뷰' and cm_no2 = cr.cr_no) AS cm
 				, ROW_NUMBER() OVER(ORDER BY cr.cr_no ASC) AS RNUM
 				, ROW_NUMBER() OVER(ORDER BY cr.cr_no DESC) AS RNUM_COUNT
@@ -545,7 +545,7 @@
 			(CR_NO, M_NO, BT_NO, C_NO, CR_TITLE, CR_CONTENT, CR_HIT, CR_RECOMMEND_NUM, CR_REPORT_NUM, CR_ISLAND)
 			
 			VALUES
-			(CAFE_REVIEW_SEQ.NEXTVAL, 5, 11, #{cafe_reviewVO.c_no}, #{cafe_reviewVO.cr_title}, #{cafe_reviewVO.cr_content}, 0, 0, 0, 0)
+			(CAFE_REVIEW_SEQ.NEXTVAL, #{m_no}, 11, #{cafe_reviewVO.c_no}, #{cafe_reviewVO.cr_title}, #{cafe_reviewVO.cr_content}, 0, 0, 0, 0)
 		
 		<foreach collection="gameName" item = "gameName">
 		INTO
@@ -702,11 +702,11 @@
 				insert into board_write 
 				(bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
 				values
-				(board_write_seq.nextval, 11, 8, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
+				(board_write_seq.nextval, #{m_no}, 8, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, 'n' ) 
 			</when>
 			<otherwise>
 				insert into board_write (bw_no, m_no, bt_no, s_no, bw_title, bw_content, bw_hit, bw_recommend_num, bw_report_num, bw_island, bw_secret) 
-				values (board_write_seq.nextval, 11, 8, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, #{board_writeVO.bw_secret} ) 
+				values (board_write_seq.nextval, #{m_no}, 8, #{board_writeVO.s_no},  #{board_writeVO.bw_title}, #{board_writeVO.bw_content}, 0, 0, 0, 0, #{board_writeVO.bw_secret} ) 
 			
 			</otherwise>
 		</choose>
@@ -716,7 +716,7 @@
 	<!-- 비밀글은 못보게 하는거.(내용이 -비밀글 입니다- 이렇게 뜨게 -->
 	<select id = "selectQuestionOne" resultType = "java.util.HashMap">
 		select 
-		bw.bw_no, bw.bw_title, bw.bw_content, bw.m_no, bw.s_no, s.s_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_hit, m.m_nick, bw.bt_no
+		bw.bw_no, bw.bw_title, bw.bw_content, bw.m_no, bw.s_no, s.s_content, bw.bw_written_date, bw.bw_updated_date, bw.bw_hit, m.m_nick, bw.bt_no, bw.bw_secret
 		from board_write bw, member m, subject s
 		where bw.m_no = m.m_no and bw.s_no = s.s_no
 		and bw.bt_no = 8

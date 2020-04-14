@@ -507,7 +507,7 @@ input:focus, select:focus, button:focus, textarea:focus {
 	border-radius : 999px;
     cursor: pointer;
     background : #fff;
-	font-size : 0.9rem;
+	/* font-size : 0.9rem; */
 	font-family : JSDongkang-Regular;
 }
 
@@ -565,4 +565,19 @@ button:focus{
 	text-align : center;
 }
 
+.list{
+	float : left;
+	padding : 4px 14px;
+	border: 1px solid rgba(198, 198, 236, 0.6);
+	border-radius : 999px;
+    cursor: pointer;
+    background : #fff;
+	
+	font-family : JSDongkang-Regular;
+}
+
+.list:hover{
+	background : #6c7ae0;
+	color : #fff;
+}
 

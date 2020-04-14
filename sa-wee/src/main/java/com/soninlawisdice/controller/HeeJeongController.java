@@ -1,10 +1,6 @@
 package com.soninlawisdice.controller;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.security.Principal;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
-import com.soninlawisdice.service.ContentServiceImpl;
+import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
@@ -43,11 +38,15 @@ public class HeeJeongController {
 	
 	@Autowired
 	private BoardService boardService;
+	
+	@Autowired
+	private MyPageService myPageService;
 
 	private static final Logger logger = LoggerFactory.getLogger(HeeJeongController.class);
 
 	/**
 	 * Simply selects the home view to render by returning its name.
+	 * @throws Exception 
 	 */
 	
 	/*============================== 커뮤니티(일반 게시판) ===================================*/
@@ -55,20 +54,23 @@ public class HeeJeongController {
 	// 게시글 view
 	@RequestMapping(value = "/content_view", method = RequestMethod.GET)
 	public String content(Model model, HttpServletRequest request, CM_commentVO cm_commentVO, 
-							@RequestParam("bw_no") int pageNum) {
+							@RequestParam("bw_no") int pageNum, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("content_view");
 
-		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
-		
-		System.out.println(bw_no);
 
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
+		
+		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
+		System.out.println(bw_no);
 		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
 
-		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
-		int m_no = 9;
-		model.addAttribute("m_no", m_no);
-		
+		//int m_no = 9;
+		//model.addAttribute("m_no", m_no);
 
 		//게임번호, 게임이름 불러오기
 		model.addAttribute("gameName", boardService.selectGameNameCom(bw_no));
@@ -633,7 +635,7 @@ public class HeeJeongController {
 	// 카페리뷰 게시글 view
 	@RequestMapping(value = "/content_view_cr", method = RequestMethod.GET)
 	public String content_view_cr(Model model, HttpServletRequest request, CM_commentVO cm_commentVO,
-									@RequestParam("cr_no") int pageNum) {
+									@RequestParam("cr_no") int pageNum, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("content_view_cr");
 
 		System.out.println(request.getParameter("cr_no"));
@@ -642,12 +644,19 @@ public class HeeJeongController {
 				
 		System.out.println(cr_no);
 
+
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
+		
 		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
 
 		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
-		int m_no = 9;
-		model.addAttribute("m_no", m_no);
+		//int m_no = 9;
+		//model.addAttribute("m_no", m_no);
 
 		//게임이름, 번호 불러오기.
 		model.addAttribute("gameName", boardService.selectGameNameCR(cr_no));

@@ -120,7 +120,7 @@
 							<c:forEach items="${list}" var="list">
 							<tr class="row">
 								<td class = "cell">${list['RNUM']}</td>
-								<td class = "cell">${list['C_TITLE']}</td>
+								<td class = "cell"><a href="cafe_info?c_no=${list['C_NO']}">${list['C_TITLE']}</a></td>
 								<td class = "cell"><a href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a> [${list['CM']}]</td>
 								<td class = "cell">${list['M_NICK']}</td>
 								<td class = "cell">

@@ -71,8 +71,8 @@
 				
 				<form action="question_modify" method = "post" enctype="multipart/form-data">
 					<table class="write-table">
-						<input type = "hidden" name = "bw_no" value = "${question['BW_NO']}"/>
-						<input type = "hidden" id = "s_no"  value = "${question['S_NO'] }"/>
+						<input type = "hidden" name = "bw_no" value = "${content_view['BW_NO']}"/>
+						<input type = "hidden" id = "s_no"  value = "${content_view['S_NO'] }"/>
 						<!-- 질문 말머리 -->
 						<tr class = "row">
 							<td class = "cell">
@@ -90,12 +90,12 @@
 						
 						<!-- 입력창 -->
 						<tr class="row">
-							<td class="cell"><input type="text" name="bw_title" placeholder = "제목을 입력하세요" value = "${question['BW_TITLE']}"></td>
+							<td class="cell"><input type="text" id = "title" name="bw_title" placeholder = "제목을 입력하세요" value = "${content_view['BW_TITLE']}"></td>
 						</tr> 
 						
 						
 						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요">${question['BW_CONTENT']}</textarea></td>
+							<td class="cell"><textarea id = "editor" name="bw_content" placeholder = "내용을 입력하세요">${content_view['BW_CONTENT']}</textarea></td>
 						</tr>
 						
 						<tr class = "row">
@@ -107,18 +107,14 @@
 							
 							</td>
 							
-							
-							<!-- <td class = "cell">
-								<input type = "checkbox" id = "check_test">
-								<label for = "check_test"><div class = "chk_img">비밀글</div></label>
-							</td> -->
+				
 						</tr>
 						
 
 						
 					</table>
 					<button class = "list" type="button" onclick="location.href='question_list'">목록</button>
-					<button class = "write-btn" type = "submit">수정 완료</button>
+					<button class = "write-btn">수정 완료</button>
 				</form>
 
 
@@ -157,7 +153,7 @@
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	<script src="js/board_hs/secret_box.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
-	
+	<script src="js/board_hs/alertEmpty.js"></script>
 	<script>
 	$(document).ready(function(){
 		var s_no = $("#s_no").val();

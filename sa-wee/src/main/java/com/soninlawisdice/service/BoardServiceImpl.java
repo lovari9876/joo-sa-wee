@@ -59,7 +59,7 @@ public class BoardServiceImpl implements BoardService {
 
 	// 게시글 작성.
 	@Override
-	public void insertBoard(Board_writeVO board_writeVO, String gameNames) {
+	public void insertBoard(Board_writeVO board_writeVO, String gameNames, int m_no) {
 
 		// 쉼표로 구분하여 받은 gameNames 잘라서 List 에 담기
 		StringTokenizer gns = new StringTokenizer(gameNames, ",");
@@ -69,7 +69,7 @@ public class BoardServiceImpl implements BoardService {
 		while (gns.hasMoreTokens()) {
 			gameName.add(gns.nextToken().trim());
 		}
-		boardMapper.insertBoard(board_writeVO, gameName);
+		boardMapper.insertBoard(board_writeVO, gameName, m_no);
 	}
 
 	// content_view 랑 modify_view 에 게임 이름들 가져오기
@@ -181,7 +181,7 @@ public class BoardServiceImpl implements BoardService {
 
 	// 카페 리뷰 작성하기
 	@Override
-	public void insertReview(Cafe_reviewVO cafe_reviewVO, String gameNames) {
+	public void insertReview(Cafe_reviewVO cafe_reviewVO, String gameNames, int m_no) {
 
 		// 쉼표로 구분하여 받은 gameNames 잘라서 List 에 담기
 		StringTokenizer gns = new StringTokenizer(gameNames, ",");
@@ -191,7 +191,7 @@ public class BoardServiceImpl implements BoardService {
 		while (gns.hasMoreTokens()) {
 			gameName.add(gns.nextToken().trim());
 		}
-		boardMapper.insertReview(cafe_reviewVO, gameName);
+		boardMapper.insertReview(cafe_reviewVO, gameName, m_no);
 	}
 
 	// 리뷰 수정하기
@@ -229,8 +229,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void insertQuestion(Board_writeVO board_writeVO) {
-		boardMapper.insertQuestion(board_writeVO);
+	public void insertQuestion(Board_writeVO board_writeVO, int m_no) {
+		boardMapper.insertQuestion(board_writeVO, m_no);
 	}
 
 	@Override

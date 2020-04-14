@@ -97,15 +97,15 @@
 					<ul class="tab">
 						<li class="current" data-tab="tab1"><button type = "button" 
 							onclick ="location.href='question_list'">전체보기</button></li>
-						<li data-tab="tab2"><button type = "button" value = "27" class = "select"
+						<li data-tab="tab2" id = "27"><button type = "button" value = "27" class = "select"
 							onclick ="location.href='question_list?s_content=27'">회원 관련 문의</button></li>
-						<li data-tab="tab3"><button type = "button" value = "28" class= "select"
+						<li data-tab="tab3" id = "28"><button type = "button" value = "28" class= "select"
 							onclick ="location.href='question_list?s_content=28'">결제 관련 문의</button></li>
-						<li data-tab="tab4"><button type = "button" value = "29" class = "select"
+						<li data-tab="tab4" id = "29"><button type = "button" value = "29" class = "select"
 							onclick ="location.href='question_list?s_content=29'">정보수정 요청</button></li>
-						<li data-tab="tab5"><button type = "button" value = "30" class = "select"
+						<li data-tab="tab5" id = "30"><button type = "button" value = "30" class = "select"
 							onclick ="location.href='question_list?s_content=30'">무인도 관련 문의</button></li>
-						<li data-tab="tab6"><button type = "button" value = "31" class= "select"
+						<li data-tab="tab6" id = "31"><button type = "button" value = "31" class= "select"
 							onclick ="location.href='question_list?s_content=31'">기타 문의</button></li>
 					</ul>
 
@@ -130,8 +130,8 @@
 								<td class = "cell">${question['RNUM']}</td>
 								<td class = "cell">${question['S_CONTENT']}</td>
 								<td class = "cell">
-									<c:if test = "${question['BW_SECRET'] eq 'y' }">  
-										<img src="images/board_hs/lock.png"> 
+									<c:if test = "${question['BW_SECRET'] eq 'y'}">  
+										<img src="images/board_hs/lock.png">
 									</c:if> 
 									<a href="question_content_view?bw_no=${question['BW_NO']}">${question['BW_TITLE']}</a>  [${question['CM']}]
 								</td>
@@ -292,9 +292,14 @@
 				
 
 				<!-- 버튼에 링크 걸기 -->
+				<sec:authorize access="isAnonymous()">
 				<button class="write-view-btn" type="button"
+					onclick="location.href='loginview'">글쓰기</button>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<button class="write-view-btn" type="button"
 					onclick="location.href='question_write_view'">글쓰기</button>
-
+				</sec:authorize>
 
 			</div>
 		</div>
@@ -323,7 +328,6 @@
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
-	<script src="js/board_hs/tabdata.js" type="text/javascript"></script>
 	<script src="js/board_hs/button.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
 
