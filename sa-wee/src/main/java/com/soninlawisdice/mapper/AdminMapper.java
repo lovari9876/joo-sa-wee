@@ -23,9 +23,11 @@ import com.soninlawisdice.vo.SearchCriteria;
 
 public interface AdminMapper {
 
-	// 목록 출력
-//	@Select("select * from statistics")
-//	public List<StatisticsVO> selectAdminList();
+
+	//mypage : 내가쓴글, 댓글 목록
+	public ArrayList<HashMap<String, Object>> myBoardList(@Param("m_no")int m_no);
+	
+	public List<CM_commentVO> myCommentList(@Param("m_no")int m_no);
 	
 
 	// 페이징 처리 + 검색  List

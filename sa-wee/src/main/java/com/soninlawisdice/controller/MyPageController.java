@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,8 +22,11 @@ import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.MemberVO;
+import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.PaymentVO;
 import com.soninlawisdice.vo.NoteVO;
+
+
 
 @Controller
 public class MyPageController {
@@ -62,7 +66,7 @@ public class MyPageController {
 //	}
 	// 시큐리티 마이페이지
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(Principal principal, Model model, MemberVO memberVO) throws Exception {
+	public String mypage(Principal principal, Model model, MemberVO memberVO, String cate) throws Exception {
 		System.out.println("mypage()");
 
 		String m_id = principal.getName();
@@ -95,6 +99,16 @@ public class MyPageController {
 				secondhandService.selectPaymentList(m_no, who);
 		model.addAttribute("bPayList", bPayList);
 		
+
+		
+		//////////////////내가 쓴 글 목록//////////////////////////
+		model.addAttribute("myBoardList", adminService.myBoardList(m_no));
+		
+		//////////////////내가 쓴 댓글 목록//////////////////////////
+		model.addAttribute("myCommentList", adminService.myCommentList(m_no));
+		
+
+
 		return "mypage/mypage";
 	}
 
@@ -241,6 +255,7 @@ public class MyPageController {
 
 		return "message/send_message";
 	}
+
 
 	// 쪽지 보내기
 	@RequestMapping(value = "/send_message", method = RequestMethod.GET)
