@@ -126,6 +126,17 @@ select SUM(tg_price) FROM trade_game where t_no = 389;
             END;
 /
 		
+        -- 거래 하나의 ptgList
+        SELECT
+			PTG.PTG_NO, PTG.P_NO, TG.*
+		FROM
+			PAYMENT_TRADE_GAME PTG
+		LEFT JOIN
+			TRADE_GAME TG
+		ON
+			PTG.TG_NO = TG.TG_NO
+		WHERE
+			PTG.P_NO = #{p_no}		
 
 
 

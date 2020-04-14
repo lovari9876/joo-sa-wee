@@ -15,7 +15,7 @@
 <!-- mytrade 테이블 css -->
 <link rel="stylesheet" type="text/css" href="/css/mypage/cassie/mypagestyle.css" />
 <!-- 버튼 -->
-<link rel="stylesheet" href="css/secondhand/buttonstyle.css" />
+<link rel="stylesheet" href="/css/secondhand/buttonstyle.css" />
 
 </head>
 
@@ -119,7 +119,7 @@
 				<th class="cell"></th> <!-- 변경 버튼 -->
 				<!-- 게임,가격은 자세히 보기 눌러서 볼 것 -->
 			</tr>
-			<c:forEach items="${sPayList}" var="payment" >
+			<c:forEach items="${sPayList}" var="payment" varStatus="status">
 				<tr class="table_row">
 					<td class="cell">${payment['P_NO']}</td>
 					<td class="cell">
@@ -166,10 +166,11 @@
 						</c:choose>
 					</td> 
 					<td class="cell"> <!-- 버튼 -->
-						<div align="center" class="buy--button" >
-							<button id ="price-btn" class="write-btn lavender-btn" type="button" >
+						<div align="center" class="buy--button" >				
+							<button id ="price-btn" class="write-btn lavender-btn" type="button" 
+									name="${status.count}" value="${payment['P_NO']}" >
 								<c:choose>				
-									<c:when test="${payment['P_STATUS'] eq 1}">가격확정</c:when>		
+									<c:when test="${payment['P_STATUS'] eq 1}">주문확인</c:when>		
 									<c:when test="${payment['P_STATUS'] eq 2}">입금대기</c:when>
 									<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
 									<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
@@ -179,6 +180,7 @@
 									<c:otherwise>불명확</c:otherwise>
 								</c:choose>
 							</button> 
+							
 						</div>
 					</td>										
 				</tr>

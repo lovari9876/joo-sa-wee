@@ -7,20 +7,25 @@ import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
+import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.PaymentVO;
@@ -99,26 +104,37 @@ public class MyPageController {
 				secondhandService.selectPaymentList(m_no, who);
 		model.addAttribute("bPayList", bPayList);
 		
-
 		
 		//////////////////내가 쓴 글 목록//////////////////////////
 		model.addAttribute("myBoardList", adminService.myBoardList(m_no));
 		
 		//////////////////내가 쓴 댓글 목록//////////////////////////
 		model.addAttribute("myCommentList", adminService.myCommentList(m_no));
-		
-
-
+				
 		return "mypage/mypage";
 	}
+	
+	// 판매자 가격확정 모달: price_modal_view
+	@ResponseBody
+	@RequestMapping(value = "/price_modal_view/{pno}", method = RequestMethod.GET)
+	public ArrayList<HashMap<String, Object>> price_modal_view(Model model, @PathVariable(value = "pno") int pno,
+										HttpServletRequest rq) {
+		System.out.println("price_modal_view");
+			
+		// mypage c:import에서 버튼 클릭 시, c:param으로 보낸 p_no
+		// int p_no = rq.getParameter("pno");
+		System.out.println("p_no : " + pno);
 
-	@RequestMapping(value = "/mypageTest", method = RequestMethod.GET)
-	public String mypageTest(HttpSession session, Model model, MemberVO memberVO) throws Exception {
-		System.out.println("mypageTest()");
-
-		return "mypage/mypage";
-	}
-
+		/*
+		 * ArrayList<HashMap<String, Object>> ptgList =
+		 * secondhandService.selectPTGList(pno); model.addAttribute("ptgList", ptgList);
+		 */
+		  
+		return secondhandService.selectPTGList(pno); 
+	} 
+	
+	
+//////////////////////////////////////////////////////////////////////////////////////////////
 	// 회원정보 수정뷰
 	@RequestMapping(value = "/mypage_modifyview", method = RequestMethod.GET)
 	public String mypageModifyView(Principal principal, Model model, MemberVO memberVO) throws Exception {
