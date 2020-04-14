@@ -118,13 +118,12 @@
 
 					<p>${content_view['BW_CONTENT']}</p>
 					
-					
-					
 					<br/><br/><br/><br/><br/>
 					<!-- 태그 -->
 					<c:forEach items = "${gameName}" var = "gameName" >
 						<a href = "game_detail?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']} &emsp;</a> &nbsp;
 					</c:forEach>
+
 
 					<!-- 추천 -->
 					<br /> <br />
@@ -204,6 +203,12 @@
 								</c:import>
 							</c:when>
 							<c:when test="${content_view['BT_NO'] == 6}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
+							<c:when test="${content_view['BT_NO'] == 8}">
 								<c:import url="/comment_view_bw">
 									<c:param name="cm_type" value="게시판"></c:param>
 									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
