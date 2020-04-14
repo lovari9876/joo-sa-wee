@@ -1063,18 +1063,17 @@ dl, ol, ul {
 }
 
 .test_item.second {
-	width:70%;
-	text-align: right;
+	float: right;
 }
 
 .test_item.third {
-	width:8%;
-	text-align: right;
+	float: right;
+	padding-left:15px;
 }
 
 .test_item.fourth {
-	width:8%;
-	text-align: right;
+	float: right;
+	padding-left:15px;
 }
 
 
