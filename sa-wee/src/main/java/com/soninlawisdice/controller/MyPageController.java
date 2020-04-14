@@ -123,6 +123,7 @@ public class MyPageController {
 	// 쪽지함
 	@RequestMapping(value = "/message", method = { RequestMethod.GET, RequestMethod.POST })
 	public String message(NoteVO noteVO, MemberVO memberVO, Principal principal, Model model) throws Exception {
+		System.out.println("============================== 쪽지함 화면 start ==============================");
 		String m_id = principal.getName();
 		memberVO = myPageService.mypage(m_id);
 
@@ -130,7 +131,8 @@ public class MyPageController {
 
 		int m_no = memberVO.getM_no();
 		model.addAttribute("message", myPageService.noteView(m_no));
-
+		System.out.println("============================== 쪽지함 화면 end ==============================");
+		
 		return "message/message";
 	}
 

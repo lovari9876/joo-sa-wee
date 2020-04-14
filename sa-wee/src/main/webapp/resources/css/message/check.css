@@ -6,3 +6,12 @@
 
 .checkBox { float:left; width:30px; }
 .checkBox input { width:16px; height:16px; }
+
+/* input 타입 버튼 보더 없애기 보이게 하기 */
+.select_note{
+	-webkit-appearance: media-slider;
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+    
+}

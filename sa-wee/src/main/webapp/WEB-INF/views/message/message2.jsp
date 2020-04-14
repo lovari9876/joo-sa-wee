@@ -91,17 +91,16 @@
 												</div>
 												<div class="chat_ib">
 													<h5>
-														<input class="select_note" type="button" style=" " 
-															id="${message['N_NO']}" value="${message['N_TITLE']}" />
-														<%-- <a href="#n_no${message['N_NO']}"
-															class="select_note_content">${message['N_TITLE']} </a> --%>
-														<span
-															class="chat_date"> <fmt:formatDate
+														<a href="#n_no${message['N_NO']}"
+															aria-controls="#n_no${message['N_NO']}"
+															aria-selected="false">${message['N_TITLE']} <%-- <input id="n_no" type="hidden" value="${message['N_NO']}" /> --%>
+														</a> <span class="chat_date"> <fmt:formatDate
 																pattern="yyyy-MM-dd HH:mm"
 																value="${message['N_WRITTEN_DATE']}" />
 														</span>
 													</h5>
 													<p>${message['M2_NICK']}</p>
+
 												</div>
 											</div>
 										</div>
@@ -118,20 +117,38 @@
 						<c:forEach items="${message}" var="message">
 							<c:if
 								test="${message['M_NO'] == member.m_no && message['N_BLIND'] != 2}">
-								<div class="msg_history tab_content" id="n_no${message['N_NO']}">
-									<h5 class="text-center" id="one_n_title">${message['N_TITLE']}</h5>
-									<hr />
-									<p>${message['M2_NICK']}
-										<span class="time_date" id="one_n_date"><fmt:formatDate
-												pattern="yyyy-MM-dd HH:mm"
-												value="${message['N_WRITTEN_DATE']}" /></span>
-									</p>
-									<hr />
-									<p id="one_n_content">${message['N_CONTENT']}</p>
+								<div class="msg_history">
+									<div class="tab-pane portfolio-detail fade"
+										id="n_no${message['N_NO']}" role="tabpanel"
+										aria-labelledby="contact-tab"></div>
+									<div id="one_note">
+										<h5 class="text-center" id="one_n_title">${message['N_TITLE']}</h5>
+										<hr />
+										<p>${message['M2_NICK']}
+											<span class="time_date" id="one_n_date"><fmt:formatDate
+													pattern="yyyy-MM-dd HH:mm"
+													value="${message['N_WRITTEN_DATE']}" /></span>
+										</p>
+										<hr />
+										<p id="one_n_content">${message['N_CONTENT']}</p>
+									</div>
+
+									<%-- <div id="note_content">
+								<h5 class="text-center">${noteContent['N_TITLE']}</h5>
+								<hr />
+								<p>${noteContent['M2_NICK']}
+									<span class="time_date"><fmt:formatDate
+											pattern="yyyy-MM-dd HH:mm"
+											value="${noteContent['N_WRITTEN_DATE']}" /></span>
+								</p>
+								<hr />
+								<p>${noteContent['N_CONTENT']}</p>
+							</div> --%>
 								</div>
 							</c:if>
 						</c:forEach>
 					</div>
+
 
 					<ul class="notebox">
 						<li><a href="send_messageview"

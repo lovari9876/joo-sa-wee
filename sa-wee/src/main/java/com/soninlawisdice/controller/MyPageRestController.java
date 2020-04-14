@@ -33,7 +33,7 @@ public class MyPageRestController {
 	@ResponseBody
 	@RequestMapping(value = "/message", method = {RequestMethod.GET,RequestMethod.POST})
 	public ArrayList<HashMap<String, Object>> message(Integer n_no, MemberVO memberVO, Principal principal, Model model) throws Exception {
-		System.out.println("message");
+		System.out.println("============================== 쪽지함 화면 ajax start ==============================");
 		
 		String m_id = principal.getName();
 		memberVO = myPageService.mypage(m_id);
@@ -47,38 +47,20 @@ public class MyPageRestController {
 			System.out.println(n_no);
 			model.addAttribute("noteContent", myPageService.noteContent(n_no));
 		}
-		
+		System.out.println("============================== 쪽지함 화면 ajax end ==============================");
+
 		return myPageService.noteView(m_no);
 	}
 	
-	
-//	@RequestMapping(value = "/delete_send_message", method = RequestMethod.GET)
-//	public String delete_send_message(String m_nick, NoteVO noteVO) throws Exception {
-//		System.out.println("send_message()");
-//		
-//		System.out.println(m_nick);
-//		MemberVO memberVO = myPageService.mypageNick(m_nick);
-//		int m_no = memberVO.getM_no();
-//		
-//		System.out.println(noteVO.getM_no2());
-//		
-//		myPageService.sendMessage(m_no, noteVO);
-//		
-//		return "message/send_message";
-//	}
-//	@RequestMapping(value = "/delete_receive_message", method = RequestMethod.GET)
-//	public String delete_receive_message(String m_nick, NoteVO noteVO) throws Exception {
-//		System.out.println("send_message()");
-//		
-//		System.out.println(m_nick);
-//		MemberVO memberVO = myPageService.mypageNick(m_nick);
-//		int m_no = memberVO.getM_no();
-//		
-//		System.out.println(noteVO.getM_no2());
-//		
-//		myPageService.sendMessage(m_no, noteVO);
-//		
-//		return "message/send_message";
-//	}
+	@ResponseBody
+	@RequestMapping(value = "/select_message", method = {RequestMethod.GET,RequestMethod.POST})
+	public HashMap<String, Object> select_message(Integer n_no, MemberVO memberVO, Principal principal, Model model) throws Exception{
+		System.out.println("============================== 쪽지 선택 ajax start ==============================");
 
+		model.addAttribute("noteContent", myPageService.noteContent(n_no));
+		System.out.println("============================== 쪽지 선택 ajax end ==============================");
+
+		return myPageService.noteContent(n_no);
+	}
+	
 }

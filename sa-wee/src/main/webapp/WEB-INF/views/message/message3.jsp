@@ -31,7 +31,7 @@
 <!-- 403 에러 / csrf 토큰 문제 -->
 <%-- <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
-	content="${_csrf.headerName}" /> --%>
+	content="${_csrf.headerName}" /> --%>	
 </head>
 
 <body>
@@ -46,21 +46,19 @@
 				<div class="inbox_msg">
 					<div class="inbox_people">
 						<div class="headind_srch">
-							<div class="recent_heading">
-								<div>
-									<button type="button" class="btn-receive"
-										value="${member.m_no} ">receive</button>
+							<div class="recent_heading">							
+								<div>									
+									<button type="button" class="btn-receive" value="${member.m_no} ">receive</button>
 								</div>
 								<div>
 									<button type="button" class="btn-send" value="${member.m_no}">send</button>
 								</div>
 							</div>
 							<div class="srch_bar">
-								<!-- <div class="stylish-input-group"> -->
-								<div class="delBtn">
-									<button type="button" class="selectDelete_btn"
-										data-NN="<%-- ${message['N_NO']} --%>">delete</button>
-								</div>
+								<!-- <div class="stylish-input-group"> -->									
+									<div class="delBtn">
+										<button type="button" class="selectDelete_btn" data-NN="<%-- ${message['N_NO']} --%>">delete</button>
+									</div>
 								<!-- </div> -->
 							</div>
 						</div>
@@ -68,45 +66,42 @@
 							<div class="allCheck">
 								<input type="checkbox" name="allCheck" id="allCheck" /><label
 									for="allCheck">모두 선택</label>
-							</div>
+							</div>							
 							<div class="delBtn">
 								<button type="button" class="selectDelete_btn"></button>
 							</div>
-							<br />
+							<br/>
 							<div id="ajax_test">
-								<c:forEach items="${message}" var="message">
-									<c:if
-										test="${message['M_NO'] == member.m_no && message['N_BLIND'] != 2}">
-										<div class="checkBox">
-											<input type="checkbox" name="chBox" class="chBox"
-												data-NN="${message['N_NO']}" />
-										</div>
+							<c:forEach items="${message}" var="message">
+								<c:if test="${message['M_NO'] == member.m_no && message['N_BLIND'] != 2}">
+								<div class="checkBox">
+									<input type="checkbox" name="chBox" class="chBox"
+										data-NN="${message['N_NO']}" />
+								</div>
+								
 
-
-										<div class="chat_list active_chat">
-											<div class="chat_people">
-												<div class="chat_img">
-													<img src="images/bl_share/icons/login/wolf_logo.png"
-														alt="sunil">
-												</div>
-												<div class="chat_ib">
-													<h5>
-														<input class="select_note" type="button" style=" " 
-															id="${message['N_NO']}" value="${message['N_TITLE']}" />
-														<%-- <a href="#n_no${message['N_NO']}"
-															class="select_note_content">${message['N_TITLE']} </a> --%>
-														<span
-															class="chat_date"> <fmt:formatDate
-																pattern="yyyy-MM-dd HH:mm"
-																value="${message['N_WRITTEN_DATE']}" />
-														</span>
-													</h5>
-													<p>${message['M2_NICK']}</p>
-												</div>
-											</div>
+								<div class="chat_list active_chat">
+									<div class="chat_people">
+										<div class="chat_img">
+											<img src="images/bl_share/icons/login/wolf_logo.png"
+												alt="sunil">
 										</div>
-									</c:if>
-								</c:forEach>
+										<div class="chat_ib">
+											<h5>
+												<a href="/rest/message?n_no=${message['N_NO']}">${message['N_TITLE']}
+													<input id="n_no" type="hidden" value="${message['N_NO']}" />
+												</a> <span class="chat_date"> <fmt:formatDate
+														pattern="yyyy-MM-dd HH:mm"
+														value="${message['N_WRITTEN_DATE']}" />
+												</span>
+											</h5>
+											<p>${message['M2_NICK']}</p>
+
+										</div>
+									</div>
+								</div>
+								</c:if>
+							</c:forEach>
 							</div>
 						</div>
 						<!-- security -->
@@ -115,24 +110,39 @@
 					</div>
 
 					<div id="ajax_content" class="mesgs">
-						<c:forEach items="${message}" var="message">
-							<c:if
-								test="${message['M_NO'] == member.m_no && message['N_BLIND'] != 2}">
-								<div class="msg_history tab_content" id="n_no${message['N_NO']}">
-									<h5 class="text-center" id="one_n_title">${message['N_TITLE']}</h5>
-									<hr />
-									<p>${message['M2_NICK']}
-										<span class="time_date" id="one_n_date"><fmt:formatDate
-												pattern="yyyy-MM-dd HH:mm"
-												value="${message['N_WRITTEN_DATE']}" /></span>
-									</p>
-									<hr />
-									<p id="one_n_content">${message['N_CONTENT']}</p>
-								</div>
-							</c:if>
-						</c:forEach>
+						<div class="msg_history">
+							<div id="one_note">
+								<h5 class="text-center" id="one_n_title">${noteContent['N_TITLE']}</h5>
+								<hr />
+								<p>${noteContent['M2_NICK']}
+									<span class="time_date" id="one_n_date"><fmt:formatDate
+											pattern="yyyy-MM-dd HH:mm"
+											value="${noteContent['N_WRITTEN_DATE']}" /></span>
+								</p>
+								<hr />
+								<p id="one_n_content">${noteContent['N_CONTENT']}</p>
+							</div>
+							<%-- <div id="note_content">
+								<h5 class="text-center">${noteContent['N_TITLE']}</h5>
+								<hr />
+								<p>${noteContent['M2_NICK']}
+									<span class="time_date"><fmt:formatDate
+											pattern="yyyy-MM-dd HH:mm"
+											value="${noteContent['N_WRITTEN_DATE']}" /></span>
+								</p>
+								<hr />
+								<p>${noteContent['N_CONTENT']}</p>
+							</div> --%>
+						</div>
 					</div>
-
+					<!-- <div class="tab-pane portfolio-detail fade" id="trade"
+						role="tabpanel" aria-labelledby="contact-tab">
+						<div class="sec-title">
+							<h2>내 구매</h2>
+						</div>
+						
+					</div> -->
+					
 					<ul class="notebox">
 						<li><a href="send_messageview"
 							onClick="window.open(this.href, '', 'width=900, height=800, left=400, top=100'); return false;">

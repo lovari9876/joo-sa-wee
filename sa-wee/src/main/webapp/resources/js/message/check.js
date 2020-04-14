@@ -57,3 +57,20 @@ $(".selectDelete_btn").click(function() {
 	}
 	
 });
+
+$(document).ready(function() {
+
+    $(".tab_content").hide(); //Hide all content
+    $(".chat_ib .select_note_content:first").addClass("active").show(); //Activate first tab
+    $(".tab_content:first").show(); //Show first tab content
+
+    //On Click Event
+    $(".chat_ib .select_note").click(function() {
+
+        $(".chat_ib .select_note_content").removeClass("active"); //Remove any "active" class
+/*       $(this).addClass("active"); //Add "active" class to selected tab
+        $(".tab_content").hide(); //Hide all tab content
+*/
+    });
+
+});
