@@ -49,5 +49,8 @@ public interface SecondhandMapper {
 	
 	// 회원정보 -> 내 구매/ 내 판매 리스트
 	public ArrayList<HashMap<String, Object>> selectPaymentList(@Param("m_no") int m_no, @Param("who") String who);
+
+	// 내 거래: 거래 하나의 ptgList(게임, 가격)
+	public ArrayList<HashMap<String, Object>> selectPTGList(@Param("p_no") int p_no);
 	
 }

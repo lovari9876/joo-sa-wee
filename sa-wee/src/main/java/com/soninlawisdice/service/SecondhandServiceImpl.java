@@ -146,13 +146,11 @@ public class SecondhandServiceImpl implements SecondhandService {
 	// 회원정보 -> 내 구매/ 내 판매 리스트
 	public ArrayList<HashMap<String, Object>> selectPaymentList(int m_no, String who) {
 		return secondhandMapper.selectPaymentList(m_no, who);
+	}	
+	
+	// 내 거래: 거래 하나의 ptgList(게임, 가격)
+	public ArrayList<HashMap<String, Object>> selectPTGList(int p_no) {
+		return secondhandMapper.selectPTGList(p_no);
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

@@ -36,8 +36,8 @@
 					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
 					<div class="table--div">
-						<div class="modal--info">구매자의 결제를 기다리는 중입니다.<br/>
-							결제 확인 후, 운송장을 입력하실 수 있습니다.														
+						<div class="modal--info">구매를 원하시는 물품에 체크 후, '구매요청' 버튼을 눌러주세요.<br/>
+							판매자의 가격 조정이 끝나면, [마이페이지 -> 내 구매] 에서 배송지를 입력하실 수 있습니다.														
 						</div>
 						<br/>
 						<table>
@@ -60,11 +60,10 @@
 							</c:forEach>	--%>					
 						</table>
 						<br/>
+						<br/>						
+						<button id="buy-btn" class="write-btn lavender-btn" type="submit" onClick="return isChecked()">구매 요청</button>	
 						<!-- modal close -->
 						<span id="modal--close">close</span>
-						<br/>						
-						
-						
 					</div>
 					
 				</form>						
