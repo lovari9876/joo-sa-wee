@@ -196,7 +196,7 @@
 					
 					<!-- 댓글 쓰기 -->
 					<div class="comment-form-wrap pt-5">
-						<%-- <%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %> --%>
+						<%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %>
 					</div>
 				</div>
 			</div>
