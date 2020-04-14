@@ -33,6 +33,7 @@ a {
 	-webkit-transition: all 0.4s;
 	-o-transition: all 0.4s;
 	-moz-transition: all 0.4s;
+	text-decoration: none;
 }
 
 a:focus {
@@ -434,4 +435,12 @@ html, body {
 	background:none;
 	background-image: url("../../images/bl_share/lavender_dot.png");
 }
+/* =========================== error page ==================================== */
+
+.error > h5 {
+	font-weight: normal;
+}
+
+
+
 

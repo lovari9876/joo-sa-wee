@@ -421,6 +421,11 @@
 	</select>
 	
 	
+	<select id="faqView" parameterType="com.soninlawisdice.vo.FaqVO" resultType="com.soninlawisdice.vo.FaqVO">
+		select * from faq where faq_no=#{faq_no}
+	</select>
+	
+	
 	<!-- =============================================== 글 쓰기  ====================================================== -->
 	
 	<insert id="boardInsert" parameterType="com.soninlawisdice.vo.Board_writeVO" >
@@ -471,7 +476,7 @@
 			</when>
 			
 			<when test='r_type == "댓글"'>
-				m.m_id, cm.cm_content, cm.cm_report_num, cm.cm_no, cm.m_no AS r_id
+				m.m_id, cm.cm_content, cm.cm_report_num, cm.cm_no, cm.cm_no2, cm.cm_type, cm.m_no AS r_id
 				FROM report r LEFT JOIN member m ON r.m_no= m.m_no 
                 LEFT JOIN cm_comment cm ON r.r_type_no = cm.cm_no WHERE
 			</when>
@@ -497,6 +502,14 @@
 	</update>
 	
 	
+	<!-- =============================================== faq 수정 ====================================================== -->
+	
+	<update id="updateFaq" parameterType="com.soninlawisdice.vo.FaqVO" >
+		UPDATE faq 
+		SET s_no = #{faqVO.s_no}, faq_title = #{faqVO.faq_title}, faq_content= #{faqVO.faq_content},
+			faq_updated_date = sysdate 
+		WHERE faq_no = #{faqVO.faq_no}
+	</update>
 	<!-- =============================================== 회원 탈퇴처리 ====================================================== -->
 	
 	<update id="outMember" parameterType="com.soninlawisdice.vo.MemberVO" >
@@ -509,7 +522,7 @@
 	<!-- 멤버 번호 바로 불러올수 없는 경우 : 신고관리 페이지 , 글이 신고당함 - 글번호로 멤버번호를 가져옴 -->
 	<update id="updateIsland_member" >
 		UPDATE member
-		SET r_no =  4
+		SET r_no =  4, m_point = m_point -5
 		WHERE m_no = (SELECT m_no FROM 
 		
 		<choose>
@@ -618,6 +631,10 @@
 		delete cm_comment where cm_no = #{cm_no}
 	</delete>
 	
+	<delete id="faqDelete" parameterType="com.soninlawisdice.vo.FaqVO" >
+		delete faq where faq_no = #{faq_no}
+	</delete>
+	
 	<!-- =============================================== 방문자수  ====================================================== -->
 	
 	<insert id="setTotalCount" parameterType="com.soninlawisdice.vo.VisitVO">
@@ -633,12 +650,23 @@
 		SELECT COUNT(*) AS TotalCount FROM VISIT
 	</select>
 	
+	<!-- =============================================== 메인 FAQ 조회수  ====================================================== -->
+	
+	<update id="upHitFaq">
+		UPDATE faq SET faq_hit = faq_hit + 1 
+		WHERE faq_no = #{faq_no}
+	</update>
+	
 	
 	<!-- =============================================== 통계  ====================================================== -->
 	
 	<insert id="statisticsInsert" parameterType="com.soninlawisdice.vo.StatisticsVO">
 		INSERT INTO statistics (st_no, st_date, st_visitor_num, st_post_num, st_trade_num, st_comment_num)
-		VALUES (statistics_seq.nextval, sysdate, #{st_visitor_num}, #{st_post_num}, #{st_trade_num}, #{st_comment_num})
+		SELECT statistics_seq.nextval, sysdate, #{st_visitor_num}, #{st_post_num}, #{st_trade_num}, #{st_comment_num}
+		FROM DUAL A WHERE NOT EXISTS(
+			  SELECT st_date FROM statistics
+			  WHERE TO_DATE(st_date, 'YYYY-MM-DD') = TO_DATE(sysdate, 'YYYY-MM-DD'))
+		
 	
 	</insert>
 	
@@ -712,14 +740,31 @@
 	
 	
 	<select id="getWeekStatistics" resultType="java.util.HashMap">
-		
-		SELECT TO_CHAR(st_date, 'yymmiw') AS week, SUM(st_visitor_num)AS st_visitor_num, SUM(st_post_num)AS st_post_num, 
-        SUM(st_trade_num)AS st_trade_num, SUM(st_comment_num)AS st_comment_num FROM statistics
-		WHERE TO_CHAR(st_date, 'yyyymmww')
-		between '20190101' AND '20201231'
-		GROUP BY TO_CHAR(st_date, 'yymmiw')
-		ORDER BY TO_CHAR(st_date, 'yymmiw')
+		<![CDATA[
+			SELECT * FROM
+		        (SELECT TO_CHAR(st_date, 'yy-mm-iw') AS week, SUM(st_visitor_num) AS st_visitor_num, SUM(st_post_num) AS st_post_num, 
+		                SUM(st_trade_num)AS st_trade_num, SUM(st_comment_num)AS st_comment_num FROM statistics
+		        WHERE TO_CHAR(st_date, 'yyyymmww')
+		        between '20190101' AND '20201231'
+		        GROUP BY TO_CHAR(st_date, 'yy-mm-iw')
+		        ORDER BY TO_CHAR(st_date, 'yy-mm-iw') DESC
+		        )
+    		WHERE ROWNUM <= 8
+		 ]]>
+	</select>
 	
+	<select id="getMonthStatistics" resultType="java.util.HashMap">
+		<![CDATA[
+			SELECT * FROM
+		        (SELECT TO_CHAR(st_date, 'yy-mm') AS month, SUM(st_visitor_num) AS st_visitor_num, SUM(st_post_num) AS st_post_num, 
+		                SUM(st_trade_num)AS st_trade_num, SUM(st_comment_num)AS st_comment_num FROM statistics
+		        WHERE TO_CHAR(st_date, 'yyyymmww')
+		        between '20190101' AND '20201231'
+		        GROUP BY TO_CHAR(st_date, 'yy-mm')
+		        ORDER BY TO_CHAR(st_date, 'yy-mm') DESC
+		        )
+    		WHERE ROWNUM <= 8
+		 ]]>
 	</select>
 	
 	

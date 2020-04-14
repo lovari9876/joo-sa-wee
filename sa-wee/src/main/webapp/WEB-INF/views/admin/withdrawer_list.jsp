@@ -25,7 +25,7 @@
 	<script src="js/admin/chart/tab.js" type="text/javascript"></script>
 	<!-- 차트 Chart.js -->
 	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-	<script src="js/admin/chart/chart2.js" type="text/javascript"></script>
+	<script src="js/admin/chart/chart_out.js" type="text/javascript"></script>
 
 
 

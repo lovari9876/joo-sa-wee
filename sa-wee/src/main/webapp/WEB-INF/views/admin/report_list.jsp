@@ -68,13 +68,13 @@
 							</div>
 						</div>
 						<div class="btn-group pull-right" data-toggle="buttons-radio">
-						<button type="button" class="btn r_type" value="" 
+						<button type="button" class="btn r_type <c:out value="${r_type eq null ? 'active' : ''}"/>" value="" 
 							onclick ="location.href='report_list'">전체보기</button>
-						<button id="member" type="button" class="btn r_type" value="회원" 
+						<button id="member" type="button" class="btn r_type <c:out value="${r_type == '회원' ? 'active' : ''}"/>" value="회원" 
 							onclick ="location.href='report_list?&r_type=회원&keyword='">회원</button>
-						<button type="button" class="btn r_type" value="게시글"
+						<button type="button" class="btn r_type <c:out value="${r_type == '게시글' ? 'active' : ''}"/>" value="게시글"
 							onclick ="location.href='report_list?&r_type=게시글&keyword='">게시글</button>
-						<button type="button" class="btn r_type" value="댓글"
+						<button type="button" class="btn r_type <c:out value="${r_type == '댓글' ? 'active' : ''}"/>" value="댓글"
 							onclick ="location.href='report_list?&r_type=댓글&keyword='">댓글</button>
 					</div>
 					</div>

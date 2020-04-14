@@ -93,9 +93,9 @@
 						</div>
 						
 					 	<div class="btn-group pull-right" data-toggle="buttons-radio">
-							<button type="button" class="btn"
+							<button type="button" class="btn <c:out value="${sort == 'hit' ? 'active' : ''}"/>"
 								onclick ="location.href='board_list_trade?sort=hit'">조회수</button>
-							<button type="button" class="btn"
+							<button type="button" class="btn <c:out value="${sort == 'report' ? 'active' : ''}"/>"
 								onclick ="location.href='board_list_trade?sort=report'">신고수</button>
 						</div> 
 					</div>

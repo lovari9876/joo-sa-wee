@@ -43,7 +43,8 @@ public interface AdminService {
 	public int faq_listCount(SearchCriteria scri, int s_no);
 	
 	
-	
+	// 메인 FAQ 페이지 조회수 
+	public void upHitFaq(int faq_no);
 	
 
 	// 차트 데이터 
@@ -59,6 +60,9 @@ public interface AdminService {
 	
 	//회원정보수정
 	public void updateMember(MemberVO memberVO);
+	
+	// faq 수정
+	public void updateFaq(FaqVO faqVO);
 	
 	
 	// 회원 탈퇴
@@ -87,6 +91,8 @@ public interface AdminService {
 	// 글보기
 
 	public MemberVO selectMemberView(int m_no);
+	
+	public FaqVO faqView(int faq_no);
 
 	public HashMap<String, Object> selectReportView(int r_no, String r_type);
 
@@ -104,6 +110,8 @@ public interface AdminService {
 	
 	public void selectDelete(int bw_no);
 	public void selectDelete_comment(int cm_no);
+	
+	public void faqDelete(int faq_no);
 
 	
 	// 통계
@@ -123,5 +131,6 @@ public interface AdminService {
 	public int allBoard();	//전체 게시글수
 
 	public ArrayList<HashMap<String, String>> getWeekStatistics();
+	public ArrayList<HashMap<String, String>> getMonthStatistics();
 	
 }

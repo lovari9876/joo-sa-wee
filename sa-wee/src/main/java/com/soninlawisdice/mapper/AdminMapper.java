@@ -52,7 +52,8 @@ public interface AdminMapper {
 	
 	
 	
-//	public List<StatisticsVO> list(SearchCriteria scri);
+	// 메인 FAQ 페이지 조회수 
+	public void upHitFaq(int faq_no);
 
 	
 	
@@ -72,6 +73,11 @@ public interface AdminMapper {
 	
 	// 수정 : 회원정보 수정
 	public void updateMember(@Param("memberVO")MemberVO memberVO);
+	
+	// 수정 : faq
+	public void updateFaq(@Param("faqVO")FaqVO faqVO);
+		
+	
 	
 	// 회원 탈퇴
 	public void outMember(int m_no);
@@ -104,11 +110,14 @@ public interface AdminMapper {
 	public void selectDelete(int bw_no);
 	public void selectDelete_comment(int cm_no);
 	
-	
+	public void faqDelete(int faq_no);
 	
 	
 	// 글보기
 	public MemberVO selectMemberView(int m_no);
+	
+	public FaqVO faqView(int faq_no);
+	
 
 	/* @Select("select * from report where r_no=#{r_no}") */
 	public HashMap<String, Object> selectReportView(@Param("r_no") int r_no, @Param("r_type")String r_type);
@@ -143,6 +152,7 @@ public interface AdminMapper {
 	
 	
 	public ArrayList<HashMap<String, String>> getWeekStatistics();
+	public ArrayList<HashMap<String, String>> getMonthStatistics();
 	
 
 }

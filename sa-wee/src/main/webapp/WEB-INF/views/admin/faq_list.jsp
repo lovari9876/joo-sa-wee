@@ -27,7 +27,7 @@
 		<div class="content">
 			<div class="module">
 				<div class="module-head">
-					<h3><a href="faq">FAQ - 자주하는 질문</a></h3>
+					<h3><a href="/faq">FAQ - 자주하는 질문</a></h3>
 				</div>
 				<div class="module-option clearfix">
 					<form>
@@ -121,7 +121,7 @@
 										</td>
 											
 										<td class="cell title"><a
-											href="/faq/faq">${faq.faq_title}</a></td>
+											href="/admin/faq_view?faq_no=${faq.faq_no}">${faq.faq_title}</a></td>
 										<td class="cell"> 
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" />
@@ -189,7 +189,6 @@
 			rights reserved.
 		</div>
 	</div>
-
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>

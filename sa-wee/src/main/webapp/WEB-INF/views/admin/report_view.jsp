@@ -77,7 +77,18 @@
 													<a href="">${report_view['R_ID']}</a>
 												</c:when>
 												<c:when test="${report_view['R_TYPE'] == '댓글'}">
-													<a href="">${report_view['CM_CONTENT']}</a>
+													<c:choose>
+														<c:when test="${report_view['CM_TYPE'] == '게시판'}">
+															<a href="/content_view?bw_no=${report_view['CM_NO2']}">${report_view['CM_CONTENT']}</a>
+														</c:when>
+														<c:when test="${report_view['CM_TYPE'] == '카페리뷰'}">
+															<a href="/content_view_cr?cr_no=${report_view['CM_NO2']}">${report_view['CM_CONTENT']}</a>
+														</c:when>
+														<c:when test="${report_view['CM_TYPE'] == '증고거래'}">
+															<a href="/content_view_t?t_no=${report_view['CM_NO2']}">${report_view['CM_CONTENT']}</a>
+														</c:when>
+													</c:choose>
+													
 												</c:when>
 												<c:when test="${report_view['R_TYPE'] == '게시글'}">
 													<a href="/content_view?bw_no=${report_view['BW_NO']}">${report_view['BW_TITLE']}</a>
