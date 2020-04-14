@@ -1,0 +1,17 @@
+.allCheck { float:left; width:200px; }
+.allCheck input { width:16px; height:16px; }
+.allCheck label { margin-left:10px; }
+.delBtn { float:right; width:300px; text-align:right; }
+.delBtn button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
+
+.checkBox { float:left; width:30px; }
+.checkBox input { width:16px; height:16px; }
+
+/* input 타입 버튼 보더 없애기 보이게 하기 */
+.select_note{
+	-webkit-appearance: media-slider;
+	background-color: transparent;
+    border: none;
+    cursor: pointer;
+    
+}

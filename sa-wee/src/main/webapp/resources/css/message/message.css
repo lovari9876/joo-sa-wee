@@ -141,14 +141,15 @@ img {
 	font-size: 14px;
 	margin: 0;
 	padding: 5px 10px 5px 12px;
-	width: 100%;
+	width: 60%;
 }
 
 .time_date {
 	color: #747474;
-	display: block;
+	display: inline;
 	font-size: 12px;
 	margin: 8px 0 0;
+	float:right;
 }
 
 .received_withd_msg {
@@ -168,7 +169,7 @@ img {
 	margin: 0;
 	color: #fff;
 	padding: 5px 10px 5px 12px;
-	width: 100%;
+	width: 200%;
 }
 
 .outgoing_msg {
@@ -177,7 +178,6 @@ img {
 }
 
 .sent_msg {
-	float: right;
 	width: 46%;
 }
 

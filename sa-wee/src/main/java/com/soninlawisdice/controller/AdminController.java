@@ -489,14 +489,13 @@ public class AdminController {
 
 		scri.setPerPageNum(15);
 		model.addAttribute("cafe_list", boardService.selectAllCafeList(scri));
-
 		
-		  PageMaker pageMaker = new PageMaker();
-		  pageMaker.setCri(scri);
-		  pageMaker.setTotalCount(boardService.cafe_listCount(scri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(boardService.cafe_listCount(scri));
 		  
-		  model.addAttribute("pageMaker", pageMaker);
-		 
+		model.addAttribute("pageMaker", pageMaker);	 
+
 		return "admin/cafe_list";
 	}
 

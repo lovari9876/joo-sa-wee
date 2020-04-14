@@ -26,14 +26,17 @@ public class JoinController {
 	@Autowired
 	BCryptPasswordEncoder pwdEncoder;
 
-	// 회원가입
+	// ================================= 회원가입 =================================
+
+	// 회원가입뷰
 	@RequestMapping(value = "/joinview", method = RequestMethod.GET)
 	public String Join(MemberVO memberVO) throws Exception {
 		System.out.println("join view");
 
 		return "join/join";
 	}
-
+	
+	// 회원가입
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String postJoin(MemberVO memberVO) throws Exception {
 		System.out.println("postJoin() 성공");
@@ -60,6 +63,9 @@ public class JoinController {
 		return "redirect:/loginview";
 
 	}
+	
+	// ================================= 체크 기능 =================================
+
 	// 패스워드 체크
 //	@ResponseBody
 //	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
@@ -69,8 +75,7 @@ public class JoinController {
 //		boolean pwdMatch = pwdEncoder.matches(memberVO.getM_pw(), login.getM_pw());
 //
 //		return result;
-//	}
-
+//	}	
 	// 패스워드 체크
 	@ResponseBody
 	@RequestMapping(value = "/pwCheck", method = RequestMethod.POST)
@@ -101,11 +106,13 @@ public class JoinController {
 		return result;
 	}
 
+	// ================================= 로그인 =================================
+
+	// 로그인 뷰
 	@RequestMapping(value = "/loginview", method = RequestMethod.GET)
 	public String login_check(MemberVO memberVO, Model model, Principal principal) throws Exception {
 		System.out.println("login view");
 
-		
 		return "login/login";
 	}
 
@@ -147,6 +154,8 @@ public class JoinController {
 //
 //		return "login/login";
 //	}
+
+	// ================================= 아이디, 비밀번호 찾기 =================================
 
 	@RequestMapping(value = "/forgot_id", method = RequestMethod.GET)
 	public String forgot_id(Locale locale, Model model) {
