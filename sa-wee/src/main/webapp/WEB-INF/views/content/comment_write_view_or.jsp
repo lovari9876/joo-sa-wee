@@ -27,7 +27,7 @@
 	<!-- 댓글 쓰기 -->
 	<div class="comment-form-wrap ">
 		<h3 class="mb-5">한줄평 부분입니다.</h3>
-		<form action="comment_write_or" method="get">
+		<form action="comment_write_or" method="post">
 			<input type="hidden" name="cm_no2" value="${cafe_info.c_no}">
 			<input type="hidden" name="c_no" value="${cafe_info.c_no}">
 			<input type="hidden" name="m_no" value="${m_no}">

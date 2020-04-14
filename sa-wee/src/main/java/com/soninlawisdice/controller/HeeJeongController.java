@@ -1,10 +1,5 @@
 package com.soninlawisdice.controller;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,15 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
-import com.soninlawisdice.service.ContentServiceImpl;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.GameVO;
+import com.soninlawisdice.vo.Game_personVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.TradeVO;
@@ -383,12 +378,6 @@ public class HeeJeongController {
 		return "game_info/game_info";
 	}
 
-	@RequestMapping(value = "/game_detail", method = RequestMethod.GET)
-	public String game_detail(Locale locale, Model model) {
-		System.out.println("game_detail");
-
-		return "game_detail/game_detail";
-	}
 	
 	/*============================== 보부상 ===================================*/
 
@@ -528,7 +517,7 @@ public class HeeJeongController {
 	 */
 	
 	// 중고거래 댓글 쓰기
-	@RequestMapping(value = "/comment_write_t", method = RequestMethod.GET)
+	@RequestMapping(value = "/comment_write_t", method = RequestMethod.POST)
 	public String comment_write_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
 										Model model, @RequestParam int t_no, @RequestParam("m_no") int m_no, RedirectAttributes re) {
 		System.out.println("comment_write_t");
@@ -801,7 +790,7 @@ public class HeeJeongController {
 	 */
 
 	// 카페리뷰 댓글 쓰기
-	@RequestMapping(value = "/comment_write_cr", method = RequestMethod.GET)
+	@RequestMapping(value = "/comment_write_cr", method = RequestMethod.POST)
 	public String comment_write_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO,
 										Model model, @RequestParam int cr_no, @RequestParam("m_no") int m_no, RedirectAttributes re) {
 		System.out.println("comment_write_cr");
@@ -924,7 +913,7 @@ public class HeeJeongController {
 	}
 	
 	// 한줄평 댓글 쓰기 view
-	@RequestMapping(value = "/comment_write_view_or", method = RequestMethod.GET)
+	@RequestMapping(value = "/comment_write_view_or", method = RequestMethod.POST)
 	public String comment_write_view_or(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
 		System.out.println("comment_write_view_or");
 
@@ -1056,4 +1045,59 @@ public class HeeJeongController {
 	}
 	
 	
+	/*================================= 게임 상세정보 =================================*/
+	
+	// 게임 상세정보 view
+	@RequestMapping(value = "/game_detail", method = RequestMethod.GET)
+	public String game_detail(Model model, HttpServletRequest request, @ModelAttribute("gameVO") GameVO gameVO,
+							@RequestParam("g_no") int pageNumG) {
+		System.out.println("game_detail");
+
+		int g_no = Integer.parseInt(request.getParameter("g_no"));
+		
+		// game_info에서 g_no 받아 오기(내가 임의로 1 집어넣음)
+		g_no = 2;
+		model.addAttribute("g_no", g_no);
+				
+		System.out.println("g_no: "+g_no);
+		gameVO.setG_no(g_no);
+
+		// 게임 상세보기 view 
+		model.addAttribute("game_detail_view", contentService.selectGameDetailOne(g_no));
+		model.addAttribute("game_person_list", contentService.selectGamePersonDetail(g_no));
+		
+		// 게임 상세정보 투표 결과 view
+		model.addAttribute("game_detail_avg_view", contentService.selectGameDetailAvg(g_no)); 
+		
+		// 게시글 조회수
+		/* contentService.upHitContent(bw_no); */
+
+		return "game_detail/game_detail";
+	}
+	
+	// 게임 상세정보 투표
+	@RequestMapping(value = "/game_vote", method = RequestMethod.GET)
+	public String game_vote(@ModelAttribute("gameVO") GameVO gameVO, @ModelAttribute("game_personVO") Game_personVO game_personVO,
+							@RequestParam int g_no, RedirectAttributes re, Model model) {
+		System.out.println("game_vote");
+		
+		// game 테이블 투표
+		contentService.updateGame(gameVO);
+		
+		int g_num = gameVO.getG_num();
+
+		System.out.println("g_num: "+g_num);
+		
+		// 추천인원 투표 시 insert 
+		if(g_num == 0) {
+			contentService.insertGamePerson(game_personVO); // 처음 한 번만 실행해야 함.
+			contentService.updateGamePerson(game_personVO); // game_person 테이블 투표
+		} else {
+			contentService.updateGamePerson(game_personVO); // game_person 테이블 투표
+		}
+		
+		re.addAttribute("g_no", g_no);
+					
+		return "redirect:/game_detail";
+	}
 }
