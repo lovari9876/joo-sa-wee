@@ -32,7 +32,7 @@
 		<div class="content">
 			<div class="module">
 				<div class="module-head">
-					<h3>공지사항</h3>
+					<h3>FAQ - 자주하는 질문</h3>
 				</div>
 
 
@@ -45,66 +45,64 @@
 
 						<div class="content-view">
 
-							<form action="" enctype="multipart/form-data">
-								<table class="table" >
-									<!-- <tr class = "row">
-							<td class = "cell">게시판 선택</td>
-							<td class = "cell">
-								<select>
-										<option value="0" selected>보드이야기</option>
-										<option value="1">개봉기 및 리뷰</option>
-										<option value="2">보드게임 모임</option>
-										<option value="3">보드뉴스</option>
-										<option value="4">질문 & 답변</option>
-										<option value="5">창작 보드게임</option>
-								</select> 
-								<select>
-										<option value="0" selected>이부분</option>
-										<option value="1">처리방법</option>
-										<option value="2">모르겠음</option>
-								</select>
-							</td>
-						</tr> -->
+							 <form id="viewForm" method="post">
 
+							 <input type = "hidden" name = "faq_no" value = "${faq_view.faq_no}">
+								<table class="table user_view" >
+									<tr class="row">
+										<td class="cell span1">말머리</td>
+										<td class="cell span4">
+											<c:choose>				
+													<c:when test="${faq_view.s_no eq 22}">회원</c:when>
+													<c:when test="${faq_view.s_no eq 23}">결제</c:when>
+													<c:when test="${faq_view.s_no eq 24}">정보 수정</c:when>
+													<c:when test="${faq_view.s_no eq 25}">무인도 게시판</c:when>
+													<c:when test="${faq_view.s_no eq 26}">기타</c:when>
+												</c:choose>
+										</td>
+										<td class="cell span1">조회수</td>
+										<td class="cell span4">${faq_view.faq_hit}</td>
+
+									</tr>
 									<tr class="row">
 										<td class="cell span1">제목</td>
-										<td class="cell span8">제목제목제목제목</td>
+										<td class="cell span8" colspan="3">${faq_view.faq_title}</td>
 
 									</tr>
 
 									<tr class="row">
 										<td class="cell span1">내용</td>
-										<td class="cell span8">Lorem ipsum dolor sit amet, consectetur
-											adipisicing elit. Quae quidem blanditiis delectus corporis,
-											possimus officia sint sequi ex tenetur id impedit est
-											pariatur iure animi non a ratione reiciendis nihil sed
-											consequatur atque repellendus fugit perspiciatis rerum et.
-											Dolorum consequuntur fugit deleniti, soluta fuga nobis.
-											Ducimus blanditiis velit sit iste delectus obcaecati debitis
-											omnis, assumenda accusamus cumque perferendis eos aut quidem!
-											Aut, totam rerum, cupiditate quae aperiam voluptas rem
-											inventore quas, ex maxime culpa nam soluta labore at amet
-											nihil laborum? Explicabo numquam, sit fugit, voluptatem autem
-											atque quis quam voluptate fugiat earum rem hic, reprehenderit
-											quaerat tempore at. Aperiam.</td>
+										<td class="cell span8" colspan="3">${faq_view.faq_content}</td>
 									</tr>
-
 
 								</table>
 								<div class="module-option clearfix">
 									<div class="control-group">
 										<div class="controls">
 											<button type="button" class="btn  pull-left"
-												onclick="location='notice_list'">목록</button>
-											<button type="submit" class="btn  pull-right">수정</button>
+												onclick="location='faq_list'">목록</button>
+											
+											<button type="submit" class="btn  pull-right" onClick='faq_delete()'>삭제</button>
+											<div class="btn  pull-right"><a href="faq_modify?faq_no=${faq_view.faq_no}">수정</a></div>
+											
+										
+											
 
 										</div>
 									</div>
 								</div>
-
-
-							</form>
-
+							</form> 
+							<script>
+								
+								function faq_delete(){
+									var out = document.getElementById("viewForm");
+									out.action="<c:url value='/admin/faqDelete'/>";
+									out.submit();
+									console.log("delete");
+									alert("해당 글이 삭제되었습니다.");
+								}
+								
+							</script>
 
 
 

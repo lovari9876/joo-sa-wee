@@ -39,7 +39,7 @@
 				<li class="cd-faq__title"><h4>회원</h4></li>
 				<c:forEach items="${faq_list}" var="faq"> 
 				<c:if test="${faq.s_no == 22}">
-					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
+					<li class="cd-faq__item upHit" value="${faq.faq_no}"><a class="cd-faq__trigger" href="#0">
 						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
@@ -55,7 +55,7 @@
 				<li class="cd-faq__title"><h4>결제</h4></li>
 				<c:forEach items="${faq_list}" var="faq"> 
 				<c:if test="${faq.s_no == 23}">
-					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
+					<li class="cd-faq__item upHit" value="${faq.faq_no}"><a class="cd-faq__trigger" href="#0">
 						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
@@ -71,7 +71,7 @@
 				<li class="cd-faq__title"><h4>정보 수정</h4></li>
 				<c:forEach items="${faq_list}" var="faq"> 
 				<c:if test="${faq.s_no == 24}">
-					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
+					<li class="cd-faq__item upHit" value="${faq.faq_no}"><a class="cd-faq__trigger" href="#0">
 						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
@@ -87,7 +87,7 @@
 				<li class="cd-faq__title"><h4>무인도 게시판</h4></li>
 				<c:forEach items="${faq_list}" var="faq"> 
 				<c:if test="${faq.s_no == 25}">
-					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
+					<li class="cd-faq__item upHit" value="${faq.faq_no}"><a class="cd-faq__trigger" href="#0">
 						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
@@ -104,7 +104,7 @@
 				<li class="cd-faq__title"><h4>기타</h4></li>
 				<c:forEach items="${faq_list}" var="faq"> 
 				<c:if test="${faq.s_no == 26}">
-					<li class="cd-faq__item"><a class="cd-faq__trigger" href="#0">
+					<li class="cd-faq__item upHit" value="${faq.faq_no}"><a class="cd-faq__trigger" href="#0">
 						<span>${faq.faq_title}</span></a>
 					<div class="cd-faq__content">
 						<div class="text-component">
@@ -141,6 +141,8 @@
 	<!-- util functions included in the CodyHouse framework -->
 	<script src="js/faq/main.js"></script>
 	
+	
+	<script src="js/admin/faqUpHit.js" type="text/javascript"></script>
 	<!-- Java Script for header
     ================================================== -->   
     <script src="js/header/jquery.slicknav.min.js"></script>

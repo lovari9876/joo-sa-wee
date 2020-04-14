@@ -16,6 +16,15 @@
 	src: url("DungGeunMo.ttf") format('truetype');
 }
 
+@font-face {
+	font-family: 'NanumSquareRound';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
 body {
 	font-size: 13px;
 	font-family: 'dunggeunmo','Open Sans', Arial, sans-serif;
@@ -3608,7 +3617,7 @@ li:last-child .cd-faq__category {
 
 .cd-faq__items {
 
-	
+	font-family : 'NanumSquareRound';
 	position: fixed;
 	z-index: 7;
 	height: 100%;
@@ -3694,7 +3703,8 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 
 .cd-faq__title {
 	margin: 1.25em 0;
-	margin: var(- -space-md) 0
+	margin: var(- -space-md) 0;
+	font-family: 'dunggeunmo';
 }
 
 .cd-faq__title h4 {
@@ -3759,6 +3769,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 }
 
 .cd-faq__trigger {
+	font-family : 'dunggeunmo';
 	display: block;
 	position: relative;
 	margin: 1.25em 0 0.5em;

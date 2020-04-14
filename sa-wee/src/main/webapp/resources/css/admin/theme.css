@@ -26,6 +26,8 @@ body {
 	color: #777
 }
 
+
+
 #placeholder, #placeholder2, #pie-default, #pie-interactive, #pie-donut
 	{
 	font-family: 'Open Sans', Arial, sans-serif;
@@ -422,6 +424,11 @@ body [class^="icon-"], body [class*=" icon-"] {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px
+}
+
+/* div로만든 버튼 폰트 */
+.btn > a{
+	font-family:  'Open Sans', Arial, sans-serif;
 }
 
 .btn:hover, .btn-box:hover {

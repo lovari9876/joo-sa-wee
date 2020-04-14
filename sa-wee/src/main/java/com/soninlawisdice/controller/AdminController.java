@@ -503,6 +503,7 @@ public class AdminController {
 	@RequestMapping(value = "/faq_list", method = RequestMethod.GET)
 	public String faq_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 
+		scri.setPerPageNum(15);
 		String temp = rq.getParameter("s_no");
 		int s_no;
 		if (temp != null) {
@@ -521,9 +522,53 @@ public class AdminController {
 		model.addAttribute("pageMaker", pageMaker);
 		return "admin/faq_list";
 	}
-
+	
 	
 
+	
+	@RequestMapping("/faq_view")
+	public String faq_view(Model model, FaqVO faqVO) {
+		int faq_no = faqVO.getFaq_no();
+		System.out.println("faq_no : " + faq_no);
+		
+		model.addAttribute("faq_view", adminService.faqView(faq_no));
+		return "admin/faq_view";
+	}
+	
+	@RequestMapping("/faq_modify")
+	public String faq_modify(Model model, FaqVO faqVO) {
+		
+		
+		model.addAttribute("faq", adminService.faqView(faqVO.getFaq_no()));
+	
+		
+		return "admin/faq_modify";
+	}
+	
+	
+	// faq 수정
+	@RequestMapping(value = "/updateFaq", method = RequestMethod.POST)
+	public String updateFaq(FaqVO faqVO, @RequestParam int faq_no, RedirectAttributes re) throws Exception {
+		
+		adminService.updateFaq(faqVO);
+		
+		re.addAttribute("faq_no", faq_no);
+
+		return "redirect:faq_view";
+
+	}
+	
+
+	// faq 삭제
+	@RequestMapping(value = "/faqDelete", method = RequestMethod.POST)
+	public String faqDelete(FaqVO faqVO) throws Exception {
+
+		System.out.println("------------delete");
+		System.out.println("faq_no : " + faqVO.getFaq_no());
+		adminService.faqDelete(faqVO.getFaq_no());
+
+		return "redirect:faq_list";
+	}
 	
 	
 	@RequestMapping("/ask_list")
@@ -737,13 +782,6 @@ public class AdminController {
 		return "admin/notice_write";
 	}
 
-	@RequestMapping("/notice_view")
-	public String notice_view() {
-
-		return "admin/notice_view";
-	}
-
-	
 
 	@RequestMapping("/faq_write")
 	public String faq_write() {

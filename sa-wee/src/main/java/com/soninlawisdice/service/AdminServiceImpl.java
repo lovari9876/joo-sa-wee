@@ -42,8 +42,6 @@ public class AdminServiceImpl implements AdminService {
 
 
 	// 페이징 처리된 리스트
-	
-	
 	@Override
 	public List<MemberVO> memberList(SearchCriteria scri, String sort){
 		return adminMapper.memberList(scri, sort);
@@ -105,6 +103,13 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	
+	// 메인 FAQ 페이지 조회수 
+		public void upHitFaq(int faq_no) {
+			adminMapper.upHitFaq(faq_no);
+		}
+	
+	
+	
 	
 
 	// 차트 데이터
@@ -136,6 +141,12 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	public FaqVO faqView(int faq_no) {
+		return adminMapper.faqView(faq_no);
+	}
+	
+	
+	@Override
 	public HashMap<String, Object> selectReportView(int r_no, String r_type) {
 		return adminMapper.selectReportView(r_no, r_type);
 	}
@@ -161,6 +172,12 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public void updateMember(MemberVO memberVO) {
 		adminMapper.updateMember(memberVO);
+	}
+	
+	// 수정 : faq
+	@Override
+	public void updateFaq(FaqVO faqVO) {
+		adminMapper.updateFaq(faqVO);
 	}
 	
 	// 회원탈퇴
@@ -248,6 +265,11 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.selectDelete_comment(cm_no);
 	}
 
+	
+	@Override
+	public void faqDelete(int faq_no) {
+		adminMapper.faqDelete(faq_no);
+	}
 	
 
 	// 통계

@@ -421,6 +421,11 @@
 	</select>
 	
 	
+	<select id="faqView" parameterType="com.soninlawisdice.vo.FaqVO" resultType="com.soninlawisdice.vo.FaqVO">
+		select * from faq where faq_no=#{faq_no}
+	</select>
+	
+	
 	<!-- =============================================== 글 쓰기  ====================================================== -->
 	
 	<insert id="boardInsert" parameterType="com.soninlawisdice.vo.Board_writeVO" >
@@ -497,6 +502,14 @@
 	</update>
 	
 	
+	<!-- =============================================== faq 수정 ====================================================== -->
+	
+	<update id="updateFaq" parameterType="com.soninlawisdice.vo.FaqVO" >
+		UPDATE faq 
+		SET s_no = #{faqVO.s_no}, faq_title = #{faqVO.faq_title}, faq_content= #{faqVO.faq_content},
+			faq_updated_date = sysdate 
+		WHERE faq_no = #{faqVO.faq_no}
+	</update>
 	<!-- =============================================== 회원 탈퇴처리 ====================================================== -->
 	
 	<update id="outMember" parameterType="com.soninlawisdice.vo.MemberVO" >
@@ -618,6 +631,10 @@
 		delete cm_comment where cm_no = #{cm_no}
 	</delete>
 	
+	<delete id="faqDelete" parameterType="com.soninlawisdice.vo.FaqVO" >
+		delete faq where faq_no = #{faq_no}
+	</delete>
+	
 	<!-- =============================================== 방문자수  ====================================================== -->
 	
 	<insert id="setTotalCount" parameterType="com.soninlawisdice.vo.VisitVO">
@@ -632,6 +649,13 @@
 	<select id="getTotalCount" parameterType="com.soninlawisdice.vo.VisitVO" resultType="int">
 		SELECT COUNT(*) AS TotalCount FROM VISIT
 	</select>
+	
+	<!-- =============================================== 메인 FAQ 조회수  ====================================================== -->
+	
+	<update id="upHitFaq">
+		UPDATE faq SET faq_hit = faq_hit + 1 
+		WHERE faq_no = #{faq_no}
+	</update>
 	
 	
 	<!-- =============================================== 통계  ====================================================== -->

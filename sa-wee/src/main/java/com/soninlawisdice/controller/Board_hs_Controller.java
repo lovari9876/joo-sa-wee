@@ -28,6 +28,7 @@ import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.FaqVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
 
@@ -521,6 +522,7 @@ public class Board_hs_Controller {
 	@RequestMapping("/faq")
 	public String faq(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 		
+		scri.setPerPageNum(20);
 		String temp = rq.getParameter("s_no");
 		int s_no;
 		if (temp != null) {
@@ -541,6 +543,26 @@ public class Board_hs_Controller {
 		return "faq/faq";
 	}
 
+	
+	@ResponseBody
+	@RequestMapping("/upHitFaq")
+	public String upHitFaq(Model model, FaqVO faqVO, String faq_no) {
+		
+		System.out.println("========" + faq_no);
+		
+		int no = Integer.parseInt(faq_no);
+		
+		System.out.println("========upHit");
+		System.out.println("========" + no);
+		adminService.upHitFaq(no);
+		
+		return faq_no;
+	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
 	@RequestMapping("/wr")
 	public String wr() {
 		return "board_hs/write_view2";

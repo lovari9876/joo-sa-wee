@@ -49,8 +49,8 @@
 											}); 
 								   </script>
 							
-								<div class="dropdown">
-										<select id="searchType" name="searchType" class="span2">
+								<div class="dropdown pull-left">
+										<select id="searchType" name="searchType" class="span2 pull-left">
 											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>아이디</option>
 											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>이름</option>
