@@ -149,7 +149,7 @@
 					<c:if test="${content_view_t['S_NO']==32}" > 	
 						<!-- 구매하기 버튼: open modal -->
 						<div align="center" class="buy--button" >
-							<button id ="myBtn" class="write-btn lavender-btn" type="button" > 거래하기</button> 
+							<button id ="myBtn" class="write-btn lavender-btn" type="button" >거래하기</button> 
 							<!-- <a class="" data-modal href="#myModal">거래하기</a>  -->
 						</div>
 					</c:if>					  

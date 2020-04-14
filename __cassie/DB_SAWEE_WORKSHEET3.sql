@@ -131,3 +131,5 @@ select SUM(tg_price) FROM trade_game where t_no = 389;
 
 
 
+
+

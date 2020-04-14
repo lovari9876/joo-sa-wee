@@ -1,0 +1,212 @@
+/* =================================
+ * mypage style: table
+ * for mypage -> 내 거래 
+ * =================================*/
+
+/* 폰트 */
+@font-face { 
+	font-family: 'JSDongkang-Regular'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+
+.limiter {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.container-table100 {
+	width: 100%;
+	min-height : 100vh;
+	background: #fff;
+	/* background: #c4d3f6; */
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	/* padding: 100px 450px 100px 450px; */
+}
+
+.listName {
+	margin: 10px 0 20px 0;
+}
+
+.wrap-table100 {
+	width: 960px;
+	border-radius : 10px;
+	overflow : hidden
+}
+
+.table {
+	width: 100%;
+	display: table;
+	margin : 0;
+}
+
+@media screen and (max-width : 768){
+	.table{
+		display : block;
+	}
+}
+
+.table_row {
+	display : table-row;
+	background: #fff;
+}
+
+.table_row.header {
+	color: #ffffff;
+	background: #8861B4;
+}
+
+@media screen and (max-width : 768px){
+	.table_row{
+		display : block;
+	}
+	
+	.table_row.header{
+		padding : 0;
+		height : 0px;
+	}
+	
+	.table_row.header .cell{
+		display : none;
+	}
+	
+	.table_row .cell:before{
+		font-size : 12px;
+		color : #808080;
+		line-height : 1.2;
+		text-transform : uppercase;
+		font-weight : unset !important;
+		
+		margin-bottom : 13px;
+		content : attr(data-title);
+		min-width : 98px;
+		display : block;
+	}
+}
+
+.cell{
+	display : table-cell;
+}
+
+@media screen and (max-width : 768px){
+	.cell{
+		display : block;
+	}
+}
+
+.mytrade--table {
+	font-family: 'JSDongkang-Regular'; 
+}
+
+.table--title {
+	font-size: 15.5px;
+}
+
+.table_row .cell {
+	font-size: 13.5px;
+	color: #666666;
+	line-height: 1.2;
+	font-weight: unset !important;
+	text-align: left; 
+	padding: 10px 5px;
+	border-bottom: 1px solid #f2f2f2;
+	vertical-align: center;
+}
+
+.table_row.header .cell {
+	font-size: 13.5px;
+	color: #fff;
+	padding: 6px 5px;
+	line-height: 1.2;
+	font-weight: unset !important;
+	/* padding-top: 19px;
+	padding-bottom: 19px; */
+}
+
+.table_row .cell:nth-child(1) {
+	width: 50px;
+	padding-left: 5px;
+}
+
+.table_row td.cell:nth-child(1) {
+	padding: 15px 5px 15px 10px;
+}
+
+.table_row .cell:nth-child(2) {
+	width: 400px;
+	padding: 15px 5px 15px 10px; /* vertical 가운데 정렬 */
+}
+
+.table_row .cell:nth-child(3) {
+	width: 150px;
+	padding: 15px 5px; /* vertical 가운데 정렬 */
+}
+
+.table_row .cell:nth-child(4) {
+	width: 100px;
+	padding: 15px 5px; /* vertical 가운데 정렬 */
+}
+
+.table_row .cell:nth-child(5) {
+	width: 100px;
+	padding: 15px 5px; /* vertical 가운데 정렬 */
+}
+
+/* 거래상태 */
+.table_row .cell:nth-child(6) {
+	width: 100px;
+	padding: 15px 5px; /* vertical 가운데 정렬 */
+}
+
+/* 버튼 */
+.table_row .cell:nth-child(7) {
+	width: 100px;
+	padding: 7px 5px; /* vertical 가운데 정렬 */
+}
+
+.table, .table_row {
+	width: 100% !important;
+}
+
+.table_row:not(.header):hover {
+	background-color: #ececff;
+	cursor: pointer;
+}
+
+
+@media screen and (max-width : 768px) {
+	.table_row {
+		border-bottom: 1px solid #f2f2f2;
+		padding-bottom: 0px;
+		padding-top: 0px;
+		padding-right: 15px;
+		margin: 0;
+	}
+	.table_row .cell {
+		border: none;
+		padding-left: 30px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+	}
+	.table_row .cell:nth-child(1) {
+		padding-left: 30px;
+	}
+	.table_row .cell {
+		font-size: 18px;
+		color: #555555;
+		line-height: 1.2;
+		font-weight: unset !important;
+	}
+	.table, .table_row, .cell {
+		width: 100% !important;
+	}
+}

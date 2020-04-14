@@ -1,6 +1,8 @@
 package com.soninlawisdice.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
@@ -15,7 +17,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.MyPageService;
+import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.MemberVO;
+import com.soninlawisdice.vo.PaymentVO;
 
 
 @Controller
@@ -26,6 +30,9 @@ public class MyPageController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private SecondhandService secondhandService;
 	
 	// 시큐리티 이전 마이페이지
 //	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
@@ -67,6 +74,27 @@ public class MyPageController {
 
 		int myReplyCount = myPageService.myReplyCount(m_no);
 		model.addAttribute("myReplyCount", myReplyCount);
+			
+		
+		///////////// 내 판매 /////////////////////////////////
+		String who = "seller"; // xml에서 판매자, 구매자 식별 위한 값
+		ArrayList<HashMap<String, Object>> sPayList = 
+				secondhandService.selectPaymentList(m_no, who);
+		model.addAttribute("sPayList", sPayList);
+
+		// 판매자 가격확정 모달: price_modal_view
+		// 버튼 클릭시 P_NO 받아와
+		
+		
+		///////////// 내 구매 /////////////////////////////////
+		who = "buyer"; // xml에서 판매자, 구매자 식별 위한 값
+		ArrayList<HashMap<String, Object>> bPayList = 
+				secondhandService.selectPaymentList(m_no, who);
+		model.addAttribute("bPayList", bPayList);
+		
+		
+		
+		
 		
 		return "mypage/mypage";
 	}

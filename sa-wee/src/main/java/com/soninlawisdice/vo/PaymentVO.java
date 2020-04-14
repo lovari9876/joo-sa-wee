@@ -8,15 +8,16 @@ public class PaymentVO {
 	private int t_no; // 게시글번호
 	private int m_sno; // 판매자회원번호
 	private int m_bno; // 구매자회원번호
-	private int p_price; // 거래금액
-	private String p_status; // 상태
+	private int p_price; // 결제금액의 합
+	private int p_status; // 상태
 	private Timestamp p_order_date; // 주문일시
 	private Timestamp p_payment_date; // 결제일시
-
+	
+	// constructors
 	public PaymentVO() {
 	}
 
-	public PaymentVO(int p_no, int t_no, int m_sno, int m_bno, int p_price, String p_status, Timestamp p_order_date,
+	public PaymentVO(int p_no, int t_no, int m_sno, int m_bno, int p_price, int p_status, Timestamp p_order_date,
 			Timestamp p_payment_date) {
 		super();
 		this.p_no = p_no;
@@ -29,6 +30,7 @@ public class PaymentVO {
 		this.p_payment_date = p_payment_date;
 	}
 
+	// getters and setters
 	public int getP_no() {
 		return p_no;
 	}
@@ -69,11 +71,11 @@ public class PaymentVO {
 		this.p_price = p_price;
 	}
 
-	public String getP_status() {
+	public int getP_status() {
 		return p_status;
 	}
 
-	public void setP_status(String p_status) {
+	public void setP_status(int p_status) {
 		this.p_status = p_status;
 	}
 

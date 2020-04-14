@@ -101,8 +101,18 @@
 											<br />
 											<li>주소 : ${member.m_addr1}, ${member.m_addr2}</li>
 											<br />
-											<li>가입일 : <fmt:formatDate pattern="yyyy-MM-dd"
-													value="${member.m_indate}" /></li>
+											<li>가입일 : 
+												<!-- 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+												<jsp:useBean id="today" class="java.util.Date" /> 
+												<!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+												<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+												<fmt:formatDate value="${member.m_indate}" pattern="yyyy.MM.dd" var="date"/>
+												<c:choose>
+													<c:when test="${now ne date}">${date}</c:when> 
+													<c:otherwise>
+														<fmt:formatDate value="${member.m_indate}" pattern="HH:mm"/>
+													</c:otherwise>
+												</c:choose>
 											<br />
 											<li>신고당한 수 : ${member.m_report_num}</li>
 											<br />
@@ -427,74 +437,21 @@
 									</tr>
 								</table>
 							</div>
-							<div class="tab-pane portfolio-detail fade" id="trade"
-								role="tabpanel" aria-labelledby="contact-tab">
-								<div class="sec-title">
-									<h2>내 구매</h2>
-								</div>
-								<table class="table">
-									<tr class="table_row header">
-										<td class="cell">글 번호</td>
-										<td class="cell">구매 내역</td>
-										<td class="cell">거래 상대</td>
-										<td class="cell">구매일자</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">1</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">2</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">3</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-								</table>
-								<br />
-								<div class="sec-title">
-									<h2>내 판매</h2>
-								</div>
-								<table class="table">
-									<tr class="table_row header">
-										<td class="cell">글 번호</td>
-										<td class="cell">판매 내역</td>
-										<td class="cell">거래 상대</td>
-										<td class="cell">판매 일자</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">1</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">2</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">3</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-								</table>
-							</div>
+							
+							<!-- 내 거래 include start -->
+							<%@ include file="/WEB-INF/views/mypage/mytrade/mypage_mytrade.jsp"%>
+							<!-- 내 거래 include end -->
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- 내 판매-판매자 [가격확정] include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/price_modal_view.jsp"%>
+	<!-- 내 판매-판매자 [가격확정] include end -->
 
 </body>
 

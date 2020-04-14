@@ -2,9 +2,6 @@ package com.soninlawisdice.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 
 import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -42,4 +39,7 @@ public interface SecondhandService {
 
 	// 구매요청(판매중-> 거래하기 modal-> checkbox 구매요청)
 	public void call_buy(TradeVO tradeVO, String[] tgArr, int buyer);
+
+	// 회원정보 -> 내 구매/ 내 판매 리스트
+	public ArrayList<HashMap<String, Object>> selectPaymentList(int m_no, String who);
 }

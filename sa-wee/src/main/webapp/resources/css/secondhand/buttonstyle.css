@@ -68,6 +68,22 @@ button#view-btn:hover {
 	
 }
 
+/* 마이페이지-> 라벤더 버튼 */
+.mytrade--table .lavender-btn {
+	box-shadow: 0 .170rem .50rem rgba(175,166,225, 0.90) !important; /* #afa6e1 */
+    background-color: rgba(149, 117, 223, 0.14)/* #9575df24 */; /* 투명도 조절한 색.. */
+    border-color: transparent;
+    border-radius: 5px;
+    font-size: 13px;
+    height: 30px;
+    line-height: 1;
+    text-align: center;
+    padding: 0 5px;
+    font-weight: 300;
+    color: #400186;
+}
+
+
 /* -----------------------------------------------------------------------  
  * 버튼 responsible 하게 만들기...
  * ----------------------------------------------------------------------- */

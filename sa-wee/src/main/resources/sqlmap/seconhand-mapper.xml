@@ -386,5 +386,69 @@
 		
 	</insert>
 
+	
+	<!-- payment 리스트 -->
+	<select id="selectPaymentList" resultType="java.util.HashMap" >
+	
+		SELECT
+			P.*, T.T_TITLE, M.M_NICK
+		FROM
+			PAYMENT P
+		LEFT JOIN
+			TRADE T
+		ON
+			P.T_NO = T.T_NO
+		LEFT JOIN
+			MEMBER M
+		ON	
+			<choose>
+				<when test="who=='seller'">
+					M.M_NO = P.M_BNO <!-- NICK 확인할 상대방은 BUYER -->
+				</when>
+				<otherwise> <!-- who=='buyer' -->
+					M.M_NO = P.M_SNO <!-- NICK 확인할 상대방은 SELLER -->
+				</otherwise>
+			</choose>					
+		WHERE
+			<choose>
+				<when test="who=='seller'">
+					M_SNO = #{m_no}
+				</when>
+				<otherwise> <!-- who=='buyer' -->
+					M_BNO = #{m_no}
+				</otherwise>
+			</choose>			
+		ORDER BY
+			P.T_NO DESC
+	
+	</select>
+	
+	
+	<!-- payment 하나의 PAYMENT_TRADE_GAME 리스트 -->
+	<select id="selectPTGList" resultType="java.util.HashMap" >
+	
+		SELECT
+			PTG.PTG_NO, PTG.P_NO, TG.*
+		FROM
+			PAYMENT_TRADE_GAME PTG
+		LEFT JOIN
+			TRADE_GAME TG
+		ON
+			PTG.TG_NO = TG.TG_NO
+		WHERE
+			PTG.P_NO = #{p_no}			
+	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </mapper>
