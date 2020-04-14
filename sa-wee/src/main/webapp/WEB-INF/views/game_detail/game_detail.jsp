@@ -77,14 +77,11 @@
 							<div class="widget-item" style="text-align: left">
 								<h4 class="widget-title">상세정보</h4>
 								<ul>
-									<li>작성일<span>${game_detail_view['G_WRITTEN_DATE']}</span></li>
-									<li>수정일<span>${game_detail_view['G_UPDATED_DATE']}</span></li>
-									<li>조회수<span>${game_detail_view['G_HIT']}</span></li>
-									<li>추천수<span>${game_detail_view['G_RECOMMEND_NUM']}</span></li>
-									<li>최소인원<span>${game_detail_view['G_MIN']}</span></li>
-									<li>최대인원<span>${game_detail_view['G_MAX']}</span></li>
-									<li>플레이시간<span>${game_detail_view['G_PLAYTIME']}</span></li>
-									<li>출시일<span>${game_detail_view['G_RELEASE']}</span></li>
+									<li>한국어 제목<span>${game_detail_view['G_NAME_KOR']}</span></li>
+									<li>최소인원<span>${game_detail_view['G_MIN']} 명</span></li>
+									<li>최대인원<span>${game_detail_view['G_MAX']} 명</span></li>
+									<li>플레이시간<span>${game_detail_view['G_PLAYTIME']} 분</span></li>
+									<li>출시일<span>${game_detail_view['G_RELEASE']} 년</span></li>
 								</ul>
 							</div>
 						</div>
@@ -228,7 +225,7 @@
 						<h4 class="widget-title">결과</h4>
 						<ul>
 							<li>게임난이도<span>${game_detail_avg_view['G_LEVEL_AVG']}/5 점</span></li>
-							<li>룰설명시간<span>${game_detail_avg_view['G_RULETIME_AVG']}분</span></li>
+							<li>룰설명시간<span>${game_detail_avg_view['G_RULETIME_AVG']} 분</span></li>
 							<li>언어의존도<span>${game_detail_avg_view['G_LANG_AVG']}/5 점</span></li>
 							<li>상호작용<span>${game_detail_avg_view['G_INTER_AVG']}/5 점</span></li>
 							<li>테마충실도<span>${game_detail_avg_view['G_THEME_AVG']}/5 점</span></li>
@@ -241,43 +238,43 @@
 							<c:when test="${game_detail_view['G_NUM'] == 0}">
 								<div class="zt-span6 last">
 									<div class="zt-skill-bar">
-										<div data-width="${game_person_list[7]['GP_NUM']}" style="">
-											<a>1명</a><span>${game_person_list[7]['GP_NUM']}</span>
-										</div>
-									</div>
-									<div class="zt-skill-bar">
-										<div data-width="${game_person_list[8]['GP_NUM']}" style="">
-											<a>2명</a><span>${game_person_list[8]['GP_NUM']}</span>
-										</div>
-									</div>
-									<div class="zt-skill-bar">
 										<div data-width="${game_person_list[1]['GP_NUM']}" style="">
-											<a>3명</a><span>${game_person_list[1]['GP_NUM']}</span>
+											<a>1명</a><span>${game_person_list[1]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${game_person_list[2]['GP_NUM']}" style="">
-											<a>4명</a><span>${game_person_list[2]['GP_NUM']}</span>
+											<a>2명</a><span>${game_person_list[2]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${game_person_list[3]['GP_NUM']}" style="">
-											<a>5명</a><span>${game_person_list[3]['GP_NUM']}</span>
+											<a>3명</a><span>${game_person_list[3]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${game_person_list[4]['GP_NUM']}" style="">
-											<a>6명</a><span>${game_person_list[4]['GP_NUM']}</span>
+											<a>4명</a><span>${game_person_list[4]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${game_person_list[5]['GP_NUM']}" style="">
-											<a>7명</a><span>${game_person_list[5]['GP_NUM']}</span>
+											<a>5명</a><span>${game_person_list[5]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${game_person_list[6]['GP_NUM']}" style="">
-											<a>8명이상</a><span>${game_person_list[6]['GP_NUM']}</span>
+											<a>6명</a><span>${game_person_list[6]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[7]['GP_NUM']}" style="">
+											<a>7명</a><span>${game_person_list[7]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[8]['GP_NUM']}" style="">
+											<a>8명이상</a><span>${game_person_list[8]['GP_NUM']}</span>
 										</div>
 									</div>
 								</div>
@@ -286,43 +283,43 @@
 							<c:when test="${game_detail_view['G_NUM'] > 0}">
 								<div class="zt-span6 last">
 									<div class="zt-skill-bar">
-										<div data-width="${100*game_person_list[7]['GP_NUM']/game_detail_view['G_NUM']}" style="">
-											<a>1명</a><span>${game_person_list[7]['GP_NUM']}</span>
-										</div>
-									</div>
-									<div class="zt-skill-bar">
-										<div data-width="${100*game_person_list[8]['GP_NUM']/game_detail_view['G_NUM']}" style="">
-											<a>2명</a><span>${game_person_list[8]['GP_NUM']}</span>
-										</div>
-									</div>
-									<div class="zt-skill-bar">
 										<div data-width="${100*game_person_list[1]['GP_NUM']/game_detail_view['G_NUM']}" style="">
-											<a>3명</a><span>${game_person_list[1]['GP_NUM']}</span>
+											<a>1명</a><span>${game_person_list[1]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${100*game_person_list[2]['GP_NUM']/game_detail_view['G_NUM']}" style="">
-											<a>4명</a><span>${game_person_list[2]['GP_NUM']}</span>
+											<a>2명</a><span>${game_person_list[2]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${100*game_person_list[3]['GP_NUM']/game_detail_view['G_NUM']}" style="">
-											<a>5명</a><span>${game_person_list[3]['GP_NUM']}</span>
+											<a>3명</a><span>${game_person_list[3]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${100*game_person_list[4]['GP_NUM']/game_detail_view['G_NUM']}" style="">
-											<a>6명</a><span>${game_person_list[4]['GP_NUM']}</span>
+											<a>4명</a><span>${game_person_list[4]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${100*game_person_list[5]['GP_NUM']/game_detail_view['G_NUM']}" style="">
-											<a>7명</a><span>${game_person_list[5]['GP_NUM']}</span>
+											<a>5명</a><span>${game_person_list[5]['GP_NUM']}</span>
 										</div>
 									</div>
 									<div class="zt-skill-bar">
 										<div data-width="${100*game_person_list[6]['GP_NUM']/game_detail_view['G_NUM']}" style="">
-											<a>8명이상</a><span>${game_person_list[6]['GP_NUM']}</span>
+											<a>6명</a><span>${game_person_list[6]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[7]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>7명</a><span>${game_person_list[7]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[8]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>8명이상</a><span>${game_person_list[8]['GP_NUM']}</span>
 										</div>
 									</div>
 								</div>

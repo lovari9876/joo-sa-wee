@@ -28,6 +28,7 @@ public class GameVO {
 	private	int	g_num; // 득표수
 	private String g_image;
 	private String g_thumbnail;
+	private String g_name_kor;
 	
 	// for resultMap
 	private Game_personVO game_personVO;
@@ -38,7 +39,8 @@ public class GameVO {
 	public GameVO(int g_no, String g_name, Timestamp g_written_date, Timestamp g_updated_date, int g_hit,
 			int g_recommend_num, String g_designer, int g_min, int g_max, int g_playtime, int g_age, int g_difficulty,
 			int g_release, int g_level, int g_ruletime, int g_lang, int g_inter, int g_theme, int g_replay,
-			int g_artwork, int g_contents, int g_num, String g_image, String g_thumbnail, Game_personVO game_personVO) {
+			int g_artwork, int g_contents, int g_num, String g_image, String g_thumbnail, String g_name_kor,
+			Game_personVO game_personVO) {
 		this.g_no = g_no;
 		this.g_name = g_name;
 		this.g_written_date = g_written_date;
@@ -63,8 +65,11 @@ public class GameVO {
 		this.g_num = g_num;
 		this.g_image = g_image;
 		this.g_thumbnail = g_thumbnail;
+		this.g_name_kor = g_name_kor;
 		this.game_personVO = game_personVO;
 	}
+
+
 
 
 
@@ -220,5 +225,14 @@ public class GameVO {
 	public void setGame_personVO(Game_personVO game_personVO) {
 		this.game_personVO = game_personVO;
 	}
+
+	public String getG_name_kor() {
+		return g_name_kor;
+	}
+
+	public void setG_name_kor(String g_name_kor) {
+		this.g_name_kor = g_name_kor;
+	}
+	
 	
 }
