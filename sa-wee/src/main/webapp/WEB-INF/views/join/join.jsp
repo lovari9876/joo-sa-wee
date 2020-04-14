@@ -26,8 +26,8 @@
 <link rel="stylesheet" href="resources/css/join/style.css" />
 <link rel="stylesheet" href="resources/css/join/main.css" />
 <!-- 403 에러 / csrf 토큰 문제 -->
-<meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
-<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
+<%-- <meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" /> --%>
 <!-- 우편번호 api -->
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -364,7 +364,7 @@
 
 						</section>
 					</div>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 				</form>
 			</div>
 		</div>

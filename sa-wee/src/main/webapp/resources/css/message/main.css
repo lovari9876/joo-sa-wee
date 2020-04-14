@@ -200,8 +200,8 @@ iframe {
   width: 100%;
   position: relative;
   background-color: #fff;
-  border-radius: 20px;
-  margin-bottom: 30px;
+  border-radius: 5px;
+  margin-top: 20px;
 }
 
 .input100 {

@@ -15,3 +15,26 @@
     cursor: pointer;
     
 }
+
+.btn-receive.active{
+	color:#eee;	
+}
+
+.btn-send.active{
+	color:#eee;	
+}
+
+.btn-receive{
+	float: left;
+	color:none;	
+}
+.btn-send{
+	float: left;
+	color:none;	
+}
+
+/* 경고글자 사이즈, 색 조절 */
+.check_font {
+	color: red;
+	font-size: 13px
+}

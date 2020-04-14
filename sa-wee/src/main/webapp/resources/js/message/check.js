@@ -10,13 +10,7 @@ $("#allCheck").click(function() {
 $(".chBox").click(function() {
 	$("#allCheck").prop("checked", false);
 });
-$(".btn-receive").click(function() {
-	$("#allCheck").prop("checked", false);										
-});
-$(".btn-send").click(function() {
-	$("#allCheck").prop("checked", false);										
-});
-
+		
 $(".selectDelete_btn").click(function() {
 	var checkArr = new Array();
 	// var cate = $(this).val();
@@ -34,7 +28,7 @@ $(".selectDelete_btn").click(function() {
 		if (confirm_val) {
 			
 			$.ajax({
-				url : "/delete_receive_message",
+				url : "/rest/delete_receive_message",
 				type : "post",
 				data : {
 					chbox : checkArr
@@ -52,12 +46,26 @@ $(".selectDelete_btn").click(function() {
 					console.log(error);
 				}
 			});//ajax
-			
 		}
 	}
+});
+
+$(".btn-receive").click(function() {
+	$("#allCheck").prop("checked", false);
+	
+	$(".btn-receive.active").removeClass("active");
+	$(".btn-send").addClass("active");
+});
+
+$(".btn-send").click(function() {
+	$("#allCheck").prop("checked", false);										
+	
+	$(".btn-send.active").removeClass("active");
+	$(".btn-receive").addClass("active");
 	
 });
 
+// 첫번째 쪽지 보이게 하기, 다른 쪽지 누르면 없어지게 하기
 $(document).ready(function() {
 
     $(".tab_content").hide(); //Hide all content
@@ -73,4 +81,64 @@ $(document).ready(function() {
 */
     });
 
+});
+// null, 잘못된 값 체크
+$(document).ready(function() {
+	var pass = true;
+	$(".check").click(function() {		
+		if ($("#m_nick").val() == "") {
+			//alert("닉네임을 입력해주세요.");
+			$('#m_nick_check').text('닉네임을 입력해주세요.');	
+			return false;
+		}
+		if ($("#n_title").val() == "") {
+			//alert("제목을 입력해주세요.");
+			$('#n_title_check').text('제목을 입력해주세요.');			
+			return false;
+		}
+		if ($("#n_content").val() == "") {
+			//alert("내용을 입력해주세요.");
+			$('#n_title_check').text('내용을 입력해주세요.');
+			return false;
+		}
+		if(!pass){
+			console.log("실패");
+		}
+		if(pass){			
+			$("#send_message-form").submit();
+		}
+		
+	});
+	
+	$("#m_nick").blur(
+			function() {
+				var m_nick = $('#m_nick').val();
+				$.ajax({
+					url : '/nickCheck?m_nick=' + m_nick,
+					type : 'post',
+					success : function(data) {
+						console.log("1 = 중복o / 0 = 중복x : " + data);
+
+						if (data == 0) {
+							$("#m_nick_check").text("존재하지 않는 닉네임입니다.");
+							pass = false;
+						} else  {
+							$("#m_nick_check").text(" ");
+							pass = true;
+						}					
+					}
+				});
+			});
+	$("#n_title").blur(function() {
+		var n_title = $('#n_title').val();
+		if (n_title != "") {
+			$("#n_title_check").text(" ");
+		}		
+	});
+	$("#n_content").blur(function() {
+		var n_content = $('#n_content').val();
+		if (n_content != "") {
+			$("#n_content_check").text(" ");
+		}
+	});	
 });

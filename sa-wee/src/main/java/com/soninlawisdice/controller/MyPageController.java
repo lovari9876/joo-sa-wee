@@ -197,38 +197,6 @@ public class MyPageController {
 		}
 		return result;
 	}
-	
-	// 쪽지 내용 삭제
-	@ResponseBody
-	@RequestMapping(value = "/delete_send_message", method = RequestMethod.POST)
-	public int deleteSendMessage(Principal principal, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
-		System.out.println("deleteSendMessage()");
-
-		int result = 0;
-		int n_no = 0;
-		
-		for (String i : chArr) {
-			n_no = Integer.parseInt(i);
-			System.out.println(n_no);
-			NoteVO noteVO = myPageService.note(n_no);
-			System.out.println(noteVO.getN_blind());
-
-			myPageService.deleteSendMessage(n_no, noteVO.getN_blind());
-		
-			result = 1;
-		}
-		return result;
-	}
-
-//	@ResponseBody
-//	@RequestMapping(value = "/select_message", method = {RequestMethod.GET,RequestMethod.POST})
-//	public String select_message(int n_no, Principal principal, Model model) throws Exception {
-//		System.out.println("select_message"+n_no);
-//		
-//		model.addAttribute("noteContent", myPageService.noteContent(n_no));
-//		
-//		return "redirect:/message";		
-//	}
 
 	// 쪽지 보내기 뷰
 	@RequestMapping(value = "/send_messageview", method = RequestMethod.GET)
@@ -255,7 +223,7 @@ public class MyPageController {
 
 		myPageService.sendMessage(m_no, noteVO);
 
-		return "message/send_message";
+		return "message/send_message_success";
 	}
 
 }
