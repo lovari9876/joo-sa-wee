@@ -47,9 +47,9 @@
 							class="form-control" placeholder="${comment_modi_t['CM_CONTENT']}"></textarea>
 					</div>
 					<div class="form-group">
-						<input type="submit" value="수정"
-							class="btn btn-lavender btn-md text-white" id="btn-color">
 						<input type="button" value="닫기" onClick='window.close()'
+							class="btn btn-lavender btn-md text-white" id="btn-color">
+						<input type="submit" value="수정"
 							class="btn btn-lavender btn-md text-white" id="btn-color">
 					</div>
 				</form>

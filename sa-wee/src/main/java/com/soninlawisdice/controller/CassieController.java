@@ -1,5 +1,6 @@
 package com.soninlawisdice.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -96,8 +97,15 @@ public class CassieController {
 	
 	// 중고거래 게시글 view
 	@RequestMapping(value = "/content_view_t", method = RequestMethod.GET)
-	public String content_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
+	public String content_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("content_view_t");
+		
+		// 로그인 안되어있는 상태에서도 볼 수 있음
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(request.getParameter("t_no"));
 		
@@ -109,8 +117,8 @@ public class CassieController {
 		model.addAttribute("tgList", secondhandService.selectTrade_gameList(t_no));
 		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
-		int m_no = 9;
-		model.addAttribute("m_no", m_no);
+//		int m_no = 9;
+//		model.addAttribute("m_no", m_no);
 		
 		// 게시글 조회수
 		secondhandService.upHitContent(t_no);

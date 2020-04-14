@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -163,15 +164,26 @@
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
 							</div>
-							<div class="test_item second">
-								<a href="trade_modify_view?t_no=${content_view_t['T_NO']}">수정</a>
+							<div class="test_item fourth">
+								<c:if test = "${content_view_t['M_NO'] != m_no}">
+								<sec:authorize access="isAuthenticated()">
+									<a href="report_view_t?t_no=${content_view_t['T_NO']}"
+									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
+								</sec:authorize>
+								</c:if>
+								<sec:authorize access="isAnonymous()">
+									<a href="loginview">신고</a>
+								</sec:authorize>
 							</div>
 							<div class="test_item third">
-								<a href="delete_t?t_no=${content_view_t['T_NO']}">삭제</a>
+								<c:if test = "${content_view_t['M_NO'] eq m_no}">
+									<a href="delete_t?t_no=${content_view_t['T_NO']}">삭제</a>
+								</c:if>
 							</div>
-							<div class="test_item fourth">
-								<a href="report_view_t?t_no=${content_view_t['T_NO']}"
-									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
+							<div class="test_item second">
+								<c:if test = "${content_view_t['M_NO'] eq m_no}">
+									<a href="trade_modify_view?t_no=${content_view_t['T_NO']}">수정</a>
+								</c:if>
 							</div>
 						</div>
 					</form>
