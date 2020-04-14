@@ -95,13 +95,21 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 blog-content">
-					
-					
-					<h3>비밀글입니다</h3>
-
-					<p>${content_view['BW_CONTENT']}</p>
-
-	
+				<c:choose>
+					<c:when test="${content_view['BW_SECRET'] eq  'y'}">	
+						<c:choose>
+							<c:when test="${content_view['M_NO'] eq m_no}">
+								<p>${content_view['BW_CONTENT']}</p>
+							</c:when>
+							<c:otherwise>
+								<h3>비밀글입니다</h3>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<p>${content_view['BW_CONTENT']}</p>
+					</c:otherwise>
+				</c:choose>
 					<br />
 					<br />
 					<input type = "hidden" class = "countComment" value = "${count}">
@@ -112,14 +120,23 @@
 								<input type = "button" onclick ="location.href='question_list'" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item second">
-								<a href="question_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
+								<c:if test = "${content_view['M_NO'] eq m_no}">
+									<a href="question_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
+								</c:if>
 							</div>
 							<div class="test_item third">
-								<a style = "cursor:pointer;"onclick = "commentDelete();"<%-- href="question_delete?bw_no=${content_view['BW_NO']}" --%>>삭제</a>
+								<c:if test = "${content_view['M_NO'] eq m_no}">
+									<a style = "cursor:pointer;"onclick = "commentDelete();"<%-- href="question_delete?bw_no=${content_view['BW_NO']}" --%>>삭제</a>
+								</c:if>
 							</div>
 							<div class="test_item fourth">
-								<a href="content/report_view_bw?bw_no=${content_view['BW_NO']}"
+								<sec:authorize access="isAuthenticated()">
+									<a href="content/report_view_bw?bw_no=${content_view['BW_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<a href="loginview">신고</a>
+								</sec:authorize>
 							</div>
 						</div>
 					</form>

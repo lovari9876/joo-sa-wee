@@ -184,9 +184,13 @@
 						</ul>
 					</div>
 					
-					<button class="write-view-btn" type="button" style="margin-top:0px !important;"
-							onclick="location.href='cafe_review_write?c_no='+${c_no}">글쓰기</button>
-
+					<button class = "list" type="button" onclick="location.href='cafe_info?c_no='+${c_no}">목록</button>
+					<sec:authorize access="isAnonymous()">
+						<button class="write-view-btn" type="button" onclick="location.href='loginview'">글쓰기</button>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<button class="write-view-btn" type="button" style="margin-top:0px !important;" onclick="location.href='cafe_review_write?c_no='+${c_no}">글쓰기</button>
+					</sec:authorize>
 				
 			</div>
 		</div>

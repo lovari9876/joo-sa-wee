@@ -156,17 +156,6 @@
 	<script src="js/board_hs/typeahead.js"></script>
 	
 	
-	<!--<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
-	<script src="js/board_hs/typeahead.jquery.min.js"></script>
-	
-	
-	<script src="js/board_hs/typeahead.js"></script>
-	<script src="js/board_hs/tokenizers.js"></script>
-	<script src="js/board_hs/options_parser.js"></script>
-	<script src="js/board_hs/bloodhound.js"></script> -->
-	<!-- ckEditor 관련 -->
-	
-	
 
 	<script>
 		

@@ -36,7 +36,7 @@ public interface BoardMapper {
 	public int cboard_listCount(@Param("scri")SearchCriteria scri, @Param("bt_no") int bt_no, @Param("s_content")String s_content);
 	
 	//게시글 작성하기
-	public void insertBoard(@Param("board_writeVO") Board_writeVO board_writeVO, @Param("gameName") ArrayList<String> gameName);
+	public void insertBoard(@Param("board_writeVO") Board_writeVO board_writeVO, @Param("gameName") ArrayList<String> gameName, @Param("m_no")int m_no);
 	
 	
 	//게임 이름들 가져오기(커뮤니티 modify_view 에)
@@ -91,7 +91,7 @@ public interface BoardMapper {
 	public String get_CafeName(@Param("c_no") int c_no);
 	
 	//리뷰 작성하기
-	public void insertReview(@Param("cafe_reviewVO") Cafe_reviewVO cafe_reviewVO, @Param("gameName") ArrayList<String> gameName);
+	public void insertReview(@Param("cafe_reviewVO") Cafe_reviewVO cafe_reviewVO, @Param("gameName") ArrayList<String> gameName, @Param("m_no") int m_no);
 	
 	//리뷰 수정하기
 	public void review_modify(@Param("cafe_reviewVO") Cafe_reviewVO cafe_reviewVO, @Param("gameName")ArrayList<String> gameName);
@@ -108,7 +108,7 @@ public interface BoardMapper {
 	//문의 리스트
 	public ArrayList<HashMap<String, Object>> selectQuestionList(@Param("scri")SearchCriteria scri);
 	//문의 작성
-	public void insertQuestion(@Param("board_writeVO") Board_writeVO board_writeVO);
+	public void insertQuestion(@Param("board_writeVO") Board_writeVO board_writeVO, @Param("m_no") int m_no);
 	
 	//문의 보기//비밀글때문에 따로
 	public HashMap<String, Object> selectQuestionOne(@Param("bw_no")int bw_no);

@@ -2,6 +2,7 @@ package com.soninlawisdice.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
@@ -15,20 +16,20 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
+import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
 
@@ -46,6 +47,9 @@ public class Board_hs_Controller {
 	
 	@Autowired
 	private ContentService	contentService;
+	
+	@Autowired
+	private MyPageService myPageService;
 
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
 
@@ -176,39 +180,14 @@ public class Board_hs_Controller {
 		}
 		
 	
-	
-	
-
-	
-
-	// 말머리마다 다른 내용 보여주기
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping("/board_list_sub") public ArrayList<HashMap<String, Object>>
-	 * list(Model model) { System.out.println("test");
-	 * 
-	 * return boardService.selectBoardList(); }
-	 */
-	
-	/*
-	 * @RequestMapping("/board_sub") public String board_sub(Model model, int s_no){
-	 * 
-	 * model.addAttribute("sub_list", boardService.selectBoardSub(s_no));
-	 * 
-	 * 
-	 * 
-	 * return "board_hs/board_story";
-	 * 
-	 * }
-	 */
-
 	// 글쓰기 view
 	@RequestMapping(value = "/board_write_view", method = RequestMethod.GET)
-	public String write_view(Model model, String bt_no) {
-		logger.info("home");
-
+	public String write_view(Model model, String bt_no) throws Exception {
+		
+		System.out.println("write_view");
+		
 		model.addAttribute("bt_no", bt_no);
+	
 		
 		return "board_hs/write_view";
 	}
@@ -224,13 +203,18 @@ public class Board_hs_Controller {
 
 	// 글 작성
 	@RequestMapping(value = "/board_write", method = RequestMethod.POST)
-	public String write(Board_writeVO board_writeVO, String gameNames) {
-		boardService.insertBoard(board_writeVO, gameNames);
+	public String write(Board_writeVO board_writeVO, String gameNames, Principal principal, MemberVO memberVO) throws Exception {
+		
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		
+		boardService.insertBoard(board_writeVO, gameNames, memberVO.getM_no());
+		System.out.println(memberVO.getM_no());
 
 		int bt_no = board_writeVO.getBt_no();
-		int m_no = board_writeVO.getM_no();
+		
 		//회원 포인트 올리기
-		boardService.boardPointUpdate(m_no);
+		boardService.boardPointUpdate(memberVO.getM_no());
 		
 		
 		if (bt_no == 1) {
@@ -302,8 +286,6 @@ public class Board_hs_Controller {
 
 		// 카페 정보 가져오기
 		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
-		// 댓글 불러오는것도 추가해야함
-
 		// 밑에 관련 리스트 가져오기
 		model.addAttribute("list", boardService.selectCafeReviewList(scri,c_no));
 		
@@ -381,14 +363,17 @@ public class Board_hs_Controller {
 	
 	// 리뷰 작성하기
 	@RequestMapping( value = "/insertReview", method = RequestMethod.POST)
-	public String insertReview(Cafe_reviewVO cafe_reviewVO, String gameNames) {
+	public String insertReview(Cafe_reviewVO cafe_reviewVO, String gameNames, Principal principal, MemberVO memberVO) throws Exception {
 
-		boardService.insertReview(cafe_reviewVO, gameNames);
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		
+		boardService.insertReview(cafe_reviewVO, gameNames, memberVO.getM_no());
 		
 		int c_no = cafe_reviewVO.getC_no();
-		int m_no = cafe_reviewVO.getM_no();
 		
-		boardService.boardPointUpdate(m_no);
+		
+		boardService.boardPointUpdate(memberVO.getM_no());
 		
 		return "redirect:cafe_info?c_no="+c_no;
 	}
@@ -477,19 +462,29 @@ public class Board_hs_Controller {
 	
 	//문의 작성
 	@RequestMapping(value = "/question_write", method = RequestMethod.POST)
-	public String question_write(Model model, Board_writeVO board_writeVO) {
-		boardService.insertQuestion(board_writeVO);
+	public String question_write(Model model, Board_writeVO board_writeVO, Principal principal, MemberVO memberVO) throws Exception {
 		
-		int m_no = board_writeVO.getM_no();
-		boardService.boardPointUpdate(m_no);
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		
+		boardService.insertQuestion(board_writeVO, memberVO.getM_no());
+		
+		boardService.boardPointUpdate(memberVO.getM_no());
 		
 		return "redirect:question_list";
 	}
 	
 	//문의 보기 (비밀글이면 작성자와 관리자만 볼 수 있음)
 	@RequestMapping("/question_content_view")
-	public String question_content_view(HttpServletRequest request,Model model) {
+	public String question_content_view(HttpServletRequest request,Model model, Principal principal, MemberVO memberVO) throws Exception {
 		
+		System.out.println(principal);
+		
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		int bw_no = Integer.parseInt(request.getParameter("bw_no").trim());
 		
 		contentService.upHitContent(bw_no);

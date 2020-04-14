@@ -77,28 +77,32 @@
 						
 						<input type = "hidden" name = "c_no" value = "${c_no}">
 						
-						<tr class = "row">
-							<td class = "cell" id = "bloodhound">
-								<input name = "gameNames" class = "typeahead" type = "text" data-role = "tagsinput">
-							</td>
-						</tr>
-						
 						<!-- 입력창 -->
 						<tr class = "row">
+							<td class="cell">카페 이름</td>
 							<td class = "cell">${c_title}</td>
 						</tr>
 						
 						<tr class="row">
-							<td class="cell"><input type="text" name="cr_title" placeholder = "제목을 입력하세요"></td>
+							<td class="cell">제목</td>
+							<td class="cell"><input type="text" id = "title" name="cr_title" placeholder = "제목을 입력하세요"></td>
 						</tr>
 
 						<tr class="row">
+							<td class="cell">내용</td>
 							<td class="cell"><textarea id = "editor" name="cr_content" placeholder = "내용을 입력하세요"></textarea></td>
+						</tr>
+						
+						<tr class = "row">
+							<td class = "cell">태그</td>
+							<td class = "cell" id = "bloodhound">
+								<input name = "gameNames" class = "typeahead" type = "text" data-role = "tagsinput">
+							</td>
 						</tr>
 
 					</table>
-					<button class = "list" type="button" onclick="location.href='list'">목록</button>
-					<button class = "write-btn" type = "submit">작성완료</button>
+					<button class = "list" type="button" onclick="history.back();">목록</button>
+					<button class = "write-btn">작성완료</button>
 				</form>
 
 
@@ -133,7 +137,7 @@
 	<script src="js/footer/footer_hee.js"></script>
 	<script src ="js/board_hs/tagsinput.js"></script>
 	<script src="js/board_hs/typeahead.js"></script>
-	
+	<script src="js/board_hs/alertEmpty.js"></script>
 		<script>
 		
 		var games = new Bloodhound({

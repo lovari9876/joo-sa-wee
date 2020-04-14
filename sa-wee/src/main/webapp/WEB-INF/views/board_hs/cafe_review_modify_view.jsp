@@ -78,28 +78,29 @@
 					<table class="write-table">
 						<input type="hidden" name="cr_no" value="${cafe_review['CR_NO']}"/>
 						<input type = "hidden" name="cr_island" value = "${cafe_review['CR_ISLAND']}" />
+						
+						<tr class="row">
+							<td class="cell">제목</td>
+							<td class="cell"><input type="text" id = "title" name="cr_title" value = "${cafe_review['CR_TITLE']}"  placeholder = "제목을 입력하세요"></td>
+						</tr>
 
 						<tr class="row">
-							<td class="cell" id = "bloodhound">
-								<input data-role = "tagsinput" name="gameNames" value = "${gameNames}" class = "typeahead" type = "text">
-								
-							</td>
+							<td class="cell">내용</td>
+							<td class="cell"><textarea id = "editor" name="cr_content" placeholder = "내용을 입력하세요">${cafe_review['CR_CONTENT']}</textarea></td>
 						</tr>
 						
 						<tr class="row">
-							<td class="cell"><input type="text" name="cr_title" value = "${cafe_review['CR_TITLE']}"  placeholder = "제목을 입력하세요"></td>
-							
-						</tr>
-
-						<tr class="row">
-							<td class="cell"><textarea id = "editor" name="cr_content" placeholder = "내용을 입력하세요">${cafe_review['CR_CONTENT']}</textarea></td>
-							<%-- <td class="cell"><textarea name="bwTitle" placeholder = "내용을 입력하세요">이건 여기에 ${detail.CONTENTS } 이런식으로</textarea></td> --%>
+							<td class = "cell">태그</td>
+							<td class="cell" id = "bloodhound">
+								<input data-role = "tagsinput" name="gameNames" value = "${gameNames}" class = "typeahead" type = "text">
+							</td>
 						</tr>
 
 						
 					</table>
-					<button class = "list" type="button" onclick="location.href='cafe_info?c_no ='${cafe_review['CR_NO']}">목록</button>
-					<button class = "modify-btn" type = "submit">수정 완료</button>
+					<button class = "list" type="button" onclick="history.back();">목록</button>
+					<%-- <button class = "list" type="button" onclick="location.href='cafe_info?c_no ='${cafe_review['CR_NO']}">목록</button> --%>
+					<button class = "write-btn">수정 완료</button>
 				</form>
 
 
@@ -136,7 +137,7 @@
 	<script src="js/footer/footer_hee.js"></script>
 	<script src ="js/board_hs/tagsinput.js"></script>
 	<script src="js/board_hs/typeahead.js"></script>
-	
+	<script src="js/board_hs/alertEmpty.js"></script>
 	
 	<!-- ckEditor 관련 -->
 	

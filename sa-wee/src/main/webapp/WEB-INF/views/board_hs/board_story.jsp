@@ -2,6 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -297,10 +299,14 @@
 				
 
 				<!-- 버튼에 링크 걸기 -->
+				<sec:authorize access="isAnonymous()">
 				<button class="write-view-btn" type="button"
+					onclick="location.href='loginview'">글쓰기</button>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<button class="write-view-btn" type="button"
 					onclick="location.href='board_write_view?bt_no=1'">글쓰기</button>
-
-
+				</sec:authorize>
 			</div>
 		</div>
 	</div>
