@@ -189,6 +189,12 @@
 									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
 								</c:import>
 							</c:when>
+							<c:when test="${content_view['BT_NO'] == 8}">
+								<c:import url="/comment_view_bw">
+									<c:param name="cm_type" value="게시판"></c:param>
+									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+								</c:import>
+							</c:when>
 							<c:otherwise>
 								<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
 							</c:otherwise>
