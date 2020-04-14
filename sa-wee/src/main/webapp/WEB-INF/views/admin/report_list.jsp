@@ -40,7 +40,7 @@
 							<div class="controls">
 								<div class="input-append pull-left">
 									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="신고내용 검색">
-									<button type="submit" class="btn" id="serchBtn">
+									<button type="submit" class="btn" id="searchBtn">
 										<i class="icon-search"></i>
 									</button>
 									
@@ -48,19 +48,9 @@
 								      $(function(){
 								        $('#searchBtn').click(function() {
 								          self.location = "report_list" + '${pageMaker.makeQuery(1)}' 
-								        /*   + "&r_type="+ $("#member").val()  */
 								          + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 								        });
 								      });   
-								      
-								      console.log($("#member").val());
-								      
-								      /* $('button').click(function() {
-								          $('#member').addClass('active');
-								       }) */
-								    
-								      
-								      
 								    </script> 
 								</div>
 

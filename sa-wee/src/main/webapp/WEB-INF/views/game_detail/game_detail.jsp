@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -338,13 +339,13 @@
 					<li><a href="#tab3">보드게임 모임</a></li>
 					<li><a href="#tab4">보드 뉴스</a></li>
 					<li><a href="#tab5">질문 & 답변</a></li>
-					<li><a href="#tab6">창작 보드게임</a></li>
 
 				</ul>
 
 				<!-- 테이블  -->
 				<div id="tab1" class="tabcontent current">
-
+			<!-- 	<input type ="hidden" name="keyword" value="dffds" />${game_detail_view['G_NAME']}
+				<input type ="hidden" name="searchType" value="n" /> -->
 					<table class="table">
 
 
@@ -355,40 +356,26 @@
 							<td class="cell">작성일</td>
 						</tr>
 
-						<tr class="rows">
-							<td class="cell">1</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">2</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">3</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">4</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">5</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
+						<c:forEach items="${board_story}" var="story">
+									<tr class="trow">
+										<td class="cell">${story['BW_NO']}</td>
+										<td class="cell title"><a
+											href="/content_view?bw_no=${story['BW_NO']}">${story['BW_TITLE']}</a></td>
+										<td class="cell">${story['M_ID']}</td>
+										<td class="cell"> 
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" />
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${story['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${story['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+									</tr>
+								</c:forEach>
 
 					</table>
 
@@ -406,40 +393,24 @@
 							<td class="cell">작성일</td>
 						</tr>
 
-						<tr class="rows">
-							<td class="cell">1</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">V아니아니liamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">2</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">3</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">4</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">5</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
+						<c:forEach items="${board_open_review}" var="bor">
+									<tr class="trow">
+										<td class="cell">${bor['BW_NO']}</td>
+										<td class="cell title"><a
+											href="/content_view?bw_no=${bor['BW_NO']}">${bor['BW_TITLE']}</a></td>
+										<td class="cell">${bor['M_ID']}</td>
+										<td class="cell"> 
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${bor['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${bor['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+									</tr>
+								</c:forEach>
 
 					</table>
 
@@ -457,40 +428,24 @@
 							<td class="cell">작성일</td>
 						</tr>
 
-						<tr class="rows">
-							<td class="cell">1</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">2</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vi어어어어어어어ㅓ엉lliamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">3</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">4</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">5</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
+						<c:forEach items="${board_meet}" var="bm">
+									<tr class="trow">
+										<td class="cell">${bm['BW_NO']}</td>
+										<td class="cell title"><a
+											href="/content_view?bw_no=${bm['BW_NO']}">${bm['BW_TITLE']}</a></td>
+										<td class="cell">${bm['M_ID']}</td>
+										<td class="cell"> 
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${bm['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${bm['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+									</tr>
+								</c:forEach>
 
 					</table>
 
@@ -508,40 +463,24 @@
 							<td class="cell">작성일</td>
 						</tr>
 
-						<tr class="rows">
-							<td class="cell">1</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vinc아니아니아니어어어어어</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">2</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">3</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">4</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">5</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
+						<c:forEach items="${board_news}" var="bn">
+									<tr class="trow">
+										<td class="cell">${bn['BW_NO']}</td>
+										<td class="cell title"><a
+											href="/content_view?bw_no=${bn['BW_NO']}">${bn['BW_TITLE']}</a></td>
+										<td class="cell">${bn['M_ID']}</td>
+										<td class="cell"> 
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${bn['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${bn['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+									</tr>
+								</c:forEach>
 
 					</table>
 				</div>
@@ -558,93 +497,28 @@
 							<td class="cell">작성일</td>
 						</tr>
 
-						<tr class="rows">
-							<td class="cell">1</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vinc아니아니아니어어어어어</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">2</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">3</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vinc아니아니아니어어어어어</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">4</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">5</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
+						<c:forEach items="${board_qna}" var="bq">
+									<tr class="trow">
+										<td class="cell">${bq['BW_NO']}</td>
+										<td class="cell title"><a
+											href="/content_view?bw_no=${story['BW_NO']}">${bq['BW_TITLE']}</a></td>
+										<td class="cell">${bq['M_ID']}</td>
+										<td class="cell"> 
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${bq['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${bq['BW_WRITTEN_DATE']}" pattern="HH:mm:ss"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+									</tr>
+								</c:forEach>
 
 					</table>
 				</div>
 				
-				<div id="tab6" class="tabcontent">
-
-					<table class="table">
-
-
-						<tr class="rows r_title">
-							<td class="cell">글 번호</td>
-							<td class="cell">글 제목</td>
-							<td class="cell">작성자</td>
-							<td class="cell">작성일</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">1</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vinc아니아니아니어어어어어</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">2</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">3</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">4</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-						</tr>
-
-						<tr class="rows">
-							<td class="cell">5</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vincent Williamson</td>
-							<td class="cell">Vinc아니아니아니어어어어어</td>
-						</tr>
-
-					</table>
-				</div>
 			</div>
 
 

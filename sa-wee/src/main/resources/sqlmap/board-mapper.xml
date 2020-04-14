@@ -775,7 +775,7 @@
 			<if test="scri.searchType == 't'.toString()">AND bw_title LIKE '%' || #{scri.keyword} || '%'</if>
 			<if test="scri.searchType == 'c'.toString()">AND bw_content LIKE '%' || #{scri.keyword} || '%'</if>
 			<if test="scri.searchType == 'w'.toString()">AND m_nick LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'tc'.toString()">AND (bw_title LIKE '%' || #{scri.keyword} || '%') or (bw_content LIKE '%' || #{scri.keyword} || '%')</if>
+			<if test="scri.searchType == 'tc'.toString()">AND ((bw_title LIKE '%' || #{scri.keyword} || '%') or (bw_content LIKE '%' || #{scri.keyword} || '%'))</if>
 		</if>
 	</sql>
 	
