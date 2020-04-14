@@ -50,9 +50,11 @@
 		BW.BW_WRITTEN_DATE, BW.BW_UPDATED_DATE, BW.BW_HIT,
 		BW.BW_RECOMMEND_NUM, BW.BW_REPORT_NUM, BW.BW_ISLAND, BW.BW_SECRET,
 		M.M_NO, M.M_NICK, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
-		FROM BOARD_WRITE BW, MEMBER M,
+		FROM BOARD_WRITE
+		BW, MEMBER M,
 		BOARD_TYPE BT, SUBJECT S
-		WHERE BW.M_NO = M.M_NO AND BW.BT_NO =
+		WHERE BW.M_NO = M.M_NO AND
+		BW.BT_NO =
 		BT.BT_NO
 		AND BW.S_NO = S.S_NO AND
 		BW.BW_NO = #{bw_no}
@@ -202,7 +204,6 @@
 	</resultMap>
 
 	<!-- 게시글 댓글 쓰기 -->
-	<!-- 현재 m_no 3으로 되어있음. 나중에 #{m_no}으로 고쳐야 됨. -->
 	<insert id="insertCommentBW">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
 		CM_WRITTEN_DATE,
@@ -214,23 +215,24 @@
 		'게시판',
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
-	
+
 	<!-- 댓글쓰면 +5 point -->
 	<update id="updatePoint">
-		UPDATE MEMBER SET M_POINT = M_POINT + 5 WHERE M_NO = #{m_no} 
+		UPDATE MEMBER SET M_POINT = M_POINT + 5 WHERE M_NO =
+		#{m_no}
 	</update>
 
 	<!-- 게시글 댓글 수정하기 view에서 사용 -->
 	<select id="selectCommentOne" resultType="java.util.HashMap"
 		parameterType="String">
-		SELECT 
-			CM.*, M.M_NO, M.M_NICK
-		FROM 
-			CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
-		WHERE 
-			CM.M_NO = M.M_NO AND
-			CM.CM_NO2 = BW.BW_NO
-			AND CM.CM_TYPE = '게시판' AND CM.CM_NO = #{cm_no}
+		SELECT
+		CM.*, M.M_NO, M.M_NICK
+		FROM
+		CM_COMMENT CM, MEMBER M, BOARD_WRITE BW
+		WHERE
+		CM.M_NO = M.M_NO AND
+		CM.CM_NO2 = BW.BW_NO
+		AND CM.CM_TYPE = '게시판' AND CM.CM_NO = #{cm_no}
 	</select>
 
 	<!-- 댓글 수정 -->
@@ -250,7 +252,8 @@
 		WHERE CM.M_NO =
 		M.M_NO AND
 		CM.CM_NO2 = BW.BW_NO
-		AND CM.CM_TYPE = '게시판' AND CM.CM_NO2 = #{cm_no2}
+		AND CM.CM_TYPE = '게시판'
+		AND CM.CM_NO2 = #{cm_no2}
 		ORDER BY
 		CM.CM_GROUP ASC, CM.CM_STEP ASC
 	</select>
@@ -280,13 +283,14 @@
 		WHERE CM.CM_NO2 = BW.BW_NO AND CM.CM_TYPE = '게시판' AND
 		CM.CM_NO2 = #{cm_no2}
 	</select>
-	
+
 	<!-- 댓글 우선순위 -->
 	<update id="updateReply">
-		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE CM_GROUP = #{cm_group}
+		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE
+		CM_GROUP = #{cm_group}
 		AND CM_STEP > #{cm_step}
 	</update>
-	
+
 	<!-- 대댓글 쓰기 -->
 	<insert id="insertReply">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
@@ -299,7 +303,7 @@
 		'게시판',
 		#{cm_no2}, 0, 0, 0, #{cm_group}, #{cm_step}+1, #{cm_indent}+1)
 	</insert>
-	
+
 
 	<!-- ====================== 보부상 ======================== -->
 
@@ -377,7 +381,8 @@
 		WHERE
 		CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = T.T_NO
-		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO2 = #{cm_no2}
+		AND CM.CM_TYPE = '중고거래' AND
+		CM.CM_NO2 = #{cm_no2}
 		ORDER BY
 		CM.CM_GROUP ASC, CM.CM_STEP ASC
 	</select>
@@ -404,9 +409,11 @@
 		CM.CM_STEP, CM.CM_INDENT
 		FROM CM_COMMENT CM,
 		MEMBER M, TRADE T
-		WHERE CM.M_NO = M.M_NO AND
+		WHERE
+		CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = T.T_NO
-		AND CM.CM_TYPE = '중고거래' AND CM.CM_NO = #{cm_no}
+		AND CM.CM_TYPE = '중고거래' AND
+		CM.CM_NO = #{cm_no}
 	</select>
 
 	<!-- 중고거래 댓글 수정 -->
@@ -438,15 +445,17 @@
 		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM,
 		TRADE T
 		WHERE CM.CM_NO2 = T.T_NO AND CM.CM_TYPE = '중고거래' AND
-		CM.CM_NO2 = #{cm_no2}
+		CM.CM_NO2 =
+		#{cm_no2}
 	</select>
-	
+
 	<!-- 중고거래 댓글 우선순위 -->
 	<update id="updateReplyT">
-		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE CM_GROUP = #{cm_group}
+		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE
+		CM_GROUP = #{cm_group}
 		AND CM_STEP > #{cm_step}
 	</update>
-	
+
 	<!-- 중고거래 대댓글 쓰기 -->
 	<insert id="insertReplyT">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
@@ -532,7 +541,8 @@
 		MEMBER M, CAFE_REVIEW CR
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = CR.CR_NO
-		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO2 = #{cm_no2}
+		AND CM.CM_TYPE = '카페리뷰'
+		AND CM.CM_NO2 = #{cm_no2}
 		ORDER BY
 		CM.CM_GROUP ASC, CM.CM_STEP ASC
 	</select>
@@ -560,7 +570,8 @@
 		FROM CM_COMMENT CM, MEMBER M, CAFE_REVIEW CR
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = CR.CR_NO
-		AND CM.CM_TYPE = '카페리뷰' AND CM.CM_NO = #{cm_no}
+		AND CM.CM_TYPE = '카페리뷰'
+		AND CM.CM_NO = #{cm_no}
 	</select>
 
 	<!-- 카페리뷰 댓글 수정 -->
@@ -594,13 +605,14 @@
 		WHERE CM.CM_NO2 = CR.CR_NO AND CM.CM_TYPE = '카페리뷰' AND
 		CM.CM_NO2 = #{cm_no2}
 	</select>
-	
+
 	<!-- 카페리뷰 댓글 우선순위 -->
 	<update id="updateReplyCR">
-		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE CM_GROUP = #{cm_group}
+		UPDATE CM_COMMENT SET CM_STEP = CM_STEP +1 WHERE
+		CM_GROUP = #{cm_group}
 		AND CM_STEP > #{cm_step}
 	</update>
-	
+
 	<!-- 카페리뷰 대댓글 쓰기 -->
 	<insert id="insertReplyCR">
 		INSERT INTO CM_COMMENT (CM_NO, M_NO, CM_CONTENT,
@@ -623,7 +635,8 @@
 		SELECT C.C_NO, C.C_TITLE, C.C_ADD, C.C_PHONE,
 		C.C_PEOPLE, C.C_TABLE, C.C_CHAIR, C.C_OPEN, C.C_CLOSE, C.C_REST,
 		C.C_WRITTEN_DATE, C.C_UPDATED_DATE, C.C_HIT, BT.BT_NO
-		FROM CAFE C, BOARD_TYPE BT
+		FROM CAFE C,
+		BOARD_TYPE BT
 		WHERE C.BT_NO = BT.BT_NO AND C.C_NO = #{c_no}
 	</select>
 
@@ -635,10 +648,12 @@
 		CM.CM_RECOMMEND_NUM, CM.CM_REPORT_NUM, CM.CM_RATING, CM.CM_GROUP,
 		CM.CM_STEP, CM.CM_INDENT
 		FROM CM_COMMENT CM, MEMBER M, CAFE C
-		WHERE CM.M_NO =
+		WHERE
+		CM.M_NO =
 		M.M_NO AND
 		CM.CM_NO2 = C.C_NO
-		AND CM.CM_TYPE = '한줄평' AND CM.CM_NO2 = #{cm_no2}
+		AND CM.CM_TYPE = '한줄평' AND
+		CM.CM_NO2 = #{cm_no2}
 		ORDER BY
 		CM.CM_WRITTEN_DATE DESC
 	</select>
@@ -655,7 +670,7 @@
 		'한줄평',
 		#{cm_no2}, 0, 0, 0, CM_COMMENT_SEQ.CURRVAL, 0, 0)
 	</insert>
-	
+
 	<!-- 한줄평 댓글 수정하기 view에서 사용 -->
 	<select id="selectCommentOR" resultType="java.util.HashMap"
 		parameterType="String">
@@ -666,7 +681,8 @@
 		FROM CM_COMMENT CM, MEMBER M, CAFE_REVIEW CR
 		WHERE CM.M_NO = M.M_NO AND
 		CM.CM_NO2 = CR.CR_NO
-		AND CM.CM_TYPE = '한줄평' AND CM.CM_NO = #{cm_no}
+		AND CM.CM_TYPE = '한줄평'
+		AND CM.CM_NO = #{cm_no}
 	</select>
 
 	<!-- 한줄평 댓글 수정 -->
@@ -674,12 +690,12 @@
 		UPDATE CM_COMMENT SET CM_CONTENT = #{cm_content},
 		CM_UPDATED_DATE = SYSDATE WHERE CM_NO = #{cm_no}
 	</update>
-	
+
 	<!-- 한줄평 댓글 삭제 -->
 	<delete id="deleteCommentOR">
 		DELETE FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</delete>
-	
+
 	<!-- 한줄평 댓글 추천수 증가 -->
 	<update id="upRecommendCommentOR">
 		UPDATE CM_COMMENT SET CM_RECOMMEND_NUM =
@@ -691,21 +707,131 @@
 		SELECT
 		CM_RECOMMEND_NUM FROM CM_COMMENT WHERE CM_NO = #{cm_no}
 	</select>
-	
+
 	<!-- 한줄평 댓글 갯수 세기 -->
 	<select id="selectCommentCountOR" resultType="java.util.HashMap"
 		parameterType="String">
 		SELECT COUNT(*)AS CM_COUNT FROM CM_COMMENT CM,
 		CAFE C
 		WHERE CM.CM_NO2 = C.C_NO AND CM.CM_TYPE = '한줄평' AND
-		CM.CM_NO2 = #{cm_no2}
+		CM.CM_NO2 =
+		#{cm_no2}
 	</select>
-	
+
 	<!-- ====================== 게임 상세정보 ======================== -->
+
+	<!-- GameVO resultMap -->
+	<resultMap type="com.soninlawisdice.vo.GameVO"
+		id="GameVO">
+		<id column="g_no" property="g_no" />
+		<result column="g_name" property="g_name" />
+		<result column="g_written_date" property="g_written_date" />
+		<result column="g_updated_date" property="g_updated_date" />
+		<result column="g_hit" property="g_hit" />
+		<result column="g_recommend_num" property="g_recommend_num" />
+		<result column="g_designer" property="g_designer" />
+		<result column="cm_recommend_num" property="cm_recommend_num" />
+		<result column="g_min" property="g_min" />
+		<result column="g_max" property="g_max" />
+		<result column="g_playtime" property="g_playtime" />
+		<result column="g_age" property="g_age" />
+		<result column="g_difficulty" property="g_difficulty" />
+		<result column="g_release" property="g_release" />
+		<result column="g_level" property="g_level" />
+		<result column="g_ruletime" property="g_ruletime" />
+		<result column="g_lang" property="g_lang" />
+		<result column="g_inter" property="g_inter" />
+		<result column="g_theme" property="g_theme" />
+		<result column="g_replay" property="g_replay" />
+		<result column="g_artwork" property="g_artwork" />
+		<result column="g_contents" property="g_contents" />
+		<result column="g_num" property="g_num" />
+		<result column="g_image" property="g_image" />
+		<result column="g_thumbnail" property="g_thumbnail" />
+
+		<collection javaType="com.soninlawisdice.vo.Game_personVO"
+			property="Game_personVO">
+			<id column="g_no" property="g_no" />
+			<result column="gp_person" property="gp_person" />
+			<result column="gp_num" property="gp_num" />
+		</collection>
+	</resultMap>
 	
+	<!-- 게임 상세정보 view (game 테이블) -->
 	<select id="selectGameDetailOne" resultType="java.util.HashMap"
 		parameterType="int">
-		SELECT * FROM GAME WHERE G_NO = #{g_no}
+		SELECT * FROM GAME
+		WHERE G_NO = #{g_no}
+	</select>
+	
+	<!-- 게임 상세정보 view (game_person 테이블) -->
+	<select id="selectGamePersonDetail" resultType="java.util.HashMap"
+		parameterType="int">
+		SELECT * FROM GAME_PERSON
+		WHERE G_NO = #{g_no}
+	</select>
+
+	<!-- game 테이블 투표 -->
+	<update id="updateGame">
+		UPDATE GAME SET G_LEVEL = G_LEVEL + #{g_level},
+		G_RULETIME = G_RULETIME + #{g_ruletime}, G_LANG = G_LANG + #{g_lang}, 
+		G_INTER = G_INTER + #{g_inter}, G_THEME = G_THEME + #{g_theme}, 
+		G_REPLAY = G_REPLAY + #{g_replay}, G_ARTWORK = G_ARTWORK + #{g_artwork},
+		G_CONTENTS = G_CONTENTS + #{g_contents}, G_NUM = G_NUM + 1
+		WHERE G_NO = #{g_no}
+	</update>
+	
+	<!-- 추천인원 투표 시 insert -->
+	<insert id="insertGamePerson1">
+		INSERT INTO GAME_PERSON (G_NO, GP_PERSON, GP_NUM) VALUES (#{g_no}, 1, 0)
+	</insert>
+	<!-- 추천인원 투표 시 insert -->
+	<insert id="insertGamePerson2">
+		INSERT INTO GAME_PERSON (G_NO, GP_PERSON, GP_NUM) VALUES (#{g_no}, 2, 0)
+	</insert>
+	<!-- 추천인원 투표 시 insert -->
+	<insert id="insertGamePerson3">
+		INSERT INTO GAME_PERSON (G_NO, GP_PERSON, GP_NUM) VALUES (#{g_no}, 3, 0)
+	</insert>
+	<!-- 추천인원 투표 시 insert -->
+	<insert id="insertGamePerson4">
+		INSERT INTO GAME_PERSON (G_NO, GP_PERSON, GP_NUM) VALUES (#{g_no}, 4, 0)
+	</insert>
+	<!-- 추천인원 투표 시 insert -->
+	<insert id="insertGamePerson5">
+		INSERT INTO GAME_PERSON (G_NO, GP_PERSON, GP_NUM) VALUES (#{g_no}, 5, 0)
+	</insert>
+	<!-- 추천인원 투표 시 insert -->
+	<insert id="insertGamePerson6">
+		INSERT INTO GAME_PERSON (G_NO, GP_PERSON, GP_NUM) VALUES (#{g_no}, 6, 0)
+	</insert>
+	<!-- 추천인원 투표 시 insert -->
+	<insert id="insertGamePerson7">
+		INSERT INTO GAME_PERSON (G_NO, GP_PERSON, GP_NUM) VALUES (#{g_no}, 7, 0)
+	</insert>
+	<!-- 추천인원 투표 시 insert -->
+	<insert id="insertGamePerson8">
+		INSERT INTO GAME_PERSON (G_NO, GP_PERSON, GP_NUM) VALUES (#{g_no}, 8, 0)
+	</insert>
+
+	<!-- game_person 테이블 투표 -->
+	<update id="updateGamePerson">
+		UPDATE GAME_PERSON SET GP_NUM = GP_NUM +1 WHERE G_NO = #{g_no} AND GP_PERSON = #{gp_person}
+	</update>
+	
+	<!-- 게임 상세정보 투표 결과 view -->
+	<select id="selectGameDetailAvg" resultType="java.util.HashMap"
+		parameterType="int">
+		SELECT ROUND(G_LEVEL/G_NUM, 1) G_LEVEL_AVG, 
+		ROUND(G_RULETIME/G_NUM) G_RULETIME_AVG,
+		ROUND(G_LANG/G_NUM, 1) G_LANG_AVG,
+		ROUND(G_INTER/G_NUM, 1) G_INTER_AVG,
+		ROUND(G_THEME/G_NUM, 1) G_THEME_AVG,
+		ROUND(G_REPLAY/G_NUM, 1) G_REPLAY_AVG,
+		ROUND(G_ARTWORK/G_NUM, 1) G_ARTWORK_AVG,
+		ROUND(G_CONTENTS/G_NUM, 1) G_CONTENTS_AVG
+		FROM GAME
+		WHERE G_NO = #{g_no} AND G_NUM != 0
 	</select>
 
 </mapper>

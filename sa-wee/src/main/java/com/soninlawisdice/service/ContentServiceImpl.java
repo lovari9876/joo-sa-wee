@@ -11,6 +11,8 @@ import com.soninlawisdice.mapper.ContentMapper;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
+import com.soninlawisdice.vo.GameVO;
+import com.soninlawisdice.vo.Game_personVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.TradeVO;
@@ -563,12 +565,60 @@ public class ContentServiceImpl implements ContentService {
 	
 	/*================================= 게임 상세정보 =================================*/
 
-	// 게임 상세정보 view
+	// 게임 상세정보 view (game 테이블)
 	@Override
 	public HashMap<String, Object> selectGameDetailOne(int g_no) {
 		
 		return contentMapper.selectGameDetailOne(g_no);
 	}
+	
+	// 게임 상세정보 view (game_person 테이블)
+	@Override
+	public ArrayList<HashMap<String, Object>> selectGamePersonDetail(int g_no) {
+		
+		return contentMapper.selectGamePersonDetail(g_no);
+	}
 
+
+	// game 테이블 투표
+	@Override
+	public void updateGame(GameVO gameVO) {
+		
+		contentMapper.updateGame(gameVO);
+		
+	}
+	
+	// 추천인원 투표 시 insert
+	@Override
+	public void insertGamePerson(Game_personVO game_personVO) {
+		
+		contentMapper.insertGamePerson1(game_personVO);
+		contentMapper.insertGamePerson2(game_personVO);
+		contentMapper.insertGamePerson3(game_personVO);
+		contentMapper.insertGamePerson4(game_personVO);
+		contentMapper.insertGamePerson5(game_personVO);
+		contentMapper.insertGamePerson6(game_personVO);
+		contentMapper.insertGamePerson7(game_personVO);
+		contentMapper.insertGamePerson8(game_personVO);
+
+	}
+
+	 // game_person 테이블 투표
+	@Override
+	public void updateGamePerson(Game_personVO game_personVO) {
+		
+		contentMapper.updateGamePerson(game_personVO);
+		
+	}
+
+	// 게임 상세정보 투표 결과 view
+	@Override
+	public HashMap<String, Object> selectGameDetailAvg(int g_no) {
+		
+		return contentMapper.selectGameDetailAvg(g_no);
+	}
+
+	
+	
 
 }

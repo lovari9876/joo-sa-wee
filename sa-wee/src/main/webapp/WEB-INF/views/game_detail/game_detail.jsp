@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -44,6 +45,7 @@
 <body id="top">
 	
 	<input type="hidden" name="g_no" value="${game_detail_view['G_NO']}">
+	<input type="hidden" name="g_num" value="${game_detail_view['G_NUM']}"/>
 	
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
@@ -94,119 +96,124 @@
 				<div class="rating-widget">
 					<div class="widget-item inline-item first">
 						<h4 class="widget-title">투표</h4>
-						<form action="#">
+						<form action="game_vote" method="get">
+						<input type="hidden" name="g_no" value="${game_detail_view['G_NO']}"/>
+						<input type="hidden" name="g_num" value="${game_detail_view['G_NUM']}"/>
+						<c:forEach items="${game_person_list}" var="gp_game_person_list" varStatus="status">
+						<input type="hidden" name="gp_num" value="${game_person_list[status.index]['GP_NUM']}"/>
+						</c:forEach>
 							<ul class="mar_li">
 								<li>게임난이도 <span class="radio-group"> <input
-										type="radio" id="option-one1" name="selector1" value="1"><label
+										type="radio" id="option-one1" name="g_level" value="1"><label
 										for="option-one1">1점</label><input type="radio"
-										id="option-two1" name="selector1" value="2"><label
+										id="option-two1" name="g_level" value="2"><label
 										for="option-two1">2점</label><input type="radio"
-										id="option-three1" name="selector1" value="3"><label
+										id="option-three1" name="g_level" value="3"><label
 										for="option-three1">3점</label><input type="radio"
-										id="option-four1" name="selector1" value="4"><label
+										id="option-four1" name="g_level" value="4"><label
 										for="option-four1">4점</label><input type="radio"
-										id="option-five1" name="selector1" value="5"><label
+										id="option-five1" name="g_level" value="5"><label
 										for="option-five1">5점</label>
 								</span>
 								</li>
-								<li>룰설명시간 <span> <input type="text" name="ruletime"
+								<li>룰설명시간 <span> <input type="text" name="g_ruletime"
 										size="1" class="text_time"> 분
 								</span>
 								</li>
 								<li>언어의존도 <span class="radio-group"> <input
-										type="radio" id="option-one2" name="selector2" value="1"><label
+										type="radio" id="option-one2" name="g_lang" value="1"><label
 										for="option-one2">1점</label><input type="radio"
-										id="option-two2" name="selector2" value="2"><label
+										id="option-two2" name="g_lang" value="2"><label
 										for="option-two2">2점</label><input type="radio"
-										id="option-three2" name="selector2" value="3"><label
+										id="option-three2" name="g_lang" value="3"><label
 										for="option-three2">3점</label><input type="radio"
-										id="option-four2" name="selector2" value="4"><label
+										id="option-four2" name="g_lang" value="4"><label
 										for="option-four2">4점</label><input type="radio"
-										id="option-five2" name="selector2" value="5"><label
+										id="option-five2" name="g_lang" value="5"><label
 										for="option-five2">5점</label>
 								</span>
 								</li>
 								<li>상호작용 <span class="radio-group"> <input
-										type="radio" id="option-one3" name="selector3" value="1"><label
+										type="radio" id="option-one3" name="g_inter" value="1"><label
 										for="option-one3">1점</label><input type="radio"
-										id="option-two3" name="selector3" value="2"><label
+										id="option-two3" name="g_inter" value="2"><label
 										for="option-two3">2점</label><input type="radio"
-										id="option-three3" name="selector3" value="3"><label
+										id="option-three3" name="g_inter" value="3"><label
 										for="option-three3">3점</label><input type="radio"
-										id="option-four3" name="selector3" value="4"><label
+										id="option-four3" name="g_inter" value="4"><label
 										for="option-four3">4점</label><input type="radio"
-										id="option-five3" name="selector3" value="5"><label
+										id="option-five3" name="g_inter" value="5"><label
 										for="option-five3">5점</label>
 								</span>
 								</li>
 								<li>테마충실도 <span class="radio-group"> <input
-										type="radio" id="option-one4" name="selector4" value="1"><label
+										type="radio" id="option-one4" name="g_theme" value="1"><label
 										for="option-one4">1점</label><input type="radio"
-										id="option-two4" name="selector4" value="2"><label
+										id="option-two4" name="g_theme" value="2"><label
 										for="option-two4">2점</label><input type="radio"
-										id="option-three4" name="selector4" value="3"><label
+										id="option-three4" name="g_theme" value="3"><label
 										for="option-three4">3점</label><input type="radio"
-										id="option-four4" name="selector4" value="4"><label
+										id="option-four4" name="g_theme" value="4"><label
 										for="option-four4">4점</label><input type="radio"
-										id="option-five4" name="selector4" value="5"><label
+										id="option-five4" name="g_theme" value="5"><label
 										for="option-five4">5점</label>
 								</span>
 								</li>
 								<li>리플레이성 <span class="radio-group"> <input
-										type="radio" id="option-one5" name="selector5" value="1"><label
+										type="radio" id="option-one5" name="g_replay" value="1"><label
 										for="option-one5">1점</label><input type="radio"
-										id="option-two5" name="selector5" value="2"><label
+										id="option-two5" name="g_replay" value="2"><label
 										for="option-two5">2점</label><input type="radio"
-										id="option-three5" name="selector5" value="3"><label
+										id="option-three5" name="g_replay" value="3"><label
 										for="option-three5">3점</label><input type="radio"
-										id="option-four5" name="selector5" value="4"><label
+										id="option-four5" name="g_replay" value="4"><label
 										for="option-four5">4점</label><input type="radio"
-										id="option-five5" name="selector5" value="5"><label
+										id="option-five5" name="g_replay" value="5"><label
 										for="option-five5">5점</label>
 								</span>
 								</li>
 								<li>아트웍 <span class="radio-group"> <input
-										type="radio" id="option-one6" name="selector6" value="1"><label
+										type="radio" id="option-one6" name="g_artwork" value="1"><label
 										for="option-one6">1점</label><input type="radio"
-										id="option-two6" name="selector6" value="2"><label
+										id="option-two6" name="g_artwork" value="2"><label
 										for="option-two6">2점</label><input type="radio"
-										id="option-three6" name="selector6" value="3"><label
+										id="option-three6" name="g_artwork" value="3"><label
 										for="option-three6">3점</label><input type="radio"
-										id="option-four6" name="selector6" value="4"><label
+										id="option-four6" name="g_artwork" value="4"><label
 										for="option-four6">4점</label><input type="radio"
-										id="option-five6" name="selector6" value="5"><label
+										id="option-five6" name="g_artwork" value="5"><label
 										for="option-five6">5점</label>
 								</span>
 								</li>
 								<li>내용물구성 <span class="radio-group"> <input
-										type="radio" id="option-one7" name="selector7" value="1"><label
+										type="radio" id="option-one7" name="g_contents" value="1"><label
 										for="option-one7">1점</label><input type="radio"
-										id="option-two7" name="selector7" value="2"><label
+										id="option-two7" name="g_contents" value="2"><label
 										for="option-two7">2점</label><input type="radio"
-										id="option-three7" name="selector7" value="3"><label
+										id="option-three7" name="g_contents" value="3"><label
 										for="option-three7">3점</label><input type="radio"
-										id="option-four7" name="selector7" value="4"><label
+										id="option-four7" name="g_contents" value="4"><label
 										for="option-four7">4점</label><input type="radio"
-										id="option-five7" name="selector7" value="5"><label
+										id="option-five7" name="g_contents" value="5"><label
 										for="option-five7">5점</label>
 								</span>
 								</li>
 								<li>추천인원 <span class="radio-group"> <input
-										type="radio" id="option-one8" name="selector8" value="1"><label
+										type="radio" id="option-one8" name="gp_person" value="1"><label
 										for="option-one8">1명</label><input type="radio"
-										id="option-two8" name="selector8" value="2"><label
+										id="option-two8" name="gp_person" value="2"><label
 										for="option-two8">2명</label><input type="radio"
-										id="option-three8" name="selector8" value="3"><label
+										id="option-three8" name="gp_person" value="3"><label
 										for="option-three8">3명</label><input type="radio"
-										id="option-four8" name="selector8" value="4"><label
+										id="option-four8" name="gp_person" value="4"><label
 										for="option-four8">4명</label><input type="radio"
-										id="option-five8" name="selector8" value="5"><label
+										id="option-five8" name="gp_person" value="5"><label
 										for="option-five8">5명</label><input type="radio"
-										id="option-six8" name="selector8" value="6"><label
+										id="option-six8" name="gp_person" value="6"><label
 										for="option-six8">6명</label><input type="radio"
-										id="option-seven8" name="selector8" value="7"><label
+										id="option-seven8" name="gp_person" value="7"><label
 										for="option-seven8">7명</label><input type="radio"
-										id="option-eight8" name="selector8" value="8"><label
+										id="option-eight8" name="gp_person" value="8"><label
 										for="option-eight8">8명이상</label>
 								</span>
 								</li>
@@ -220,60 +227,108 @@
 						style="text-align: left">
 						<h4 class="widget-title">결과</h4>
 						<ul>
-							<li>게임난이도<span>4/5</span></li>
-							<li>룰설명시간<span>4/5</span></li>
-							<li>언어의존도<span>3/5</span></li>
-							<li>상호작용<span>4/5</span></li>
-							<li>테마충실도<span>4/5</span></li>
-							<li>리플레이성<span>4/5</span></li>
-							<li>아트웍<span>4/5</span></li>
-							<li>내용물구성<span>4/5</span></li>
+							<li>게임난이도<span>${game_detail_avg_view['G_LEVEL_AVG']}/5 점</span></li>
+							<li>룰설명시간<span>${game_detail_avg_view['G_RULETIME_AVG']}분</span></li>
+							<li>언어의존도<span>${game_detail_avg_view['G_LANG_AVG']}/5 점</span></li>
+							<li>상호작용<span>${game_detail_avg_view['G_INTER_AVG']}/5 점</span></li>
+							<li>테마충실도<span>${game_detail_avg_view['G_THEME_AVG']}/5 점</span></li>
+							<li>리플레이성<span>${game_detail_avg_view['G_REPLAY_AVG']}/5 점</span></li>
+							<li>아트웍<span>${game_detail_avg_view['G_ARTWORK_AVG']}/5 점</span></li>
+							<li>내용물구성<span>${game_detail_avg_view['G_CONTENTS_AVG']}/5 점</span></li>
 							<li>추천인원</li>
 						</ul>
-						<div class="zt-span6 last">
-							<div class="zt-skill-bar">
-								<div data-width="88" style="">
-									1명<span>88%</span>
+						<c:choose>
+							<c:when test="${game_detail_view['G_NUM'] == 0}">
+								<div class="zt-span6 last">
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[7]['GP_NUM']}" style="">
+											<a>1명</a><span>${game_person_list[7]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[8]['GP_NUM']}" style="">
+											<a>2명</a><span>${game_person_list[8]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[1]['GP_NUM']}" style="">
+											<a>3명</a><span>${game_person_list[1]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[2]['GP_NUM']}" style="">
+											<a>4명</a><span>${game_person_list[2]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[3]['GP_NUM']}" style="">
+											<a>5명</a><span>${game_person_list[3]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[4]['GP_NUM']}" style="">
+											<a>6명</a><span>${game_person_list[4]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[5]['GP_NUM']}" style="">
+											<a>7명</a><span>${game_person_list[5]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${game_person_list[6]['GP_NUM']}" style="">
+											<a>8명이상</a><span>${game_person_list[6]['GP_NUM']}</span>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="zt-skill-bar">
-								<div data-width="92" style="">
-									2명<span>92%</span>
+							</c:when>
+						
+							<c:when test="${game_detail_view['G_NUM'] > 0}">
+								<div class="zt-span6 last">
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[7]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>1명</a><span>${game_person_list[7]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[8]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>2명</a><span>${game_person_list[8]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[1]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>3명</a><span>${game_person_list[1]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[2]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>4명</a><span>${game_person_list[2]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[3]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>5명</a><span>${game_person_list[3]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[4]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>6명</a><span>${game_person_list[4]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[5]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>7명</a><span>${game_person_list[5]['GP_NUM']}</span>
+										</div>
+									</div>
+									<div class="zt-skill-bar">
+										<div data-width="${100*game_person_list[6]['GP_NUM']/game_detail_view['G_NUM']}" style="">
+											<a>8명이상</a><span>${game_person_list[6]['GP_NUM']}</span>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="zt-skill-bar">
-								<div data-width="82" style="">
-									3명<span>82%</span>
-								</div>
-							</div>
-							<div class="zt-skill-bar">
-								<div data-width="85" style="">
-									4명<span>85%</span>
-								</div>
-							</div>
-							<div class="zt-skill-bar">
-								<div data-width="60" style="">
-									5명<span>60%</span>
-								</div>
-							</div>
-							<div class="zt-skill-bar">
-								<div data-width="60" style="">
-									6명<span>60%</span>
-								</div>
-							</div>
-							<div class="zt-skill-bar">
-								<div data-width="60" style="">
-									7명<span>60%</span>
-								</div>
-							</div>
-							<div class="zt-skill-bar">
-								<div data-width="60" style="">
-									8명이상<span>60%</span>
-								</div>
-							</div>
-						</div>
+							</c:when>
+						</c:choose>
 					</div>
-
 				</div>
 			</div>
 
