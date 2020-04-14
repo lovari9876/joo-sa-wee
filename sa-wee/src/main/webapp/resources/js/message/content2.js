@@ -32,51 +32,17 @@ $(document).ready(function() {
 				// ajax 값 확인하기
 				console.log(value[0,0], value[0,1], value[0,2], value[0,3], value[0,4], value[0,5], value[0,6], value[0,7], value[0,8], value[0,9]);
 				
-//				if(category == value[0,1]){
-//					tag += '<div class="chat_list active_chat">';
-//					tag += '<div class="chat_people">';
-//					tag += '<div class="chat_img">';
-//					tag += '<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">';
-//					tag += '</div>';
-////					tag += '<input id="n_no" type="hidden" value="' + value[0,0] + '" />';
-//					tag += '<div class="chat_ib">';
-//					tag += '<h5><input type="button" onclick="select_note()" value="'+ value[0,3]+'"/>';
-//					tag += '<input name="n_no" class="n_no" type="hidden" value="'+  value[0,0] + '" />';
-//					tag += '<span class="chat_date">' + value[0,9] + '</span></h5>';
-//					tag += '<p>' + value[0,8] + '</p>';
-//					tag += '</div>';
-//					tag += '</div>';
-//					tag += '</div>';
-//					
-//				}else if(category == ""){
-//					tag += '<div class="chat_list active_chat">';
-//					tag += '<div class="chat_people">';
-//					tag += '<div class="chat_img">';
-//					tag += '<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">';
-//					tag += '</div>';
-////					tag += '<input id="n_no" type="hidden" value="' + value[0,0] + '" />';
-//					tag += '<div class="chat_ib">';
-//					tag += '<h5><input type="button" onclick="select_note()" value="'+ value[0,3]+'"/>';
-//					tag += '<input name="n_no" class="n_no" type="hidden" value="'+  value[0,0] + '" />';
-//					tag += '<span class="chat_date">' + value[0,9] + '</span></h5>';
-//					tag += '<p>' + value[0,8] + '</p>';
-//					tag += '</div>';
-//					tag += '</div>';
-//					tag += '</div>';
-//					
-//				}
-				
 				if(category == value[0,1]){
 					tag += '<div class="chat_list active_chat">';
 					tag += '<div class="chat_people">';
 					tag += '<div class="chat_img">';
 					tag += '<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">';
 					tag += '</div>';
-					tag += '<input id="n_no" type="hidden" value="' + value[0,0] + '" />';
+//					tag += '<input id="n_no" type="hidden" value="' + value[0,0] + '" />';
 					tag += '<div class="chat_ib">';
-					tag += '<h5><a href="#one_note" class="select_note">'+ value[0,3];
-					tag += '<input id="n_no" type="hidden" value="'+  value[0,0] + '" />';
-					tag += '</a> <p><span class="chat_date">' + value[0,9] + '" /></span></p></h5>';
+					tag += '<h5><input type="button" onclick="select_note()" value="'+ value[0,3]+'"/>';
+					tag += '<input name="n_no" class="n_no" type="hidden" value="'+  value[0,0] + '" />';
+					tag += '<span class="chat_date">' + value[0,9] + '</span></h5>';
 					tag += '<p>' + value[0,8] + '</p>';
 					tag += '</div>';
 					tag += '</div>';
@@ -88,16 +54,50 @@ $(document).ready(function() {
 					tag += '<div class="chat_img">';
 					tag += '<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">';
 					tag += '</div>';
-					tag += '<input id="n_no" type="hidden" value="' + value[0,0] + '" />';
+//					tag += '<input id="n_no" type="hidden" value="' + value[0,0] + '" />';
 					tag += '<div class="chat_ib">';
-					tag += '<h5><a class="select_note">'+ value[0,3];
-					tag += '<input id="n_no" type="hidden" value="'+  value[0,0] + '" />';
-					tag += '</a><span class="chat_date">' + value[0,9] + '</span></h5>';
+					tag += '<h5><input type="button" onclick="select_note()" value="'+ value[0,3]+'"/>';
+					tag += '<input name="n_no" class="n_no" type="hidden" value="'+  value[0,0] + '" />';
+					tag += '<span class="chat_date">' + value[0,9] + '</span></h5>';
 					tag += '<p>' + value[0,8] + '</p>';
 					tag += '</div>';
 					tag += '</div>';
 					tag += '</div>';
+					
 				}
+				
+//				if(category == value[0,1]){
+//					tag += '<div class="chat_list active_chat">';
+//					tag += '<div class="chat_people">';
+//					tag += '<div class="chat_img">';
+//					tag += '<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">';
+//					tag += '</div>';
+//					tag += '<input id="n_no" type="hidden" value="' + value[0,0] + '" />';
+//					tag += '<div class="chat_ib">';
+//					tag += '<h5><a href="#one_note" class="select_note">'+ value[0,3];
+//					tag += '<input id="n_no" type="hidden" value="'+  value[0,0] + '" />';
+//					tag += '</a> <p><span class="chat_date">' + value[0,9] + '" /></span></p></h5>';
+//					tag += '<p>' + value[0,8] + '</p>';
+//					tag += '</div>';
+//					tag += '</div>';
+//					tag += '</div>';
+//					
+//				}else if(category == ""){
+//					tag += '<div class="chat_list active_chat">';
+//					tag += '<div class="chat_people">';
+//					tag += '<div class="chat_img">';
+//					tag += '<img src="images/bl_share/icons/login/wolf_logo.png" alt="sunil">';
+//					tag += '</div>';
+//					tag += '<input id="n_no" type="hidden" value="' + value[0,0] + '" />';
+//					tag += '<div class="chat_ib">';
+//					tag += '<h5><a class="select_note">'+ value[0,3];
+//					tag += '<input id="n_no" type="hidden" value="'+  value[0,0] + '" />';
+//					tag += '</a><span class="chat_date">' + value[0,9] + '</span></h5>';
+//					tag += '<p>' + value[0,8] + '</p>';
+//					tag += '</div>';
+//					tag += '</div>';
+//					tag += '</div>';
+//				}
 
 				$(".select_note").click(function(){
 					console.log("select_note ");

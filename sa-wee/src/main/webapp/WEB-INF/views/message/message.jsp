@@ -16,7 +16,7 @@
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
 <script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 
@@ -48,7 +48,7 @@
 						<div class="headind_srch">
 							<div class="recent_heading">							
 								<div>									
-									<button type="button" class="btn-receive" value="${member.m_no}">receive</button>
+									<button type="button" class="btn-receive" value="${member.m_no} ">receive</button>
 								</div>
 								<div>
 									<button type="button" class="btn-send" value="${member.m_no}">send</button>
@@ -57,7 +57,7 @@
 							<div class="srch_bar">
 								<!-- <div class="stylish-input-group"> -->									
 									<div class="delBtn">
-										<button type="button" class="selectDelete_btn">delete</button>
+										<button type="button" class="selectDelete_btn" data-NN="<%-- ${message['N_NO']} --%>">delete</button>
 									</div>
 								<!-- </div> -->
 							</div>
@@ -66,40 +66,19 @@
 							<div class="allCheck">
 								<input type="checkbox" name="allCheck" id="allCheck" /><label
 									for="allCheck">모두 선택</label>
-							</div>
-							<script>
-								$("#allCheck").click(function() {
-									var chk = $("#allCheck").prop("checked");
-									if (chk) {
-										$(".chBox").prop("checked", true);
-									} else {
-										$(".chBox").prop("checked", false);
-									}
-								});
-							</script>
+							</div>							
 							<div class="delBtn">
 								<button type="button" class="selectDelete_btn"></button>
 							</div>
 							<br/>
-
 							<div id="ajax_test">
 							<c:forEach items="${message}" var="message">
-								<c:if test="${message['M_NO'] == member.m_no}">
+								<c:if test="${message['M_NO'] == member.m_no && message['N_BLIND'] != 2}">
 								<div class="checkBox">
 									<input type="checkbox" name="chBox" class="chBox"
-										data-cartNum="${message['N_NO']}" />
+										data-NN="${message['N_NO']}" />
 								</div>
-								<script>
-									$(".chBox").click(function() {
-										$("#allCheck").prop("checked", false);
-									});
-									$(".btn-receive").click(function() {
-										$("#allCheck").prop("checked", false);										
-									});
-									$(".btn-send").click(function() {
-										$("#allCheck").prop("checked", false);										
-									});
-								</script>
+								
 
 								<div class="chat_list active_chat">
 									<div class="chat_people">
@@ -177,12 +156,12 @@
 
 </body>
 
-
+<script src="js/mypage/jquery-3.2.1.min.js"></script>
 <script src="js/mypage/popper.min.js"></script>
 <script src="js/mypage/bootstrap.min.js"></script>
 <script src="js/mypage/script.js"></script>
 <script src="js/message/content.js"></script>
-<!-- <script src="js/message/checkBox.js"></script> -->
+<script src="js/message/check.js"></script>
 
 <!-- Java Script for header  ================================================== -->
 <script src="js/header/jquery.slicknav.min.js"></script>

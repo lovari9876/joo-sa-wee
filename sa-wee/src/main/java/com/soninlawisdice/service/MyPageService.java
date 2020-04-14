@@ -3,6 +3,8 @@ package com.soninlawisdice.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.NoteVO;
 
@@ -32,4 +34,12 @@ public interface MyPageService {
 	// 닉네임으로 회원정보 검색
 	public MemberVO mypageNick(String m_nick) throws Exception;
 
+	// 받은 쪽지 삭제
+	public void deleteReceiveMessage(int n_no, int n_blind) throws Exception;
+		
+	// 보낸 쪽지 삭제
+	public void deleteSendMessage(int n_no, int n_blind) throws Exception;
+
+	// 쪽지 전체 정보 불러오기
+	public NoteVO note(int n_no) throws Exception;
 }

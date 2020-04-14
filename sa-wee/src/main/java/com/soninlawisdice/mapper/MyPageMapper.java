@@ -34,4 +34,14 @@ public interface MyPageMapper {
 	// 닉네임으로 회원정보 검색
 	public MemberVO mypageNick(@Param("m_nick") String m_nick) throws Exception;
 
+	// 받은 쪽지 삭제
+	public void deleteReceiveMessage(@Param("n_no") int n_no, @Param("n_blind") int n_blind) throws Exception;
+	
+	// 보낸 쪽지 삭제
+	public void deleteSendMessage(@Param("n_no") int n_no, @Param("n_blind") int n_blind) throws Exception;
+	
+	// 쪽지 전체 정보 불러오기
+	public NoteVO note(@Param("n_no") int n_no) throws Exception;
+	
+	
 }

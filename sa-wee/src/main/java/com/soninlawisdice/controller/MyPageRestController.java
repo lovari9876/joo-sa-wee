@@ -50,5 +50,35 @@ public class MyPageRestController {
 		
 		return myPageService.noteView(m_no);
 	}
+	
+	
+//	@RequestMapping(value = "/delete_send_message", method = RequestMethod.GET)
+//	public String delete_send_message(String m_nick, NoteVO noteVO) throws Exception {
+//		System.out.println("send_message()");
+//		
+//		System.out.println(m_nick);
+//		MemberVO memberVO = myPageService.mypageNick(m_nick);
+//		int m_no = memberVO.getM_no();
+//		
+//		System.out.println(noteVO.getM_no2());
+//		
+//		myPageService.sendMessage(m_no, noteVO);
+//		
+//		return "message/send_message";
+//	}
+//	@RequestMapping(value = "/delete_receive_message", method = RequestMethod.GET)
+//	public String delete_receive_message(String m_nick, NoteVO noteVO) throws Exception {
+//		System.out.println("send_message()");
+//		
+//		System.out.println(m_nick);
+//		MemberVO memberVO = myPageService.mypageNick(m_nick);
+//		int m_no = memberVO.getM_no();
+//		
+//		System.out.println(noteVO.getM_no2());
+//		
+//		myPageService.sendMessage(m_no, noteVO);
+//		
+//		return "message/send_message";
+//	}
 
 }

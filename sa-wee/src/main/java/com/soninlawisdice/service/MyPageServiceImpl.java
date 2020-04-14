@@ -31,6 +31,12 @@ public class MyPageServiceImpl implements MyPageService {
 	public MemberVO mypage(String m_id) throws Exception {
 		return myPageMapper.mypage(m_id);
 	}
+	
+	// 닉네임으로 회원정보 검색
+	@Override
+	public MemberVO mypageNick(String m_nick) throws Exception{
+		return myPageMapper.mypageNick(m_nick);
+	}
 
 	// 회원정보 수정
 	@Override
@@ -50,6 +56,8 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageMapper.myReplyCount(m_no);
 	}
 	
+	// ================================= 쪽지 =================================
+	
 	// 쪽지 보여주기
 	@Override
 	public ArrayList<HashMap<String, Object>> noteView(int m_no) throws Exception{
@@ -67,12 +75,23 @@ public class MyPageServiceImpl implements MyPageService {
 	public void sendMessage(int m_no, NoteVO noteVO) throws Exception{
 		myPageMapper.sendMessage(m_no, noteVO);
 	}
-	
-	// 닉네임으로 회원정보 검색
+
+	// 받은 쪽지 삭제
 	@Override
-	public MemberVO mypageNick(String m_nick) throws Exception{
-		return myPageMapper.mypageNick(m_nick);
+	public void deleteReceiveMessage(int n_no, int n_blind) throws Exception{
+		myPageMapper.deleteReceiveMessage(n_no, n_blind);
+	}
+			
+	// 보낸 쪽지 삭제
+	@Override
+	public void deleteSendMessage(int n_no, int n_blind) throws Exception{
+		myPageMapper.deleteSendMessage(n_no, n_blind);
 	}
 
+	// 쪽지 전체 정보 불러오기
+	public NoteVO note(int n_no) throws Exception{
+		return myPageMapper.note(n_no);
+	}
+		
 	
 }

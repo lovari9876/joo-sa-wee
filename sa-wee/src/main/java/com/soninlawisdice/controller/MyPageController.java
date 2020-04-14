@@ -2,7 +2,9 @@ package com.soninlawisdice.controller;
 
 import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soninlawisdice.service.AdminService;
@@ -117,30 +120,80 @@ public class MyPageController {
 	}
 	// ================================= 쪽지 =================================
 
-	@RequestMapping(value = "/message", method = {RequestMethod.GET, RequestMethod.POST})
+	// 쪽지함
+	@RequestMapping(value = "/message", method = { RequestMethod.GET, RequestMethod.POST })
 	public String message(NoteVO noteVO, MemberVO memberVO, Principal principal, Model model) throws Exception {
 		String m_id = principal.getName();
 		memberVO = myPageService.mypage(m_id);
-		
+
 		model.addAttribute("member", myPageService.mypage(m_id));
-		
+
 		int m_no = memberVO.getM_no();
 		model.addAttribute("message", myPageService.noteView(m_no));
-		
+
 		return "message/message";
 	}
-	
+
+	// 쪽지 내용 선택하기
 	@ResponseBody
-	@RequestMapping(value = "/select_message", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/select_message", method = { RequestMethod.GET, RequestMethod.POST })
 	public HashMap<String, Object> select_message(int n_no, Principal principal, Model model) throws Exception {
-		System.out.println("select_message"+n_no);
-		
+		System.out.println("select_message" + n_no);
+
 		model.addAttribute("noteContent", myPageService.noteContent(n_no));
+
+		return myPageService.noteContent(n_no);
+	}
+
+	// 쪽지 내용 삭제
+	@ResponseBody
+	@RequestMapping(value = "/delete_receive_message", method = RequestMethod.POST)
+	public int deleteReceiveMessage(Principal principal, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+		System.out.println("deleteReceiveMessage()");
+
+		String m_id = principal.getName();
+		MemberVO memberVO = myPageService.mypage(m_id);
 		
-		return myPageService.noteContent(n_no);		
+		int result = 0;
+		int n_no = 0;
+		
+		for (String i : chArr) {
+			n_no = Integer.parseInt(i);
+			System.out.println(n_no);
+			NoteVO noteVO = myPageService.note(n_no);
+			
+			if(memberVO.getM_no() == noteVO.getM_no()) {
+				myPageService.deleteReceiveMessage(n_no, noteVO.getN_blind());
+			}else if(memberVO.getM_no() != noteVO.getM_no() ) {
+				myPageService.deleteSendMessage(n_no, noteVO.getN_blind());
+			}
+			result = 1;
+		}
+		return result;
 	}
 	
-	
+	// 쪽지 내용 삭제
+	@ResponseBody
+	@RequestMapping(value = "/delete_send_message", method = RequestMethod.POST)
+	public int deleteSendMessage(Principal principal, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+		System.out.println("deleteSendMessage()");
+
+		int result = 0;
+		int n_no = 0;
+		
+		for (String i : chArr) {
+			n_no = Integer.parseInt(i);
+			System.out.println(n_no);
+			NoteVO noteVO = myPageService.note(n_no);
+			System.out.println(noteVO.getN_blind());
+
+			myPageService.deleteSendMessage(n_no, noteVO.getN_blind());
+		
+			result = 1;
+		}
+		return result;
+	}
+
 //	@ResponseBody
 //	@RequestMapping(value = "/select_message", method = {RequestMethod.GET,RequestMethod.POST})
 //	public String select_message(int n_no, Principal principal, Model model) throws Exception {
@@ -150,7 +203,8 @@ public class MyPageController {
 //		
 //		return "redirect:/message";		
 //	}
-	
+
+	// 쪽지 보내기 뷰
 	@RequestMapping(value = "/send_messageview", method = RequestMethod.GET)
 	public String send_messageview(Principal principal, MemberVO memberVO, Model model) throws Exception {
 		System.out.println("send_messageview()" + memberVO.getM_no());
@@ -158,32 +212,24 @@ public class MyPageController {
 		memberVO = myPageService.mypage(m_id);
 
 		model.addAttribute("member", memberVO);
-		
-		
+
 		return "message/send_message";
 	}
-	
-//	@RequestMapping(value = "/send_message", method = RequestMethod.GET)
-//	public String send_message(NoteVO noteVO) throws Exception {
-//		System.out.println("send_message()");
-//		
-//		myPageService.sendMessage(noteVO);
-//		
-//		return "message/send_message";
-//	}
-	
+
+	// 쪽지 보내기
 	@RequestMapping(value = "/send_message", method = RequestMethod.GET)
 	public String send_message(String m_nick, NoteVO noteVO) throws Exception {
 		System.out.println("send_message()");
-		
+
 		System.out.println(m_nick);
 		MemberVO memberVO = myPageService.mypageNick(m_nick);
 		int m_no = memberVO.getM_no();
-		
+
 		System.out.println(noteVO.getM_no2());
-		
+
 		myPageService.sendMessage(m_no, noteVO);
-		
+
 		return "message/send_message";
 	}
+
 }
