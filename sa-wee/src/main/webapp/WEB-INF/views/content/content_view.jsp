@@ -128,6 +128,7 @@
 					<!-- 추천 -->
 					<br /> <br />
 					<div align="center" class="tooltip-purple">
+					<sec:authorize access="isAuthenticated()">
 						<input class="good" type="image" src="images/board_hj/good.png"
 							name="button" id="rec_btn" value="${content_view['BW_NO']}"
 							data-toggle="tooltip" data-container=".tooltip-purple"
@@ -135,6 +136,17 @@
 						<p>
 							<span>(</span><span class="rec">${content_view['BW_RECOMMEND_NUM']}</span><span>)</span>
 						</p>
+					</sec:authorize>
+					<sec:authorize access="isAnonymous()">
+						<input class="good" type="image" src="images/board_hj/good.png"
+							id="rec_btn" Onclick="location.href='http://localhost:8282/loginview'"
+							data-toggle="tooltip" data-container=".tooltip-purple"
+							data-placement="top" title="추천 +1">
+						<p>
+							<span>(</span><span class="rec">${content_view['BW_RECOMMEND_NUM']}</span><span>)</span>
+						</p>
+					</sec:authorize>
+
 					</div>
 
 					<br />

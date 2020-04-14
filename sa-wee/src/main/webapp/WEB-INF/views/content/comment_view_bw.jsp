@@ -107,15 +107,19 @@
 									data-placement="top" title="신고"> </a>
 							</div>
 							<div class="test_item del tooltip-purple">
+								<c:if test = "${comment_list[status.index]['M_NO'] eq m_no}">
 								<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete?cm_no=${comment_list[status.index]['CM_NO']}&bw_no=${content_view['BW_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="삭제"></a>
+								</c:if>
 							</div>
 							<div class="test_item modi tooltip-purple">
+								<c:if test = "${comment_list[status.index]['M_NO'] eq m_no}">
 								<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi" href="comment_modify_view?cm_no=${comment_list[status.index]['CM_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="수정"></a>
+								</c:if>
 							</div>
 						</div>
 						<%-- <div id="replyComment" class="collapse">
