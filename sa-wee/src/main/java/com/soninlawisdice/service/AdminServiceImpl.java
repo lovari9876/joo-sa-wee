@@ -38,9 +38,18 @@ public class AdminServiceImpl implements AdminService {
 	
 	public AdminServiceImpl() {}
 	
+	//mypage : 내가쓴글, 댓글 목록
+	public ArrayList<HashMap<String, Object>> myBoardList(int m_no){
+		return adminMapper.myBoardList(m_no);
+	}
 	
+	public List<CM_commentVO> myCommentList(int m_no){
+		return adminMapper.myCommentList(m_no);
+	}
 
-
+	
+	
+	
 	// 페이징 처리된 리스트
 	@Override
 	public List<MemberVO> memberList(SearchCriteria scri, String sort){

@@ -73,7 +73,7 @@
 								aria-controls="home" aria-selected="true">내 정보</a></li>
 							<li class="nav-item"><a class="nav-link" id="profile-tab"
 								data-toggle="tab" href="#profile" role="tab"
-								aria-controls="profile" aria-selected="false">내 글</a></li>
+								aria-controls="profile"  <c:out value="${cate == 'board' ? 'aria-selected=\"true\"' : 'aria-selected=\"false\"'}"/>>내 글</a></li>
 							<li class="nav-item"><a class="nav-link" id="education-tab"
 								data-toggle="tab" href="#education" role="tab"
 								aria-controls="contact" aria-selected="false">내 댓글</a></li>
@@ -190,7 +190,7 @@
 								</div>
 
 							</div>
-							<div class="tab-pane fade profile-tab" id="profile"
+							<div class="tab-pane fade profile-tab " id="profile"
 								role="tabpanel" aria-labelledby="profile-tab">
 								<table class="table">
 									<tr class="table_row header">
@@ -199,155 +199,87 @@
 										<td class="cell">글 제목</td>
 										<td class="cell">작성일</td>
 									</tr>
-									<tr class="table_row">
-										<td class="cell">1</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
+									<c:forEach items="${myBoardList}" var="board">
+									<tr class="trow">
+										<td class="cell">${board['RNUM']}</td>
+										<td>
+											<c:choose>				
+													<c:when test="${board['BT_NO'] eq 1}">보드이야기</c:when>		
+													<c:when test="${board['BT_NO'] eq 2}">개봉기 및 리뷰</c:when>
+													<c:when test="${board['BT_NO'] eq 3}">보드게임 모임</c:when>
+													<c:when test="${board['BT_NO'] eq 4}">보드 뉴스</c:when>
+													<c:when test="${board['BT_NO'] eq 5}">질문&답변</c:when>
+													<c:when test="${board['BT_NO'] eq 6}">창작 보드게임</c:when>
+													<c:when test="${board['BT_NO'] eq 8}">일대일 문의</c:when>
+													<c:when test="${board['BT_NO'] eq 9}">보부상</c:when>
+													<c:when test="${board['BT_NO'] eq 11}">카페 리뷰</c:when>
+													<c:otherwise>불명확</c:otherwise>
+												</c:choose>
+											</td>
+										<td class="cell title"><a href="/content_view_i?i_no=${board['I_NO']}&bt_no=${board['BT_NO']}">${board['I_TITLE']}</a></td>
+									
+										<td>
+												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${board['I_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${board['I_WRITTEN_DATE']}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+										
 									</tr>
-									<tr class="table_row">
-										<td class="cell">2</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">3</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">4</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">5</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">6</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">7</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">8</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">9</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">10</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
+								</c:forEach>
+									
 
 								</table>
-
-
+								
 							</div>
+							
+							<!-- 내가쓴글 끝, 댓글 시작 -->
+							
+							
 							<div class="tab-pane education-detail fade" id="education"
 								role="tabpanel" aria-labelledby="contact-tab">
 								<table class="table">
 									<tr class="table_row header">
 										<td class="cell">댓글 번호</td>
-										<td class="cell">원글 제목</td>
 										<td class="cell">댓글 내용</td>
 										<td class="cell">작성일</td>
 									</tr>
-									<tr class="table_row">
-										<td class="cell">1</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
+									<c:forEach items="${myCommentList}" var="cm">
+									<tr class="trow">
+										<td class="cell">${cm.cm_no}</td>
+										<td class="cell title">
+										
+													<c:choose>
+														<c:when test="${cm.cm_type == '게시판'}">
+															<a href="/content_view?bw_no=${cm.cm_no2}">${cm.cm_content}</a>
+														</c:when>
+														<c:when test="${cm.cm_type == '카페리뷰'}">
+															<a href="/content_view_cr?cr_no=${cm.cm_no2}">${cm.cm_content}</a>
+														</c:when>
+														<c:when test="${cm.cm_type == '증고거래'}">
+															<a href="/content_view_t?t_no=${cm.cm_no2}">${cm.cm_content}</a>
+														</c:when>
+													</c:choose>
+										</td>
+										<td>
+												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${cm.cm_written_date}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${cm.cm_written_date}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+										
 									</tr>
-									<tr class="table_row">
-										<td class="cell">2</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">3</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">4</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">5</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">6</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">7</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">8</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">9</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
-									<tr class="table_row">
-										<td class="cell">10</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-
+								</c:forEach>
 								</table>
 							</div>
 							<div class="tab-pane portfolio-detail fade" id="portfolio"

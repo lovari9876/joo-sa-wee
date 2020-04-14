@@ -6,6 +6,79 @@
 	<mapper namespace="com.soninlawisdice.mapper.AdminMapper">
 
 
+
+
+
+	<!-- ================================================ 마이페이지 mypage ====================================================== -->
+
+	<select id="myBoardList" resultType="java.util.HashMap">
+		
+			SELECT
+				ROW_NUMBER() OVER(ORDER BY I_WRITTEN_DATE ASC, I_NO ASC) AS RNUM,
+				I.*
+			FROM
+				(
+				        (
+					        SELECT 
+					        		T.T_NO AS I_NO, T.BT_NO, T.S_NO, T.M_NO, M.M_NICK, M.M_ID, T.T_TITLE AS I_TITLE, T.T_CONTENT AS I_CONTENT, 
+					                T.T_WRITTEN_DATE AS I_WRITTEN_DATE, T.T_UPDATED_DATE AS I_UPDATED_DATE, 
+					                T.T_HIT AS I_HIT, T.T_RECOMMEND_NUM AS I_RECOMMEND_NUM, T.T_REPORT_NUM AS I_REPORT_NUM, T.T_ISLAND AS I_ISLAND 
+					        FROM 	
+					        		TRADE T 
+					        LEFT JOIN 
+					        		MEMBER M 
+					        ON 		
+					        		T.M_NO = M.M_NO
+					       ) 
+					
+					UNION
+					
+							(SELECT 
+									BW.BW_NO AS I_NO, BW.BT_NO, BW.S_NO, BW.M_NO, M.M_NICK, M.M_ID, BW.BW_TITLE  AS I_TITLE, BW.BW_CONTENT AS I_CONTENT, 
+									BW.BW_WRITTEN_DATE AS I_WRITTEN_DATE, BW.BW_UPDATED_DATE AS I_UPDATED_DATE, 
+					                BW.BW_HIT AS I_HIT, BW.BW_RECOMMEND_NUM AS I_RECOMMEND_NUM, BW.BW_REPORT_NUM AS I_REPORT_NUM, BW.BW_ISLAND AS I_ISLAND 
+					        FROM 
+					        		BOARD_WRITE BW
+					        LEFT JOIN 
+					        		MEMBER M
+					        ON 
+					        		BW.M_NO = M.M_NO
+							) 
+					
+					UNION
+					
+					        (SELECT 
+					        		CR.CR_NO AS I_NO, CR.BT_NO, NULL, CR.M_NO, M.M_NICK, M.M_ID, CR.CR_TITLE AS I_TITLE, CR.CR_CONTENT AS I_CONTENT, 
+				                    CR.CR_WRITTEN_DATE AS I_WRITTEN_DATE, CR.CR_UPDATED_DATE AS I_UPDATED_DATE, 
+				                    CR.CR_HIT AS I_HIT, CR.CR_RECOMMEND_NUM AS I_RECOMMEND_NUM, CR.CR_REPORT_NUM AS I_REPORT_NUM, CR.CR_ISLAND AS I_ISLAND
+					        FROM 
+					        		CAFE_REVIEW CR
+					        LEFT JOIN 
+					        		MEMBER M
+					        ON 
+					        		CR.M_NO = M.M_NO
+							) 
+					) I
+			
+			WHERE 
+				m_no = #{m_no}
+				
+			
+			ORDER BY 
+				RNUM DESC
+				
+	
+	</select>
+
+	<select id="myCommentList" resultType="com.soninlawisdice.vo.CM_commentVO">
+	
+	
+		SELECT * FROM cm_comment WHERE m_no = #{m_no} ORDER BY cm_no DESC
+	</select>
+
+
+
+
 	<!-- ================================================MemberList, userList====================================================== -->
 
 	
@@ -782,7 +855,7 @@
 	</select>	
 	
 	
-	<select id="allBoard" parameterType="com.soninlawisdice.vo.Board_writeVO" resultType="int">
+	<select id="allBoard" resultType="int">
 		SELECT
 				COUNT(*) AS POST_NUM
 		FROM

@@ -22,7 +22,12 @@ import com.soninlawisdice.vo.WD_recordVO;
 public interface AdminService {
 
 
+	//mypage : 내가쓴글, 댓글 목록
+	public ArrayList<HashMap<String, Object>> myBoardList(int m_no);
 	
+	public List<CM_commentVO> myCommentList(int m_no);
+		
+		
 	// 페이징 처리 + 검색  List
 	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content, String sort);
 	public int board_listCount(SearchCriteria scri, int bt_no, String s_content);
