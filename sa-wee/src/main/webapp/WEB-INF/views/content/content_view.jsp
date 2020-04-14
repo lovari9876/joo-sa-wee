@@ -117,14 +117,6 @@
 				<div class="col-lg-8 blog-content">
 
 					<p>${content_view['BW_CONTENT']}</p>
-					
-					
-					
-					<br/><br/><br/><br/><br/>
-					<!-- 태그 -->
-					<c:forEach items = "${gameName}" var = "gameName" >
-						<a href = "game_detail?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']}&nbsp;</a>&nbsp;
-					</c:forEach>
 
 					<!-- 추천 -->
 					<br /> <br />
@@ -204,7 +196,7 @@
 					
 					<!-- 댓글 쓰기 -->
 					<div class="comment-form-wrap pt-5">
-						<%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %>
+						<%-- <%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %> --%>
 					</div>
 				</div>
 			</div>
