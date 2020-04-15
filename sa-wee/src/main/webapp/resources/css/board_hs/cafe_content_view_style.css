@@ -178,8 +178,14 @@
 	
 }
 
+/* 관리자-수정하기 버튼 */
+.admin_modify{
+	float : right;
+}
 
-
+.admin_modify a{
+	/* color : black; */
+}
 
 /* 한줄평 */
 

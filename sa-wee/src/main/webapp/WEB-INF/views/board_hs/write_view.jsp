@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -153,7 +155,8 @@
 	<script src="js/footer/footer_hee.js"></script>
 	<script src ="js/board_hs/tagsinput.js"></script>
 	<script src="js/board_hs/typeahead.js"></script>
-	<script src="js/board_hs/alertEmpty.js"></script>
+	
+ 
 	<script>
 		
 		var games = new Bloodhound({
@@ -208,7 +211,8 @@
 					toolbar: [ 'heading', '|',  'bold', 'italic','fontSize','fontColor', 'fontFamily', 'alignment:left', 'alignment:center', 'alignment:right','link', 'bulletedList', 'numberedList', 'blockQuote','insertTable',  'imageUpload', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
 
 					image : {
-						styles : ['full', 'alignLeft', 'alignRight']
+						styles : ['full', 'alignLeft', 'alignRight', 'resize'],
+						resizeUnit : 'px'
 					},
 					
 					uiClor : '#FFFFFF',
@@ -228,8 +232,7 @@
 			} );
 		</script>
 
-
-
+<!-- <script src="js/board_hs/alertEmpty.js"></script> -->
 
 
 </body>

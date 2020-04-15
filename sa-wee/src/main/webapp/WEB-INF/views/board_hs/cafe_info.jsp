@@ -154,6 +154,11 @@
 									class="fas fa-door-closed"></i> 카페 휴일 : ${cafe_info.c_rest} <br />
 							</div>
 						</div>
+						<c:if test = "${m_id eq 'admin'}">
+							<div class = "admin_modify">
+								<a href = "#">수정하기</a>
+							</div>
+						</c:if>
 					</div>
 
 				</div>

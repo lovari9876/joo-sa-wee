@@ -27,6 +27,10 @@ h1, h2, h3, h4, h5, h6 {
 a:hover {
 	text-decoration: none !important;
 }
+/* 제발젲발.....이거 먹어야해 */
+.blog-content .image img{
+	max-width:100%;
+}
 
 /* 여기서부터 */
 .site-navbar {
@@ -2172,3 +2176,5 @@ input[type=button]:first-child {
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%); }
+  
+  

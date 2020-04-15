@@ -57,6 +57,7 @@ public class Board_hs_Controller {
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
 
 	// 베스트 + 핫이슈 + 랭킹+홈화면
+
 		@RequestMapping(value = "/", method = RequestMethod.GET)
 		public String home(Locale locale, Model model) {
 
@@ -71,7 +72,8 @@ public class Board_hs_Controller {
 			//랭킹(신고많이받은...)
 			
 			return "board_hs/index";
-		}
+	}
+
 
 		///////////////////////////////////// 커뮤니티 관련//////////////////////////////////////
 
@@ -284,11 +286,16 @@ public class Board_hs_Controller {
 		public String cafe_map(Model model) {
 			return "board_hs/cafe_map";
 		}
-			
+		
 		// 마커 클릭시 카페 상세정보(cafe_info)로 이동. 
 		@RequestMapping(value = "/cafe_info", method = RequestMethod.GET)
-		public String cafe_content_view(Model model, int c_no, @ModelAttribute("scri") SearchCriteria scri) {
+		public String cafe_content_view(Model model, int c_no, @ModelAttribute("scri") SearchCriteria scri, Principal principal) {
 
+			if(principal != null) {
+				String m_id = principal.getName();
+				model.addAttribute("m_id", m_id);
+			}
+			
 			// 카페 정보 가져오기
 			model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
 			// 밑에 관련 리스트 가져오기
@@ -297,6 +304,7 @@ public class Board_hs_Controller {
 			
 			return "board_hs/cafe_info";
 		}
+		
 		
 		//카페 info 에 있는 리뷰리스트 --> 더보기
 			@RequestMapping("/read_more")
@@ -325,6 +333,7 @@ public class Board_hs_Controller {
 			return "board_hs/cafe_list";
 		}
 		
+
 		//카페 목록 지역별로 보기
 		@RequestMapping("/cafe_list_loc")
 		public String cafe_list_loc(Model model, String c_add, @ModelAttribute("scri") SearchCriteria scri) {
@@ -341,8 +350,7 @@ public class Board_hs_Controller {
 		// 카페 리뷰들 싹다 리스트(표)로 보기
 		@RequestMapping(value = "/selectAllReviewList")
 		public String selectAllReviewList(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-			model.addAttribute("list", boardService.selectAllReviewList(scri));
-			
+			model.addAttribute("list", boardService.selectAllReviewList(scri));	
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
 			pageMaker.setTotalCount(boardService.allCafeReview_Count(scri));
@@ -611,14 +619,19 @@ public class Board_hs_Controller {
 		// upload 경로 설정(tomcat realpath)
 
 		String fuploadPath = req.getSession().getServletContext().getRealPath("/resources/files/img/");
-
+		
 		// String fuploadPath = "c://sa-wee/file";
-
+		//test
+		String filePath = "C:\\mp\\file\\";
+		String filePath2 = "/images";
+		
 		System.out.println(req.getSession().getServletContext().getRealPath("/"));
 		System.out.println(fuploadPath);
 
 		// (이미지)파일 이름이 되어버림. filename + jjj 했더니 1.jpgjjj 가 되었음.
 		String newfilename = filename;
+		
+		
 
 		// 업로드 수행
 		// File file = new File( fuploadPath + "/" + newfilename);
@@ -626,18 +639,24 @@ public class Board_hs_Controller {
 		// fuploadPath 안에 파일 생성됨.(img 파일 만들어지고 그 안에 파일)
 		// +"/"+ 이거 없으면 상위폴더에 img파일명.jpg 이런식으로 이름이 됨.
 		File file = new File(fuploadPath + "/" + newfilename);
-
+		File file2 = new File(filePath + "/" + newfilename);
+		File file3 = new File(filePath2 + "/" + newfilename);
 		try {
 			// 실제 파일이 업로드 되는 부분
 
 			FileUtils.writeByteArrayToFile(file, fileload.getBytes());
+			FileUtils.writeByteArrayToFile(file2, fileload.getBytes());
+			FileUtils.writeByteArrayToFile(file3, fileload.getBytes());
+			
 			System.out.println(file);
 
 			return "{ \"uploaded\" : true, \"url\" : \"http://localhost:8282/resources/files/img/" + newfilename
 					+ "\" }";
-			// return "{ \"uploaded\" : true, \"url\" : \"c://sa-wee/file/"+ newfilename +
-			// "\" }";
-
+			//url 가 src 로 들어가면서 저장됨. 
+			//return "{ \"uploaded\" : true, \"url\" : \"file:///C:/mp/file/"+ newfilename +
+			 //"\" }";
+			
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e);
