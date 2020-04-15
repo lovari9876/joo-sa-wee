@@ -1,5 +1,6 @@
 package com.soninlawisdice.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,7 @@ import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
+import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
@@ -60,6 +62,8 @@ public class AdminController {
 	private BoardService boardService;
 	@Autowired
 	private ContentService contentService;
+	@Autowired
+	private MyPageService myPageService;
 	
 	
 	
@@ -79,6 +83,68 @@ public class AdminController {
 		return "admin/user_list";
 	}
 
+	
+	
+	// 스크랩기능
+	@ResponseBody
+	@RequestMapping(value = "/scrap", method = RequestMethod.POST)
+	public int scrap(@RequestParam(value = "scrapArr[]") List<String> scrapArr, Principal principal, MemberVO memberVO) throws Exception {
+		
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		
+		int m_no = memberVO.getM_no();
+		
+		System.out.println("m_no : " + m_no);
+		
+
+		String type_name = scrapArr.get(0);
+		int num = Integer.parseInt(scrapArr.get(1));
+		
+		
+		System.out.println("type_name : " + type_name);
+		System.out.println("num : " + num);
+
+		int result = 0;
+		
+		int overlap = adminService.scrapSelect(m_no, type_name, num); //중복값이 존재하는지 확인
+		
+		if (overlap >= 1) {
+			result = 0;
+		}else {
+			adminService.scrapInsert(m_no, type_name, num);
+			result = 1;
+		}
+		return result;
+	}
+		
+	
+	
+	// 스크랩 삭제 기능
+	@ResponseBody
+	@RequestMapping(value = "/scrapDelete", method = RequestMethod.POST)
+	public int scrapDelete(@RequestParam(value = "scrapArr[]") List<String> scrapArr, Principal principal, MemberVO memberVO) throws Exception {
+		
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		int m_no = memberVO.getM_no();
+		System.out.println("m_no : " + m_no);
+		
+		String type_name = scrapArr.get(0);
+		int num = Integer.parseInt(scrapArr.get(1));
+		
+		System.out.println("type_name : " + type_name);
+		System.out.println("num : " + num);
+
+		
+		int result = 0;
+		
+		adminService.scrapDelete(m_no, type_name, num);
+		
+		return result;
+	}
+	
+	
 	////////////////////////////////////////////////////////////////////////////
 
 	@RequestMapping("/report_view")

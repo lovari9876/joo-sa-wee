@@ -30,6 +30,19 @@ public interface AdminMapper {
 	
 	public List<CM_commentVO> myCommentList(@Param("m_no")int m_no);
 	
+	
+	//mypage scrap 스크랩 
+	public void scrapInsert(@Param("m_no")int m_no, @Param("sc_boardtype")String sc_boardtype, @Param("sc_no")int sc_no);
+	
+	//mypage scrap 스크랩  삭제 
+	public void scrapDelete(@Param("m_no")int m_no, @Param("sc_boardtype")String sc_boardtype, @Param("sc_no")int sc_no);
+	
+	// 스크랩 중복 확인
+	public int scrapSelect(@Param("m_no")int m_no, @Param("sc_boardtype")String sc_boardtype, @Param("sc_no")int sc_no);
+	
+	//mypage scrap List
+	public ArrayList<HashMap<String, Object>> scrapList(@Param("m_no")int m_no);
+	
 
 	// 페이징 처리 + 검색  List
 	public ArrayList<HashMap<String, Object>> boardList(@Param("scri") SearchCriteria scri, 

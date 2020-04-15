@@ -22,7 +22,7 @@ $(".selectConfirm_btn").click(function() {
 				success : function(result) {
 					alert("원래 있던 게시판으로 이동되었습니다.");
 					if(result == 1) {
-						location.href = "http://localhost:8282/admin/island_list";
+						location.href = "/admin/island_list";
 					} else {
 						alert("실패");
 					}

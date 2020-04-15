@@ -49,7 +49,29 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	
+	//mypage scrap 스크랩 
+	public void scrapInsert(int m_no, String sc_boardtype, int sc_no) {
+		adminMapper.scrapInsert(m_no, sc_boardtype, sc_no);
+	}
 	
+	
+	//mypage scrap 스크랩  삭제 
+	public void scrapDelete(int m_no, String sc_boardtype, int sc_no) {
+		adminMapper.scrapDelete(m_no, sc_boardtype, sc_no);
+	}
+	
+	
+	// 스크랩 중복 확인
+	public int scrapSelect(int m_no, String sc_boardtype, int sc_no) {
+		return adminMapper.scrapSelect(m_no, sc_boardtype, sc_no);
+	}
+	
+	//mypage scrap List
+	public ArrayList<HashMap<String, Object>> scrapList(int m_no){
+		return adminMapper.scrapList(m_no);
+	}
+	
+		
 	
 	// 페이징 처리된 리스트
 	@Override

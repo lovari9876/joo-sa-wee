@@ -28,6 +28,19 @@ public interface AdminService {
 	
 	public List<CM_commentVO> myCommentList(int m_no);
 		
+	//mypage scrap 스크랩 
+	public void scrapInsert(int m_no, String sc_boardtype, int sc_no);
+	
+	//mypage scrap 스크랩  삭제 
+	public void scrapDelete(int m_no, String sc_boardtype, int sc_no);
+	
+	
+	// 스크랩 중복 확인
+	public int scrapSelect(int m_no, String sc_boardtype, int sc_no);
+	
+	//mypage scrap List
+	public ArrayList<HashMap<String, Object>> scrapList(int m_no);
+	
 		
 	// 페이징 처리 + 검색  List
 	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content, String sort);

@@ -7,7 +7,52 @@
 
 
 
+	<!-- ================================================ 스크랩 scrap ====================================================== -->
 
+	<insert id="scrapInsert" > <!-- 즁복 데이터 insert 방지  -->
+	
+		INSERT INTO scrap (m_no, sc_boardtype, sc_no, sc_date) 
+		SELECT #{m_no}, #{sc_boardtype}, #{sc_no}, sysdate 
+        FROM DUAL WHERE NOT EXISTS(
+			  SELECT * FROM scrap
+			  WHERE m_no = #{m_no} and sc_boardtype =  #{sc_boardtype} and sc_no = #{sc_no})
+			  
+	</insert>
+	
+	
+	
+	<!-- ================================================ 스크랩 scrap 중복확인 쿼리 ====================================================== -->
+
+	<select id="scrapSelect" resultType="int" >
+		SELECT COUNT(*)
+		FROM scrap WHERE m_no =  #{m_no} AND sc_boardtype = #{sc_boardtype} AND sc_no = #{sc_no}
+	</select>
+
+
+	<!-- ================================================ 스크랩한 글 목록  ====================================================== -->
+
+	<select id="scrapList" resultType="java.util.HashMap" >
+	
+		SELECT * FROM (
+				(SELECT s.*, bw.bw_title
+				FROM scrap s, board_write bw 
+				WHERE s.sc_no = bw.bw_no AND s.m_no = #{m_no})
+		
+				UNION
+				
+				(SELECT s.*, cr.cr_title
+				FROM scrap s, cafe_review cr 
+				WHERE s.sc_no = cr.cr_no AND s.m_no = #{m_no})
+			) 
+		ORDER BY sc_date
+	
+	</select>
+	
+	<!-- ================================================ 스크랩 삭제   ====================================================== -->
+
+	<delete id="scrapDelete">
+		DELETE scrap WHERE m_no =  #{m_no} AND sc_boardtype = #{sc_boardtype} AND sc_no = #{sc_no}
+	</delete>
 
 	<!-- ================================================ 마이페이지 mypage ====================================================== -->
 
