@@ -32,6 +32,7 @@ import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.ReportVO;
@@ -566,6 +567,31 @@ public class AdminController {
 	}
 	
 	
+	////////////////////////////game_list///////////////////////////////////////
+	
+	
+	//game 보드게임정보 수정화면
+	@RequestMapping("/game_modify")
+	public String game_modify(Model model, int g_no) {
+		
+		model.addAttribute("game_info", contentService.selectGameDetailOne(g_no));
+	
+		return "admin/game_modify";
+	}
+	
+	
+	// game 보드게임정보 수정
+	@RequestMapping(value = "/updateGame", method = RequestMethod.POST)
+	public String updateGame(GameVO gameVO, @RequestParam int g_no, RedirectAttributes re) throws Exception {
+		
+		adminService.updateGame(gameVO);
+		
+		re.addAttribute("g_no", g_no);
+
+		return "redirect:/game_detail";
+
+	}
+		
 	
 	////////////////////////////faq_list///////////////////////////////////////
 	

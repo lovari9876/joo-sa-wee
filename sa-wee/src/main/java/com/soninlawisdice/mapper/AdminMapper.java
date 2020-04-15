@@ -17,6 +17,7 @@ import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -84,6 +85,9 @@ public interface AdminMapper {
 		
 	// 수정 : cafe
 	public void updateCafe(@Param("cafeVO")CafeVO cafeVO);
+	
+	// 수정 : game
+	public void updateGame(@Param("gameVO")GameVO gameVO);
 			
 	
 	

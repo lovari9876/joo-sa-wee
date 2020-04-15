@@ -12,6 +12,7 @@ import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -75,7 +76,11 @@ public interface AdminService {
 	// 수정 : cafe
 	public void updateCafe(CafeVO cafeVO);
 	
-	
+	// 수정 : game
+	public void updateGame(GameVO gameVO);
+		
+		
+		
 	// 회원 탈퇴
 	public void outMember(int m_no);
 

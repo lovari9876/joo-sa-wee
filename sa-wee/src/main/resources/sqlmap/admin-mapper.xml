@@ -606,6 +606,20 @@
 	</update>
 	
 	
+	
+	<!-- =============================================== 보드게임정보 Game 수정 ====================================================== -->
+	
+	<update id="updateGame" parameterType="com.soninlawisdice.vo.GameVO" >
+		UPDATE game 
+		SET g_name_kor = #{gameVO.g_name_kor}, g_min= #{gameVO.g_min}, g_max = #{gameVO.g_max},
+		g_playtime = #{gameVO.g_playtime}, g_release = #{gameVO.g_release}, g_updated_date = sysdate 
+		WHERE g_no = #{gameVO.g_no}
+	</update>
+	
+	
+	
+	
+	
 	<!-- =============================================== 회원 탈퇴처리 ====================================================== -->
 	
 	<update id="outMember" parameterType="com.soninlawisdice.vo.MemberVO" >

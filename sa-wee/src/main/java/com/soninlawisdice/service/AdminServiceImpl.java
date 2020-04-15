@@ -18,6 +18,7 @@ import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
@@ -201,7 +202,10 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.updateCafe(cafeVO);
 	}
 	
-	
+	// 수정 : game
+	public void updateGame(GameVO gameVO) {
+		adminMapper.updateGame(gameVO);
+	}
 	
 	
 	// 회원탈퇴
