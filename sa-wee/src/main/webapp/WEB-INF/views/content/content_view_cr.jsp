@@ -142,10 +142,13 @@
 					<br />
 					<br />
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="cafe_map" method="get">
+					<form action="selectAllReviewList" method="get">
 						<div class="test">
 							<div class="test_item first">
-								<input type="submit" value="목록" class="btn btn-lavender btn-md">
+								<input type="submit" value="전체리뷰" class="btn btn-lavender btn-md">
+							</div>
+							<div class="test_item first">
+								<input type="button" style="margin:0 !important" onclick = "location.href='cafe_info?c_no=${content_view_cr['C_NO']}'" value="카페정보" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item second"> 
 								<c:if test = "${content_view_cr['M_NO'] eq m_no}">
@@ -232,6 +235,8 @@
 	<script src="js/board_hj/tooltip.js"></script>
 	<script src="js/board_hj/recommend_cr.js"></script>
 	<script src="js/board_hj/popover.js"></script>
+	
+	<script src="js/board_hs/toReviewList.js"></script>
 
 	<!-- Java Script for header
     ================================================== -->
