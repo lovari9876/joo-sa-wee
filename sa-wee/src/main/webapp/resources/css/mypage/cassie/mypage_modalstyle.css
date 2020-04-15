@@ -1,0 +1,176 @@
+
+/* -------------------------------------------------------------------
+ * 모달!!!!!!!
+ * 
+ * .header-warp {z-index:0} 주기
+ *
+ * ------------------------------------------------------------------- */
+ 
+/* The Modal (background) */
+.modal--trade {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	/* z-index: 200; */ /* Sit on top *//* header가 99라서 200으로 설정 */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	/* overflow: auto; */ /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.75); /* Black w/ opacity */
+	font-family: 'JSDongkang-Regular'
+}
+
+/* Modal Content/Box */
+.modal--content {
+	background-color: #e8e5f4;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 400px;
+    z-index: 100; /* Could be more or less, depending on screen size */                          
+}
+
+/* The Close Button */
+.modal--close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal--close:hover,
+.modal--close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 모달 상단 안내사항 */
+.modal--info {
+    font-size: 11px;
+    font-weight: 100;
+    color: grey;
+}
+
+
+
+/* -------------------------------------------------------------------
+ * modal table style
+ * ------------------------------------------------------------------- */
+
+/* 폰트 */
+/*
+@font-face {
+	font-family: 'designhouseBold';
+	src: url("designhouseBold.ttf") format('truetype');
+}
+
+@font-face {
+	font-family: 'dunggeunmo';
+	src: url("DungGeunMo.ttf") format('truetype');
+}
+*/
+
+@font-face { 
+	font-family: 'JSDongkang-Regular'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+
+/* 내 테이블 관련 */
+.table--div {
+    background-color: #e8e5f4;
+}
+
+.write-table {
+	width: 100%;
+	display: table;
+	margin-bottom: 100px;
+}
+
+.write-table textarea {
+	width: 780px;
+	height: 400px;
+	resize: none;
+	border: none;
+}
+
+.write-table input {
+	width: 780px;
+	border: none;
+}
+
+
+.write-table input[type="file"] {
+	border: 1px solid #f2f2f2;
+}
+
+/* .write-table .row .file{
+	border : 1px solid #f2f2f2;
+	width : 600px;
+} */
+.write-table select {
+	height: 25px;
+	padding-left: 3px;
+	border-radius: 5px;
+	background: #fff;
+}
+
+.table--row {
+	display: table-row;
+	vertical-align: center;
+}
+
+.table--cell {
+	display: table-cell;
+	vertical-align: center;
+}
+
+/* 세로로 가운데 정렬... */
+.table--cell label {
+	margin-bottom: 0; /* 부트스트랩 js 마진 없애기 */
+}
+
+.table--cell input[type=checkbox] {
+	vertical-align: center;
+}
+
+.table--row th {
+	background-color: #c6c0e4;
+	height: 50px;
+	font-weight: 100;
+}
+
+/* 마지막 합계 단 */
+.sum--row td {
+	background-color: #d1cce9;
+}
+
+.table--row .table--cell {
+	font-size: 16px;
+	color: black;
+	line-height: 1.2;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.table--row .table--cell:nth-child(1) {
+	width: 300px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left : 20px;
+}
+
+.table--row .table--cell:nth-child(2) {
+	width: 100px;
+	padding-left: 10px;
+	border-left: 1px solid #f2f2f2;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+

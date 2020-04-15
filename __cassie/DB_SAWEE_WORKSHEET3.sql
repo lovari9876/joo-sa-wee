@@ -136,7 +136,10 @@ select SUM(tg_price) FROM trade_game where t_no = 389;
 		ON
 			PTG.TG_NO = TG.TG_NO
 		WHERE
-			PTG.P_NO = #{p_no}		
+			PTG.P_NO = #{p_no};
+            
+            
+
 
 
 

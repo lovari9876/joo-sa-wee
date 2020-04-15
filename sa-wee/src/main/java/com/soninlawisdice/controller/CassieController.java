@@ -1,5 +1,6 @@
 package com.soninlawisdice.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -96,7 +97,8 @@ public class CassieController {
 	
 	// 중고거래 게시글 view
 	@RequestMapping(value = "/content_view_t", method = RequestMethod.GET)
-	public String content_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
+	public String content_view_t(Principal principal, Model model, 
+				HttpServletRequest request, CM_commentVO cm_commentVO) throws Exception {
 		System.out.println("content_view_t");
 
 		System.out.println(request.getParameter("t_no"));
@@ -108,9 +110,10 @@ public class CassieController {
 		// 게임, 가격 리스트
 		model.addAttribute("tgList", secondhandService.selectTrade_gameList(t_no));
 		
-		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
-		int m_no = 9;
-		model.addAttribute("m_no", m_no);
+		String m_id = principal.getName();		
+		MemberVO memberVO = myPageService.mypage(m_id);
+		
+		model.addAttribute("m_no", memberVO.getM_no());
 		
 		// 게시글 조회수
 		secondhandService.upHitContent(t_no);
@@ -122,7 +125,7 @@ public class CassieController {
 	@RequestMapping(value = "/delete_t", method = RequestMethod.GET)
 	public String delete_t(TradeVO tradeVO, Model model) {
 		System.out.println("delete_t");
-
+		
 		secondhandService.deleteContent(tradeVO);
 
 		return "redirect:tlist";
@@ -133,31 +136,18 @@ public class CassieController {
 	public String write_view(Model model) {
 		logger.info("write_view_t");
 		
-//		로그인 된 상태라면 이렇게 해서 현재 로그인 한 회원의 MemberVO 가져올 수 있다.
-//		memberVO = (MemberVO) session.getAttribute("member");
-//		model.addAttribute("member", memberVO);	
-//		이렇게 넘겨야 m_no 받아올 수 있다.
-		
 		return "secondhand/write_view";
 	}
 
 	// 글 작성
 	@RequestMapping(value = "/trade_write", method = RequestMethod.POST)
-	public String write(HttpSession session, Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, 
+	public String write(HttpSession session, Model model, Principal principal,
+				@ModelAttribute("tradeVO") TradeVO tradeVO, 
 						/* @ModelAttribute("tgVO") Trade_gameVO tgVO, */
-						String gameNames, String prices) throws Exception {
+				String gameNames, String prices) throws Exception {
 
-//		로그인 된 상태라면 이렇게 해서 현재 로그인 한 회원의 MemberVO 가져올 수 있다.
-//		MemberVO memberVO = (MemberVO) session.getAttribute("member");
-//		model.addAttribute("memberVO", memberVO);	
-//		이렇게 넘겨야 m_no 받아올 수 있다.
-		
-//		System.out.println(memberVO.getM_no());
-		
-//		GameVO gameVO = new GameVO();
-		
-		// 세션 매번하기 힘드니까 임의 값 부여
-		MemberVO memberVO = myPageService.mypage("test4");		
+		String m_id = principal.getName();		
+		MemberVO memberVO = myPageService.mypage(m_id);		
 		
 		secondhandService.insertTrade(tradeVO, memberVO.getM_no(), gameNames, prices);			
 		
@@ -215,14 +205,15 @@ public class CassieController {
 
 	// 결제 modal 구매요청 시, 결제 생성 및 처리 후 content_view 리다이렉트
 	@RequestMapping(value = "/call_buy", method = RequestMethod.POST)
-	public String modify(Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, 
-							HttpServletRequest rq) {
+	public String modify(Principal principal, Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, 
+							HttpServletRequest rq) throws Exception {
 		// jsp에서 tg_no하고 t_no 넘어온 상태..
 		logger.info("call_buy");
 		
-		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
-		int m_no = 9;
-		int buyer = m_no;
+		String m_id = principal.getName();		
+		MemberVO memberVO = myPageService.mypage(m_id);
+		
+		int buyer = memberVO.getM_no();
 		
 		// checkbox에서 넘긴 tg_no 배열 갖고오기
 		try {

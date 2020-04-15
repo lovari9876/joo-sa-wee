@@ -14,15 +14,14 @@
     <link rel="icon" type="image/png"
 		href="/images/share/wolf_logo.ico" />
 	
-	<!-- content_view에 있는 css 공유중.. -->	
 	<!-- modal -->	
-	<link rel="stylesheet" href="/css/secondhand/modalstyle.css" />
+	<link rel="stylesheet" href="/css/mypage/cassie/mypage_modalstyle.css" />
 
 </head>
 <body >
 						
 	<!-- Modal HTML embedded directly into document -->
-	<div id="price-modal" class="modal--trade">
+	<div id="pay-modal" class="modal--trade">
 	
 		<div class="modal--content">						
 			<div>
@@ -47,8 +46,14 @@
 									<th class="table--cell">희망가격</th>
 								</tr>
 							</thead>
-							<tbody id="ajax-sell">
-							</tbody>
+							<tbody id="ajax-buy">
+							</tbody>						
+							<tr class="table--row sum--row">
+								<td class="table--cell">합계</td>
+								<td id="ajax-sum-buy" class="table--cell"></td>
+							</tr> <!-- 결국 마이페이지 내의 모달은 다 한 페이지에 있기에 -->
+								  <!-- 절대 모달끼리 id가 중복되면 안된다.. 안나와.. -->
+							
 														
 						<%--  	<c:forEach items="${ptgList}" var="ptgItem" varStatus="status">
 								<tr class = "table--row">
@@ -61,9 +66,10 @@
 						</table>
 						<br/>
 						<br/>						
-						<button id="buy-btn" class="write-btn lavender-btn" type="submit" onClick="return isChecked()">구매 요청</button>	
+						<button id="buy-btn" class="write-btn lavender-btn" type="submit"
+								onClick="return isChecked()">결제</button>	
 						<!-- modal close -->
-						<span id="modal--close">close</span>
+						<span class="modal--close" onClick="closePayModal()">close</span>
 					</div>
 					
 				</form>						
