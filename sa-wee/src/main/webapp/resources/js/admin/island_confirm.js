@@ -14,7 +14,7 @@ $(".selectConfirm_btn").click(function() {
 
 		if (confirm_val) {
 			$.ajax({
-				url : "http://localhost:8282/admin/updateIsland_confirm",
+				url : "/admin/updateIsland_confirm",
 				type : "post",
 				data : {
 					chbox : checkArr

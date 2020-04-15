@@ -583,6 +583,18 @@
 			faq_updated_date = sysdate 
 		WHERE faq_no = #{faqVO.faq_no}
 	</update>
+	
+	
+	<!-- =============================================== 게시글 (공지사항) board_write 수정 ====================================================== -->
+	
+	<update id="updateNotice" parameterType="com.soninlawisdice.vo.Board_writeVO" >
+		UPDATE board_write 
+		SET bw_title = #{board_writeVO.bw_title}, bw_content= #{board_writeVO.bw_content},
+			bw_updated_date = sysdate 
+		WHERE bw_no = #{board_writeVO.bw_no}
+	</update>
+	
+	
 	<!-- =============================================== 회원 탈퇴처리 ====================================================== -->
 	
 	<update id="outMember" parameterType="com.soninlawisdice.vo.MemberVO" >

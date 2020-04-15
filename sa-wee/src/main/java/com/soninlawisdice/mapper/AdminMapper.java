@@ -78,6 +78,9 @@ public interface AdminMapper {
 	
 	// 수정 : faq
 	public void updateFaq(@Param("faqVO")FaqVO faqVO);
+	
+	// 수정 : board_write(notice)
+	public void updateNotice(@Param("board_writeVO")Board_writeVO board_writeVO);
 		
 	
 	

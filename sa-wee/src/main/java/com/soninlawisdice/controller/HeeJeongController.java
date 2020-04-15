@@ -2,6 +2,7 @@ package com.soninlawisdice.controller;
 
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +28,9 @@ import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.Game_personVO;
 import com.soninlawisdice.vo.MemberVO;
+import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.ReportVO;
+import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 
 /**
@@ -1067,7 +1070,7 @@ public class HeeJeongController {
 	// 게임 상세정보 view
 	@RequestMapping(value = "/game_detail", method = RequestMethod.GET)
 	public String game_detail(Model model, HttpServletRequest request, @ModelAttribute("gameVO") GameVO gameVO,
-							@RequestParam("g_no") int pageNumG) {
+							@RequestParam("g_no") int pageNumG, @ModelAttribute("scri") SearchCriteria scri) {
 		System.out.println("game_detail");
 
 		int g_no = Integer.parseInt(request.getParameter("g_no"));
@@ -1088,7 +1091,35 @@ public class HeeJeongController {
 		
 		// 게시글 조회수
 		/* contentService.upHitContent(bw_no); */
-
+		
+		
+		////////////////////////해당 게임관련 게시글 불러오기/////////////////////////
+		String s_content = null;
+		scri.setPerPageNum(5);
+		
+		PageMaker pageMaker  = new PageMaker();
+		pageMaker.setCri(scri);
+		
+//		String keyword = request.getParameter("keyword");
+//		System.out.println("--------------" + keyword);
+		
+		//게임 이름 가져오기 
+		HashMap<String, Object> name = contentService.selectGameDetailOne(g_no);
+		String g_name = (String) name.get("G_NAME_KOR");
+		System.out.println("g_name : " +g_name);
+		
+		scri.setKeyword(g_name);	//키워드 SET
+		scri.setSearchType("tc"); 	//전체검색(제목+내용)
+		
+		pageMaker.setTotalCount(boardService.cboard_listCount(scri, 1, s_content));
+		
+		model.addAttribute("board_story", boardService.selectBoardList(scri, 1, s_content));
+		model.addAttribute("board_open_review", boardService.selectBoardList(scri, 2, s_content));
+		model.addAttribute("board_meet", boardService.selectBoardList(scri, 3, s_content));
+		model.addAttribute("board_news", boardService.selectBoardList(scri, 4, s_content));
+		model.addAttribute("board_qna", boardService.selectBoardList(scri, 5, s_content));
+		
+		
 		return "game_detail/game_detail";
 	}
 	

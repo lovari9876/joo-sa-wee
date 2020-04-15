@@ -113,10 +113,10 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	// 메인 FAQ 페이지 조회수 
-		public void upHitFaq(int faq_no) {
-			adminMapper.upHitFaq(faq_no);
-		}
-	
+	public void upHitFaq(int faq_no) {
+		adminMapper.upHitFaq(faq_no);
+	}
+
 	
 	
 	
@@ -188,6 +188,15 @@ public class AdminServiceImpl implements AdminService {
 	public void updateFaq(FaqVO faqVO) {
 		adminMapper.updateFaq(faqVO);
 	}
+	
+	// 수정 : board_write(notice)
+	@Override
+	public void updateNotice(Board_writeVO board_writeVO) {
+		adminMapper.updateNotice(board_writeVO);
+	}
+	
+	
+	
 	
 	// 회원탈퇴
 	@Override
