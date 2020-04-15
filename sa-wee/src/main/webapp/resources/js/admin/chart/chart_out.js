@@ -27,7 +27,7 @@ $(document).ready(function chart1() {
 
 	// json 데이터 가져오기
 	$.ajax({
-		url : "http://localhost:8282/rest/wd_data",
+		url : "/rest/wd_data",
 		type : "post",
 		cache : false,
 		dataType : "json",

@@ -85,8 +85,7 @@
 					<table class="table">
 						<tr class="trow header">
 							<td class="cell span1">번호</td>
-							<td class="cell">글 제목</td>
-							<td class="cell">작성자</td>
+							<td class="cell span6">글 제목</td>
 							<td class="cell">작성일</td>
 							<td class="cell">조회수</td>
 						</tr>
@@ -94,10 +93,9 @@
 							
 							<c:forEach items="${notice_list}" var="board">
 									<tr class="trow">
-										<td class="cell">${board['BW_NO']}</td>
+										<td class="cell">${board['RNUM']}</td>
 										<td class="cell title"><a
-											href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
-										<td class="cell">${board['M_ID']}</td>
+											href="/admin/notice_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']}</a></td>
 										<td class="cell"> 
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" />

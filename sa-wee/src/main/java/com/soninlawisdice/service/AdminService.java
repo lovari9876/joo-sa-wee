@@ -69,6 +69,10 @@ public interface AdminService {
 	// faq 수정
 	public void updateFaq(FaqVO faqVO);
 	
+	// 수정 : board_write(notice)
+	public void updateNotice(Board_writeVO board_writeVO);
+	
+	
 	
 	// 회원 탈퇴
 	public void outMember(int m_no);

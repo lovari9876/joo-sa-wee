@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.soninlawisdice.controller.AdminController;
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
+import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
@@ -56,6 +57,9 @@ public class AdminController {
 	private SecondhandService secondhandService;
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private ContentService contentService;
+	
 	
 	
 	@RequestMapping("/index")
@@ -87,6 +91,7 @@ public class AdminController {
 
 		return "admin/report_view";
 	}
+	
 
 	@RequestMapping("/user_view")
 	public String user_view(MemberVO memberVO, Model model) throws Exception {
@@ -398,6 +403,41 @@ public class AdminController {
 
 		return "admin/notice_list";
 	}
+	
+	// 글보기 : 공지사항
+	@RequestMapping("/notice_view")
+	public String notice_view(Board_writeVO board_writeVO, Model model, @RequestParam("bw_no") int bw_no) throws Exception {
+		
+		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
+
+		return "admin/notice_view";
+	}
+		
+	//notice 수정화면
+	@RequestMapping("/notice_modify")
+	public String notice_modify(Model model, @RequestParam("bw_no") int bw_no) {
+		
+		model.addAttribute("notice", contentService.selectContentOne(bw_no));
+		
+		return "admin/notice_modify";
+	}
+	
+	
+	//notice 수정
+	@RequestMapping(value = "/updateNotice", method = RequestMethod.POST)
+	public String updateNotice(Board_writeVO board_writeVO, @RequestParam("bw_no")int bw_no, RedirectAttributes re) throws Exception {
+		
+		adminService.updateNotice(board_writeVO);
+		
+		re.addAttribute("bw_no", bw_no);
+
+		return "redirect:notice_view";
+
+	}
+		
+	
+	
+	
 
 	@RequestMapping(value = "/withdrawer_list", method = RequestMethod.GET)
 	public String withdrawer_list(Model model, WD_recordVO wd_recordVO, @ModelAttribute("scri") SearchCriteria scri)
@@ -534,6 +574,7 @@ public class AdminController {
 		return "admin/faq_view";
 	}
 	
+	//faq 수정화면
 	@RequestMapping("/faq_modify")
 	public String faq_modify(Model model, FaqVO faqVO) {
 		
@@ -718,6 +759,8 @@ public class AdminController {
 
 		return "redirect:notice_list";
 	}
+	
+	
 
 	// 글쓰기 : 보드게임카페 정보
 	@RequestMapping(value = "/cafeInsert", method = RequestMethod.POST)

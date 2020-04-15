@@ -26,7 +26,7 @@ $(document).ready(function chart1() {
 
 	// json 데이터 가져오기
 	$.ajax({
-		url : "http://localhost:8282/rest/chart_data",
+		url : "/rest/chart_data",
 		type : "post",
 		cache : false,
 		dataType : "json",
@@ -113,7 +113,7 @@ $(document).ready(
 
 			// json 데이터 가져오기
 			$.ajax({
-				url : "http://localhost:8282/rest/chart_data_week",
+				url : "/rest/chart_data_week",
 				type : "post",
 				cache : false,
 				dataType : "json",
@@ -198,7 +198,7 @@ $(document).ready(
 
 			// json 데이터 가져오기
 			$.ajax({
-				url : "http://localhost:8282/rest/chart_data_month",
+				url : "/rest/chart_data_month",
 				type : "post",
 				cache : false,
 				dataType : "json",
