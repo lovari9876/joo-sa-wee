@@ -33,7 +33,7 @@
 			<tr class="table_row header">
 				<th class="cell">거래<br/>번호</th>
 				<th class="cell">보부상</th><!-- 보부상 글 제목 -->
-				<th class="cell">구매자</th> <!-- 닉네임 -->
+				<th class="cell">판매자</th> <!-- 닉네임 -->
 				<th class="cell">거래일</th> <!-- 주문 생성일 -->
 				<th class="cell">결제일</th> <!-- 결제 전까지는 비워두기 -->
 				<th class="cell">상태</th> <!-- p_status 기반 -->
@@ -41,9 +41,13 @@
 				<!-- 게임,가격은 자세히 보기 눌러서 볼 것 -->
 			</tr>
 			<c:forEach items="${bPayList}" var="payment" >
+				<c:set var="buyer" value="${payment['M_BNO']}" scope="request"></c:set>
 				<tr class="table_row">
 					<td class="cell">${payment['P_NO']}</td>
-					<td class="cell">${payment['T_TITLE']}</td>
+					<td class="cell">
+						<a href="content_view_t?t_no=${payment['T_NO']}">
+							${payment['T_TITLE']}
+						</a></td>
 					<td class="cell">${payment['M_NICK']}</td>											
 					<td class="cell">
 						<!-- 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
@@ -69,7 +73,7 @@
 					</td>
 					<td class="cell">
 					<!-- 거래 상태 -->
-					<!-- 1.거래요청 2.입금대기 3.결제완료 4.배송준비중 5.배송완료 (관리자 승인 후) 
+					<!-- 1.입금대기 2.결제완료 4.배송준비중 5.배송완료 (관리자 승인 후) 
 							6.거래완료(판매자에게 입금완료) 7. 거래취소 -->
 						<c:choose>				
 							<c:when test="${payment['P_STATUS'] eq 1}">거래요청</c:when>		
@@ -84,9 +88,11 @@
 					</td>
 					<td class="cell"> <!-- 버튼 -->
 						<div align="center" class="buy--button" >
-							<button id ="myBtn" class="write-btn lavender-btn" type="button" >
+							<button class="pay-btn write-btn lavender-btn" type="button" 
+										value="${payment['P_NO']}" 
+										onclick="buy_modal(this.value);">
 								<c:choose>				
-									<c:when test="${payment['P_STATUS'] eq 1}">가격확정</c:when>		
+									<c:when test="${payment['P_STATUS'] eq 1}">결제하기</c:when>		
 									<c:when test="${payment['P_STATUS'] eq 2}">입금대기</c:when>
 									<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
 									<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
@@ -120,6 +126,7 @@
 				<!-- 게임,가격은 자세히 보기 눌러서 볼 것 -->
 			</tr>
 			<c:forEach items="${sPayList}" var="payment" varStatus="status">
+				<c:set var="seller" value="${payment['M_SNO']}" scope="request"></c:set>
 				<tr class="table_row">
 					<td class="cell">${payment['P_NO']}</td>
 					<td class="cell">
@@ -167,8 +174,9 @@
 					</td> 
 					<td class="cell"> <!-- 버튼 -->
 						<div align="center" class="buy--button" >				
-							<button id ="price-btn" class="write-btn lavender-btn" type="button" 
-									name="${status.count}" value="${payment['P_NO']}" >
+							<button class="price-btn write-btn lavender-btn" type="button" 
+									name="price-btn${status.count}" value="${payment['P_NO']}" 
+									onclick="sell_modal(this.value);">
 								<c:choose>				
 									<c:when test="${payment['P_STATUS'] eq 1}">주문확인</c:when>		
 									<c:when test="${payment['P_STATUS'] eq 2}">입금대기</c:when>

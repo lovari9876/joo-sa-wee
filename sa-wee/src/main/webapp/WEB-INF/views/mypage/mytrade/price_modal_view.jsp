@@ -14,9 +14,8 @@
     <link rel="icon" type="image/png"
 		href="/images/share/wolf_logo.ico" />
 	
-	<!-- content_view에 있는 css 공유중.. -->	
 	<!-- modal -->	
-	<link rel="stylesheet" href="/css/secondhand/modalstyle.css" />
+	<link rel="stylesheet" href="/css/mypage/cassie/mypage_modalstyle.css" />
 
 </head>
 <body >
@@ -48,7 +47,13 @@
 								</tr>
 							</thead>
 							<tbody id="ajax-sell">
-							</tbody>
+							</tbody>							
+							<tr class="table--row sum--row">
+								<td class="table--cell">합계</td>
+								<td id="ajax-sum-sell" class="table--cell"></td>
+							</tr> <!-- 결국 마이페이지 내의 모달은 다 한 페이지에 있기에 -->
+								  <!-- 절대 모달끼리 id가 중복되면 안된다.. 안나와.. -->
+							
 														
 						<%--  	<c:forEach items="${ptgList}" var="ptgItem" varStatus="status">
 								<tr class = "table--row">
@@ -61,7 +66,7 @@
 						</table>
 						<br/>
 						<!-- modal close -->
-						<span id="modal--close">close</span>
+						<span class="modal--close" onClick="closePriceModal()">close</span>
 						<br/>						
 						
 						

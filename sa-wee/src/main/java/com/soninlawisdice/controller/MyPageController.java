@@ -114,11 +114,11 @@ public class MyPageController {
 		return "mypage/mypage";
 	}
 	
-	// 판매자 가격확정 모달: price_modal_view
+	// 판매자 주문확인 모달: price_modal_view
 	@ResponseBody
 	@RequestMapping(value = "/price_modal_view/{pno}", method = RequestMethod.GET)
-	public ArrayList<HashMap<String, Object>> price_modal_view(Model model, @PathVariable(value = "pno") int pno,
-										HttpServletRequest rq) {
+	public ArrayList<HashMap<String, Object>> price_modal_view(Model model, 
+						@PathVariable(value = "pno") int pno, HttpServletRequest rq) {
 		System.out.println("price_modal_view");
 			
 		// mypage c:import에서 버튼 클릭 시, c:param으로 보낸 p_no
@@ -129,6 +129,21 @@ public class MyPageController {
 		 * ArrayList<HashMap<String, Object>> ptgList =
 		 * secondhandService.selectPTGList(pno); model.addAttribute("ptgList", ptgList);
 		 */
+		  
+		return secondhandService.selectPTGList(pno); 
+	} 
+	
+	// 구매자 결제 모달: pay_modal_view
+	@ResponseBody
+	@RequestMapping(value = "/pay_modal_view/{pno}", method = RequestMethod.GET)
+	public ArrayList<HashMap<String, Object>> pay_modal_view(Model model, 
+						@PathVariable(value = "pno") int pno, HttpServletRequest rq) {
+		System.out.println("pay_modal_view");
+			
+		// mypage c:import에서 버튼 클릭 시, c:param으로 보낸 p_no
+		// int p_no = rq.getParameter("pno");
+		System.out.println("p_no : " + pno);
+
 		  
 		return secondhandService.selectPTGList(pno); 
 	} 

@@ -381,80 +381,18 @@
 		</div>
 	</div>
 
-	<!-- 내 판매-판매자 [가격확정] import start -->
+	<!-- 내 판매-판매자 [거래확인] include start -->
 	<!-- /WEB-INF/ 로 시작하면 절대 경로 써줘야함!!!(jsp 파일 단순 import할 경우!)  -->
 	<!-- 반드시 controller가 실행 후 return해서 와줄 장소 필요.. 그래서 동적인 거 노노
 		 정적인 include 필수 ㅠㅠㅠ -->
 	<%@ include file="/WEB-INF/views/mypage/mytrade/price_modal_view.jsp"%>
-	<!-- 내 판매-판매자 [가격확정] import end -->	
+	<!-- 내 판매-판매자 [거래확인] include end -->	
 	
-	<script>
-		// Get the modal
-		var modal = document.getElementById('price-modal');
-		
-		// Get the button that opens the modal
-		var btn = document.getElementById("price-btn");
-		
-		 
-		
-		// Get the <span> element that closes the modal
-		var span = document.getElementById("modal--close");                                          
-		
-		// When the user clicks on the button, open the modal 
-		btn.onclick = function() {
-			
-			//alert(this.value); 성공			
-			sendViaAjax(this.value);
-			
-		    modal.style.display = "block";	    
-		    
-		}
-		
-		// 거래확인 버튼과 같은 라인의 p_no 받아서 controller로 넘긴 뒤
-		// hashmap list를 받아 foreach 돌린다.
-		function sendViaAjax(pno) { 
-			
-			// alert(pno); 받아옴
-			
-			$.ajax({ 
-				type : "GET", 
-				url : "/price_modal_view/"+pno, 
-				cache : false,
-				dataType : "json",
-				success : function(data) { /* 컨트롤러에서 넘긴 값이 여기로 온다 */
-					 console.log("SUCCESS: ", pno); 
-					
-					var tag = "";
-					$.each(data, function(key, ptgItem) {
-						
-						tag += '<tr class = "table--row">';
-						tag += '<td class = "table--cell">'+ptgItem['TG_NAME'];
-						tag += '</td>';
-						tag += '<td class="table--cell">'+ ptgItem['TG_PRICE']+ '원</td>';
-						tag += '</tr>';
-						
-						console.log("=end=");
-						
-						$("#ajax-sell").empty().append(tag);
-					});
-					
-				}, 
-				error : function(e) { 
-					console.log("ERROR: ", e); 
-					display(e); 
-				}, 
-				done : function(e) { 
-					console.log("DONE"); 
-				} 
-			}); 
-		};
-		
-		// When the user clicks on <span> (x), close the modal
-		span.onclick = function() {
-		    modal.style.display = "none";
-		}
-	</script>
+	<!-- 내 구매-구매자 결제 모달 include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/pay_modal_view.jsp"%>
+	<!-- 내 구매-구매자 결제 모달 include end -->
 	
+		
 
 </body>
 
@@ -472,6 +410,9 @@
 	integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8="
 	crossorigin="anonymous"></script>
 
+<!-- Java Script for 내 거래 - 모달  ================================================== -->
+<script src="/js/cassie/mytrade_price_modal.js"></script> <!-- 내판매-거래확인 -->
+<script src="/js/cassie/mytrade_pay_modal.js"></script> <!-- 내구매-결제 -->
 
 
 </html>
