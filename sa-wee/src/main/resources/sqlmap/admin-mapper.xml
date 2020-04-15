@@ -7,7 +7,52 @@
 
 
 
+	<!-- ================================================ 스크랩 scrap ====================================================== -->
 
+	<insert id="scrapInsert" > <!-- 즁복 데이터 insert 방지  -->
+	
+		INSERT INTO scrap (m_no, sc_boardtype, sc_no, sc_date) 
+		SELECT #{m_no}, #{sc_boardtype}, #{sc_no}, sysdate 
+        FROM DUAL WHERE NOT EXISTS(
+			  SELECT * FROM scrap
+			  WHERE m_no = #{m_no} and sc_boardtype =  #{sc_boardtype} and sc_no = #{sc_no})
+			  
+	</insert>
+	
+	
+	
+	<!-- ================================================ 스크랩 scrap 중복확인 쿼리 ====================================================== -->
+
+	<select id="scrapSelect" resultType="int" >
+		SELECT COUNT(*)
+		FROM scrap WHERE m_no =  #{m_no} AND sc_boardtype = #{sc_boardtype} AND sc_no = #{sc_no}
+	</select>
+
+
+	<!-- ================================================ 스크랩한 글 목록  ====================================================== -->
+
+	<select id="scrapList" resultType="java.util.HashMap" >
+	
+		SELECT * FROM (
+				(SELECT s.*, bw.bw_title
+				FROM scrap s, board_write bw 
+				WHERE s.sc_no = bw.bw_no AND s.m_no = #{m_no})
+		
+				UNION
+				
+				(SELECT s.*, cr.cr_title
+				FROM scrap s, cafe_review cr 
+				WHERE s.sc_no = cr.cr_no AND s.m_no = #{m_no})
+			) 
+		ORDER BY sc_date
+	
+	</select>
+	
+	<!-- ================================================ 스크랩 삭제   ====================================================== -->
+
+	<delete id="scrapDelete">
+		DELETE scrap WHERE m_no =  #{m_no} AND sc_boardtype = #{sc_boardtype} AND sc_no = #{sc_no}
+	</delete>
 
 	<!-- ================================================ 마이페이지 mypage ====================================================== -->
 
@@ -584,6 +629,17 @@
 		WHERE faq_no = #{faqVO.faq_no}
 	</update>
 	
+	<!-- =============================================== cafe 정보  수정 ====================================================== -->
+	
+	<update id="updateCafe" parameterType="com.soninlawisdice.vo.CafeVO" >
+		UPDATE cafe 
+		SET c_title = #{cafeVO.c_title}, c_add = #{cafeVO.c_add}, c_phone= #{cafeVO.c_phone},
+			c_table = #{cafeVO.c_table}, c_open = #{cafeVO.c_open}, c_close= #{cafeVO.c_close},
+			c_rest = #{cafeVO.c_rest}, c_updated_date = sysdate 
+		WHERE c_no = #{cafeVO.c_no}
+		
+	</update>
+	
 	
 	<!-- =============================================== 게시글 (공지사항) board_write 수정 ====================================================== -->
 	
@@ -593,6 +649,20 @@
 			bw_updated_date = sysdate 
 		WHERE bw_no = #{board_writeVO.bw_no}
 	</update>
+	
+	
+	
+	<!-- =============================================== 보드게임정보 Game 수정 ====================================================== -->
+	
+	<update id="updateGame" parameterType="com.soninlawisdice.vo.GameVO" >
+		UPDATE game 
+		SET g_name_kor = #{gameVO.g_name_kor}, g_min= #{gameVO.g_min}, g_max = #{gameVO.g_max},
+		g_playtime = #{gameVO.g_playtime}, g_release = #{gameVO.g_release}, g_updated_date = sysdate 
+		WHERE g_no = #{gameVO.g_no}
+	</update>
+	
+	
+	
 	
 	
 	<!-- =============================================== 회원 탈퇴처리 ====================================================== -->

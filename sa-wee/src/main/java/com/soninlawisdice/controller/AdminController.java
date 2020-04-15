@@ -1,5 +1,6 @@
 package com.soninlawisdice.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,12 +27,14 @@ import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
+import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.ReportVO;
@@ -59,6 +62,8 @@ public class AdminController {
 	private BoardService boardService;
 	@Autowired
 	private ContentService contentService;
+	@Autowired
+	private MyPageService myPageService;
 	
 	
 	
@@ -78,6 +83,68 @@ public class AdminController {
 		return "admin/user_list";
 	}
 
+	
+	
+	// 스크랩기능
+	@ResponseBody
+	@RequestMapping(value = "/scrap", method = RequestMethod.POST)
+	public int scrap(@RequestParam(value = "scrapArr[]") List<String> scrapArr, Principal principal, MemberVO memberVO) throws Exception {
+		
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		
+		int m_no = memberVO.getM_no();
+		
+		System.out.println("m_no : " + m_no);
+		
+
+		String type_name = scrapArr.get(0);
+		int num = Integer.parseInt(scrapArr.get(1));
+		
+		
+		System.out.println("type_name : " + type_name);
+		System.out.println("num : " + num);
+
+		int result = 0;
+		
+		int overlap = adminService.scrapSelect(m_no, type_name, num); //중복값이 존재하는지 확인
+		
+		if (overlap >= 1) {
+			result = 0;
+		}else {
+			adminService.scrapInsert(m_no, type_name, num);
+			result = 1;
+		}
+		return result;
+	}
+		
+	
+	
+	// 스크랩 삭제 기능
+	@ResponseBody
+	@RequestMapping(value = "/scrapDelete", method = RequestMethod.POST)
+	public int scrapDelete(@RequestParam(value = "scrapArr[]") List<String> scrapArr, Principal principal, MemberVO memberVO) throws Exception {
+		
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		int m_no = memberVO.getM_no();
+		System.out.println("m_no : " + m_no);
+		
+		String type_name = scrapArr.get(0);
+		int num = Integer.parseInt(scrapArr.get(1));
+		
+		System.out.println("type_name : " + type_name);
+		System.out.println("num : " + num);
+
+		
+		int result = 0;
+		
+		adminService.scrapDelete(m_no, type_name, num);
+		
+		return result;
+	}
+	
+	
 	////////////////////////////////////////////////////////////////////////////
 
 	@RequestMapping("/report_view")
@@ -524,6 +591,9 @@ public class AdminController {
 		return "admin/island_list";
 	}
 
+	
+	////////////////////////////cafe_list///////////////////////////////////////
+	
 	@RequestMapping(value = "/cafe_list", method = RequestMethod.GET)
 	public String cafe_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
@@ -538,6 +608,59 @@ public class AdminController {
 
 		return "admin/cafe_list";
 	}
+	
+	//cafe 수정화면
+	@RequestMapping("/cafe_modify")
+	public String cafe_modify(Model model, int c_no) {
+		
+		
+		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
+	
+		return "admin/cafe_modify";
+	}
+	
+	
+	// cafe 수정
+	@RequestMapping(value = "/updateCafe", method = RequestMethod.POST)
+	public String updateCafe(CafeVO cafeVO, @RequestParam int c_no, RedirectAttributes re) throws Exception {
+		
+		adminService.updateCafe(cafeVO);
+		
+		re.addAttribute("c_no", c_no);
+
+		return "redirect:/cafe_info";
+
+	}
+	
+	
+	////////////////////////////game_list///////////////////////////////////////
+	
+	
+	//game 보드게임정보 수정화면
+	@RequestMapping("/game_modify")
+	public String game_modify(Model model, int g_no) {
+		
+		model.addAttribute("game_info", contentService.selectGameDetailOne(g_no));
+	
+		return "admin/game_modify";
+	}
+	
+	
+	// game 보드게임정보 수정
+	@RequestMapping(value = "/updateGame", method = RequestMethod.POST)
+	public String updateGame(GameVO gameVO, @RequestParam int g_no, RedirectAttributes re) throws Exception {
+		
+		adminService.updateGame(gameVO);
+		
+		re.addAttribute("g_no", g_no);
+
+		return "redirect:/game_detail";
+
+	}
+		
+	
+	////////////////////////////faq_list///////////////////////////////////////
+	
 
 	@RequestMapping(value = "/faq_list", method = RequestMethod.GET)
 	public String faq_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {

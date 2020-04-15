@@ -12,6 +12,7 @@ import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -27,6 +28,19 @@ public interface AdminService {
 	
 	public List<CM_commentVO> myCommentList(int m_no);
 		
+	//mypage scrap 스크랩 
+	public void scrapInsert(int m_no, String sc_boardtype, int sc_no);
+	
+	//mypage scrap 스크랩  삭제 
+	public void scrapDelete(int m_no, String sc_boardtype, int sc_no);
+	
+	
+	// 스크랩 중복 확인
+	public int scrapSelect(int m_no, String sc_boardtype, int sc_no);
+	
+	//mypage scrap List
+	public ArrayList<HashMap<String, Object>> scrapList(int m_no);
+	
 		
 	// 페이징 처리 + 검색  List
 	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content, String sort);
@@ -72,8 +86,14 @@ public interface AdminService {
 	// 수정 : board_write(notice)
 	public void updateNotice(Board_writeVO board_writeVO);
 	
+	// 수정 : cafe
+	public void updateCafe(CafeVO cafeVO);
 	
-	
+	// 수정 : game
+	public void updateGame(GameVO gameVO);
+		
+		
+		
 	// 회원 탈퇴
 	public void outMember(int m_no);
 

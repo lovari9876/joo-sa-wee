@@ -18,6 +18,7 @@ import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 
@@ -48,7 +49,29 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	
+	//mypage scrap 스크랩 
+	public void scrapInsert(int m_no, String sc_boardtype, int sc_no) {
+		adminMapper.scrapInsert(m_no, sc_boardtype, sc_no);
+	}
 	
+	
+	//mypage scrap 스크랩  삭제 
+	public void scrapDelete(int m_no, String sc_boardtype, int sc_no) {
+		adminMapper.scrapDelete(m_no, sc_boardtype, sc_no);
+	}
+	
+	
+	// 스크랩 중복 확인
+	public int scrapSelect(int m_no, String sc_boardtype, int sc_no) {
+		return adminMapper.scrapSelect(m_no, sc_boardtype, sc_no);
+	}
+	
+	//mypage scrap List
+	public ArrayList<HashMap<String, Object>> scrapList(int m_no){
+		return adminMapper.scrapList(m_no);
+	}
+	
+		
 	
 	// 페이징 처리된 리스트
 	@Override
@@ -195,7 +218,16 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.updateNotice(board_writeVO);
 	}
 	
+	// 수정 : cafe
+	@Override
+	public void updateCafe(CafeVO cafeVO) {
+		adminMapper.updateCafe(cafeVO);
+	}
 	
+	// 수정 : game
+	public void updateGame(GameVO gameVO) {
+		adminMapper.updateGame(gameVO);
+	}
 	
 	
 	// 회원탈퇴

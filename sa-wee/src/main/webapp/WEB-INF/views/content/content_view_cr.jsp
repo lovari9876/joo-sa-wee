@@ -169,6 +169,18 @@
 									<a href="loginview">신고</a>
 								</sec:authorize>
 							</div>
+							
+							<!-- 임시로 만든 버튼.. 수정 부탁해 미안... -->
+							<div class="test_item fifth">
+								<sec:authorize access="isAuthenticated()">
+									<a id="scrap" data-bt="${content_view_cr['BT_NAME']}" data-no="${content_view_cr['CR_NO']}">스크랩</a>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<a href="loginview">스크랩</a>
+								</sec:authorize>
+							</div>
+							
+							
 						</div>
 					</form>
 
@@ -237,6 +249,9 @@
 	<script src="js/board_hj/popover.js"></script>
 	
 	<script src="js/board_hs/toReviewList.js"></script>
+	
+	<!-- ====================스크랩기능============================== -->
+	<script src="js/admin/scrap.js"></script>
 
 	<!-- Java Script for header
     ================================================== -->

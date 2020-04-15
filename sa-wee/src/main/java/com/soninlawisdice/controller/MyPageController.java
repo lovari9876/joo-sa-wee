@@ -110,6 +110,10 @@ public class MyPageController {
 		
 		//////////////////내가 쓴 댓글 목록//////////////////////////
 		model.addAttribute("myCommentList", adminService.myCommentList(m_no));
+		
+		////////////////// 스크랩 //////////////////////////
+		model.addAttribute("myScrap", adminService.scrapList(m_no));
+		
 				
 		return "mypage/mypage";
 	}

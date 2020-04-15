@@ -84,6 +84,9 @@
 									<li>플레이시간<span>${game_detail_view['G_PLAYTIME']} 분</span></li>
 									<li>출시일<span>${game_detail_view['G_RELEASE']} 년</span></li>
 								</ul>
+								
+								 <input value="정보수정" class="btn" onclick="location='/admin/game_modify?g_no=${game_detail_view['G_NO']}'" style="width: 80px">
+								
 							</div>
 						</div>
 					</div>

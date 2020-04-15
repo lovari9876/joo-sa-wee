@@ -286,29 +286,38 @@
 								role="tabpanel" aria-labelledby="contact-tab">
 								<table class="table">
 									<tr class="table_row header">
-										<td class="cell">글 번호</td>
-										<td class="cell">글 제목</td>
-										<td class="cell">작성자</td>
+										<td class="cell">카테고리</td>
+										<td class="cell">글제목</td>
 										<td class="cell">작성일</td>
+										<td class="cell">삭제</td>
 									</tr>
-									<tr class="table_row">
-										<td class="cell">1</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
+									<c:forEach items="${myScrap}" var="myScrap">
+									<tr class="trow">
+										<td class="cell">${myScrap['SC_BOARDTYPE']}</td>
+										<td class="cell title">
+											<c:choose>
+												<c:when test="${myScrap['SC_BOARDTYPE'] eq '카페 리뷰'}">
+													<a href="content_view_cr?cr_no=${myScrap['SC_NO']}">${myScrap['BW_TITLE']}</a>
+												</c:when> 
+												<c:otherwise>
+													<a href="content_view?bw_no=${myScrap['SC_NO']}">${myScrap['BW_TITLE']}</a>
+												</c:otherwise>
+											</c:choose>
+										</td>
+										<td>
+												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${myScrap['SC_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when> 
+												<c:otherwise>
+													<fmt:formatDate value="${myScrap['SC_DATE']}" pattern="HH:mm"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+										<td class="cell"><button class="scrap_delete" data-bt="${myScrap['SC_BOARDTYPE']}" data-no="${myScrap['SC_NO']}">삭제</button></td>
 									</tr>
-									<tr class="table_row">
-										<td class="cell">2</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">3</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
+								</c:forEach>
 								</table>
 							</div>
 							<div class="tab-pane portfolio-detail contact-tab fade"
@@ -404,6 +413,9 @@
 <!-- Java Script for header  ================================================== -->
 <script src="/js/header/jquery.slicknav.min.js"></script>
 <script src="/js/header/header_hyesoo.js"></script>
+<!-- ====================스크랩삭제 ============================== -->
+<script src="js/admin/scrap_delete.js"></script>
+
 <!-- header 200317 새로 추가해야할 js -->
 <script src="/js/header/scroll.js"></script>
 <script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js"

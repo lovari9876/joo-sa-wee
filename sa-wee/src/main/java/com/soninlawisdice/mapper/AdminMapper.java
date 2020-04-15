@@ -17,6 +17,7 @@ import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
+import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
@@ -28,6 +29,19 @@ public interface AdminMapper {
 	public ArrayList<HashMap<String, Object>> myBoardList(@Param("m_no")int m_no);
 	
 	public List<CM_commentVO> myCommentList(@Param("m_no")int m_no);
+	
+	
+	//mypage scrap 스크랩 
+	public void scrapInsert(@Param("m_no")int m_no, @Param("sc_boardtype")String sc_boardtype, @Param("sc_no")int sc_no);
+	
+	//mypage scrap 스크랩  삭제 
+	public void scrapDelete(@Param("m_no")int m_no, @Param("sc_boardtype")String sc_boardtype, @Param("sc_no")int sc_no);
+	
+	// 스크랩 중복 확인
+	public int scrapSelect(@Param("m_no")int m_no, @Param("sc_boardtype")String sc_boardtype, @Param("sc_no")int sc_no);
+	
+	//mypage scrap List
+	public ArrayList<HashMap<String, Object>> scrapList(@Param("m_no")int m_no);
 	
 
 	// 페이징 처리 + 검색  List
@@ -82,6 +96,12 @@ public interface AdminMapper {
 	// 수정 : board_write(notice)
 	public void updateNotice(@Param("board_writeVO")Board_writeVO board_writeVO);
 		
+	// 수정 : cafe
+	public void updateCafe(@Param("cafeVO")CafeVO cafeVO);
+	
+	// 수정 : game
+	public void updateGame(@Param("gameVO")GameVO gameVO);
+			
 	
 	
 	// 회원 탈퇴
