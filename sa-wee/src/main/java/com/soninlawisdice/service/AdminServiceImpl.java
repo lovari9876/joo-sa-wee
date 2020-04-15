@@ -195,6 +195,12 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.updateNotice(board_writeVO);
 	}
 	
+	// 수정 : cafe
+	@Override
+	public void updateCafe(CafeVO cafeVO) {
+		adminMapper.updateCafe(cafeVO);
+	}
+	
 	
 	
 	

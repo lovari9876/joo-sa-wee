@@ -584,6 +584,17 @@
 		WHERE faq_no = #{faqVO.faq_no}
 	</update>
 	
+	<!-- =============================================== cafe 정보  수정 ====================================================== -->
+	
+	<update id="updateCafe" parameterType="com.soninlawisdice.vo.CafeVO" >
+		UPDATE cafe 
+		SET c_title = #{cafeVO.c_title}, c_add = #{cafeVO.c_add}, c_phone= #{cafeVO.c_phone},
+			c_table = #{cafeVO.c_table}, c_open = #{cafeVO.c_open}, c_close= #{cafeVO.c_close},
+			c_rest = #{cafeVO.c_rest}, c_updated_date = sysdate 
+		WHERE c_no = #{cafeVO.c_no}
+		
+	</update>
+	
 	
 	<!-- =============================================== 게시글 (공지사항) board_write 수정 ====================================================== -->
 	

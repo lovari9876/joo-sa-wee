@@ -156,7 +156,7 @@
 						</div>
 						<c:if test = "${m_id eq 'admin'}">
 							<div class = "admin_modify">
-								<a href = "#">수정하기</a>
+								<a href = "/admin/cafe_modify?c_no=${cafe_info.c_no}">수정하기</a>
 							</div>
 						</c:if>
 					</div>

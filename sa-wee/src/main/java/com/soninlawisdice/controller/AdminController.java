@@ -524,6 +524,9 @@ public class AdminController {
 		return "admin/island_list";
 	}
 
+	
+	////////////////////////////cafe_list///////////////////////////////////////
+	
 	@RequestMapping(value = "/cafe_list", method = RequestMethod.GET)
 	public String cafe_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
 
@@ -538,6 +541,34 @@ public class AdminController {
 
 		return "admin/cafe_list";
 	}
+	
+	//cafe 수정화면
+	@RequestMapping("/cafe_modify")
+	public String cafe_modify(Model model, int c_no) {
+		
+		
+		model.addAttribute("cafe_info", boardService.selectCafeInfo(c_no));
+	
+		return "admin/cafe_modify";
+	}
+	
+	
+	// cafe 수정
+	@RequestMapping(value = "/updateCafe", method = RequestMethod.POST)
+	public String updateCafe(CafeVO cafeVO, @RequestParam int c_no, RedirectAttributes re) throws Exception {
+		
+		adminService.updateCafe(cafeVO);
+		
+		re.addAttribute("c_no", c_no);
+
+		return "redirect:/cafe_info";
+
+	}
+	
+	
+	
+	////////////////////////////faq_list///////////////////////////////////////
+	
 
 	@RequestMapping(value = "/faq_list", method = RequestMethod.GET)
 	public String faq_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {

@@ -82,6 +82,9 @@ public interface AdminMapper {
 	// 수정 : board_write(notice)
 	public void updateNotice(@Param("board_writeVO")Board_writeVO board_writeVO);
 		
+	// 수정 : cafe
+	public void updateCafe(@Param("cafeVO")CafeVO cafeVO);
+			
 	
 	
 	// 회원 탈퇴
