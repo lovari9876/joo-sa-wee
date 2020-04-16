@@ -77,7 +77,7 @@
 							6.거래완료(판매자에게 입금완료) 7. 거래취소 -->
 						<c:choose>				
 							<c:when test="${payment['P_STATUS'] eq 1}">거래요청</c:when>		
-							<c:when test="${payment['P_STATUS'] eq 2}">입금대기</c:when>
+							<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
 							<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
@@ -93,7 +93,7 @@
 										onclick="buy_modal(this.value);">
 								<c:choose>				
 									<c:when test="${payment['P_STATUS'] eq 1}">결제하기</c:when>		
-									<c:when test="${payment['P_STATUS'] eq 2}">입금대기</c:when>
+									<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
 									<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
 									<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
 									<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
@@ -163,7 +163,7 @@
 							6.거래완료(판매자에게 입금완료) 7. 거래취소 -->
 						<c:choose>				
 							<c:when test="${payment['P_STATUS'] eq 1}">거래요청</c:when>		
-							<c:when test="${payment['P_STATUS'] eq 2}">입금대기</c:when>
+							<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
 							<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
@@ -179,7 +179,7 @@
 									onclick="sell_modal(this.value);">
 								<c:choose>				
 									<c:when test="${payment['P_STATUS'] eq 1}">주문확인</c:when>		
-									<c:when test="${payment['P_STATUS'] eq 2}">입금대기</c:when>
+									<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
 									<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
 									<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
 									<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
@@ -187,6 +187,7 @@
 									<c:when test="${payment['P_STATUS'] eq 7}">거래취소</c:when>
 									<c:otherwise>불명확</c:otherwise>
 								</c:choose>
+								
 							</button> 
 							
 						</div>
@@ -195,7 +196,6 @@
 			</c:forEach>
 		</table>
 	</div>
-
 
 </body>
 

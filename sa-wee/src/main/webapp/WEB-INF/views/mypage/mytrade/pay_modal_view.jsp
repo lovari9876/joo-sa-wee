@@ -14,8 +14,20 @@
     <link rel="icon" type="image/png"
 		href="/images/share/wolf_logo.ico" />
 	
-	<!-- modal -->	
+	<!-- modal 
+	================================================== -->	
 	<link rel="stylesheet" href="/css/mypage/cassie/mypage_modalstyle.css" />
+	
+	<!-- 결제: 아임포트 js 
+	================================================== -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript"
+		src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+	<!-- 발표시 할 일:  -->
+	<!-- 결제 완료 후 pc카톡 화면 보여주면서 결제완료 상태 보여주기 -->
+	
 
 </head>
 <body >
@@ -26,7 +38,7 @@
 		<div class="modal--content">						
 			<div>
 				<!-- ajax로 값 불러와서... 값 넣을 때도 ajax사용..  -->
-				<form action="call_buy" method="post" enctype="multipart/form-data">
+				<form >
 					<input type = "hidden" name="t_no" value = "${content_view_t['T_NO']}"/> <!-- 글번호 -->
 					<input type = "hidden" name="m_no" value = "${content_view_t['M_NO']}"/> <!-- 판매자 -->
 					
@@ -66,8 +78,8 @@
 						</table>
 						<br/>
 						<br/>						
-						<button id="buy-btn" class="write-btn lavender-btn" type="submit"
-								onClick="return isChecked()">결제</button>	
+						<button id="buy-btn" class="write-btn lavender-btn" type="button"
+								onClick="payNow()">결제</button>	
 						<!-- modal close -->
 						<span class="modal--close" onClick="closePayModal()">close</span>
 					</div>
@@ -78,36 +90,6 @@
 	</div>
 
 	
-	<script>
-		
-		// 구매요청 버튼 누를 때, 체크 안된 것이 있으면 alert 띄우고 모달 유지, 
-		// 1개 이상 체크하면 완료 alert 띄우고 form action 주소 이동
-		function isChecked() {
-			var checkBoxes = document.getElementsByName("tg");	
-			var msg = "구매 요청이 완료되었습니다.\n마이페이지에서 확인해보세요.";
-			var chk = false;
-			var count = 0;
-			
-			for(var i=0; i<checkBoxes.length; i++){
-				if(checkBoxes[i].checked){
-					count = count +1; 
-				}
-			}
-			
-			if(count != 0) {
-				alert(msg);	
-				return;
-			} else {
-				msg = "구매할 상품을 선택하세요.";
-				alert(msg);	
-				return false;
-			}			
-			
-		} // 버튼에 onClick="return isChecked()" 이렇게 해야 
-		  // 미체크 시 alert 띄우고 모달로 돌아온다!
-		
-	</script>
-					
 
 </body>
 </html>
