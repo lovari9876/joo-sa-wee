@@ -1080,6 +1080,12 @@ dl, ol, ul {
 	padding-left:15px;
 }
 
+.test_item.fifth {
+	float: right;
+	padding-left:15px;
+	cursor: pointer;
+}
+
 
 /* start: 목록 버튼 라벤더 #9f80c2 로 색깔 바꾸기  */
 
@@ -2098,6 +2104,11 @@ input[type=button]:first-child {
         font-size: 13px;
         letter-spacing: .1em;
         color: #ccc; }
+       .comment-list li .comment-body .meta2 {
+        text-transform: uppercase;
+        font-size: 13px;
+        letter-spacing: .1em;
+        color: #a3a3a3; }
       .comment-list li .comment-body .reply {
         padding: 5px 10px;
         background: #e6e6e6;

@@ -78,7 +78,8 @@
 						</div>
 						<div>
 							<span class="text-white">작성자 ${content_view_cr['M_NICK']}</span>
-							<span class="slash">&bullet;</span> 
+							<span class="slash">&bullet;</span>
+							<span class="text-white">작성일  
 							<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 								<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
 								<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
@@ -142,11 +143,11 @@
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
 						<input class="good" type="image" src="images/board_hj/good.png"
-							id="rec_btn" Onclick="location.href='http://localhost:8282/loginview'"
+							id="rec_btn_cr" Onclick="location.href='http://localhost:8282/loginview'"
 							data-toggle="tooltip" data-container=".tooltip-purple"
 							data-placement="top" title="추천 +1">
 						<p>
-							<span>(</span><span class="rec">${content_view_cr['BW_RECOMMEND_NUM']}</span><span>)</span>
+							<span>(</span><span class="rec_cr">${content_view_cr['CR_RECOMMEND_NUM']}</span><span>)</span>
 						</p>
 					</sec:authorize>
 					</div>
@@ -161,6 +162,14 @@
 							</div>
 							<div class="test_item first">
 								<input type="button" style="margin:0 !important" onclick = "location.href='cafe_info?c_no=${content_view_cr['C_NO']}'" value="카페정보" class="btn btn-lavender btn-md">
+							</div>
+							<div class="test_item fifth">
+								<sec:authorize access="isAuthenticated()">
+									<a id="scrap" data-bt="${content_view_cr['BT_NAME']}" data-no="${content_view_cr['CR_NO']}">스크랩</a>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<a href="loginview">스크랩</a>
+								</sec:authorize>
 							</div>
 							<div class="test_item fourth">
 								<c:if test = "${content_view_cr['M_NO'] != m_no}">

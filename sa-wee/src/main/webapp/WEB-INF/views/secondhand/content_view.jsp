@@ -149,10 +149,18 @@
 					<!-- ** 거래하기 버튼 및 모달: 일단 판매시에만 나타나도록! -->		
 					<c:if test="${content_view_t['S_NO']==32}" > 	
 						<!-- 구매하기 버튼: open modal -->
-						<div align="center" class="buy--button" >
-							<button id ="myBtn" class="write-btn lavender-btn" type="button" >거래하기</button> 
-							<!-- <a class="" data-modal href="#myModal">거래하기</a>  -->
-						</div>
+						<sec:authorize access="isAuthenticated()">
+							<div align="center" class="buy--button" >
+								<button id ="myBtn" class="write-btn lavender-btn" type="button" >거래하기</button> 
+								<!-- <a class="" data-modal href="#myModal">거래하기</a>  -->
+							</div>
+						</sec:authorize>
+						<sec:authorize access="isAnonymous()">
+							<div align="center">
+								<button class="write-btn lavender-btn" type="button" 
+								onclick="location.href='loginview' ">거래하기</button> 
+							</div>
+						</sec:authorize>
 					</c:if>					  
 					<br />							
 					<br />	

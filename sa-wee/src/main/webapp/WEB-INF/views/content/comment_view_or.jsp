@@ -103,29 +103,29 @@
 								</sec:authorize>
 
 								<!-- 추천 버튼 -->
-								<sec:authorize access="isAuthenticated()">
+							<sec:authorize access="isAuthenticated()">
 								<div class="test_item reco tooltip-purple">
 								<input class="rec_cm_btn_or" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
 									name="button" value="${comment_list_or[status.index]['CM_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm_or">${comment_list_or[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
 								<input type="hidden" name="c_no" class="rec_cm_btn_or" value="${cafe_info.c_no}">
-							</div>
+								</div>
 							</sec:authorize>
 							<sec:authorize access="isAnonymous()">
-							<div class="test_item reco tooltip-purple">
-								<input class="rec_cm_btn_or" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
-									Onclick="location.href='http://localhost:8282/loginview'"
-									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm_or">${comment_list_or[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
-								<input type="hidden" name="c_no" class="rec_cm_btn_or" value="${cafe_info.c_no}">
-							</div>
+								<div class="test_item reco tooltip-purple">
+									<input class="rec_cm_btn_or" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
+										Onclick="location.href='http://localhost:8282/loginview'"
+										data-toggle="tooltip" data-container=".tooltip-purple"
+										data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm_or">${comment_list_or[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
+									<input type="hidden" name="c_no" class="rec_cm_btn_or" value="${cafe_info.c_no}">
+								</div>
 							</sec:authorize>
 
 							</div>
 
 							<!-- 작성일자 -->
-							<div class="meta">>작성일 <jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+							<div class="meta2">작성일 <jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
 							 <fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
 								<fmt:formatDate value="${comment_list_or[status.index]['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 								<c:choose>

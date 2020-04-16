@@ -73,29 +73,29 @@
 								</sec:authorize>
 								<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
 								<sec:authorize access="isAuthenticated()">
-								<div class="test_item reco tooltip-purple">
-									<input class="rec_cm_btn_t" id="rec_cm_btn" type="image"
-										src="images/board_hj/thums_up_cm2_color.png" name="button"
-										value="${comment_list_t[status.index]['CM_NO']}"
-										data-toggle="tooltip" data-container=".tooltip-purple"
-										data-placement="top" title="추천" /><span class="text_items">(</span><span
-										class="text_items rec_cm_t">${comment_list_t[status.index]['CM_RECOMMEND_NUM']}</span><span
-										class="text_items">)</span> <input type="hidden" name="t_no"
-										class="rec_cm_btn_t" value="${content_view_t['T_NO']}">
-								</div>
+									<div class="test_item reco tooltip-purple">
+										<input class="rec_cm_btn_t" id="rec_cm_btn" type="image"
+											src="images/board_hj/thums_up_cm2_color.png" name="button"
+											value="${comment_list_t[status.index]['CM_NO']}"
+											data-toggle="tooltip" data-container=".tooltip-purple"
+											data-placement="top" title="추천" /><span class="text_items">(</span><span
+											class="text_items rec_cm_t">${comment_list_t[status.index]['CM_RECOMMEND_NUM']}</span><span
+											class="text_items">)</span> <input type="hidden" name="t_no"
+											class="rec_cm_btn_t" value="${content_view_t['T_NO']}">
+									</div>
 								</sec:authorize>
 								<sec:authorize access="isAnonymous()">
-								<div class="test_item reco tooltip-purple">
-									<input class="rec_cm_btn_t" id="rec_cm_btn" type="image"
-										src="images/board_hj/thums_up_cm2_color.png" name="button"
-										Onclick="location.href='http://localhost:8282/loginview'"
-										data-toggle="tooltip" data-container=".tooltip-purple"
-										data-placement="top" title="추천" />
-										<span class="text_items">(</span><span
-										class="text_items rec_cm_t">${comment_list_t[status.index]['CM_RECOMMEND_NUM']}</span><span
-										class="text_items">)</span> <input type="hidden" name="t_no"
-										class="rec_cm_btn_t" value="${content_view_t['T_NO']}">
-								</div>
+									<div class="test_item reco tooltip-purple">
+										<input class="rec_cm_btn_t" id="rec_cm_btn" type="image"
+											src="images/board_hj/thums_up_cm2_color.png" name="button"
+											Onclick="location.href='http://localhost:8282/loginview'"
+											data-toggle="tooltip" data-container=".tooltip-purple"
+											data-placement="top" title="추천" />
+											<span class="text_items">(</span><span
+											class="text_items rec_cm_t">${comment_list_t[status.index]['CM_RECOMMEND_NUM']}</span><span
+											class="text_items">)</span> <input type="hidden" name="t_no"
+											class="rec_cm_btn_t" value="${content_view_t['T_NO']}">
+									</div>
 								</sec:authorize>
 							</div>
 							<div class="meta">작성일

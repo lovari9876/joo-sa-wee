@@ -157,6 +157,14 @@
 							<div class="test_item first">
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
 							</div>
+							<div class="test_item fifth">
+								<sec:authorize access="isAuthenticated()">
+									<a id="scrap" data-bt="${content_view['BT_NAME']}" data-no="${content_view['BW_NO']}">스크랩</a>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+									<a href="loginview">스크랩</a>
+								</sec:authorize>
+							</div>
 							<div class="test_item fourth">
 								<c:if test = "${content_view['M_NO'] != m_no}">
 								<sec:authorize access="isAuthenticated()">
