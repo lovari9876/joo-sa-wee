@@ -52,7 +52,7 @@
 										value="${member.m_no} ">receive</button>
 								</div>
 								<div>
-									<button type="button" class="btn-send" value="${member.m_no}">send</button>
+									<button type="button" class="btn-send active" value="${member.m_no}">send</button>
 								</div>
 							</div>
 							<div class="srch_bar">
@@ -121,7 +121,7 @@
 								<div class="msg_history tab_content" id="n_no${message['N_NO']}">
 									<h5 class="text-center" id="one_n_title">${message['N_TITLE']}</h5>
 									<hr />
-									<p>${message['M2_NICK']}
+									<p>보낸 이 : ${message['M2_NICK']}
 										<span class="time_date" id="one_n_date"><fmt:formatDate
 												pattern="yyyy-MM-dd HH:mm"
 												value="${message['N_WRITTEN_DATE']}" /></span>

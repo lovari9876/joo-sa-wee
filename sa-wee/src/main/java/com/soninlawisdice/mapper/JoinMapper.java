@@ -19,6 +19,9 @@ public interface JoinMapper {
  	// 닉네임 중복체크
  	public int nickCheck(MemberVO memberVO) throws Exception;
  	
+ 	// 이메일 중복체크
+ 	public int emailCheck(MemberVO memberVO) throws Exception;
+ 	
  	// 로그인
   	public MemberVO login(@Param("m_id")String m_id, @Param("m_pw")String m_pw) throws Exception;
 

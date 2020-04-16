@@ -12,31 +12,12 @@
 
 <!--===============================================================================================-->
 <link rel="stylesheet" type="text/css"
-	href="resources/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/css/font-awesome.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/vendor/animate/animate.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/vendor/animsition/css/animsition.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="resources/vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
 	href="resources/css/message/util.css">
 <link rel="stylesheet" type="text/css"
 	href="resources/css/message/main.css">
 <!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="css/message/check.css" />
+
 </head>
 <body>
 	<div class="container-contact100">
@@ -45,34 +26,33 @@
 			data-scrollwhell="0" data-draggable="1"></div>
 
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action="/send_message" >
-				<span class="contact100-form-title"> send message </span>
-				
-				<input type="hidden" id="m_no2" name="m_no2" value="${member.m_no}"/>
-				
+			<form id="send_message-form" class="contact100-form validate-form" action="/send_message">
+				<span class="contact100-form-title"> send message </span> <input
+					type="hidden" id="m_no2" name="m_no2" value="${member.m_no}" />
+
 				<div class="wrap-input100 validate-input" data-validate="닉네임을 입력하세요">
-					<input class="input100" type="text" name="m_nick" placeholder="닉네임">
+					<input class="input100" type="text" name="m_nick" id="m_nick" placeholder="닉네임">
 					<span class="focus-input100"></span>
 				</div>
+				<div class="check_font" id="m_nick_check"></div>				
 
 				<div class="wrap-input100 validate-input" data-validate="제목을 입력하세요">
-					<input class="input100" type="text" name="n_title" id="n_title" placeholder="제목">
-					<span class="focus-input100"></span>
+					<input class="input100" type="text" name="n_title" id="n_title"
+						placeholder="제목"> <span class="focus-input100"></span>
 				</div>
-
-				<!-- <div class="wrap-input100 validate-input"
-					data-validate="Please enter email: e@a.x">
-					<input class="input100" type="text" name="email"
-						placeholder="Email"> <span class="focus-input100"></span>
-				</div> -->
-
+				<div class="check_font" id="n_title_check"></div>
+				
 				<div class="wrap-input100 validate-input" data-validate="메세지를 입력하세요">
-					<textarea class="input100" name="n_content" id="n_content" placeholder="내용"></textarea>
+					<textarea class="input100" name="n_content" id="n_content"
+						placeholder="내용"></textarea>
 					<span class="focus-input100"></span>
 				</div>
+				<div class="check_font" id="n_content_check"></div>			
 
 				<div class="container-contact100-form-btn">
-					<button class="contact100-form-btn">쪽지 보내기</button>
+				
+					<input type="button" class="contact100-form-btn check" value="쪽지 보내기"/>
+					<!-- <button class="contact100-form-btn">쪽지 보내기</button> -->					
 				</div>
 			</form>
 
@@ -86,39 +66,12 @@
 
 	<div id="dropDownSelect1"></div>
 
-	<!--===============================================================================================-->
-	<script src="resources/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/animsition/js/animsition.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/daterangepicker/moment.min.js"></script>
-	<script src="resources/vendor/daterangepicker/daterangepicker.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/countdowntime/countdowntime.js"></script>
-	<!--===============================================================================================-->
 	<script
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
-	<script src="resources/message/js/map-custom.js"></script>
+	<script src="js/mypage/jquery-3.2.1.min.js"></script>
 	<!--===============================================================================================-->
 	<script src="resources/js/message/main.js"></script>
-
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async
-		src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-23581568-13');
-	</script>
+	<script src="resources/js/message/check.js"></script>
 
 </body>
 </html>

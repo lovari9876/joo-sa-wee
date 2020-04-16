@@ -42,6 +42,12 @@
 		WHERE m_id = #{m_id}
 		<!-- AND m_pw = #{m_pw} -->
 	</select>
+	
+	<!-- 이메일 중복체크 -->
+	<select id="emailCheck" resultType="int">
+		SELECT COUNT(*) FROM MEMBER
+			WHERE m_email = #{m_email}
+	</select>
 
 	<!-- 로그인 -->
 	<select id="login" resultType="com.soninlawisdice.vo.MemberVO">
