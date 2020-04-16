@@ -236,8 +236,13 @@ public class HeeJeongController {
 
 	// 게시글 신고글 view
 	@RequestMapping(value = "/report_view_bw", method = RequestMethod.GET)
-	public String report_view_bw(HttpServletRequest request, Model model) {
+	public String report_view_bw(HttpServletRequest request, Model model, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_view_bw");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 		
 		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
 
@@ -251,9 +256,14 @@ public class HeeJeongController {
 	// 게시글 신고글 쓰기
 	@RequestMapping(value = "/report_bw", method = RequestMethod.GET)
 	public String report_bw(@ModelAttribute("reportVO") ReportVO reportVO, Model model, Board_writeVO board_writeVO,
-							HttpServletRequest request) {
+							HttpServletRequest request, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_bw");
-
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
+		
 		System.out.println(reportVO.getR_type_no());
 
 		contentService.insertReportBW(reportVO);
@@ -275,8 +285,13 @@ public class HeeJeongController {
 
 	// 회원 신고글 view
 	@RequestMapping(value = "/report_view_m", method = RequestMethod.GET)
-	public String report_view_m(HttpServletRequest request, Model model) {
+	public String report_view_m(HttpServletRequest request, Model model, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_view_m");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
 
@@ -295,8 +310,14 @@ public class HeeJeongController {
 	// 회원 신고글 쓰기
 	@RequestMapping(value = "/report_m", method = RequestMethod.GET)
 	public String report_m(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO,
-							HttpServletRequest request, @RequestParam int bw_no, RedirectAttributes re) {
+							HttpServletRequest request, @RequestParam int bw_no, RedirectAttributes re, 
+							Principal principal) throws Exception {
 		System.out.println("report_m");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -322,8 +343,13 @@ public class HeeJeongController {
 
 	// 댓글 신고글 view
 	@RequestMapping(value = "/report_view_cm", method = RequestMethod.GET)
-	public String report_view_cm(HttpServletRequest request, Model model) {
+	public String report_view_cm(HttpServletRequest request, Model model, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_view_cm");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		int cm_no = Integer.parseInt(request.getParameter("cm_no"));
 
@@ -337,10 +363,14 @@ public class HeeJeongController {
 	// 댓글 신고글 쓰기
 	@RequestMapping(value = "/report_cm", method = RequestMethod.GET)
 	public String report_cm(@ModelAttribute("reportVO") ReportVO reportVO, Model model, CM_commentVO cm_commentVO,
-							HttpServletRequest request) {
-		System.out.println("report_cm");
+							HttpServletRequest request, Principal principal, MemberVO memberVO) throws Exception {
 
 		System.out.println(reportVO.getR_type_no());
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		contentService.insertReportCM(reportVO);
 		
@@ -436,8 +466,13 @@ public class HeeJeongController {
 	
 	// 중고거래 신고글 view
 	@RequestMapping(value = "/report_view_t", method = RequestMethod.GET)
-	public String report_view_t(HttpServletRequest request, Model model) {
+	public String report_view_t(HttpServletRequest request, Model model, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_view_t");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		int t_no = Integer.parseInt(request.getParameter("t_no"));
 
@@ -450,8 +485,13 @@ public class HeeJeongController {
 
 	// 중고거래 신고글 쓰기
 	@RequestMapping(value = "/report_t", method = RequestMethod.GET)
-	public String report_t(ReportVO reportVO, Model model, TradeVO tradeVO, HttpServletRequest request) {
+	public String report_t(ReportVO reportVO, Model model, TradeVO tradeVO, HttpServletRequest request, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_t");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -474,8 +514,13 @@ public class HeeJeongController {
 	
 	// 중고거래 회원 신고글 view
 	@RequestMapping(value = "/report_view_m_t", method = RequestMethod.GET)
-	public String report_view_m_t(HttpServletRequest request, Model model) {
+	public String report_view_m_t(HttpServletRequest request, Model model, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_view_m_t");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
 
@@ -494,8 +539,13 @@ public class HeeJeongController {
 	// 중고거래 회원 신고글 쓰기
 	@RequestMapping(value = "/report_m_t", method = RequestMethod.GET)
 	public String report_m_t(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO,
-								HttpServletRequest request, @RequestParam int t_no, RedirectAttributes re) {
+								HttpServletRequest request, @RequestParam int t_no, RedirectAttributes re, Principal principal) throws Exception {
 		System.out.println("report_m_t");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -735,8 +785,13 @@ public class HeeJeongController {
 	
 	// 카페리뷰 신고글 view
 	@RequestMapping(value = "/report_view_cr", method = RequestMethod.GET)
-	public String report_view_cr(HttpServletRequest request, Model model) {
+	public String report_view_cr(HttpServletRequest request, Model model, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_view_cr");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
 
@@ -749,8 +804,13 @@ public class HeeJeongController {
 
 	// 카페리뷰 신고글 쓰기
 	@RequestMapping(value = "/report_cr", method = RequestMethod.GET)
-	public String report_cr(ReportVO reportVO, Model model, Cafe_reviewVO cafe_reviewVO, HttpServletRequest request) {
+	public String report_cr(ReportVO reportVO, Model model, Cafe_reviewVO cafe_reviewVO, HttpServletRequest request, Principal principal, MemberVO memberVO) throws Exception { 
 		System.out.println("report_cr");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -772,8 +832,13 @@ public class HeeJeongController {
 	
 	// 카페리뷰 회원 신고글 view
 	@RequestMapping(value = "/report_view_m_cr", method = RequestMethod.GET)
-	public String report_view_m_cr(HttpServletRequest request, Model model) {
+	public String report_view_m_cr(HttpServletRequest request, Model model, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_view_m_cr");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
 
@@ -792,8 +857,13 @@ public class HeeJeongController {
 	// 카페리뷰 회원 신고글 쓰기
 	@RequestMapping(value = "/report_m_cr", method = RequestMethod.GET)
 	public String report_m_cr(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO,
-									HttpServletRequest request, @RequestParam int cr_no, RedirectAttributes re) {
+									HttpServletRequest request, @RequestParam int cr_no, RedirectAttributes re, Principal principal) throws Exception {
 		System.out.println("report_m_cr");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -1102,8 +1172,13 @@ public class HeeJeongController {
 	
 	// 한줄평 회원 신고글 view
 	@RequestMapping(value = "/report_view_m_or", method = RequestMethod.GET)
-	public String report_view_m_or(HttpServletRequest request, Model model) {
+	public String report_view_m_or(HttpServletRequest request, Model model, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("report_view_m_or");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
 
@@ -1122,8 +1197,13 @@ public class HeeJeongController {
 	// 한줄평 회원 신고글 쓰기
 	@RequestMapping(value = "/report_m_or", method = RequestMethod.GET)
 	public String report_m_or(@ModelAttribute("reportVO") ReportVO reportVO, Model model, MemberVO memberVO,
-									HttpServletRequest request, @RequestParam int c_no, RedirectAttributes re) {
+									HttpServletRequest request, @RequestParam int c_no, RedirectAttributes re, Principal principal) throws Exception {
 		System.out.println("report_m_or");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 
 		System.out.println(reportVO.getR_type_no());
 

@@ -117,8 +117,10 @@ public class CassieController {
 		// 게임, 가격 리스트
 		model.addAttribute("tgList", secondhandService.selectTrade_gameList(t_no));
 		
-		String m_id = principal.getName();		
-		memberVO = myPageService.mypage(m_id);
+		// 로그인 안된 상태에서는 content_view 못보게 해놓는 코드.. 이 부분 삭제해도 됨.
+		/*
+		 * String m_id = principal.getName(); memberVO = myPageService.mypage(m_id);
+		 */
 		
 		model.addAttribute("m_no", memberVO.getM_no());
 

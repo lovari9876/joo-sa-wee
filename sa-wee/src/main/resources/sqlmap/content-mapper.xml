@@ -160,8 +160,9 @@
 	<!-- cm_no를 가져오기 위해 -->
 	<select id="selectContentCM" resultType="java.util.HashMap"
 		parameterType="int">
-		SELECT CM_NO, CM_REPORT_NUM FROM CM_COMMENT WHERE CM_NO
-		= #{cm_no}
+		SELECT CM.CM_NO, CM.CM_REPORT_NUM, M.M_NO
+		FROM CM_COMMENT CM, MEMBER M
+		WHERE CM.M_NO = M.M_NO AND CM.CM_NO = #{cm_no}
 	</select>
 
 	<!-- 댓글 신고글 쓰기 -->
@@ -315,7 +316,7 @@
 		T.T_UPDATED_DATE, T.T_HIT,
 		T.T_RECOMMEND_NUM, T.T_REPORT_NUM,
 		T.T_ISLAND, T.T_PRICE,
-		M.M_NICK, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
+		M.M_NICK, M.M_NO, BT.BT_NAME, BT.BT_NO, S.S_CONTENT
 		FROM
 		TRADE T, MEMBER M,
 		BOARD_TYPE BT, SUBJECT S

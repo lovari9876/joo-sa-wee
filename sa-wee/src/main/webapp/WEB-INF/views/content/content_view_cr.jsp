@@ -165,7 +165,7 @@
 							<div class="test_item fourth">
 								<c:if test = "${content_view_cr['M_NO'] != m_no}">
 								<sec:authorize access="isAuthenticated()">
-									<a href="report_view_bw?bw_no=${content_view_cr['BW_NO']}"
+									<a href="report_view_cr?cr_no=${content_view_cr['CR_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 								</sec:authorize>
 								</c:if>

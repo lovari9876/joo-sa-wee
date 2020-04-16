@@ -93,7 +93,7 @@
 								<div class="test_item name" id="pop">
 									<span role="button" class="pop_btn popovers"
 										data-toggle="popover"
-										data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${comment_list_or[status.index]["M_NO"]}&c_no=${cafe_info.c_no}'>신고하기</a>">
+										data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m_or?m_no=${comment_list_or[status.index]["M_NO"]}&c_no=${cafe_info.c_no}'>신고하기</a>">
 										<h3>${comment_list_or[status.index]['M_NICK']}</h3>
 									</span>
 								</div>
@@ -114,11 +114,11 @@
 							</sec:authorize>
 							<sec:authorize access="isAnonymous()">
 							<div class="test_item reco tooltip-purple">
-								<input class="rec_cm_btn" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
+								<input class="rec_cm_btn_or" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
 									Onclick="location.href='http://localhost:8282/loginview'"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm">${comment_list[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
-								<input type="hidden" name="bw_no" class="rec_cm_btn" value="${cafe_info.c_no}">
+									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm_or">${comment_list_or[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
+								<input type="hidden" name="c_no" class="rec_cm_btn_or" value="${cafe_info.c_no}">
 							</div>
 							</sec:authorize>
 

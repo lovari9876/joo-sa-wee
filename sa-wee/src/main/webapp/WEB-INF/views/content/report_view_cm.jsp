@@ -39,6 +39,7 @@
 				<form action="report_cm" method="get">
 					<input type="hidden" name="r_type_no" value="${comment_view['CM_NO']}">
 					<input type="hidden" name="cm_no" value="${comment_view['CM_NO']}">
+					<input type="hidden" name="m_no" value="${m_no}">
 					<input type="hidden" name="cm_report_num" value="${comment_view['CM_REPORT_NUM']}">
 					<div class="form-group">
 						<label for="message">신고하기</label>
