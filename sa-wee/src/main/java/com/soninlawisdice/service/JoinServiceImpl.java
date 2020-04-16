@@ -49,6 +49,13 @@ public class JoinServiceImpl implements JoinService {
 		return result;
 	}
 
+	// 이메일 중복체크
+	@Override
+	public int emailCheck(MemberVO memberVO) throws Exception {
+		int result = joinMapper.emailCheck(memberVO);
+		return result;
+	}
+
 	// 로그인
 	@Override
 	public MemberVO login(String m_id, String m_pw) throws Exception {
@@ -60,5 +67,6 @@ public class JoinServiceImpl implements JoinService {
 	public RankVO rank() throws Exception {
 		return joinMapper.rank();
 	}
+
 
 }

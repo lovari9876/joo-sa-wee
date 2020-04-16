@@ -1,0 +1,16 @@
+#back {
+	position: absolute;
+	z-index: 100;
+	background-color: #000000;
+	display: none;
+	left: 0;
+	top: 0;
+}
+
+#loadingBar {
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	display: none;
+	z-index: 200;
+}

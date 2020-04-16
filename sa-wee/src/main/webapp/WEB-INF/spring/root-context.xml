@@ -46,6 +46,30 @@
 		</property>
 	</bean>
 
+	<!-- 이메일 관련 -->
+	<bean id="javaMailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="soninlaw55@gmail.com" />
+		<property name="password" value="dice0615" />
+		
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="mailService"
+		class="com.soninlawisdice.service.MailServiceImpl">
+		<property name="javaMailSender"
+			ref="javaMailSender" /> 	
+			<!-- ref="org.springframework.mail.javamail.JavaMailSenderImpl" />--> 
+	</bean>
+
+
 	<!-- sqlSession을 생성하는 factory 객체 생성:(factory는 디자인패턴) -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
