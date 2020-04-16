@@ -32,7 +32,8 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
+	
+	<!-- 자식창이 팝업창일 때 부모창 새로고침 하는 코드 -->
 	<script type="text/javascript">
 		window.opener.location.reload();
 		window.close();
