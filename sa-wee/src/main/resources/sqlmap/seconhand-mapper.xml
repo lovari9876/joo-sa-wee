@@ -441,6 +441,15 @@
 	</select>
 	
 	
+	<!-- pay_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃 -->
+	<update id = "updatePaymentSuccess">
+		UPDATE 
+			PAYMENT 
+		SET 
+			P_STATUS = 2 <!-- 2: 결제완료 -->
+		WHERE 
+			P_NO = #{p_no} 
+	</update>	
 	
 	
 	

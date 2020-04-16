@@ -28,9 +28,23 @@
 			<id>oracle</id>
 			<url>http://www.datanucleus.org/downloads/maven2/</url>
 		</repository>
+		
+		<!-- 아임포트 위한.. -->
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
 	</repositories>
-
+	
+	
 	<dependencies>
+	
+		<!-- 결제: 아임포트 -->
+		<dependency>
+		    <groupId>com.github.iamport</groupId>
+		    <artifactId>iamport-rest-client-java</artifactId>
+		    <version>0.2.6</version>
+		</dependency>
 	
 		<!-- 파일 업로드 위한 -->
 		<dependency>
@@ -89,6 +103,20 @@
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.5.4</version>
 		</dependency>
+		
+		<!--JSONObject 위한 JSON.simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		
+		<!--JSON.stringify() 위한... -->
+		<dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.5</version>
+        </dependency>
 		
 		<!-- 시큐리티 STRAT -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->

@@ -45,4 +45,7 @@ public interface SecondhandService {
 
 	// 내 거래: 거래 하나의 ptgList(게임, 가격)
 	public ArrayList<HashMap<String, Object>> selectPTGList(int pno);
+
+	// pay_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃
+	public void updatePaymentSuccess(int p_no);
 }

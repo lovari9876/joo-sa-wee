@@ -1,5 +1,12 @@
 package com.soninlawisdice.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,20 +15,30 @@ import java.util.Locale;
 import java.util.StringTokenizer;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Param;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.AccessToken;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
+import com.soninlawisdice.iamport.IamPort;
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
@@ -36,6 +53,8 @@ import com.soninlawisdice.vo.NoteVO;
 @Controller
 public class MyPageController {
 
+	IamportClient client;
+	
 	@Autowired
 	private MyPageService myPageService;
 
@@ -117,6 +136,8 @@ public class MyPageController {
 				
 		return "mypage/mypage";
 	}
+
+///////////// 내거래 및 결제 ////////////////////////////////////////////////////////	
 	
 	// 판매자 주문확인 모달: price_modal_view
 	@ResponseBody
@@ -152,6 +173,127 @@ public class MyPageController {
 		return secondhandService.selectPTGList(pno); 
 	} 
 	
+	
+	// 토큰 가져오기 실패.. 발표 후에 해볼 것
+	public String getToken(HttpServletRequest request, HttpServletResponse response, 
+					JSONObject json, String requestURL) throws Exception {
+		// requestURL 아임포트 고유키, 시크릿 키 정보를 포함하는 url 정보
+		String _token = "";
+
+		try {
+			String requestString = "";
+			URL url = new URL(requestURL);
+			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+			connection.setDoOutput(true);
+			connection.setInstanceFollowRedirects(false);
+			connection.setRequestMethod("POST");
+			connection.setRequestProperty("Content-Type", "application/json");
+			OutputStream os = connection.getOutputStream();
+			os.write(json.toString().getBytes());
+			connection.connect();
+
+			StringBuilder sb = new StringBuilder();
+
+			if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+				BufferedReader br = new BufferedReader(
+						new InputStreamReader(connection.getInputStream(), "utf-8"));
+
+				String line = null;
+				while ((line = br.readLine()) != null) {
+					sb.append(line + "\n");
+				}
+				br.close();
+
+				requestString = sb.toString();
+			}
+
+			os.flush();
+			connection.disconnect();
+
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObj = (JSONObject) jsonParser.parse(requestString);
+
+			if ((Long) jsonObj.get("code") == 0) {
+				JSONObject getToken = (JSONObject) jsonObj.get("response");
+				System.out.println("getToken==>>" + getToken.get("access_token"));
+				_token = (String) getToken.get("access_token");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			_token = "";
+		}
+
+		return _token;
+	}
+	
+	// 결제 성공해서 rsp.success=true 일 때 ajax로 아임포트 서버의 결제 성공 정보 받을 곳
+	@ResponseBody
+	@RequestMapping(value = "/payments/complete", method = RequestMethod.POST)
+	public String pay_success(Model model, HttpServletRequest rq, HttpServletResponse rs,
+			@RequestParam("p_no") int p_no) throws Exception {
+		
+		System.out.println("payments/complete");
+						
+		// ajax로 보낸 json p_no 받기
+		//int p_no = paymentVO.getP_no();
+		System.out.println("ajax로 받은 p_no: "+ p_no);
+		
+		// ajax text로 넘겨줘서 받은 값 2개
+		String imp_uid = rq.getParameter("imp_uid");
+		String payedPrice = rq.getParameter("price"); 
+		
+		System.out.println("imp_uid: " + imp_uid);
+		
+		IamPort iamPort = new IamPort();
+		String status = iamPort.getPaymentInfo(imp_uid); // 결제 상태
+		System.out.println(status);
+			
+		/*
+		 * // 거래정보를 조회하기 위해서는 관리자 대시보드에서 발급받은 // REST API키와 REST API Secret으로
+		 * 토큰(access_token)을 발급받은 후, // 해당 토큰을 결제 정보 조회 API 요청에 포함해야합니다. // 토큰 발급 과정을
+		 * 클라이언트에서 수행하면 REST API키와 REST API Secret이 // 노출되어 보안상 안전하지 않기 때문에 토큰 발급 및 거래
+		 * 정보 조회 과정은 // 반드시 서버사이드에서 수행해야합니다.
+		 * 
+		 * // rest key 2개 넣어서 client 객체 생성(아임포트 관리자 페이지에서 가져옴) String rest_api_key =
+		 * "1982424697374934"; String rest_api_secret =
+		 * "YCuKDDXOzO431tJ0h1JGX69rmAN7kbFiO93rN0gnPkrQOaR5cBL9IVB5vocPAR8o1bQOc7c1rDSgNJmZ";
+		 * client = new IamportClient(rest_api_key, rest_api_secret);
+		 * 
+		 * 
+		 * // 아임포트 토큰생성 String imp_key = URLEncoder.encode(rest_api_key, "UTF-8");
+		 * String imp_secret = URLEncoder.encode(rest_api_secret, "UTF-8"); JSONObject
+		 * json = new JSONObject(); json.put("imp_key", imp_key); json.put("imp_secret",
+		 * imp_secret); String _token = getToken(rq, rs, json,
+		 * "https://api.iamport.kr/users/getToken"); System.out.println(_token);
+		 * 
+		 * // access token 받아오기 try { IamportResponse<AccessToken> auth_response =
+		 * client.getAuth(); String token2 = auth_response.getResponse().getToken();
+		 * System.out.println(token2);
+		 * 
+		 * 
+		 * } catch (IamportResponseException e) { System.out.println(e.getMessage());
+		 * 
+		 * switch(e.getHttpStatusCode()) { case 401 : break; case 500 : break; } } catch
+		 * (IOException e) { //서버 연결 실패 e.printStackTrace(); }
+		 */				
+		
+		/*
+		 * // payment 결과 받기 String imp_uid = payment.getImpUid();
+		 * System.out.println("imp_uid"+ imp_uid);
+		 * 
+		 * try { IamportResponse<Payment> payment_response =
+		 * client.paymentByImpUid(imp_uid); payment_response.getResponse(); } catch
+		 * (IamportResponseException e) { System.out.println(e.getMessage());
+		 * 
+		 * switch(e.getHttpStatusCode()) { case 401 : break; case 500 : break; } } catch
+		 * (IOException e) { // TODO Auto-generated catch block e.printStackTrace(); }
+		 */
+		
+		secondhandService.updatePaymentSuccess(p_no);
+		  
+		return "mypage/mypage#trade"; // 사실 이 리턴값을 json으로 다시 보내야 함
+	} 
 	
 //////////////////////////////////////////////////////////////////////////////////////////////
 	// 회원정보 수정뷰
