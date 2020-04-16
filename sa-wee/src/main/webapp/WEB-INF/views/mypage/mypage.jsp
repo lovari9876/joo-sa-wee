@@ -102,17 +102,8 @@
 											<li>주소 : ${member.m_addr1}, ${member.m_addr2}</li>
 											<br />
 											<li>가입일 : 
-												<!-- 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-												<jsp:useBean id="today" class="java.util.Date" /> 
-												<!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
-												<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-												<fmt:formatDate value="${member.m_indate}" pattern="yyyy.MM.dd" var="date"/>
-												<c:choose>
-													<c:when test="${now ne date}">${date}</c:when> 
-													<c:otherwise>
-														<fmt:formatDate value="${member.m_indate}" pattern="HH:mm"/>
-													</c:otherwise>
-												</c:choose>
+												<fmt:formatDate value="${member.m_indate}" pattern="yyyy.MM.dd"/>
+											</li>
 											<br />
 											<li>신고당한 수 : ${member.m_report_num}</li>
 											<br />
@@ -219,7 +210,9 @@
 										<td class="cell title"><a href="/content_view_i?i_no=${board['I_NO']}&bt_no=${board['BT_NO']}">${board['I_TITLE']}</a></td>
 									
 										<td>
-												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" /> 
+											<!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
 											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
 											<fmt:formatDate value="${board['I_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 											<c:choose>

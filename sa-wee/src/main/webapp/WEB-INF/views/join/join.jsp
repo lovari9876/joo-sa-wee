@@ -134,25 +134,33 @@
 										<div class="check_font" id="m_phone_check"></div>
 									</div>
 								</div>
+
+								<input type="text" name="phone" id="phone"
+									placeholder="받는 사람 번호" />
+								<button onclick="sendSms();">전송</button>
+								<input type="text" name="sms" id="sms" placeholder="인증 번호 입력" />
+								<button onclick="phoneCheck();">인증</button>
+
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="text"
 											name="m_email" id="m_email" class="form-control" required>
 											<span class="label">이메일 주소</span> <span class="border"></span>
 										</label>
-										<div class="check_font" id="m_email_check"></div>										
-										<input type="button" class="btn btn-info" id="emailBtn" value="이메일 발송"/>
-										
-										<label class="form-row-inner"> <input type="text"
-											name="random_check" id="random_check" class="form-control" required>
-											<span class="label">인증번호 입력</span> <span class="border"></span>
+										<div class="check_font" id="m_email_check"></div>
+										<input type="button" class="btn btn-info" id="emailBtn"
+											value="이메일 발송" /> <label class="form-row-inner"> <input
+											type="text" name="random_check" id="random_check"
+											class="form-control" required> <span class="label">인증번호
+												입력</span> <span class="border"></span>
 										</label>
 										<div class="check_font"></div>
-										<input type="button" class="btn btn-info" id="emailAuthBtn" value="이메일 인증"/>
+										<input type="button" class="btn btn-info" id="emailAuthBtn"
+											value="이메일 인증" />
 										<%-- <input type="hidden" path="random" id="random" value="${random }" /> --%>
 										<input type="hidden" id="email_pass" value="N" />
 									</div>
-								</div>								
+								</div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="text"
