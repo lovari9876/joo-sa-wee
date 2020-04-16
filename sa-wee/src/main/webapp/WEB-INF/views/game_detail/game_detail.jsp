@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -84,9 +85,9 @@
 									<li>플레이시간<span>${game_detail_view['G_PLAYTIME']} 분</span></li>
 									<li>출시일<span>${game_detail_view['G_RELEASE']} 년</span></li>
 								</ul>
-								
+								<c:if test = "${m_no eq 0}">
 								 <input value="정보수정" class="btn" onclick="location='/admin/game_modify?g_no=${game_detail_view['G_NO']}'" style="width: 80px; float: right;">
-								
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -218,9 +219,14 @@
 										for="option-eight8">8명이상</label>
 								</span>
 								</li>
-								<li><span> <input type="submit" value="완료"
-										class="btn">
-								</span></li>
+								<li>
+									<sec:authorize access="isAuthenticated()">
+										<span><input type="submit" value="완료" class="btn"></span>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										<span><input type="button" value="완료" class="btn" Onclick="location.href='http://localhost:8282/loginview'"></span>
+									</sec:authorize>
+								</li>
 							</ul>
 						</form>
 					</div>

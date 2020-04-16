@@ -1233,8 +1233,15 @@ public class HeeJeongController {
 	// 게임 상세정보 view
 	@RequestMapping(value = "/game_detail", method = RequestMethod.GET)
 	public String game_detail(Model model, HttpServletRequest request, @ModelAttribute("gameVO") GameVO gameVO,
-							@RequestParam("g_no") int pageNumG, @ModelAttribute("scri") SearchCriteria scri) {
+							@RequestParam("g_no") int pageNumG, @ModelAttribute("scri") SearchCriteria scri, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("game_detail");
+		
+		// 로그인 안되어있는 상태에서도 볼 수 있음
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		int g_no = Integer.parseInt(request.getParameter("g_no"));
 		
@@ -1289,8 +1296,13 @@ public class HeeJeongController {
 	// 게임 상세정보 투표
 	@RequestMapping(value = "/game_vote", method = RequestMethod.GET)
 	public String game_vote(@ModelAttribute("gameVO") GameVO gameVO, @ModelAttribute("game_personVO") Game_personVO game_personVO,
-							@RequestParam int g_no, RedirectAttributes re, Model model) {
+							@RequestParam int g_no, RedirectAttributes re, Model model, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("game_vote");
+		
+		// m_no을 넘기기 위해서
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+		model.addAttribute("m_no", memberVO.getM_no());
 		
 		// game 테이블 투표
 		contentService.updateGame(gameVO);
