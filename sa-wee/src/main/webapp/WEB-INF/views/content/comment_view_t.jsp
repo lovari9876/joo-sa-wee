@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,12 +61,18 @@
 				<li class="comment" style="margin-left:<c:out value="${40*comment_list_t[status.index]['CM_INDENT']}"/>px; padding-right:<c:out value="${40*comment_list_t[status.index]['CM_INDENT']}"/>px;">
 					<div class="comment-body">
 							<div class="comment_test">
+								<sec:authorize access="isAuthenticated()">
 								<div class="test_item name" id="pop">
 									<span role="button" class="pop_btn popovers"
 										data-toggle="popover"
 										data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m_t?m_no=${comment_list_t[status.index]["M_NO"]}&t_no=${content_view_t["T_NO"]}'>신고하기</a>"><h3>${comment_list_t[status.index]['M_NICK']}</h3></span>
 								</div>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+								<h3>${comment_list_t[status.index]['M_NICK']}</h3>
+								</sec:authorize>
 								<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
+								<sec:authorize access="isAuthenticated()">
 								<div class="test_item reco tooltip-purple">
 									<input class="rec_cm_btn_t" id="rec_cm_btn" type="image"
 										src="images/board_hj/thums_up_cm2_color.png" name="button"
@@ -76,6 +83,20 @@
 										class="text_items">)</span> <input type="hidden" name="t_no"
 										class="rec_cm_btn_t" value="${content_view_t['T_NO']}">
 								</div>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+								<div class="test_item reco tooltip-purple">
+									<input class="rec_cm_btn_t" id="rec_cm_btn" type="image"
+										src="images/board_hj/thums_up_cm2_color.png" name="button"
+										Onclick="location.href='http://localhost:8282/loginview'"
+										data-toggle="tooltip" data-container=".tooltip-purple"
+										data-placement="top" title="추천" />
+										<span class="text_items">(</span><span
+										class="text_items rec_cm_t">${comment_list_t[status.index]['CM_RECOMMEND_NUM']}</span><span
+										class="text_items">)</span> <input type="hidden" name="t_no"
+										class="rec_cm_btn_t" value="${content_view_t['T_NO']}">
+								</div>
+								</sec:authorize>
 							</div>
 							<div class="meta">작성일
 								<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
@@ -100,11 +121,21 @@
 							<div class="reply_test">
 								<div class="test_item rp">
 									<p>
+										<c:if test = "${comment_list_t[status.index]['M_NO'] != m_no}">
+										<sec:authorize access="isAuthenticated()">
 										<a role="button" class="reply" href="reply_view_t?cm_no=${comment_list_t[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 										>Reply</a>
+										</sec:authorize>
+										</c:if>
+										<sec:authorize access="isAnonymous()">
+										<a role="button" class="reply" href="loginview"
+										>Reply</a>
+										</sec:authorize>
 									</p>
 								</div>
+								<c:if test = "${comment_list_t[status.index]['M_NO'] != m_no}">
+								<sec:authorize access="isAuthenticated()">
 								<div class="test_item rep tooltip-purple">
 									<a class="fas fa-skull fa-lg no-text-deco"
 										href="report_view_cm?cm_no=${comment_list_t[status.index]['CM_NO']}"
@@ -112,12 +143,24 @@
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="신고"> </a>
 								</div>
+								</sec:authorize>
+								</c:if>
+								<sec:authorize access="isAnonymous()">
+								<div class="test_item rep tooltip-purple">
+								<a class="fas fa-skull fa-lg no-text-deco" href="loginview"
+									data-toggle="tooltip" data-container=".tooltip-purple"
+									data-placement="top" title="신고"></a>
+								</div>
+								</sec:authorize>
+								<c:if test = "${comment_list_t[status.index]['M_NO'] eq m_no}">
 								<div class="test_item del tooltip-purple">
 									<a class="fas fa-trash-alt fa-lg no-text-deco"
 										href="comment_delete_t?cm_no=${comment_list_t[status.index]['CM_NO']}&t_no=${content_view_t['T_NO']}"
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="삭제"></a>
 								</div>
+								</c:if>
+								<c:if test = "${comment_list_t[status.index]['M_NO'] eq m_no}">
 								<div class="test_item modi tooltip-purple">
 									<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi"
 										href="comment_modify_view_t?cm_no=${comment_list_t[status.index]['CM_NO']}"
@@ -125,6 +168,7 @@
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="수정"></a>
 								</div>
+								</c:if>
 							</div>
 							<%-- <div id="replyCommentT" class="collapse">
 								<%@ include file="reply_view.jsp"%>

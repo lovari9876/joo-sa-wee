@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,6 +89,7 @@
 
 							<!-- 회원 이름 눌렀을때 뜨는거 -->
 							<div class="comment_test">
+								<sec:authorize access="isAuthenticated()">
 								<div class="test_item name" id="pop">
 									<span role="button" class="pop_btn popovers"
 										data-toggle="popover"
@@ -95,8 +97,13 @@
 										<h3>${comment_list_or[status.index]['M_NICK']}</h3>
 									</span>
 								</div>
+								</sec:authorize>
+								<sec:authorize access="isAnonymous()">
+								<h3>${comment_list_or[status.index]['M_NICK']}</h3>
+								</sec:authorize>
 
 								<!-- 추천 버튼 -->
+								<sec:authorize access="isAuthenticated()">
 								<div class="test_item reco tooltip-purple">
 								<input class="rec_cm_btn_or" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
 									name="button" value="${comment_list_or[status.index]['CM_NO']}"
@@ -104,6 +111,16 @@
 									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm_or">${comment_list_or[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
 								<input type="hidden" name="c_no" class="rec_cm_btn_or" value="${cafe_info.c_no}">
 							</div>
+							</sec:authorize>
+							<sec:authorize access="isAnonymous()">
+							<div class="test_item reco tooltip-purple">
+								<input class="rec_cm_btn" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
+									Onclick="location.href='http://localhost:8282/loginview'"
+									data-toggle="tooltip" data-container=".tooltip-purple"
+									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm">${comment_list[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
+								<input type="hidden" name="bw_no" class="rec_cm_btn" value="${cafe_info.c_no}">
+							</div>
+							</sec:authorize>
 
 							</div>
 
@@ -135,23 +152,38 @@
 
 							<!-- 수정, 삭제, 신고 버튼부분 -->
 							<div class="reply_test">
+								<c:if test = "${comment_list_or[status.index]['M_NO'] != m_no}">
+								<sec:authorize access="isAuthenticated()">
 								<div class="test_item rep tooltip-purple">
 									<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_list_or[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="신고"> </a>
 								</div>
+								</sec:authorize>
+								</c:if>
+								<sec:authorize access="isAnonymous()">
+								<div class="test_item rep tooltip-purple">
+								<a class="fas fa-skull fa-lg no-text-deco" href="loginview"
+									data-toggle="tooltip" data-container=".tooltip-purple"
+									data-placement="top" title="신고"></a>
+								</div>
+								</sec:authorize>
+								<c:if test = "${comment_list_or[status.index]['M_NO'] eq m_no}">
 								<div class="test_item del tooltip-purple">
 									<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete_or?cm_no=${comment_list_or[status.index]['CM_NO']}&c_no=${cafe_info.c_no}"
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="삭제"></a>
 								</div>
+								</c:if>
+								<c:if test = "${comment_list_or[status.index]['M_NO'] eq m_no}">
 								<div class="test_item modi tooltip-purple">
 									<a class="fas fa-edit fa-lg no-text-deco" href="comment_modify_view_or?cm_no=${comment_list_or[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="수정"></a>
 								</div>
+								</c:if>
 							</div>
 
 						</form>

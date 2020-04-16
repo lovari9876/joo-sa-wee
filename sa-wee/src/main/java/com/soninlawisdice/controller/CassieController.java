@@ -98,8 +98,15 @@ public class CassieController {
 	// 중고거래 게시글 view
 	@RequestMapping(value = "/content_view_t", method = RequestMethod.GET)
 	public String content_view_t(Principal principal, Model model, 
-				HttpServletRequest request, CM_commentVO cm_commentVO) throws Exception {
+				HttpServletRequest request, CM_commentVO cm_commentVO, MemberVO memberVO) throws Exception {
 		System.out.println("content_view_t");
+		
+		// 로그인 안되어있는 상태에서도 볼 수 있음
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(request.getParameter("t_no"));
 		
@@ -111,9 +118,10 @@ public class CassieController {
 		model.addAttribute("tgList", secondhandService.selectTrade_gameList(t_no));
 		
 		String m_id = principal.getName();		
-		MemberVO memberVO = myPageService.mypage(m_id);
+		memberVO = myPageService.mypage(m_id);
 		
 		model.addAttribute("m_no", memberVO.getM_no());
+
 		
 		// 게시글 조회수
 		secondhandService.upHitContent(t_no);

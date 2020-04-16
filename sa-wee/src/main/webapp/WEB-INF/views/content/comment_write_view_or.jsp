@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
 	<!-- 댓글 쓰기 -->
 	<div class="comment-form-wrap ">
 		<h3 class="mb-5">한줄평 부분입니다.</h3>
-		<form action="comment_write_or" method="post">
+		<form action="comment_write_or" method="get">
 			<input type="hidden" name="cm_no2" value="${cafe_info.c_no}">
 			<input type="hidden" name="c_no" value="${cafe_info.c_no}">
 			<input type="hidden" name="m_no" value="${m_no}">
@@ -36,7 +37,12 @@
 					class="form-control" name="cm_content" placeholder="내용을 입력하세요">
 			</div>
 			<div class="form-group">
+				<sec:authorize access="isAuthenticated()">
 				<input type="submit" value="작성" class="btn btn-lavender btn-md">
+				</sec:authorize>
+				<sec:authorize access="isAnonymous()">
+				<input type="button" value="작성" class="btn btn-lavender btn-md" Onclick="location.href='http://localhost:8282/loginview'">
+				</sec:authorize>
 			</div>
 		</form>
 	</div>

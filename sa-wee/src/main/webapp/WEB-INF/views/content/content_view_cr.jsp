@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,6 +131,7 @@
 					<!-- 추천 -->
 					<br /> <br />
 					<div align="center" class="tooltip-purple">
+					<sec:authorize access="isAuthenticated()">
 						<input class="good" type="image" src="images/board_hj/good.png"
 							name="button" id="rec_btn_cr" value="${content_view_cr['CR_NO']}"
 							data-toggle="tooltip" data-container=".tooltip-purple"
@@ -137,6 +139,16 @@
 						<p>
 							<span>(</span><span class="rec_cr">${content_view_cr['CR_RECOMMEND_NUM']}</span><span>)</span>
 						</p>
+					</sec:authorize>
+					<sec:authorize access="isAnonymous()">
+						<input class="good" type="image" src="images/board_hj/good.png"
+							id="rec_btn" Onclick="location.href='http://localhost:8282/loginview'"
+							data-toggle="tooltip" data-container=".tooltip-purple"
+							data-placement="top" title="추천 +1">
+						<p>
+							<span>(</span><span class="rec">${content_view_cr['BW_RECOMMEND_NUM']}</span><span>)</span>
+						</p>
+					</sec:authorize>
 					</div>
 
 					<br />
@@ -150,37 +162,27 @@
 							<div class="test_item first">
 								<input type="button" style="margin:0 !important" onclick = "location.href='cafe_info?c_no=${content_view_cr['C_NO']}'" value="카페정보" class="btn btn-lavender btn-md">
 							</div>
-							<div class="test_item second"> 
-								<c:if test = "${content_view_cr['M_NO'] eq m_no}">
-									<a href="review_modify_view?cr_no=${content_view_cr['CR_NO']}">수정</a>
-								</c:if>	
-							</div>
-							<div class="test_item third">
-								<c:if test = "${content_view_cr['M_NO'] eq m_no}">
-									<a href="delete_cr?cr_no=${content_view_cr['CR_NO']}">삭제</a>
-								</c:if>	
-							</div>
 							<div class="test_item fourth">
+								<c:if test = "${content_view_cr['M_NO'] != m_no}">
 								<sec:authorize access="isAuthenticated()">
-									<a href="report_view_cr?cr_no=${content_view_cr['CR_NO']}"
+									<a href="report_view_bw?bw_no=${content_view_cr['BW_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 								</sec:authorize>
+								</c:if>
 								<sec:authorize access="isAnonymous()">
 									<a href="loginview">신고</a>
 								</sec:authorize>
 							</div>
-							
-							<!-- 임시로 만든 버튼.. 수정 부탁해 미안... -->
-							<div class="test_item fifth">
-								<sec:authorize access="isAuthenticated()">
-									<a id="scrap" data-bt="${content_view_cr['BT_NAME']}" data-no="${content_view_cr['CR_NO']}">스크랩</a>
-								</sec:authorize>
-								<sec:authorize access="isAnonymous()">
-									<a href="loginview">스크랩</a>
-								</sec:authorize>
+							<div class="test_item third">
+								<c:if test = "${content_view_cr['M_NO'] eq m_no}">
+									<a href="delete?bw_no=${content_view_cr['BW_NO']}">삭제</a>
+								</c:if>	
 							</div>
-							
-							
+							<div class="test_item second"> 
+								<c:if test = "${content_view_cr['M_NO'] eq m_no}">
+									<a href="board_modify_view?bw_no=${content_view_cr['BW_NO']}">수정</a>
+								</c:if>
+							</div>
 						</div>
 					</form>
 
