@@ -1107,13 +1107,15 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 /*길이가 너무 긴 내용 ...으로 줄이기 위해!! */
-.trow .title {
+.trow .title:not(#comment_num){
 	width: 400px; /*이부분은 각 게시판마다 수정해야할듯*/
 	/*	vertical-align:middle; */
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
+
 
 .trow .subject {
 	font-size: 9.5px;

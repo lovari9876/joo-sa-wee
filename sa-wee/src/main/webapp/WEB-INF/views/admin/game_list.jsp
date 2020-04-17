@@ -87,25 +87,25 @@
 							
 							<tbody>
 								<c:forEach items="${game_list}" var="game">
-									<tr class="trow"  onClick="location.href='/game_detail?g_no=${game.g_no}'">
-										<td class="cell">${game.g_no}</td>
+									<tr class="trow"  onClick="location.href='/game_detail?g_no=${game['G_NO']}'">
+										<td class="cell">${game['RNUM']}</td>
 										<td class="cell">
-											<c:if test="${game.g_name_kor == null}"> 입력안됨 </c:if>
-											<c:if test="${game.g_name_kor != null}"> ${game.g_name_kor} </c:if>
+											<c:if test="${game['G_NAME_KOR'] == null}"> 입력안됨 </c:if>
+											<c:if test="${game['G_NAME_KOR'] != null}"> ${game['G_NAME_KOR']} </c:if>
 										</td>
-										<td class="cell title ">${game.g_name}</td>
-										<td class="cell">${game.g_min} ~ ${game.g_max}명</td>
-										<td class="cell">${game.g_release}년</td>
-										<td class="cell">${game.g_playtime}분</td>
+										<td class="cell title ">${game['G_NAME']}</td>
+										<td class="cell">${game['G_MIN']} ~ ${game['G_MAX']}명</td>
+										<td class="cell">${game['G_RELEASE']}년</td>
+										<td class="cell">${game['G_PLAYTIME']}분</td>
 										<td class="cell"> 
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" />
 											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-											<fmt:formatDate value="${game.g_updated_date}" pattern="yyyy.MM.dd" var="date"/>
+											<fmt:formatDate value="${game['G_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 											<c:choose>
 												<c:when test="${now ne date}">${date}</c:when>
 												<c:otherwise>
-													<fmt:formatDate value="${game.g_updated_date}" pattern="HH:mm:ss"/>
+													<fmt:formatDate value="${game['G_UPDATED_DATE']}" pattern="HH:mm:ss"/>
 												</c:otherwise>
 											</c:choose>
 										</td>

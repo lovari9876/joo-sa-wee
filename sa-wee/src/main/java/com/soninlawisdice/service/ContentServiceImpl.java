@@ -621,7 +621,7 @@ public class ContentServiceImpl implements ContentService {
 	
 	//게임 전체 리스트
 	@Override
-	public ArrayList<GameVO> selectGameList(SearchCriteria scri, String init) {
+	public ArrayList<HashMap<String, Object>> selectGameList(SearchCriteria scri, String init) {
 		return contentMapper.selectGameList(scri, init);
 	}
 

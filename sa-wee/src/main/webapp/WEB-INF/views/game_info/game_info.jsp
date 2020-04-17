@@ -152,9 +152,9 @@
 						<c:forEach items = "${gameList}" var = "game">
 							<div class="col-lg-4 col-md-6">
 								<div class="game-item">
-									<img src="${game.g_thumbnail}" alt="#">
-									<h5>${game.g_name_kor }</h5>
-									<a href="game_detail?g_no=${game.g_no}" class="read-more">Read More <img
+									<img src="${game['G_THUMBNAIL']}" alt="#">
+									<h5>${game['G_NAME_KOR']}</h5>
+									<a href="game_detail?g_no=${game['G_NO']}" class="read-more">Read More <img
 										src="images/board_hj/icons/double-arrow.png" alt="" /></a>
 								</div>
 							</div>

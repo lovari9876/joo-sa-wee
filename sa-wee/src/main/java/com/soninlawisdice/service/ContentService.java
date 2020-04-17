@@ -178,6 +178,6 @@ public interface ContentService {
 	
 	public HashMap<String, Object> selectGameDetailAvg(int g_no); // 게임 상세정보 투표 결과 view
 	
-	public ArrayList<GameVO> selectGameList(SearchCriteria scri,String init); 	//게임 전체 리스트
+	ArrayList<HashMap<String, Object>> selectGameList(SearchCriteria scri,String init); 	//게임 전체 리스트
 	public int game_listCount(SearchCriteria scri,String init);
 }
