@@ -191,8 +191,6 @@
         	<version>4.5.3</version>
         </dependency>
 
-		</dependency>
-
 		<!-- 시큐리티 END -->
 
 		<!-- Spring -->
