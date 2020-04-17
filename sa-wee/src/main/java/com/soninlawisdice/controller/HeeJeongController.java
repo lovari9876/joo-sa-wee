@@ -1270,7 +1270,7 @@ public class HeeJeongController {
 		int g_no = Integer.parseInt(request.getParameter("g_no"));
 		
 		// game_info에서 g_no 받아 오기(내가 임의로 1 집어넣음)
-		g_no = 4;
+		//g_no = 4;
 		model.addAttribute("g_no", g_no);
 				
 		System.out.println("g_no: "+g_no);
