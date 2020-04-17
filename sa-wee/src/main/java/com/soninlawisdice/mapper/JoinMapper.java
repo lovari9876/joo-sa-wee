@@ -15,6 +15,7 @@ public interface JoinMapper {
  	
  	// 아이디 중복체크
  	public int idCheck(MemberVO memberVO) throws Exception;
+ 	public int idCheck(String m_id) throws Exception;
 
  	// 닉네임 중복체크
  	public int nickCheck(MemberVO memberVO) throws Exception;
@@ -30,4 +31,11 @@ public interface JoinMapper {
 
   	// 랭크
   	public RankVO rank() throws Exception;
+  	
+  	// 아이디 찾기
+  	public String findId(@Param("m_email")String m_email, @Param("m_name")String m_name) throws Exception;
+
+	// 임시비밀번호 발급 패스워드 변경
+  	public void updatePW(@Param("m_pw")String m_pw, @Param("m_id")String m_id)throws Exception;
 }
+

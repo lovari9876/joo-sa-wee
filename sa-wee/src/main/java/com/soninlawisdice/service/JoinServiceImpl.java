@@ -1,5 +1,10 @@
 package com.soninlawisdice.service;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +46,12 @@ public class JoinServiceImpl implements JoinService {
 		int result = joinMapper.idCheck(memberVO);
 		return result;
 	}
-
+	@Override
+	public int idCheck(String m_id) throws Exception {
+		int result = joinMapper.idCheck(m_id);
+		return result;
+	}
+	
 	// 닉네임 중복체크
 	@Override
 	public int nickCheck(MemberVO memberVO) throws Exception{
@@ -75,6 +85,21 @@ public class JoinServiceImpl implements JoinService {
 		return joinMapper.rank();
 	}
 
+	// 아이디 찾기
+	@Override
+  	public String findId(String m_email, String m_name) throws Exception{
+		String id = joinMapper.findId(m_email, m_name);
+		
+		return id;
+	}
+	
+	// 임시비밀번호 발급
+	@Override
+	public void updatePW(String m_pw, String m_id) throws Exception {
+		joinMapper.updatePW(m_pw, m_id);	
+	}
+
 	
 
+	
 }

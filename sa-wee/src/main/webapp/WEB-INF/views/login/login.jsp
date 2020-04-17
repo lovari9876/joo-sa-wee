@@ -93,8 +93,8 @@
 					<br />
 
 					<div class="text-center txt3">
-						FORGOT <a href="forgot_id" class="txt3 hov1"> ID</a> / <a
-							href="forgot_pw" class="txt3 hov1">PASSWARD</a>
+						FORGOT <a href="forgot_idview" class="txt3 hov1"> ID</a> / <a
+							href="forgot_pwview" class="txt3 hov1">PASSWARD</a>
 					</div>
 					<div class="text-center p-t-57 p-b-20">
 						<span class="txt1"> or login with </span>

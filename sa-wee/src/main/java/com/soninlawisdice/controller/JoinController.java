@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soninlawisdice.service.JoinService;
 import com.soninlawisdice.service.MailService;
+import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.util.Coolsms;
 import com.soninlawisdice.vo.MemberVO;
 
@@ -30,6 +32,9 @@ public class JoinController {
 
 	@Autowired
 	private JoinService joinService;
+
+	@Autowired
+	private MyPageService myPageService;
 
 	@Autowired
 	private MailService mailService;
@@ -160,6 +165,7 @@ public class JoinController {
 
 		return mailService.send(subject, sb.toString(), "lyeon615@gmail.com", userEmail);
 	}
+	
 
 	// 이메일 인증 번호 확인
 	@ResponseBody
@@ -292,21 +298,74 @@ public class JoinController {
 //		return "login/login";
 //	}
 
-	// ================================= 아이디, 비밀번호 찾기
-	// =================================
+	// ================================= 아이디, 비밀번호 찾기 =================================
 
-	@RequestMapping(value = "/forgot_id", method = RequestMethod.GET)
-	public String forgot_id(Locale locale, Model model) {
+	@RequestMapping(value = "/forgot_idview", method = RequestMethod.GET)
+	public String forgot_idview() throws Exception {
+		System.out.println("forgot_idview");
 
 		return "login/forgot_id";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/forgot_id", method = RequestMethod.GET)
+	public String forgot_id(@RequestParam("m_email") String m_email, @RequestParam("m_name") String m_name) throws Exception {
+		System.out.println("forgot_id");
+		System.out.println(m_email);
+		System.out.println(m_name);
+		
+		
+		String id = joinService.findId(m_email, m_name);
+		if(id == null) {
+			id = "x";
+		}
+		
+		return id;
+	}
 
-	@RequestMapping(value = "/forgot_pw", method = RequestMethod.GET)
-	public String forgot_pw(Locale locale, Model model) {
+	@RequestMapping(value = "/forgot_pwview", method = RequestMethod.GET)
+	public String forgot_pwview(Locale locale, Model model) {
 
 		return "login/forgot_pw";
 	}
+	
+	// 임시비밀번호 메일로 보내기
+	@ResponseBody
+	@RequestMapping(value = "/forgot_pw_email", method = RequestMethod.GET)
+	public boolean forgot_pw_email(@RequestParam String m_email, @RequestParam("m_id") String m_id) throws Exception {
+		// 이메일 인증
+		System.out.println("forgot_pw_email");
+		
+		if(joinService.idCheck(m_id) == 0) {
+			System.out.print("아이디가 없습니다.");
+			return false;
+		}
+		MemberVO memberVO = myPageService.mypage(m_id);
+		System.out.println(m_email);
+		System.out.println(memberVO.getM_email());
+		
+		
+		if(!m_email.equals(memberVO.getM_email())) {
+			System.out.print("잘못된 이메일 입니다.");
+			return false;
+		}
 
+		int ran = new Random().nextInt(90000000) + 10000000;
+		String pw = String.valueOf(ran);
+
+		String subject = "[내 사위는 주사위] 임시 비밀번호입니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("귀하의 임시 비밀번호는 " + pw + "입니다. \n 보안을 위해 로그인 후 비밀번호를 바꿔주세요.");
+
+		System.out.println("sb : " + sb);
+
+		System.out.println(pw + " : " + m_id);
+		joinService.updatePW(pwdEncoder.encode(pw), m_id);
+
+		return mailService.send(subject, sb.toString(), "lyeon615@gmail.com", m_email);
+	}
+	
+	
 	// 접속권한 없을 때 403 에러 페이지 대신
 	@RequestMapping(value = "/access_denied_page")
 	public String accessDeniedPage() throws Exception {
