@@ -50,7 +50,7 @@ public interface ContentMapper {
 	
 	public void updatePoint(CM_commentVO cm_commentVO); // 댓글쓰면 +5 point
 	
-	public HashMap<String, Object> selectCommentOne(String cm_no); // 게시글 댓글 수정하기 view에서 사용
+	public HashMap<String, Object> selectCommentOne(int cm_no); // 게시글 댓글 수정하기 view에서 사용
 	
 	public void updateCommentOne(CM_commentVO cm_commentVO); // 댓글 수정
 	

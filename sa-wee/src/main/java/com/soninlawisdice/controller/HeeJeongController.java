@@ -194,7 +194,7 @@ public class HeeJeongController {
 	public String comment_modify_view(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {
 		System.out.println("comment_modify_view");
 		
-		String cm_no = request.getParameter("cm_no");
+		int cm_no = Integer.parseInt(request.getParameter("cm_no"));
 		System.out.println("cm_no : "+cm_no);
 
 		model.addAttribute("comment_modi", contentService.selectCommentOne(cm_no));
@@ -424,11 +424,13 @@ public class HeeJeongController {
 			model.addAttribute("m_no", memberVO.getM_no());
 		}
 		
-		String cm_no = request.getParameter("cm_no");
-		System.out.println("cm_no : "+cm_no);
-
-		model.addAttribute("comment_view", contentService.selectCommentOne(cm_no));
-		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		/*
+		 * int cm_no = Integer.parseInt(request.getParameter("cm_no"));
+		 * System.out.println("cm_no : "+cm_no);
+		 * 
+		 * model.addAttribute("comment_view", contentService.selectCommentOne(cm_no));
+		 * model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+		 */
 		
 		// content_view로 redirect를 위해서
 		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
@@ -444,9 +446,24 @@ public class HeeJeongController {
 	
 	// 대댓글 쓰기(update + insert)
 	@RequestMapping(value = "/reply", method = RequestMethod.GET)
-	public String reply(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model, @RequestParam int bw_no, RedirectAttributes re, @RequestParam("m_no") int m_no,
-						Principal principal, MemberVO memberVO) throws Exception {
+	public String reply(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model, 
+						@RequestParam int bw_no, RedirectAttributes re, @RequestParam("m_no") int m_no,
+						Principal principal, MemberVO memberVO, HttpServletRequest request) throws Exception {
 		System.out.println("reply");
+		
+		int cm_group = cm_commentVO.getCm_group();
+		
+		HashMap<String, Object> cmParent = contentService.selectCommentOne(cm_group);
+
+		cm_commentVO.setCm_type((String)(cmParent.get("CM_TYPE")));
+		cm_commentVO.setCm_no2((int)(cmParent.get("CM_NO2")));
+		cm_commentVO.setCm_step((int)(cmParent.get("CM_STEP")));
+		cm_commentVO.setCm_indent((int)(cmParent.get("CM_INDENT")));
+		
+		System.out.println("cm_type: "+(String)(cmParent.get("CM_TYPE")));
+		System.out.println("cm_no2: "+(int)(cmParent.get("CM_NO2")));
+		System.out.println("cm_step: "+(int)(cmParent.get("CM_STEP")));
+		System.out.println("cm_indent: "+(int)(cmParent.get("CM_INDENT")));
 		
 		// 로그인 해야 대댓글 쓰기 가능
 		if(principal != null) {
@@ -455,14 +472,14 @@ public class HeeJeongController {
 			model.addAttribute("m_no", memberVO.getM_no());
 		}
 		
-		System.out.println("m_no = " + m_no);
-		cm_commentVO.setM_no(m_no);
+//		System.out.println("m_no = " + m_no);
+//		cm_commentVO.setM_no(m_no);
 		
 		contentService.writeReply(cm_commentVO);
 		contentService.updatePoint(cm_commentVO);
 		
 		// content_view로 redirect를 위해서
-		re.addAttribute("bw_no", bw_no);
+		re.addAttribute("bw_no", (int)(cmParent.get("CM_NO2")));
 		
 		return "redirect:content_view";
 	}
@@ -780,19 +797,19 @@ public class HeeJeongController {
 	public String content_view_cr(Model model, HttpServletRequest request, CM_commentVO cm_commentVO,
 									@RequestParam("cr_no") int pageNum, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("content_view_cr");
-
-		System.out.println(request.getParameter("cr_no"));
-			
-		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
-				
-		System.out.println(cr_no);
-
+		
 		// 로그인 안되어있는 상태에서도 볼 수 있음
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
 			model.addAttribute("m_no", memberVO.getM_no());
 		}
+
+		System.out.println(request.getParameter("cr_no"));
+			
+		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
+				
+		System.out.println(cr_no);
 		
 		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
 
@@ -1082,6 +1099,11 @@ public class HeeJeongController {
 		model.addAttribute("comment_view", contentService.selectCommentCR(cm_no));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
+		// content_view_cr로 redirect를 위해서
+		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
+						
+		model.addAttribute("content_view_cr", contentService.selectContentCROne(cr_no));
+		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
 //		int m_no = 9;
 //		model.addAttribute("m_no", m_no);
@@ -1092,7 +1114,7 @@ public class HeeJeongController {
 	// 카페리뷰 대댓글 쓰기(update + insert)
 	@RequestMapping(value = "/reply_cr", method = RequestMethod.GET)
 	public String reply_cr(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, @RequestParam("m_no") int m_no, Model model, 
-							Principal principal, MemberVO memberVO) throws Exception {
+							Principal principal, MemberVO memberVO, @RequestParam int cr_no, RedirectAttributes re) throws Exception {
 		System.out.println("reply_cr");
 		
 		// 로그인 해야 대댓글 쓰기 가능
@@ -1108,7 +1130,10 @@ public class HeeJeongController {
 		contentService.writeReplyCR(cm_commentVO);
 		contentService.updatePoint(cm_commentVO);
 		
-		return "content/reply_success";
+		// content_view_cr로 redirect 하기 위해서
+		re.addAttribute("cr_no", cr_no);
+		
+		return "redirect:/content_view_cr";
 	}
 	
 	
