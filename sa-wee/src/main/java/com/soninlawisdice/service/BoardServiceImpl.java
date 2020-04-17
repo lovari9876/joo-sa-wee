@@ -3,6 +3,7 @@ package com.soninlawisdice.service;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -19,6 +20,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.SearchCriteria;
+import com.soninlawisdice.vo.TradeVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -276,18 +278,16 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	///////////////보부상 글작성////////////////
-	@Resource(name = "fileUtils")
-	private FileUtils fileUtils;
+
 	
 	@Override
-	public void insertTradeFile(MultipartHttpServletRequest mpRequest, int t_no) throws Exception {
-			List<Map<String, Object>> list = fileUtils.parseInsertFileIofn(mpRequest);
-
-			System.out.println("===========================");
-			System.out.println("list : " +list);
-			System.out.println("===========================");
-				
-			boardMapper.insertTradeFile(list, t_no);
+	public List<Map<String, Object>> selectFileList(int t_no) throws Exception {
+		return boardMapper.selectFileList(t_no);
+	}
+	
+	@Override
+	public String selectFileName(int t_no) throws Exception {
+		return boardMapper.selectFileName(t_no);
 	}
 
 	

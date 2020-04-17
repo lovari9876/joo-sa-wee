@@ -2,6 +2,7 @@ package com.soninlawisdice.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,7 @@ import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
+import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
 import com.soninlawisdice.vo.MemberVO;
@@ -587,12 +590,6 @@ public class Board_hs_Controller {
 	///////////////////////////////////////////////////////////////////////////////////////////////
 	
 	
-	
-	@RequestMapping("/wr")
-	public String wr() {
-		return "board_hs/write_view2";
-	}
-	
 	//태그. 자동완성기능시 이용
 	@ResponseBody
 	@RequestMapping("/gameList")
@@ -601,7 +598,6 @@ public class Board_hs_Controller {
 		System.out.println(boardService.gameNameList());
 		return boardService.gameNameList();
 	}
-	
 	
 	
 	/////////////////////////////////// 게시물 작성 시 파일 업로드 부분(DB에 넣는거 X)/////////////////////////////////
@@ -673,57 +669,6 @@ public class Board_hs_Controller {
 
 	}
 	
-	@RequestMapping(value = "/wsr")
-	public String wsr() {
-		return "board_hs/write_view3";
-	}
 	
-	
-	// 글 작성
-		@RequestMapping(value = "/trade_write2", method = RequestMethod.POST)
-		public String write(HttpSession session, Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, MultipartHttpServletRequest mpRequest, 
-							String gameNames, String prices, HttpServletRequest request) throws Exception {
-
-			
-			// 세션 매번하기 힘드니까 임의 값 부여
-			MemberVO memberVO = myPageService.mypage("test4");		
-			
-			secondhandService.insertTrade(tradeVO, memberVO.getM_no(), gameNames, prices);
-			
-			System.out.println("=======================");
-			int t_no = tradeVO.getT_no();
-			System.out.println(tradeVO.getT_content());
-			System.out.println(tradeVO.getT_title());
-			System.out.println(tradeVO.getT_no());
-			System.out.println("========================");
-			
-			boardService.insertTradeFile(mpRequest, t_no);
-			
-			secondhandService.boardPointUpdate(memberVO.getM_no());		
-			
-					
-			return "redirect:tlist";
-		}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
 

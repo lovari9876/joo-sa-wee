@@ -3,6 +3,7 @@ package com.soninlawisdice.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -11,6 +12,7 @@ import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.SearchCriteria;
+import com.soninlawisdice.vo.TradeVO;
 
 public interface BoardService {
 
@@ -143,8 +145,10 @@ public interface BoardService {
 	/////////////////////////////////////////////////
 	//public void insertGame();
 	/////////////////////////////////////////////	
+		
+	//첨부파일 조회
+	public List<Map<String, Object>> selectFileList (int t_no) throws Exception;
 	
-	//글 insert2
-	public void insertTradeFile(MultipartHttpServletRequest mpRequest, int t_no) throws Exception;
-	
+	//첨부파일 조회
+		public String selectFileName (int t_no) throws Exception;
 }

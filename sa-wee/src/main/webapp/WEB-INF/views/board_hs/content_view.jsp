@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <html>
 <head>
 <meta charset="UTF-8">
@@ -134,15 +135,8 @@
 							</tr>
 							<c:forEach items="${tgList}" var="tgItem">
 								<tr class="table--row">
-									<c:choose>
-										<c:when test="${tgItem.g_no eq 0}">	
-											<td class="table--cell">${tgItem.tg_name}</td>							
-										</c:when>
-										<c:otherwise>
-											<td class="table--cell"><a href="game_detail?g_no=${tgItem.g_no}">${tgItem.tg_name}</a></td>
-										</c:otherwise>
-									</c:choose>	
-										<td class="table--cell">${tgItem.tg_price}원</td>
+									<td class="table--cell">${tgItem.tg_name}</td>							
+									<td class="table--cell">${tgItem.tg_price}원</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -150,11 +144,9 @@
 					
 					<p>${content_view_t['T_CONTENT']}</p>
 					
-					<c:forEach items="${fileName}" var = "img">
-						<img src="<c:url value="/img/${img['F_NAME']} "/>" />
-					</c:forEach> 
-					
-					
+					<%-- <c:forEach items="${fileName}" var = "img"> --%>
+						<img src="<c:url value="/img/${fileName} "/>" />
+					<%-- </c:forEach> --%> 
 
 					<br/>
 					<br/>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
@@ -124,6 +125,7 @@ public class CassieController {
 		
 		model.addAttribute("m_no", memberVO.getM_no());
 
+		model.addAttribute("fileName", boardService.selectFileList(t_no));
 		
 		// 게시글 조회수
 		secondhandService.upHitContent(t_no);
@@ -151,7 +153,7 @@ public class CassieController {
 
 	// 글 작성
 	@RequestMapping(value = "/trade_write", method = RequestMethod.POST)
-	public String write(HttpSession session, Model model, Principal principal,
+	public String write(HttpSession session, Model model, Principal principal, MultipartHttpServletRequest mpRequest,
 				@ModelAttribute("tradeVO") TradeVO tradeVO, 
 						/* @ModelAttribute("tgVO") Trade_gameVO tgVO, */
 				String gameNames, String prices) throws Exception {
@@ -159,10 +161,11 @@ public class CassieController {
 		String m_id = principal.getName();		
 		MemberVO memberVO = myPageService.mypage(m_id);		
 		
-		secondhandService.insertTrade(tradeVO, memberVO.getM_no(), gameNames, prices);			
+		secondhandService.insertTrade(tradeVO, memberVO.getM_no(), gameNames, prices, mpRequest);			
 		
 		secondhandService.boardPointUpdate(memberVO.getM_no());		
 		
+		System.out.println(tradeVO.getT_no());
 				
 		return "redirect:tlist";
 	}

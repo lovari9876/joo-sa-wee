@@ -58,8 +58,8 @@ public class FileUtils {
 				//저장되는 파일 이름은 중복을 피하기 위해서 랜덤 문자 필요
 				storedFileName = getRandomString() + originalFileExtension;
 				
-				
-				file = new File(filePath + storedFileName);
+				//원래  storedFileName 으로 해야함. 일단 급하니까 불러오기 편하기 위해서 이렇게 해놓음.
+				file = new File(filePath + originalFileName);
 				multipartFile.transferTo(file);
 				listMap = new HashMap<String, Object>();
 				
@@ -71,8 +71,12 @@ public class FileUtils {
 				list.add(listMap);
 			}
 		}
-		
+		System.out.println("++++++++++++++++++++++++");
+		System.out.println("FileUtils 에서 list 출력");
+		System.out.println(list);
+		System.out.println("+++++++++++++++++++++++++");
 		return list;
+		
 
 	}
 	

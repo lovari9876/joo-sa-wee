@@ -170,26 +170,89 @@
 		/
 	 -->
 	<insert id="insertTrade" >
-	
-		INSERT ALL
-		INTO
-			TRADE 
-			(T_NO, M_NO, S_NO, T_TITLE, T_CONTENT) 
-		VALUES 
-			(trade_seq.nextval, #{m_no}, #{tradeVO.s_no},  #{tradeVO.t_title}, #{tradeVO.t_content}) 	
-		
-		<foreach collection="gamePrice" index="game" item="price">		
-			INTO
-				TRADE_GAME 
-				(TG_NO, T_NO, G_NO, TG_NAME, TG_PRICE ) 
-			VALUES 
-				(get_trade_game_seq, trade_seq.nextval, null, #{game}, #{price} )
-		</foreach>
+		{ CALL
+			DECLARE
 			
-		SELECT  
-			*
-		FROM 
-			DUAL			
+			
+				TYPE f_no_table IS TABLE OF f_file.f_no%TYPE
+				INDEX BY BINARY_INTEGER;
+				TYPE f_name_table IS TABLE OF f_file.f_name%TYPE
+				INDEX BY BINARY_INTEGER;
+				TYPE f_type_table IS TABLE OF f_file.f_type%TYPE
+				INDEX BY BINARY_INTEGER;
+				TYPE f_path_table IS TABLE OF f_file.f_path%TYPE
+				INDEX BY BINARY_INTEGER;
+				
+				f_no_tab		f_no_table;
+				f_name_tab		f_name_table;
+				f_type_tab		f_type_table;
+				f_path_tab		f_path_table;
+				
+				
+				fcount binary_integer :=0;
+				v_t_no     trade.t_no%type := get_trade_seq;
+				 
+			BEGIN
+			
+				INSERT ALL
+				INTO
+					TRADE 
+					(T_NO, M_NO, S_NO, T_TITLE, T_CONTENT) 
+				VALUES 
+					(v_t_no, #{m_no}, #{tradeVO.s_no},  #{tradeVO.t_title}, #{tradeVO.t_content}) 	
+				
+				<foreach collection="gamePrice" index="game" item="price">		
+					INTO
+						TRADE_GAME 
+						(TG_NO, T_NO, G_NO, TG_NAME, TG_PRICE ) 
+					VALUES 
+						( get_trade_game_seq, 
+						  v_t_no, 
+						  (SELECT G.G_NO FROM GAME G WHERE G.G_NAME_KOR = #{game}),
+						  #{game}, 
+						  #{price} 
+						)
+				</foreach>
+					
+				SELECT  
+					*
+				FROM 
+					DUAL	
+				
+				COMMIT;		
+				
+				<foreach collection="list" item="list">	
+					fcount := fcount+1;
+					f_no_tab(fcount) := get_f_file_seq;
+					
+					f_name_tab(fcount):= #{list.F_NAME};
+					f_type_tab(fcount):= #{list.F_TYPE};
+					f_path_tab(fcount):= #{list.F_PATH};
+						
+				</foreach>
+				
+				
+				for cnt in 1..fcount loop
+					INSERT
+					INTO
+						F_FILE
+						(F_NO, F_NAME, F_TYPE, F_PATH)
+					VALUES
+						(f_no_tab(cnt), f_name_tab(fcount), f_type_tab(fcount), f_path_tab(fcount));
+					COMMIT;	
+					
+					INSERT
+					INTO
+						BOARD_FILE
+						(F_NO, BT_NO, BF_WNO)
+					VALUES
+						(f_no_tab(cnt), 9, v_t_no);
+					COMMIT;
+					
+				end loop;
+							
+			END
+		}
 		
 	</insert>
 	

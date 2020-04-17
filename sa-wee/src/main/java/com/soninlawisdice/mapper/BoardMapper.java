@@ -2,6 +2,7 @@ package com.soninlawisdice.mapper;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.SearchCriteria;
+import com.soninlawisdice.vo.TradeVO;
 
 public interface BoardMapper {
 
@@ -139,17 +141,13 @@ public interface BoardMapper {
 	/////////////////////////////////////////////////
 	public ArrayList<String> gameNameList();
 	///////////////////////////////////////////////////////////////////////////////
-	//public void insertGame(@Param("gameList") ArrayList<GameVO> gameList);
-	
-	
-	
-
-	//보부상작성
-	public void insertTradeFile(@Param("list") List<Map<String, Object>> list, @Param("t_no") int t_no);
+	//public void insertGame(@Param("gameList") ArrayList<GameVO> gameList);/////
+	/////////////////////////////////////////////////////////////////////////////
 	
 	//첨부파일 조회
-	public List<Map<String, Object>> selectFileList(int t_no)throws Exception;
+	public List<Map<String, Object>> selectFileList(@Param("t_no")int t_no)throws Exception;
 	
-	
+	//첨부파일 조회
+	public String selectFileName (@Param("t_no") int t_no) throws Exception;
 	
 }

@@ -41,6 +41,7 @@
 <!-- <script src="https://kit.fontawesome.com/4b0668ef4e.js" crossorigin="anonymous"></script> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel = "stylesheet" href = "css/board_hs/tagsinput.css" />
 <!-- Main Stylesheets -->
 
 <link rel="stylesheet" href="css/board_hs/writestyle.css" />
@@ -101,8 +102,8 @@
 						<!-- 없으면 직접 입력 가능: 향후 방향성 모호하므로 일단 이름 하나만 입력하도록. -->
 						<tr class="row">
 							<td class="cell">보드게임</td>
-							<td class="cell">
-								<input type="text" name="gameNames" 
+							<td class="cell" id = "bloodhound">
+								<input type="text" name="gameNames" class = "typeahead" data-role = "tagsinput"
 									placeholder="보드게임의 이름을 쉼표(,)로 구분하여 입력하세요">
 							</td>
 						</tr>
@@ -120,6 +121,15 @@
 							<td class="cell">
 								<textarea id = "editor" name="t_content" placeholder="판매 혹은 구매하려는 보드게임의 사진과 함께 설명을 입력하세요">
 							</textarea></td>
+						</tr>
+						
+						<tr class = "row">
+							<td class = "cell"> 파일첨부 </td>
+							<td class = "cell"><input type = "file" name = "file" id = "input_imgs" multiple></td>
+						</tr>
+						<tr class = "row">
+							<td class = "cell">미리보기</td>
+							<td class = "cell"><div class = "imgs_wrap"></div></td>
 						</tr>
 						
 					</table>
@@ -154,10 +164,48 @@
 	<script src="js/board_hs/category.js"></script>
 	<script src="js/board_hs/toList.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
+	<script src="js/board_hs/fileThumb.js"></script>
+	<script src ="js/board_hs/tagsinput.js"></script>
+	<script src="js/board_hs/typeahead.js"></script>
 	
+	
+	<!-- 태그 관련 -->
+	<script>
+		
+		var games = new Bloodhound({
+			datumTokenizer : Bloodhound.tokenizers.obj.whitespace('name'),
+			queryTokenizer : Bloodhound.tokenizers.whitespace,
+			prefetch : {
+				url : '/gameList',
+				filter : function(list){
+					return $.map(list, function(game){
+						return {name : game};
+					});
+				}
+			} 
+		});
+		games.initialize();
+		console.log("games : " + games);
+		console.log("name : " + name);
+		
+		$('.typeahead').tagsinput({
+			
+			typeaheadjs : {
+				name : 'games',
+				displayKey : 'name',
+				valueKey : 'name',
+				source : games.ttAdapter(),
+				
+				hint: true,
+				highlight: true,
+				minLength: 1
+			}
+		});
+	
+	
+	</script> 
 	
 	<!-- ckEditor 관련 -->
-	
 	<script type="text/javascript">
 			var myEditor;
 			ClassicEditor
