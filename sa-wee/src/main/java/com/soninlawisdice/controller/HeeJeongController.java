@@ -170,9 +170,11 @@ public class HeeJeongController {
 		System.out.println(cm_commentVO.getM_no());
 		
 		// 로그인 해야 댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		// content_view에서 가져온 m_no을 cm_commentVO에 저장
 //		System.out.println("m_no = " + m_no);
@@ -241,9 +243,11 @@ public class HeeJeongController {
 		System.out.println("report_view_bw");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
 
@@ -261,9 +265,11 @@ public class HeeJeongController {
 		System.out.println("report_bw");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		System.out.println(reportVO.getR_type_no());
 
@@ -290,9 +296,11 @@ public class HeeJeongController {
 		System.out.println("report_view_m");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
 
@@ -316,9 +324,11 @@ public class HeeJeongController {
 		System.out.println("report_m");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -348,9 +358,11 @@ public class HeeJeongController {
 		System.out.println("report_view_cm");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		int cm_no = Integer.parseInt(request.getParameter("cm_no"));
 
@@ -369,9 +381,11 @@ public class HeeJeongController {
 		System.out.println(reportVO.getR_type_no());
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		contentService.insertReportCM(reportVO);
 		
@@ -404,9 +418,11 @@ public class HeeJeongController {
 		System.out.println("reply_view");
 		
 		// 로그인 해야 대댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		String cm_no = request.getParameter("cm_no");
 		System.out.println("cm_no : "+cm_no);
@@ -433,9 +449,11 @@ public class HeeJeongController {
 		System.out.println("reply");
 		
 		// 로그인 해야 대댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		System.out.println("m_no = " + m_no);
 		cm_commentVO.setM_no(m_no);
@@ -472,9 +490,11 @@ public class HeeJeongController {
 		System.out.println("report_view_t");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		int t_no = Integer.parseInt(request.getParameter("t_no"));
 
@@ -491,9 +511,11 @@ public class HeeJeongController {
 		System.out.println("report_t");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -520,9 +542,11 @@ public class HeeJeongController {
 		System.out.println("report_view_m_t");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
 
@@ -545,9 +569,11 @@ public class HeeJeongController {
 		System.out.println("report_m_t");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -622,9 +648,11 @@ public class HeeJeongController {
 		System.out.println("comment_write_t");
 		
 		// 로그인 해야 댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(cm_commentVO.getCm_no2());
 		
@@ -694,9 +722,11 @@ public class HeeJeongController {
 		System.out.println("reply_view_t");
 		
 		// 로그인 해야 대댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		String cm_no = request.getParameter("cm_no");
 		System.out.println("cm_no : "+cm_no);
@@ -723,9 +753,11 @@ public class HeeJeongController {
 		System.out.println("reply_t");
 		
 		// 로그인 해야 대댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		System.out.println("m_no = " + m_no);
 		cm_commentVO.setM_no(m_no);
@@ -806,9 +838,11 @@ public class HeeJeongController {
 		System.out.println("report_view_cr");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
 
@@ -825,9 +859,11 @@ public class HeeJeongController {
 		System.out.println("report_cr");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -853,9 +889,11 @@ public class HeeJeongController {
 		System.out.println("report_view_m_cr");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
 
@@ -878,9 +916,11 @@ public class HeeJeongController {
 		System.out.println("report_m_cr");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -956,9 +996,11 @@ public class HeeJeongController {
 		System.out.println("comment_write_cr");
 		
 		// 로그인 해야 댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(cm_commentVO.getCm_no2());
 		
@@ -1028,9 +1070,11 @@ public class HeeJeongController {
 		System.out.println("reply_view_cr");
 		
 		// 로그인 해야 대댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		String cm_no = request.getParameter("cm_no");
 		System.out.println("cm_no : "+cm_no);
@@ -1052,9 +1096,11 @@ public class HeeJeongController {
 		System.out.println("reply_cr");
 		
 		// 로그인 해야 대댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		System.out.println("m_no = " + m_no);
 		cm_commentVO.setM_no(m_no);
@@ -1104,9 +1150,11 @@ public class HeeJeongController {
 		System.out.println("comment_write_view_or");
 		
 		// 로그인 해야 댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		int c_no = Integer.parseInt(request.getParameter("c_no"));
 
@@ -1129,9 +1177,11 @@ public class HeeJeongController {
 		System.out.println("comment_write_or");
 		
 		// 로그인 해야 댓글 쓰기 가능
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(cm_commentVO.getCm_no2());
 		
@@ -1200,9 +1250,11 @@ public class HeeJeongController {
 		System.out.println("report_view_m_or");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
 
@@ -1225,9 +1277,11 @@ public class HeeJeongController {
 		System.out.println("report_m_or");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 
 		System.out.println(reportVO.getR_type_no());
 
@@ -1324,9 +1378,11 @@ public class HeeJeongController {
 		System.out.println("game_vote");
 		
 		// m_no을 넘기기 위해서
-		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		model.addAttribute("m_no", memberVO.getM_no());
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no());
+		}
 		
 		// game 테이블 투표
 		contentService.updateGame(gameVO);
