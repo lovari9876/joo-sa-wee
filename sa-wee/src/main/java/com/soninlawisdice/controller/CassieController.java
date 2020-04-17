@@ -50,8 +50,9 @@ public class CassieController {
 	
 	// 보부상 리스트
 	@RequestMapping(value = "/tlist", method = RequestMethod.GET)
-	public String tlist(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq
-			/*@RequestParam(name="s_content", defaultValue = "n") String s_content, */ ) {
+	public String tlist(Model model, Principal principal, @ModelAttribute("scri") SearchCriteria scri,
+					HttpServletRequest rq
+			/*@RequestParam(name="s_content", defaultValue = "n") String s_content, */ ) throws Exception {
 		//@RequestParam으로 받으면, 처음에 검색어 없이 /tlist로 갈때는 없는 파라미터 오류 발생
 		
 		// 스프링 컨테이너가
@@ -60,7 +61,15 @@ public class CassieController {
 		// 를 자동으로 해준다.
 
 		logger.info("tlist");	
-
+		
+		// 로그인 안되어있는 상태에서도 볼 수 있음
+		if(principal != null) {
+			String m_id = principal.getName();
+			MemberVO memberVO = myPageService.mypage(m_id);
+			model.addAttribute("memberVO", memberVO);
+		}
+		
+		// 한 페이지에 글 15개씩 보이도록
 		scri.setPerPageNum(15);
 
 		// 쿼리 uri로 보낸 파라미터들 확인
@@ -95,36 +104,34 @@ public class CassieController {
 		return "secondhand/tlist";
 	}
 	
-	// 중고거래 게시글 view
+	// 중고거래 게시글(content) view
 	@RequestMapping(value = "/content_view_t", method = RequestMethod.GET)
 	public String content_view_t(Principal principal, Model model, 
-				HttpServletRequest request, CM_commentVO cm_commentVO, MemberVO memberVO) throws Exception {
+				HttpServletRequest request, CM_commentVO cm_commentVO) throws Exception {
+		
 		System.out.println("content_view_t");
 		
 		// 로그인 안되어있는 상태에서도 볼 수 있음
 		if(principal != null) {
 			String m_id = principal.getName();
-			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			MemberVO memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no", memberVO.getM_no()); // for 희정..
+			model.addAttribute("memberVO", memberVO); // for cassie
 		}
 
 		System.out.println(request.getParameter("t_no"));
 		
 		int t_no = Integer.parseInt(request.getParameter("t_no"));
 		
+		// 글 삭제는 결제 있으면 하면 안되니까...			
+		int pCnt = secondhandService.countPayment(t_no);
+		model.addAttribute("pCnt", pCnt);
+		
 		model.addAttribute("content_view_t", secondhandService.selectContentOne(t_no));
 		
 		// 게임, 가격 리스트
 		model.addAttribute("tgList", secondhandService.selectTrade_gameList(t_no));
-		
-		// 로그인 안된 상태에서는 content_view 못보게 해놓는 코드.. 이 부분 삭제해도 됨.
-		/*
-		 * String m_id = principal.getName(); memberVO = myPageService.mypage(m_id);
-		 */
-		
-		model.addAttribute("m_no", memberVO.getM_no());
-
-		
+				
 		// 게시글 조회수
 		secondhandService.upHitContent(t_no);
 

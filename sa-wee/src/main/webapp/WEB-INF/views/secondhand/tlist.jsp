@@ -471,8 +471,11 @@
 					    </c:if>					   
 					</ul>
 					<!-- 글쓰기 버튼 -->
-					<button class="btn btn-primary write-btn lavender-btn" type="button"
-							onclick="location.href='write_view_t'">글쓰기</button>
+					<!-- 표류자 신분(r_no=4)이면 보이지 않도록.. -->
+					<c:if test="${memberVO.r_no != 4}">
+						<button class="btn btn-primary write-btn lavender-btn" type="button"
+								onclick="location.href='write_view_t'">글쓰기</button>
+					</c:if>
                 </nav>
             </div>
         </div>

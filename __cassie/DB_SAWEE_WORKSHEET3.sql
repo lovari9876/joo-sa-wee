@@ -139,8 +139,30 @@ select SUM(tg_price) FROM trade_game where t_no = 389;
 			PTG.P_NO = #{p_no};
             
             
-
-
+-- 삭제 우선순위에 따라 trade 글 삭제도 게임 트레이드 삭제부터 선행해야함...
+-- 그래서 declare3....
+            DECLARE
+			     
+			
+            BEGIN
+            
+                DELETE 
+                FROM 
+                    TRADE_GAME
+                WHERE 
+                    T_NO = #{t_no};
+                COMMIT;
+            
+                DELETE 
+                FROM 
+                    TRADE 
+                WHERE 
+                    T_NO = #{t_no};
+                COMMIT;
+            
+			
+            END;
+/
 
 
 
