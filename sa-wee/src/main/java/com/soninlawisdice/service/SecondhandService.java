@@ -48,4 +48,7 @@ public interface SecondhandService {
 
 	// pay_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃
 	public void updatePaymentSuccess(int p_no);
+
+	// trade와 관련된 payment 몇 개 있니?
+	public int countPayment(int t_no);
 }

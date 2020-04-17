@@ -132,14 +132,29 @@
 	</select> 
 	
 	
-	<!-- 글 삭제 -->
+	<!-- 글 삭제: trade와 trade_game 동시 삭제 -->
 	<delete id="deleteContent">
-	
-		DELETE 
-		FROM 
-			TRADE 
-		WHERE 
-			T_NO = #{t_no}
+		{ CALL
+			DECLARE				     
+				
+	        BEGIN
+	        
+	            DELETE 
+	            FROM 
+	                TRADE_GAME
+	            WHERE 
+	                T_NO = #{t_no};
+	            COMMIT;
+	        
+	            DELETE 
+	            FROM 
+	                TRADE 
+	            WHERE 
+	                T_NO = #{t_no};
+	            COMMIT;	            
+				
+			END
+		}
 			
 	</delete>
 	
@@ -210,100 +225,104 @@
 	<update id="modify" statementType="CALLABLE" >
 		{ CALL
 			DECLARE
-			      
-			      TYPE tg_no_table IS TABLE OF trade_game.tg_no%TYPE 
-			            INDEX BY BINARY_INTEGER;             
-			      TYPE tg_name_table IS TABLE OF trade_game.tg_name%TYPE 
-			            INDEX BY BINARY_INTEGER;       
-			      TYPE tg_price_table IS TABLE OF trade_game.tg_price%TYPE 
-			            INDEX BY BINARY_INTEGER;      
-
+							      
+				TYPE tg_no_table IS TABLE OF trade_game.tg_no%TYPE 
+				      INDEX BY BINARY_INTEGER;             
+				TYPE tg_name_table IS TABLE OF trade_game.tg_name%TYPE 
+				      INDEX BY BINARY_INTEGER;       
+				TYPE tg_price_table IS TABLE OF trade_game.tg_price%TYPE 
+				      INDEX BY BINARY_INTEGER;      
+				
+				
+				tg_no_tab		tg_no_table;       	<!--  해당 글에 이미 있는 tg_no 담기 -->
+				tg_name_tab     tg_name_table;		<!--  mybatis  foreach 로 게임 담기 -->
+				tg_price_tab    tg_price_table;     <!--  mybatis  foreach 로 가격 담기 -->
+				
+				nocnt binary_integer :=0;
+				gcnt binary_integer :=0;
+				j binary_integer :=0;
+				
+				<!-- 글번호 넣기-->
+				v_t_no     trade_game.t_no%type := #{tradeVO.t_no};
+							     
 			
-				    tg_no_tab       tg_no_table;       	<!--  해당 글에 이미 있는 tg_no 담기 -->
-				    tg_name_tab    tg_name_table;		<!--  mybatis  foreach 로 게임 담기 -->
-				    tg_price_tab    tg_price_table;     <!--  mybatis  foreach 로 가격 담기 -->
-				     
-				     nocnt binary_integer :=0;
-				     gcnt binary_integer :=0;
-				     j binary_integer :=0;
-				     
-				     <!-- 글번호 넣기-->
-				     v_t_no     trade_game.t_no%type := #{tradeVO.t_no};
-			     
-			
-			   BEGIN
+			BEGIN
 			    
-			      <!-- trade(보부상) 글 수정 -->
-				  UPDATE 
-				  	TRADE
-				  SET 
+				<!-- trade(보부상) 글 수정 -->
+				UPDATE 
+					TRADE
+				SET 
 					S_NO = #{tradeVO.s_no},
 					T_TITLE = #{tradeVO.t_title},
 					T_CONTENT = #{tradeVO.t_content},
 					T_UPDATED_DATE = SYSDATE						
-				  	<if	test="tradeVO.t_island == 1">
-							, T_ISLAND = 2
+				 	<if	test="tradeVO.t_island == 1">
+						, T_ISLAND = 2
 					</if>
-				  WHERE 
-				  	T_NO = v_t_no;
+				WHERE 
+					T_NO = v_t_no;				 
+				commit;
 				  
-				  commit;
-			    
-			     <!-- 여기부턴 trade_game(게임, 가격) 수정 -->
-			    
-			     <!-- 해당 글의 tg_no 가져오기.. -->
-			     for tg_nolist in (select tg_no from trade_game where t_no = v_t_no) loop			     
-			        nocnt := nocnt +1;			        
-			        tg_no_tab(nocnt) := tg_nolist.tg_no;			        
-			     end loop; 
-			          
-			     <!-- mybatis  foreach 로 게임 담기-->
-					<foreach collection="gamePrice" index="game" item="price">	
-					    gcnt := gcnt +1;
-					    tg_name_tab(gcnt) := #{game};
-					    tg_price_tab(gcnt)  := #{price};
-					</foreach>
- 		        
-			     <!-- 조건 3가지에 따른 update -->
-			        IF tg_name_tab.count = tg_no_tab.count THEN
+				  
+				<!-- 여기부턴 trade_game(게임, 가격) 수정 -->
+				
+				<!-- 해당 글의 tg_no 가져오기.. -->
+				for tg_nolist in (select tg_no from trade_game where t_no = v_t_no) loop			     
+					nocnt := nocnt +1;			        
+					tg_no_tab(nocnt) := tg_nolist.tg_no;			        
+				end loop; 
+				     
+				<!-- mybatis  foreach 로 게임 담기-->
+				<foreach collection="gamePrice" index="game" item="price">	
+					gcnt := gcnt +1;
+				    tg_name_tab(gcnt) := #{game};
+				    tg_price_tab(gcnt)  := #{price};
+				</foreach>
+				      
+				<!-- 조건 3가지에 따른 update -->
+				IF tg_name_tab.count = tg_no_tab.count THEN
+				
+					for cnt in 1..tg_no_tab.count  loop  
+				        update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) 
+				        where tg_no = tg_no_tab(cnt);
+				        
+				        commit;        
+					end loop;
+				
+				ELSIF tg_name_tab.count > tg_no_tab.count THEN
+				
+					for cnt in 1..tg_no_tab.count  loop           
+				    	update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) 
+				        where tg_no = tg_no_tab(cnt);
+				        
+				        commit;      
+					end loop;
+				    
+				   	for cnt in tg_no_tab.count+1..tg_name_tab.count  loop 
+				    	insert into trade_game (tg_no, t_no, g_no, tg_name, tg_price) 
+				    	values (get_trade_game_seq, v_t_no, null, tg_name_tab(cnt), tg_price_tab(cnt));
+				    	
+				        commit;        
+				    end loop;
+				
+				ELSE
+				
+					for cnt in 1..tg_name_tab.count  loop     
+				    	update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) 
+				    	where tg_no = tg_no_tab(cnt);
+				    	
+				        commit;        
+					end loop;
+				    
+					for cnt in tg_name_tab.count+1..tg_no_tab.count  loop    
+				    	DELETE 	FROM trade_game WHERE tg_no = tg_no_tab(cnt);
+				    	
+				        commit;        
+					end loop;
+				
+				END IF;
 			
-			           for cnt in 1..tg_no_tab.count  loop     
-			                -- j := j +1;             
-			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
-			                commit;        
-			           end loop;
-			
-			        ELSIF tg_name_tab.count > tg_no_tab.count THEN
-			
-			           for cnt in 1..tg_no_tab.count  loop     
-			                -- j := j +1;             
-			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
-			                commit;        
-			           end loop;
-			            
-			           for cnt in tg_no_tab.count+1..tg_name_tab.count  loop     
-			                -- j := j +1;             
-			                insert into trade_game (tg_no, t_no, g_no, tg_name, tg_price) values (get_trade_game_seq, v_t_no, null,  tg_name_tab(cnt), tg_price_tab(cnt));
-			                commit;        
-			           end loop;
-			
-			        ELSE
-			
-			           for cnt in 1..tg_name_tab.count  loop     
-			                -- j := j +1;             
-			                update trade_game SET tg_name = tg_name_tab(cnt), tg_price = tg_price_tab(cnt) where tg_no = tg_no_tab(cnt);
-			                commit;        
-			           end loop;
-			            
-			           for cnt in tg_name_tab.count+1..tg_no_tab.count  loop     
-			                -- j := j +1;                    
-			                DELETE 	FROM trade_game WHERE tg_no = tg_no_tab(cnt);
-			                commit;        
-			           end loop;
-			
-			        END IF;
-			
-			   END		 
+			END		 
 		}
   
 	</update>
@@ -385,6 +404,19 @@
 		}
 		
 	</insert>
+	
+	
+	<!-- payment 하나라도 있는지 T_NO으로 검사 -->
+	<select id="countPayment" resultType="int" >
+	
+		SELECT
+			COUNT(*)
+		FROM
+			PAYMENT P	
+		WHERE
+			T_NO = #{t_no}	
+	
+	</select>
 
 	
 	<!-- payment 리스트 -->

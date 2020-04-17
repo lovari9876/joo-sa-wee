@@ -144,9 +144,9 @@ form{
 	border: none;
 }
 
-.write-table input {
-	
+.write-table input {	
 	border: none;
+	width: 100%; /* input이 화면 크기에 상관없이 적절하게 나옴 */
 }
 
 

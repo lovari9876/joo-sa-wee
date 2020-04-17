@@ -103,6 +103,7 @@ public class SecondhandServiceImpl implements SecondhandService {
 	}
 
 	// 글 수정: TRADE
+	@Override
 	public void modify(TradeVO tradeVO, String gameNames, String prices) {
 		// 쉼표로 구분하여 받은 gameNames을 잘라서 List에 담기
 		StringTokenizer gn = new StringTokenizer(gameNames, ",");
@@ -131,6 +132,7 @@ public class SecondhandServiceImpl implements SecondhandService {
 	}
 
 	// 구매요청(판매중-> 거래하기 modal-> checkbox 구매요청)
+	@Override
 	public void call_buy(TradeVO tradeVO, String[] tgArr, int buyer) {
 		ArrayList<Integer> tg_noList = new ArrayList<>();
 
@@ -144,18 +146,27 @@ public class SecondhandServiceImpl implements SecondhandService {
 	
 	
 	// 회원정보 -> 내 구매/ 내 판매 리스트
+	@Override
 	public ArrayList<HashMap<String, Object>> selectPaymentList(int m_no, String who) {
 		return secondhandMapper.selectPaymentList(m_no, who);
 	}	
 	
 	// 내 거래: 거래 하나의 ptgList(게임, 가격)
+	@Override
 	public ArrayList<HashMap<String, Object>> selectPTGList(int p_no) {
 		return secondhandMapper.selectPTGList(p_no);
 	}
 	
 	// pay_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃
+	@Override
 	public void updatePaymentSuccess(int p_no) {
 		secondhandMapper.updatePaymentSuccess(p_no);
+	}
+	
+	// trade와 관련된 payment 몇 개 있니?
+	@Override
+	public int countPayment(int t_no) {
+		return secondhandMapper.countPayment(t_no);
 	}
 	
 }
