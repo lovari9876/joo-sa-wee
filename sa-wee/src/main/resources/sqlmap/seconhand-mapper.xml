@@ -191,8 +191,7 @@
 		FROM 
 			DUAL			
 		
-	</insert>	
-
+	</insert>
 	
 	<!-- 글 작성시 10 포인트 적립 -->
 	<update id = "boardPointUpdate">

@@ -858,6 +858,69 @@
 	
 	
 	
+	<!-- 보부상 파일첨부 -->
+	<insert id="insertTradeFile" >
+		{ CALL
+			DECLARE
+			
+			
+				TYPE f_no_table IS TABLE OF f_file.f_no%TYPE
+				INDEX BY BINARY_INTEGER;
+				TYPE f_name_table IS TABLE OF f_file.f_name%TYPE
+				INDEX BY BINARY_INTEGER;
+				TYPE f_type_table IS TABLE OF f_file.f_type%TYPE
+				INDEX BY BINARY_INTEGER;
+				TYPE f_path_table IS TABLE OF f_file.f_path%TYPE
+				INDEX BY BINARY_INTEGER;
+				
+				f_no_tab		f_no_table;
+				f_name_tab		f_name_table;
+				f_type_tab		f_type_table;
+				f_path_tab		f_path_table;
+				
+				
+				fcount binary_integer :=0;
+				v_t_no     trade.t_no%type := #{t_no};
+				 
+			BEGIN
+				
+				
+				<foreach collection="list" item="list">	
+					fcount := fcount+1;
+					f_no_tab(fcount) := get_f_file_seq;
+					
+					f_name_tab(fcount):= #{list.F_NAME};
+					f_type_tab(fcount):= #{list.F_TYPE};
+					f_path_tab(fcount):= #{list.F_PATH};
+						
+				</foreach>
+				
+				
+				for cnt in 1..fcount loop
+					INSERT
+					INTO
+						F_FILE
+						(F_NO, F_NAME, F_TYPE, F_PATH)
+					VALUES
+						(f_no_tab(cnt), f_name_tab(fcount), f_type_tab(fcount), f_path_tab(fcount));
+					COMMIT;	
+					
+					INSERT
+					INTO
+						BOARD_FILE
+						(F_NO, BT_NO, BF_WNO)
+					VALUES
+						(f_no_tab(cnt), 9, v_t_no);
+					COMMIT;
+					
+				end loop;
+							
+			END
+		}
+		
+	</insert>		
+
+	
 	
 	
 	

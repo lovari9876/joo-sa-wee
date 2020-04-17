@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- 403 에러 / csrf 토큰 문제 -->
+<meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
+<meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
+
 <title>Insert title here</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,33 +41,23 @@
 <!-- <script src="https://kit.fontawesome.com/4b0668ef4e.js" crossorigin="anonymous"></script> -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<link rel = "stylesheet" href = "css/board_hs/tagsinput.css" />
 <!-- Main Stylesheets -->
 
 <link rel="stylesheet" href="css/board_hs/writestyle.css" />
 
-<script src="js/board_hs/ckeditor.js"></script>
+<script src = "js/board_hs/ckeditor.js" ></script>
 
 </head>
-<body id="top">
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
+<body id = "top">
 
 	<!-- Header section -->
-
+	
 	<!-- header include start -->
-	<%@ include file="/WEB-INF/views/share/header.jsp"%>
+	<%@ include file="/WEB-INF/views/share/header.jsp" %>
 	<!-- header include end -->
-
-
-
-
+	
 
 	<!-- 작성하는 부분 전체 -->
-
 	<div class="write-section">
 		<div class="write-container">
 
@@ -75,67 +67,88 @@
 				<div class="writeName">
 					<h3>글 작성하기</h3>
 				</div>
-				<div class="square"></div>
-
-
+				<div class = "square"></div>
+				
+				
 				<!-- 게시판, 말머리 선택할 수 있는 곳 -->
-				<form name = "form" action="board_write" method="post" enctype="multipart/form-data">
+				<form action="trade_write2" method="post" enctype="multipart/form-data">
+					<input type = "hidden" id = "bt_no" value = "9"/>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
+					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
+					
 					<table class="write-table">
-						<!-- 첫번째 select box 선택되어져있게 -->
-						<input id="bt_no" type="hidden" value="${bt_no}" />
-						<!-- 일단 이렇게 안넘기면 board_writeVO 에서 m_no 을 가져오지 못함. -->
-						<input name="m_no" type="hidden" value="11" />
-						<tr class="row">
-							<td class = "cell">말머리 선택</td>
-							<td class="cell">
-								<select id="board" name="bt_no"></select>
-								<select id="sub" name="s_no"></select>
-							</td>
-
-						</tr>
-
+						<tr class = "row">
+							<td class = "cell">말머리 </td>
+							<td class = "cell"> 
+								<select name="s_no" >
+									<option value="32" selected>판매중</option>
+									<option value="33">구매중</option>
+									<option value="34">거래완료</option>
+								</select> 								
+							</td>							
+						</tr>					
+						
 						<!-- 입력창 -->
 						<tr class="row">
 							<td class="cell">제목</td>
-							<td class="cell"><input type="text" id = "title" name="bw_title"
-								placeholder="제목을 입력하세요"></td>
+							<td class="cell">
+								<input type="text" name="t_title" placeholder="제목을 입력하세요">
+							</td>
 						</tr>
-
+						
+						<!-- select 로 보드게임 번호 찍어줘야함... -->
+						<!-- 없으면 직접 입력 가능: 향후 방향성 모호하므로 일단 이름 하나만 입력하도록. -->
 						<tr class="row">
-							<td class="cell">내용</td>
-							<td class="cell"><textarea id="editor" name="bw_content"
-									placeholder="내용을 입력하세요"></textarea></td>
+							<td class="cell">보드게임</td>
+							<td class="cell">
+								<input type="text" name="gameNames" 
+									placeholder="보드게임의 이름을 쉼표(,)로 구분하여 입력하세요">
+							</td>
 						</tr>
-
-						<tr class = "row">
-							<td class = "cell">태그</td>
-							<td class = "cell" id = "bloodhound">
-								<input name = "gameNames" class = "typeahead" type = "text" data-role = "tagsinput">
+						
+						<tr class="row">
+							<td class="cell">가격</td>
+							<td class="cell">
+								<input type="text" name="prices" placeholder="보드게임의 희망 가격을 쉼표(,)로 구분하여 숫자로 입력하세요">
 							</td>
 						</tr>
 
+						<!-- 판매 원하거나 구매 원할 때 사진 여기에 첨부 -->
+						<tr class="row">
+							<td class="cell">내용</td>
+							<td class="cell">
+								<textarea id = "editor" name="t_content" placeholder="판매 혹은 구매하려는 보드게임의 사진과 함께 설명을 입력하세요">
+							</textarea></td>
+						</tr>
+						
+						<tr>
+							
+							<td> 파일첨부 </td>
+							<td><input type = "file" name = "file"><input type="submit" value = "업로드"></td>
+							
+						</tr>
+						
+						<tr>
+							<td></td>
+							<td>${savedname}</td>
+						</tr>
+						
 					</table>
-					<button class="list" type="button" onclick="toList()">목록</button>
-					<button class="write-btn">작성완료</button>
+					<button class="list" type="button" onclick="self.location='tlist'">목록</button>
+					<button class="write-btn" type="submit">작성완료</button>
 				</form>
-
-
-
 
 			</div>
 		</div>
 	</div>
-
-
-
+	
+	
 	<!-- footer 부분 -->
 	<!-- footer include start -->
-	<%@ include file="/WEB-INF/views/share/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
 	<!-- footer include end -->
-
-
-
-
+	
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
@@ -153,52 +166,17 @@
 	<script src="js/board_hs/category.js"></script>
 	<script src="js/board_hs/toList.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
-	<script src ="js/board_hs/tagsinput.js"></script>
-	<script src="js/board_hs/typeahead.js"></script>
-	
- 
-	<script>
-		
-		var games = new Bloodhound({
-			datumTokenizer : Bloodhound.tokenizers.obj.whitespace('name'),
-			queryTokenizer : Bloodhound.tokenizers.whitespace,
-			prefetch : {
-				url : '/gameList',
-				filter : function(list){
-					return $.map(list, function(game){
-						return {name : game};
-					});
-				}
-			} 
-		});
-		games.initialize();
-		console.log("games : " + games);
-		console.log("name : " + name);
-		
-		$('.typeahead').tagsinput({
-			
-			typeaheadjs : {
-				name : 'games',
-				displayKey : 'name',
-				valueKey : 'name',
-				source : games.ttAdapter(),
-				
-				hint: true,
-				highlight: true,
-				minLength: 1
-			}
-		});
 	
 	
-	</script> 
-	
-
 	<!-- ckEditor 관련 -->
-
+	
 	<script type="text/javascript">
 			var myEditor;
 			ClassicEditor
 				.create( document.querySelector( '#editor' ), {
+					
+					
+					
 					
 					ckfinder: {
 				        uploadUrl: '${pageContext.request.contextPath}/fileupload' // 내가 지정한 업로드 url (post로 요청감)
@@ -208,8 +186,7 @@
 					toolbar: [ 'heading', '|',  'bold', 'italic','fontSize','fontColor', 'fontFamily', 'alignment:left', 'alignment:center', 'alignment:right','link', 'bulletedList', 'numberedList', 'blockQuote','insertTable',  'imageUpload', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
 
 					image : {
-						styles : ['full', 'alignLeft', 'alignRight'],
-						resizeUnit : 'px'
+						styles : ['full', 'alignLeft', 'alignRight']
 					},
 					
 					uiClor : '#FFFFFF',
@@ -228,9 +205,10 @@
 			    console.error( error );
 			} );
 		</script>
-
-<script src="js/board_hs/alertEmpty.js"></script>
-
+	
+	
+	
+	
 
 </body>
 </html>

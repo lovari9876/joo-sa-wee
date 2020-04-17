@@ -3,6 +3,8 @@ package com.soninlawisdice.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;

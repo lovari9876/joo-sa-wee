@@ -112,103 +112,18 @@
 			<div class="row right-align" id="row">
 				<div class="col-xl-7 col-lg-8 col-md-7">
 					<div class="row right-item photo">
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/1.jpg" alt="#">
-								<h5>Zombie Appocalipse 2</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="" /></a>
+					
+						<c:forEach items = "${gameList}" var = "game">
+							<div class="col-lg-4 col-md-6">
+								<div class="game-item">
+									<img src="${game.g_thumbnail}" alt="#">
+									<h5>${game.g_name_kor }</h5>
+									<a href="game_detail?g_no=${game.g_no}" class="read-more">Read More <img
+										src="images/board_hj/icons/double-arrow.png" alt="" /></a>
+								</div>
 							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/2.jpg" alt="#">
-								<h5>Dooms Day</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/3.jpg" alt="#">
-								<h5>The Huricane</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/4.jpg" alt="#">
-								<h5>Star Wars</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/5.jpg" alt="#">
-								<h5>Candy land</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/6.jpg" alt="#">
-								<h5>E.T.</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/7.jpg" alt="#">
-								<h5>Zombie Appocalipse 2</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/8.jpg" alt="#">
-								<h5>Dooms Day</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/9.jpg" alt="#">
-								<h5>The Huricane</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<!-- sidebar가 움직인다는 것을 보여주기 위해 일부러 추가 -->
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/9.jpg" alt="#">
-								<h5>The Huricane</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/9.jpg" alt="#">
-								<h5>The Huricane</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="game-item">
-								<img src="images/board_hj/games/9.jpg" alt="#">
-								<h5>The Huricane</h5>
-								<a href="game_detail" class="read-more">Read More <img
-									src="images/board_hj/icons/double-arrow.png" alt="#" /></a>
-							</div>
-						</div>
+						</c:forEach>
+						
 					
 					</div>
 					<div class="site-pagination">

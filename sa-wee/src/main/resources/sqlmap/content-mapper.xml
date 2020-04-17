@@ -833,5 +833,11 @@
 		FROM GAME
 		WHERE G_NO = #{g_no} AND G_NUM != 0
 	</select>
+	
+	<select id = "selectGameList" resultType = "com.soninlawisdice.vo.GameVO">
+	
+		SELECT G_NO, G_NAME_KOR, G_THUMBNAIL FROM GAME ORDER BY G_NO ASC
+	
+	</select>
 
 </mapper>

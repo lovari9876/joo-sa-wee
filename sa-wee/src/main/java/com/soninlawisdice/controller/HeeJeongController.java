@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.soninlawisdice.mapper.ContentMapper;
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.MyPageService;
@@ -379,13 +380,6 @@ public class HeeJeongController {
 		contentService.updatePoint(cm_commentVO);
 		
 		return "content/reply_success";
-	}
-
-	@RequestMapping(value = "/game_info", method = RequestMethod.GET)
-	public String game_info(Locale locale, Model model) {
-		System.out.println("game_info");
-
-		return "game_info/game_info";
 	}
 
 	
@@ -1117,4 +1111,15 @@ public class HeeJeongController {
 					
 		return "redirect:/game_detail";
 	}
+	
+	//게임 전체 리스트
+	@RequestMapping(value = "/game_info", method = RequestMethod.GET)
+	public String game_info(Locale locale, Model model) {
+		System.out.println("game_info");
+
+		model.addAttribute("gameList", contentService.selectGameList());
+		
+		return "game_info/game_info";
+	}
+
 }

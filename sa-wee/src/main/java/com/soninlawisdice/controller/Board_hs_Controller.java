@@ -7,8 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -16,24 +18,27 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.MyPageService;
+import com.soninlawisdice.service.SecondhandService;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
 import com.soninlawisdice.vo.SearchCriteria;
+import com.soninlawisdice.vo.TradeVO;
 
 /**
  * Handles requests for the application home page.
@@ -52,6 +57,9 @@ public class Board_hs_Controller {
 	
 	@Autowired
 	private MyPageService myPageService;
+	
+	@Autowired
+	private SecondhandService secondhandService;
 
 
 	private static final Logger logger = LoggerFactory.getLogger(Board_hs_Controller.class);
@@ -622,8 +630,8 @@ public class Board_hs_Controller {
 		
 		// String fuploadPath = "c://sa-wee/file";
 		//test
-		String filePath = "C:\\mp\\file\\";
-		String filePath2 = "/images";
+		//String filePath = "C:\\mp\\file\\";
+		//String filePath2 = "/images";
 		
 		System.out.println(req.getSession().getServletContext().getRealPath("/"));
 		System.out.println(fuploadPath);
@@ -639,14 +647,14 @@ public class Board_hs_Controller {
 		// fuploadPath 안에 파일 생성됨.(img 파일 만들어지고 그 안에 파일)
 		// +"/"+ 이거 없으면 상위폴더에 img파일명.jpg 이런식으로 이름이 됨.
 		File file = new File(fuploadPath + "/" + newfilename);
-		File file2 = new File(filePath + "/" + newfilename);
-		File file3 = new File(filePath2 + "/" + newfilename);
+		//File file2 = new File(filePath + "/" + newfilename);
+		//File file3 = new File(filePath2 + "/" + newfilename);
 		try {
 			// 실제 파일이 업로드 되는 부분
 
 			FileUtils.writeByteArrayToFile(file, fileload.getBytes());
-			FileUtils.writeByteArrayToFile(file2, fileload.getBytes());
-			FileUtils.writeByteArrayToFile(file3, fileload.getBytes());
+			//FileUtils.writeByteArrayToFile(file2, fileload.getBytes());
+			//FileUtils.writeByteArrayToFile(file3, fileload.getBytes());
 			
 			System.out.println(file);
 
@@ -664,6 +672,58 @@ public class Board_hs_Controller {
 		}
 
 	}
+	
+	@RequestMapping(value = "/wsr")
+	public String wsr() {
+		return "board_hs/write_view3";
+	}
+	
+	
+	// 글 작성
+		@RequestMapping(value = "/trade_write2", method = RequestMethod.POST)
+		public String write(HttpSession session, Model model, @ModelAttribute("tradeVO") TradeVO tradeVO, MultipartHttpServletRequest mpRequest, 
+							String gameNames, String prices, HttpServletRequest request) throws Exception {
+
+			
+			// 세션 매번하기 힘드니까 임의 값 부여
+			MemberVO memberVO = myPageService.mypage("test4");		
+			
+			secondhandService.insertTrade(tradeVO, memberVO.getM_no(), gameNames, prices);
+			
+			System.out.println("=======================");
+			int t_no = tradeVO.getT_no();
+			System.out.println(tradeVO.getT_content());
+			System.out.println(tradeVO.getT_title());
+			System.out.println(tradeVO.getT_no());
+			System.out.println("========================");
+			
+			boardService.insertTradeFile(mpRequest, t_no);
+			
+			secondhandService.boardPointUpdate(memberVO.getM_no());		
+			
+					
+			return "redirect:tlist";
+		}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
 

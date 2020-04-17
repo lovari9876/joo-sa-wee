@@ -3,6 +3,8 @@ package com.soninlawisdice.mapper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -52,5 +54,5 @@ public interface SecondhandMapper {
 
 	// 내 거래: 거래 하나의 ptgList(게임, 가격)
 	public ArrayList<HashMap<String, Object>> selectPTGList(@Param("p_no") int p_no);
-	
+
 }

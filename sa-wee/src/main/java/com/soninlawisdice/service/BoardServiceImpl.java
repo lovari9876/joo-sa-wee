@@ -7,10 +7,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.soninlawisdice.mapper.BoardMapper;
+import com.soninlawisdice.util.FileUtils;
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CafeVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
@@ -269,7 +273,25 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<String> gameNameList() {
 		return boardMapper.gameNameList();
 	}
+	
+	
+	///////////////보부상 글작성////////////////
+	@Resource(name = "fileUtils")
+	private FileUtils fileUtils;
+	
+	@Override
+	public void insertTradeFile(MultipartHttpServletRequest mpRequest, int t_no) throws Exception {
+			List<Map<String, Object>> list = fileUtils.parseInsertFileIofn(mpRequest);
 
+			System.out.println("===========================");
+			System.out.println("list : " +list);
+			System.out.println("===========================");
+				
+			boardMapper.insertTradeFile(list, t_no);
+	}
+
+	
+	
 	/////////////////////////////////////////////
 	/*
 	 * @Override public void insertGame() {

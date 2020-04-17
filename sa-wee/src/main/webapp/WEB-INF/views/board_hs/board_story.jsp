@@ -132,7 +132,7 @@
 									<%-- <a href="#" data-toggle="popover" data-content = "<a href = "#">회원정보보기</a><br/><a href = "#">쪽지보내기</a>">	
 										${dto['M_NICK']}
 									</a> --%>
-									<a role = "button" class="pop_btn popovers" data-trigger="focus" 
+									<a role = "button" class="pop_btn popovers" 
 									data-toggle="popover" 
 									data-content="<a href='#'>회원정보보기</a>
 									<br/>
