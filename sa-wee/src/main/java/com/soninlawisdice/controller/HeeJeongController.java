@@ -573,8 +573,15 @@ public class HeeJeongController {
 	
 	// 중고거래 댓글 목록 view
 	@RequestMapping(value = "/comment_view_t", method = RequestMethod.GET)
-	public String comment_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO) {
+	public String comment_view_t(Model model, HttpServletRequest request, CM_commentVO cm_commentVO, Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("comment_view_t");
+		
+		// 로그인 안되어있는 상태에서도 볼 수 있음
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no",memberVO.getM_no());
+		}
 			
 		String cm_no2 = request.getParameter("cm_no2");
 		System.out.println("cm_no2 : "+cm_no2);
@@ -902,6 +909,13 @@ public class HeeJeongController {
 	public String comment_view_cr(Model model, HttpServletRequest request, CM_commentVO cm_commentVO, 
 									Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("comment_view_cr");
+		
+		// 로그인 안되어있는 상태에서도 볼 수 있음
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("m_no",memberVO.getM_no());
+		}
 				
 		String cm_no2 = request.getParameter("cm_no2");
 		System.out.println("cm_no2 : "+cm_no2);
