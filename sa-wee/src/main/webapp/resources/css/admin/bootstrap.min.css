@@ -1323,7 +1323,7 @@ label {
 }
 
 	/* 텍스트 입력창 */
-select, textarea, input[type="text"], input[type="password"], input[type="datetime"],
+select, textarea, input[type="text"],input[type="number"], input[type="password"], input[type="datetime"],
 	input[type="datetime-local"], input[type="date"], input[type="month"],
 	input[type="time"], input[type="week"], input[type="number"], input[type="email"],
 	input[type="url"], input[type="search"], input[type="tel"], input[type="color"],
@@ -1357,7 +1357,7 @@ div > .pull-left:not(.btn){
 
 
 /* write : 작성페이지에 있는 입력창 text에만 균일한 margin 주기  */
-.cell input[type="text"] {
+.cell input[type="text"], .cell input[type="number"] {
 	margin : 3px 5px;
 }
 

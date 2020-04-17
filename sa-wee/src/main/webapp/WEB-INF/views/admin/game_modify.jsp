@@ -47,27 +47,31 @@
 							
 							<tr class="row">
 								<td class="cell span2">한국어 제목</td>
-								<td class="cell span8"><input type="text" name="g_name_kor" class="span6" value="${game_info['G_NAME_KOR']}"></td>
+								<td class="cell span8"><input type="text" maxlength="60" name="g_name_kor" class="span6" value="${game_info['G_NAME_KOR']}"></td>
 							</tr>
 
 							<tr class="row">
 								<td class="cell span2">최소인원</td>
-								<td class="cell span8"><input type="text" name="g_min" class="span6" rows="2" value="${game_info['G_MIN']}"></input></td>
+								<td class="cell span8"><input id="g_min" type="number" maxlength="3" name="g_min" class="span6" rows="2" value="${game_info['G_MIN']}"
+														oninput="numberMaxLength(this);"></input></td>
+																
 							</tr>
 
 							<tr class="row">
 								<td class="cell span2">최대인원</td>
-								<td class="cell span8"><input type="text" name="g_max" class="span6" value="${game_info['G_MAX']}"></td>
+								<td class="cell span8"><input id="g_max" type="number" maxlength="3" name="g_max" class="span6" value="${game_info['G_MAX']}"
+														oninput="numberMaxLength(this);"></td>
 							</tr>
 
 							<tr class="row">
 								<td class="cell span2">플레이시간</td>
-								<td class="cell span8"><input type="text" name="g_playtime" class="span6" value="${game_info['G_PLAYTIME']}"></td>
+								<td class="cell span8"><input id="g_playtime" type="number" maxlength="5" name="g_playtime" class="span6" value="${game_info['G_PLAYTIME']}"
+														oninput="numberMaxLength(this);"></td>
 							</tr>
 
 							<tr class="row">
 								<td class="cell span2">출시일</td>
-								<td class="cell span8"><input type="text" name="g_release" class="span6" value="${game_info['G_RELEASE']}"></td>
+								<td class="cell span8"><input type="text" maxlength="10" name="g_release" class="span6" value="${game_info['G_RELEASE']}"></td>
 							</tr>
 
 							
@@ -77,19 +81,27 @@
 								<div class="controls">
 									<button type="button" class="btn  pull-left"
 										onclick="location='game_list'">목록</button>
-									<button class="btn  pull-right" onclick="updateGame()" >수정완료</button>
+									<button id="btnConfirm" class="btn  pull-right"  >수정완료</button>
 
 								</div>
 							</div>
 						</div>
 					</form>
 					<script>
-						function updateGame(){
+						/* function updateGame(){
 							var modify = document.getElementById("viewForm");
 							modify.action="<c:url value='/admin/updateGame'/>";
 							modify.submit();
 							console.log("modify");
-						}
+						} */
+						
+						/* number 길이제한 */
+						function numberMaxLength(e){
+					        if(e.value.length > e.maxLength){
+					            e.value = e.value.slice(0, e.maxLength);
+					        }
+					    }
+						
 					</script>
 
 					<!-- 	</div>
@@ -121,42 +133,8 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
-	<!-- ckEditor 관련 -->
+	<!-- modify / submit 예외처리 -->
+	<script src="js/admin/exception/game.js" type="text/javascript"></script>
 	
-	<script type="text/javascript">
-			var myEditor;
-			ClassicEditor
-				.create( document.querySelector( '#editor' ), {
-					
-					
-					
-					
-					ckfinder: {
-				        uploadUrl: '${pageContext.request.contextPath}/fileupload' // 내가 지정한 업로드 url (post로 요청감)
-				       
-					},
-					
-					toolbar: [ 'heading', '|',  'bold', 'italic','fontSize','fontColor', 'fontFamily', 'alignment:left', 'alignment:center', 'alignment:right','link', 'bulletedList', 'numberedList', 'blockQuote','insertTable',  'imageUpload', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
-
-					image : {
-						styles : ['full', 'alignLeft', 'alignRight']
-					},
-					
-					uiClor : '#FFFFFF',
-					
-					removePlugins: [ 'ImageCaption' ],
-					
-					alignment: {
-			            options: [ 'left', 'center', 'right' ]
-			        }
-				} )
-				.then( editor => {
-			        console.log( 'Editor was initialized', editor );
-			        myEditor = editor;
-		    } )
-			.catch( error => {
-			    console.error( error );
-			} );
-		</script>
 </body>
 </html>

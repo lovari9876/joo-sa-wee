@@ -47,7 +47,7 @@
 							 
 							<tr class="row">
 								<td class="cell span2">제목</td>
-								<td class="cell span8"><input type="text" name="bw_title"
+								<td class="cell span8"><input type="text" maxlength="60" name="bw_title"
 									class="span6" value="${notice['BW_TITLE']}" ></td>
 							</tr>
 
@@ -63,19 +63,19 @@
 								<div class="controls">
 									<button type="button" class="btn  pull-left"
 										onclick="location='notice_list'">목록</button>
-									<button class="btn  pull-right" onclick="updateNotice()" >수정완료</button>
+									<button id="btnConfirm" class="btn  pull-right" value="">수정완료</button>
 
 								</div>
 							</div>
 						</div>
 					</form>
 					<script>
-						function updateNotice(){
+						/* function updateNotice(){
 							var modify = document.getElementById("viewForm");
 							modify.action="<c:url value='/admin/updateNotice'/>";
 							modify.submit();
 							console.log("modify");
-						}
+						} */
 					</script>
 
 					<!-- 	</div>
@@ -107,6 +107,9 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+	<!-- modify / submit 예외처리 -->
+	<script src="js/admin/exception/board.js" type="text/javascript"></script>
+	
 	<!-- ckEditor 관련 -->
 	
 	<script type="text/javascript">

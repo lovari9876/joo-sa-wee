@@ -59,7 +59,7 @@
 
 							<tr class="row">
 								<td class="cell span2">제목</td>
-								<td class="cell span8"><input type="text" name="faq_title"
+								<td class="cell span8"><input id="title" maxlength="60" type="text" name="faq_title"
 									class="span6" value="${faq.faq_title}" ></td>
 							</tr>
 
@@ -75,19 +75,19 @@
 								<div class="controls">
 									<button type="button" class="btn  pull-left"
 										onclick="location='faq_list'">목록</button>
-									<button class="btn  pull-right" onclick="updateFaq()" >수정완료</button>
+									<button id="btnConfirm" class="btn pull-right" value="faq_modify">수정완료</button>
 
 								</div>
 							</div>
 						</div>
 					</form>
 					<script>
-						function updateFaq(){
+						/* function updateFaq(){
 							var modify = document.getElementById("viewForm");
 							modify.action="<c:url value='/admin/updateFaq'/>";
 							modify.submit();
 							console.log("modify");
-						}
+						} */
 					</script>
 
 					<!-- 	</div>
@@ -119,6 +119,10 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+	<!-- modify / submit 예외처리 -->
+	<script src="js/admin/exception/board.js" type="text/javascript"></script>
+	
+	
 	<!-- ckEditor 관련 -->
 	
 	<script type="text/javascript">
