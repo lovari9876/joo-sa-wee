@@ -29,4 +29,9 @@ public interface JoinService {
 	// 랭크
 	public RankVO rank() throws Exception;
 
+	// 아이디 찾기
+  	public String findId(String m_email, String m_name) throws Exception;
+
+	// 임시비밀번호 발급
+  	
 }

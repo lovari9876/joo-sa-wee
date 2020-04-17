@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
@@ -292,21 +293,65 @@ public class JoinController {
 //		return "login/login";
 //	}
 
-	// ================================= 아이디, 비밀번호 찾기
-	// =================================
+	// ================================= 아이디, 비밀번호 찾기 =================================
 
-	@RequestMapping(value = "/forgot_id", method = RequestMethod.GET)
-	public String forgot_id(Locale locale, Model model) {
+	@RequestMapping(value = "/forgot_idview", method = RequestMethod.GET)
+	public String forgot_idview() throws Exception {
+		System.out.println("forgot_idview");
 
 		return "login/forgot_id";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/forgot_id", method = RequestMethod.GET)
+	public String forgot_id(@RequestParam("m_email") String m_email, @RequestParam("m_name") String m_name) throws Exception {
+		System.out.println("forgot_id");
+		System.out.println(m_email);
+		System.out.println(m_name);
+		
+		
+		String id = joinService.findId(m_email, m_name);
+		if(id == null) {
+			id = "x";
+		}
+		
+		return id;
+	}
 
-	@RequestMapping(value = "/forgot_pw", method = RequestMethod.GET)
-	public String forgot_pw(Locale locale, Model model) {
+	@RequestMapping(value = "/forgot_pwview", method = RequestMethod.GET)
+	public String forgot_pwview(Locale locale, Model model) {
 
 		return "login/forgot_pw";
 	}
+	
+	// 임시비밀번호 메일로 보내기
+	@ResponseBody
+	@RequestMapping(value = "/forgot_pw_email", method = RequestMethod.GET)
+	public boolean forgot_pw_email(@RequestParam String userEmail, HttpServletRequest req) {
+		// 이메일 인증
+		System.out.println("forgot_pw_email");
 
+		int ran = new Random().nextInt(90000000) + 10000000;
+		HttpSession session = req.getSession(true);
+		String authCode = String.valueOf(ran);
+		System.out.println("authCode : " + authCode);
+
+		session.setAttribute("authCode", authCode);
+		session.setAttribute("random", ran);
+		String subject = "<내 사위는 주사위> 임시 비밀번호입니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("귀하의 임시 비밀번호는 " + authCode + "입니다.");
+
+		System.out.println("sb : " + sb);
+
+		if (userEmail == null) {
+			System.out.println("유저이메일 null");
+			return false;
+		}
+
+		return mailService.send(subject, sb.toString(), "lyeon615@gmail.com", userEmail);
+	}
+	
 	// 접속권한 없을 때 403 에러 페이지 대신
 	@RequestMapping(value = "/access_denied_page")
 	public String accessDeniedPage() throws Exception {

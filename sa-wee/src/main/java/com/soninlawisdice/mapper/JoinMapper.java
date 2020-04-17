@@ -30,4 +30,11 @@ public interface JoinMapper {
 
   	// 랭크
   	public RankVO rank() throws Exception;
+  	
+  	// 아이디 찾기
+  	public String findId(@Param("m_email")String m_email, @Param("m_name")String m_name) throws Exception;
+
+	// 임시비밀번호 발급
+  	
 }
+

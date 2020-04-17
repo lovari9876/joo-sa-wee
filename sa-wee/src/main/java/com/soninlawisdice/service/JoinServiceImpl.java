@@ -1,5 +1,10 @@
 package com.soninlawisdice.service;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -75,6 +80,14 @@ public class JoinServiceImpl implements JoinService {
 		return joinMapper.rank();
 	}
 
-	
+	// 아이디 찾기
+	@Override
+  	public String findId(String m_email, String m_name) throws Exception{
+		String id = joinMapper.findId(m_email, m_name);
+		
+		return id;
+	}
+	// 임시비밀번호 발급
 
+	
 }

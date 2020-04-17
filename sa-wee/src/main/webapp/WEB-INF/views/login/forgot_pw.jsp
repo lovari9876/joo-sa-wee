@@ -10,17 +10,6 @@
 <!-- 파피콘 -->
 <link rel="icon" type="image/png"
 	href="resources/images/share/wolf_logo.ico" />
-	
-<!-- or login with, sign up 가운데 정렬  -->
-<link rel="stylesheet" type="text/css"
-	href="resources/vendor/bootstrap/css/bootstrap.min.css">
-<!-- 구글 옆에, 페이스북 글자랑 링크 생김 -->
-<link rel="stylesheet" type="text/css"
-	href="resources/fonts/login/font-awesome-4.7.0/css/font-awesome.min.css">
-
-<!-- 아이디나 패스퉈드 치면 초록색 체크 / 비어있으면 빨간색 체크 -->
-<link rel="stylesheet" type="text/css"
-	href="resources/fonts/login/iconic/css/material-design-iconic-font.min.css">
 
 <!-- css -->
 <link rel="stylesheet" type="text/css"
@@ -67,7 +56,7 @@
 				<br />
 				
 				<div class="text-center">
-					<a href="forgot_id"
+					<a href="forgot_idview"
 						class="txt3 hov1">FORGOT ID</a>
 				</div>
 				<br/><br/><br/>
@@ -82,21 +71,6 @@
 	</div>
 	<div id="dropDownSelect1"></div>
 
-	<!--===============================================================================================-->
-	<script src="resources/vendor/jquery/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/animsition/js/animsition.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/bootstrap/js/popper.js"></script>
-	<script src="resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/daterangepicker/moment.min.js"></script>
-	<script src="resources/vendor/daterangepicker/daterangepicker.js"></script>
-	<!--===============================================================================================-->
-	<script src="resources/vendor/countdowntime/countdowntime.js"></script>
-	<!--===============================================================================================-->
 	<script src="resources/js/login/main.js"></script>
 
 </body>

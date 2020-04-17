@@ -68,5 +68,10 @@
 		select * from rank		
 	</select>
 
+	<!-- 아이디 찾기 -->
+	<select id="findId" parameterType="String" resultType="String">
+		select m_id from member where m_email = #{m_email} and m_name = #{m_name}
+	</select>
+
 
 </mapper>
