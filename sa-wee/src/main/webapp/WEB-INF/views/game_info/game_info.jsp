@@ -39,6 +39,7 @@
 
 </head>
 <body id="top">
+<script src="js/board_hj/jquery.min.js"></script>
 	<!-- Page Preloder -->
 	<!-- <div id="preloder">
 		<div class="loader"></div>
@@ -67,21 +68,22 @@
 	<section class="games-section">
 		<div class="container">
 			<ul class="game-filter" id="game-filter">
-				<li class="btn-color"><a href="">ㄱ</a></li>
-				<li class="btn-color"><a href="">ㄴ</a></li>
-				<li class="btn-color"><a href="">ㄷ</a></li>
-				<li class="btn-color"><a href="">ㄹ</a></li>
-				<li class="btn-color"><a href="">ㅁ</a></li>
-				<li class="btn-color"><a href="">ㅂ</a></li>
-				<li class="btn-color"><a href="">ㅅ</a></li>
-				<li class="btn-color"><a href="">ㅇ</a></li>
-				<li class="btn-color"><a href="">ㅈ</a></li>
-				<li class="btn-color"><a href="">ㅊ</a></li>
-				<li class="btn-color"><a href="">ㅋ</a></li>
-				<li class="btn-color"><a href="">ㅌ</a></li>
-				<li class="btn-color"><a href="">ㅍ</a></li>
-				<li class="btn-color"><a href="">ㅎ</a></li>
-				<li><a href="">A</a></li>
+				<li class="btn-color"><a href="game_info?init=가">ㄱ</a></li>
+				<li class="btn-color"><a href="game_info?init=나">ㄴ</a></li>
+				<li class="btn-color"><a href="game_info?init=다">ㄷ</a></li>
+				<li class="btn-color"><a href="game_info?init=라">ㄹ</a></li>
+				<li class="btn-color"><a href="game_info?init=마">ㅁ</a></li>
+				<li class="btn-color"><a href="game_info?init=바">ㅂ</a></li>
+				<li class="btn-color"><a href="game_info?init=사">ㅅ</a></li>
+				<li class="btn-color"><a href="game_info?init=아">ㅇ</a></li>
+				<li class="btn-color"><a href="game_info?init=자">ㅈ</a></li>
+				<li class="btn-color"><a href="game_info?init=차">ㅊ</a></li>
+				<li class="btn-color"><a href="game_info?init=카">ㅋ</a></li>
+				<li class="btn-color"><a href="game_info?init=타">ㅌ</a></li>
+				<li class="btn-color"><a href="game_info?init=파">ㅍ</a></li>
+				<li class="btn-color"><a href="game_info?init=하">ㅎ</a></li>
+				<li class="btn-color"><a href="game_info?init=num">숫자</a></li>
+				<!-- <li><a href="">A</a></li>
 				<li><a href="">B</a></li>
 				<li><a href="">C</a></li>
 				<li><a href="">D</a></li>
@@ -106,8 +108,42 @@
 				<li><a href="">W</a></li>
 				<li><a href="">X</a></li>
 				<li><a href="">Y</a></li>
-				<li><a href="">Z</a></li>
+				<li><a href="">Z</a></li> -->
 			</ul>
+			
+			<script>
+		      $(function(){
+						  $('#searchBtn').click(function() {
+						  	event.preventDefault(); // event canceled 막기!
+						    	self.location = "game_info" 
+						    				+ '${pageMaker.makeQuery(1)}' 
+						    				+ "&init="
+						    				+ "${init}"
+						    				+ "&searchType=" 
+						    				+ $("#searchType option:selected").val() 
+						    				+ "&keyword=" 
+						    				+ encodeURIComponent($('#keywordInput').val());
+						  });
+						}); 
+		   </script>
+			<!-- 검색창.. .미안.... -->
+			<form role="form" method="get">
+				<div class="row right-align" id="row">
+					<select id="searchType" name="searchType" class="span2">
+						<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>한글제목</option>
+						<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>영어제목</option>
+						<option value = "ab" class="btn" <c:out value="${scri.searchType eq 'ab' ? 'selected' : ''}"/>>한영제목</option>
+					</select>
+			
+					<input type="text" maxlength="30" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회  / 검색어입력">
+					<button type="submit" class="btn" id="searchBtn">
+						<i class="icon-search"></i>
+					</button>
+				</div>
+			</form>
+			<br><br>
+			
+			
 			<!-- 보드게임종뷰 부분 -->
 			<div class="row right-align" id="row">
 				<div class="col-xl-7 col-lg-8 col-md-7">
@@ -127,8 +163,27 @@
 					
 					</div>
 					<div class="site-pagination">
-						<a href="#" class="active">01.</a> <a href="#">02.</a> <a href="#">03.</a>
+						<!-- <a href="#" class="active">01.</a> <a href="#">02.</a> <a href="#">03.</a> -->
+						<ul>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="game_info${pageMaker.makeSearch(pageMaker.startPage - 1)}&init=${init}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="game_info${pageMaker.makeSearch(idx)}&init=${init}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="game_info${pageMaker.makeSearch(pageMaker.endPage + 1)}&init=${init}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
+						</ul>
 					</div>
+					
 				</div>
 				
 				<!-- 사이드바 부분 -->
@@ -187,7 +242,7 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/board_hj/jquery.min.js"></script>
+	
 	<script src="js/board_hj/jquery-3.2.1.min.js"></script>
 	<script src="js/board_hj/jquery.fancybox.min.js"></script>
 	<script src="js/board_hj/jquery.easing.1.3.js"></script>

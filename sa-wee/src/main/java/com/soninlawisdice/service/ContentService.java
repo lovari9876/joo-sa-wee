@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.Cafe_reviewVO;
@@ -11,6 +13,7 @@ import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.Game_personVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
+import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 
 public interface ContentService {
@@ -175,5 +178,6 @@ public interface ContentService {
 	
 	public HashMap<String, Object> selectGameDetailAvg(int g_no); // 게임 상세정보 투표 결과 view
 	
-	public ArrayList<GameVO> selectGameList(); 	//게임 전체 리스트
+	public ArrayList<GameVO> selectGameList(SearchCriteria scri,String init); 	//게임 전체 리스트
+	public int game_listCount(SearchCriteria scri,String init);
 }

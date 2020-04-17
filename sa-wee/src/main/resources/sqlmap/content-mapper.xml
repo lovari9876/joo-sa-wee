@@ -835,10 +835,66 @@
 		WHERE G_NO = #{g_no} AND G_NUM != 0
 	</select>
 	
-	<select id = "selectGameList" resultType = "com.soninlawisdice.vo.GameVO">
-	
-		SELECT G_NO, G_NAME_KOR, G_THUMBNAIL FROM GAME ORDER BY G_NO ASC
+	<select id = "selectGameList" resultType = "com.soninlawisdice.vo.GameVO" >
+
+		SELECT * FROM 
+			(SELECT g_no, g_name, g_name_kor, g_image, g_thumbnail, ROW_NUMBER() OVER(ORDER BY g_no DESC)AS RNUM
+           		FROM game
+               	WHERE 1=1
+               	<include refid="game_init"></include>
+                <include refid="game_search"></include>
+            )G 
+            WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+            ORDER BY g_no ASC
 	
 	</select>
+	
+	<select id="game_listCount" resultType="int">
+		SELECT COUNT(g_no)
+		  FROM game
+		 WHERE 1=1
+		 <include refid="game_init"></include>
+		 <include refid="game_search"></include>	
+			AND g_no > 0
+
+	</select>
+
+	
+	<sql id="game_search">
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 'a'.toString()">AND g_name_kor LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'b'.toString()">AND g_name LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'ab'.toString()">AND ((g_name_kor LIKE '%' || #{scri.keyword} || '%') or (g_name LIKE '%' || #{scri.keyword} || '%'))</if>
+		</if>
+	</sql>
+	
+	<sql id="game_init">
+		<choose>
+     		<when test='init == "가"'> AND g_name_kor BETWEEN NCHR(00109) AND NCHR(45207)</when>
+     		<when test='init == "나"'> AND g_name_kor BETWEEN NCHR(45208) AND NCHR(45795)</when>
+     		<when test='init == "다"'> AND g_name_kor BETWEEN NCHR(45796) AND NCHR(46971)</when>
+     		<when test='init == "라"'> AND g_name_kor BETWEEN NCHR(46972) AND NCHR(47559)</when>
+     		<when test='init == "마"'> AND g_name_kor BETWEEN NCHR(47560) AND NCHR(48147)</when>
+     		<when test='init == "바"'> AND g_name_kor BETWEEN NCHR(48148) AND NCHR(49323)</when>
+     		<when test='init == "사"'> AND g_name_kor BETWEEN NCHR(49324) AND NCHR(50499)</when>
+     		<when test='init == "아"'> AND g_name_kor BETWEEN NCHR(50500) AND NCHR(51087)</when>
+     		<when test='init == "자"'> AND g_name_kor BETWEEN NCHR(51088) AND NCHR(52263)</when>
+     		<when test='init == "차"'> AND g_name_kor BETWEEN NCHR(52264) AND NCHR(52851)</when>
+     		<when test='init == "카"'> AND g_name_kor BETWEEN NCHR(52852) AND NCHR(53439)</when>
+     		<when test='init == "타"'> AND g_name_kor BETWEEN NCHR(53440) AND NCHR(54027)</when>
+     		<when test='init == "파"'> AND g_name_kor BETWEEN NCHR(54028) AND NCHR(54615)</when>
+     		<when test='init == "하"'> AND g_name_kor BETWEEN NCHR(54616) AND NCHR(55203)</when>
+     		<when test='init == "num"'>AND <![CDATA[ g_name_kor <= NCHR(00109)]]></when>
+     		
+     		<otherwise>
+     			AND g_no > 0
+     		</otherwise>
+     		
+     	</choose>
+		
+		
+	</sql>
+
+
 
 </mapper>

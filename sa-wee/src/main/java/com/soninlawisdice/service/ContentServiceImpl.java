@@ -15,6 +15,7 @@ import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.Game_personVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.ReportVO;
+import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 
 @Service("ContentService")
@@ -620,12 +621,14 @@ public class ContentServiceImpl implements ContentService {
 	
 	//게임 전체 리스트
 	@Override
-	public ArrayList<GameVO> selectGameList() {
-		
-		return contentMapper.selectGameList();
+	public ArrayList<GameVO> selectGameList(SearchCriteria scri, String init) {
+		return contentMapper.selectGameList(scri, init);
 	}
 
-	
+	@Override
+	public int game_listCount(SearchCriteria scri, String init) {
+		return contentMapper.game_listCount(scri, init);
+	}
 	
 
 }
