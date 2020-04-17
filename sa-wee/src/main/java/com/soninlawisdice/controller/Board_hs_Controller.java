@@ -322,30 +322,34 @@ public class Board_hs_Controller {
 		
 		//카페목록 싹다 표로 보기
 		@RequestMapping("/cafe_list")
-		public String cafe_list(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-			model.addAttribute("list", boardService.selectAllCafeList(scri));		
+		public String cafe_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
+			
+			String add = rq.getParameter("add");
+			model.addAttribute("list", boardService.selectAllCafeList(scri, add));	
+			model.addAttribute("add", add);
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
-			pageMaker.setTotalCount(boardService.cafe_listCount(scri));
+			pageMaker.setTotalCount(boardService.cafe_listCount(scri, add));
 			model.addAttribute("pageMaker", pageMaker);
 			
 			return "board_hs/cafe_list";
 		}
 		
 
-		//카페 목록 지역별로 보기
-		@RequestMapping("/cafe_list_loc")
-		public String cafe_list_loc(Model model, String c_add, @ModelAttribute("scri") SearchCriteria scri) {
-			model.addAttribute("list", boardService.selectCafeLoc(scri,c_add));
-			
-			PageMaker pageMaker = new PageMaker();
-			pageMaker.setCri(scri);
-			pageMaker.setTotalCount(boardService.cafe_listCount(scri));
-			model.addAttribute("pageMaker", pageMaker);
-			
-			return "board_hs/cafe_list";
-		}
+	/*
+	 * //카페 목록 지역별로 보기
+	 * 
+	 * @RequestMapping("/cafe_list_loc") public String cafe_list_loc(Model model,
+	 * String c_add, @ModelAttribute("scri") SearchCriteria scri) {
+	 * model.addAttribute("list", boardService.selectCafeLoc(scri,c_add));
+	 * 
+	 * PageMaker pageMaker = new PageMaker(); pageMaker.setCri(scri);
+	 * pageMaker.setTotalCount(boardService.cafe_listCount(scri));
+	 * model.addAttribute("pageMaker", pageMaker);
+	 * 
+	 * return "board_hs/cafe_list"; }
+	 */
 
 		// 카페 리뷰들 싹다 리스트(표)로 보기
 		@RequestMapping(value = "/selectAllReviewList")

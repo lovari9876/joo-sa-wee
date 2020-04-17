@@ -102,13 +102,13 @@ public class BoardServiceImpl implements BoardService {
 
 	// 카페 목록 싹다 보기
 	@Override
-	public List<CafeVO> selectAllCafeList(SearchCriteria scri) {
-		return boardMapper.selectAllCafeList(scri);
+	public List<CafeVO> selectAllCafeList(SearchCriteria scri, String add) {
+		return boardMapper.selectAllCafeList(scri, add);
 	}
 
 	@Override
-	public int cafe_listCount(SearchCriteria scri) {
-		return boardMapper.cafe_listCount(scri);
+	public int cafe_listCount(SearchCriteria scri, String add) {
+		return boardMapper.cafe_listCount(scri, add);
 	}
 
 	// 카페 지역별로 보기
