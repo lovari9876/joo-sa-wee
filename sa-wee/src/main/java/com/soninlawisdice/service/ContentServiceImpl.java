@@ -617,6 +617,13 @@ public class ContentServiceImpl implements ContentService {
 		
 		return contentMapper.selectGameDetailAvg(g_no);
 	}
+	
+	//게임 전체 리스트
+	@Override
+	public ArrayList<GameVO> selectGameList() {
+		
+		return contentMapper.selectGameList();
+	}
 
 	
 	

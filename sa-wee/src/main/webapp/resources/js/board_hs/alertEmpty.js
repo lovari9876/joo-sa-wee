@@ -2,7 +2,9 @@ $(document).ready(function(){
 	
 	$('.write-btn').click(function(){
 		var title = $('#title').val();
-		var content = $("#editor").val();
+		var content = myEditor.getData();
+		
+		
 		
 		if(title == ""){
 			alert("제목을 입력하세요");
@@ -10,7 +12,7 @@ $(document).ready(function(){
 		}
 		
 
-		if(content == "" || content.length() == 0){
+		if(content == ""){
 			alert("내용을 입력하세요");
 			return false;
 		}

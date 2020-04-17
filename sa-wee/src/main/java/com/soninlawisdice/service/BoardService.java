@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.soninlawisdice.vo.Board_writeVO;
 import com.soninlawisdice.vo.CafeVO;
@@ -143,6 +144,7 @@ public interface BoardService {
 	//public void insertGame();
 	/////////////////////////////////////////////	
 	
-	
+	//글 insert2
+	public void insertTradeFile(MultipartHttpServletRequest mpRequest, int t_no) throws Exception;
 	
 }

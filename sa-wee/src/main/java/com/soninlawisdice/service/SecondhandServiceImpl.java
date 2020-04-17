@@ -2,20 +2,22 @@ package com.soninlawisdice.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
-import org.apache.ibatis.annotations.Param;
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.soninlawisdice.vo.GameVO;
+import com.soninlawisdice.mapper.SecondhandMapper;
+import com.soninlawisdice.util.FileUtils;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.Trade_gameVO;
-import com.soninlawisdice.mapper.SecondhandMapper;
 
 @Service("SecondhandService")
 public class SecondhandServiceImpl implements SecondhandService {
@@ -95,7 +97,8 @@ public class SecondhandServiceImpl implements SecondhandService {
 
 		secondhandMapper.insertTrade(tradeVO, m_no, gamePrice);
 	}
-
+	
+	
 	// 글 작성 포인트 update
 	@Override
 	public void boardPointUpdate(int m_no) {

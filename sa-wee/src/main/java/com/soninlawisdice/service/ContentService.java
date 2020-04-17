@@ -174,4 +174,6 @@ public interface ContentService {
 	public void updateGamePerson(Game_personVO game_personVO); // 추천인원 테이블 투표
 	
 	public HashMap<String, Object> selectGameDetailAvg(int g_no); // 게임 상세정보 투표 결과 view
+	
+	public ArrayList<GameVO> selectGameList(); 	//게임 전체 리스트
 }

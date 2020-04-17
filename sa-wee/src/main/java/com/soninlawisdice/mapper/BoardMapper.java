@@ -140,4 +140,16 @@ public interface BoardMapper {
 	public ArrayList<String> gameNameList();
 	///////////////////////////////////////////////////////////////////////////////
 	//public void insertGame(@Param("gameList") ArrayList<GameVO> gameList);
+	
+	
+	
+
+	//보부상작성
+	public void insertTradeFile(@Param("list") List<Map<String, Object>> list, @Param("t_no") int t_no);
+	
+	//첨부파일 조회
+	public List<Map<String, Object>> selectFileList(int t_no)throws Exception;
+	
+	
+	
 }
