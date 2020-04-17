@@ -28,7 +28,7 @@ public interface AdminMapper {
 	//mypage : 내가쓴글, 댓글 목록
 	public ArrayList<HashMap<String, Object>> myBoardList(@Param("m_no")int m_no);
 	
-	public List<CM_commentVO> myCommentList(@Param("m_no")int m_no);
+	public ArrayList<HashMap<String, Object>> myCommentList(@Param("m_no")int m_no);
 	
 	
 	//mypage scrap 스크랩 

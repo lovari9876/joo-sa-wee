@@ -26,7 +26,7 @@ public interface AdminService {
 	//mypage : 내가쓴글, 댓글 목록
 	public ArrayList<HashMap<String, Object>> myBoardList(int m_no);
 	
-	public List<CM_commentVO> myCommentList(int m_no);
+	public ArrayList<HashMap<String, Object>> myCommentList(int m_no);
 		
 	//mypage scrap 스크랩 
 	public void scrapInsert(int m_no, String sc_boardtype, int sc_no);

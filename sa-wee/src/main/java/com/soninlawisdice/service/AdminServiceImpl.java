@@ -44,7 +44,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.myBoardList(m_no);
 	}
 	
-	public List<CM_commentVO> myCommentList(int m_no){
+	public ArrayList<HashMap<String, Object>> myCommentList(int m_no){
 		return adminMapper.myCommentList(m_no);
 	}
 

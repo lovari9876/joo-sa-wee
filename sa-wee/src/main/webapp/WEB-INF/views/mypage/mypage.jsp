@@ -244,29 +244,29 @@
 									</tr>
 									<c:forEach items="${myCommentList}" var="cm">
 									<tr class="trow">
-										<td class="cell">${cm.cm_no}</td>
+										<td class="cell">${cm['RNUM']}</td>
 										<td class="cell title">
 										
 													<c:choose>
-														<c:when test="${cm.cm_type == '게시판'}">
-															<a href="/content_view?bw_no=${cm.cm_no2}">${cm.cm_content}</a>
+														<c:when test="${cm['CM_TYPE'] == '게시판'}">
+															<a href="/content_view?bw_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
 														</c:when>
-														<c:when test="${cm.cm_type == '카페리뷰'}">
-															<a href="/content_view_cr?cr_no=${cm.cm_no2}">${cm.cm_content}</a>
+														<c:when test="${cm['CM_TYPE'] == '카페리뷰'}">
+															<a href="/content_view_cr?cr_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
 														</c:when>
-														<c:when test="${cm.cm_type == '증고거래'}">
-															<a href="/content_view_t?t_no=${cm.cm_no2}">${cm.cm_content}</a>
+														<c:when test="${cm['CM_TYPE'] == '증고거래'}">
+															<a href="/content_view_t?t_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
 														</c:when>
 													</c:choose>
 										</td>
 										<td>
 												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-											<fmt:formatDate value="${cm.cm_written_date}" pattern="yyyy.MM.dd" var="date"/>
+											<fmt:formatDate value="${cm['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 											<c:choose>
 												<c:when test="${now ne date}">${date}</c:when> 
 												<c:otherwise>
-													<fmt:formatDate value="${cm.cm_written_date}" pattern="HH:mm"/>
+													<fmt:formatDate value="${cm['CM_WRITTEN_DATE']}" pattern="HH:mm"/>
 												</c:otherwise>
 											</c:choose>
 										</td>

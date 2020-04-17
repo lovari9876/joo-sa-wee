@@ -115,10 +115,11 @@
 	
 	</select>
 
-	<select id="myCommentList" resultType="com.soninlawisdice.vo.CM_commentVO">
+	<select id="myCommentList" resultType="java.util.HashMap" >
 	
 	
-		SELECT * FROM cm_comment WHERE m_no = #{m_no} ORDER BY cm_no DESC
+		SELECT cm.*, ROW_NUMBER() OVER(ORDER BY cm.cm_written_date ASC) AS RNUM 
+		FROM cm_comment cm WHERE m_no = #{m_no} ORDER BY cm_no DESC
 	</select>
 
 

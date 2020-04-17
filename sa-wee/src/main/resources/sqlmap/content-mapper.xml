@@ -838,14 +838,15 @@
 	<select id = "selectGameList" resultType = "com.soninlawisdice.vo.GameVO" >
 
 		SELECT * FROM 
-			(SELECT g_no, g_name, g_name_kor, g_image, g_thumbnail, ROW_NUMBER() OVER(ORDER BY g_no DESC)AS RNUM
+			(SELECT g_no, g_name, g_min, g_max, g_playtime, g_release, g_name_kor, g_image, g_thumbnail, g_updated_date, 
+					ROW_NUMBER() OVER(ORDER BY g_no DESC)AS RNUM
            		FROM game
                	WHERE 1=1
                	<include refid="game_init"></include>
                 <include refid="game_search"></include>
             )G 
             WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
-            ORDER BY g_no ASC
+            ORDER BY g_no DESC
 	
 	</select>
 	

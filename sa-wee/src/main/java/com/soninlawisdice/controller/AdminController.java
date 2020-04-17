@@ -599,7 +599,7 @@ public class AdminController {
 
 		scri.setPerPageNum(15);
 		String add = rq.getParameter("add");
-		model.addAttribute("list", boardService.selectAllCafeList(scri, add));	
+		model.addAttribute("cafe_list", boardService.selectAllCafeList(scri, add));	
 		model.addAttribute("add", add);
 		
 		PageMaker pageMaker = new PageMaker();
@@ -638,6 +638,24 @@ public class AdminController {
 	////////////////////////////game_list///////////////////////////////////////
 	
 	
+	@RequestMapping("/game_list")
+	public String game_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
+		
+		scri.setPerPageNum(15);
+		String init = rq.getParameter("init");
+
+		model.addAttribute("game_list", contentService.selectGameList(scri, init));
+		model.addAttribute("init", init);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(contentService.game_listCount(scri, init));
+
+		model.addAttribute("pageMaker", pageMaker);
+		
+		return "admin/game_list";
+	}
+	
 	//game 보드게임정보 수정화면
 	@RequestMapping("/game_modify")
 	public String game_modify(Model model, int g_no) {
@@ -659,7 +677,7 @@ public class AdminController {
 		return "redirect:/game_detail";
 
 	}
-		
+	
 	
 	////////////////////////////faq_list///////////////////////////////////////
 	
@@ -956,12 +974,6 @@ public class AdminController {
 		return "admin/faq_write";
 	}
 
-	@RequestMapping("/cafe_list")
-	public String cafe_list() {
-
-		return "admin/cafe_list";
-	}
-
 	@RequestMapping("/cafe_write")
 	public String cafe_write() {
 
@@ -974,11 +986,7 @@ public class AdminController {
 		return "admin/cafe_view";
 	}
 
-	@RequestMapping("/game_list")
-	public String game_list() {
-
-		return "admin/game_list";
-	}
+	
 
 	@RequestMapping("/withdrawer_list")
 	public String withdrawer_list() {
