@@ -133,12 +133,11 @@
         <!-- mail 메일 END -->
         
         <!-- 휴대폰 인증 문자 -->
-        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient --> 
         <dependency>
-        	<groupId>org.apache.httpcomponents</groupId> 
-        	<artifactId>httpclient</artifactId> 
-        	<version>4.5.3</version>
-        </dependency>
+		    <groupId>net.nurigo</groupId>
+		    <artifactId>javaSDK</artifactId>
+		    <version>2.2</version>
+		</dependency>
 
 		<!-- Spring -->
 		<dependency>

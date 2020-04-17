@@ -132,15 +132,19 @@
 											<span class="label">핸드폰 번호</span> <span class="border"></span>
 										</label>
 										<div class="check_font" id="m_phone_check"></div>
+										<input type="button" class="btn btn-info" id="phoneBtn"
+											value="핸드폰 인증번호 발송" /> <label class="form-row-inner">
+											<input type="text" class="form-control" id="randomSMS"
+											name="randomSMS" required> <span class="label">핸드폰
+												인증번호 입력</span> <span class="border"></span>
+										</label>
+										<div class="check_font"></div>
+										<input type="button" class="btn btn-info" id="smsBtn"
+											value="핸드폰 인증" /> <input type="hidden" id="phone_pass"
+											value="N" />
 									</div>
 								</div>
-
-								<input type="text" name="phone" id="phone"
-									placeholder="받는 사람 번호" />
-								<button onclick="sendSms();">전송</button>
-								<input type="text" name="sms" id="sms" placeholder="인증 번호 입력" />
-								<button onclick="phoneCheck();">인증</button>
-
+								<div class="form-row"></div>
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<label class="form-row-inner"> <input type="text"
@@ -151,8 +155,8 @@
 										<input type="button" class="btn btn-info" id="emailBtn"
 											value="이메일 발송" /> <label class="form-row-inner"> <input
 											type="text" name="random_check" id="random_check"
-											class="form-control" required> <span class="label">인증번호
-												입력</span> <span class="border"></span>
+											class="form-control" required> <span class="label">이메일
+												인증번호 입력</span> <span class="border"></span>
 										</label>
 										<div class="check_font"></div>
 										<input type="button" class="btn btn-info" id="emailAuthBtn"
@@ -334,10 +338,14 @@
 	<script src="resources/js/join/jquery-3.3.1.min.js"></script>
 	<script src="resources/js/join/jquery.steps.js"></script>
 	<script src="resources/js/join/jquery-ui.min.js"></script>
-	<script src="resources/js/join/loadinbar.js"></script>
+	<!-- 로딩바 -->
+	<script src="resources/js/join/loadingbar.js"></script>
+
 	<script src="resources/js/join/main.js"></script>
 	<script src="resources/js/join/address_api.js"></script>
 	<script src="resources/js/join/email.js"></script>
+	<script src="resources/js/join/sms.js"></script>
+
 
 	<script async
 		src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>

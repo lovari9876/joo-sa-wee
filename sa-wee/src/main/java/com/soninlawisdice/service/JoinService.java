@@ -19,8 +19,11 @@ public interface JoinService {
 
 	// 이메일 중복체크
 	public int emailCheck(MemberVO memberVO) throws Exception;
-	 	
-	// 로그인
+	
+	// 핸드폰 중복체크
+  	public int phoneCheck(MemberVO memberVO) throws Exception;	 	
+	
+  	// 로그인
 	public MemberVO login(String m_id, String m_pw) throws Exception;
 
 	// 랭크
