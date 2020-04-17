@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
@@ -36,8 +37,9 @@ public interface SecondhandMapper {
 
 	// 글 insert
 	public void insertTrade(@Param("tradeVO") TradeVO tradeVO, @Param("m_no") int m_no, 
-								@Param("gamePrice") LinkedHashMap<String, Integer> gamePrice);
-
+								@Param("gamePrice") LinkedHashMap<String, Integer> gamePrice,
+									@Param("list") List<Map<String, Object>> list);
+	
 	// 글 작성 포인트 update
 	public void boardPointUpdate(@Param("m_no") int m_no);
 

@@ -66,8 +66,10 @@ public class SecondhandServiceImpl implements SecondhandService {
 	}
 
 	// 글 insert
+	@Resource(name = "fileUtils")
+	private FileUtils fileUtils;
 	@Override
-	public void insertTrade(TradeVO tradeVO, int m_no, String gameNames, String prices) {
+	public void insertTrade(TradeVO tradeVO, int m_no, String gameNames, String prices, MultipartHttpServletRequest mpRequest) throws Exception{
 
 		// 쉼표로 구분하여 받은 gameNames을 잘라서 List에 담기
 		StringTokenizer gn = new StringTokenizer(gameNames, ",");
@@ -94,8 +96,10 @@ public class SecondhandServiceImpl implements SecondhandService {
 			} else // 가격 입력 개수 적으면 걍 0 넣어
 				gamePrice.put(gn.nextToken(), 0);
 		}
+		
+		List<Map<String, Object>> list = fileUtils.parseInsertFileIofn(mpRequest);
 
-		secondhandMapper.insertTrade(tradeVO, m_no, gamePrice);
+		secondhandMapper.insertTrade(tradeVO, m_no, gamePrice, list);
 	}
 	
 	

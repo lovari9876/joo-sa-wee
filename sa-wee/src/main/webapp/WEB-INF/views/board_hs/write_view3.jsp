@@ -123,18 +123,26 @@
 						</tr>
 						
 						<tr>
-							
 							<td> 파일첨부 </td>
-							<td><input type = "file" name = "file"><input type="submit" value = "업로드"></td>
-							
+							<td><input type = "file" name = "file" id = "input_imgs" multiple></td>
+						</tr>
+						<tr>
+							<td>미리보기</td>
+							<td><div class = "imgs_wrap"></div></td>
 						</tr>
 						
-						<tr>
-							<td></td>
-							<td>${savedname}</td>
-						</tr>
+						
 						
 					</table>
+					
+					
+					<!--  파일을 업로드할 영역 
+					<div class = "fileDrop" style="width:600;height:200;,border:1px solid blue;"></div>
+					
+					업로드된 파일 목록
+					<div class = "uploadedList" style="width:600;height:200;,border:1px solid blue;"></div>
+					
+					 -->
 					<button class="list" type="button" onclick="self.location='tlist'">목록</button>
 					<button class="write-btn" type="submit">작성완료</button>
 				</form>
@@ -166,7 +174,7 @@
 	<script src="js/board_hs/category.js"></script>
 	<script src="js/board_hs/toList.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
-	
+	<script src="js/board_hs/fileThumb.js"></script>
 	
 	<!-- ckEditor 관련 -->
 	

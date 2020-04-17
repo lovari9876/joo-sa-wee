@@ -31,7 +31,7 @@ public interface SecondhandService {
 	public void upHitContent(int t_no);
 
 	// 글 insert
-	public void insertTrade(TradeVO tradeVO, int m_no, String gameNames, String prices);
+	public void insertTrade(TradeVO tradeVO, int m_no, String gameNames, String prices, MultipartHttpServletRequest mpRequest)throws Exception;
 	
 	// 글 작성 포인트 update
 	public void boardPointUpdate(int m_no);

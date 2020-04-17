@@ -23,6 +23,7 @@
 	<resources mapping="/media/**" location="/resources/media/" />
 	<resources mapping="/resources/**" location="/resources/" />
 	
+	<resources location="/img/" mapping="/img/**"></resources>
 	
 	<resources mapping="/admin/**" location="/resources/" />
 	

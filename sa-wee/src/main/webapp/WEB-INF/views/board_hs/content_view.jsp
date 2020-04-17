@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 <html>
 <head>
 <meta charset="UTF-8">
@@ -134,15 +135,8 @@
 							</tr>
 							<c:forEach items="${tgList}" var="tgItem">
 								<tr class="table--row">
-									<c:choose>
-										<c:when test="${tgItem.g_no eq 0}">	
-											<td class="table--cell">${tgItem.tg_name}</td>							
-										</c:when>
-										<c:otherwise>
-											<td class="table--cell"><a href="game_detail?g_no=${tgItem.g_no}">${tgItem.tg_name}</a></td>
-										</c:otherwise>
-									</c:choose>	
-										<td class="table--cell">${tgItem.tg_price}원</td>
+									<td class="table--cell">${tgItem.tg_name}</td>							
+									<td class="table--cell">${tgItem.tg_price}원</td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -150,18 +144,15 @@
 					
 					<p>${content_view_t['T_CONTENT']}</p>
 					
-					<c:forEach items="${fileName}" var = "img">
-						<img src="<c:url value="/img/${img['F_NAME']} "/>" />
-					</c:forEach> 
-					
-					
+					<%-- <c:forEach items="${fileName}" var = "img"> --%>
+						<img src="<c:url value="/img/${fileName} "/>" />
+					<%-- </c:forEach> --%> 
 
 					<br/>
 					<br/>
 	
-					<!-- ** 거래하기 버튼 및 모달: 일단 판매시에만 나타나도록! -->
-					<!-- && 본인 글에서는 구매하기 버튼 미출력! && 표류자도 못사요 -->		
-					<c:if test="${content_view_t['S_NO']==32 && content_view_t['M_NO'] != m_no && memberVO.r_no != 4}" > 	
+					<!-- ** 거래하기 버튼 및 모달: 일단 판매시에만 나타나도록! -->		
+					<c:if test="${content_view_t['S_NO']==32}" > 	
 						<!-- 구매하기 버튼: open modal -->
 						<sec:authorize access="isAuthenticated()">
 							<div align="center" class="buy--button" >
@@ -197,15 +188,9 @@
 									<a href="loginview">신고</a>
 								</sec:authorize>
 							</div>
-							<div class="test_item third"> 
-								<!-- 결제 테이블에 없는 것만 삭제 가능(&& pCnt==0) -->
-								<c:if test = "${content_view_t['M_NO'] eq m_no && pCnt==0}">
-									<a href="delete_t?t_no=${content_view_t['T_NO']}" 
-									   onclick="alert('삭제되었습니다.');">삭제</a>
-								</c:if>
-								<!-- 삭제 버튼 공갈로 만들고 삭제불가 처리 -->
-								<c:if test = "${content_view_t['M_NO'] eq m_no && pCnt!=0}">
-									<a onclick="alert('구매 요청이 발생한 글은 삭제하실 수 없습니다.');">삭제</a>
+							<div class="test_item third">
+								<c:if test = "${content_view_t['M_NO'] eq m_no}">
+									<a href="delete_t?t_no=${content_view_t['T_NO']}">삭제</a>
 								</c:if>
 							</div>
 							<div class="test_item second">
