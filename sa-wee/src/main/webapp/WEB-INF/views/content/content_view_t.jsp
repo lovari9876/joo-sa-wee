@@ -162,6 +162,8 @@
 	<%@ include file="/WEB-INF/views/share/footer.jsp" %>
 	<!-- footer include end -->
 
+
+
 	<!-- SCRIPTS -->
 	<script src="js/board_hj/jquery.min.js"></script>
 	<script src="js/board_hj/jquery-3.2.1.min.js"></script>

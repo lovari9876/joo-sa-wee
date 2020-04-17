@@ -225,7 +225,7 @@
 
 	<!-- 게시글 댓글 수정하기 view에서 사용 -->
 	<select id="selectCommentOne" resultType="java.util.HashMap"
-		parameterType="String">
+		parameterType="int">
 		SELECT
 		CM.*, M.M_NO, M.M_NICK
 		FROM

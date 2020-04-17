@@ -44,6 +44,9 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
+<!-- modal -->	
+<link rel="stylesheet" href="css/board_hj/modalstyle.css" />
 <body>
 
 	<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
@@ -57,8 +60,7 @@
 		<h3 class="mb-5">${comment_count_cr['CM_COUNT']} Comments</h3>
 
 		<ul class="comment-list">
-			<c:forEach items="${comment_list_cr}" var="cm_comment_list_cr"
-				varStatus="status">
+			<c:forEach items="${comment_list_cr}" var="cm_comment_list_cr" varStatus="status">
 				<%-- <input type="hidden" name="cm_no" value="${comment_list[0]['CM_NO']}"/> --%>
 				<li class="comment" style="margin-left:<c:out value="${40*comment_list_cr[status.index]['CM_INDENT']}"/>px; padding-right:<c:out value="${40*comment_list_cr[status.index]['CM_INDENT']}"/>px;">
 					<div class="comment-body">
@@ -119,13 +121,12 @@
 							<div class="reply_test">
 								<div class="test_item rp">
 									<p>
-										<c:if test = "${comment_list_cr[status.index]['M_NO'] != m_no}">
 										<sec:authorize access="isAuthenticated()">
-										<a role="button" class="reply" href="reply_view_cr?cm_no=${comment_list_cr[status.index]['CM_NO']}"
+										<%-- <a role="button" class="reply" href="reply_view_cr?cm_no=${comment_list_cr[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
-										>Reply</a>
+										>Reply</a> --%>
+										<button type="button" class="myBtn_cr" class="reply" onclick="replyModalCR(this);">Reply</button>
 										</sec:authorize>
-										</c:if>
 										<sec:authorize access="isAnonymous()">
 										<a role="button" class="reply" href="loginview"
 										>Reply</a>
@@ -168,14 +169,27 @@
 								</div>
 								</c:if>
 							</div>
-							<%-- <div id="replyCommentT" class="collapse">
-								<%@ include file="reply_view.jsp"%>
-							</div> --%>
+						<c:import url="/reply_view_cr">
+							<c:param name="cm_no" value="${comment_list_cr[status.index]['CM_NO']}"></c:param>
+							<c:param name="cr_no" value="${content_view_cr['CR_NO']}"></c:param>
+						</c:import>	
 					</div>
 				</li>
 			</c:forEach>
 		</ul>
 	</div>
+	<%-- <c:forEach items="${comment_list_cr}" var="cm_comment_list_cr" varStatus="status">
+		
+	</c:forEach> --%> <!-- $('#rerid').val(rid) -->
+	
+	<script>
+	function replyModal(btnBw) {
+			
+			$('#myModal').css("display", "block");
+			$('#cm_no').val(cm_no);
+	}
+			
+	</script>
 
 
 	<!-- SCRIPTS -->

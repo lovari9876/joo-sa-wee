@@ -166,7 +166,7 @@ public class ContentServiceImpl implements ContentService {
 
 	// 게시글 댓글 수정하기 view에서 사용
 	@Override
-	public HashMap<String, Object> selectCommentOne(String cm_no) {
+	public HashMap<String, Object> selectCommentOne(int cm_no) {
 
 		return contentMapper.selectCommentOne(cm_no);
 

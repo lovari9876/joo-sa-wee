@@ -28,13 +28,13 @@
 					<div class="comment-form-wrap pt-5">
 						<h3 class="mb-5">Leave a reply</h3>
 						<form action="reply" method="GET">
-							<input type="hidden" name="cm_type" value="게시판"> 
-							<input type="hidden" name="cm_no2" value="${comment_view['CM_NO2']}">
-							<input type="hidden" name="cm_group" value="${comment_view['CM_GROUP']}"> 
-							<input type="hidden" name="cm_step" value="${comment_view['CM_STEP']}"> 
+<%-- 							<input type="hidden" name="cm_type" value="게시판"> 
+							<input type="hidden" name="cm_no2" value="${comment_view['CM_NO2']}"> --%>
+							<input type="hidden" class="cm_group" name="cm_group" <%-- value="${comment_view['CM_GROUP']}" --%> > 
+<%-- 							<input type="hidden" name="cm_step" value="${comment_view['CM_STEP']}"> 
 							<input type="hidden" name="cm_indent" value="${comment_view['CM_INDENT']}">
 							<input type="hidden" name="m_no" value="${m_no}">
-							<input type="hidden" name="bw_no" value="${content_view['BW_NO']}">
+							<input type="hidden" name="bw_no" value="${content_view['BW_NO']}"> --%>
 							<div class="form-group">
 								<label for="message">Reply</label>
 								<textarea name="cm_content" id="message" cols="30" rows="5"
@@ -51,7 +51,7 @@
 	</div>
 	
 	<script>
-	// Get the modal
+/* 	// Get the modal
     var modal = document.getElementById('myModal');
 
     // Get the button that opens the modal
@@ -79,7 +79,7 @@
         if (event.target == modal) {
             modal.style.display = "none";
         }
-    }
+    } */
 	</script>
 
 </body>

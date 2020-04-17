@@ -174,19 +174,18 @@
 								</div>
 								</c:if>
 							</div>
-							
-						</div>
-					</li>
-				
+						<c:import url="/reply_view_t">
+							<c:param name="cm_no" value="${comment_list_t[status.index]['CM_NO']}"></c:param>
+							<c:param name="t_no" value="${content_view_t['T_NO']}"></c:param>
+						</c:import>
+					</div>
+				</li>
 			</c:forEach>
 		</ul>
 	</div>
-	<c:forEach items="${comment_list_t}" var="cm_comment_list_t" varStatus="status">
-		<c:import url="/reply_view_t">
-			<c:param name="cm_no" value="${comment_list_t[status.index]['CM_NO']}"></c:param>
-			<c:param name="t_no" value="${content_view_t['T_NO']}"></c:param>
-		</c:import>
-	</c:forEach>
+	<%-- <c:forEach items="${comment_list_t}" var="cm_comment_list_t" varStatus="status">
+		
+	</c:forEach> --%>
 
 
 	<!-- SCRIPTS -->
