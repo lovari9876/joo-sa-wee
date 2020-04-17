@@ -21,8 +21,8 @@
 </head>
 <body>
 	<div id="myModal" class="modal--comment">
-		<div class="modal--content">
-		<span class="modal--close">&times;</span>
+		<div class="modal--reply">
+		<span class="modal--re_close">&times;</span>
 			<div class="container">
 				<div class="pt-5">
 					<div class="comment-form-wrap pt-5">
@@ -62,7 +62,7 @@
     }
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("modal--close")[0];                                          
+    var span = document.getElementsByClassName("modal--re_close")[0];                                          
 
     // When the user clicks on the button, open the modal 
     myBtn.onclick = function() {

@@ -262,7 +262,7 @@
 	<script src="js/board_hj/main.js"></script>
 
 	<script src="js/board_hj/tooltip.js"></script>
-	<script src="js/board_hj/recommed_t.js"></script>
+	<!-- <script src="js/board_hj/recommed_t.js"></script> -->
 	<script src="js/board_hj/popover.js"></script>
 
 	<!-- Java Script for header

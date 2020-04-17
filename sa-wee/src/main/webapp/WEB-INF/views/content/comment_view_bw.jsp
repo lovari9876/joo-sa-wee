@@ -162,14 +162,14 @@
 							</div>
 							</c:if>
 						</div>
-						
 							
-				</div>
-			</li>
-				<c:import url="/reply_view">
-								<c:param name="cm_no" value="${comment_list[status.index]['CM_NO']}"></c:param>
-							</c:import>
-			</c:forEach>
+					</div>
+				</li>
+			<c:import url="/reply_view">
+				<c:param name="cm_no" value="${comment_list[status.index]['CM_NO']}"></c:param>
+				<c:param name="bw_no" value="${content_view['BW_NO']}"></c:param>
+			</c:import>
+		</c:forEach>
 		</ul>
 	</div>
 	
