@@ -75,6 +75,11 @@ $(function() {
 
 						onFinished : function(event, currentIndex) {
 
+							if($('#phone_pass').val() == "N"){
+								alert("핸드폰을 인증해주세요.");
+								return false;
+							}	
+							
 							if ($("#m_id").val() == "") {
 								alert("아이디를 입력해주세요.");
 								$("#m_id").focus();
@@ -180,7 +185,10 @@ $(function() {
 								alert("이메일을 인증해주세요.");
 								return false;
 							}
-							
+							if($('#phone_pass').val() == "N"){
+								alert("이메일을 인증해주세요.");
+								return false;
+							}							
 							if(!pass){
 								alert("형식에 맞지 않습니다. 다시 확인해주세요.");
 								return false;

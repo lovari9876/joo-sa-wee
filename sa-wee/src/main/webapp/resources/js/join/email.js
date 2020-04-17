@@ -56,7 +56,7 @@ $(function() {
 						});
 					},
 					error : function(data) {
-						alert("에러가 발생했습니다.");
+						alert("이메일 주소를 다시 확인해주세요.");
 						return false;
 					}
 
