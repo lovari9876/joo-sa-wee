@@ -144,7 +144,7 @@
 										<td class="cell subject">${board['BT_NAME']}</td>
 										<td class="cell subject">${board['S_CONTENT']}</td>
 										<td class="cell title"><a
-											href="/content_view?bw_no=${board['BW_NO']}">${board['BW_TITLE']} (${board['CM']})</a></td>
+											href="/content_view?bw_no=${board['BW_NO']}"><span>${board['BW_TITLE']}</span> </a> <a id ="comment_num">(${board['CM']})</a></td>
 										<td class="cell">${board['M_ID']}</td>
 										<td class="cell"> 
 										

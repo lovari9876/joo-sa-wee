@@ -172,7 +172,7 @@
 		                            ${tItem['M_NICK']}
 		                        </div>
 		                        <div class="entry__excerpt" style="font-weight:50;">
-		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}
+		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}  | 댓글수 ${tItem['CM']}
 		                        </div>
 		                        
 		                        <!-- 파란색 태그 부분=> 여기에다가 관련게임이름과 링크 박기 -->
@@ -209,14 +209,14 @@
 											</c:choose>
 		                                </a>
 		                            </div>
-		                            <h1 class="entry__title"><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']}</a></h1>
+		                            <h1 class="entry__title"><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']} </a></h1>
 		                            
 		                        </div>
 								<div class="entry__excerpt" style="font-family:ariel;">
 		                            ${tItem['M_NICK']}
 		                        </div>
 		                        <div class="entry__excerpt" style="font-weight:50;">
-		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}
+		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']} | 댓글수 ${tItem['CM']}
 		                        </div>
 		                        
 		                        <div class="entry__meta">
@@ -404,7 +404,7 @@
 											<td><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_NO']}</a></td>
 											<td>${tItem['S_CONTENT']}</td>
 											<td>${tItem['M_NICK']}</td>
-											<td><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']}</a></td>
+											<td><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']}  [${tItem['CM']}]</a></td>
 											<td>
 												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 												<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>

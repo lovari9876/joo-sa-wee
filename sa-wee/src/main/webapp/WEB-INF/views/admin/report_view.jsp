@@ -145,8 +145,8 @@
 													</c:when>
 													
 													<c:when test="${report_view['R_TYPE'] == '게시글' || report_view['R_TYPE'] == '중고거래' || report_view['R_TYPE'] == '카페리뷰'}">
-														<button type="submit" class="btn  pull-right" onClick='island()'>무인도행</button>
-														<button type="submit" class="btn  pull-right" onClick='board_delete()'>삭제</button>
+														<button class="btn  pull-right" onClick='island()'>무인도행</button>
+														<button id="de"class="btn  pull-right" onClick='board_delete()' value="${report_view['R_TYPE']}">삭제</button>
 													</c:when>
 												</c:choose>	
 												
@@ -177,7 +177,15 @@
 								
 								function board_delete(){
 									var out = document.getElementById("viewForm");
-									out.action="<c:url value='/admin/boardDelete'/>";
+									var type = $('#de').val();
+									alert(type);
+									if (type == '게시글'){
+										out.action="<c:url value='/admin/boardDelete/board'/>";
+									}else if(type == '중고거래'){
+										out.action="<c:url value='/admin/boardDelete/trade'/>";
+									}else if(type == '카페리뷰'){
+										out.action="<c:url value='/admin/boardDelete/cafe'/>";
+									}
 									out.submit();
 									console.log("out");
 									alert("해당 글이 삭제되었습니다.");

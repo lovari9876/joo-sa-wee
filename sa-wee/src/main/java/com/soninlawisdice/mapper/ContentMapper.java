@@ -192,6 +192,6 @@ public interface ContentMapper {
 	
 	public HashMap<String, Object> selectGameDetailAvg(int g_no); // 게임 상세정보 투표 결과 view
 	
-	public ArrayList<GameVO> selectGameList(@Param("scri")SearchCriteria scri, @Param("init")String init);
+	public ArrayList<HashMap<String, Object>> selectGameList(@Param("scri")SearchCriteria scri, @Param("init")String init);
 	public int game_listCount(@Param("scri")SearchCriteria scri, @Param("init")String init);
 }

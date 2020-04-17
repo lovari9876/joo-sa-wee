@@ -138,6 +138,9 @@ public interface AdminService {
 	public void selectDelete_trade(TradeVO tradeVO);
 	
 	public void selectDelete(int bw_no);
+	public void selectDelete_cafe(int cr_no);
+	public void selectDelete_trade(int t_no);
+	
 	public void selectDelete_comment(int cm_no);
 	
 	public void faqDelete(int faq_no);

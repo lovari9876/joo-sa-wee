@@ -835,18 +835,19 @@
 		WHERE G_NO = #{g_no} AND G_NUM != 0
 	</select>
 	
-	<select id = "selectGameList" resultType = "com.soninlawisdice.vo.GameVO" >
+	<select id = "selectGameList" resultType="java.util.HashMap" >
 
 		SELECT * FROM 
 			(SELECT g_no, g_name, g_min, g_max, g_playtime, g_release, g_name_kor, g_image, g_thumbnail, g_updated_date, 
-					ROW_NUMBER() OVER(ORDER BY g_no DESC)AS RNUM
+					ROW_NUMBER() OVER(ORDER BY g_name_kor DESC)AS RNUM,
+					ROW_NUMBER() OVER(ORDER BY g_name_kor ASC)AS RNUM_COUNT
            		FROM game
                	WHERE 1=1
                	<include refid="game_init"></include>
                 <include refid="game_search"></include>
             )G 
-            WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
-            ORDER BY g_no DESC
+            WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+            ORDER BY RNUM DESC
 	
 	</select>
 	

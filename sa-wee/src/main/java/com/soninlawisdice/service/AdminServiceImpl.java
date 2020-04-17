@@ -317,6 +317,23 @@ public class AdminServiceImpl implements AdminService {
 
 	
 	@Override
+	public void selectDelete_cafe(int cr_no) {
+		adminMapper.selectDelete_cafe(cr_no);
+	}
+	
+	@Override
+	public void selectDelete_trade(int t_no) {
+		adminMapper.selectDelete_trade(t_no);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
 	public void faqDelete(int faq_no) {
 		adminMapper.faqDelete(faq_no);
 	}

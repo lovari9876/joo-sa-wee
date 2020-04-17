@@ -26,6 +26,8 @@ public interface SecondhandService {
 	
 	// delete
 	public void deleteContent(TradeVO tradeVO);
+	//admin용 delete
+	public void deleteContent(int t_no);
 	
 	// 조회수: hit
 	public void upHitContent(int t_no);
