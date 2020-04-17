@@ -387,14 +387,16 @@
 	<!-- /WEB-INF/ 로 시작하면 절대 경로 써줘야함!!!(jsp 파일 단순 import할 경우!)  -->
 	<!-- 반드시 controller가 실행 후 return해서 와줄 장소 필요.. 그래서 동적인 거 노노
 		 정적인 include 필수 ㅠㅠㅠ -->
-	<%@ include file="/WEB-INF/views/mypage/mytrade/price_modal_view.jsp"%>
+	<%@ include file="/WEB-INF/views/mypage/mytrade/sell_modal_view.jsp"%>
 	<!-- 내 판매-판매자 [거래확인] include end -->	
 	
 	<!-- 내 구매-구매자 결제 모달 include start -->
-	<%@ include file="/WEB-INF/views/mypage/mytrade/pay_modal_view.jsp"%>
+	<%@ include file="/WEB-INF/views/mypage/mytrade/buy_modal_view.jsp"%>
 	<!-- 내 구매-구매자 결제 모달 include end -->
 	
-	<!-- mytrade_pay_modal.js => jstl과 el 못써서...-->
+	
+	<!-- =========================================================================== -->
+	<!-- mytrade_buy_modal.js => jstl과 el 못써서...-->
 	<script type="text/javascript">
 		/*
 		 * mytrade_modal
@@ -403,7 +405,7 @@
 	
 
 		// Get the modal
-		var modal = document.getElementById('pay-modal');
+		var modal = document.getElementById('buy-modal');
 	
 		var sum = 0;
 		var product = '';
@@ -421,28 +423,28 @@
 		// When the user clicks on the button, open the modal 
 		//btn.onclick = function() {
 	
-		function buy_modal(pno) {
+		function buyModal(buyBtn) {
 			
 			// alert(pno);// 성공	
 			payno = pno;
 			
-			payAjax(pno);
+			buyAjax(pno);
 			
 			// 다중 모달일 때 버튼으로 클릭한 모달만 보이게 하기
-			$("#pay-modal").css("display", "block");	    
-		    $("#pay-modal").css('z-index', 200);    
+			$("#buy-modal").css("display", "block");	    
+		    $("#buy-modal").css('z-index', 200);    
 		    
 		}
 	
 		// 거래확인 버튼과 같은 라인의 p_no 받아서 controller로 넘긴 뒤
 		// hashmap list를 받아 foreach 돌린다.
-		function payAjax(pno) { 
+		function buyAjax(pno) { 
 			
 			// alert(pno); 받아옴
 			
 			$.ajax({ 
 				type : "GET", 
-				url : "/pay_modal_view/"+pno, 
+				url : "/buy_modal_view/"+pno, 
 				cache : false,
 				dataType : "json",
 				success : function(data) { /* 컨트롤러에서 넘긴 값이 여기로 온다 */
@@ -553,7 +555,7 @@
 			                    console.log(data);
 			                    
 			                	 // 결제 모달 닫기
-								$("#pay-modal").css("display", "none");
+								$("#buy-modal").css("display", "none");
 			                	 
 			                    alert("결제 완료되었습니다. 마이페이지에서 확인하실 수 있습니다.");	
 			                    
@@ -604,7 +606,7 @@
 						alert(msg);
 						
 						// 결제 모달 닫기
-						$("#pay-modal").css("display", "none");
+						$("#buy-modal").css("display", "none");
 					}		
 	
 					
@@ -614,7 +616,7 @@
 	
 		// When the user clicks on <span> (x), close the modal
 		function closePayModal() {
-			$("#pay-modal").css("display", "none");	
+			$("#buy-modal").css("display", "none");	
 		}
 	</script>	
 
@@ -638,8 +640,8 @@
 	crossorigin="anonymous"></script>
 
 <!-- Java Script for 내 거래 - 모달  ================================================== -->
-<script src="/js/cassie/mytrade_price_modal.js"></script> <!-- 내판매-거래확인 -->
-<script src="/js/cassie/mytrade_pay_modal.js"></script> <!-- 내구매-결제 -->
+<script src="/js/cassie/mytrade_sell_modal.js"></script> <!-- 내판매-거래확인 -->
+<script src="/js/cassie/mytrade_buy_modal.js"></script> <!-- 내구매-결제 -->
 
 
 </html>

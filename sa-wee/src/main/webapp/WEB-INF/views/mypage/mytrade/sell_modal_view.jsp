@@ -21,7 +21,7 @@
 <body >
 						
 	<!-- Modal HTML embedded directly into document -->
-	<div id="price-modal" class="modal--trade">
+	<div id="sell-modal" class="modal--trade">
 	
 		<div class="modal--content">						
 			<div>
@@ -66,7 +66,7 @@
 						</table>
 						<br/>
 						<!-- modal close -->
-						<span class="modal--close" onClick="closePriceModal()">close</span>
+						<span class="modal--close" onClick="closeSellModal()">close</span>
 						<br/>						
 						
 						

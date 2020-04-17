@@ -33,7 +33,7 @@
 <body >
 						
 	<!-- Modal HTML embedded directly into document -->
-	<div id="pay-modal" class="modal--trade">
+	<div id="buy-modal" class="modal--trade">
 	
 		<div class="modal--content">						
 			<div>

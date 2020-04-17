@@ -78,7 +78,7 @@
 						<c:choose>				
 							<c:when test="${payment['P_STATUS'] eq 1}">거래요청</c:when>		
 							<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
-							<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
+							<c:when test="${payment['P_STATUS'] eq 3}">배송중</c:when>
 							<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
 							<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 6}">결제완료</c:when>
@@ -89,12 +89,12 @@
 					<td class="cell"> <!-- 버튼 -->
 						<div align="center" class="buy--button" >
 							<button class="pay-btn write-btn lavender-btn" type="button" 
-										value="${payment['P_NO']}" 
-										onclick="buy_modal(this.value);">
+										name="${payment['P_STATUS']}" value="${payment['P_NO']}" 
+										onclick="buyModal(this);">
 								<c:choose>				
 									<c:when test="${payment['P_STATUS'] eq 1}">결제하기</c:when>		
 									<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
-									<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
+									<c:when test="${payment['P_STATUS'] eq 3}">배송중</c:when>
 									<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
 									<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
 									<c:when test="${payment['P_STATUS'] eq 6}">결제완료</c:when>
@@ -164,7 +164,7 @@
 						<c:choose>				
 							<c:when test="${payment['P_STATUS'] eq 1}">거래요청</c:when>		
 							<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
-							<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
+							<c:when test="${payment['P_STATUS'] eq 3}">배송중</c:when>
 							<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
 							<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 6}">결제완료</c:when>
@@ -175,12 +175,12 @@
 					<td class="cell"> <!-- 버튼 -->
 						<div align="center" class="buy--button" >				
 							<button class="price-btn write-btn lavender-btn" type="button" 
-									name="price-btn${status.count}" value="${payment['P_NO']}" 
+									name="${payment['P_STATUS']}" value="${payment['P_NO']}" 
 									onclick="sell_modal(this.value);">
 								<c:choose>				
 									<c:when test="${payment['P_STATUS'] eq 1}">주문확인</c:when>		
-									<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
-									<c:when test="${payment['P_STATUS'] eq 3}">결제완료</c:when>
+									<c:when test="${payment['P_STATUS'] eq 2}">운송장<br>입력</c:when>
+									<c:when test="${payment['P_STATUS'] eq 3}"></c:when>
 									<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
 									<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
 									<c:when test="${payment['P_STATUS'] eq 6}">결제완료</c:when>
@@ -190,6 +190,11 @@
 								
 							</button> 
 							
+						<!-- 	function getName(button) {
+								var name = $(button).attr("name");
+							    alert(name);
+							}
+							 -->
 						</div>
 					</td>										
 				</tr>
