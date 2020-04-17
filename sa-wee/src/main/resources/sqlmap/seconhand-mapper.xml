@@ -17,6 +17,7 @@
 		FROM (
 				SELECT 
 					T.*, M.M_NICK, M.M_ID, S.S_CONTENT, 
+					(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_NO2 = T.T_NO)CM,
 					ROW_NUMBER() OVER(
 						<choose>
 							<when test = "sort == 'hit'">ORDER BY T_HIT DESC</when>
