@@ -413,6 +413,11 @@ public class HeeJeongController {
 		model.addAttribute("comment_view", contentService.selectCommentOne(cm_no));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
+		// content_view로 redirect를 위해서
+		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
+				
+		model.addAttribute("content_view", contentService.selectContentOne(bw_no));
+		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
 //		int m_no = 9;
 //		model.addAttribute("m_no", m_no);
@@ -422,7 +427,7 @@ public class HeeJeongController {
 	
 	// 대댓글 쓰기(update + insert)
 	@RequestMapping(value = "/reply", method = RequestMethod.GET)
-	public String reply(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model, @RequestParam("m_no") int m_no,
+	public String reply(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model, @RequestParam int bw_no, RedirectAttributes re, @RequestParam("m_no") int m_no,
 						Principal principal, MemberVO memberVO) throws Exception {
 		System.out.println("reply");
 		
@@ -437,7 +442,10 @@ public class HeeJeongController {
 		contentService.writeReply(cm_commentVO);
 		contentService.updatePoint(cm_commentVO);
 		
-		return "content/reply_success";
+		// content_view로 redirect를 위해서
+		re.addAttribute("bw_no", bw_no);
+		
+		return "redirect:content_view";
 	}
 
 	@RequestMapping(value = "/game_info", method = RequestMethod.GET)
@@ -695,6 +703,11 @@ public class HeeJeongController {
 		model.addAttribute("comment_view", contentService.selectCommentT(cm_no));
 		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
+		// content_view_t로 redirect를 위해서
+		int t_no = Integer.parseInt(request.getParameter("t_no"));
+					
+		model.addAttribute("content_view_t", contentService.selectContentTOne(t_no));
+		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
 //		int m_no = 9;
 //		model.addAttribute("m_no", m_no);
@@ -705,7 +718,7 @@ public class HeeJeongController {
 	// 중고거래 대댓글 쓰기(update + insert)
 	@RequestMapping(value = "/reply_t", method = RequestMethod.GET)
 	public String reply_t(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, Model model, @RequestParam("m_no") int m_no, 
-							Principal principal, MemberVO memberVO) throws Exception {
+							Principal principal, MemberVO memberVO, @RequestParam int t_no, RedirectAttributes re) throws Exception {
 		System.out.println("reply_t");
 		
 		// 로그인 해야 대댓글 쓰기 가능
@@ -719,7 +732,10 @@ public class HeeJeongController {
 		contentService.writeReplyT(cm_commentVO);
 		contentService.updatePoint(cm_commentVO);
 		
-		return "content/reply_success";
+		// content_view_t로 redirect를 위해서
+		re.addAttribute("t_no", t_no);
+		
+		return "redirect:/content_view_t";
 	}
 	
 	
