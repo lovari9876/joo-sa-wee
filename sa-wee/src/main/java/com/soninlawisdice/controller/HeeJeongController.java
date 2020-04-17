@@ -1350,10 +1350,20 @@ public class HeeJeongController {
 	
 	//게임 전체 리스트
 	@RequestMapping(value = "/game_info", method = RequestMethod.GET)
-	public String game_info(Locale locale, Model model) {
+	public String game_info(Locale locale, Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 		System.out.println("game_info");
+		
+		scri.setPerPageNum(15);
+		String init = rq.getParameter("init");
 
-		model.addAttribute("gameList", contentService.selectGameList());
+		model.addAttribute("gameList", contentService.selectGameList(scri, init));
+		model.addAttribute("init", init);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(contentService.game_listCount(scri, init));
+
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "game_info/game_info";
 	}
