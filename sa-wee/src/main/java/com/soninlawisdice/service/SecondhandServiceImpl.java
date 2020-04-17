@@ -57,7 +57,7 @@ public class SecondhandServiceImpl implements SecondhandService {
 
 		secondhandMapper.deleteContent(tradeVO);
 	}
-	
+	//admin용 delete
 	@Override
 	public void deleteContent(int t_no) {
 		secondhandMapper.deleteContent(t_no);
