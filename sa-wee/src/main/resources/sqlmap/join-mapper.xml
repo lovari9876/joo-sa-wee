@@ -72,6 +72,11 @@
 	<select id="findId" parameterType="String" resultType="String">
 		select m_id from member where m_email = #{m_email} and m_name = #{m_name}
 	</select>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="updatePW">
+		update member set m_pw = #{m_pw} where m_id = #{m_id}
+	</update>	
 
 
 </mapper>

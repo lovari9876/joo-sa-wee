@@ -30,28 +30,24 @@
 				alt="son-in-low_is_dice">
 			</a><br/>
 			
-			<form class="login100-form validate-form">
-				<!-- <span class="login100-form-title p-b-37"> <img
-					class="logo_image" src="resources/images/icons/login/wolf_logo.png"
-					alt="son-in-low_is_dice">
-				</span> -->
-
-				<div class="wrap-input100 validate-input m-b-20"
+			<form class="login100-form " action="/forgot_pwview">
+				
+				<div class="wrap-input100 m-b-20"
 					data-validate="ID를 입력하세요">
-					<input class="input100" type="text" name="username"
+					<input class="input100" type="text" name="m_id" id="m_id" 
 						placeholder="ID"><span class="focus-input100"></span>
 				</div>
 
-				<div class="wrap-input100 validate-input m-b-25"
+				<div class="wrap-input100 m-b-25"
 					data-validate="등록된 이메일을 입력하세요">
-					<input class="input100" type="email" name="email"
+					<input class="input100" type="email" name="m_email" id="m_email"
 						placeholder="EMAIL"><span class="focus-input100"></span>
 				</div>
-				<div class="text-center fs-11 p-b-10">
-					기존에 등록된 메일로 새로운 <br/> PASSWARD가 발송됩니다.
-				</div>
+				
+				<div class="text-center check_font m-b-25" id="id_check"></div>
+
 				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">PASSWARD 재설정</button>
+					<button type="button" class="login100-form-btn" id="find_pw">PASSWARD 재설정</button>
 				</div>
 				<br />
 				
@@ -66,12 +62,13 @@
 
 			</form>
 
-
 		</div>
 	</div>
 	<div id="dropDownSelect1"></div>
-
+	<script src="resources/js/join/jquery-3.3.1.min.js"></script>
 	<script src="resources/js/login/main.js"></script>
+	<script src="resources/js/login/forgot_pw.js"></script>
+	
 
 </body>
 </html>

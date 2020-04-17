@@ -12,7 +12,8 @@ public interface JoinService {
 	public int pwCheck(MemberVO memberVO) throws Exception;
 
 	// 아이디 중복체크
-	public int idCheck(MemberVO vo) throws Exception;
+	public int idCheck(MemberVO memberVO) throws Exception;
+	public int idCheck(String m_id) throws Exception;
 
 	// 닉네임 중복체크
 	public int nickCheck(MemberVO memberVO) throws Exception;
@@ -33,5 +34,6 @@ public interface JoinService {
   	public String findId(String m_email, String m_name) throws Exception;
 
 	// 임시비밀번호 발급
-  	
+  	public void updatePW(String m_pw, String m_id)throws Exception;
+
 }

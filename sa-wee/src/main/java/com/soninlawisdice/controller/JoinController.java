@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.soninlawisdice.service.JoinService;
 import com.soninlawisdice.service.MailService;
+import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.util.Coolsms;
 import com.soninlawisdice.vo.MemberVO;
 
@@ -31,6 +32,9 @@ public class JoinController {
 
 	@Autowired
 	private JoinService joinService;
+
+	@Autowired
+	private MyPageService myPageService;
 
 	@Autowired
 	private MailService mailService;
@@ -161,6 +165,7 @@ public class JoinController {
 
 		return mailService.send(subject, sb.toString(), "lyeon615@gmail.com", userEmail);
 	}
+	
 
 	// 이메일 인증 번호 확인
 	@ResponseBody
@@ -327,30 +332,39 @@ public class JoinController {
 	// 임시비밀번호 메일로 보내기
 	@ResponseBody
 	@RequestMapping(value = "/forgot_pw_email", method = RequestMethod.GET)
-	public boolean forgot_pw_email(@RequestParam String userEmail, HttpServletRequest req) {
+	public boolean forgot_pw_email(@RequestParam String m_email, @RequestParam("m_id") String m_id) throws Exception {
 		// 이메일 인증
 		System.out.println("forgot_pw_email");
-
-		int ran = new Random().nextInt(90000000) + 10000000;
-		HttpSession session = req.getSession(true);
-		String authCode = String.valueOf(ran);
-		System.out.println("authCode : " + authCode);
-
-		session.setAttribute("authCode", authCode);
-		session.setAttribute("random", ran);
-		String subject = "<내 사위는 주사위> 임시 비밀번호입니다.";
-		StringBuilder sb = new StringBuilder();
-		sb.append("귀하의 임시 비밀번호는 " + authCode + "입니다.");
-
-		System.out.println("sb : " + sb);
-
-		if (userEmail == null) {
-			System.out.println("유저이메일 null");
+		
+		if(joinService.idCheck(m_id) == 0) {
+			System.out.print("아이디가 없습니다.");
+			return false;
+		}
+		MemberVO memberVO = myPageService.mypage(m_id);
+		System.out.println(m_email);
+		System.out.println(memberVO.getM_email());
+		
+		
+		if(!m_email.equals(memberVO.getM_email())) {
+			System.out.print("잘못된 이메일 입니다.");
 			return false;
 		}
 
-		return mailService.send(subject, sb.toString(), "lyeon615@gmail.com", userEmail);
+		int ran = new Random().nextInt(90000000) + 10000000;
+		String pw = String.valueOf(ran);
+
+		String subject = "[내 사위는 주사위] 임시 비밀번호입니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("귀하의 임시 비밀번호는 " + pw + "입니다. \n 보안을 위해 로그인 후 비밀번호를 바꿔주세요.");
+
+		System.out.println("sb : " + sb);
+
+		System.out.println(pw + " : " + m_id);
+		joinService.updatePW(pwdEncoder.encode(pw), m_id);
+
+		return mailService.send(subject, sb.toString(), "lyeon615@gmail.com", m_email);
 	}
+	
 	
 	// 접속권한 없을 때 403 에러 페이지 대신
 	@RequestMapping(value = "/access_denied_page")
