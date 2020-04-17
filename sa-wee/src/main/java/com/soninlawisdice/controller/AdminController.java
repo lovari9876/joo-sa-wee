@@ -16,6 +16,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -797,23 +798,36 @@ public class AdminController {
 	
 	
 	//신고관리 : 글삭제 
-		@RequestMapping(value = "/boardDelete", method = RequestMethod.POST)
-		public String boardDelete(Board_writeVO board_writeVO,  @RequestParam String r_no, @RequestParam String r_type, RedirectAttributes re) throws Exception {
-
-			StringTokenizer st;
-			st = new StringTokenizer(r_no);
-			int r = Integer.parseInt(st.nextToken());
-			System.out.println("r_no 신고번호 : " + r);
-			int no = Integer.parseInt(st.nextToken());
-			System.out.println("no 삭제할 글번호 : " + no);
-			adminService.selectDelete(no);
+	@RequestMapping(value = "/boardDelete/{table}")
+	public String boardDelete(@PathVariable("table")String table, Board_writeVO board_writeVO,  @RequestParam String r_no, @RequestParam String r_type, RedirectAttributes re) throws Exception {
 		
-			re.addAttribute("r_no", r);
-			re.addAttribute("r_type", r_type);
-			
-			return "redirect:report_view";
+		System.out.println("table : "+ table);
+		
+		
+		StringTokenizer st;
+		st = new StringTokenizer(r_no);
+		int r = Integer.parseInt(st.nextToken());
+		System.out.println("r_no 신고번호 : " + r);
+		int no = Integer.parseInt(st.nextToken());
+		System.out.println("no 삭제할 글번호 : " + no);
+		
+		if (table.equals("board")){
+			adminService.selectDelete(no);
+		}else if(table.equals("trade")) {
+			//adminService.selectDelete_trade(no);
+			System.out.println("trade 삭제 ");
+			secondhandService.deleteContent(no);
+		}else if(table.equals("cafe")) {
+			System.out.println("cafe 삭제 ");
+			adminService.selectDelete_cafe(no);
 		}
 	
+		re.addAttribute("r_no", r);
+		re.addAttribute("r_type", r_type);
+		
+		return "redirect:/admin/report_view";
+	}
+
 	
 	// 선택한 글 삭제 ! ! json 객체로 변환해서 값을 보내야함, 안그러면 형변환 관련 오류뜸
 	@ResponseBody
@@ -845,8 +859,8 @@ public class AdminController {
 				adminService.selectDelete_cafe(cafe_reviewVO);
 				result = 2;
 			} else {// 중고거래는 bt 테이블과 조인하지않음
-				tradeVO.setT_no(no);
-				adminService.selectDelete_trade(tradeVO);
+				System.out.println("trade 삭제 ");
+				secondhandService.deleteContent(no);
 				result = 3;
 			}
 			

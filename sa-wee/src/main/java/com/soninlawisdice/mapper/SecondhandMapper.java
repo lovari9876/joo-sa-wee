@@ -30,6 +30,7 @@ public interface SecondhandMapper {
 	
 	// delete
 	public void deleteContent(TradeVO tradeVO);
+	public void deleteContent(int t_no);
 	
 	// 조회수: hit
 	public void upHitContent(int t_no); 
