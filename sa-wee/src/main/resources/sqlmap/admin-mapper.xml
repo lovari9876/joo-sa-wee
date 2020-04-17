@@ -404,6 +404,7 @@
 	
 	<sql id="boardType_search">
 		<if test="bt_no != null">
+			<!-- <if test="bt_no == '카테고리'"> </if> -->
 			<if test="bt_no == 0"> </if>
 			<if test="bt_no == 1">AND bt.bt_no = 1 </if>
 			<if test="bt_no == 2">AND bt.bt_no = 2</if>
@@ -416,39 +417,41 @@
 	
 	<sql id="subject_search">
 		<if test="s_content != null">
-			<if test="s_content == '전체보기'"> </if>
-			<if test="s_content == '잡담'">AND s.s_content = '잡담' </if>
-			<if test="s_content == '노하우'">AND s.s_content = '노하우'</if>
-			<if test="s_content == '토론'">AND s.s_content = '토론'</if>
+			<if test='s_content == "전체보기"'> </if>
+			<if test='s_content == "말머리"'> </if>
+			<if test='s_content == "0"'> </if>
+			<if test='s_content == "잡담"'>AND s.s_content = '잡담' </if>
+			<if test='s_content == "노하우"'>AND s.s_content = '노하우'</if>
+			<if test='s_content == "토론"'>AND s.s_content = '토론'</if>
 			
-			<if test="s_content == '개봉기'">AND s.s_content = '개봉기'</if>
-			<if test="s_content == '일 리뷰'">AND s.s_content = '일 리뷰'</if>
-			<if test="s_content == '다 리뷰'">AND s.s_content = '다 리뷰'</if>
+			<if test='s_content == "개봉기"'>AND s.s_content = '개봉기'</if>
+			<if test='s_content == "일리뷰"'>AND s.s_content = '일 리뷰'</if>
+			<if test='s_content == "다리뷰"'>AND s.s_content = '다 리뷰'</if>
 			
-			<if test="s_content == '모집'">AND s.s_content = '모집'</if>
-			<if test="s_content == '모임 후기'">AND s.s_content = '모임 후기'</if>
+			<if test='s_content == "모집"'>AND s.s_content = '모집'</if>
+			<if test='s_content == "모임후기"'>AND s.s_content = '모임 후기'</if>
 			
-			<if test="s_content == '이벤트'">AND s.s_content = '이벤트'</if>
-			<if test="s_content == '대회'">AND s.s_content = '대회'</if>
-			<if test="s_content == '신작 소식'">AND s.s_content = '신작 소식'</if>
-			<if test="s_content == '세일'">AND s.s_content = '세일'</if>
-			<if test="s_content == '기타'">AND s.s_content = '기타'</if>
+			<if test='s_content == "이벤트"'>AND s.s_content = '이벤트'</if>
+			<if test='s_content == "대회"'>AND s.s_content = '대회'</if>
+			<if test='s_content == "신작소식"'>AND s.s_content = '신작 소식'</if>
+			<if test='s_content == "세일"'>AND s.s_content = '세일'</if>
+			<if test='s_content == "기타"'>AND s.s_content = '기타'</if>
 			
-			<if test="s_content == '게임룰'">AND s.s_content = '룰'</if>
-			<if test="s_content == '추천'">AND s.s_content = '추천'</if>
+			<if test='s_content == "게임룰"'>AND s.s_content = '룰'</if>
+			<if test='s_content == "추천"'>AND s.s_content = '추천'</if>
 			
-			<if test="s_content == '계획'">AND s.s_content = '계획'</if>
-			<if test="s_content == '디자인'">AND s.s_content = '디자인'</if>
-			<if test="s_content == '완성'">AND s.s_content = '완성'</if>
-			<if test="s_content == '공유'">AND s.s_content = '공유'</if>
-			<if test="s_content == '테스트플레이'">AND s.s_content = '테스트플레이'</if>
+			<if test='s_content == "계획"'>AND s.s_content = '계획'</if>
+			<if test='s_content == "디자인"'>AND s.s_content = '디자인'</if>
+			<if test='s_content == "완성"'>AND s.s_content = '완성'</if>
+			<if test='s_content == "공유"'>AND s.s_content = '공유'</if>
+			<if test='s_content == "테스트플레이"'>AND s.s_content = '테스트플레이'</if>
 			
 			<!-- 1대1문의  -->
-			<if test="s_content == '27'">AND s.s_content = '회원 관련 문의'</if>
-			<if test="s_content == '28'">AND s.s_content = '결제 관련 문의'</if>
-			<if test="s_content == '29'">AND s.s_content = '정보수정 요청'</if>
-			<if test="s_content == '30'">AND s.s_content = '무인도 관련 문의'</if>
-			<if test="s_content == '31'">AND s.s_content = '기타 문의'</if>
+			<if test='s_content == "27"'>AND s.s_content = '회원 관련 문의'</if>
+			<if test='s_content == "28"'>AND s.s_content = '결제 관련 문의'</if>
+			<if test='s_content == "29"'>AND s.s_content = '정보수정 요청'</if>
+			<if test='s_content == "30"'>AND s.s_content = '무인도 관련 문의'</if>
+			<if test='s_content == "31"'>AND s.s_content = '기타 문의'</if>
 			
 		</if>
 	</sql>
@@ -459,7 +462,10 @@
 
 		SELECT COUNT(cr.cr_no)
 		  FROM cafe_review cr
-		 WHERE 1=1
+				INNER JOIN member m
+				ON cr.m_no = m.m_no
+				INNER JOIN cafe c
+				On cr.c_no = c.c_no
 		 <include refid="cafe_review_search"></include>	
 		 AND cr.cr_no > 0
 
@@ -634,7 +640,8 @@
 	<update id="updateCafe" parameterType="com.soninlawisdice.vo.CafeVO" >
 		UPDATE cafe 
 		SET c_title = #{cafeVO.c_title}, c_add = #{cafeVO.c_add}, c_phone= #{cafeVO.c_phone},
-			c_table = #{cafeVO.c_table}, c_open = #{cafeVO.c_open}, c_close= #{cafeVO.c_close},
+			c_people = #{cafeVO.c_people}, c_table = #{cafeVO.c_table}, c_chair = #{cafeVO.c_chair},
+			c_open = #{cafeVO.c_open}, c_close= #{cafeVO.c_close},
 			c_rest = #{cafeVO.c_rest}, c_updated_date = sysdate 
 		WHERE c_no = #{cafeVO.c_no}
 		

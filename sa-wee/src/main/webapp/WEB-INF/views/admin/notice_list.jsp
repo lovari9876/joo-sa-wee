@@ -52,7 +52,7 @@
 								
 								 <div class="dropdown pull-left">
 										<select id="searchType" name="searchType" class="span2">
-											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>검색타입선택</option>
 											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
 											<option value = "w" class="btn" <c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
@@ -60,8 +60,8 @@
 										</select>
 								</div> 
 								 <div class="input-append pull-left">
-									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회 /검색어 입력">
-									<button type="submit" class="btn" id="serchBtn">
+									<input type="text" maxlength="30"  name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회 /검색어 입력">
+									<button type="submit" class="btn" id="searchBtn">
 										<i class="icon-search"></i>
 									</button>
 								</div> 

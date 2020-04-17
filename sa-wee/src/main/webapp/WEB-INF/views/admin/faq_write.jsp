@@ -46,7 +46,7 @@
 
 							<div class="write-view"> -->
 
-					<form action="/admin/faqInsert" method="post">
+					<form id="viewForm" method="post">
 						<table class="table">
 							 <tr class = "row">
 							<td class = "cell span2">말머리</td>
@@ -63,7 +63,7 @@
 
 							<tr class="row">
 								<td class="cell span2">제목</td>
-								<td class="cell span8"><input type="text" name="faq_title"
+								<td class="cell span8"><input id="title" maxlength="60" type="text" name="faq_title" maxlength="30"
 									class="span6" placeholder="제목을 입력하세요"></td>
 							</tr>
 
@@ -79,7 +79,7 @@
 								<div class="controls">
 									<button type="button" class="btn  pull-left"
 										onclick="location='notice_list'">목록</button>
-									<button type="submit" class="btn  pull-right">작성완료</button>
+									<button id="btnConfirm" class="btn  pull-right" value="faq_write">작성완료</button>
 
 								</div>
 							</div>
@@ -120,6 +120,10 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+	<!-- modify / submit 예외처리 -->
+	<script src="js/admin/exception/board.js" type="text/javascript"></script>
+	
+	
 	<!-- ckEditor 관련 -->
 	
 	<script type="text/javascript">

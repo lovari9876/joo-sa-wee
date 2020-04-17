@@ -47,41 +47,22 @@
 
 							<div class="write-view"> -->
 
-					<form action="/admin/boardInsert" method="post">
+					<form id="viewForm" method="post">
 						<input type="hidden" name = "bt_no" value="12" >
 						<input type="hidden" name = "s_no" value="35">
 						<input type="hidden" name = "m_no" value="0">
 						<table class="table">
 						
-							<!-- <tr class = "row">
-							<td class = "cell">게시판 선택</td>
-							<td class = "cell">
-								<select>
-										<option value="0" selected>보드이야기</option>
-										<option value="1">개봉기 및 리뷰</option>
-										<option value="2">보드게임 모임</option>
-										<option value="3">보드뉴스</option>
-										<option value="4">질문 & 답변</option>
-										<option value="5">창작 보드게임</option>
-								</select> 
-								<select>
-										<option value="0" selected>이부분</option>
-										<option value="1">처리방법</option>
-										<option value="2">모르겠음</option>
-								</select>
-							</td>
-						</tr> -->
-
 							<tr class="row">
 								<td class="cell span2">제목</td>
-								<td class="cell span9"><input type="text" name="bw_title"
+								<td class="cell span9"><input id="title" maxlength="60" type="text" name="bw_title"
 									class="span7" placeholder="제목을 입력하세요"></td>
 
 							</tr>
 
 							<tr class="row">
 								<td class="cell ">내용</td>
-								<td class="cell "><textarea id="editor" name="bw_content" 
+								<td class="cell "><textarea id="editor" class="content" name="bw_content" 
 										rows="10" placeholder="내용을 입력하세요"></textarea></td>
 							</tr>
 
@@ -97,7 +78,7 @@
 								<div class="controls">
 									<button type="button" class="btn  pull-left"
 										onclick="location='notice_list'">목록</button>
-									<button type="submit" class="btn  pull-right">작성완료</button>
+									<button id="btnConfirm"class="btn  pull-right" value="notice_write">작성완료</button>
 
 								</div>
 							</div>
@@ -138,6 +119,8 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+	<!-- modify / submit 예외처리 -->
+	<script src="js/admin/exception/board.js" type="text/javascript"></script>
 	
 	<!-- ckEditor 관련 -->
 	
@@ -145,9 +128,6 @@
 			var myEditor;
 			ClassicEditor
 				.create( document.querySelector( '#editor' ), {
-					
-					
-					
 					
 					ckfinder: {
 				        uploadUrl: '${pageContext.request.contextPath}/fileupload' // 내가 지정한 업로드 url (post로 요청감)

@@ -39,7 +39,7 @@
 
 							<div class="controls">
 								<div class="input-append pull-left">
-									<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="신고내용 검색">
+									<input type="text" maxlength="30" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="신고내용 검색">
 									<button type="submit" class="btn" id="searchBtn">
 										<i class="icon-search"></i>
 									</button>
