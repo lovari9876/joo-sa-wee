@@ -595,14 +595,16 @@ public class AdminController {
 	////////////////////////////cafe_list///////////////////////////////////////
 	
 	@RequestMapping(value = "/cafe_list", method = RequestMethod.GET)
-	public String cafe_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+	public String cafe_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) throws Exception {
 
 		scri.setPerPageNum(15);
-		model.addAttribute("cafe_list", boardService.selectAllCafeList(scri));
+		String add = rq.getParameter("add");
+		model.addAttribute("list", boardService.selectAllCafeList(scri, add));	
+		model.addAttribute("add", add);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
-		pageMaker.setTotalCount(boardService.cafe_listCount(scri));
+		pageMaker.setTotalCount(boardService.cafe_listCount(scri, add));
 		  
 		model.addAttribute("pageMaker", pageMaker);	 
 

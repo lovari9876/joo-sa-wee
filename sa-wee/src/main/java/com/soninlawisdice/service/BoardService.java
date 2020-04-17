@@ -63,8 +63,8 @@ public interface BoardService {
 	public int allCafeReview_Count(SearchCriteria scri);
 	
 	//카페 목록 싹다 보기
-	public List<CafeVO> selectAllCafeList(SearchCriteria scri);
-	public int cafe_listCount(SearchCriteria scri);
+	public List<CafeVO> selectAllCafeList(SearchCriteria scri, String add);
+	public int cafe_listCount(SearchCriteria scri, String add);
 	
 	//카페 지역별로 보기
 	public List<CafeVO> selectCafeLoc(SearchCriteria scri,String c_add);

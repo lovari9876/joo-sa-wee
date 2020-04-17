@@ -55,8 +55,8 @@ public interface BoardMapper {
 	/////////////////////카페 리뷰///////////////////////////
 	
 	//카페 목록 싹다 보기
-	public List<CafeVO> selectAllCafeList(@Param("scri")SearchCriteria scri);
-	public int cafe_listCount(@Param("scri")SearchCriteria scri);
+	public List<CafeVO> selectAllCafeList(@Param("scri")SearchCriteria scri, @Param("add")String add);
+	public int cafe_listCount(@Param("scri")SearchCriteria scri, @Param("add")String add);
 	
 	//카페 지역별로 보기
 	public List<CafeVO> selectCafeLoc(@Param("scri")SearchCriteria scri,@Param("c_add")String c_add);

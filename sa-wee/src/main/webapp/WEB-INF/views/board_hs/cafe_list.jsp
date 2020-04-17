@@ -42,6 +42,8 @@
 
 </head>
 <body id="top">
+
+<script src="js/board_hs/jquery-3.2.1.min.js"></script>
 	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
@@ -77,7 +79,7 @@
 				<form>
 					<div class="search">
 						<div class="dropdown pull-right">
-								<select name="searchType" class="span2">
+								<select id="searchType" name="searchType" class="span2">
 									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 									<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>카페이름</option>
 									<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>지역...</option>
@@ -86,16 +88,29 @@
 								</select>
 						</div> 
 						<div class="input-append pull-right"> 
-							<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
+							<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">							
 							<button type="submit" class="btn" id="searchBtn">
 								<i class="icon-search"></i>
 							</button>
 						</div>
 					</div>
 				</form>
-
-
-
+				
+				<script>
+				      $(function(){
+								  $('#searchBtn').click(function() {
+								  	event.preventDefault(); // event canceled 막기!
+								    	self.location = "cafe_list" 
+								    				+ '${pageMaker.makeQuery(1)}' 
+								    				+ "&add=" 
+								    				+ $("#c_add option:selected").val() 
+								    				+ "&searchType=" 
+								    				+ $("#searchType option:selected").val() 
+								    				+ "&keyword="
+								    				+ encodeURIComponent($('#keywordInput').val());
+								  });
+								}); 
+				   </script>
 
 				<!-- 리스트 -->
 				<div class=tab-table>
@@ -105,26 +120,26 @@
 						<div class = "location">
 							
 						 
-							<select onchange ="location.href='cafe_list_loc?c_add='+this.value">
+							<select onchange ="location.href='cafe_list?add='+this.value" id="c_add">
 								<option value="">지역선택</option>
-								<option value="전체">전체보기</option>
-								<option value="서울">서울특별시</option>
-								<option value="인천">인천광역시</option>
-								<option value="대전">대전광역시</option>
-								<option value="광주">광주광역시</option>
-								<option value="대구">대구광역시</option>
-								<option value="울산">울산광역시</option>
-								<option value="부산">부산광역시</option>
-								<option value="세종">세종특별자치시</option>
-								<option value="경기">경기도</option>
-								<option value="강원">강원도</option>
-								<option value="충청북">충청북도</option>
-								<option value="충청남">충청남도</option>
-								<option value="전라북">전라북도</option>
-								<option value="전라남">전라남도</option>
-								<option value="경상북">경상북도</option>
-								<option value="경상남">경상남도</option>
-								<option value="제주">제주특별자치도</option>
+								<option value="전체" <c:out value="${add eq '전체' ? 'selected' : ''}"/>>전체보기</option>
+								<option value="서울" <c:out value="${add eq '서울' ? 'selected' : ''}"/>>서울특별시</option>
+								<option value="인천" <c:out value="${add eq '인천' ? 'selected' : ''}"/>>인천광역시</option>
+								<option value="대전" <c:out value="${add eq '대전' ? 'selected' : ''}"/>>대전광역시</option>
+								<option value="광주" <c:out value="${add eq '광주' ? 'selected' : ''}"/>>광주광역시</option>
+								<option value="대구" <c:out value="${add eq '대구' ? 'selected' : ''}"/>>대구광역시</option>
+								<option value="울산" <c:out value="${add eq '울산' ? 'selected' : ''}"/>>울산광역시</option>
+								<option value="부산" <c:out value="${add eq '부산' ? 'selected' : ''}"/>>부산광역시</option>
+								<option value="세종" <c:out value="${add eq '세종' ? 'selected' : ''}"/>>세종특별자치시</option>
+								<option value="경기" <c:out value="${add eq '경기' ? 'selected' : ''}"/>>경기도</option>
+								<option value="강원" <c:out value="${add eq '강원' ? 'selected' : ''}"/>>강원도</option>
+								<option value="충청북" <c:out value="${add eq '충청북' ? 'selected' : ''}"/>>충청북도</option>
+								<option value="충청남" <c:out value="${add eq '충청남' ? 'selected' : ''}"/>>충청남도</option>
+								<option value="전라북" <c:out value="${add eq '전라북' ? 'selected' : ''}"/>>전라북도</option>
+								<option value="전라남" <c:out value="${add eq '전라남' ? 'selected' : ''}"/>>전라남도</option>
+								<option value="경상북" <c:out value="${add eq '경상북' ? 'selected' : ''}"/>>경상북도</option>
+								<option value="경상남" <c:out value="${add eq '경상남' ? 'selected' : ''}"/>>경상남도</option>
+								<option value="제주" <c:out value="${add eq '제주' ? 'selected' : ''}"/>>제주특별자치도</option>
 							</select>
 						
 						</div>
@@ -159,18 +174,18 @@
 							<ul class = "pagination">
 								<c:if test="${pageMaker.prev}">
 									<li class = "page-item"><a class = "page-link"
-										href="cafe_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										href="cafe_list${pageMaker.makeSearch(pageMaker.startPage - 1)}&add=${add}"><i
 											class="icon-double-angle-left"></i></a></li>
 								</c:if>
 	
 								<c:forEach begin="${pageMaker.startPage}" 
 									end="${pageMaker.endPage}" var="idx">
-									<li class = "page-item"><a class = "page-link" href="cafe_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+									<li class = "page-item"><a class = "page-link" href="cafe_list${pageMaker.makeSearch(idx)}&add=${add}">${idx}</a></li>
 								</c:forEach>
 	
 								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 									<li class = "page-item"><a class ="page-link"
-										href="cafe_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										href="cafe_list${pageMaker.makeSearch(pageMaker.endPage + 1)}&add=${add}"><i
 											class="icon-double-angle-right"></i></a></li>
 								</c:if>
 							</ul>
@@ -193,7 +208,6 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
 	<script src="js/board_hs/bootstrap.min.js"></script>
 	<script src="js/board_hs/jquery.slicknav.min.js"></script>
 	<script src="js/board_hs/owl.carousel.min.js"></script>

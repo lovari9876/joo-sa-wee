@@ -394,15 +394,25 @@
 	</resultMap>
 	
 	<!-- 카페 목록들 싹다 -->
-	<select id = "selectAllCafeList" resultType = "java.util.HashMap" parameterType = "com.soninlawisdice.vo.SearchCriteria">
+	<select id = "selectAllCafeList" resultType = "java.util.HashMap">
 		
 		SELECT * FROM
-		(select c.* , ROW_NUMBER() OVER(ORDER BY c.c_no DESC) AS RNUM 
-		from cafe c
-		where c.c_no > 0
+		(
+			select c.* , ROW_NUMBER() OVER(ORDER BY c.c_no ASC) AS RNUM,
+						ROW_NUMBER() OVER(ORDER BY c.c_no DESC) AS RNUM_COUNT
+			from cafe c
+			<choose>
+				<when test='add == "전체"'>
+					WHERE c.c_no > 0
+				</when>
+				<otherwise>
+					where (substr(c_add,1,3) like  #{add} ||'%')
+				</otherwise>
+			</choose>
+			
 		<include refid="cafe_search"></include>
 		)
-		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+		WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 		ORDER BY c_no DESC
 		
 	</select>
@@ -469,6 +479,21 @@
 	</select>
 	
 	<select id="cafe_listCount" resultType="int">
+
+		SELECT COUNT(c.c_no)
+		  FROM cafe c
+          <choose>
+				<when test='add == "전체"'>
+					WHERE c.c_no > 0
+				</when>
+				<otherwise>
+					where (substr(c_add,1,3) like  #{add} ||'%')
+				</otherwise>
+			</choose>
+		 <include refid="cafe_search"></include>
+	</select>
+	
+	<select id="cafe_listLocCount" resultType="int">
 
 		SELECT COUNT(c.c_no)
 		  FROM cafe c
