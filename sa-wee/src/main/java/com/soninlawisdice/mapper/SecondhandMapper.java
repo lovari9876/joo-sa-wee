@@ -55,7 +55,7 @@ public interface SecondhandMapper {
 	// 내 거래: 거래 하나의 ptgList(게임, 가격)
 	public ArrayList<HashMap<String, Object>> selectPTGList(@Param("p_no") int p_no);
 	
-	// pay_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃
+	// buy_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃
 	public void updatePaymentSuccess(@Param("p_no") int p_no);
 	
 	// trade와 관련된 payment 몇 개 있니?
