@@ -411,7 +411,7 @@
 		var product = '';
 		var products = '';
 		var count = 0;		
-		var payno = 0;
+		var pno = 0;
 	
 		// Get the button that opens the modal
 		// var btns = document.getElementsByClassName("price-btn");
@@ -424,9 +424,8 @@
 		//btn.onclick = function() {
 	
 		function buyModal(buyBtn) {
-			
-			// alert(pno);// 성공	
-			payno = pno;
+				
+			pno = buyBtn.val();
 			
 			buyAjax(pno);
 			
@@ -515,12 +514,12 @@
 			var answer = confirm('결제하시겠습니까?');
 			
 			// 발표 후 만지기
-			// var sendData = JSON.stringify({imp_uid: rsp.imp_uid, p_no : payno});
+			// var sendData = JSON.stringify({imp_uid: rsp.imp_uid, p_no : pno});
 			// console.log(sendData);
 			
 			if(answer){
 				IMP.request_pay({					
-					merchant_uid : payno, // 걍 p_no..// 가맹점에서 생성/관리하는 고유 주문번호
+					merchant_uid : pno, // 걍 p_no..// 가맹점에서 생성/관리하는 고유 주문번호
 					name : products,
 					amount : sum,
 					buyer_email : '${member.m_email}',
@@ -530,7 +529,7 @@
 					if (rsp.success) {
 						// alert("성공"); // 여기로 도착함			
 						
-						console.log(payno);
+						console.log(pno);
 						
 						//************************************************
 						// 여기부터는 발표 후에 합시다!!!
@@ -538,7 +537,7 @@
 						jQuery.ajax({
 							
 							// cross-domain 에러 발생... 
-							url : "/payments/complete?p_no="+payno, //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+							url : "/payments/complete?p_no="+pno, //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
 							method : 'POST',
 							dataType : 'text',
 							/* headers: { "Content-Type": "application/json" }, */
@@ -561,7 +560,7 @@
 			                    
 			                    // 글씨 바꾸지마! 걍 새로고침해
 			                    // 버튼 글씨 바꾸기..
-			                    /* if($(".pay-btn").val()==payno) {
+			                    /* if($(".pay-btn").val()==pno) {
 			                    	alert("글씨 바꾼다");
 			                    	$('선택자').remove();
 			                    

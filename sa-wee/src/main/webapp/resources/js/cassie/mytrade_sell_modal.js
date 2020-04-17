@@ -7,18 +7,12 @@
 // Get the modal
 var modal = document.getElementById('sell-modal');
 
-// Get the button that opens the modal
-// var btns = document.getElementsByClassName("price-btn");
-// var btn = btns['${ex}']	
+// 버튼 누를 때 해당 p_no 받아오기
+var pno = 0;
 
-// Get the <span> element that closes the modal
-//var span = document.getElementById("modal--close");                                          
-
-// When the user clicks on the button, open the modal 
-//btn.onclick = function() {
-
-function sell_modal(pno) {
+function sell_modal(sellBtn) {
 	
+	pno = sellBtn.val();
 	// alert(pno);// 성공			
 	sellAjax(pno);
 	
