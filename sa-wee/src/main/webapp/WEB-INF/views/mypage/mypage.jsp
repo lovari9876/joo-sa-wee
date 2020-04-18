@@ -383,7 +383,7 @@
 		</div>
 	</div>
 
-	<!-- ========== 판매자 모달 ================================================ -->
+<!-- ========== 판매자 모달 ================================================ -->
 
 	<!-- 내 판매-판매자 [1. 거래확인] include start -->
 	<!-- /WEB-INF/ 로 시작하면 절대 경로 써줘야함!!!(jsp 파일 단순 import할 경우!)  -->
@@ -396,14 +396,26 @@
 	<%@ include file="/WEB-INF/views/mypage/mytrade/sell2_modal_view.jsp"%>
 	<!-- 내 판매-판매자 [2. 운송장 입력] include end -->	
 	
-	<!-- ========== 구매자 모달 ================================================ -->
+	<!-- 내 판매-판매자 [3. 배송중: 운송장 수정] include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/sell3_modal_view.jsp"%>
+	<!-- 내 판매-판매자 [3. 배송중: 운송장 수정] include end -->
+	
+	
+<!-- ========== 구매자 모달 ================================================ -->
 	
 	<!-- 내 구매-구매자 [1. 결제] include start -->
 	<%@ include file="/WEB-INF/views/mypage/mytrade/buy_modal_view.jsp"%>
 	<!-- 내 구매-구매자 [1. 결제] include end -->
 	
+	<!-- 내 구매-구매자 [2. 배송 준비] include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/buy2_modal_view.jsp"%>
+	<!-- 내 구매-구매자 [2. 배송 준비] include end -->
 	
-	<!-- ====== js ===================================================================== -->
+	<!-- 내 구매-구매자 [3. 수취확인] include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/buy3_modal_view.jsp"%>
+	<!-- 내 구매-구매자 [3. 수취확인] include end -->
+	
+<!-- ====== js ===================================================================== -->
 	<!-- mytrade_buy_modal.js => jstl과 el 못써서...-->
 	<script type="text/javascript">
 		/*
@@ -420,6 +432,12 @@
 		var products = '';
 		var count = 0;		
 		var pno = 0;
+		
+		// button의 name="${payment['P_STATUS']}" 값
+		var buyBtnName = 0;
+		
+		var p_courier = "";
+		var p_tracking = "";
 	
 		// Get the button that opens the modal
 		// var btns = document.getElementsByClassName("price-btn");
@@ -431,16 +449,52 @@
 		// When the user clicks on the button, open the modal 
 		//btn.onclick = function() {
 	
-		function buyModal(buyBtn) {
-				
-			pno = $(buyBtn).val();
+		function buyModal(buyBtn) {			
+
+			console.log("onclick 진입 성공");
 			
-			buyAjax(pno);
-			
-			// 다중 모달일 때 버튼으로 클릭한 모달만 보이게 하기
-			$("#buy-modal").css("display", "block");	    
-		    $("#buy-modal").css('z-index', 200);    
+			// 택배사, 운송장 가져와
+		    p_courier = $(buyBtn).data('courier');
+		    p_tracking = $(buyBtn).data('tracking');
+		    console.log("courier:"+ p_courier + ", tracking"+ p_tracking);
 		    
+			
+			//버튼의 name=p_status 얻어오기
+			buyBtnName = $(buyBtn).attr("name"); // p_status			
+		    console.log("buyBtnName: " + buyBtnName);
+		    
+			// 1. 결제 단계
+			if(buyBtnName == 1) {
+				$("#buy-modal").css("display", "block");	    
+			    $("#buy-modal").css('z-index', 200);
+			   
+			    // 게임, 가격 정보 부르기
+			    pno = $(buyBtn).val();			
+				buyAjax(pno);
+				
+			// 2. 배송 준비 단계	
+			}else if(buyBtnName == 2) {
+				$("#buy2-modal").css("display", "block");	    
+			    $("#buy2-modal").css('z-index', 200);
+			   
+			    // 게임, 가격 정보 부르기
+			    pno = $(buyBtn).val();	
+			    buyAjax(pno);
+			    
+			// 3. 수취확인 단계
+			}else if(buyBtnName == 3) {
+				
+				$("#buy3-modal").css("display", "block");	    
+			    $("#buy3-modal").css('z-index', 200);
+			   
+			    // 게임, 가격 정보 부르기
+			    pno = $(buyBtn).val();	
+			    buyAjax(pno);
+			    
+			    // 택배사, 운송장 가져와			    
+			 	$(".buy3-courier").empty().text(p_courier);
+			 	$(".buy3-tracking").empty().text(p_tracking);
+			}
 		}
 	
 		// 거래확인 버튼과 같은 라인의 p_no 받아서 controller로 넘긴 뒤
@@ -450,7 +504,7 @@
 			// alert(pno); 받아옴
 			
 			$.ajax({ 
-				type : "GET", 
+				type : "GET",
 				url : "/buy_modal_view/"+pno, 
 				cache : false,
 				dataType : "json",
@@ -475,9 +529,38 @@
 						sum += ptgItem['TG_PRICE']; 
 						count += 1;
 						
-						$("#ajax-buy").empty().append(tag);
+						
+						// 1. 결제 단계
+						if(buyBtnName == 1) {
+							$("#ajax-buy").empty().append(tag);
+							
+						// 2. 배송 준비 단계	
+						}else if(buyBtnName == 2) {
+							$("#ajax-buy2").empty().append(tag);
+							
+						// 3. 수취확인 단계	
+						}else if(buyBtnName == 3) {
+							$("#ajax-buy3").empty().append(tag);
+						}							
+						
 					});
 					// 총액 표시해주고 결제버튼 만들기
+					
+					// 1. 결제 단계
+					if(buyBtnName == 1) {
+						$("#ajax-sum-buy").empty().append(sum+'원');
+						
+					// 2. 배송 준비 단계	
+					}else if(buyBtnName == 2) {
+						$("#ajax-sum-buy2").empty().append(sum+'원');
+												
+					// 3. 수취확인 단계
+					}else if(buyBtnName == 3) {
+						$("#ajax-sum-buy3").empty().append(sum+'원');
+						
+						// input value 할당
+						$(".buy3-modal-p_no").val(pno);
+					}
 										
 					$("#ajax-sum-buy").empty().append(sum+'원');
 					console.log("합계 나와:"+sum);
@@ -622,8 +705,10 @@
 		};	
 	
 		// When the user clicks on <span> (x), close the modal
-		function closePayModal() {
+		function closeBuyModal() {
 			$("#buy-modal").css("display", "none");	
+			$("#buy2-modal").css("display", "none");	
+			$("#buy3-modal").css("display", "none");	
 		}
 	</script>	
 

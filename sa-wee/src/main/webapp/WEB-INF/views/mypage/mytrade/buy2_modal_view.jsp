@@ -33,7 +33,7 @@
 <body >
 						
 	<!-- Modal HTML embedded directly into document -->
-	<div id="buy-modal" class="modal--trade">
+	<div id="buy2-modal" class="modal--trade">
 	
 		<div class="modal--content">						
 			<div>
@@ -42,7 +42,8 @@
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
 					<div class="table--div">
 						<div class="modal--info">
-							결제를 카카오페이로 진행합니다.														
+							결제가 완료되었습니다. <br/>
+							배송이 시작되면 상태가 '배송중'으로 바뀝니다.												
 						</div>						
 						<table>
 							<thead>
@@ -51,30 +52,20 @@
 									<th class="table--cell">희망가격</th>
 								</tr>
 							</thead>
-							<tbody id="ajax-buy">
+							<tbody id="ajax-buy2">
 							</tbody>						
 							<tr class="table--row sum--row">
 								<td class="table--cell">합계</td>
-								<td id="ajax-sum-buy" class="table--cell"></td>
+								<td id="ajax-sum-buy2" class="table--cell"></td>
 							</tr> <!-- 결국 마이페이지 내의 모달은 다 한 페이지에 있기에 -->
 								  <!-- 절대 모달끼리 id가 중복되면 안된다.. 안나와.. -->
-							
-														
-						<%--  	<c:forEach items="${ptgList}" var="ptgItem" varStatus="status">
-								<tr class = "table--row">
-									<td class = "table--cell"> <!-- tg => tg_no -->
-										${ptgItem['TG_NAME']}
-									</td>
-									<td class="table--cell">${ptgItem['TG_PRICE']}원</td>
-								</tr>
-							</c:forEach>	--%>					
+					
+								
 						</table>
-						<br/>
-						<br/>						
-						<button id="buy-pay-btn" class="write-btn lavender-btn" type="button"
-								onClick="payNow()">결제</button>	
+						<br/>				
 						<!-- modal close -->
 						<span class="modal--close" onClick="closeBuyModal()">close</span>
+						<br/>
 					</div>
 									
 			</div>

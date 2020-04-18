@@ -30,10 +30,10 @@
 					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
 					<div class="table--div">
-						<div class="modal--info">구매자의 결제를 기다리는 중입니다.<br/>
+						<div class="modal--info">
+							구매자의 결제를 기다리는 중입니다. <br/>
 							결제 확인 후, 운송장을 입력하실 수 있습니다.														
 						</div>
-						<br/>
 						<table>
 							<thead>
 								<tr class="table--row">

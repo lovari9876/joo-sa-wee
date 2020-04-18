@@ -201,4 +201,10 @@ public class SecondhandServiceImpl implements SecondhandService {
 		secondhandMapper.updatePaymentTracking(paymentVO);
 	}
 	
+	// 구매자가 수취확인 payment에 update
+	@Override
+	public void updatePaymentBuyerConfirm(PaymentVO paymentVO) {
+		secondhandMapper.updatePaymentBuyerConfirm(paymentVO);
+	}
+	
 }

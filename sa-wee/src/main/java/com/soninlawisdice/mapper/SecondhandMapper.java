@@ -72,4 +72,7 @@ public interface SecondhandMapper {
 	
 	// 판매자 운송장 payment에 update
 	public void updatePaymentTracking(@Param("paymentVO") PaymentVO paymentVO);
+
+	// 구매자가 수취확인 payment에 update
+	public void updatePaymentBuyerConfirm(@Param("paymentVO") PaymentVO paymentVO);
 }

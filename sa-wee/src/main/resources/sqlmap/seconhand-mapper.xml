@@ -174,14 +174,14 @@
 	            FROM 
 	                TRADE_GAME
 	            WHERE 
-	                T_NO = #{t_no};
+	                T_NO = #{tradeVO.t_no};
 	            COMMIT;
 	        
 	            DELETE 
 	            FROM 
 	                TRADE 
 	            WHERE 
-	                T_NO = #{t_no};
+	                T_NO = #{tradeVO.t_no};
 	            COMMIT;	            
 				
 			END
@@ -572,7 +572,8 @@
 		UPDATE 
 			PAYMENT 
 		SET 
-			P_STATUS = 2 <!-- 2: 결제완료 -->
+			P_STATUS = 2, <!-- 2: 결제완료 -->
+			P_PAYMENT_DATE = SYSDATE <!-- 결제완료 시각(아임포트에 정확한 결제시각 변수 없음) -->
 		WHERE 
 			P_NO = #{p_no} 
 			
@@ -580,22 +581,32 @@
 	
 	
 	<!-- sell2_modal에서 form 전송하고 받은 운송장 update -->
+	<!-- sell3_modal에서 form 전송하고 받은 운송장수정 정보 update -->
 	<update id = "updatePaymentTracking">
 	
 		UPDATE 
 			PAYMENT 
 		SET 
 			P_STATUS = 3, <!-- 3: 배송중 -->
-			P_COURIER = #{p_courier},
-			P_TRACKING = #{p_tracking}
+			P_COURIER = #{paymentVO.p_courier},
+			P_TRACKING = #{paymentVO.p_tracking}
 		WHERE 
-			P_NO = #{p_no} 			
+			P_NO = #{paymentVO.p_no} 			
 
-	</update> <!-- VO 객체 하나만 파라미터로 받을 땐, 객체. 으로 안함 -->
+	</update> 
 	
 	
+	<!-- 수취확인: buy3_modal에서 form 전송하고 update -->
+	<update id = "updatePaymentBuyerConfirm">
 	
-	
+		UPDATE 
+			PAYMENT 
+		SET 
+			P_STATUS = 4 <!-- 4: 배송완료 -->
+		WHERE 
+			P_NO = #{paymentVO.p_no} 			
+
+	</update>
 	
 	
 

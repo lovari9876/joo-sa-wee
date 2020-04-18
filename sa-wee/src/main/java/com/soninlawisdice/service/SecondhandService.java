@@ -59,4 +59,7 @@ public interface SecondhandService {
 
 	// 판매자 운송장 payment에 update
 	public void updatePaymentTracking(PaymentVO paymentVO);
+
+	// 구매자가 수취확인 payment에 update
+	public void updatePaymentBuyerConfirm(PaymentVO paymentVO);
 }
