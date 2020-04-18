@@ -179,8 +179,8 @@ public interface AdminMapper {
 	public int allBoard();	//전체 게시글수
 	
 	
-	public ArrayList<HashMap<String, String>> getWeekStatistics();
-	public ArrayList<HashMap<String, String>> getMonthStatistics();
+	public ArrayList<HashMap<String, Object>> getWeekStatistics();
+	public ArrayList<HashMap<String, Object>> getMonthStatistics();
 	
 
 }

@@ -387,11 +387,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public ArrayList<HashMap<String, String>> getWeekStatistics() {
+	public ArrayList<HashMap<String, Object>> getWeekStatistics() {
 		return adminMapper.getWeekStatistics();
 	}
 	@Override
-	public ArrayList<HashMap<String, String>> getMonthStatistics() {
+	public ArrayList<HashMap<String, Object>> getMonthStatistics() {
 		return adminMapper.getMonthStatistics();
 	}
 	
