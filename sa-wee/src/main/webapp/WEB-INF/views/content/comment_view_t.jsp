@@ -124,14 +124,11 @@
 							<div class="reply_test">
 								<div class="test_item rp">
 									<p>
-										<c:if test = "${comment_list_t[status.index]['M_NO'] != m_no}">
 										<sec:authorize access="isAuthenticated()">
-										<%-- <a role="button" class="reply" href="reply_view_t?cm_no=${comment_list_t[status.index]['CM_NO']}"
+										<a role="button" class="reply" href="reply_view_t?cm_no=${comment_list_t[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
-										>Reply</a> --%>
-										<button type="button" class="myBtn_t" class="reply">Reply</button>
+										>Reply</a> 
 										</sec:authorize>
-										</c:if>
 										<sec:authorize access="isAnonymous()">
 										<a role="button" class="reply" href="loginview"
 										>Reply</a>
@@ -174,18 +171,13 @@
 								</div>
 								</c:if>
 							</div>
-						<c:import url="/reply_view_t">
-							<c:param name="cm_no" value="${comment_list_t[status.index]['CM_NO']}"></c:param>
-							<c:param name="t_no" value="${content_view_t['T_NO']}"></c:param>
-						</c:import>
+						
 					</div>
 				</li>
 			</c:forEach>
 		</ul>
 	</div>
-	<%-- <c:forEach items="${comment_list_t}" var="cm_comment_list_t" varStatus="status">
-		
-	</c:forEach> --%>
+	
 
 
 	<!-- SCRIPTS -->

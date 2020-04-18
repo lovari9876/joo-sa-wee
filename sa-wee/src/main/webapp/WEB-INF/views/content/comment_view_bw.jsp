@@ -116,10 +116,9 @@
 							<div class="test_item rp">
 								<p>
 									<sec:authorize access="isAuthenticated()">
-									<%-- <a role="button" class="reply" href="reply_view?cm_no=${comment_list[status.index]['CM_NO']}"
+									<a role="button" class="reply" href="reply_view?cm_no=${comment_list[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
-										>Reply</a> --%>
-									<button type="button" class="myBtn reply" value="${comment_list[status.index]['CM_NO']}" onclick="replyModal(this);">Reply</button>
+										>Reply</a>
 									</sec:authorize>
 									<sec:authorize access="isAnonymous()">
 									<a role="button" class="reply" href="loginview"
@@ -166,66 +165,6 @@
 			</c:forEach>
 		</ul>
 	</div>
-	<%-- <c:forEach items="${comment_list}" var="cm_comment_list" varStatus="status">
-		
-	</c:forEach> --%>
-	
-	<%@ include file="/WEB-INF/views/content/reply_view.jsp" %>
-	
-	<%-- <c:import url="/reply_view">
-		<c:param name="bw_no" value="${content_view['BW_NO']}"></c:param>
-	</c:import>	 --%>
-	
-	<script>
-	
-	
-		var cmGroup = 0;
-	
-		// Get the modal
-	    var modal = document.getElementById('myModal');
-	
-	    // Get the button that opens the modal
-	    var btn = document.getElementsByClassName("myBtn");
-	    
-	    for (var i = 0; i < btn.length; i++) {
-	    	var myBtn = btn.item(i);
-	    }
-	
-	    // Get the <span> element that closes the modal
-	    var span = document.getElementsByClassName("modal--re_close")[0];                                          
-	
-	    // When the user clicks on the button, open the modal 
-	    myBtn.onclick = function() {
-	        modal.style.display = "block";
-	    }
-	
-	    // When the user clicks on <span> (x), close the modal
-	    span.onclick = function() {
-	        modal.style.display = "none";
-	    }
-	
-	    // When the user clicks anywhere outside of the modal, close it
-	    window.onclick = function(event) {
-	        if (event.target == modal) {
-	            modal.style.display = "none";
-	        }
-	    }
-	
-		
-	
-		function replyModal(btnBw) {
-			console.log(cmGroup);
-			cmGroup = $(btnBw).val();
-			
-			$('#myModal').css("display", "block");
-			if ($(".cm_group").attr("name") == "cm_group") {
-				$(".cm_group").val(cmGroup);
-				alert($('input').attr("name"));
-			}
-			
-		
-		}
-	</script>
 	
 	<!-- SCRIPTS -->
 	<script src="js/board_hj/jquery.min.js"></script>
