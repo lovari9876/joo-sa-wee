@@ -125,6 +125,7 @@
 	values (NOTE_SEQ.nextval, #{m_no}, #{noteVO.m_no2}, #{noteVO.n_title}, #{noteVO.n_content}, sysdate, 1, 1) 
 	</insert>
 	
+	<!-- 닉네임으로 검색 -->
 	<select id="mypageNick" resultType="com.soninlawisdice.vo.MemberVO">
 		select * from member where m_nick = #{m_nick}
 	</select>

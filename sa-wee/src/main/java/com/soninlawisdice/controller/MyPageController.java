@@ -254,7 +254,7 @@ public class MyPageController {
 
 		return "redirect:/mypage";
 	}
-	// 회원 탈퇴
+	// 회원 탈퇴 뷰
 	@RequestMapping(value = "/outview", method = RequestMethod.GET)
 	public String outview(Model model) throws Exception {
 		System.out.println("outview()");
@@ -263,24 +263,6 @@ public class MyPageController {
 		return "mypage/out";
 	}
 	// 회원 탈퇴
-//	@RequestMapping(value = "/out", method = RequestMethod.POST)
-//	public String out(Principal principal, HttpSession session, @RequestParam int w_no, String wr_reason) throws Exception {
-//		System.out.println("out()");
-//
-//		//HttpServletRequest rq
-//		String m_id = principal.getName();
-//		MemberVO memberVO = myPageService.mypage(m_id);
-//		int m_no = memberVO.getM_no();
-//		
-//		myPageService.wdInsert(m_no, w_no, wr_reason);
-//		
-//		adminService.outMember(memberVO.getM_no());
-//
-//		session.invalidate();
-//
-//		return "redirect:/";
-//	}
-
 	@RequestMapping(value = "/out", method = RequestMethod.GET)
 	public String out(Principal principal, HttpSession session, HttpServletRequest rq) throws Exception {
 		System.out.println("out()");
@@ -305,6 +287,34 @@ public class MyPageController {
 
 		return "redirect:/";
 	}
+	
+	// 다른 회원 정보 보기
+	@RequestMapping(value = "/other", method = { RequestMethod.GET, RequestMethod.POST })
+	public String other(Principal principal, String m_nick, Model model) throws Exception {
+		System.out.println("other()");
+		
+		System.out.println("m_nick" + m_nick);
+		
+		MemberVO otherVO = myPageService.mypageNick(m_nick);
+		model.addAttribute("member", otherVO);
+		
+		int m_no = otherVO.getM_no();
+		int myWriteCount = myPageService.myWriteCount(m_no);
+		model.addAttribute("myWriteCount", myWriteCount);
+
+		int myReplyCount = myPageService.myReplyCount(m_no);
+		model.addAttribute("myReplyCount", myReplyCount);
+		
+		//////////////////내가 쓴 글 목록//////////////////////////
+		model.addAttribute("myBoardList", adminService.myBoardList(m_no));
+		
+		//////////////////내가 쓴 댓글 목록//////////////////////////
+		model.addAttribute("myCommentList", adminService.myCommentList(m_no));
+
+		return "mypage/other";
+	}
+
+	
 	// ================================= 쪽지 =================================
 
 	// 쪽지함

@@ -132,9 +132,9 @@
 									<%-- <a href="#" data-toggle="popover" data-content = "<a href = "#">회원정보보기</a><br/><a href = "#">쪽지보내기</a>">	
 										${dto['M_NICK']}
 									</a> --%>
-									<a role = "button" class="pop_btn popovers" 
+									<a role = "button" class="pop_btn popovers"
 									data-toggle="popover" 
-									data-content="<a href='#'>회원정보보기</a>
+									data-content="<a href='#' id='other_page' name='m_nick' data-nick='${dto["M_NICK"]}' onclick='return false;' >회원정보보기</a>
 									<br/>
 													<a href='#'>쪽지보내기</a>
 									<br/>			
@@ -355,6 +355,10 @@
 	<script src="js/board_hj/popover.js"></script>
 	<script src="js/board_hs/button.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
+	
+	
+	<script src="js/mypage/other_page.js"></script>
+	
 
 </body>
 </html>
