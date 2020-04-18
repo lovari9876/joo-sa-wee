@@ -49,9 +49,10 @@
 
 /* 모달 상단 안내사항 */
 .modal--info {
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 100;
     color: grey;
+    margin-bottom: 10px;
 }
 
 
@@ -138,6 +139,11 @@
 	vertical-align: center;
 }
 
+.table--cell input[type=text] {
+	background-color: transparent;
+}
+
+
 .table--row th {
 	background-color: #c6c0e4;
 	height: 50px;
@@ -172,6 +178,17 @@
 	border-left: 1px solid #f2f2f2;
 	padding-top: 3px;
 	padding-bottom: 3px;
+}
+
+/* 택배사, 송장번호 */
+.tracking_table .table--cell:nth-child(1) {
+	background-color: #b8c4eb; /* 푸르스름 */
+	width: 100px;
+}
+
+/* input */
+.tracking_table .table--cell:nth-child(2) {
+	width: 300px;
 }
 
 

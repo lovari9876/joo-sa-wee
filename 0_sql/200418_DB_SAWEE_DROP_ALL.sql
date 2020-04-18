@@ -1,0 +1,112 @@
+-- DROP ALL OF TABLES
+
+DROP TABLE "MEMBER";
+
+DROP TABLE "GAME_CLASS";
+
+DROP TABLE "GAME";
+
+DROP TABLE "GAME_PERSON";
+
+DROP TABLE "GAME_SORT";
+
+DROP TABLE "GAME_THEME";
+
+DROP TABLE "GAME_METHOD";
+
+DROP TABLE "FAQ";
+
+DROP TABLE "REPORT";
+
+DROP TABLE "SUBJECT";
+
+DROP TABLE "CM_COMMENT";
+
+DROP TABLE "WD_RECORD";
+
+DROP TABLE "TRADE";
+
+DROP TABLE "CAFE";
+
+DROP TABLE "WITHDRAWAL";
+
+DROP TABLE "RANK";
+
+DROP TABLE "CAFE_REVIEW";
+
+DROP TABLE "SCRAP";
+
+DROP TABLE "BOARD_TYPE";
+
+DROP TABLE "BOARD_WRITE";
+
+DROP TABLE "NOTE";
+
+DROP TABLE "STATISTICS";
+
+DROP TABLE "PAYMENT_TRADE_GAME";
+
+DROP TABLE "PAYMENT";
+
+DROP TABLE "F_FILE";
+
+DROP TABLE "SPONSOR";
+
+DROP TABLE "BOARD_FILE";
+
+DROP TABLE "ISLAND";
+
+DROP TABLE "BOARD_GAME";
+
+DROP TABLE "VISIT";
+
+DROP TABLE "TRADE_GAME";
+
+DROP TABLE "PAYMENT";
+
+---------------------------------------
+-- drop functions;
+
+drop function "DB_SAWEE"."GET_BOARD_GAME_SEQ";
+
+drop function "DB_SAWEE"."GET_BOARD_WRITE_SEQ";
+
+drop function "DB_SAWEE"."GET_TRADE_GAME_SEQ";
+
+drop function "DB_SAWEE"."GET_GAME_SEQ";
+
+-- drop sequences;
+
+drop sequence "DB_SAWEE"."BOARD_GAME_SEQ";
+
+drop sequence "DB_SAWEE"."BOARD_WRITE_SEQ";
+
+drop sequence "DB_SAWEE"."CAFE_REVIEW_SEQ";
+
+drop sequence "DB_SAWEE"."CAFE_SEQ";
+
+drop sequence "DB_SAWEE"."CM_COMMENT_SEQ";
+
+drop sequence "DB_SAWEE"."FAQ_SEQ";
+
+drop sequence "DB_SAWEE"."GAME_SEQ";
+
+drop sequence "DB_SAWEE"."MEMBER_SEQ";
+
+drop sequence "DB_SAWEE"."NOTE_SEQ";
+
+drop sequence "DB_SAWEE"."PAYMENT_SEQ";
+
+drop sequence "DB_SAWEE"."PAYMENT_TRADE_GAME_SEQ";
+
+drop sequence "DB_SAWEE"."TRADE_GAME_SEQ";
+
+drop sequence "DB_SAWEE"."TRADE_SEQ";
+
+drop sequence "DB_SAWEE"."REPORT_SEQ";
+
+drop sequence "DB_SAWEE"."SPONSOR_SEQ";
+
+drop sequence "DB_SAWEE"."STATISTICS_SEQ";
+
+COMMIT;

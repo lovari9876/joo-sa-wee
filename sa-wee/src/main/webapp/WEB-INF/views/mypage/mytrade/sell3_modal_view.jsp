@@ -21,21 +21,20 @@
 <body >
 						
 	<!-- 2. 판매자가 운송장 입력하는 모달 -->
-	<div id="sell2-modal" class="modal--trade">
+	<div id="sell3-modal" class="modal--trade">
 	
 		<div class="modal--content">						
 			<div>
 				<!-- ajax로 값 불러와서 form으로 전달  -->
 				<form action="sellerTracking" method="post" enctype="multipart/form-data">
-					<input type = "hidden" class="sell2-modal-p_no" name="p_no" /> 
+					<input type = "hidden" class="sell3-modal-p_no" name="p_no" /> 
 					<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 					
 					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
 					<div class="table--div">
 						<div class="modal--info">
-							구매자의 결제가 완료되었습니다.<br/>
-							결제 내역은 아래와 같습니다.													
+							거래 정보는 아래와 같습니다.													
 						</div>
 						<table>
 							<thead>
@@ -44,12 +43,12 @@
 									<th class="table--cell">희망가격</th>
 								</tr>
 							</thead>
-							<tbody id="ajax-sell2">
+							<tbody id="ajax-sell3">
 							</tbody>			
 							<!-- ajax로 게임, 가격 받는 부분 -->				
 							<tr class="table--row sum--row">
 								<td class="table--cell">합계</td>
-								<td id="ajax-sum-sell2" class="table--cell"></td>
+								<td id="ajax-sum-sell3" class="table--cell"></td>
 							</tr> <!-- 결국 마이페이지 내의 모달은 다 한 페이지에 있기에 -->
 								  <!-- 절대 모달끼리 id가 중복되면 안된다.. 안나와.. -->
 								  
@@ -57,15 +56,16 @@
 						<br/>
 						<br/>
 						<div class="modal--info">
-							물품을 발송하신 다음, 택배사 및 운송장 번호를 입력해주세요.													
+							잘못 입력하신 정보가 있다면 수정해주세요.													
 						</div>
 						<!-- form table -->
 						<table class="tracking_table">
 							<tr class="table--row">
 								<td class="table--cell">택배사</td>
 								<td class="table--cell">
-									<input type = "text" name="p_courier" 
-										placeholder="택배사를 입력하세요."/>
+									<input type = "text" name="p_courier"
+										   class="sell3-modal-p_courier"
+										   placeholder="택배사를 입력하세요."/>
 								</td>
 							</tr>	
 							
@@ -73,14 +73,15 @@
 								<td class="table--cell">운송장</td>
 								<td class="table--cell">
 									<input type = "text" name="p_tracking" 
-										placeholder="운송장 번호를 입력하세요."/>
+										   class="sell3-modal-p_tracking"
+										   placeholder="운송장 번호를 입력하세요."/>
 								</td>
 							</tr>
 						</table>
 						<br/>						
 						<!-- form 제출 -->
 						<button class="write-btn lavender-btn" type="submit"
-								onClick="alert('제출합니다.');">확인</button>
+								onClick="alert('수정합니다.');">수정</button>
 						<!-- modal close -->
 						<span class="modal--close" onClick="closeSellModal()">close</span>						
 						
@@ -90,7 +91,6 @@
 			</div>
 		</div>		
 	</div>
-					
 
 </body>
 </html>

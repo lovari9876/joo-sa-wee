@@ -138,7 +138,8 @@ public class MyPageController {
 	}
 
 ///////////// 내거래 및 결제 ////////////////////////////////////////////////////////	
-	
+
+// ========판매자==================================================	
 	// 판매자 주문확인 모달: sell_modal_view
 	@ResponseBody
 	@RequestMapping(value = "/sell_modal_view/{pno}", method = RequestMethod.GET)
@@ -172,7 +173,7 @@ public class MyPageController {
 		return secondhandService.selectPTGList(p_no); 
 	} 
 	
-	// 판매자 운송장 받기: FROM sell2_modal_view
+	// 판매자 운송장 받기: FROM sell2_modal_view(입력 시), sell3_modal_view(수정 시)
 	@RequestMapping(value = "sellerTracking", method = RequestMethod.POST)
 	public String sellerTracking(Model model, HttpServletRequest rq, 
 			@ModelAttribute("paymentVO") PaymentVO paymentVO) {
@@ -185,7 +186,7 @@ public class MyPageController {
 		return "redirect:/mypage#trade"; 
 	}
 
-	// ========구매자========================================
+// ========구매자==================================================
 	// 구매자 결제 모달: buy_modal_view
 	@ResponseBody
 	@RequestMapping(value = "/buy_modal_view/{pno}", method = RequestMethod.GET)
@@ -228,6 +229,23 @@ public class MyPageController {
 		  
 		return "mypage/mypage#trade"; // 사실 이 리턴값을 json으로 다시 보내야 함
 	} 
+	
+	// 구매자 수취확인: FROM buy3_modal_view
+	@RequestMapping(value = "buyerConfirm", method = RequestMethod.POST)
+	public String buyerConfirm(Model model, HttpServletRequest rq,
+			@RequestParam("p_no") int p_no) {
+		System.out.println("buyerConfirm");
+
+		//int p_no = Integer.parseInt(rq.getParameter("p_no"));
+		System.out.println("p_no : " + p_no);		
+		
+		PaymentVO paymentVO = new PaymentVO();
+		paymentVO.setP_no(p_no);
+		
+		secondhandService.updatePaymentBuyerConfirm(paymentVO);
+		  
+		return "redirect:/mypage#trade"; 
+	}
 	
 //////////////////////////////////////////////////////////////////////////////////////////////
 

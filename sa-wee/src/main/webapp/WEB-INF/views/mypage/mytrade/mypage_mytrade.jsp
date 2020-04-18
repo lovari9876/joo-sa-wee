@@ -60,7 +60,7 @@
 						</c:choose>											
 					</td>	
 					<td class="cell"> <!-- 결제일: 결제완료일 때만 출력 -->
-						<c:if test="${payment['P_STATUS']==6}">
+						<c:if test="${payment['P_STATUS']!=1 || payment['P_STATUS']!=7}">
 							<!-- 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 							<fmt:formatDate value="${payment['P_PAYMENT_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 							<c:choose>
@@ -79,9 +79,9 @@
 							<c:when test="${payment['P_STATUS'] eq 1}">거래요청</c:when>		
 							<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 3}">배송중</c:when>
-							<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
-							<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
-							<c:when test="${payment['P_STATUS'] eq 6}">결제완료</c:when>
+							<c:when test="${payment['P_STATUS'] eq 4}">배송완료</c:when>
+							<c:when test="${payment['P_STATUS'] eq 5}">5</c:when>
+							<c:when test="${payment['P_STATUS'] eq 6}">6</c:when>
 							<c:when test="${payment['P_STATUS'] eq 7}">거래취소</c:when>
 							<c:otherwise>불명확</c:otherwise>
 						</c:choose>											
@@ -89,15 +89,16 @@
 					<td class="cell"> <!-- 버튼 -->
 						<div align="center" class="buy--button" >
 							<button class="pay-btn write-btn lavender-btn" type="button" 
-										name="${payment['P_STATUS']}" value="${payment['P_NO']}" 
-										onclick="buyModal(this);">
+									data-courier="${payment['P_COURIER']}" data-tracking="${payment['P_TRACKING']}"
+									name="${payment['P_STATUS']}" value="${payment['P_NO']}" 
+									onclick="buyModal(this);">
 								<c:choose>				
 									<c:when test="${payment['P_STATUS'] eq 1}">결제하기</c:when>		
-									<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
-									<c:when test="${payment['P_STATUS'] eq 3}">배송중</c:when>
-									<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
-									<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
-									<c:when test="${payment['P_STATUS'] eq 6}">결제완료</c:when>
+									<c:when test="${payment['P_STATUS'] eq 2}">배송대기</c:when>
+									<c:when test="${payment['P_STATUS'] eq 3}">수취확인</c:when>
+									<c:when test="${payment['P_STATUS'] eq 4}">상세정보</c:when>
+									<c:when test="${payment['P_STATUS'] eq 5}">5</c:when>
+									<c:when test="${payment['P_STATUS'] eq 6}">6</c:when>
 									<c:when test="${payment['P_STATUS'] eq 7}">거래취소</c:when>
 									<c:otherwise>불명확</c:otherwise>
 								</c:choose>
@@ -146,7 +147,7 @@
 						</c:choose>											
 					</td>	
 					<td class="cell"> <!-- 결제일: 결제완료일 때만 출력 -->
-						<c:if test="${payment['P_STATUS']==6}">
+						<c:if test="${payment['P_STATUS']!=1 || payment['P_STATUS']!=7}">
 							<!-- 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 							<fmt:formatDate value="${payment['P_PAYMENT_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 							<c:choose>
@@ -165,9 +166,9 @@
 							<c:when test="${payment['P_STATUS'] eq 1}">거래요청</c:when>		
 							<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 3}">배송중</c:when>
-							<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
-							<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
-							<c:when test="${payment['P_STATUS'] eq 6}">결제완료</c:when>
+							<c:when test="${payment['P_STATUS'] eq 4}">배송완료</c:when>
+							<c:when test="${payment['P_STATUS'] eq 5}">5</c:when>
+							<c:when test="${payment['P_STATUS'] eq 6}">6</c:when>
 							<c:when test="${payment['P_STATUS'] eq 7}">거래취소</c:when>
 							<c:otherwise>불명확</c:otherwise>
 						</c:choose>
@@ -175,21 +176,21 @@
 					<td class="cell"> <!-- 버튼 -->
 						<div align="center" class="buy--button" >				
 							<button class="price-btn write-btn lavender-btn" type="button" 
+									data-courier="${payment['P_COURIER']}" data-tracking="${payment['P_TRACKING']}"
 									name="${payment['P_STATUS']}" value="${payment['P_NO']}" 
 									onclick="sellModal(this);">
 								<c:choose>				
 									<c:when test="${payment['P_STATUS'] eq 1}">주문확인</c:when>		
-									<c:when test="${payment['P_STATUS'] eq 2}">운송장<br>입력</c:when>
-									<c:when test="${payment['P_STATUS'] eq 3}"></c:when>
-									<c:when test="${payment['P_STATUS'] eq 4}">배송 준비중</c:when>
-									<c:when test="${payment['P_STATUS'] eq 5}">배송 완료</c:when>
-									<c:when test="${payment['P_STATUS'] eq 6}">결제완료</c:when>
+									<c:when test="${payment['P_STATUS'] eq 2}">운송장입력</c:when>
+									<c:when test="${payment['P_STATUS'] eq 3}">상세정보</c:when>
+									<c:when test="${payment['P_STATUS'] eq 4}">상세정보</c:when>
+									<c:when test="${payment['P_STATUS'] eq 5}">5</c:when>
+									<c:when test="${payment['P_STATUS'] eq 6}">6</c:when>
 									<c:when test="${payment['P_STATUS'] eq 7}">거래취소</c:when>
 									<c:otherwise>불명확</c:otherwise>
 								</c:choose>
 								
-							</button> 
-							
+							</button> 						
 						</div>
 					</td>										
 				</tr>
