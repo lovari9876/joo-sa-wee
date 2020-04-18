@@ -12,13 +12,15 @@ public class PaymentVO {
 	private int p_status; // 상태
 	private Timestamp p_order_date; // 주문일시
 	private Timestamp p_payment_date; // 결제일시
-	
+	private String p_courier; // 택배사
+	private String p_tracking; // 운송장번호
+
 	// constructors
 	public PaymentVO() {
 	}
 
 	public PaymentVO(int p_no, int t_no, int m_sno, int m_bno, int p_price, int p_status, Timestamp p_order_date,
-			Timestamp p_payment_date) {
+			Timestamp p_payment_date, String p_courier, String p_tracking) {
 		super();
 		this.p_no = p_no;
 		this.t_no = t_no;
@@ -28,6 +30,8 @@ public class PaymentVO {
 		this.p_status = p_status;
 		this.p_order_date = p_order_date;
 		this.p_payment_date = p_payment_date;
+		this.p_courier = p_courier;
+		this.p_tracking = p_tracking;
 	}
 
 	// getters and setters
@@ -93,6 +97,22 @@ public class PaymentVO {
 
 	public void setP_payment_date(Timestamp p_payment_date) {
 		this.p_payment_date = p_payment_date;
+	}
+
+	public String getP_courier() {
+		return p_courier;
+	}
+
+	public void setP_courier(String p_courier) {
+		this.p_courier = p_courier;
+	}
+
+	public String getP_tracking() {
+		return p_tracking;
+	}
+
+	public void setP_tracking(String p_tracking) {
+		this.p_tracking = p_tracking;
 	}
 
 }

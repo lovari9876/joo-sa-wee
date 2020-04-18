@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.soninlawisdice.vo.PaymentVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.Trade_gameVO;
@@ -30,9 +31,10 @@ public interface SecondhandMapper {
 	public ArrayList<Trade_gameVO> selectTrade_gameList(int t_no);
 	
 	// delete
-	public void deleteContent(TradeVO tradeVO);
+	public void deleteContent(@Param("tradeVO") TradeVO tradeVO);
+	
 	//admin용 delete
-	public void deleteContent(int t_no);
+	public void deleteContent(int t_no);	
 	
 	// 조회수: hit
 	public void upHitContent(int t_no); 
@@ -64,4 +66,7 @@ public interface SecondhandMapper {
 	
 	// trade와 관련된 payment 몇 개 있니?
 	public int countPayment(@Param("t_no") int t_no);
+	
+	// 판매자 운송장 payment에 update
+	public void updatePaymentTracking(@Param("paymentVO") PaymentVO paymentVO);
 }

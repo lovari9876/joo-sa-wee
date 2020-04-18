@@ -538,16 +538,30 @@
 	
 	<!-- buy_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃 -->
 	<update id = "updatePaymentSuccess">
+	
 		UPDATE 
 			PAYMENT 
 		SET 
 			P_STATUS = 2 <!-- 2: 결제완료 -->
 		WHERE 
 			P_NO = #{p_no} 
+			
 	</update>	
 	
 	
+	<!-- sell2_modal에서 form 전송하고 받은 운송장 update -->
+	<update id = "updatePaymentTracking">
 	
+		UPDATE 
+			PAYMENT 
+		SET 
+			P_STATUS = 3, <!-- 3: 배송중 -->
+			P_COURIER = #{p_courier},
+			P_TRACKING = #{p_tracking}
+		WHERE 
+			P_NO = #{p_no} 			
+
+	</update> <!-- VO 객체 하나만 파라미터로 받을 땐, 객체. 으로 안함 -->
 	
 	
 	

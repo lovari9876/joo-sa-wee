@@ -26,12 +26,7 @@
 		<div class="modal--content">						
 			<div>
 				<!-- ajax로 값 불러와서... 값 넣을 때도 ajax사용..  -->
-				<form action="call_buy" method="post" enctype="multipart/form-data">
-					<input type = "hidden" name="t_no" value = "${content_view_t['T_NO']}"/> <!-- 글번호 -->
-					<input type = "hidden" name="m_no" value = "${content_view_t['M_NO']}"/> <!-- 판매자 -->
-					
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-					
+									
 					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
 					<div class="table--div">
@@ -67,47 +62,12 @@
 						<br/>
 						<!-- modal close -->
 						<span class="modal--close" onClick="closeSellModal()">close</span>
-						<br/>						
+						<br/>	
 						
-						
-					</div>
-					
-				</form>						
+					</div>				
 			</div>
 		</div>		
 	</div>
-
-	
-	<script>
-		
-		// 구매요청 버튼 누를 때, 체크 안된 것이 있으면 alert 띄우고 모달 유지, 
-		// 1개 이상 체크하면 완료 alert 띄우고 form action 주소 이동
-		function isChecked() {
-			var checkBoxes = document.getElementsByName("tg");	
-			var msg = "구매 요청이 완료되었습니다.\n마이페이지에서 확인해보세요.";
-			var chk = false;
-			var count = 0;
-			
-			for(var i=0; i<checkBoxes.length; i++){
-				if(checkBoxes[i].checked){
-					count = count +1; 
-				}
-			}
-			
-			if(count != 0) {
-				alert(msg);	
-				return;
-			} else {
-				msg = "구매할 상품을 선택하세요.";
-				alert(msg);	
-				return false;
-			}			
-			
-		} // 버튼에 onClick="return isChecked()" 이렇게 해야 
-		  // 미체크 시 alert 띄우고 모달로 돌아온다!
-		
-	</script>
-					
 
 </body>
 </html>

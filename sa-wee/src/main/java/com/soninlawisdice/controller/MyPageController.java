@@ -156,8 +156,36 @@ public class MyPageController {
 		 */
 		  
 		return secondhandService.selectPTGList(pno); 
+	} 	
+	
+	// 판매자 운송장 입력 모달: sell2_modal_view
+	@ResponseBody
+	@RequestMapping(value = "/sell2_modal_view/{pno}", method = RequestMethod.POST)
+	public ArrayList<HashMap<String, Object>> sell2_modal_view(Model model, 
+			@RequestParam(value = "p_no") int p_no, HttpServletRequest rq) {
+		System.out.println("sell2_modal_view");
+
+		System.out.println("p_no : " + p_no);		
+		/* rq.getParameter(name); */
+
+		  
+		return secondhandService.selectPTGList(p_no); 
 	} 
 	
+	// 판매자 운송장 받기: FROM sell2_modal_view
+	@RequestMapping(value = "sellerTracking", method = RequestMethod.POST)
+	public String sellerTracking(Model model, HttpServletRequest rq, 
+			@ModelAttribute("paymentVO") PaymentVO paymentVO) {
+		System.out.println("sellerTracking");
+
+		System.out.println("p_no : " + paymentVO.getP_no());		
+		
+		secondhandService.updatePaymentTracking(paymentVO);
+		  
+		return "redirect:/mypage#trade"; 
+	}
+
+	// ========구매자========================================
 	// 구매자 결제 모달: buy_modal_view
 	@ResponseBody
 	@RequestMapping(value = "/buy_modal_view/{pno}", method = RequestMethod.GET)
@@ -172,60 +200,6 @@ public class MyPageController {
 		  
 		return secondhandService.selectPTGList(pno); 
 	} 
-	
-	
-	// 토큰 가져오기 실패.. 발표 후에 해볼 것
-	public String getToken(HttpServletRequest request, HttpServletResponse response, 
-					JSONObject json, String requestURL) throws Exception {
-		// requestURL 아임포트 고유키, 시크릿 키 정보를 포함하는 url 정보
-		String _token = "";
-
-		try {
-			String requestString = "";
-			URL url = new URL(requestURL);
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
-			connection.setInstanceFollowRedirects(false);
-			connection.setRequestMethod("POST");
-			connection.setRequestProperty("Content-Type", "application/json");
-			OutputStream os = connection.getOutputStream();
-			os.write(json.toString().getBytes());
-			connection.connect();
-
-			StringBuilder sb = new StringBuilder();
-
-			if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-				BufferedReader br = new BufferedReader(
-						new InputStreamReader(connection.getInputStream(), "utf-8"));
-
-				String line = null;
-				while ((line = br.readLine()) != null) {
-					sb.append(line + "\n");
-				}
-				br.close();
-
-				requestString = sb.toString();
-			}
-
-			os.flush();
-			connection.disconnect();
-
-			JSONParser jsonParser = new JSONParser();
-			JSONObject jsonObj = (JSONObject) jsonParser.parse(requestString);
-
-			if ((Long) jsonObj.get("code") == 0) {
-				JSONObject getToken = (JSONObject) jsonObj.get("response");
-				System.out.println("getToken==>>" + getToken.get("access_token"));
-				_token = (String) getToken.get("access_token");
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			_token = "";
-		}
-
-		return _token;
-	}
 	
 	// 결제 성공해서 rsp.success=true 일 때 ajax로 아임포트 서버의 결제 성공 정보 받을 곳
 	@ResponseBody
@@ -249,53 +223,14 @@ public class MyPageController {
 		String status = iamPort.getPaymentInfo(imp_uid); // 결제 상태
 		System.out.println(status);
 			
-		/*
-		 * // 거래정보를 조회하기 위해서는 관리자 대시보드에서 발급받은 // REST API키와 REST API Secret으로
-		 * 토큰(access_token)을 발급받은 후, // 해당 토큰을 결제 정보 조회 API 요청에 포함해야합니다. // 토큰 발급 과정을
-		 * 클라이언트에서 수행하면 REST API키와 REST API Secret이 // 노출되어 보안상 안전하지 않기 때문에 토큰 발급 및 거래
-		 * 정보 조회 과정은 // 반드시 서버사이드에서 수행해야합니다.
-		 * 
-		 * // rest key 2개 넣어서 client 객체 생성(아임포트 관리자 페이지에서 가져옴) String rest_api_key =
-		 * "1982424697374934"; String rest_api_secret =
-		 * "YCuKDDXOzO431tJ0h1JGX69rmAN7kbFiO93rN0gnPkrQOaR5cBL9IVB5vocPAR8o1bQOc7c1rDSgNJmZ";
-		 * client = new IamportClient(rest_api_key, rest_api_secret);
-		 * 
-		 * 
-		 * // 아임포트 토큰생성 String imp_key = URLEncoder.encode(rest_api_key, "UTF-8");
-		 * String imp_secret = URLEncoder.encode(rest_api_secret, "UTF-8"); JSONObject
-		 * json = new JSONObject(); json.put("imp_key", imp_key); json.put("imp_secret",
-		 * imp_secret); String _token = getToken(rq, rs, json,
-		 * "https://api.iamport.kr/users/getToken"); System.out.println(_token);
-		 * 
-		 * // access token 받아오기 try { IamportResponse<AccessToken> auth_response =
-		 * client.getAuth(); String token2 = auth_response.getResponse().getToken();
-		 * System.out.println(token2);
-		 * 
-		 * 
-		 * } catch (IamportResponseException e) { System.out.println(e.getMessage());
-		 * 
-		 * switch(e.getHttpStatusCode()) { case 401 : break; case 500 : break; } } catch
-		 * (IOException e) { //서버 연결 실패 e.printStackTrace(); }
-		 */				
-		
-		/*
-		 * // payment 결과 받기 String imp_uid = payment.getImpUid();
-		 * System.out.println("imp_uid"+ imp_uid);
-		 * 
-		 * try { IamportResponse<Payment> payment_response =
-		 * client.paymentByImpUid(imp_uid); payment_response.getResponse(); } catch
-		 * (IamportResponseException e) { System.out.println(e.getMessage());
-		 * 
-		 * switch(e.getHttpStatusCode()) { case 401 : break; case 500 : break; } } catch
-		 * (IOException e) { // TODO Auto-generated catch block e.printStackTrace(); }
-		 */
-		
+	
 		secondhandService.updatePaymentSuccess(p_no);
 		  
 		return "mypage/mypage#trade"; // 사실 이 리턴값을 json으로 다시 보내야 함
 	} 
 	
 //////////////////////////////////////////////////////////////////////////////////////////////
+
 	// 회원정보 수정뷰
 	@RequestMapping(value = "/mypage_modifyview", method = RequestMethod.GET)
 	public String mypageModifyView(Principal principal, Model model, MemberVO memberVO) throws Exception {

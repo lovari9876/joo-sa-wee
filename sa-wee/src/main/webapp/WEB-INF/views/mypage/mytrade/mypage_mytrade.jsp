@@ -176,7 +176,7 @@
 						<div align="center" class="buy--button" >				
 							<button class="price-btn write-btn lavender-btn" type="button" 
 									name="${payment['P_STATUS']}" value="${payment['P_NO']}" 
-									onclick="sell_modal(this.value);">
+									onclick="sellModal(this);">
 								<c:choose>				
 									<c:when test="${payment['P_STATUS'] eq 1}">주문확인</c:when>		
 									<c:when test="${payment['P_STATUS'] eq 2}">운송장<br>입력</c:when>
@@ -190,11 +190,6 @@
 								
 							</button> 
 							
-						<!-- 	function getName(button) {
-								var name = $(button).attr("name");
-							    alert(name);
-							}
-							 -->
 						</div>
 					</td>										
 				</tr>

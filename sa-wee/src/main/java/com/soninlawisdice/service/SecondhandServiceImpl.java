@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.soninlawisdice.mapper.SecondhandMapper;
 import com.soninlawisdice.util.FileUtils;
+import com.soninlawisdice.vo.PaymentVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.Trade_gameVO;
@@ -179,6 +180,12 @@ public class SecondhandServiceImpl implements SecondhandService {
 	@Override
 	public int countPayment(int t_no) {
 		return secondhandMapper.countPayment(t_no);
+	}
+	
+	// 판매자 운송장 payment에 update
+	@Override
+	public void updatePaymentTracking(PaymentVO paymentVO) {
+		secondhandMapper.updatePaymentTracking(paymentVO);
 	}
 	
 }
