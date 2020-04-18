@@ -143,10 +143,11 @@
 					<!-- 자바스크립트로 조건 2가지 넣어줘야 masonry가 예쁘게 작동! -->
 					<!-- 1. 사진이 2장 이상이면 갤러리 타입, 사진 1장: standard 타입, 사진 없으면 이미지 부분 태그 통으로 빼서 벽돌리스트 이쁘게 해야함 -->
 					<!-- 2. data-aos="fade-up"을 세번째 아이템에게 넣어줘야함; list[2]에 article param으로 넣을것!!-->
+					<!--  data-aos="fade-up" -->
 					<c:forEach items="${tList}" var="tItem">
 					<c:choose>
-					<c:when test="${tItem eq tList[0]}">
-						<article class="masonry__brick entry format-standard" data-aos="fade-up">	                 
+					<c:when test="${tItem['F_NAME'] eq null}">
+						<article class="masonry__brick entry format-standard">	                 
 		    
 		                    <div class="entry__text">
 		                        <div class="entry__header">
@@ -174,14 +175,11 @@
 		                        <div class="entry__excerpt" style="font-weight:50;">
 		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}  | 댓글수 ${tItem['CM']}
 		                        </div>
-		                        
+		                        <br/>
 		                        <!-- 파란색 태그 부분=> 여기에다가 관련게임이름과 링크 박기 -->
-		                        <div class="entry__meta">
-		                            <span class="entry__meta-links">
-		                                <a href="category.html">Design</a> 
-		                                <a href="category.html">Photography</a>
-		                            </span>
-		                        </div>
+			                        	<c:import url="/tListGame">
+			                        		<c:param name="t_no" value =  "${tItem['T_NO']}"></c:param>
+			                        	</c:import>
 		                    </div>
 		    
 		                </article> <!-- end article -->
@@ -191,8 +189,10 @@
 		                        
 		                    <div class="entry__thumb">
 		                        <a href="content_view_t?t_no=${tItem['T_NO']}" class="entry__thumb-link">
-		                            <img src="images/cassie/thumbs/masonry/lamp-400.jpg" 
-		                                 srcset="images/cassie/thumbs/masonry/lamp-400.jpg 1x, images/cassie/thumbs/masonry/lamp-800.jpg 2x" alt="">
+		                          <img src="<c:url value="/img/${tItem['F_NAME']} "/>">
+		                          
+		                          <!--   <img src="images/cassie/thumbs/masonry/lamp-400.jpg" 
+		                                 srcset="images/cassie/thumbs/masonry/lamp-400.jpg 1x, images/cassie/thumbs/masonry/lamp-800.jpg 2x" alt=""> -->
 		                        </a>
 		                    </div>
 		    
@@ -218,13 +218,11 @@
 		                        <div class="entry__excerpt" style="font-weight:50;">
 		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']} | 댓글수 ${tItem['CM']}
 		                        </div>
-		                        
-		                        <div class="entry__meta">
-		                            <span class="entry__meta-links">
-		                                <a href="category.html">Design</a> 
-		                                <a href="category.html">Photography</a>
-		                            </span>
-		                        </div>
+		                        <br/>
+		                      		<!-- 태그 부분 -->
+		                        	<c:import url="/tListGame">
+			                        	<c:param name="t_no" value =  "${tItem['T_NO']}"></c:param>
+			                        </c:import>
 		                    </div>
 		    
 		                </article> <!-- end article -->

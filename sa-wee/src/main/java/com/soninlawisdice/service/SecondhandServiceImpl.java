@@ -8,9 +8,12 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.soninlawisdice.mapper.SecondhandMapper;
@@ -104,10 +107,20 @@ public class SecondhandServiceImpl implements SecondhandService {
 		}
 		
 		List<Map<String, Object>> list = fileUtils.parseInsertFileIofn(mpRequest);
+		
+		int size = list.size();
+		System.out.println("===============");
+		System.out.println("ServiceImpl 에서 list size 출력 : " + size);
+		System.out.println("=================");
+		
+		for(int i = 0; i<size; i++) {
+			System.out.println("============");
+			System.out.println("list for문 돌리기 ");
+			System.out.println("============");
+		}
 
 		secondhandMapper.insertTrade(tradeVO, m_no, gamePrice, list);
 	}
-	
 	
 	// 글 작성 포인트 update
 	@Override

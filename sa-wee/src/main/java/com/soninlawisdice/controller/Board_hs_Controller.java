@@ -118,6 +118,7 @@ public class Board_hs_Controller {
 				
 				String s_content = rq.getParameter("s_content");
 				
+				scri.setPerPageNum(15);
 				
 				model.addAttribute("list", boardService.selectBoardList(scri, 1, s_content));
 				model.addAttribute("s_content", s_content);
@@ -139,6 +140,7 @@ public class Board_hs_Controller {
 				model.addAttribute("list", boardService.selectBoardList(scri, 2, s_content));
 				model.addAttribute("s_content", s_content);
 				
+				scri.setPerPageNum(15);
 				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);
@@ -156,7 +158,8 @@ public class Board_hs_Controller {
 				model.addAttribute("list", boardService.selectBoardList(scri, 3, s_content));
 				model.addAttribute("s_content", s_content);
 
-			
+				scri.setPerPageNum(15);
+				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);
 				pageMaker.setTotalCount(boardService.cboard_listCount(scri, 3, s_content));
@@ -173,6 +176,7 @@ public class Board_hs_Controller {
 				model.addAttribute("list", boardService.selectBoardList(scri, 4, s_content));
 				model.addAttribute("s_content", s_content);
 
+				scri.setPerPageNum(15);
 				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);
@@ -190,6 +194,8 @@ public class Board_hs_Controller {
 				model.addAttribute("list", boardService.selectBoardList(scri, 5, s_content));
 				model.addAttribute("s_content", s_content);
 				
+				scri.setPerPageNum(15);
+				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);
 				pageMaker.setTotalCount(boardService.cboard_listCount(scri, 5, s_content));
@@ -206,6 +212,7 @@ public class Board_hs_Controller {
 				model.addAttribute("list", boardService.selectBoardList(scri, 6, s_content));
 				model.addAttribute("s_content", s_content);
 				
+				scri.setPerPageNum(15);
 				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);

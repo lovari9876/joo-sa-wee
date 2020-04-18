@@ -91,6 +91,8 @@ public class CassieController {
 		model.addAttribute("s_content", s_content); // 단순히 jsp에서 select 선택 반영 위한 넘기기
 		model.addAttribute("sort", sort);
 		
+		System.out.println(tList);
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(scri);
 		pageMaker.setTotalCount(secondhandService.tradeListCount(scri, s_content));
@@ -104,6 +106,19 @@ public class CassieController {
 
 		return "secondhand/tlist";
 	}
+	
+	//tList : 태그
+		@RequestMapping(value = "/tListGame")
+		public String tListGame(Model model, HttpServletRequest request) {
+			
+			int t_no = Integer.parseInt(request.getParameter("t_no"));
+			System.out.println("t_no : " + t_no);
+			
+			model.addAttribute("gameNames", secondhandService.selectTrade_gameList(t_no));
+			
+			return "secondhand/tListGame";
+		}
+		
 	
 	// 중고거래 게시글(content) view
 	@RequestMapping(value = "/content_view_t", method = RequestMethod.GET)

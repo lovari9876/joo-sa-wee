@@ -614,22 +614,35 @@
 	padding-bottom: 19px; */
 }
 
+/* 글번호 */
 .row .cell:nth-child(1) {
-	width: 150px;
+	width: 70px;
 	padding-left: 50px;
 }
 
+/* 글제목 */
 .row .cell:nth-child(2) {
-	width: 400px;
+	/* width: 400px; */
 }
 
+/* 작성자 */
 .row .cell:nth-child(3) {
-	width: 190px;
+	width: 120px;
+}
+/* 작성일 */
+.row .cell:nth-child(4) {
+	width: 90px;
+}
+/* 조회수 */
+.row .cell:nth-child(5) {
+	width: 60px;
+}
+/* 추천수 */
+.row .cell:nth-child(6) {
+	width: 60px;
 }
 
-.row .cell:nth-child(4) {
-	width: 190px;
-}
+
 
 .table, .row {
 	width: 100% !important;

@@ -60,7 +60,7 @@
 
 	<!-- 상단바 전체 -->
 	<!-- header include start -->
-	<%@ include file="/WEB-INF/views/share/header.jsp" %>
+	<%@ include file="/WEB-INF/views/share/main-header.jsp" %>
 	<!-- header include end -->
 
 

@@ -210,32 +210,31 @@
 									<td class="cell">조회수</td>
 									<td class="cell">추천수</td>
 								</tr>
-
-								<c:forEach items="${list}" var="list">
+								<tbody class = "tbody">
+									<c:forEach items="${list}" var="list">
 									<tr class="row">
-										<td class="cell">${list['CR_NO']}</td>
-										<td class="cell"><a
-											href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a>
-											[${list['CM']}]</td>
-										<td class="cell">${list['M_NICK']}</td>
-										<td class="cell"><jsp:useBean id="today"
-												class="java.util.Date" /> <fmt:formatDate value="${today}"
-												pattern="yyyy.MM.dd" var="now" /> <fmt:formatDate
-												value="${list['CR_WRITTEN_DATE']}" pattern="yyyy.MM.dd"
-												var="date" /> <c:choose>
-												<c:when test="${now ne date}">${date}</c:when>
-												<c:otherwise>
-													<fmt:formatDate value="${list['CR_WRITTEN_DATE']}"
-														pattern="HH:mm" />
-												</c:otherwise>
-											</c:choose></td>
-										<td class="cell">${list['CR_HIT']}</td>
-										<td class="cell">${list['CR_RECOMMEND_NUM']}</td>
+										<td class = "cell">${list['CR_NO']}</td>
+										<td class = "cell"><a href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a>  [${list['CM']}]</td>
+										<td class = "cell">${list['M_NICK']}</td>
+										<td class = "cell">
+											<jsp:useBean id="today" class="java.util.Date" />
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${list['CR_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+												<c:choose>
+													<c:when test="${now ne date}">${date}</c:when> 
+													<c:otherwise>
+														<fmt:formatDate value="${list['CR_WRITTEN_DATE']}" pattern="HH:mm"/>
+													</c:otherwise>
+												</c:choose>
+										</td>
+										<td class = "cell">${list['CR_HIT']}</td>
+										<td class = "cell">${list['CR_RECOMMEND_NUM']}</td>
 									</tr>
-								</c:forEach>
-								<tr class = "row">
+									</c:forEach>
+								</tbody>
+								<%-- <tr class = "row">
 									<td colspan = "6" class = "cell"><a style = "font-weight:bold !important;"href = "read_more?c_no=${cafe_info.c_no}">리뷰 더보기</a></td>
-								</tr>
+								</tr> --%>
 
 							</table>
 						</div>
