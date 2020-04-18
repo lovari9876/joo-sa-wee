@@ -291,8 +291,7 @@ public class MyPageController {
 	// 다른 회원 정보 보기
 	@RequestMapping(value = "/other", method = { RequestMethod.GET, RequestMethod.POST })
 	public String other(Principal principal, String m_nick, Model model) throws Exception {
-		System.out.println("other()");
-		
+		System.out.println("other()");		
 		System.out.println("m_nick" + m_nick);
 		
 		MemberVO otherVO = myPageService.mypageNick(m_nick);
@@ -372,7 +371,7 @@ public class MyPageController {
 	}
 
 	// 쪽지 보내기 뷰
-	@RequestMapping(value = "/send_messageview", method = RequestMethod.GET)
+	@RequestMapping(value = "/send_messageview", method = { RequestMethod.GET, RequestMethod.POST })
 	public String send_messageview(Principal principal, MemberVO memberVO, Model model) throws Exception {
 		System.out.println("send_messageview()" + memberVO.getM_no());
 		String m_id = principal.getName();
@@ -382,6 +381,21 @@ public class MyPageController {
 
 		return "message/send_message";
 	}
+	// 쪽지 보내기 뷰 닉네임 정해져있을 때
+	@RequestMapping(value = "/send_messageview_other", method = { RequestMethod.GET, RequestMethod.POST })
+	public String send_messageview2(Principal principal, MemberVO memberVO, Model model, String m_nick) throws Exception {
+		System.out.println("send_messageview()" + memberVO.getM_no());
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+
+		model.addAttribute("member", memberVO);
+
+		MemberVO otherVO = myPageService.mypageNick(m_nick);
+		model.addAttribute("other", otherVO);
+		
+		return "message/send_message2";
+	}
+	
 
 	// 쪽지 보내기
 	@RequestMapping(value = "/send_message", method = RequestMethod.GET)

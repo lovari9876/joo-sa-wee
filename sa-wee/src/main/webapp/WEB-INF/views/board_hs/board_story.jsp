@@ -136,7 +136,7 @@
 									data-toggle="popover" 
 									data-content="<a href='#' id='other_page' name='m_nick' data-nick='${dto["M_NICK"]}' onclick='return false;' >회원정보보기</a>
 									<br/>
-													<a href='#'>쪽지보내기</a>
+													<a href='#' id='send_message' data-nick='${dto["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
 									<br/>			
 													<a href='report_view_m?m_no=${comment_list[status.index]["M_NO"]}&bw_no=${content_view["BW_NO"]}'>신고하기</a>">
 									${dto['M_NICK']}
@@ -356,7 +356,7 @@
 	<script src="js/board_hs/button.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
 	
-	
+	<!-- 다른 회원 정보 보기 팝업  -->
 	<script src="js/mypage/other_page.js"></script>
 	
 
