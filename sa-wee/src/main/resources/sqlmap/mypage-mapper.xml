@@ -84,6 +84,17 @@
 						where m_id = #{m_id}
 	</update>
 	
+	<!-- 탈퇴 사유 테이블 -->
+	<select id="withdrawal" resultType="com.soninlawisdice.vo.WithdrawalVO">
+		select * from withdrawal
+	</select>
+	
+	<!-- 탈퇴 사유 기록 -->
+	<insert id="wdInsert">
+		INSERT INTO wd_record (m_no, w_no, wr_reason) 
+		VALUES (#{m_no}, #{w_no}, #{wr_reason})
+	</insert>
+	
 	<!-- ================================= 쪽지 ================================= -->
 	<!-- 쪽지 리스트 보기 -->
 	<select id="noteView" resultType="java.util.HashMap">

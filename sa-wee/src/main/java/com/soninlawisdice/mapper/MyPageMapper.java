@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.NoteVO;
+import com.soninlawisdice.vo.WithdrawalVO;
 
 public interface MyPageMapper {
 
@@ -22,6 +23,14 @@ public interface MyPageMapper {
 	// 회원정보 수정
 	public void modifyMember(MemberVO memberVO) throws Exception;
 
+	// 탈퇴 정보 테이블
+	public ArrayList<WithdrawalVO> withdrawal() throws Exception;
+	
+	// 탈퇴 사유 기록 
+	public void wdInsert(@Param("m_no")int m_no, @Param("w_no")int w_no, @Param("wr_reason")String wr_reason) throws Exception;
+	
+	// ================================ 쪽지 ================================
+	
 	// 쪽지 보여주기
 	public ArrayList<HashMap<String, Object>> noteView(@Param("m_no") int m_no) throws Exception;
 
