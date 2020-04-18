@@ -101,7 +101,7 @@
 							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
 							<td class="cell span1">번호</td>
 							<td class="cell">카페 이름</td>
-							<td class="cell title span4">리뷰 제목</td>
+							<td class="cell span4">리뷰 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
 							<td class="cell span1">조회수</td>
@@ -116,7 +116,7 @@
 										<td class="cell">${cr['C_TITLE']}</td>
 										<td class="cell title"><a
 											href="/content_view_cr?cr_no=${cr['CR_NO']}">${cr['CR_TITLE']} (${cr['CM']})</a></td>
-										<td class="cell">${cr['M_ID']}</td>
+										<td class="cell"><a href="user_view?m_no=${cr['M_NO']}">${cr['M_ID']}</a></td>
 										<td class="cell"> 
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" />

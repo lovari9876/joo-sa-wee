@@ -1107,15 +1107,25 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 }
 
 /*길이가 너무 긴 내용 ...으로 줄이기 위해!! */
-.trow .title:not(#comment_num){
-	width: 400px; /*이부분은 각 게시판마다 수정해야할듯*/
+.trow .title{
+	width: 300px; /*이부분은 각 게시판마다 수정해야할듯*/
 	/*	vertical-align:middle; */
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
+	text-align: left;
+	padding-left : 10px;
 }
 
-
+/*길이가 너무 긴 내용 ...으로 줄이기 위해!! */
+.trow .g_title{
+	width: 300px; /*이부분은 각 게시판마다 수정해야할듯*/
+	/*	vertical-align:middle; */
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-left : 10px;
+}
 
 .trow .subject {
 	font-size: 9.5px;

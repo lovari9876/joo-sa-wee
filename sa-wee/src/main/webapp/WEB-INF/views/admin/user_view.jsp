@@ -150,9 +150,15 @@
 									</tr>
 									<tr class="row">
 										<td class="cell">은행</td>
-										<td class="cell">${user_view.m_bank}</td>
+										<td class="cell">
+											<c:if test = "${user_view.m_bank eq null}">등록안됨</c:if>
+											${user_view.m_bank}
+										</td>
 										<td class="cell">계좌번호</td>
-										<td class="cell">${user_view.m_account}</td>
+										<td class="cell">
+											<c:if test = "${user_view.m_account eq '0'}">등록안됨</c:if>
+											<c:if test = "${user_view.m_account ne '0'}">${user_view.m_account}</c:if>
+										</td>
 									</tr>
 								</table>
 								<div class="module-option clearfix">

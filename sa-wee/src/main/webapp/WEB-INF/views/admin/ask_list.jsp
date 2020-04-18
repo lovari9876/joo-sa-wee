@@ -97,6 +97,7 @@
 							<td class="cell">말머리</td>
 							<td class="cell span5">글 제목</td> <!-- 메인 사이트의 ask 1대1문의 게시판 링크 걸기 -->
 							<td class="cell">답변여부</td> <!-- 댓글 유무 -->
+							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
 						</tr>
 						<tbody>
@@ -116,6 +117,7 @@
 											</c:choose>
 											
 										</td>
+										<td class="cell"><a href="user_view?m_no=${board['M_NO']}">${board['M_ID']}</a></td>
 										<td class="cell"> 
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" />

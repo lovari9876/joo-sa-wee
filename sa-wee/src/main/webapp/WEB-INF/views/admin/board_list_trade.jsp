@@ -132,7 +132,7 @@
 										<td class="cell">${trade['S_CONTENT']}</td>
 										<td class="cell title"><a
 											href="/content_view_t?t_no=${trade['T_NO']}">${trade['T_TITLE']} (${trade['CM']})</a></td>
-										<td class="cell">${trade['M_ID']}</td>
+										<td class="cell"><a href="user_view?m_no=${trade['M_NO']}">${trade['M_ID']}</a></td>
 										<td>
 											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 											<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->

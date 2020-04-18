@@ -105,8 +105,8 @@
 						<tbody>
 							<c:forEach items="${user_list}" var="member">
 									<tr class="trow">
-										<td class="cell">${member.m_id}</td><!-- 해당 tr 클릭하면 메인사이트 회원정보 화면으로 이동  -->
-										<%-- <td class="cell">${member.m_name}</td> --%>
+										<td class="cell"><a href='#' id='other_page' name='m_nick' data-nick='${member.m_nick}' onclick='return false;' >${member.m_id}</a></td><!-- 해당 tr 클릭하면 메인사이트 회원정보 화면으로 이동  -->
+									
 										<td class="cell">${member.m_nick}</td>
 										<td class="cell">
 											<c:choose>
@@ -188,4 +188,6 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script> 
+	<!-- 다른 회원 정보 보기 팝업  -->
+	<script src="js/mypage/other_page.js"></script>
 </html>

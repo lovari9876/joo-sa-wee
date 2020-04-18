@@ -54,6 +54,7 @@
 				<div class="col-6 col-md-3 mb-4 mb-md-0">
 					<a href=""><h3>헬프데스크</h3></a>
 					<ul class="list-unstyled">
+						<li><a href="notice_list">공지사항</a></li>
 						<li><a href="faq">자주하는 질문</a></li>
 						<li><a href="question_list">1:1 문의</a></li>
 						<li><a href="island_list">무인도</a></li>

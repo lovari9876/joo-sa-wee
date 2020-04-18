@@ -74,7 +74,7 @@
 											<c:if test="${report_view['R_ID'] eq null}">삭제된 글입니다....</c:if>
 											<c:choose>
 												<c:when test="${report_view['R_TYPE'] == '회원'}">
-													<a href="">${report_view['R_ID']}</a>
+													<a href="/admin/user_view?m_no=${report_view['R_TYPE_NO']}">${report_view['R_ID']}</a>
 												</c:when>
 												<c:when test="${report_view['R_TYPE'] == '댓글'}">
 													<c:choose>

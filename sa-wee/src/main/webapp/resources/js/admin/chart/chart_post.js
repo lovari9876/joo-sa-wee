@@ -127,9 +127,14 @@ $(document).ready(
 						
 					});
 					
-					//최근 값 7개가 최근순으로 불러와지므로 reverse를 이용해 역순으로 바꿔줌
+					//최근 값 8개가 최근순으로 불러와지므로 reverse를 이용해 역순으로 바꿔줌
 					chartLabels.reverse();
 					chartData.reverse();
+					
+					//최근 값은 아직 진행중인 값으므로 마지막 값을 지운다 ! 
+					chartLabels.splice(7,1);
+					chartData.splice(7,1);
+					
 					// ajax로 불러온 데이터 콘솔에 출력해서 확인
 					console.log(chartLabels);
 					console.log(chartData);
@@ -212,9 +217,14 @@ $(document).ready(
 						
 					});
 					
-					//최근 값 7개가 최근순으로 불러와지므로 reverse를 이용해 역순으로 바꿔줌
+					//최근 값 8개가 최근순으로 불러와지므로 reverse를 이용해 역순으로 바꿔줌
 					chartLabels.reverse();
 					chartData.reverse();
+					
+					//최근 값은 아직 진행중인 값으므로 마지막 값을 지운다 ! 
+					chartLabels.splice(7,1);
+					chartData.splice(7,1);
+					
 					// ajax로 불러온 데이터 콘솔에 출력해서 확인
 					console.log(chartLabels);
 					console.log(chartData);

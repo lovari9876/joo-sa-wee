@@ -93,7 +93,7 @@
 											<c:if test="${game['G_NAME_KOR'] == null}"> 입력안됨 </c:if>
 											<c:if test="${game['G_NAME_KOR'] != null}"> ${game['G_NAME_KOR']} </c:if>
 										</td>
-										<td class="cell title ">${game['G_NAME']}</td>
+										<td class="cell g_title ">${game['G_NAME']}</td>
 										<td class="cell">${game['G_MIN']} ~ ${game['G_MAX']}명</td>
 										<td class="cell">${game['G_RELEASE']}년</td>
 										<td class="cell">${game['G_PLAYTIME']}분</td>
