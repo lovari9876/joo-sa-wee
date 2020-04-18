@@ -53,13 +53,13 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4 eml-mob">
+						<div class="col-md-4 eml-mob" style="border-right:none;">
 							<ul>
 								<li>작성글 수 : ${myWriteCount}</li>
 								<li>댓글 수 : ${myReplyCount}</li>
 							</ul>
 						</div>
-						<div class="col-md-4 eml-mob">
+						<div class="col-md-4 eml-mob" style="border-right:none;">
 							<ul>
 								<li>포인트 : ${member.m_point}</li>
 								<li>안 본 쪽지 :</li>

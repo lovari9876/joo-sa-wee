@@ -13,11 +13,26 @@ Description: This Template is created for web template
 	font-weight: normal;
 	src: url("../../fonts/fonts_cassie/joosaweefonts/DungGeunMo.ttf") format('truetype');
 }
+
+@font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face { 
+	font-family: 'JSDongkang-Bold'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff') format('woff'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+
 /* ===================================== Basic CSS ================================== */
 * {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
+	font-family: "JSDongkang-Bold";
 }
 
 img {
@@ -101,16 +116,16 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "DungGeunMo", Arial, Helvetica, sans-serif;
+	font-family: "JSDongkang-Bold", Arial, Helvetica, sans-serif;
 }
 
 strong {
-	font-family: "DungGeunMo", Arial, Helvetica, sans-serif;
+	font-family: "JSDongkang-Bold", Arial, Helvetica, sans-serif;
 }
 
 body {
 	background-color: #f7f7ff !important;
-	font-family: "DungGeunMo", Arial, Helvetica, sans-serif;
+	font-family: "JSDongkang-Regular", Arial, Helvetica, sans-serif;
 	color: #6A6A6A;
 }
 
@@ -146,7 +161,7 @@ body {
 	width: 100%;
 	text-align: center;
 	font-size: 2rem;
-	font-family: "DungGeunMo", Arial, Helvetica, sans-serif;
+	font-family: "JSDongkang-Bold", Arial, Helvetica, sans-serif;
 }
 
 .inner-title p {

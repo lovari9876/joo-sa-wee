@@ -242,14 +242,21 @@
 											value="y"> Yes <input type="radio" name="m_info"
 											value="n" checked class="radio-1"> No
 									</div>
-								</div>
+								</div><br/><br/>
 								<div class="form-row">
 									<div class="form-holder form-holder-1">
-										<label class="form-row-inner"> <input type="text"
+										<!-- <label class="form-row-inner"> <input type="text"
 											class="form-control" id="m_self" name="m_self" required>
 											<span class="label">자기소개</span> <textarea rows="10"
-												style="width: 100%;" class="border"> </textarea> <!--  <span class="border"></span> -->
+												style="width: 100%;" class="border"> </textarea><span
+											class="border"></span>
+										</label> -->
+										<label class="form-row">
+											<textarea name="m_self" id="m_self" cols="50"
+												class="form-control font-JS" style="resize: none;" onkeydown="resize(this)" onkeyup="resize(this)"></textarea>
+												<span class="label">자기소개</span> <span class="border"></span>
 										</label>
+										
 									</div>
 								</div>
 							</div>
@@ -345,6 +352,13 @@
 	<script src="resources/js/join/address_api.js"></script>
 	<script src="resources/js/join/email.js"></script>
 	<script src="resources/js/join/sms.js"></script>
+
+	<script>
+		function resize(obj) {
+		  obj.style.height = "1px";
+		  obj.style.height = (12+obj.scrollHeight)+"px";
+		}
+	</script>
 
 
 	<script async

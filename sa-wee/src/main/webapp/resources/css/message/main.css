@@ -11,7 +11,18 @@
 	font-weight: normal;
 	src: url("../../fonts/fonts_cassie/joosaweefonts/DungGeunMo.ttf") format('truetype');
 }
-
+@font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face { 
+	font-family: 'JSDongkang-Bold'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff') format('woff'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
@@ -23,12 +34,12 @@
 
 body, html {
 	height: 100%;
-	font-family: "DungGeunMo", sans-serif;
+	font-family: "JSDongkang-Bold", sans-serif;
 }
 
 /*---------------------------------------------*/
 a {
-	font-family: "DungGeunMo";
+	font-family: "JSDongkang-Bold";
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -53,7 +64,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 p {
-	font-family: "DungGeunMo";
+	font-family: "JSDongkang-Bold";
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
@@ -185,7 +196,7 @@ iframe {
 
 .contact100-form-title {
   display: block;
-  font-family: "DungGeunMo";
+  font-family: "JSDongkang-Bold";
   font-size: 30px;
   color: #333333;
   line-height: 1.2;
@@ -208,7 +219,7 @@ iframe {
   display: block;
   width: 100%;
   background: transparent;
-  font-family: "DungGeunMo";
+  font-family: "JSDongkang-Bold";
   font-size: 16px;
   color: #4b2354;
   line-height: 1.2;
@@ -287,7 +298,7 @@ textarea.input100 {
   background-color: #bd59d4;
   border-radius: 21px;
 
-  font-family: "DungGeunMo";
+  font-family: "JSDongkang-Bold";
   font-size: 14px;
   color: #fff;
   line-height: 1.2;
@@ -364,14 +375,14 @@ textarea.input100 {
   padding: 0 45px 0 22px;
   pointer-events: none;
 
-  font-family: "DungGeunMo";
+  font-family: "JSDongkang-Bold";
   font-size: 16px;
   color: #fa4251;
   line-height: 1.2;
 }
 
 .btn-hide-validate {
-  font-family: "DungGeunMo";
+  font-family: "JSDongkang-Bold";
   font-size: 15px;
   color: #fa4251;
   cursor: pointer;
@@ -394,7 +405,7 @@ textarea.input100 {
 
 .true-validate::after {
   content: "\f269";
-  font-family: "DungGeunMo";
+  font-family: "JSDongkang-Bold";
   font-size: 15px;
   color: #57b846;
   display: -webkit-box;
@@ -427,7 +438,7 @@ textarea.input100 {
 [ Contact more ]*/
 
 .contact100-more {
-  font-family: "DungGeunMo";
+  font-family: "JSDongkang-Bold";
   font-size: 16px;
   color: #999999;
   line-height: 1.5;
