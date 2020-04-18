@@ -162,7 +162,7 @@ public interface AdminService {
 	public int allComment();//전체 댓글수
 	public int allBoard();	//전체 게시글수
 
-	public ArrayList<HashMap<String, String>> getWeekStatistics();
-	public ArrayList<HashMap<String, String>> getMonthStatistics();
+	public ArrayList<HashMap<String, Object>> getWeekStatistics();
+	public ArrayList<HashMap<String, Object>> getMonthStatistics();
 	
 }

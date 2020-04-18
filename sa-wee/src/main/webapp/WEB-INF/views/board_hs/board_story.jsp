@@ -133,7 +133,7 @@
 										${dto['M_NICK']}
 									</a> --%>
 									<a role = "button" class="pop_btn popovers" 
-									data-toggle="popover" 
+									data-toggle="popover"
 									data-content="<a href='#'>회원정보보기</a>
 									<br/>
 													<a href='#'>쪽지보내기</a>
@@ -351,7 +351,7 @@
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	
-	<script src="js/board_hj/tooltip.js"></script>
+<!-- 	<script src="js/board_hj/tooltip.js"></script> -->
 	<script src="js/board_hj/popover.js"></script>
 	<script src="js/board_hs/button.js"></script>
 	<script src="js/footer/footer_hee.js"></script>

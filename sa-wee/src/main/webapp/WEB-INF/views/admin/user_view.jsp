@@ -147,10 +147,13 @@
 											<c:if test = "${user_view.m_outdate eq null}">X</c:if>
 											${user_view.m_outdate} <!-- 탈퇴일이 null이면 X출력하기  -->
 										</td>
-										
 									</tr>
-
-
+									<tr class="row">
+										<td class="cell">은행</td>
+										<td class="cell">${user_view.m_bank}</td>
+										<td class="cell">계좌번호</td>
+										<td class="cell">${user_view.m_account}</td>
+									</tr>
 								</table>
 								<div class="module-option clearfix">
 									<div class="control-group">
