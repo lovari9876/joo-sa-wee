@@ -81,17 +81,6 @@
 										<i class="icon-search"></i>
 									</button>
 							</div>
-							
-							 
-								
-							
-							
-							
-							
-							
-							
-							
-								
 								
 								
 							</div>
@@ -129,7 +118,7 @@
 							<td class="cell span1">번호</td>
 							<td class="cell span1">게시판</td>
 							<td class="cell span1">말머리</td>
-							<td class="cell title span4">글 제목</td>
+							<td class="cell span4">글 제목</td>
 							<td class="cell">작성자</td>
 							<td class="cell">작성일</td>
 							<td class="cell">조회수</td>
@@ -145,7 +134,7 @@
 										<td class="cell subject">${board['S_CONTENT']}</td>
 										<td class="cell title"><a
 											href="/content_view?bw_no=${board['BW_NO']}"><span>${board['BW_TITLE']}</span> </a> <a id ="comment_num">(${board['CM']})</a></td>
-										<td class="cell">${board['M_ID']}</td>
+										<td class="cell"><a href="user_view?m_no=${board['M_NO']}">${board['M_ID']}</a></td>
 										<td class="cell"> 
 										
 										

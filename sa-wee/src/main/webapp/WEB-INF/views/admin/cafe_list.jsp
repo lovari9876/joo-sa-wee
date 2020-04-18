@@ -92,19 +92,19 @@
 					<div class="table_mobile">
 						<table class="table">
 							<tr class="trow header">
-								<td class="cell">글 번호</td>
-								<td class="cell">카페 이름</td>
-								<td class="cell">전화번호</td>
-								<td class="cell">주소</td>
+								<td class="cell span1">번호</td>
+								<td class="cell span3">카페 이름</td>
+								<td class="cell ">주소</td>
+								<td class="cell span2">전화번호</td>
 							</tr>
 							<tbody>
 								<c:forEach items="${cafe_list}" var="cafe">
 									<tr class="trow">
 										<td class="cell">${cafe['C_NO']}</td>
-										<td class="cell title"><a
+										<td class="cell"><a
 											href="/cafe_info?c_no=${cafe['C_NO']}">${cafe['C_TITLE']}</a></td>
-										<td class="cell">${cafe['C_PHONE']}</td>
 										<td class="cell">${cafe['C_ADD']}</td>
+										<td class="cell">${cafe['C_PHONE']}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
