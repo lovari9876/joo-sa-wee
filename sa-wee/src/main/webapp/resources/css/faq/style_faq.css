@@ -1,7 +1,6 @@
 /* @import
 	url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700")
 	; */
-
 *, *::after, *::before {
 	box-sizing: inherit
 }
@@ -9,17 +8,19 @@
 /* * {
 	font: inherit
 } */
-
-
 @font-face {
-	font-family: 'dunggeunmo';
-	src: url("DungGeunMo.ttf") format('truetype');
+	font-family: 'JSDongkang-Regular';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 @font-face {
-	font-family: 'NanumSquareRound';
+	font-family: 'JSDongkang-Bold';
 	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff')
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff')
 		format('woff');
 	font-weight: normal;
 	font-style: normal;
@@ -27,11 +28,10 @@
 
 body {
 	font-size: 13px;
-	font-family: 'dunggeunmo','Open Sans', Arial, sans-serif;
+	font-family: 'JSDongkang-Regular' , 'Open Sans', Arial, sans-serif;
 	background: #fff;
 	color: #777
 }
-
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
@@ -985,7 +985,7 @@ img, video, svg {
 body {
 	font-size: 1em;
 	font-size: var(- -text-base-size, 1em);
-/* 	font-family: 'Open Sans', sans-serif;
+	/* 	font-family: 'Open Sans', sans-serif;
 	font-family: var(- -font-primary, sans-serif); */
 	color: hsl(240, 4%, 20%);
 	color: var(- -color-contrast-high, #313135)
@@ -1034,7 +1034,7 @@ small, .text-sm {
 }
 
 a, .link {
-	color:#3224B5;
+	color: #3224B5;
 	/* color: var(- -color-primary, #3224B5); */
 	text-decoration: none;
 }
@@ -1158,19 +1158,48 @@ u, .text-underline {
 	.text-component__block--outset img {
 		width: 100%
 	}
-	.text-component__block--outset:not (.text-component__block--right ){
-		margin-left: -5.25em;
-		margin-left: calc(-1 * var(- -space-xxl))
-	}
-	.text-component__block--left, .text-component__block--right {
-		width: 50%
-	}
-	.text-component__block--right.text-component__block--outset {
-		margin-right: -5.25em;
-		margin-right: calc(-1 * var(- -space-xxl))
-	}
+	.text-component__block--outset
+	:not
+	 
+	(
+	.text-component__block--right
+	 
+	){
+	margin-left
+	:
+	 
+	-5
+	.25em
+	;
+	
+		
+	margin-left
+	:
+	 
+	calc
+	(-1
+	 
+	*
+	 
+	var
+	(-
+	 
+	-space-xxl
+	))
+	
+	
 }
 
+.text-component__block--left, .text-component__block--right {
+	width: 50%
+}
+
+.text-component__block--right.text-component__block--outset {
+	margin-right: -5.25em;
+	margin-right: calc(-1 * var(- -space-xxl))
+}
+
+}
 :root { -
 	-icon-xxs: 12px; -
 	-icon-xs: 16px; -
@@ -1240,9 +1269,18 @@ u, .text-underline {
 
 100%{
 -webkit-transform
+
+
 :rotate(360deg)
-;transform
+
+
+;
+transform
+
+
 :rotate(360deg)
+
+
 }
 }
 @
@@ -1253,9 +1291,18 @@ keyframes icon-spin { 0%{
 
 100%{
 -webkit-transform
+
+
 :rotate(360deg)
-;transform
+
+
+;
+transform
+
+
 :rotate(360deg)
+
+
 }
 }
 .icon use {
@@ -1289,7 +1336,7 @@ keyframes icon-spin { 0%{
 }
 
 .btn--primary {
-	background-color:#3224B5;
+	background-color: #3224B5;
 	background-color: var(- -color-primary, #2a6df4);
 	color: hsl(0, 0%, 100%);
 	color: var(- -color-white, #fff)
@@ -2076,8 +2123,9 @@ keyframes icon-spin { 0%{
 
 .margin-top-lg {
 	/* 헤더 수정으로 인해서!  */
-/* 	margin-top: 3em;
+	/* 	margin-top: 3em;
 	margin-top: var(- -space-lg) */
+	
 }
 
 .margin-top-xl {
@@ -3078,7 +3126,7 @@ keyframes icon-spin { 0%{
 }
 
 .color-primary {
-	color:#3224B5;
+	color: #3224B5;
 	color: var(- -color-primary, #2a6df4)
 }
 
@@ -3142,7 +3190,7 @@ keyframes icon-spin { 0%{
 	-color-primary-dark-h: 220; -
 	-color-primary-dark-s: 90%; -
 	-color-primary-dark-l: 46%; -
-	-color-primary:#3224B5; -
+	-color-primary: #3224B5; -
 	-color-primary-h: 220; -
 	-color-primary-s: 90%; -
 	-color-primary-l: 56%; -
@@ -3269,11 +3317,21 @@ keyframes icon-spin { 0%{
 }
 
 @
-supports (--css: variables ){@media (min-width : 986px){:root { -
-	-space-unit: 1.25em
+supports
+ 
+(-
+-css
+:
+ 
+variables
+ 
+){
+@media ( min-width : 986px) {
+	:root { -
+		-space-unit: 1.25em
+	}
 }
 
-}
 }
 :root { -
 	-radius: 0.25em
@@ -3298,12 +3356,22 @@ supports (--css: variables ){@media (min-width : 986px){:root { -
 }
 
 @
-supports (--css: variables ){@media (min-width : 986px){:root { -
-	-text-base-size: 1.25em; -
-	-text-scale-ratio: 1.25
+supports
+ 
+(-
+-css
+:
+ 
+variables
+ 
+){
+@media ( min-width : 986px) {
+	:root { -
+		-text-base-size: 1.25em; -
+		-text-scale-ratio: 1.25
+	}
 }
 
-}
 }
 mark {
 	background-color: hsla(355, 90%, 61%, 0.2);
@@ -3388,7 +3456,7 @@ mark {
 
 .form-control:focus {
 	outline: none;
-	border-color:#3224B5;
+	border-color: #3224B5;
 	border-color: var(- -color-primary); -
 	-color-shadow: hsla(220, 90%, 56%, 0.2); -
 	-color-shadow: hsla(var(- -color-primary-h), var(- -color-primary-s),
@@ -3446,8 +3514,9 @@ mark {
 }
 
 .cd-faq {
-/* 	box-shadow: 0 1px 2px rgba(0, 0, 0, .085), 0 1px 8px rgba(0, 0, 0, .1);
+	/* 	box-shadow: 0 1px 2px rgba(0, 0, 0, .085), 0 1px 8px rgba(0, 0, 0, .1);
 	box-shadow: var(- -shadow-sm) */
+	
 }
 
 .cd-faq::before {
@@ -3471,13 +3540,13 @@ mark {
 	}
 }
 
-
 .cd-faq__categories {
 	margin-top: 80px;
 }
 
 @media ( min-width : 986px) {
 	.cd-faq__categories {
+		font-family : 'JSDongkang-Bold';
 		position: -webkit-sticky;
 		position: sticky;
 		-ms-flex-item-align: start;
@@ -3497,14 +3566,12 @@ mark {
 	/* 왼쪽카테고리  */
 	.cd-faq__categories {
 		width: 230px;
-		padding-left:30px;
-		
+		padding-left: 30px;
 	}
 }
 
-
-
 .cd-faq__category {
+	font-family : 'JSDongkang-Bold';
 	font-size: 1.2em;
 	position: relative;
 	display: block;
@@ -3515,7 +3582,7 @@ mark {
 	color: hsl(0, 0%, 100%);
 	color: var(- -cd-color-4);
 	background-color: hsl(213, 7%, 33%);
-/* 	background-color: var(- -cd-color-1); */
+	/* 	background-color: var(- -cd-color-1); */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale; -
 	-border-color: hsl(213, 7%, 36.3%); -
@@ -3535,7 +3602,6 @@ mark {
 	border-bottom-left-radius: 15px;
 	border-bottom-right-radius: 15px;
 }
-
 
 .cd-faq__category::before, .cd-faq__category::after {
 	content: '';
@@ -3561,8 +3627,6 @@ li:last-child .cd-faq__category {
 }
 
 @media ( min-width : 986px) {
-	
-	
 	.cd-faq__category {
 		font-size: 1em;
 		font-size: var(- -text-xs);
@@ -3579,12 +3643,11 @@ li:last-child .cd-faq__category {
 		background: hsl(var(- -cd-color-1-h), var(- -cd-color-1-s),
 			calc(var(- -cd-color-1-l)*1.1));
 		/* 왼쪽 사이드바 글씨 색 */
-		color : #C1BFD3;
+		color: #C1BFD3;
 	}
 }
 
-@media ( min-width : 80rem) {
-/* 	.cd-faq__category::before {
+@media ( min-width : 80rem) { /* 	.cd-faq__category::before {
 		display: block;
 		top: 0;
 		right: auto;
@@ -3600,7 +3663,6 @@ li:last-child .cd-faq__category {
 
 @media ( min-width : 80rem) {
 	.cd-faq__category-selected {
-	
 		background: hsl(213, 7%, 11.4%);
 		background: hsl(var(- -cd-color-1-h), var(- -cd-color-1-s),
 			calc(var(- -cd-color-1-l)*0.8))
@@ -3616,8 +3678,7 @@ li:last-child .cd-faq__category {
 }
 
 .cd-faq__items {
-
-	font-family : 'NanumSquareRound';
+	font-family: 'JSDongkang-Regular';
 	position: fixed;
 	z-index: 7;
 	height: 100%;
@@ -3656,8 +3717,6 @@ li:last-child .cd-faq__category {
 		background: transparent;
 		margin-top: 40px;
 		margin-left: 40px;
-		
-		
 	}
 }
 
@@ -3680,19 +3739,18 @@ html:not (.js ) .cd-faq__items {
 /* .cd-faq__group {
 	display: none
 } */
-
 @media ( min-width : 986px) {
 	.cd-faq__group {
 		display: block;
 		padding-top: 1px;
-		padiing-left:60px;
+		padiing-left: 60px;
 		margin-top: 30px;
 	}
 	/* 헤더 도로록 때문에... 첫번째만 패딩 적게!  */
-	.cd-faq__group:not(#member){
+	.cd-faq__group:not (#member ){
 		display: block;
-		padding-top:55px;
-		padiing-left:60px;
+		padding-top: 55px;
+		padiing-left: 60px;
 		margin-top: 30px;
 	}
 }
@@ -3704,7 +3762,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 .cd-faq__title {
 	margin: 1.25em 0;
 	margin: var(- -space-md) 0;
-	font-family: 'dunggeunmo';
+	font-family: 'JSDongkang-Bold';
 }
 
 .cd-faq__title h4 {
@@ -3736,7 +3794,6 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	}
 }
 
-
 @media ( min-width : 986px) {
 	.cd-faq__item {
 		background: hsl(0, 0%, 100%);
@@ -3745,10 +3802,9 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 		margin-bottom: var(- -space-xxxs);
 		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 		transition: box-shadow .2s;
-		border-radius : 20px;
+		border-radius: 20px;
 		/* 가운데 본문 width 너비 */
-		width : 700px;
-		
+		width: 700px;
 	}
 	.cd-faq__item:hover { -
 		-box-shadow: hsla(210, 14%, 49%, 0.3); -
@@ -3769,7 +3825,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 }
 
 .cd-faq__trigger {
-	font-family : 'dunggeunmo';
+	font-family: 'JSDongkang-Bold';
 	display: block;
 	position: relative;
 	margin: 1.25em 0 0.5em;
@@ -3787,7 +3843,7 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 			var(- -space-sm)
 	}
 	.cd-faq__trigger span {
-		font-size: 1.2em;
+		font-size: 15px;
 		font-size: var(- -text-md)
 	}
 	.cd-faq__trigger::before, .cd-faq__trigger::after {
@@ -3829,12 +3885,16 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 	}
 }
 
-.cd-faq__content .text-component p{
-	font-size: 0.95em;
+.cd-faq__content .text-component p {
+	line-height: 23px;
+    font-size: 12.5px;
+    padding: 0 13px;
+    word-spacing: 2px;
+
 }
 
 .cd-faq__content p:hover {
-	font-size: 0.95em;
+	font-size: 12.5px;
 	color: hsl(210, 14%, 37%);
 }
 
@@ -3947,18 +4007,20 @@ html:not (.js ) .cd-faq__group, .cd-faq__group--selected {
 body {
 	background-color: hsl(0, 0%, 95%);
 	background-color: var(- -color-contrast-lower);
-	.cd-faq__category
+	.
+	cd-faq__category
 }
 
- .cd-header { /* - */
- 	/* -header-height: 180px;
+.cd-header { /* - */
+	/* -header-height: 180px;
 	height: 180px;
 	height: var(- -header-height);  
 	background-color: #53289F;
  	background-color: var(- -cd-color-2) */
-} 
+	
+}
 
- @media ( min-width : 80rem) {
+@media ( min-width : 80rem) {
 	.cd-header {
 		height: 240px;
 		height: var(- -header-height)
@@ -3979,7 +4041,7 @@ body {
 	.cd-header { -
 		-header-height: 240px
 	}
-} 
+}
 
 .cd-article-link {
 	color: hsl(73, 46%, 27.5%);
