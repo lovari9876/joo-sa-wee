@@ -16,7 +16,7 @@
 			*
 		FROM (
 				SELECT 
-					T.*, M.M_NICK, M.M_ID, S.S_CONTENT, 
+					T.*, M.M_NICK, M.M_ID, S.S_CONTENT, F.F_NAME,
 					ROW_NUMBER() OVER(
 						<choose>
 							<when test = "sort == 'hit'">ORDER BY T_HIT DESC</when>
@@ -34,7 +34,16 @@
 				LEFT JOIN
 					SUBJECT S
 				ON 
-					T.S_NO = S.S_NO					
+					T.S_NO = S.S_NO
+				LEFT JOIN
+                    BOARD_FILE BF
+                ON
+                    BF.BF_WNO = T.T_NO
+                LEFT JOIN
+                    F_FILE F
+                ON
+                    F.F_NO = BF.F_NO
+							
 				WHERE 
 					1=1 
 					<include refid="subjectSearch"></include>
@@ -73,6 +82,25 @@
 			AND T_NO > 0
 
 	</select>
+	
+	<!-- list : file_name  -->
+	
+	<select id = "tradeListFile">
+		SELECT
+			F.F_NAME
+		FROM
+			F_FILE F
+		LEFT JOIN
+			BOARD_FILE BF
+		ON
+			BF.F_NO = F.F_NO
+		LEFT JOIN
+			TRADE
+		ON	
+			BF.BF_WNO = T.T_NO
+	
+	</select>
+	
 	
 	
 	<!-- 검색조건 sql -->
@@ -253,7 +281,7 @@
 						F_FILE
 						(F_NO, F_NAME, F_TYPE, F_PATH)
 					VALUES
-						(f_no_tab(cnt), f_name_tab(fcount), f_type_tab(fcount), f_path_tab(fcount));
+						(f_no_tab(cnt), f_name_tab(cnt), f_type_tab(cnt), f_path_tab(cnt));
 					COMMIT;	
 					
 					INSERT

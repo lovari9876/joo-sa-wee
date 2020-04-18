@@ -23,6 +23,9 @@ public interface SecondhandMapper {
 	public int tradeListCount(
 			@Param("scri") SearchCriteria scri, @Param("s_content") String s_content);
 	
+	//list 에 game_name
+	//public ArrayList<Trade_gameVO> gameNametotList 
+	
 	// content view
 	public HashMap<String, Object> selectContentOne(int t_no);
 	

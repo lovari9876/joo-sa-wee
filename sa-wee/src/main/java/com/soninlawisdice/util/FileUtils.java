@@ -31,9 +31,12 @@ public class FileUtils {
 		// ㅣList 나 배열은 순차적으로 데이터의 접근이 가능하지만 Map 등의 클래스들은 순차적으로 접근할 수가 없다.
 		// Iterator 를 이용하여 Map 에 있는 데이터들을 while 문을 이용하여 순차적으로 접근한다.
 		// getRandomString() 은 32글자의 랜덤한 문자열을 만들어서 반환해주는 기능을 한다.
-		Iterator<String> iterator = mpreq.getFileNames();
+		//Iterator<String> iterator = mpreq.getFileNames();
 
-		MultipartFile multipartFile = null;
+		List<MultipartFile> fileList = mpreq.getFiles("file");
+		System.out.println("multipartFiel list 출력 : " + fileList);
+		
+		//MultipartFile multipartFile = null;
 		String originalFileName = null;
 		String originalFileExtension = null;
 		String storedFileName = null;
@@ -48,19 +51,19 @@ public class FileUtils {
 		if (file.exists() == false) {
 			file.mkdirs();
 		}
+		
+		for (MultipartFile mf : fileList) {
+			//multipartFile = mpreq.getFile(iterator.next());
 
-		while (iterator.hasNext()) {
-			multipartFile = mpreq.getFile(iterator.next());
-
-			if (multipartFile.isEmpty() == false) {
-				originalFileName = multipartFile.getOriginalFilename();
+			/* if (multipartFile.isEmpty() == false) { */
+				originalFileName = mf.getOriginalFilename();
 				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 				//저장되는 파일 이름은 중복을 피하기 위해서 랜덤 문자 필요
 				storedFileName = getRandomString() + originalFileExtension;
 				
 				//원래  storedFileName 으로 해야함. 일단 급하니까 불러오기 편하기 위해서 이렇게 해놓음.
 				file = new File(filePath + originalFileName);
-				multipartFile.transferTo(file);
+				mf.transferTo(file);
 				listMap = new HashMap<String, Object>();
 				
 				//listMap.put("T_NO", t_no);
@@ -69,7 +72,7 @@ public class FileUtils {
 				listMap.put("F_TYPE",originalFileExtension);
 				listMap.put("F_PATH", filePath);
 				list.add(listMap);
-			}
+			/* } */
 		}
 		System.out.println("++++++++++++++++++++++++");
 		System.out.println("FileUtils 에서 list 출력");

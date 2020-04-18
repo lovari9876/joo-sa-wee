@@ -42,21 +42,24 @@
 	<!-- 상단바 전체 -->
 	<!-- Header section -->
 	<header class="header-section">
+		<div class="dice">
+			<!-- 혜수야 부탁해^^ -->
+			<img class="wolf" src="/images/share/wolf_all_white.png"></img>
+			
+			<a href="/" style="color: white">내 사위는 주사위</a>
+		</div>
 		<div class="header-warp">
 			<div class="header-bar-warp d-flex ">
 				<nav class="top-nav-area w-100">
 
 					<!-- 상단바 메뉴 -->
 					<ul class="main-menu head--ul primary-menu">
-						<li>
-							<a href="/">Home</a>
-						</li>
+						<li><a href="/">Home</a></li>
 						<li><a class="gameinfo" href="">보드게임 정보</a>
 							<ul class="sub-menu">
 								<li><a href="">당신의 보드게임</a></li>
 								<li><a href="game_info">보드게임 리스트</a></li>
-							</ul>
-						</li>
+							</ul></li>
 							
 						<li><a class="comm" href="list_home">커뮤니티</a>
 							<ul class="sub-menu">

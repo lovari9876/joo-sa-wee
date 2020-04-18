@@ -282,7 +282,7 @@ ul, ol {
 	color : #fff;
 	text-align : center;
 	font-size : 40px;
-	padding : 20px 0;
+	padding-top : 10px;
 	background: #1E0A37;
 	/* width:100%;
 	height : 300px; */
@@ -610,7 +610,7 @@ button span.lnr-magnifier {
 	top: 0;
 	left: 50px;
 	z-index: 100;
-	padding-top: 300px;
+	padding-top: 350px;
 	color: #1E0A37;
 	font-weight: bold;
 }
@@ -624,8 +624,25 @@ button span.lnr-magnifier {
 .icon {
 	color: #1E0A37;
 	font-size: 40px;
-	margin: 40px 0;
+	margin: 20px 0;
 }
+
+.fa-home:before{
+	font-size : x-large;
+}
+
+.fa-hotjar:before{
+	font-size : x-large;
+}
+
+.fa-kiss-wink-heart:before{
+	font-size : x-large;
+}
+
+.fa-coffee:before{
+	font-size : x-large;
+}
+
 
 /* 도로록 아이콘 위에 올렸을때 바뀌는 색 정하는 곳 */
 .mymenu li a:hover {
