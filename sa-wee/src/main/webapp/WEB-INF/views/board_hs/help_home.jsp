@@ -85,10 +85,10 @@
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0"></p>
 									<h3 class="mb-3">
-										<a href="board_story">보드이야기</a>
+										<a href="notice_list">공지사항</a>
 									</h3>
 									<p class="pt-1">
-										<a href="board_story" class="btn-custom px-3 py-2">
+										<a href="notice_list" class="btn-custom px-3 py-2">
 										<span class="far fa-hand-point-left"></span>  게시판 가기	
 										</a>
 									</p>

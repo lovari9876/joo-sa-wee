@@ -84,7 +84,25 @@ public class Board_hs_Controller {
 			
 			return "board_hs/index";
 	}
-
+		
+		
+		
+		////////////////////////////////////공지사항////////////////////////////////////////////////////////////////
+			@RequestMapping(value = "/notice_list", method = RequestMethod.GET)
+			public String notice_list(Model model, @ModelAttribute("scri") SearchCriteria scri)  throws Exception{
+				
+				String s_content =null;
+				
+				model.addAttribute("list", boardService.selectBoardList(scri, 12, s_content));
+				model.addAttribute("s_content", s_content);
+				
+				PageMaker pageMaker  = new PageMaker();
+				pageMaker.setCri(scri);
+				pageMaker.setTotalCount(boardService.cboard_listCount(scri, 12, s_content));
+				model.addAttribute("pageMaker", pageMaker);
+				
+				return "board_hs/notice_list";
+			}
 
 		///////////////////////////////////// 커뮤니티 관련//////////////////////////////////////
 
