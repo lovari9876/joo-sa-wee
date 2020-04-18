@@ -122,10 +122,9 @@
 								<div class="test_item rp">
 									<p>
 										<sec:authorize access="isAuthenticated()">
-										<%-- <a role="button" class="reply" href="reply_view_cr?cm_no=${comment_list_cr[status.index]['CM_NO']}"
+										<a role="button" class="reply" href="reply_view_cr?cm_no=${comment_list_cr[status.index]['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
-										>Reply</a> --%>
-										<button type="button" class="myBtn_cr" class="reply" onclick="replyModalCR(this);">Reply</button>
+										>Reply</a> 
 										</sec:authorize>
 										<sec:authorize access="isAnonymous()">
 										<a role="button" class="reply" href="loginview"
@@ -169,27 +168,13 @@
 								</div>
 								</c:if>
 							</div>
-						<c:import url="/reply_view_cr">
-							<c:param name="cm_no" value="${comment_list_cr[status.index]['CM_NO']}"></c:param>
-							<c:param name="cr_no" value="${content_view_cr['CR_NO']}"></c:param>
-						</c:import>	
+		
 					</div>
 				</li>
 			</c:forEach>
 		</ul>
 	</div>
-	<%-- <c:forEach items="${comment_list_cr}" var="cm_comment_list_cr" varStatus="status">
-		
-	</c:forEach> --%> <!-- $('#rerid').val(rid) -->
 	
-	<script>
-	function replyModal(btnBw) {
-			
-			$('#myModal').css("display", "block");
-			$('#cm_no').val(cm_no);
-	}
-			
-	</script>
 
 
 	<!-- SCRIPTS -->
