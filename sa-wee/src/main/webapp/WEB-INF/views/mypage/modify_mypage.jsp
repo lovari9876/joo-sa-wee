@@ -277,13 +277,13 @@
 																<ul class="btn-link">
 																	<li><a href="/mypage_modifyview"><i
 																			class="fas fa-circle-notch"></i>처음으로</a></li>
-																	<li><button class='btn-a' onclick='m_update()'>
+																	<li><button class='btn-a' onclick="m_update()">
 																			<i class="fas fa-circle-notch"></i>수정하기
 																		</button></li>
 
 																	<li><a href="/mypage"><i
 																			class="fas fa-address-card"></i>마이페이지</a></li>
-																	<li class="btn-shake"><a onclick='m_out()'><i
+																	<li class="btn-shake"><a href="/outview" onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
 																			class="fas fa-times"></i>탈퇴</a></li>
 																</ul>
 															</div>
@@ -326,7 +326,7 @@
 </body>
 
 <script src="js/mypage/jquery-3.2.1.min.js"></script>
-<script src="js/mypage/file.js"></script>
+<!-- <script src="js/mypage/file.js"></script> -->
 <script src="js/mypage/popper.min.js"></script>
 <script src="js/mypage/bootstrap.min.js"></script>
 <script src="js/mypage/script.js"></script>

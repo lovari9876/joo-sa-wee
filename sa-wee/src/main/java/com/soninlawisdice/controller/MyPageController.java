@@ -319,16 +319,53 @@ public class MyPageController {
 
 		return "redirect:/mypage";
 	}
-
 	// 회원 탈퇴
-	@RequestMapping(value = "/out", method = RequestMethod.POST)
-	public String out(MemberVO memberVO, Principal principal, HttpSession session) throws Exception {
+	@RequestMapping(value = "/outview", method = RequestMethod.GET)
+	public String outview(Model model) throws Exception {
+		System.out.println("outview()");
+		model.addAttribute("withdrawal", myPageService.withdrawal());
+
+		return "mypage/out";
+	}
+	// 회원 탈퇴
+//	@RequestMapping(value = "/out", method = RequestMethod.POST)
+//	public String out(Principal principal, HttpSession session, @RequestParam int w_no, String wr_reason) throws Exception {
+//		System.out.println("out()");
+//
+//		//HttpServletRequest rq
+//		String m_id = principal.getName();
+//		MemberVO memberVO = myPageService.mypage(m_id);
+//		int m_no = memberVO.getM_no();
+//		
+//		myPageService.wdInsert(m_no, w_no, wr_reason);
+//		
+//		adminService.outMember(memberVO.getM_no());
+//
+//		session.invalidate();
+//
+//		return "redirect:/";
+//	}
+
+	@RequestMapping(value = "/out", method = RequestMethod.GET)
+	public String out(Principal principal, HttpSession session, HttpServletRequest rq) throws Exception {
 		System.out.println("out()");
 
 		String m_id = principal.getName();
-		memberVO = myPageService.mypage(m_id);
-		adminService.outMember(memberVO.getM_no());
+		MemberVO memberVO = myPageService.mypage(m_id);
+		int m_no = memberVO.getM_no();
+		
+		String w_noString = rq.getParameter("w_no");
+		System.out.println(w_noString);
+		String wr_reason = rq.getParameter("wr_reason");
+		System.out.println(wr_reason);
 
+		int w_no = Integer.parseInt(w_noString);
+		
+		myPageService.wdInsert(m_no, w_no, wr_reason);
+		System.out.println("탈퇴사유 작성 완");
+		adminService.outMember(memberVO.getM_no());
+		System.out.println("탈퇴");
+		
 		session.invalidate();
 
 		return "redirect:/";
@@ -400,7 +437,6 @@ public class MyPageController {
 
 		return "message/send_message";
 	}
-
 
 	// 쪽지 보내기
 	@RequestMapping(value = "/send_message", method = RequestMethod.GET)

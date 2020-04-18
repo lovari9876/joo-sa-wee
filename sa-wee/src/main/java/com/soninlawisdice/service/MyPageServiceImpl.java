@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.soninlawisdice.mapper.MyPageMapper;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.NoteVO;
+import com.soninlawisdice.vo.WithdrawalVO;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -56,6 +57,18 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageMapper.myReplyCount(m_no);
 	}
 	
+	// 탈퇴 정보 테이블
+	@Override
+	public ArrayList<WithdrawalVO> withdrawal() throws Exception {
+		return myPageMapper.withdrawal();
+	}
+	
+	// 탈퇴 사유 기록
+	@Override
+	public void wdInsert(int m_no, int w_no, String wr_reason) throws Exception {
+		myPageMapper.wdInsert(m_no, w_no, wr_reason);
+	}
+	
 	// ================================= 쪽지 =================================
 	
 	// 쪽지 보여주기
@@ -92,6 +105,9 @@ public class MyPageServiceImpl implements MyPageService {
 	public NoteVO note(int n_no) throws Exception{
 		return myPageMapper.note(n_no);
 	}
+
+	
+
 		
 	
 }
