@@ -89,7 +89,13 @@
 	<script>
 		function m_out() {
 			var out = document.getElementById("viewForm");
-			console.log("out");
+			var w_no = $(':input:radio[name=w_no]:checked').val();
+
+			if(w_no == undefined){
+				alert("사유를 선택해주세요.")
+				return false;
+			}
+			
 			var result = confirm("사위님 정말 탈퇴하시겠습니까?");
 			
 			if (result) {
