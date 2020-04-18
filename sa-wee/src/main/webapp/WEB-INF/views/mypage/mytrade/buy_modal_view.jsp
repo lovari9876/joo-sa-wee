@@ -38,17 +38,11 @@
 		<div class="modal--content">						
 			<div>
 				<!-- ajax로 값 불러와서... 값 넣을 때도 ajax사용..  -->
-				<form >
-					<input type = "hidden" name="t_no" value = "${content_view_t['T_NO']}"/> <!-- 글번호 -->
-					<input type = "hidden" name="m_no" value = "${content_view_t['M_NO']}"/> <!-- 판매자 -->
-					
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-					
-					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
+							
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
 					<div class="table--div">
-						<div class="modal--info">구매를 원하시는 물품에 체크 후, '구매요청' 버튼을 눌러주세요.<br/>
-							판매자의 가격 조정이 끝나면, [마이페이지 -> 내 구매] 에서 배송지를 입력하실 수 있습니다.														
+						<div class="modal--info">
+							결제를 카카오페이로 진행합니다.														
 						</div>
 						<br/>
 						<table>
@@ -83,8 +77,7 @@
 						<!-- modal close -->
 						<span class="modal--close" onClick="closePayModal()">close</span>
 					</div>
-					
-				</form>						
+									
 			</div>
 		</div>		
 	</div>

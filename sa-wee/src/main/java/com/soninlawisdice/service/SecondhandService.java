@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.soninlawisdice.vo.GameVO;
+import com.soninlawisdice.vo.PaymentVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.Trade_gameVO;
@@ -53,4 +54,7 @@ public interface SecondhandService {
 
 	// trade와 관련된 payment 몇 개 있니?
 	public int countPayment(int t_no);
+
+	// 판매자 운송장 payment에 update
+	public void updatePaymentTracking(PaymentVO paymentVO);
 }

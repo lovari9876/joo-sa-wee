@@ -383,19 +383,27 @@
 		</div>
 	</div>
 
-	<!-- 내 판매-판매자 [거래확인] include start -->
+	<!-- ========== 판매자 모달 ================================================ -->
+
+	<!-- 내 판매-판매자 [1. 거래확인] include start -->
 	<!-- /WEB-INF/ 로 시작하면 절대 경로 써줘야함!!!(jsp 파일 단순 import할 경우!)  -->
 	<!-- 반드시 controller가 실행 후 return해서 와줄 장소 필요.. 그래서 동적인 거 노노
 		 정적인 include 필수 ㅠㅠㅠ -->
 	<%@ include file="/WEB-INF/views/mypage/mytrade/sell_modal_view.jsp"%>
-	<!-- 내 판매-판매자 [거래확인] include end -->	
+	<!-- 내 판매-판매자 [1. 거래확인] include end -->	
 	
-	<!-- 내 구매-구매자 결제 모달 include start -->
+	<!-- 내 판매-판매자 [2. 운송장 입력] include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/sell2_modal_view.jsp"%>
+	<!-- 내 판매-판매자 [2. 운송장 입력] include end -->	
+	
+	<!-- ========== 구매자 모달 ================================================ -->
+	
+	<!-- 내 구매-구매자 [1. 결제] include start -->
 	<%@ include file="/WEB-INF/views/mypage/mytrade/buy_modal_view.jsp"%>
-	<!-- 내 구매-구매자 결제 모달 include end -->
+	<!-- 내 구매-구매자 [1. 결제] include end -->
 	
 	
-	<!-- =========================================================================== -->
+	<!-- ====== js ===================================================================== -->
 	<!-- mytrade_buy_modal.js => jstl과 el 못써서...-->
 	<script type="text/javascript">
 		/*
@@ -425,7 +433,7 @@
 	
 		function buyModal(buyBtn) {
 				
-			pno = buyBtn.val();
+			pno = $(buyBtn).val();
 			
 			buyAjax(pno);
 			
