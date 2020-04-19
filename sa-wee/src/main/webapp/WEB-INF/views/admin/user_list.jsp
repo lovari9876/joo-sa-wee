@@ -55,7 +55,6 @@
 											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>아이디</option>
 											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>이름</option>
 											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>닉네임</option>
-											<option value = "d" class="btn" <c:out value="${scri.searchType eq 'd' ? 'selected' : ''}"/>>등급</option>
 										</select>
 								</div>
 									<div class="input-append pull-left">
@@ -108,14 +107,7 @@
 										<td class="cell"><a href='#' id='other_page' name='m_nick' data-nick='${member.m_nick}' onclick='return false;' >${member.m_id}</a></td><!-- 해당 tr 클릭하면 메인사이트 회원정보 화면으로 이동  -->
 									
 										<td class="cell">${member.m_nick}</td>
-										<td class="cell">
-											<c:choose>
-												<c:when test="${member.r_no == '1'}">보드대마왕</c:when>
-												<c:when test="${member.r_no == '2'}">보드마스터</c:when>
-												<c:when test="${member.r_no == '3'}">보드게이머</c:when>
-												<c:when test="${member.r_no == '4'}">표류자</c:when>
-											</c:choose>
-										</td>
+										<td class="cell">${member.getR_name(member.r_no)}</td>
 										<td class="cell">${member.m_point}</td>
 										<td class="cell">${member.m_email}</td>
 										
