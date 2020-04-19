@@ -93,22 +93,22 @@
 								<div class="test_item name" id="pop">
 									<span role="button" class="pop_btn popovers"
 										data-toggle="popover"
-										data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m_or?m_no=${comment_list_or[status.index]["M_NO"]}&c_no=${cafe_info.c_no}'>신고하기</a>">
-										<h3>${comment_list_or[status.index]['M_NICK']}</h3>
+										data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m_or?m_no=${cm_comment_list_or["M_NO"]}&c_no=${cafe_info.c_no}'>신고하기</a>">
+										<h3>${cm_comment_list_or['M_NICK']}</h3>
 									</span>
 								</div>
 								</sec:authorize>
 								<sec:authorize access="isAnonymous()">
-								<h3>${comment_list_or[status.index]['M_NICK']}</h3>
+								<h3>${cm_comment_list_or['M_NICK']}</h3>
 								</sec:authorize>
 
 								<!-- 추천 버튼 -->
 							<sec:authorize access="isAuthenticated()">
 								<div class="test_item reco tooltip-purple">
 								<input class="rec_cm_btn_or" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
-									name="button" value="${comment_list_or[status.index]['CM_NO']}"
+									name="button" value="${cm_comment_list_or['CM_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm_or">${comment_list_or[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
+									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm_or">${cm_comment_list_or['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
 								<input type="hidden" name="c_no" class="rec_cm_btn_or" value="${cafe_info.c_no}">
 								</div>
 							</sec:authorize>
@@ -117,7 +117,7 @@
 									<input class="rec_cm_btn_or" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
 										Onclick="location.href='http://localhost:8282/loginview'"
 										data-toggle="tooltip" data-container=".tooltip-purple"
-										data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm_or">${comment_list_or[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
+										data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm_or">${cm_comment_list_or['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
 									<input type="hidden" name="c_no" class="rec_cm_btn_or" value="${cafe_info.c_no}">
 								</div>
 							</sec:authorize>
@@ -127,35 +127,35 @@
 							<!-- 작성일자 -->
 							<div class="meta2">작성일 <jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
 							 <fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-								<fmt:formatDate value="${comment_list_or[status.index]['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<fmt:formatDate value="${cm_comment_list_or['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 								<c:choose>
 									<c:when test="${now ne date}">${date}</c:when> 
 									<c:otherwise>
-										<fmt:formatDate value="${comment_list_or[status.index]['CM_WRITTEN_DATE']}" pattern="HH:mm"/>
+										<fmt:formatDate value="${cm_comment_list_or['CM_WRITTEN_DATE']}" pattern="HH:mm"/>
 									</c:otherwise>
 								</c:choose>	 
 						수정일
-							<fmt:formatDate value="${comment_list_or[status.index]['CM_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+							<fmt:formatDate value="${cm_comment_list_or['CM_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 								<c:choose>
 									<c:when test="${now ne date}">${date}</c:when> 
 									<c:otherwise>
-										<fmt:formatDate value="${comment_list_or[status.index]['CM_UPDATED_DATE']}" pattern="HH:mm"/>
+										<fmt:formatDate value="${cm_comment_list_or['CM_UPDATED_DATE']}" pattern="HH:mm"/>
 									</c:otherwise>
 								</c:choose>	</div>
 
 
 
 							<!-- 댓글 내용 -->
-							<p>${comment_list_or[status.index]['CM_CONTENT']}</p>
+							<p>${cm_comment_list_or['CM_CONTENT']}</p>
 
 
 
 							<!-- 수정, 삭제, 신고 버튼부분 -->
 							<div class="reply_test">
-								<c:if test = "${comment_list_or[status.index]['M_NO'] != m_no}">
+								<c:if test = "${cm_comment_list_or['M_NO'] != m_no}">
 								<sec:authorize access="isAuthenticated()">
 								<div class="test_item rep tooltip-purple">
-									<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_list_or[status.index]['CM_NO']}"
+									<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${cm_comment_list_or['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="신고"> </a>
@@ -169,16 +169,16 @@
 									data-placement="top" title="신고"></a>
 								</div>
 								</sec:authorize>
-								<c:if test = "${comment_list_or[status.index]['M_NO'] eq m_no}">
+								<c:if test = "${cm_comment_list_or['M_NO'] eq m_no}">
 								<div class="test_item del tooltip-purple">
-									<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete_or?cm_no=${comment_list_or[status.index]['CM_NO']}&c_no=${cafe_info.c_no}"
+									<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete_or?cm_no=${cm_comment_list_or['CM_NO']}&c_no=${cafe_info.c_no}"
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="삭제"></a>
 								</div>
 								</c:if>
-								<c:if test = "${comment_list_or[status.index]['M_NO'] eq m_no}">
+								<c:if test = "${cm_comment_list_or['M_NO'] eq m_no}">
 								<div class="test_item modi tooltip-purple">
-									<a class="fas fa-edit fa-lg no-text-deco" href="comment_modify_view_or?cm_no=${comment_list_or[status.index]['CM_NO']}"
+									<a class="fas fa-edit fa-lg no-text-deco" href="comment_modify_view_or?cm_no=${cm_comment_list_or['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 										data-toggle="tooltip" data-container=".tooltip-purple"
 										data-placement="top" title="수정"></a>

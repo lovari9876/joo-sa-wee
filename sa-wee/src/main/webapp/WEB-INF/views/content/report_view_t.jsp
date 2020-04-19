@@ -39,7 +39,7 @@
 				<form action="report_t" method="get">
 					<input type="hidden" name="r_type_no" value="${content_view_t['T_NO']}">
 					<input type="hidden" name="t_no" value="${content_view_t['T_NO']}">
-					<input type="hidden" name="m_no" value="${m_no}">
+					<input type="hidden" name="m_no" value="${memberVO.m_no}">
 					<input type="hidden" name="t_report_num" value="${content_view_t['T_REPORT_NUM']}">
 					<div class="form-group">
 						<label for="message">신고하기</label>

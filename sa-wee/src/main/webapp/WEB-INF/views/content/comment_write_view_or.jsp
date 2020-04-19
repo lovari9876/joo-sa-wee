@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
@@ -31,21 +32,30 @@
 		<form action="comment_write_or" method="get">
 			<input type="hidden" name="cm_no2" value="${cafe_info.c_no}">
 			<input type="hidden" name="c_no" value="${cafe_info.c_no}">
-			<input type="hidden" name="m_no" value="${m_no}">
+			<input type="hidden" name="m_no" value="${memberVO.m_no}">
 			<div class="form-group">
 				<label for="message">Comment</label> <input type="text" id="message"
 					class="form-control" name="cm_content" placeholder="내용을 입력하세요">
 			</div>
 			<div class="form-group">
+				<c:if test = "${memberVO.r_no == 4}">
+				<sec:authorize access="isAuthenticated()">
+				<input type="button" value="작성" class="btn btn-lavender btn-md" id="btnRno"/>
+				</sec:authorize>
+				</c:if>
+				<c:if test = "${memberVO.r_no < 4}">
 				<sec:authorize access="isAuthenticated()">
 				<input type="submit" value="작성" class="btn btn-lavender btn-md">
 				</sec:authorize>
+				</c:if>
 				<sec:authorize access="isAnonymous()">
 				<input type="button" value="작성" class="btn btn-lavender btn-md" Onclick="location.href='http://localhost:8282/loginview'">
 				</sec:authorize>
 			</div>
 		</form>
 	</div>
+
+<script src="js/board_hj/btnRno.js"></script>
 
 </body>
 </html>

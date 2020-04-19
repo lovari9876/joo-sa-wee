@@ -283,6 +283,7 @@
 	<script src="js/board_hj/tooltip.js"></script>
 	<script src="js/board_hj/recommend.js"></script>
 	<script src="js/board_hj/popover.js"></script>
+
 	
 	<!-- ====================스크랩기능============================== -->
 	<script src="js/admin/scrap.js"></script>

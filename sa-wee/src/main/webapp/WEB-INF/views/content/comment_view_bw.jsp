@@ -59,26 +59,29 @@
 		
 		<ul class="comment-list">
 		<c:forEach items="${comment_list}" var="cm_comment_list" varStatus="status">
-			<li class="comment" style="margin-left:<c:out value="${40*comment_list[status.index]['CM_INDENT']}"/>px; padding-right:<c:out value="${40*comment_list[status.index]['CM_INDENT']}"/>px;">
+			<li class="comment" style="margin-left:<c:out value="${40*cm_comment_list['CM_INDENT']}"/>px; padding-right:<c:out value="${40*cm_comment_list['CM_INDENT']}"/>px;">
 				<div class="comment-body">
 						<div class="comment_test">
 							<sec:authorize access="isAuthenticated()">
 							<div class="test_item name" id="pop">
 								<span role="button" class="pop_btn popovers"
 									data-toggle="popover"
-									data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m?m_no=${comment_list[status.index]["M_NO"]}&bw_no=${content_view["BW_NO"]}'>신고하기</a>"><h3>${comment_list[status.index]['M_NICK']}</h3></span>
+									data-content="<a href='#' id='other_page' name='m_nick' data-nick='${cm_comment_list["M_NICK"]}' onclick='return false;'>회원정보보기</a><br/>
+										<a href='#'>쪽지보내기</a><br/>
+										<a href='report_view_m?m_no=${cm_comment_list["M_NO"]}&bw_no=${content_view["BW_NO"]}'>신고하기</a>">
+									<h3>${cm_comment_list['M_NICK']}</h3></span>
 							</div>
 							</sec:authorize>
 							<sec:authorize access="isAnonymous()">
-							<h3>${comment_list[status.index]['M_NICK']}</h3>
+							<h3>${cm_comment_list['M_NICK']}</h3>
 							</sec:authorize>
 							<!-- 팝업으로 하고싶다.....ㅠㅜㅜㅠㅜ -->
 							<sec:authorize access="isAuthenticated()">
 							<div class="test_item reco tooltip-purple">
 								<input class="rec_cm_btn" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
-									name="button" value="${comment_list[status.index]['CM_NO']}"
+									name="button" value="${cm_comment_list['CM_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm">${comment_list[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
+									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm">${cm_comment_list['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
 								<input type="hidden" name="bw_no" class="rec_cm_btn" value="${content_view['BW_NO']}">
 							</div>
 							</sec:authorize>
@@ -87,36 +90,36 @@
 								<input class="rec_cm_btn" id="rec_cm_btn" type="image" src="images/board_hj/thums_up_cm2_color.png"
 									Onclick="location.href='http://localhost:8282/loginview'"
 									data-toggle="tooltip" data-container=".tooltip-purple"
-									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm">${comment_list[status.index]['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
+									data-placement="top" title="추천"/><span class="text_items">(</span><span class="text_items rec_cm">${cm_comment_list['CM_RECOMMEND_NUM']}</span><span class="text_items">)</span>
 								<input type="hidden" name="bw_no" class="rec_cm_btn" value="${content_view['BW_NO']}">
 							</div>
 							</sec:authorize>
 						</div>
 						<div class="meta">작성일
 								<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-								<fmt:formatDate value="${comment_list[status.index]['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<fmt:formatDate value="${cm_comment_list['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 								<c:choose>
 									<c:when test="${now ne date}">${date}</c:when> 
 									<c:otherwise>
-										<fmt:formatDate value="${comment_list[status.index]['CM_WRITTEN_DATE']}" pattern="HH:mm"/>
+										<fmt:formatDate value="${cm_comment_list['CM_WRITTEN_DATE']}" pattern="HH:mm"/>
 									</c:otherwise>
 								</c:choose>	 
 						수정일
-							<fmt:formatDate value="${comment_list[status.index]['CM_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+							<fmt:formatDate value="${cm_comment_list['CM_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 								<c:choose>
 									<c:when test="${now ne date}">${date}</c:when> 
 									<c:otherwise>
-										<fmt:formatDate value="${comment_list[status.index]['CM_UPDATED_DATE']}" pattern="HH:mm"/>
+										<fmt:formatDate value="${cm_comment_list['CM_UPDATED_DATE']}" pattern="HH:mm"/>
 									</c:otherwise>
 								</c:choose>	</div>
 						
-						<p>${comment_list[status.index]['CM_CONTENT']}</p>
+						<p>${cm_comment_list['CM_CONTENT']}</p>
 						
 						<div class="reply_test">
 							<div class="test_item rp">
 								<p>
 									<sec:authorize access="isAuthenticated()">
-									<a role="button" class="reply" href="reply_view?cm_no=${comment_list[status.index]['CM_NO']}"
+									<a role="button" class="reply" href="reply_view?cm_no=${cm_comment_list['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 										>Reply</a>
 									</sec:authorize>
@@ -126,10 +129,10 @@
 									</sec:authorize>
 								</p>
 							</div>
-							<c:if test = "${comment_list[status.index]['M_NO'] != m_no}">
+							<c:if test = "${cm_comment_list['M_NO'] != m_no}">
 							<sec:authorize access="isAuthenticated()">
 							<div class="test_item rep tooltip-purple">
-								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${comment_list[status.index]['CM_NO']}"
+								<a class="fas fa-skull fa-lg no-text-deco" href="report_view_cm?cm_no=${cm_comment_list['CM_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="신고"></a>
@@ -143,16 +146,16 @@
 									data-placement="top" title="신고"></a>
 							</div>
 							</sec:authorize>
-							<c:if test = "${comment_list[status.index]['M_NO'] eq m_no}">
+							<c:if test = "${cm_comment_list['M_NO'] eq m_no}">
 							<div class="test_item del tooltip-purple">
-								<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete?cm_no=${comment_list[status.index]['CM_NO']}&bw_no=${content_view['BW_NO']}"
+								<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete?cm_no=${cm_comment_list['CM_NO']}&bw_no=${content_view['BW_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="삭제"></a>
 							</div>
 							</c:if>
-							<c:if test = "${comment_list[status.index]['M_NO'] eq m_no}">
+							<c:if test = "${cm_comment_list['M_NO'] eq m_no}">
 							<div class="test_item modi tooltip-purple">
-								<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi" href="comment_modify_view?cm_no=${comment_list[status.index]['CM_NO']}"
+								<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi" href="comment_modify_view?cm_no=${cm_comment_list['CM_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="수정"></a>
@@ -200,5 +203,8 @@
 	<script src="js/board_hj/popover.js"></script>
 	
 	<script src="js/board_hj/recommend_cm.js"></script>
+	
+	<!-- 다른 회원 정보 보기 팝업  -->
+	<script src="js/mypage/other_page.js"></script>
 </body>
 </html>

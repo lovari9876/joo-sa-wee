@@ -31,7 +31,7 @@
 					<input type="hidden" name="cm_group" value="${comment_view['CM_GROUP']}"> 
 					<input type="hidden" name="cm_step" value="${comment_view['CM_STEP']}"> 
 					<input type="hidden" name="cm_indent" value="${comment_view['CM_INDENT']}">
-					<input type="hidden" name="m_no" value="${m_no}">
+					<input type="hidden" name="m_no" value="${memberVO.m_no}">
 					<div class="form-group">
 						<label for="message">Reply</label>
 						<textarea name="cm_content" id="message" cols="30" rows="5"
@@ -41,13 +41,15 @@
 					<div class="input-group">
 						<input type="button" value="닫기" onClick='window.close()'
 								class="btn btn-lavender btn-md text-white" id="btn-color">
+						<c:if test = "${memberVO.r_no != 4}">
 						<input type="submit" value="작성" class="btn btn-lavender btn-md">
+						</c:if>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-
+	
 </body>
 </html>
