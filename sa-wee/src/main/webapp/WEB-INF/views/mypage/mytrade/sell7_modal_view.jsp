@@ -14,26 +14,34 @@
     <link rel="icon" type="image/png"
 		href="/images/share/wolf_logo.ico" />
 	
-	<!-- modal -->	
+	<!-- modal 
+	================================================== -->	
 	<link rel="stylesheet" href="/css/mypage/cassie/mypage_modalstyle.css" />
+	
+	<!-- 결제: 아임포트 js 
+	================================================== -->
+	<script type="text/javascript"
+		src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript"
+		src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+	<!-- 발표시 할 일:  -->
+	<!-- 결제 완료 후 pc카톡 화면 보여주면서 결제완료 상태 보여주기 -->
+	
 
 </head>
 <body >
 						
-	<!-- Modal HTML embedded directly into document -->
-	<div id="sell-modal" class="modal--trade">
+	<!-- 7. 거래취소=> 상세정보 -->
+	<div id="sell7-modal" class="modal--trade">
 	
 		<div class="modal--content">						
 			<div>
-				<!-- ajax로 값 불러와서... 값 넣을 때도 ajax사용..  -->
-									
-					<!-- 로그인 된 상태일 때 글쓰기 가능하도록.. -->
-					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
+				<!-- ajax로 값 불러와 -->													
 					<div class="table--div">
 						<div class="modal--info">
-							구매자의 결제를 기다리는 중입니다. <br/>
-							결제 확인 후, 운송장을 입력하실 수 있습니다.														
-						</div>
+							구매자가 취소한 거래입니다.											
+						</div>						
 						<table>
 							<thead>
 								<tr class="table--row">
@@ -41,30 +49,21 @@
 									<th class="table--cell">희망가격</th>
 								</tr>
 							</thead>
-							<tbody id="ajax-sell">
-							</tbody>							
+							<tbody id="ajax-sell7">
+							</tbody>						
 							<tr class="table--row sum--row">
 								<td class="table--cell">합계</td>
-								<td id="ajax-sum-sell" class="table--cell"></td>
+								<td id="ajax-sum-sell7" class="table--cell"></td>
 							</tr> <!-- 결국 마이페이지 내의 모달은 다 한 페이지에 있기에 -->
-								  <!-- 절대 모달끼리 id가 중복되면 안된다.. 안나와.. -->
-							
-														
-						<%--  	<c:forEach items="${ptgList}" var="ptgItem" varStatus="status">
-								<tr class = "table--row">
-									<td class = "table--cell"> <!-- tg => tg_no -->
-										${ptgItem['TG_NAME']}
-									</td>
-									<td class="table--cell">${ptgItem['TG_PRICE']}원</td>
-								</tr>
-							</c:forEach>	--%>					
+								  <!-- 절대 모달끼리 id가 중복되면 안된다.. 안나와.. -->					
+								
 						</table>
-						<br/>
+						<br/>		
 						<!-- modal close -->
-						<span class="modal--close" onClick="closeSellModal()">close</span>
-						<br/>	
-						
-					</div>				
+						<span class="modal--close" onClick="closeBuyModal()">close</span>
+						<br/>
+					</div>
+								
 			</div>
 		</div>		
 	</div>

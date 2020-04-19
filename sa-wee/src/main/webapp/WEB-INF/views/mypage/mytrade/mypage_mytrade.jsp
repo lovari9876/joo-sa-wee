@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>SON-IN-RAW IS DICE - my page</title>
+<title>내 사위는 주사위</title>
 
 <!-- 파피콘 -->
 <link rel="icon" type="image/png" href="/images/share/wolf_logo.ico" />
@@ -80,7 +80,7 @@
 							<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 3}">배송중</c:when>
 							<c:when test="${payment['P_STATUS'] eq 4}">배송완료</c:when>
-							<c:when test="${payment['P_STATUS'] eq 5}">5</c:when>
+							<c:when test="${payment['P_STATUS'] eq 5}">거래완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 6}">6</c:when>
 							<c:when test="${payment['P_STATUS'] eq 7}">거래취소</c:when>
 							<c:otherwise>불명확</c:otherwise>
@@ -88,7 +88,7 @@
 					</td>
 					<td class="cell"> <!-- 버튼 -->
 						<div align="center" class="buy--button" >
-							<button class="pay-btn write-btn lavender-btn" type="button" 
+							<button class="write-btn lavender-btn" type="button" 
 									data-courier="${payment['P_COURIER']}" data-tracking="${payment['P_TRACKING']}"
 									name="${payment['P_STATUS']}" value="${payment['P_NO']}" 
 									onclick="buyModal(this);">
@@ -97,7 +97,7 @@
 									<c:when test="${payment['P_STATUS'] eq 2}">배송대기</c:when>
 									<c:when test="${payment['P_STATUS'] eq 3}">수취확인</c:when>
 									<c:when test="${payment['P_STATUS'] eq 4}">상세정보</c:when>
-									<c:when test="${payment['P_STATUS'] eq 5}">5</c:when>
+									<c:when test="${payment['P_STATUS'] eq 5}">상세정보</c:when>
 									<c:when test="${payment['P_STATUS'] eq 6}">6</c:when>
 									<c:when test="${payment['P_STATUS'] eq 7}">거래취소</c:when>
 									<c:otherwise>불명확</c:otherwise>
@@ -167,7 +167,7 @@
 							<c:when test="${payment['P_STATUS'] eq 2}">결제완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 3}">배송중</c:when>
 							<c:when test="${payment['P_STATUS'] eq 4}">배송완료</c:when>
-							<c:when test="${payment['P_STATUS'] eq 5}">5</c:when>
+							<c:when test="${payment['P_STATUS'] eq 5}">거래완료</c:when>
 							<c:when test="${payment['P_STATUS'] eq 6}">6</c:when>
 							<c:when test="${payment['P_STATUS'] eq 7}">거래취소</c:when>
 							<c:otherwise>불명확</c:otherwise>
@@ -175,7 +175,7 @@
 					</td> 
 					<td class="cell"> <!-- 버튼 -->
 						<div align="center" class="buy--button" >				
-							<button class="price-btn write-btn lavender-btn" type="button" 
+							<button class="write-btn lavender-btn" type="button" 
 									data-courier="${payment['P_COURIER']}" data-tracking="${payment['P_TRACKING']}"
 									name="${payment['P_STATUS']}" value="${payment['P_NO']}" 
 									onclick="sellModal(this);">
@@ -184,7 +184,7 @@
 									<c:when test="${payment['P_STATUS'] eq 2}">운송장입력</c:when>
 									<c:when test="${payment['P_STATUS'] eq 3}">상세정보</c:when>
 									<c:when test="${payment['P_STATUS'] eq 4}">상세정보</c:when>
-									<c:when test="${payment['P_STATUS'] eq 5}">5</c:when>
+									<c:when test="${payment['P_STATUS'] eq 5}">입금확인</c:when>
 									<c:when test="${payment['P_STATUS'] eq 6}">6</c:when>
 									<c:when test="${payment['P_STATUS'] eq 7}">거래취소</c:when>
 									<c:otherwise>불명확</c:otherwise>

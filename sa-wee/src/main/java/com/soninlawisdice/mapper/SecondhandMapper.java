@@ -64,6 +64,9 @@ public interface SecondhandMapper {
 	// 내 거래: 거래 하나의 ptgList(게임, 가격)
 	public ArrayList<HashMap<String, Object>> selectPTGList(@Param("p_no") int p_no);
 	
+	// 구매자가 거래취소 payment에 update
+	public void updatePaymentBuyerCancel(@Param("paymentVO") PaymentVO paymentVO);	
+	
 	// buy_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃
 	public void updatePaymentSuccess(@Param("p_no") int p_no);
 	
@@ -75,4 +78,5 @@ public interface SecondhandMapper {
 
 	// 구매자가 수취확인 payment에 update
 	public void updatePaymentBuyerConfirm(@Param("paymentVO") PaymentVO paymentVO);
+
 }

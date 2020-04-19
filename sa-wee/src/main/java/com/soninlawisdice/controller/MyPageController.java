@@ -202,6 +202,23 @@ public class MyPageController {
 		return secondhandService.selectPTGList(pno); 
 	} 
 	
+	// 구매자 구매취소(거래취소): FROM buy_modal_view
+	@RequestMapping(value = "buyerCancel", method = RequestMethod.POST)
+	public String buyerCancel(Model model, HttpServletRequest rq,
+			@ModelAttribute("paymentVO") PaymentVO paymentVO /* ,@RequestParam("p_no") int p_no */) {
+		System.out.println("buyerCancel");
+
+		//int p_no = Integer.parseInt(rq.getParameter("p_no"));
+		System.out.println("p_no : " + paymentVO.getP_no());		
+		
+		// PaymentVO paymentVO = new PaymentVO();
+		//paymentVO.setP_no(p_no);
+		
+		secondhandService.updatePaymentBuyerCancel(paymentVO);
+		  
+		return "redirect:/mypage#trade"; 
+	}
+	
 	// 결제 성공해서 rsp.success=true 일 때 ajax로 아임포트 서버의 결제 성공 정보 받을 곳
 	@ResponseBody
 	@RequestMapping(value = "/payments/complete", method = RequestMethod.POST)

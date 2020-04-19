@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>SON-IN-LAW IS DISE</title>
+	<title>내 사위는 주사위</title>
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
@@ -38,7 +38,10 @@
 		<div class="modal--content">						
 			<div>
 				<!-- ajax로 값 불러와서... 값 넣을 때도 ajax사용..  -->
-							
+				<!-- form은 구매취소 시에만 사용 -->		
+				<form action="buyerCancel" method="post" enctype="multipart/form-data"
+					  	onsubmit="return confirmCancel();">					
+					<input type = "hidden" class="buy-modal-p_no" name="p_no" />			
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
 					<div class="table--div">
 						<div class="modal--info">
@@ -69,18 +72,33 @@
 								</tr>
 							</c:forEach>	--%>					
 						</table>
-						<br/>
-						<br/>						
-						<button id="buy-pay-btn" class="write-btn lavender-btn" type="button"
+						<br/>												
+						<button class="write-btn lavender-btn modal-ok-btn" type="button"
 								onClick="payNow()">결제</button>	
+						<!-- form 제출: 거래취소 -->
+						<button class="write-btn lavender-btn modal-ok-btn" type="submit">구매취소</button>							
 						<!-- modal close -->
 						<span class="modal--close" onClick="closeBuyModal()">close</span>
+						<br/>
 					</div>
-									
+				</form>							
 			</div>
 		</div>		
 	</div>
 
+	<script type="text/javascript">
+	
+		function confirmCancel() {
+			var rtn = confirm('구매를 취소하시겠습니까?');				
+			
+			if (rtn) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		
+	</script>
 	
 
 </body>
