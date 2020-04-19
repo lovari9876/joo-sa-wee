@@ -134,7 +134,7 @@
 									</a> --%>
 									<a role = "button" class="pop_btn popovers"
 									data-toggle="popover" 
-									data-content="<a href='#' id='other_page' name='m_nick' data-nick='${dto["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+									data-content="<a href='#' id='other_page' data-nick='${dto["M_NICK"]}' onclick='return false;' >회원정보보기</a>
 									<br/>
 													<a href='#' id='send_message' data-nick='${dto["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
 									<br/>			

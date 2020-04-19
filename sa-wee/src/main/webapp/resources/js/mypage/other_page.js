@@ -14,6 +14,7 @@ $(function() {
 				return false;
 			});
 	
+	
 	$(document).on(
 			"click",
 			"#send_message",			

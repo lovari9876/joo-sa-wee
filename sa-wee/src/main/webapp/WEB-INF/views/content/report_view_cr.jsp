@@ -39,7 +39,7 @@
 				<form action="report_cr" method="get">
 					<input type="hidden" name="r_type_no" value="${content_view_cr['CR_NO']}">
 					<input type="hidden" name="cr_no" value="${content_view_cr['CR_NO']}">
-					<input type="hidden" name="m_no" value="${m_no}">
+					<input type="hidden" name="m_no" value="${memberVO.m_no}">
 					<input type="hidden" name="cr_report_num" value="${content_view_cr['CR_REPORT_NUM']}">
 					<div class="form-group">
 						<label for="message">신고하기</label>

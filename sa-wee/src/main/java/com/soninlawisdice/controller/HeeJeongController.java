@@ -68,7 +68,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
 		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
@@ -120,7 +120,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
 		String cm_no2 = request.getParameter("cm_no2");
@@ -173,7 +173,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
 		// content_view에서 가져온 m_no을 cm_commentVO에 저장
@@ -246,7 +246,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
 		int bw_no = Integer.parseInt(request.getParameter("bw_no"));
@@ -268,7 +268,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
 		System.out.println(reportVO.getR_type_no());
@@ -299,7 +299,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
@@ -327,7 +327,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(reportVO.getR_type_no());
@@ -361,7 +361,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		int cm_no = Integer.parseInt(request.getParameter("cm_no"));
@@ -384,7 +384,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		contentService.insertReportCM(reportVO);
@@ -421,14 +421,14 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
 		 int cm_no = Integer.parseInt(request.getParameter("cm_no"));
 		 System.out.println("cm_no : "+cm_no);
 		  
 		 model.addAttribute("comment_view", contentService.selectCommentOne(cm_no));
-		 model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+//		 model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 
 		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
@@ -464,7 +464,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
 //		System.out.println("m_no = " + m_no);
@@ -502,7 +502,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		int t_no = Integer.parseInt(request.getParameter("t_no"));
@@ -523,7 +523,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(reportVO.getR_type_no());
@@ -554,7 +554,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
@@ -581,7 +581,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(reportVO.getR_type_no());
@@ -615,14 +615,13 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no",memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 			
 		String cm_no2 = request.getParameter("cm_no2");
 		System.out.println("cm_no2 : "+cm_no2);
 
 		model.addAttribute("comment_list_t", contentService.selectCommentListT(cm_no2));
-		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
 		// 중고거래 댓글 갯수 세기
 		model.addAttribute("comment_count_t", contentService.selectCommentCountT(cm_no2));
@@ -660,13 +659,13 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(cm_commentVO.getCm_no2());
 		
-		System.out.println("m_no = " + m_no);
-		cm_commentVO.setM_no(m_no);
+//		System.out.println("m_no = " + m_no);
+//		cm_commentVO.setM_no(m_no);
 
 		contentService.insertCommentT(cm_commentVO);
 		contentService.updatePoint(cm_commentVO);
@@ -734,14 +733,13 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
 		String cm_no = request.getParameter("cm_no");
 		System.out.println("cm_no : "+cm_no);
 
 		model.addAttribute("comment_view", contentService.selectCommentT(cm_no));
-		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
 //		int m_no = 9;
@@ -760,11 +758,11 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
-		System.out.println("m_no = " + m_no);
-		cm_commentVO.setM_no(m_no);
+//		System.out.println("m_no = " + m_no);
+//		cm_commentVO.setM_no(m_no);
 		
 		contentService.writeReplyT(cm_commentVO);
 		contentService.updatePoint(cm_commentVO);
@@ -787,7 +785,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(request.getParameter("cr_no"));
@@ -843,7 +841,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		int cr_no = Integer.parseInt(request.getParameter("cr_no"));
@@ -864,7 +862,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(reportVO.getR_type_no());
@@ -894,7 +892,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
@@ -921,7 +919,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(reportVO.getR_type_no());
@@ -956,14 +954,13 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no",memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 				
 		String cm_no2 = request.getParameter("cm_no2");
 		System.out.println("cm_no2 : "+cm_no2);
 
 		model.addAttribute("comment_list_cr", contentService.selectCommentListCR(cm_no2));
-		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
 		// 카페리뷰 댓글 갯수 세기
 		model.addAttribute("comment_count_cr", contentService.selectCommentCountCR(cm_no2));
@@ -1001,13 +998,13 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(cm_commentVO.getCm_no2());
 		
-		System.out.println("m_no = " + m_no);
-		cm_commentVO.setM_no(m_no);
+//		System.out.println("m_no = " + m_no);
+//		cm_commentVO.setM_no(m_no);
 
 		contentService.insertCommentCR(cm_commentVO);
 		contentService.updatePoint(cm_commentVO);
@@ -1075,14 +1072,13 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
 		String cm_no = request.getParameter("cm_no");
 		System.out.println("cm_no : "+cm_no);
 
 		model.addAttribute("comment_view", contentService.selectCommentCR(cm_no));
-		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
 		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
@@ -1102,11 +1098,11 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 		
-		System.out.println("m_no = " + m_no);
-		cm_commentVO.setM_no(m_no);
+//		System.out.println("m_no = " + m_no);
+//		cm_commentVO.setM_no(m_no);
 		
 		contentService.writeReplyCR(cm_commentVO);
 		contentService.updatePoint(cm_commentVO);
@@ -1129,14 +1125,13 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 					
 		String cm_no2 = request.getParameter("cm_no2");
 		System.out.println("cm_no2 : "+cm_no2);
 
 		model.addAttribute("comment_list_or", contentService.selectCommentListOR(cm_no2));
-		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
 		// 보련이가 로그인한 회원 m_no 받는거 해주면 받아오기
 //		int m_no = 9;
@@ -1158,7 +1153,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		int c_no = Integer.parseInt(request.getParameter("c_no"));
@@ -1185,7 +1180,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(cm_commentVO.getCm_no2());
@@ -1258,7 +1253,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		int m_no = Integer.parseInt(request.getParameter("m_no"));
@@ -1285,7 +1280,7 @@ public class HeeJeongController {
 		if(principal != null) {
 			String m_id = principal.getName();
 			memberVO = myPageService.mypage(m_id);
-			model.addAttribute("m_no", memberVO.getM_no());
+			model.addAttribute("memberVO", memberVO);
 		}
 
 		System.out.println(reportVO.getR_type_no());
