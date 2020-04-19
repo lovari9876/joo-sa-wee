@@ -177,7 +177,6 @@
 			<if test="scri.searchType == 'a'.toString()">AND m_id LIKE '%' || #{scri.keyword} || '%'</if>
 			<if test="scri.searchType == 'b'.toString()">AND m_name LIKE '%' || #{scri.keyword} || '%'</if>
 			<if test="scri.searchType == 'c'.toString()">AND m_nick LIKE '%' || #{scri.keyword} || '%'</if>
-			<if test="scri.searchType == 'd'.toString()">AND r_no LIKE '%' || #{scri.keyword} || '%'</if>
 		</if>
 	</sql>
 	

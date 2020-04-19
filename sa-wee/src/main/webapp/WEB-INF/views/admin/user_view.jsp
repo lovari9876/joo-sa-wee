@@ -96,14 +96,7 @@
 										<td class="cell">쪽지 수신여부</td>
 										<td class="cell">${user_view.m_re_message}</td>
 										<td class="cell">등급</td>
-										<td class="cell">
-										<c:choose>
-											<c:when test="${user_view.r_no == '1'}">보드대마왕</c:when>
-											<c:when test="${user_view.r_no == '2'}">보드마스터</c:when>
-											<c:when test="${user_view.r_no == '3'}">보드게이머</c:when>
-											<c:when test="${user_view.r_no == '4'}">표류자</c:when>
-										</c:choose>
-										</td>
+										<td class="cell">${user_view.getR_name(user_view.r_no)}</td>
 									</tr>
 									
 									<tr class="row">
