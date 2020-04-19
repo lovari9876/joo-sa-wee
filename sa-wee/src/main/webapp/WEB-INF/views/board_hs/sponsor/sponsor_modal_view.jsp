@@ -26,82 +26,60 @@
 		src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 	<!-- 발표시 할 일:  -->
-	<!-- 결제 완료 후 pc카톡 화면 보여주면서 결제완료 상태 보여주기 -->
-	
+	<!-- 결제 완료 후 pc카톡 화면 보여주면서 결제완료 상태 보여주기 -->	
 
 </head>
 <body >
 						
-	<!-- Modal HTML embedded directly into document -->
-	<div id="buy-modal" class="modal--trade">
+	<!-- 후원 모달 -->
+	<div id="sponsor-modal" class="modal--trade">
 	
 		<div class="modal--content">						
 			<div>
 				<!-- ajax로 값 불러와서... 값 넣을 때도 ajax사용..  -->
-				<!-- form은 구매취소 시에만 사용 -->		
-				<form action="buyerCancel" method="post" enctype="multipart/form-data"
+				<!-- <form action="sponsorCancel" method="post" enctype="multipart/form-data"
 					  	onsubmit="return confirmCancel();">					
-					<input type = "hidden" class="buy-modal-p_no" name="p_no" />			
+					<input type = "hidden" class="sponsor-modal-p_no" name="p_no" />  -->		
 					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
 					<div class="table--div">
 						<div class="modal--info">
-							결제를 카카오페이로 진행합니다.														
+							후원금 결제를 카카오페이로 진행합니다.<br>
+							결제하실 금액을 선택해주세요.														
 						</div>						
 						<table>
 							<thead>
 								<tr class="table--row">
-									<th class="table--cell">보드게임</th>
-									<th class="table--cell">희망가격</th>
+									<th class="table--cell">결제 금액</th>
 								</tr>
 							</thead>
-							<tbody id="ajax-buy">
+							<tbody id="ajax-sponsor">
 							</tbody>						
 							<tr class="table--row sum--row">
-								<td class="table--cell">합계</td>
-								<td id="ajax-sum-buy" class="table--cell"></td>
+								<td id="ajax-sum-sponsor" class="table--cell">
+									<!-- 1,000원 ~ 10,000원 -->
+									<c:forEach var="i" begin="1" end="10">
+										<input type="checkbox" id="amount${i}000" name="spAmount" value="${i}000">
+									</c:forEach>
+									<!-- 20,000원 ~ 100,000원 -->
+									<c:forEach var="j" begin="2" end="10">
+										<input type="checkbox" id="amount${j}0000" name="spAmount" value="${j}0000">
+									</c:forEach>																			
+								</td>
 							</tr> <!-- 결국 마이페이지 내의 모달은 다 한 페이지에 있기에 -->
 								  <!-- 절대 모달끼리 id가 중복되면 안된다.. 안나와.. -->
 							
-														
-						<%--  	<c:forEach items="${ptgList}" var="ptgItem" varStatus="status">
-								<tr class = "table--row">
-									<td class = "table--cell"> <!-- tg => tg_no -->
-										${ptgItem['TG_NAME']}
-									</td>
-									<td class="table--cell">${ptgItem['TG_PRICE']}원</td>
-								</tr>
-							</c:forEach>	--%>					
 						</table>
 						<br/>				
+						<!-- 카카오페이 이미지... -->
 						<img alt="" src="/images/cassie/pay/payment_icon_yellow_small.png" 
-							 onClick="payNow()" style="margin-right:10px;"/>						
-						<!-- <button class="write-btn lavender-btn modal-ok-btn" type="button"
-								onClick="payNow()">결제</button>	 -->
-						<!-- form 제출: 거래취소 -->
-						<button class="write-btn lavender-btn modal-ok-btn" type="submit">구매취소</button>							
-						<!-- modal close -->
-						<span class="modal--close" onClick="closeBuyModal()">close</span>
+							 onClick="payNow()" style="margin-right:10px;"/>
+						<span class="modal--close" onClick="closeSponsorModal()">close</span>
 						<br/>
 					</div>
-				</form>							
+				<!-- </form> -->							
 			</div>
 		</div>		
 	</div>
-
-	<script type="text/javascript">
-	
-		function confirmCancel() {
-			var rtn = confirm('구매를 취소하시겠습니까?');				
-			
-			if (rtn) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-	</script>
-	
 
 </body>
 </html>

@@ -427,17 +427,14 @@
         </div> -->
 		</div>
 	</footer>
-
-
-
-
-
-
-
-
-
-
 	<!-- Footer section end -->
+	
+	
+	<!-- ========== 후원 모달 ================================================ -->
+	
+	<!-- 후원 모달 include start -->
+	<%@ include file="/WEB-INF/views/board_hs/sponsor/sponsor_modal_view.jsp"%>
+	<!-- 후원 모달 include end -->
 
 
 	<!--====== Javascripts & Jquery ======-->
