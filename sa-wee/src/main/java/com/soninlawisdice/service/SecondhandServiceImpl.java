@@ -183,6 +183,12 @@ public class SecondhandServiceImpl implements SecondhandService {
 		return secondhandMapper.selectPTGList(p_no);
 	}
 	
+	// 구매자가 거래취소 payment에 update
+	@Override
+	public void updatePaymentBuyerCancel(PaymentVO paymentVO) {
+		secondhandMapper.updatePaymentBuyerCancel(paymentVO);
+	}
+	
 	// buy_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃
 	@Override
 	public void updatePaymentSuccess(int p_no) {
@@ -206,5 +212,6 @@ public class SecondhandServiceImpl implements SecondhandService {
 	public void updatePaymentBuyerConfirm(PaymentVO paymentVO) {
 		secondhandMapper.updatePaymentBuyerConfirm(paymentVO);
 	}
+
 	
 }

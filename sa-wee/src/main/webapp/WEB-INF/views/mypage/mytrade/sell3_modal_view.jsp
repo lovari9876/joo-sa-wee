@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>SON-IN-LAW IS DISE</title>
+	<title>내 사위는 주사위</title>
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
@@ -80,7 +80,7 @@
 						</table>
 						<br/>						
 						<!-- form 제출 -->
-						<button class="write-btn lavender-btn" type="submit"
+						<button class="write-btn lavender-btn modal-ok-btn" type="submit"
 								onClick="alert('수정합니다.');">수정</button>
 						<!-- modal close -->
 						<span class="modal--close" onClick="closeSellModal()">close</span>						

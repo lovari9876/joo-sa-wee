@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>SON-IN-RAW IS DICE - my page</title>
+<title>내 사위는 주사위</title>
 
 <!-- 파피콘 -->
 <link rel="icon" type="image/png" href="/images/share/wolf_logo.ico" />
@@ -400,6 +400,14 @@
 	<%@ include file="/WEB-INF/views/mypage/mytrade/sell3_modal_view.jsp"%>
 	<!-- 내 판매-판매자 [3. 배송중: 운송장 수정] include end -->
 	
+	<!-- 내 판매-판매자 [4. 배송완료=> 상세정보+운송장] include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/sell4_modal_view.jsp"%>
+	<!-- 내 판매-판매자 [4. 배송완료=> 상세정보+운송장] include end -->
+	
+	<!-- 내 판매-판매자 [7. 거래취소=> 상세정보] include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/sell7_modal_view.jsp"%>
+	<!-- 내 판매-판매자 [7. 거래취소=> 상세정보] include end -->
+	
 	
 <!-- ========== 구매자 모달 ================================================ -->
 	
@@ -415,14 +423,21 @@
 	<%@ include file="/WEB-INF/views/mypage/mytrade/buy3_modal_view.jsp"%>
 	<!-- 내 구매-구매자 [3. 수취확인] include end -->
 	
+	<!-- 내 구매-구매자 [4. 배송완료=> 상세정보] include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/buy4_modal_view.jsp"%>
+	<!-- 내 구매-구매자 [4. 배송완료=> 상세정보] include end -->
+	
+	<!-- 내 구매-구매자 [7. 거래취소=> 상세정보] include start -->
+	<%@ include file="/WEB-INF/views/mypage/mytrade/buy7_modal_view.jsp"%>
+	<!-- 내 구매-구매자 [7. 거래취소=> 상세정보] include end -->
+	
 <!-- ====== js ===================================================================== -->
 	<!-- mytrade_buy_modal.js => jstl과 el 못써서...-->
 	<script type="text/javascript">
 		/*
 		 * mytrade_modal
-		 * 마이페이지- 내 거래- 내 구매에서 결제 모달 띄우게 하는 js
-		 */
-	
+		 * 마이페이지- 내 거래- 내 구매에서 구매 모달 띄우게 하는 js
+		 */	
 
 		// Get the modal
 		var modal = document.getElementById('buy-modal');
@@ -438,16 +453,7 @@
 		
 		var p_courier = "";
 		var p_tracking = "";
-	
-		// Get the button that opens the modal
-		// var btns = document.getElementsByClassName("price-btn");
-		// var btn = btns['${ex}']	
-	
-		// Get the <span> element that closes the modal
-		// var span = document.getElementById("modal--close");                                          
-	
-		// When the user clicks on the button, open the modal 
-		//btn.onclick = function() {
+
 	
 		function buyModal(buyBtn) {			
 
@@ -494,7 +500,41 @@
 			    // 택배사, 운송장 가져와			    
 			 	$(".buy3-courier").empty().text(p_courier);
 			 	$(".buy3-tracking").empty().text(p_tracking);
+			
+			// 4. 배송완료=> 상세정보 || 5. 거래완료=> 상세정보
+			}else if(buyBtnName == 4 || buyBtnName == 5) {
+				
+				$("#buy4-modal").css("display", "block");	    
+			    $("#buy4-modal").css('z-index', 200);
+			   
+			    // 게임, 가격 정보 부르기
+			    pno = $(buyBtn).val();	
+			    buyAjax(pno);
+			    
+			    // 택배사, 운송장 가져와			    
+			 	$(".buy4-courier").empty().text(p_courier);
+			 	$(".buy4-tracking").empty().text(p_tracking);
+			 	
+			 	// modal--info에다 값 넣기..
+			 	if(buyBtnName == 4) {
+			 		$(".buy4_5_info_up").empty().html("배송이 완료되었습니다.<br/>상세정보는 아래에서 확인하실 수 있습니다.");
+			 		$(".buy4_5_info_down").empty().html("수취 확인하신 운송장입니다.");
+			 	}else if(buyBtnName == 5) {
+			 		$(".buy4_5_info_up").empty().html("거래가 완료되었습니다.<br/>상세정보는 아래에서 확인하실 수 있습니다.");
+			 		$(".buy4_5_info_down").empty().html("운송장 정보입니다.");
+				}
+			 	
+			// 7. 거래취소=> 상세정보
+			}else if(buyBtnName == 7) {
+				
+				$("#buy7-modal").css("display", "block");	    
+			    $("#buy7-modal").css('z-index', 200);
+			   
+			    // 게임, 가격 정보 부르기
+			    pno = $(buyBtn).val();	
+			    buyAjax(pno);
 			}
+			
 		}
 	
 		// 거래확인 버튼과 같은 라인의 p_no 받아서 controller로 넘긴 뒤
@@ -541,6 +581,14 @@
 						// 3. 수취확인 단계	
 						}else if(buyBtnName == 3) {
 							$("#ajax-buy3").empty().append(tag);
+
+						// 4. 배송완료=> 상세정보 || 5. 거래완료=> 상세정보
+						}else if(buyBtnName == 4 || buyBtnName == 5) {
+							$("#ajax-buy4").empty().append(tag);
+
+						// 7. 거래취소=> 상세정보
+						}else if(buyBtnName == 7) {
+							$("#ajax-buy7").empty().append(tag);
 						}							
 						
 					});
@@ -549,6 +597,9 @@
 					// 1. 결제 단계
 					if(buyBtnName == 1) {
 						$("#ajax-sum-buy").empty().append(sum+'원');
+						
+						// input value 할당: 거래취소 위해...
+						$(".buy-modal-p_no").val(pno);
 						
 					// 2. 배송 준비 단계	
 					}else if(buyBtnName == 2) {
@@ -560,9 +611,19 @@
 						
 						// input value 할당
 						$(".buy3-modal-p_no").val(pno);
-					}
-										
-					$("#ajax-sum-buy").empty().append(sum+'원');
+				
+					// 4. 배송완료=> 상세정보 || 5. 거래완료=> 상세정보
+					}else if(buyBtnName == 4 || buyBtnName == 5) {
+						$("#ajax-sum-buy4").empty().append(sum+'원');
+						
+						// input value 할당
+						$(".buy3-modal-p_no").val(pno);
+
+					// 7. 거래취소=> 상세정보
+					}else if(buyBtnName == 7) {
+						$("#ajax-sum-buy7").empty().append(sum+'원');
+					}										
+					
 					console.log("합계 나와:"+sum);
 					
 					// 상품명 만들기// 성공
@@ -647,18 +708,9 @@
 			                	 // 결제 모달 닫기
 								$("#buy-modal").css("display", "none");
 			                	 
-			                    alert("결제 완료되었습니다. 마이페이지에서 확인하실 수 있습니다.");	
+			                    alert("결제 완료되었습니다. 마이페이지에서 확인하실 수 있습니다.");				                   
 			                    
-			                    // 글씨 바꾸지마! 걍 새로고침해
-			                    // 버튼 글씨 바꾸기..
-			                    /* if($(".pay-btn").val()==pno) {
-			                    	alert("글씨 바꾼다");
-			                    	$('선택자').remove();
-			                    
-									$(".pay-btn").empty().text("<c:out value='결제완료'></c:out>");
-			                    } */
-			                    
-			                    //  걍 성공하면 페이지 이동해!
+			                    // 성공하면 페이지 이동해!
 			                    location.reload(); // 새로고침 후
 			                    location.href="/mypage#trade"; // 내 거래 고
 			                    
@@ -708,7 +760,9 @@
 		function closeBuyModal() {
 			$("#buy-modal").css("display", "none");	
 			$("#buy2-modal").css("display", "none");	
-			$("#buy3-modal").css("display", "none");	
+			$("#buy3-modal").css("display", "none");
+			$("#buy4-modal").css("display", "none");
+			$("#buy7-modal").css("display", "none");
 		}
 	</script>	
 

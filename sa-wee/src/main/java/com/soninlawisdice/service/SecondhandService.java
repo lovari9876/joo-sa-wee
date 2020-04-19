@@ -50,6 +50,9 @@ public interface SecondhandService {
 
 	// 내 거래: 거래 하나의 ptgList(게임, 가격)
 	public ArrayList<HashMap<String, Object>> selectPTGList(int pno);
+	
+	// 구매자가 거래취소 payment에 update
+	public void updatePaymentBuyerCancel(PaymentVO paymentVO);
 
 	// buy_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃
 	public void updatePaymentSuccess(int p_no);
@@ -62,4 +65,6 @@ public interface SecondhandService {
 
 	// 구매자가 수취확인 payment에 update
 	public void updatePaymentBuyerConfirm(PaymentVO paymentVO);
+
+
 }

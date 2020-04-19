@@ -6,6 +6,24 @@
  *
  * ------------------------------------------------------------------- */
  
+ /* 정선동강 REGULAR */
+ @font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') 
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* 정선동강 BOLD */
+@font-face {
+	font-family: 'JSDongkang-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;	
+}
+
 /* 리스트 뷰와 masonry 뷰를 switch하기 위한 버튼(뷰 버튼)  */
 button#view-btn {
 	border-radius: 12px;
@@ -81,6 +99,18 @@ button#view-btn:hover {
     padding: 0 5px;
     font-weight: 300;
     color: #400186;
+}
+
+/* 마이페이지-> 모달 왼쪽 하단의 버튼 */
+button.write-btn.lavender-btn.modal-ok-btn  {
+	font-family: 'JSDongkang-Bold';
+	height: auto;
+	line-height: 1;
+	padding: 8px;
+	font-weight: 700;
+	font-size: 13px;
+	border-radius: 9px;
+	margin-right: 10px;
 }
 
 

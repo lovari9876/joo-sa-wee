@@ -564,6 +564,19 @@
 			PTG.P_NO = #{p_no}			
 	
 	</select>
+		
+	
+	<!-- 거래취소: buy_modal에서 form 전송하고 update -->
+	<update id = "updatePaymentBuyerCancel">
+	
+		UPDATE 
+			PAYMENT 
+		SET 
+			P_STATUS = 7 <!-- 7: 거래취소 -->
+		WHERE 
+			P_NO = #{paymentVO.p_no} 			
+
+	</update>
 	
 	
 	<!-- buy_modal에서 결제 버튼 눌러서 결제 완료 후에 payment 업뎃 -->
