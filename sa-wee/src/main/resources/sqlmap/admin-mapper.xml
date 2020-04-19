@@ -669,9 +669,6 @@
 	</update>
 	
 	
-	
-	
-	
 	<!-- =============================================== 회원 탈퇴처리 ====================================================== -->
 	
 	<update id="outMember" parameterType="com.soninlawisdice.vo.MemberVO" >
@@ -1003,6 +1000,67 @@
 	</select>
 	
 	
+	
+	
+	
+
+	<!-- =============================================== payment 중고거래 내역  List ====================================================== -->
+	
+	<select id="tradeList" resultType="java.util.HashMap" >
+	
+		SELECT * FROM
+			(
+				SELECT p.*, t.t_title, m.m_id AS m_sid, m2.m_id AS m_bid,
+				ROW_NUMBER() OVER(ORDER BY p.p_no DESC) AS RNUM
+				
+				FROM payment p
+				
+				LEFT JOIN trade t
+				ON p.t_no = t.t_no
+				
+				LEFT JOIN member m
+				ON p.m_sno = m.m_no
+				
+				LEFT JOIN member m2
+				ON p.m_bno = m2.m_no
+				
+				WHERE p.p_no > 0
+				<include refid="trade_search"></include>	
+			)P
+		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}	
+			
+		ORDER BY p.p_no DESC
+	
+	</select>
+	
+	
+	
+	<select id="tradeListCount" resultType="int">
+		SELECT COUNT(p.p_no)
+			
+		FROM payment p
+		
+		LEFT JOIN trade t
+		ON p.t_no = t.t_no
+		
+		LEFT JOIN member m
+		ON p.m_sno = m.m_no
+		
+		LEFT JOIN member m2
+		ON p.m_bno = m2.m_no
+		
+		WHERE p.p_no > 0
+		 <include refid="trade_search"></include>	
+	</select>
+	
+	
+	
+	<sql id="trade_search">
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 'a'.toString()">AND m.m_id LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'b'.toString()">AND m2.m_id LIKE '%' || #{scri.keyword} || '%'</if>
+		</if>
+	</sql>
 	
 	
 	

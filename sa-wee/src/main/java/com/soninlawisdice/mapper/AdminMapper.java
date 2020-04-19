@@ -65,6 +65,8 @@ public interface AdminMapper {
 	public List<FaqVO> faqList(@Param("scri")SearchCriteria scri, @Param("s_no") int s_no);
 	public int faq_listCount(@Param("scri")SearchCriteria scri, @Param("s_no") int s_no);
 
+	public ArrayList<HashMap<String, Object>> tradeList(@Param("scri")SearchCriteria scri);
+	public int tradeListCount(@Param("scri")SearchCriteria scri);
 	
 	
 	
