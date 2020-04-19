@@ -125,7 +125,8 @@
 							</div>
 
 							<!-- 작성일자 -->
-							<div class="meta2">작성일 <jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+							<div class="meta2">작성일 
+							<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
 							 <fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
 								<fmt:formatDate value="${cm_comment_list_or['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
 								<c:choose>

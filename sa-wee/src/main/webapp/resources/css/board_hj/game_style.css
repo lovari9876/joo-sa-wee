@@ -9,18 +9,35 @@
 	src: url("Sam3KRFont.ttf") format('truetype'); 
 }
 
+ /* 정선동강 REGULAR */
+ @font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 정선동강 BOLD */
+@font-face {
+	font-family: 'JSDongkang-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;	
+}
+
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
 html, body {
 	height: 100%;
-	font-family: DungGeunMo !important;
+	font-family: JSDongkang-Regular !important;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: DungGeunMo;
+	font-family: JSDongkang-Bold;
 	margin: 0;
 	color: #111111;
 	font-weight: 500;
@@ -51,7 +68,7 @@ h6 {
 }
 
 p {
-	font-size: 15px;
+	font-size: 12px;
 	color: #585858;
 	line-height: 1.6;
 	font-weight: 500;
@@ -103,13 +120,13 @@ ul, ol {
   Helper CSS
 -----------------------*/
 .section-title h2 {
-	font: dunggeunmo;
-	font-size: 30px;
+	font: JSDongkang-Regular;
+	font-size: 12.5px;
 	text-transform: uppercase;
 	font-weight: 700;
 	/* font-style: italic; */
 	margin-top: 10px;
-	font-size: 30px;
+	font-size: 12.5px;
 }
 
 .set-bg {
@@ -137,7 +154,7 @@ ul, ol {
 .site-btn {
 	display: inline-block;
 	border: none;
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 700;
 	/* font-style: italic; */
 	min-width: 186px;
@@ -268,7 +285,7 @@ ul, ol {
 	width: 44px;
 	height: 44px;
 	border-radius: 50%;
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: 500;
 	border: 2px solid transparent;
 	color: #fff;
@@ -307,7 +324,7 @@ ul, ol {
 }
 
 .hero-item h2 {
-	font-size: 160px;
+	font-size: 12.5px;
 	color: #fff;
 	font-weight: 500;
 	line-height: 1;
@@ -317,7 +334,7 @@ ul, ol {
 }
 
 .hero-item p {
-	font-size: 24px;
+	font-size: 12px;
 	color: rgba(255, 255, 255, 0.4);
 	font-weight: 500;
 	opacity: 0.39;
@@ -380,7 +397,7 @@ ul, ol {
 }
 
 .text-box .top-meta {
-	font-size: 18px;
+	font-size: 12px;
 	font-weight: 500;
 	margin-bottom: 20px;
 }
@@ -395,14 +412,14 @@ ul, ol {
 }
 
 .text-box p {
-	font-size: 15px;
+	font-size: 12px;
 	font-weight: 500;
 	color: #68647d;
 	margin-bottom: 35px;
 }
 
 .text-box .read-more {
-	font-size: 15px;
+	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: 700;
 	font-style: italic;
@@ -448,7 +465,7 @@ ul, ol {
 	display: block;
 	color: #fff;
 	padding: 16px 36px;
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: 700;
 	background: #6f2b95;
 	line-height: 1.1;
@@ -536,7 +553,7 @@ ul, ol {
 }
 
 .trending-widget .tw-text h5 {
-	font-size: 18px;
+	font-size: 12.5px;
 	color: #fff;
 	line-height: 1.5;
 }
@@ -559,7 +576,7 @@ ul, ol {
 .categories-widget ul li a {
 	display: inline-block;
 	position: relative;
-	font-size: 16px;
+	font-size: 12px;
 	color: #a4a2b1;
 	font-weight: 500;
 	margin-bottom: 15px;
@@ -599,7 +616,7 @@ ul, ol {
 	top: 0;
 	color: #b01ba5;
 	font-weight: 700;
-	font-size: 14px;
+	font-size: 12px;
 	font-style: italic;
 	cursor: pointer;
 	background: none;
@@ -625,7 +642,7 @@ ul, ol {
 
 .latest-comments .lc-item .tw-text {
 	padding-top: 10px;
-	font-size: 16px;
+	font-size: 12px;
 	color: #fff;
 	font-weight: 500;
 }
@@ -703,7 +720,7 @@ ul, ol {
 }
 
 .video-text p {
-	font-size: 18px;
+	font-size: 12px;
 	color: #a3a1b3;
 	font-weight: 500;
 	margin-bottom: 0;
@@ -761,7 +778,7 @@ ul, ol {
 }
 
 .featured-box .text-box p {
-	font-size: 16px;
+	font-size: 12px;
 }
 
 .featured-box .text-box .read-more {
@@ -806,7 +823,7 @@ ul, ol {
 }
 
 .newsletter-form input {
-	font-size: 14px;
+	font-size: 12px;
 	font-weight: 700;
 	font-style: italic;
 	color: #fff;
@@ -896,7 +913,7 @@ ul, ol {
 	height: 355px;
 	padding-top: 240px;
 	background-position: center;
-	font-family: Sam3KRFont !important;
+	font-family: JSDongkang-Bold !important;
 }
 
 .page-info h3 {
@@ -975,7 +992,7 @@ ul, ol {
 }
 
 .game-filter li a {
-	font-size: 15px;
+	font-size: 12px;
 	font-weight: 700;
 	color: #fff;
 	display: block;
@@ -999,7 +1016,7 @@ ul, ol {
 
 /* #873f82 */
 .game-item .read-more {
-	font-size: 15px;
+	font-size: 12px;
 	text-transform: uppercase;
 	font-weight: 700;
 	font-style: italic;
@@ -1022,7 +1039,7 @@ ul, ol {
 	width: 38px;
 	height: 44px;
 	border-radius: 50%;
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: 500;
 	border: 2px solid transparent;
 	color: #fff;
@@ -1093,7 +1110,7 @@ ul, ol {
 /* 게임이미지 크기 조절 */
 .g_photo {
 	width: 50%;
-	margin-bottom: 330px;
+	margin-bottom: 50px;
 }
 
 /* 게임 정보 크기 조절 */
@@ -1118,7 +1135,7 @@ ul, ol {
 /* ------*/
 
 .gameSingle-content .gs-meta {
-	font-size: 18px;
+	font-size: 12px;
 	color: #68647d;
 	font-weight: 500;
 }
@@ -1129,9 +1146,10 @@ ul, ol {
 
 /* 게임 제목 */
 .gameSingle-content .gs-title {
-	font-size: 35px;
+	font-size: 1.5rem;
 	color: #1e1e1e;
 	margin-left: 50px;
+	font-weight: bold;
 }
 
 .gameSingle-content h4 {
@@ -1140,7 +1158,7 @@ ul, ol {
 }
 
 .gameSingle-content p {
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: 500;
 	color: #68647d;
 	line-height: 1.8;
@@ -1151,7 +1169,7 @@ ul, ol {
 	background: #c6c0e4;
 	padding: 55px 0 30px;
 	margin-bottom: 90px;
-	height: 700px;
+	box-sizing: boarder-box;
 }
 
 .rating-widget ul {
@@ -1162,7 +1180,7 @@ ul, ol {
 
 .rating-widget ul li {
 	display: block;
-	font-size: 16px;
+	font-size: 12px;
 	color: #946390;
 	font-weight: 500;
 	margin-bottom: 10px;
@@ -1175,7 +1193,7 @@ ul, ol {
 
 .rating-widget h5 {
 	text-align: right;
-	font-size: 36px;
+	font-size: 12.5px;
 	color: #fff;
 	font-weight: 900;
 	padding-right: 38px;
@@ -1183,7 +1201,7 @@ ul, ol {
 
 .rating-widget h5 i {
 	font-weight: 500;
-	font-size: 16px;
+	font-size: 12px;
 	font-style: italic;
 	color: #65607b;
 	text-transform: uppercase;
@@ -1204,7 +1222,7 @@ ul, ol {
 }
 
 .testimonials-widget .testim-text p {
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: 500;
 	color: #68647d;
 	line-height: 1.8;
@@ -1249,7 +1267,7 @@ ul, ol {
 }
 
 .game-author-info p {
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: 500;
 	color: #68647d;
 	line-height: 1.8;
@@ -1358,7 +1376,7 @@ ul, ol {
 
 .review-content .rating h5 {
 	text-align: right;
-	font-size: 36px;
+	font-size: 12.5px;
 	color: #fff;
 	font-weight: 900;
 	padding-right: 38px;
@@ -1366,7 +1384,7 @@ ul, ol {
 
 .review-content .rating h5 i {
 	font-weight: 500;
-	font-size: 16px;
+	font-size: 12px;
 	font-style: italic;
 	color: #65607b;
 	text-transform: uppercase;
@@ -1425,7 +1443,7 @@ ul, ol {
 	padding-bottom: 20px;
 	margin-bottom: 30px;
 	font-weight: 500;
-	font-size: 16px;
+	font-size: 12px;
 	font-style: italic;
 	color: #fff;
 	line-height: 1;
@@ -1464,7 +1482,7 @@ ul, ol {
 
 .cont-info .ci-text {
 	overflow: hidden;
-	font-size: 16px;
+	font-size: 12px;
 	font-weight: 500;
 }
 
@@ -1633,7 +1651,7 @@ ul, ol {
 		width: 250px;
 	}
 	.hero-item p {
-		font-size: 22px;
+		font-size: 12px;
 	}
 	.hero-slider .owl-nav .owl-next {
 		right: 30px;
@@ -1671,7 +1689,7 @@ ul, ol {
 		font-size: 110px;
 	}
 	.hero-item p {
-		font-size: 16px;
+		font-size: 12px;
 		padding: 0 30px;
 	}
 	.hero-slider .owl-nav .owl-next {
@@ -1712,7 +1730,7 @@ ul, ol {
 		margin-bottom: 5px;
 	}
 	.gameSingle-content .gs-title {
-		font-size: 40px;
+		font-size: 12.5px;
 	}
 	.review-pic img {
 		min-width: 100%;
@@ -1747,7 +1765,7 @@ ul, ol {
 		font-size: 70px;
 	}
 	.hero-item p {
-		font-size: 18px;
+		font-size: 12px;
 	}
 	.footer-right-pic, .footer-left-pic {
 		display: none;
@@ -1811,7 +1829,7 @@ ul, ol {
 		margin-bottom: 5px;
 	}
 	.gameSingle-content .gs-title {
-		font-size: 40px;
+		font-size: 12.5px;
 	}
 	.review-pic img {
 		min-width: 100%;
@@ -1837,7 +1855,7 @@ ul, ol {
 		margin-bottom: 20px;
 	}
 	.hero-item p {
-		font-size: 15px;
+		font-size: 12px;
 	}
 	.video-text h2 {
 		font-size: 30px;

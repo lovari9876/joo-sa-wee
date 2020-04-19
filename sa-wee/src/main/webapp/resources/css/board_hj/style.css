@@ -9,16 +9,33 @@
 	src: url("Sam3KRFont.ttf") format('truetype'); 
 }
 
+ /* 정선동강 REGULAR */
+ @font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 정선동강 BOLD */
+@font-face {
+	font-family: 'JSDongkang-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;	
+}
+
 /* 기본 */
 html, body {
 	height: 100%;
-	font-family: DungGeunMo !important;
+	font-family: JSDongkang-Regular !important;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: DungGeunMo;
+	font-family: JSDongkang-Bold;
 	margin: 0;
 	color: #111111;
 	font-weight: 500;
@@ -55,7 +72,7 @@ a:hover {
         left: auto; } }
     .site-navbar .site-logo a {
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 12px;
       letter-spacing: .2rem;
       text-transform: uppercase; }
       .site-navbar .site-logo a:hover {
@@ -70,7 +87,7 @@ a:hover {
   .site-navbar .site-menu-toggle {
     color: #fff;
     line-height: 0;
-    font-size: 2.5rem;
+    font-size: 12px;
     position: relative; }
     @media (max-width: 767.98px) {
       .site-navbar .site-menu-toggle {
@@ -109,13 +126,13 @@ a:hover {
           .site-navbar .site-navigation .site-menu .has-children > a:before {
             position: absolute;
             content: "\e313";
-            font-size: 16px;
+            font-size: 12px;
             top: 50%;
             right: 0;
             -webkit-transform: translateY(-50%);
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
-            font-family: 'DungGeunMo'; }
+            font-family: 'JSDongkang-Regular'; }
         .site-navbar .site-navigation .site-menu .has-children .dropdown {
           visibility: hidden;
           opacity: 0;
@@ -246,7 +263,7 @@ a:hover {
       float: right;
       margin-top: 8px; }
       .site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close span {
-        font-size: 30px;
+        font-size: 12px;
         display: inline-block;
         padding-left: 10px;
         padding-right: 0px;
@@ -308,7 +325,7 @@ a:hover {
       .site-mobile-menu .site-nav-wrap .arrow-collapse:before {
         font-size: 12px;
         z-index: 20;
-        font-family: "DungGeunMo";
+        font-family: "JSDongkang-Regular";
         content: "\f078";
         position: absolute;
         top: 50%;
@@ -330,7 +347,7 @@ a:hover {
       width: 100%; }
       .site-mobile-menu .site-nav-wrap > li > a {
         padding-left: 20px;
-        font-size: 20px; }
+        font-size: 12px; }
       .site-mobile-menu .site-nav-wrap > li > ul {
         padding: 0;
         margin: 0;
@@ -339,14 +356,14 @@ a:hover {
           display: block; }
           .site-mobile-menu .site-nav-wrap > li > ul > li > a {
             padding-left: 40px;
-            font-size: 16px; }
+            font-size: 12px; }
           .site-mobile-menu .site-nav-wrap > li > ul > li > ul {
             padding: 0;
             margin: 0; }
             .site-mobile-menu .site-nav-wrap > li > ul > li > ul > li {
               display: block; }
               .site-mobile-menu .site-nav-wrap > li > ul > li > ul > li > a {
-                font-size: 16px;
+                font-size: 12px;
                 padding-left: 60px; }
     .site-mobile-menu .site-nav-wrap[data-class="social"] {
       float: left;
@@ -438,7 +455,7 @@ a:hover {
 
 body {
   font-weight: 400;
-  font-size: 1rem;
+  font-size: 12px;
   line-height: 1.7;
   position: relative; }
   body:after {
@@ -485,23 +502,23 @@ h1, h2, h3, h4 {
     z-index: 2;
     position: relative; }
   .home-section h1 {
-    font-size: 3rem;
+    font-size: 12.5px;
     color: #fff;
     font-weight: 200; }
     @media (max-width: 991.98px) {
       .home-section h1 {
-        font-size: 2rem; } }
+        font-size: 12.5px; } }
   .home-section p {
-    font-size: 1.2rem;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.6); }
   .home-section .search-jobs-form .form-control, .home-section .search-jobs-form .btn-lg {
     height: calc(2em + 1rem + 2px);
     padding: 0.5rem 1rem;
-    font-size: 1rem;
+    font-size: 12px;
     line-height: 1.5;
     border-radius: 0.3rem; }
   .home-section .search-jobs-form .btn-search > span {
-    font-size: 1rem;
+    font-size: 12px;
     position: relative; }
   .home-section .search-jobs-form .dropdown-menu {
     position: relative;
@@ -513,13 +530,13 @@ h1, h2, h3, h4 {
     display: inline-block;
     position: absolute;
     content: "\e313";
-    font-size: 16px;
+    font-size: 12px;
     top: 50%;
     right: 10px;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    font-family: 'DungGeunMo'; }
+    font-family: 'JSDongkang-Regular'; }
   .home-section .search-jobs-form .filter-option.dropup {
     border: 1px solid red !important; }
     .home-section .search-jobs-form .filter-option.dropup:after {
@@ -529,13 +546,13 @@ h1, h2, h3, h4 {
     display: inline-block;
     position: absolute;
     content: "\e313";
-    font-size: 16px;
+    font-size: 12px;
     top: 50%;
     right: 10px;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
-    font-family: 'DungGeunMo';
+    font-family: 'JSDongkang-Regular';
     -webkit-transform: rotate(180deg) translateY(50%);
     -ms-transform: rotate(180deg) translateY(50%);
     transform: rotate(180deg) translateY(50%); }
@@ -588,7 +605,7 @@ h1, h2, h3, h4 {
     .home-section .scroll-button > span {
       color: #000;
       position: absolute;
-      font-size: 2rem;
+      font-size: 12px;
       top: 50%;
       left: 50%;
       -webkit-transform: translate(-50%, -50%);
@@ -636,13 +653,13 @@ h1, h2, h3, h4 {
   display: inline-block;
   position: absolute;
   content: "\e313";
-  font-size: 16px;
+  font-size: 12px;
   top: 50%;
   right: 10px;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  font-family: 'DungGeunMo'; }
+  font-family: 'JSDongkang-Regular'; }
 
 .form-group .filter-option.dropup {
   border: 1px solid red !important; }
@@ -654,13 +671,13 @@ h1, h2, h3, h4 {
   display: inline-block;
   position: absolute;
   content: "\e313";
-  font-size: 16px;
+  font-size: 12px;
   top: 50%;
   right: 10px;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  font-family: 'DungGeunMo';
+  font-family: 'JSDongkang-Regular';
   -webkit-transform: rotate(180deg) translateY(50%);
   -ms-transform: rotate(180deg) translateY(50%);
   transform: rotate(180deg) translateY(50%); }
@@ -727,15 +744,15 @@ h1, h2, h3, h4 {
       max-width: 90px; } }
 
 .testimony-full blockquote {
-  font-size: 2rem;
+  font-size: 12px;
   font-style: italic;
   font-weight: 300;
   line-height: 1.7; }
   @media (max-width: 767.98px) {
     .testimony-full blockquote {
-      font-size: 1.4rem; } }
+      font-size: 12px; } }
   .testimony-full blockquote cite {
-    font-size: 1.2rem; }
+    font-size: 12px; }
 
 /* Job Listings */
 .job-listings {
@@ -780,7 +797,7 @@ h1, h2, h3, h4 {
           -ms-flex: 0 0 100%;
           flex: 0 0 100%; } }
   .job-listings .job-listing-position h2 {
-    font-size: 1.2rem;
+    font-size: 12px;
     margin-bottom: 0; }
   .job-listings .job-listing-position strong {
     color: #b3b3b3; }
@@ -863,11 +880,11 @@ h1, h2, h3, h4 {
   color: #d5d5d5 !important; }
 
 .section-title {
-  font-size: 2rem;
+  font-size: 12.5px;
   font-weight: 700; }
 
 .section-title-sub {
-  font-size: 1rem;
+  font-size: 12px;
   color: #ced4da; }
 
 .section-hero, .section-hero > .container > .row {
@@ -882,7 +899,7 @@ h1, h2, h3, h4 {
 
 /* 보드 이야기 같이 커뮤니티 이름 달리 폰트 적용 한거 */
 #community {
-	font-family: Sam3KRFont !important;
+	font-family: JSDongkang-Bold !important;
 	display: inline-block;
 }
   
@@ -943,7 +960,7 @@ h1, h2, h3, h4 {
     transform: translate(-50%, -50%); }
 
 .popular-keywords h3 {
-  font-size: 1.2rem;
+  font-size: 12.5px;
   display: inline-block;
   color: #fff;
   margin-right: .5rem; }
@@ -959,7 +976,7 @@ h1, h2, h3, h4 {
       border: 2px solid #fff;
       color: #fff;
       padding: .2rem .7rem;
-      font-size: .7rem;
+      font-size: 12px;
       font-weight: 700;
       text-decoration: none; }
       .popular-keywords .keywords li a:hover {
@@ -1316,7 +1333,7 @@ dl, ol, ul {
 /* 추천하기 폰트 */
 
 .test_item .text_items {
-	font-size: 0.7rem;
+	font-size: 12px;
 }
 
 /* 댓글-수정, 삭제, 신고 => tooltip */
@@ -1476,13 +1493,13 @@ input[type=button]:first-child {
 .block__19738 {
   text-align: center; }
   .block__19738 [class^="icon-"], .block__19738 [class^="flaticon-"] {
-    font-size: 2.5rem; }
+    font-size: 12px; }
   .block__19738 .number {
-    font-size: 3.2rem;
+    font-size: 12px;
     font-weight: 900;
     color: #fff; }
   .block__19738 .caption {
-    font-size: 1rem;
+    font-size: 12px;
     display: block;
     color: rgba(255, 255, 255, 0.7); }
 
@@ -1521,7 +1538,7 @@ input[type=button]:first-child {
       height: 90px;
       border: 1px solid rgba(137, 186, 22, 0.2); }
   .block__62849 .block__16443 [class^="icon-"], .block__62849 .block__16443 [class^="flaticon-"] {
-    font-size: 1.6rem;
+    font-size: 12px;
     color: #fff;
     position: absolute;
     top: 50%;
@@ -1533,7 +1550,7 @@ input[type=button]:first-child {
     -o-transition: 0.3s all cubic-bezier(0.66, 0.2, 0.48, 0.9);
     transition: 0.3s all cubic-bezier(0.66, 0.2, 0.48, 0.9); }
   .block__62849 .block__16443 h3 {
-    font-size: 1.2rem;
+    font-size: 12px;
     margin-bottom: 1.2rem; }
   .block__62849 .block__16443 p {
     color: #7f848c; }
@@ -1559,7 +1576,7 @@ input[type=button]:first-child {
     -webkit-box-shadow: 0 5px 30px -5px rgba(137, 186, 22, 0.8);
     box-shadow: 0 5px 30px -5px rgba(137, 186, 22, 0.8); }
     .block__87154.bg-primary p {
-      font-size: 1.5rem;
+      font-size: 12px;
       font-weight: 300;
       font-style: italic; }
   .block__87154 *:last-child {
@@ -1572,7 +1589,7 @@ input[type=button]:first-child {
   .block__87154 blockquote {
     margin-bottom: 1.6rem; }
     .block__87154 blockquote p {
-      font-size: 1.2rem; }
+      font-size: 12px; }
   .block__87154 .block__91147 figure {
     margin-bottom: 0; }
   .block__87154 .block__91147 img {
@@ -1583,9 +1600,9 @@ input[type=button]:first-child {
   .block__87154 .block__91147 h3 {
     margin: 0px;
     padding: 0;
-    font-size: 1rem; }
+    font-size: 12px; }
   .block__87154 .position {
-    font-size: .8rem;
+    font-size: 12px;
     color: #adb5bd; }
     .block__87154 .position.position-2 {
       color: rgba(255, 255, 255, 0.6); }
@@ -1605,7 +1622,7 @@ input[type=button]:first-child {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); }
     .block__96788 .play-icon span {
-      font-size: .8rem;
+      font-size: 12px;
       color: #000;
       top: 50%;
       left: 50%;
@@ -1636,13 +1653,13 @@ input[type=button]:first-child {
   .block__86547 > div {
     padding: 40px; }
     .block__86547 > div h3 {
-      font-size: 1.4rem; }
+      font-size: 12.5px; }
       .block__86547 > div h3 a {
         color: #000; }
         .block__86547 > div h3 a:hover {
           text-decoration: none; }
     .block__86547 > div .block__27192 > a {
-      font-size: .9rem;
+      font-size: 12px;
       display: inline-block;
       margin: 10px 20px;
       margin-left: 0;
@@ -1664,7 +1681,7 @@ input[type=button]:first-child {
   color: #ced4da !important; }
 
 .block__76208 .accordion-item .heading {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
   padding: 10px 0; }
   .block__76208 .accordion-item .heading > a {
@@ -1678,12 +1695,12 @@ input[type=button]:first-child {
       line-height: 18px;
       border: 1px solid #ccc;
       text-align: center;
-      font-size: 18px;
+      font-size: 12px;
       top: .1em;
       left: 0;
       border-radius: 50%; }
     .block__76208 .accordion-item .heading > a[aria-expanded="true"]:before {
-      font-family: 'DungGeunMo';
+      font-family: 'JSDongkang-Regular';
       position: absolute;
       content: "\e316";
       -webkit-transition: .3s all ease;
@@ -1695,14 +1712,14 @@ input[type=button]:first-child {
     .block__76208 .accordion-item .heading > a[aria-expanded="false"]:before {
       content: "\e313";
       color: #ccc;
-      font-family: 'DungGeunMo';
+      font-family: 'JSDongkang-Regular';
       position: absolute;
       -webkit-transition: .3s all ease;
       -o-transition: .3s all ease;
       transition: .3s all ease; }
 
 .block__76208 .accordion-item .body-text {
-  font-size: 16px;
+  font-size: 12px;
   padding: 5px 0;
   padding-left: 30px; }
 
@@ -1749,7 +1766,7 @@ input[type=button]:first-child {
       -ms-transform: translate(-50%, -50%) scale(0);
       transform: translate(-50%, -50%) scale(0);
       color: #fff;
-      font-size: 1.7rem;
+      font-size: 12px;
       opacity: 0;
       visibility: hidden;
       -webkit-transition: .3s all ease;
@@ -1875,7 +1892,7 @@ input[type=button]:first-child {
 
 .filters .btn {
   border-color: transparent;
-  font-size: .8rem;
+  font-size: 12px;
   margin: 5px;
   background: rgba(52, 58, 64, 0.05);
   color: #343a40;
@@ -1997,9 +2014,9 @@ input[type=button]:first-child {
     line-height: 1.5; }
     .ul-check li:before {
       left: 0;
-      font-size: 20px;
+      font-size: 12px;
       top: -.3rem;
-      font-family: "DungGeunMo";
+      font-family: "JSDongkang-Regular";
       content: "\e5ca";
       position: absolute; }
   .ul-check.white li:before {
@@ -2098,15 +2115,15 @@ input[type=button]:first-child {
       float: right;
       width: calc(100% - 80px); }
       .comment-list li .comment-body h3 {
-        font-size: 20px; }
+        font-size: 12.5px; }
       .comment-list li .comment-body .meta {
         text-transform: uppercase;
-        font-size: 13px;
+        font-size: 12px;
         letter-spacing: .1em;
         color: #ccc; }
        .comment-list li .comment-body .meta2 {
         text-transform: uppercase;
-        font-size: 13px;
+        font-size: 12px;
         letter-spacing: .1em;
         color: #a3a3a3; }
       .comment-list li .comment-body .reply {
@@ -2114,7 +2131,7 @@ input[type=button]:first-child {
         background: #e6e6e6;
         color: #000;
         text-transform: uppercase;
-        font-size: 14px; }
+        font-size: 12px; }
         .comment-list li .comment-body .reply:hover {
           color: #000;
           background: #e3e3e3; }
@@ -2132,7 +2149,7 @@ input[type=button]:first-child {
     transform: translateY(-50%); }
 
 .post-meta {
-  font-size: 13px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .2em; }
   .post-meta a {

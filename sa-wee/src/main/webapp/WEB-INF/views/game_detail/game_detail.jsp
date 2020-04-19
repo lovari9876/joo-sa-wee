@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-<title>SUN-IN-LAW IS DISE</title>
+<title>내 사위는 주사위</title>
 <meta charset="UTF-8">
 <meta name="description" content="EndGam Gaming Magazine Template">
 <meta name="keywords" content="endGam,gGaming, magazine, html">
@@ -119,7 +119,7 @@
 								</span>
 								</li>
 								<li>룰설명시간 <span> <input type="text" name="g_ruletime"
-										size="1" class="text_time"> 분
+										size="5" class="text_time"> 분
 								</span>
 								</li>
 								<li>언어의존도 <span class="radio-group"> <input

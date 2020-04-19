@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>SUN-IN-LAW IS DISE</title>
+<title>내 사위는 주사위</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
