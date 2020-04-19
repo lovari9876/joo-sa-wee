@@ -174,9 +174,24 @@
 	/* margin-left : 80px; */
 	line-height : 35px;
 	text-align : left;
-	
-	
 }
+
+
+.fa-store:before{
+	font-size : x-large;
+}
+
+.fa-pencil-alt:before{
+	font-size : x-large;
+}
+
+.fa-book-open:before{
+	font-size : x-large;
+}
+
+
+
+
 
 /* 관리자-수정하기 버튼 */
 .admin_modify{
@@ -518,7 +533,7 @@
 }
 
 
-
+/* //////////////////////////////////////////////////////////////////////// */
 /* 카페 (자세한) 리뷰 */
 
 .cafe-review{
@@ -529,7 +544,7 @@
 
 .review-wrap{
 	text-align : left;
-	padding : 20px 80px 100px 140px;
+	/* padding : 20px 80px 100px 140px; */
 	
 	/* margin-top : 20px;
 	margin-bottom : 150px;
@@ -540,6 +555,16 @@
 	.review-wrap{
 		padding : 20px 10px 100px 10px;
 	}
+}
+
+
+.table-wrap{
+	
+}
+
+.review-table{
+	padding-left : 10px;
+	padding-right : 10px;
 }
 
 .review-title{
@@ -783,6 +808,55 @@
 
 
 
+.row .tcell {
+	font-size : 12px;
+	color: #666666;
+	line-height: 1.2;
+	font-weight: unset !important;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f2f2f2;
+}
 
+.row.header .tcell {
+	font-size: 12.5px;
+	color: #fff;
+	line-height: 1.2;
+	font-weight: unset !important;
+	text-align : center !important;
+}
+
+/* 글번호 */
+.row .tcell:nth-child(1) {
+	width: 70px;
+}
+
+/* 글제목 */
+.row .tcell:nth-child(2) {
+	overflow : hidden;
+	white-space : nowrap;
+	text-overflow : ellipsis;
+	text-align : left;;
+}
+
+/* 작성자 */
+.row .tcell:nth-child(3){
+	width : 100px;
+}
+
+/* 작성일 */
+.row .tcell:nth-child(4) {
+	width : 100px;
+}
+
+/* 조회수 */
+.row .tcell:nth-child(5) {
+	width: 60px;
+}
+/* 추천수 */
+.row .tcell:nth-child(6){
+	width: 60px;
+}
 
 

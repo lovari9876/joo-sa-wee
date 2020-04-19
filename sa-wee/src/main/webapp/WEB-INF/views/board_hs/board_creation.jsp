@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 사위는 주사위</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- <link href="img/favicon.ico" rel="shortcut icon" /> -->
 
@@ -289,16 +289,16 @@
 					</div>
 				
 				<!-- 버튼에 링크 걸기 -->
-				<sec:authorize access="isAnonymous()">
-				<button class="write-view-btn" type="button"
-					onclick="location.href='loginview'">글쓰기</button>
-				</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
+				<c:if test="${r_no != 4}" > 
+					<sec:authorize access="isAnonymous()">
 					<button class="write-view-btn" type="button"
-					onclick="location.href='board_write_view?bt_no=6'">글쓰기</button>
-				</sec:authorize>
-
-
+						onclick="location.href='loginview'">글쓰기</button>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<button class="write-view-btn" type="button"
+						onclick="location.href='board_write_view?bt_no=6'">글쓰기</button>
+					</sec:authorize>
+				</c:if>
 			</div>
 		</div>
 	</div>

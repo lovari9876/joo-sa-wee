@@ -136,6 +136,7 @@
 
 .tabcontent.current{
 	display : block;
+	
 }
 
 .tab-table .menu-icon{
@@ -211,13 +212,13 @@
 
 
 /* question.jsp 의 Search 부분  */
-.q-search{
+.n-search{
 	display : flex;
 	float : right;
 	align-items : center;
 	padding : .25rem 0.8rem .25rem 0.4rem;
 	/* margin-bottom : 15px; */
-	margin-top : 40px;
+	/* margin-top : 40px; */
 	
 	/* search bar 넓이  */
 	/* width : 250px; */
@@ -232,7 +233,7 @@
 	color : #1E0A37;
 }
 
-.q-search input{
+.n-search input{
 	padding-left : .5rem;
 	color : black;
 	background : #fff;
@@ -242,25 +243,25 @@
 }
 
 
-.q-search  select{
+.n-search  select{
 	border-radius : 999px;
 	height : 24px;
 	border : none;
 	font-family : JSDongkang-Regular;
 }
 
-.q-search button {
+.n-search button {
 	border : none;
 	background : #fff;
 	padding : 0 !important;
 }
 
-.q-search button:hover{
+.n-search button:hover{
 	cursor : pointer;
 }
 
 @media screen and (max-width : 768px){
-	.q-search{
+	.n-search{
 		
 		margin-top : 20px;
 		/* width : 340px; */
@@ -558,11 +559,11 @@ select{
 /*  */
 .toMap{
 	float : left;
-	margin-top: 50px;
+/* 	margin-top: 50px; */
 }
 
 .cafe_btn{
-	background : red;
+	background : #d8cce6;
 	border : none;
 	color : #fff;
 	padding : 5px 10px;
@@ -611,4 +612,82 @@ select{
 
 select option{
 	font-size : 12px !important;
+}
+
+
+/* 말머리 없는 리스트들 : 공지사항, 카페리뷰 */
+
+.row .tcell {
+	font-size : 12px;
+	color: #666666;
+	line-height: 1.2;
+	font-weight: unset !important;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.row.header .tcell {
+	font-size: 12.5px;
+	color: #fff;
+	line-height: 1.2;
+	font-weight: unset !important;
+	text-align : center !important;
+}
+
+/* 글번호 */
+.row .tcell:nth-child(1) {
+	width: 70px;
+}
+
+/* 글제목 */
+.row .tcell:nth-child(2) {
+	overflow : hidden;
+	white-space : nowrap;
+	text-overflow : ellipsis;
+	text-align : left;;
+}
+
+/* 작성자 */
+.row .tcell:nth-child(3){
+	width : 100px;
+}
+
+/* 작성일 */
+.row .tcell:nth-child(4) {
+	width : 100px;
+}
+
+/* 조회수 */
+.row .tcell:nth-child(5) {
+	width: 60px;
+}
+/* 추천수 */
+.row .tcell:nth-child(6){
+	width: 60px;
+}
+
+
+/* ////////////////// */
+.notice{
+	margin-top : 60px;
+}
+
+.cafeL{
+	margin-top : 60px;
+	padding-top : 10px;
+}
+
+.loc{
+	width : 250px !important;
+}
+
+.cn{
+	text-align : center !important;
+}
+
+.pagination{
+	padding-left : 500px;
+	padding-top : 20px;
 }

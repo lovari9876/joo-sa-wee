@@ -16,6 +16,23 @@
 	src: url("DungGeunMo.ttf") format('truetype');
 }
 
+/* 정선동강 REGULAR */
+@font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 정선동강 BOLD */
+@font-face {
+	font-family: 'JSDongkang-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;	
+}
+
 body{
 	overflow-x:hidden; 
 	overflow-y:auto;
@@ -30,6 +47,7 @@ body{
  	width: 100%;
 	display: block;
 	padding : 100px 180px 100px 180px;
+	font-family: JSDongkang-Bold;
 }
 
 .ftco-section2 {
@@ -39,6 +57,7 @@ body{
  	width: 100%;
 	display: block;
 	padding : 110px 250px 190px 250px;
+	font-family: JSDongkang-Bold;
 }
 
 

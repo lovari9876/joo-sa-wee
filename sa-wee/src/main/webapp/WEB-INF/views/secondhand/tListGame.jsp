@@ -33,7 +33,7 @@
 								#${gameName.tg_name} &emsp;
 						</c:when>
 						<c:otherwise>
-							<a href="game_detail?g_no=${gameName.g_no}">#${gameName.tg_name}</a> &emsp;
+							<a style = "color:#400186;" href="game_detail?g_no=${gameName.g_no}">#${gameName.tg_name}</a> &emsp;
 						</c:otherwise>
 					</c:choose>
 				</span>

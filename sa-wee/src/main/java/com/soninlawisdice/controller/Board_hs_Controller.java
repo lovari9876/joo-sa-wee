@@ -114,7 +114,14 @@ public class Board_hs_Controller {
 
 			// 보드이야기 리스트
 			@RequestMapping(value = "/board_story", method = RequestMethod.GET)
-			public String board_story(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
+			public String board_story(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
+				
+				if(principal != null) {
+					String m_id = principal.getName();
+					memberVO = myPageService.mypage(m_id);
+					model.addAttribute("r_no", memberVO.getR_no());
+				}
+				
 				
 				String s_content = rq.getParameter("s_content");
 				
@@ -133,7 +140,13 @@ public class Board_hs_Controller {
 		
 			//개봉기 및 리뷰
 			@RequestMapping(value = "/board_open_review", method = RequestMethod.GET)
-			public String board_open_review(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
+			public String board_open_review(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
+				
+				if(principal != null) {
+					String m_id = principal.getName();
+					memberVO = myPageService.mypage(m_id);
+					model.addAttribute("r_no", memberVO.getR_no());
+				}
 				
 				String s_content = rq.getParameter("s_content");
 				
@@ -152,7 +165,13 @@ public class Board_hs_Controller {
 			
 			//보드게임 모임
 			@RequestMapping(value = "/board_meet", method = RequestMethod.GET)
-			public String board_meet(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
+			public String board_meet(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
+				
+				if(principal != null) {
+					String m_id = principal.getName();
+					memberVO = myPageService.mypage(m_id);
+					model.addAttribute("r_no", memberVO.getR_no());
+				}
 				
 				String s_content = rq.getParameter("s_content");
 				model.addAttribute("list", boardService.selectBoardList(scri, 3, s_content));
@@ -170,7 +189,13 @@ public class Board_hs_Controller {
 			
 			//보드 뉴스
 			@RequestMapping(value = "/board_news", method = RequestMethod.GET)
-			public String board_news(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
+			public String board_news(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
+				
+				if(principal != null) {
+					String m_id = principal.getName();
+					memberVO = myPageService.mypage(m_id);
+					model.addAttribute("r_no", memberVO.getR_no());
+				}
 				
 				String s_content = rq.getParameter("s_content");
 				model.addAttribute("list", boardService.selectBoardList(scri, 4, s_content));
@@ -188,7 +213,13 @@ public class Board_hs_Controller {
 			
 			//질문 답변
 			@RequestMapping(value = "/board_qna", method = RequestMethod.GET)
-			public String board_qna(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
+			public String board_qna(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
+				
+				if(principal != null) {
+					String m_id = principal.getName();
+					memberVO = myPageService.mypage(m_id);
+					model.addAttribute("r_no", memberVO.getR_no());
+				}
 				
 				String s_content = rq.getParameter("s_content");
 				model.addAttribute("list", boardService.selectBoardList(scri, 5, s_content));
@@ -206,7 +237,13 @@ public class Board_hs_Controller {
 			
 			//창작 보드게임
 			@RequestMapping(value = "/board_creation", method = RequestMethod.GET)
-			public String board_creation(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)  throws Exception{
+			public String board_creation(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
+				
+				if(principal != null) {
+					String m_id = principal.getName();
+					memberVO = myPageService.mypage(m_id);
+					model.addAttribute("r_no", memberVO.getR_no());
+				}
 				
 				String s_content = rq.getParameter("s_content");
 				model.addAttribute("list", boardService.selectBoardList(scri, 6, s_content));

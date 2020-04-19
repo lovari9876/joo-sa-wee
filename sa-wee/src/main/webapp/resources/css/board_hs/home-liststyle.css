@@ -56,6 +56,7 @@
 	/* background-image: url("../img/sub4.jpg"); */
 	
 	/* background: #c4d3f6; */
+	font-size : 12px;
 	display: -webkit-box;
 	display: -webkit-flex;
 	display: -moz-box;
@@ -77,6 +78,7 @@
 	overflow : hidden;
 	/* margin-top : 20px; */
 	font-family : JSDongkang-Regular;
+	font-size : 12px;
 }
 
 .table {
@@ -99,6 +101,7 @@
 .row.header {
 	color: #ffffff;
 	background: #6c7ae0;
+	font-size : 12.5px;
 }
 
 @media screen and (max-width : 768px){
@@ -111,9 +114,9 @@
 		height : 0px;
 	}
 	
-	.row.header .cell{
+	/* .row.header .cell{
 		display : none;
-	}
+	} */
 	
 	.row .cell:before{
 		font-size : 12px;
@@ -124,7 +127,7 @@
 		
 		margin-bottom : 13px;
 		content : attr(data-title);
-		min-width : 98px;
+		/* min-width : 98px; */
 		display : block;
 	}
 }
@@ -135,12 +138,12 @@
 
 @media screen and (max-width : 768px){
 	.cell{
-		display : block;
+		/* display : block; */
 	}
 }
 
 .row .cell {
-	font-size: 15px;
+	font-size: 12px;
 	color: #666666;
 	line-height: 1.2;
 	font-weight: unset !important;
@@ -151,11 +154,16 @@
 	border-bottom: 1px solid #f2f2f2;
 }
 
+.row .cell:nth-child(3) {
+	text-align : left;
+}
+
 .row.header .cell {
-	font-size: 18px;
+	font-size: 12.5px;
 	color: #fff;
 	line-height: 1.2;
 	font-weight: unset !important;
+	text-align : center;
 	/* padding-top: 19px;
 	padding-bottom: 19px; */
 }
@@ -168,11 +176,9 @@
 .row .cell:nth-child(2) {
 	width: 400px;
 }
+ */
 
-.row .cell:nth-child(3) {
-	width: 190px;
-}
-
+/*
 .row .cell:nth-child(4) {
 	width: 190px;
 } */
@@ -201,16 +207,52 @@
 		padding-top: 16px;
 		padding-bottom: 16px; */
 	}
-	.row .cell:nth-child(1) {
-		padding-left: 30px;
+	
+	.row .cell:nth-child(1){
+		width : 30px;
+		
+		padding-right : 5px;
+	}
+	
+	.row .cell:nth-child(2) {
+		display : none;
+	}
+	
+	.row .cell:nth-child(3) {
+		min-width : 150px;
+		max-width : 150px;
+	}
+	
+	.row .cell:nth-child(4){
+		width : 100px;
+	}
+	
+	.row .cell:nth-child(5){
+		display : none;
+	}
+	
+	.row .cell:nth-child(6){
+		width : 30px;
 	}
 	.row .cell {
-		font-size: 18px;
+		font-size: 12px;
 		color: #555555;
 		line-height: 1.2;
 		font-weight: unset !important;
 	}
-	.table, .row, .cell {
-		width: 100% !important;
+	
+	.table td{
+		padding-left : 0px;
+		padding-right : 0px;
 	}
+	
+	.container {
+	    
+	    padding-right: 0px;
+	    padding-left: 0px;
+	  
+	}
+	/* .table, .row, .cell {
+		width: 100% !important;
+	} */
 }

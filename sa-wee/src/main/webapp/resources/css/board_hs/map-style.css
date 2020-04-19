@@ -16,6 +16,23 @@
 	src: url("DungGeunMo.ttf") format('truetype');
 }
 
+/* 정선동강 REGULAR */
+@font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 정선동강 BOLD */
+@font-face {
+	font-family: 'JSDongkang-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;	
+}
+
 .cafe-map {
 	width: 100%;
 	margin: 0 auto;
@@ -67,7 +84,13 @@ button:focus{
 }
 .map_wrap {
 	display: block;
+	font-family : JSDongkang-Bold;
+	
 	/* margin-top: 30px; */
+}
+
+ul{
+	padding-inline-start: 10px;
 }
 
 .wrap {

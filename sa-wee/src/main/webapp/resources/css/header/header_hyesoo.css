@@ -37,7 +37,7 @@ a:hover, a:focus {
 	/* 상단바 이미지 바꾸는곳 */
 	/* background: #1E0A37; */
 	/* background-image: url("../../images/header/main.jpg"); */
-	font: dunggeunmo;
+	font-family: dunggeunmo;
 	box-shadow: 0 0.17rem 0.5rem rgba(132, 116, 160, 0.75);
 }
 
@@ -209,7 +209,7 @@ button span.lnr-magnifier {
 	list-style: none;
 	text-align: center;
 	padding-top: 3px;
-	font: dunggeunmo;
+	font-family: dunggeunmo;
 }
 
 .main-menu li {
@@ -226,12 +226,12 @@ button span.lnr-magnifier {
 	padding-bottom: 28px;
 	position: relative;
 	padding-right: 20px;
-	font: dunggeunmo;
+	/* font-family: dunggeunmo; */
 	text-decoration: none;
 }
 
 /* 상단바 서브메뉴 있는것들 뒤에 > 이미지 넣기*/
-.main-menu .gameinfo:after {
+/* .main-menu .gameinfo:after {
 	position: absolute;
 	content: "";
 	width: 20px;
@@ -241,7 +241,7 @@ button span.lnr-magnifier {
 	background-image: url("../../images/header/icons/arrow-down.png");
 	background-repeat: no-repeat;
 	background-position: right center;
-}
+} */
 
 .main-menu .comm:after {
 	position: absolute;

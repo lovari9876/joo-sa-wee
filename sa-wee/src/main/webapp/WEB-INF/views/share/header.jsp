@@ -49,13 +49,13 @@
 					<!-- 상단바 메뉴 -->
 					<ul class="main-menu head--ul primary-menu">
 						<li>
-							<a href="/">Home</a>
+							<img src="/images/share/logo2.png" style = "width:35px;">
 						</li>
-						<li><a class="gameinfo" href="">보드게임 정보</a>
-							<ul class="sub-menu">
-								<li><a href="">당신의 보드게임</a></li>
-								<li><a href="game_info">보드게임 리스트</a></li>
-							</ul>
+						<li>
+							<a href="/">내사위는 주사위</a>
+						</li>
+						<li>
+							<a class="gameinfo" href="game_info">보드게임 정보</a>
 						</li>
 							
 						<li><a class="comm" href="list_home">커뮤니티</a>

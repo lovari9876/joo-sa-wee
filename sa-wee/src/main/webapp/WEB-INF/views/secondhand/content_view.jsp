@@ -139,7 +139,7 @@
 											<td class="table--cell">${tgItem.tg_name}</td>							
 										</c:when>
 										<c:otherwise>
-											<td class="table--cell"><a href="game_detail?g_no=${tgItem.g_no}">${tgItem.tg_name}</a></td>
+											<td class="table--cell"><a style = "color:#400186;" href="game_detail?g_no=${tgItem.g_no}">${tgItem.tg_name}</a></td>
 										</c:otherwise>
 									</c:choose>	
 										<td class="table--cell">${tgItem.tg_price}원</td>
@@ -150,10 +150,18 @@
 					
 					<p>${content_view_t['T_CONTENT']}</p>
 					
-					<c:forEach items="${fileName}" var = "img">
-						<img src="<c:url value="/img/${img['F_NAME']} "/>" />
-					</c:forEach> 
 					
+					
+					
+					<div style= "margin-top:80px;">
+					<hr>
+					<p> [ 첨부사진 ] </p>
+						<div style = "padding:10px;">	
+						<c:forEach items="${fileName}" var = "img">
+							<img style = "width:150px;margin-right:5px;" src="<c:url value="/img/${img['F_NAME']} "/>" />
+						</c:forEach>
+						</div> 
+					</div>
 					
 
 					<br/>

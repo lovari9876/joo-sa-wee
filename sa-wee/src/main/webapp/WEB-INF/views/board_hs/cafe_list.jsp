@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 사위는 주사위</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="img/favicon.ico" rel="shortcut icon" />
 
@@ -77,7 +77,7 @@
 				<!-- Search Bar  -->
 				<!-- Search Bar  -->
 				<form>
-					<div class="search">
+					<div class="n-search">
 						<div class="dropdown pull-right">
 								<select id="searchType" name="searchType" class="span2">
 									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
@@ -116,7 +116,7 @@
 				<div class=tab-table>
 					
 					<!-- 테이블  -->
-					<div id="tab1" class="tabcontent current">
+					<div id="tab1" class="tabcontent current cafeL">
 						<div class = "location">
 							
 						 
@@ -150,8 +150,8 @@
 
 							<tr class="row header">
 								<td class="cell">글 번호</td>
-								<td class="cell">지역</td>
-								<td class="cell">카페 이름</td>
+								<td class="cell loc">지역</td>
+								<td class="cell cn">카페 이름</td>
 								<td class="cell">조회수</td>
 								
 							</tr>
@@ -160,8 +160,8 @@
 							<c:forEach items="${list}" var="list">
 							<tr class="row">
 								<td class = "cell">${list['RNUM']}</td>
-								<td class = "cell">${list['C_ADD']}</td>
-								<td class = "cell"><a href="cafe_info?c_no=${list['C_NO']}">${list['C_TITLE']}</a></td>
+								<td class = "cell loc">${list['C_ADD']}</td>
+								<td class = "cell cn"><a href="cafe_info?c_no=${list['C_NO']}">${list['C_TITLE']}</a></td>
 								<td class = "cell">${list['C_HIT']}</td>
 								
 							</tr>

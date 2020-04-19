@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 사위는 주사위</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="img/favicon.ico" rel="shortcut icon" />
 
@@ -74,7 +74,7 @@
 
 				<!-- Search Bar  -->
 				<form>
-					<div class="search">		
+					<div class="n-search">		
 						 <div class="dropdown pull-right">
 								<select name="searchType" class="span2">
 									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
@@ -100,24 +100,24 @@
 				
 
 					<!-- 테이블  -->
-					<div id="tab1" class="tabcontent current">
+					<div id="tab1" class="tabcontent current notice">
 						<table class="table">
 
 
 							<tr class="row header">
-								<td class="cell">글 번호</td>
-								<td class="cell">글 제목</td>
-								<td class="cell">작성자</td>
-								<td class="cell">작성일</td>
-								<td class="cell">조회수</td>
+								<td class="tcell">글 번호</td>
+								<td class="tcell">글 제목</td>
+								<td class="tcell">작성자</td>
+								<td class="tcell">작성일</td>
+								<td class="tcell">조회수</td>
 							</tr>
 
 						<tbody class = "tbody">
 							<c:forEach items="${list}" var="dto">
 							<tr class="row">
-								<td class = "cell">${dto['RNUM']}</td>
-								<td class = "cell"><a href="content_view?bw_no=${dto['BW_NO']}">${dto['BW_TITLE']}</a>  [${dto['CM']}]</td>
-								<td class = "cell">
+								<td class = "tcell">${dto['RNUM']}</td>
+								<td class = "tcell"><a href="content_view?bw_no=${dto['BW_NO']}">${dto['BW_TITLE']}</a>  [${dto['CM']}]</td>
+								<td class = "tcell">
 									<a role = "button" class="pop_btn popovers"
 									data-toggle="popover" 
 									data-content="<a href='#' id='other_page' name='m_nick' data-nick='${dto["M_NICK"]}' onclick='return false;' >회원정보보기</a>
@@ -128,7 +128,7 @@
 									${dto['M_NICK']}
 								</a>		
 								</td>
-								<td class = "cell">
+								<td class = "tcell">
 									<jsp:useBean id="today" class="java.util.Date" />
 									<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
 									<fmt:formatDate value="${dto['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
@@ -139,7 +139,7 @@
 											</c:otherwise>
 										</c:choose>
 								</td>
-								<td class = "cell">${dto['BW_HIT']}</td>
+								<td class = "tcell">${dto['BW_HIT']}</td>
 							</tr>
 							</c:forEach>
 						</tbody>
