@@ -42,14 +42,15 @@
 									<td class="cell">${trade['TG_PRICE']}</td>	
 								</tr>
 							</c:forEach>
+							
+							<tr class="trow header">
+								<td class="cell">합계</td>
+								<td class="cell" id="price">${p_price.p_price}</td>
+							</tr>
 						</tbody>
 					</table>
-				
-				
 					
 					</div>
-
-				
 					
 			</div>
 		</div>

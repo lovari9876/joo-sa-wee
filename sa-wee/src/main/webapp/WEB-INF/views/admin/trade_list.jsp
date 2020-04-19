@@ -81,6 +81,7 @@
 					<table class="table">
 						<tr class="trow header">
 							<td class="cell">거래번호</td>
+							<td class="cell">보부상글번호</td>
 							<td class="cell">판매자</td>
 							<td class="cell">구매자</td>
 							<td class="cell">거래일</td>
@@ -94,8 +95,9 @@
 							<c:forEach items="${trade_list}" var="trade" >
 								<tr class="trow">
 									<td class="cell">${trade['P_NO']}</td>
-									<td class="cell">${trade['M_SID']}</td>
-									<td class="cell">${trade['M_BID']}</td>											
+									<td class="cell"><a href="/content_view_t?t_no=${trade['T_NO']}">${trade['T_NO']}</a></td>
+									<td class="cell"><a href="user_view?m_no=${trade['M_SNO']}">${trade['M_SID']}</a></td>
+									<td class="cell"><a href="user_view?m_no=${trade['M_BNO']}">${trade['M_BID']}</a></td>											
 									<td class="cell">
 										<!-- 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 										<fmt:formatDate value="${trade['P_ORDER_DATE']}" pattern="yyyy.MM.dd" var="date"/>
@@ -127,14 +129,14 @@
 											<c:when test="${trade['P_STATUS'] eq 2}">결제완료</c:when>
 											<c:when test="${trade['P_STATUS'] eq 3}">배송중</c:when>
 											<c:when test="${trade['P_STATUS'] eq 4}">배송완료</c:when>
-											<c:when test="${trade['P_STATUS'] eq 5}">5</c:when>
+											<c:when test="${trade['P_STATUS'] eq 5}">거래완료</c:when>
 											<c:when test="${trade['P_STATUS'] eq 6}">6</c:when>
 											<c:when test="${trade['P_STATUS'] eq 7}">거래취소</c:when>
 											<c:otherwise>불명확</c:otherwise>
 										</c:choose>											
 									</td>
 									<td class="cell"> <!-- 버튼 -->
-										<button class="btn pgt_detail" type="button" value="${trade['P_NO']}">
+										<button class="btn pgt_detail" type="button" value="${trade['P_NO']}" data-price="${trade['P_PRICE']}">
 											상세내역
 										</button> 
 									</td>	
@@ -156,13 +158,14 @@
 					<script>
 						$(".pgt_detail").click(function() {
 							var p_no = $(this).val();
-							window.open("trade_list_pgt/" + p_no, "a", "width=400, height=200, left=800, top=300"); 
+							var price = $(this).val();
+							window.open("trade_list_pgt/" + p_no, price, "width=400, height=200, left=800, top=300"); 
 						});
 						
 						$(".pgt_account").click(function() {
 							var sno = $(this).attr('data-sno');
 							var bno = $(this).attr('data-bno');
-							window.open("trade_list_account/" + sno + "/" + bno, "a", "width=400, height=290, left=800, top=300"); 
+							window.open("trade_list_account/" + sno + "/" + bno, "a", "width=450, height=290, left=800, top=300"); 
 						});
 						
 					

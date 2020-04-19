@@ -20,6 +20,7 @@ import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
 import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
+import com.soninlawisdice.vo.PaymentVO;
 import com.soninlawisdice.vo.ReportVO;
 
 import com.soninlawisdice.vo.SearchCriteria;
@@ -146,7 +147,10 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	
-	
+	// trade : p_price 값 가져오기 
+	public PaymentVO selectTrade(int p_no) {
+		return adminMapper.selectTrade(p_no);
+	}
 	
 	
 	

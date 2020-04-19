@@ -1063,5 +1063,17 @@
 	</sql>
 	
 	
+	<!-- =============================================== payment 중고거래 내역  p_price 가져오기  ====================================================== -->
+	
+	<select id="selectTrade" resultType="com.soninlawisdice.vo.PaymentVO" >
+	
+	
+		SELECT * FROM payment WHERE p_no = #{p_no}
+				
+			
+	
+	</select>
+	
+	
 	
 </mapper>

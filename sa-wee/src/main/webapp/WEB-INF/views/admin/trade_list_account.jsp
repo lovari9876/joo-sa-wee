@@ -36,12 +36,18 @@
 								<td class="cell">회원 아이디</td>
 								<td class="cell">은행명</td>
 								<td class="cell span2">계좌번호</td>
+								<td class="cell">환불</td>
 							</tr>
 							<tbody>
 									<tr class="trow">
 										<td class="cell">${account_s.m_id}</td>
 										<td class="cell">${account_s.m_bank}</td>	
 										<td class="cell">${account_s.m_account}</td>	
+										<td class="cell"> <!-- 버튼 -->
+											<button class="btn" type="button">
+												환불
+											</button> 
+										</td>	
 									</tr>
 							</tbody>
 						</table>
@@ -61,12 +67,18 @@
 								<td class="cell">회원 아이디</td>
 								<td class="cell">은행명</td>
 								<td class="cell span2">계좌번호</td>
+								<td class="cell">입금</td>
 							</tr>
 							<tbody>
 									<tr class="trow">
 										<td class="cell">${account_b.m_id}</td>
 										<td class="cell">${account_b.m_bank}</td>	
 										<td class="cell">${account_b.m_account}</td>	
+										<td class="cell"> <!-- 버튼 -->
+											<button class="btn" type="button">
+												입금
+											</button> 
+										</td>	
 									</tr>
 							</tbody>
 						</table>
