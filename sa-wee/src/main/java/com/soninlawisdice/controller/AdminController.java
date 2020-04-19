@@ -613,6 +613,7 @@ public class AdminController {
 	public String trade_list_pgt(Model model, @PathVariable(value = "p_no") int p_no) throws Exception {
 
 		model.addAttribute("pgt", secondhandService.selectPTGList(p_no));	
+		model.addAttribute("p_price", adminService.selectTrade(p_no));		
 		
 		return "admin/trade_list_pgt";
 	}

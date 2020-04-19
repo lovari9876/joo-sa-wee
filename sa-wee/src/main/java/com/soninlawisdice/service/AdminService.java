@@ -14,6 +14,7 @@ import com.soninlawisdice.vo.Cafe_reviewVO;
 import com.soninlawisdice.vo.FaqVO;
 import com.soninlawisdice.vo.GameVO;
 import com.soninlawisdice.vo.MemberVO;
+import com.soninlawisdice.vo.PaymentVO;
 import com.soninlawisdice.vo.ReportVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.StatisticsVO;
@@ -65,7 +66,8 @@ public interface AdminService {
 	public int tradeListCount(@Param("scri")SearchCriteria scri);
 	
 	
-	
+	// trade : p_price 값 가져오기 
+	public PaymentVO selectTrade(int p_no);
 	
 	
 	// 메인 FAQ 페이지 조회수 
