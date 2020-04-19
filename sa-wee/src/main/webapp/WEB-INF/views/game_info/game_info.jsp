@@ -68,6 +68,7 @@
 	<section class="games-section">
 		<div class="container">
 			<ul class="game-filter" id="game-filter">
+				<li class="btn-color"><a href="game_info">전체</a></li>
 				<li class="btn-color"><a href="game_info?init=가">ㄱ</a></li>
 				<li class="btn-color"><a href="game_info?init=나">ㄴ</a></li>
 				<li class="btn-color"><a href="game_info?init=다">ㄷ</a></li>

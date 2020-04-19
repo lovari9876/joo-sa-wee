@@ -134,6 +134,26 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	
+	@Override
+	public ArrayList<HashMap<String, Object>> tradeList(@Param("scri")SearchCriteria scri){
+		return adminMapper.tradeList(scri);
+	}
+	@Override
+	public int tradeListCount(@Param("scri")SearchCriteria scri) {
+		return adminMapper.tradeListCount(scri);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 메인 FAQ 페이지 조회수 
 	public void upHitFaq(int faq_no) {

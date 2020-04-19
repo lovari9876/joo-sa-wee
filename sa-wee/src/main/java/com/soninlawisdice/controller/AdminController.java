@@ -593,6 +593,40 @@ public class AdminController {
 	}
 
 	
+	@RequestMapping("/trade_list")
+	public String trade_list(Model model, @ModelAttribute("scri") SearchCriteria scri) throws Exception {
+
+		scri.setPerPageNum(15);
+
+		model.addAttribute("trade_list", adminService.tradeList(scri));	
+		
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.tradeListCount(scri));
+		  
+		model.addAttribute("pageMaker", pageMaker);	 
+		return "admin/trade_list";
+	}
+	
+	@RequestMapping("/trade_list_pgt/{p_no}")
+	public String trade_list_pgt(Model model, @PathVariable(value = "p_no") int p_no) throws Exception {
+
+		model.addAttribute("pgt", secondhandService.selectPTGList(p_no));	
+		
+		return "admin/trade_list_pgt";
+	}
+	
+	@RequestMapping("/trade_list_account/{p_sno}/{p_bno}")
+	public String trade_list_account(Model model, @PathVariable(value = "p_sno") int p_sno,  @PathVariable(value = "p_bno") int p_bno) throws Exception {
+
+		model.addAttribute("account_s", adminService.selectMemberView(p_sno));
+		model.addAttribute("account_b", adminService.selectMemberView(p_bno));	
+		
+		return "admin/trade_list_account";
+	}
+	
+	
 	////////////////////////////cafe_list///////////////////////////////////////
 	
 	@RequestMapping(value = "/cafe_list", method = RequestMethod.GET)
@@ -969,11 +1003,7 @@ public class AdminController {
 	////////////////////////////////////////////////////////////////////////////	
 		
 		
-		
-		
-		
-		
-		
+	
 		
 	@RequestMapping("/notice_write")
 	public String notice_write() {
@@ -1020,18 +1050,7 @@ public class AdminController {
 		return "admin/sponsor_list";
 	}
 
-	@RequestMapping("/trade_list")
-	public String trade_list() {
 
-		return "admin/trade_list";
-	}
-
-
-	@RequestMapping("/search")
-	public String search() {
-
-		return "admin/search";
-	}
 
 	@RequestMapping("/footer")
 	public String footer() {

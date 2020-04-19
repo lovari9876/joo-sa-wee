@@ -61,6 +61,12 @@ public interface AdminService {
 	public List<FaqVO> faqList(SearchCriteria scri, int s_no);
 	public int faq_listCount(SearchCriteria scri, int s_no);
 	
+	public ArrayList<HashMap<String, Object>> tradeList(@Param("scri")SearchCriteria scri);
+	public int tradeListCount(@Param("scri")SearchCriteria scri);
+	
+	
+	
+	
 	
 	// 메인 FAQ 페이지 조회수 
 	public void upHitFaq(int faq_no);
