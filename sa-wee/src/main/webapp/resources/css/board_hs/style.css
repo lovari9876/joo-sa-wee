@@ -16,18 +16,35 @@
 	src: url("DungGeunMo.ttf") format('truetype');
 }
 
+/* 정선동강 REGULAR */
+@font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 정선동강 BOLD */
+@font-face {
+	font-family: 'JSDongkang-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;	
+}
+
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
 html, body {
 	height: 100%;
-	font-family: dunggeunmo;
+	font-family: JSDongkang-Regular;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: dunggeunmo;
+	font-family: JSDongkang-Bold;
 	margin: 0;
 	color: #111111;
 	font-weight: 500;
@@ -110,7 +127,7 @@ ul, ol {
   Helper CSS
 -----------------------*/
 .section-title h2 {
-	font: dunggeunmo;
+	font: JSDongkang-Regular;
 	font-size: 30px;
 	text-transform: uppercase;
 	font-weight: 700;
@@ -454,7 +471,7 @@ button span.lnr-magnifier {
 	list-style: none;
 	text-align: center;
 	padding-top: 3px;
-	font: dunggeunmo;
+	
 }
 
 .main-menu li {
@@ -471,21 +488,10 @@ button span.lnr-magnifier {
 	padding-bottom: 28px;
 	position: relative;
 	padding-right: 20px;
-	font: dunggeunmo;
+	
 }
 
 /* 상단바 서브메뉴 있는것들 뒤에 > 이미지 넣기*/
-.main-menu .gameinfo:after {
-	position: absolute;
-	content: "";
-	width: 20px;
-	height: 20px;
-	right: 0;
-	top: 1px;
-	background-image: url("/images/board_hs/arrow-down.png");
-	background-repeat: no-repeat;
-	background-position: right center;
-}
 
 .main-menu .comm:after {
 	position: absolute;
@@ -667,9 +673,9 @@ button span.lnr-magnifier {
 /* 옆에 글씨 나타나는거 위치 조정 여기서함 */
 .mymenu li:hover .hide {
 	display: inline-block;
-	margin-top: 45px;
+	margin-top: 33px;
 	color: #1E0A37;
-	font-weight: bold;
+	font-family: JSDongkang-Bold;
 }
 
 /*------------------
@@ -677,7 +683,7 @@ button span.lnr-magnifier {
 ---------------------*/
 
 .main-section{
-	
+	font-family: JSDongkang-Regular !important;
 	padding-top : 100px;
 	padding-bottom : 100px;
 }
@@ -703,8 +709,8 @@ button span.lnr-magnifier {
 .main-wrap{
 	
 	/* 근데 width 로 조절하면 절대 안됨. margin 아니면 padding으로 해야함 */
-	margin-left : 330px;
-	margin-right : 250px;
+	margin-left : 400px;
+	margin-right : 400px;
 
 }
 @media screen and (max-width : 1900px){
@@ -819,7 +825,7 @@ button span.lnr-magnifier {
 	/* background : blue; */
 	float : left;
 	/* 여기서 max-width 주니까 일단 됨 */
-	max-width: 900px;
+	max-width: 700px;
 	
 	min-width : 335px;
     padding: 30px;
@@ -869,7 +875,7 @@ button span.lnr-magnifier {
 	float : left;
 	/* 이걸로 width 에 따른 height 변화로 사진 크기 바꿈*/
 	/* border-radius : 20px; */
-	max-width : 350px;
+	max-width : 319px;
 	padding : 30px;
 	padding-top : 15px;
 	/* 여기서 height 조절해봐야 아무 도움 안됨 */
@@ -932,7 +938,7 @@ button span.lnr-magnifier {
 }
 
 .medal , .shield{
-	margin-right : 200px;
+	margin-right : 100px;
 }
 
 .ranking-wrap h3{
@@ -942,7 +948,7 @@ button span.lnr-magnifier {
 
 .rank-name{
 	margin-top : 20px;
-	/* display : inline-block; */
+	display : inline-block;
 }
 
 @media screen and (max-width : 768px){
@@ -1010,7 +1016,7 @@ button span.lnr-magnifier {
 .blog-section {
 	/* background: #fff; */
 	background-image: url("/images/board_hs/sub4.jpg");
-
+	font-family: JSDongkang-Regular !important;
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#501755+0,2d1854+100 */
 	/* background: #501755; */
 	/* Old browsers */
@@ -1031,6 +1037,7 @@ button span.lnr-magnifier {
 
 .blog-section .section-title {
 	margin-bottom: 25px;
+	font-family: JSDongkang-Bold !important;
 }
 
 .blog-filter {
@@ -1342,14 +1349,15 @@ button span.lnr-magnifier {
 ----------------------*/
 .newsletter-section {
 	background-image: url("/images/board_hs/sub4.jpg");
+	font-family: JSDongkang-Regular !important;
 }
 
 .newsletter-section .container .section-title h2 {
-	font-family: designhouseBold;
+	font-family: JSDongkang-Bold !important;
 }
 
 .newsletter-section .container button {
-	font: dunggeunmo;
+	font-family: JSDongkang-Bold !important;
 }
 
 .newsletter-section {
@@ -1373,7 +1381,7 @@ button span.lnr-magnifier {
 .newsletter-form input {
 	font-size: 14px;
 	font-weight: 700;
-	font: dunggeunmo;
+	font-family: JSDongkang-Regular;
 	color: #fff;
 	width: 787px;
 	border: none;
@@ -1390,6 +1398,7 @@ button span.lnr-magnifier {
   padding: 6em 0;
   position: relative;
   background : #1E0A37;
+  font-family: JSDongkang-Regular !important;
 }
 
 @media (max-width: 767.98px) {
@@ -1849,7 +1858,7 @@ button span.lnr-magnifier {
 		padding: 100px 15px;
 	}
 	.featured-box .text-box h3, .newsletter-section h2 {
-		font-size: 35px;
+		font-size: 30px;
 	}
 	.main-menu li a {
 		margin-right: 20px;

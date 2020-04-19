@@ -55,12 +55,9 @@
 					<!-- 상단바 메뉴 -->
 					<ul class="main-menu head--ul primary-menu">
 						<li><a href="/">Home</a></li>
-						<li><a class="gameinfo" href="">보드게임 정보</a>
-							<ul class="sub-menu">
-								<li><a href="">당신의 보드게임</a></li>
-								<li><a href="game_info">보드게임 리스트</a></li>
-							</ul></li>
-							
+						<li>
+							<a class="gameinfo" href="game_info">보드게임 정보</a>
+						</li>
 						<li><a class="comm" href="list_home">커뮤니티</a>
 							<ul class="sub-menu">
 								<li><a href="board_story">보드이야기</a></li>
@@ -81,7 +78,7 @@
 
 						<li><a class="help" href="help_home">헬프데스크</a>
 							<ul class="sub-menu">
-								<li><a href="#">공지사항</a></li>
+								<li><a href="notice_list">공지사항</a></li>
 								<li><a href="faq">자주하는 질문</a></li>
 								<li><a href="question_list">1 : 1 문의 </a></li>
 								<li><a href="island_list">무인도 </a></li>

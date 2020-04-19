@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 사위는 주사위</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="img/favicon.ico" rel="shortcut icon" />
 
@@ -54,17 +54,12 @@
 
 <link rel="stylesheet" href="css/board_hs/doro.css" />
 <link rel="stylesheet" href="css/board_hs/cafe_content_view_style.css" />
-
+<!-- <link rel="stylesheet" href="css/board_hs/liststyle.css" /> -->
 
 
 </head>
 <body id="top">
-	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
-
+	
 	<!-- Header section -->
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp"%>
@@ -169,11 +164,11 @@
 
 
 						<!-- 한줄평 리스트 -->
-						
-						<c:import url="/comment_view_or">
+					
+				<c:import url="/comment_view_or">
 							<c:param name="cm_type" value="한줄평"></c:param>
 							<c:param name="cm_no2" value="${cafe_info.c_no}"></c:param>
-						</c:import>
+					</c:import> 
 
 
 				<!-- 빈공간 -->
@@ -188,35 +183,29 @@
 					<div class="review-wrap">
 
 
-						<!-- <form class="category" action="">
-							<label for="drop_list"><h3 class="mb-5">리뷰부분입니다.</h3></label> <select
-								id="drop_list" name="drop_list">
-								
-							</select>
-						</form> -->
 					
 						<h3 class = "mb-5 review">리뷰부분입니다.</h3>
 					
-						
+						<div class = "table-wrap">
 						<div class = "review-table">
 
 							<table class="table">
 
 								<tr class="row header">
-									<td class="cell">글 번호</td>
-									<td class="cell">글 제목</td>
-									<td class="cell">작성자</td>
-									<td class="cell">작성일</td>
-									<td class="cell">조회수</td>
-									<td class="cell">추천수</td>
+									<td class="tcell">글 번호</td>
+									<td class="tcell">글 제목</td>
+									<td class="tcell">작성자</td>
+									<td class="tcell">작성일</td>
+									<td class="tcell">조회수</td>
+									<td class="tcell">추천수</td>
 								</tr>
 								<tbody class = "tbody">
 									<c:forEach items="${list}" var="list">
 									<tr class="row">
-										<td class = "cell">${list['CR_NO']}</td>
-										<td class = "cell"><a href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a>  [${list['CM']}]</td>
-										<td class = "cell">${list['M_NICK']}</td>
-										<td class = "cell">
+										<td class = "tcell">${list['CR_NO']}</td>
+										<td class = "tcell"><a href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a>  [${list['CM']}]</td>
+										<td class = "tcell">${list['M_NICK']}</td>
+										<td class = "tcell">
 											<jsp:useBean id="today" class="java.util.Date" />
 											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
 											<fmt:formatDate value="${list['CR_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
@@ -227,8 +216,8 @@
 													</c:otherwise>
 												</c:choose>
 										</td>
-										<td class = "cell">${list['CR_HIT']}</td>
-										<td class = "cell">${list['CR_RECOMMEND_NUM']}</td>
+										<td class = "tcell">${list['CR_HIT']}</td>
+										<td class = "tcell">${list['CR_RECOMMEND_NUM']}</td>
 									</tr>
 									</c:forEach>
 								</tbody>
@@ -238,7 +227,7 @@
 
 							</table>
 						</div>
-
+						</div>
 						
 						
 					</div>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 사위는 주사위</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="img/favicon.ico" rel="shortcut icon" />
 
@@ -78,7 +78,7 @@
 					<div class="col-lg-6 ">
 						<div class="room-wrap d-md-flex">
 							<a href="list" class="img"
-								style="background-image: url(images/board_hs/5.jpg);"></a>
+								style="background-image: url(images/board_hs/notice.jpg);"></a>
 							
 							
 							<div class="half left-arrow d-flex align-items-center">

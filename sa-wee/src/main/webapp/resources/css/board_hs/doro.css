@@ -16,6 +16,23 @@
 	src: url("DungGeunMo.ttf") format('truetype');
 }
 
+/* 정선동강 REGULAR */
+@font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+/* 정선동강 BOLD */
+@font-face {
+	font-family: 'JSDongkang-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;	
+}
+
 a:hover, a:focus {
 	text-decoration: none;
 	outline: none;
@@ -50,7 +67,7 @@ ul, ol {
 .icon {
 	color: #1E0A37;
 	font-size: 40px;
-	margin: 40px 0;
+	margin: 20px 0;
 }
 
 /* 도로록 아이콘 위에 올렸을때 바뀌는 색 정하는 곳 */
@@ -76,9 +93,9 @@ ul, ol {
 /* 옆에 글씨 나타나는거 위치 조정 여기서함 */
 .mymenu li:hover .hide {
 	display: inline-block;
-	margin-top: 45px;
+	margin-top: 33px;
 	color: #1E0A37;
-	font-weight: bold;
+	font-family: JSDongkang-Bold;
 }
 
 

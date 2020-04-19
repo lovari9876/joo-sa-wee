@@ -120,7 +120,7 @@
 									<div class="carousel-item active">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/">
-											<img class="d-block w-100 " src="images/board_hs/jumanji.png">
+											<img class="d-block w-100 " src="images/board_hs/root.jpeg">
 										</a>
 										<div class="carousel-caption">첫번째</div>
 									</div>
@@ -128,14 +128,14 @@
 									<div id="target" class="carousel-item ">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
-											class="d-block w-100" src="images/board_hs/jumanji.png"></a>
+											class="d-block w-100" src="images/board_hs/root.jpeg"></a>
 										<div class="carousel-caption">두번째</div>
 									</div>
 
 									<div class="carousel-item">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
-											class="d-block w-100" src="images/board_hs/jumanji.png"></a>
+											class="d-block w-100" src="images/board_hs/root.jpeg"></a>
 										<div class="carousel-caption">세번째</div>
 									</div>
 
@@ -185,23 +185,33 @@
 
 				<div class="rank medal">
 					<img src="images/board_hs/gold-medal128.png">
-					<div class="rank-name">댓글 많이 씀</div>
-					<div class="rank-name">${rankWC}</div>
+					<div class="rank-name">
+						댓글 많이 씀
+						<br/>
+						<br/>
+						${rankWC}
+					</div>
+					
 				</div>
 
 				<div class="rank shield">
 					<img src="images/board_hs/shield128.png">
-					<div class="rank-name">글 많이 씀</div>
-					<c:forEach items = "${rankW}" var = "rankW">
-					<div class="rank-name">${rankW['I_NICK']}</div>
-					</c:forEach>
+					<div class="rank-name">글 많이 씀
+						<br/>
+						<br/>
+						<c:forEach items = "${rankW}" var = "rankW">
+						${rankW['I_NICK']}
+						</c:forEach>
+					</div>
 				</div>
 
 				<div class="rank siren">
 					<img src="images/board_hs/alert.png">
-					<div class="rank-name">신고 많이 받음...</div>
-					<div class="rank-name">누구</div>
-					
+					<div class="rank-name">신고 많이 받음...
+						<br/>
+						<br/>
+						누구
+					</div>
 
 				</div>
 
@@ -388,11 +398,11 @@
 					<div class="ftco-footer-widget mb-4 ml-md-5">
 						<h2 class="ftco-heading-2">Useful Links</h2>
 						<ul class="list-unstyled">
-							<li><a href="#" class="py-2 d-block">보드게임 정보</a></li>
+							<li><a href="game_info" class="py-2 d-block">보드게임 정보</a></li>
 							<li><a href="list_home" class="py-2 d-block">커뮤니티</a></li>
 							<li><a href="cafe_map" class="py-2 d-block">보드게임 카페</a></li>
-							<li><a href="#" class="py-2 d-block">보부상</a></li>
-							<li><a href="question_list" class="py-2 d-block">헬프데스크</a></li>
+							<li><a href="tlist" class="py-2 d-block">보부상</a></li>
+							<li><a href="help_home" class="py-2 d-block">헬프데스크</a></li>
 						</ul>
 					</div>
 				</div>
