@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 파피콘 -->
 <link rel="icon" type="image/png" href="images/share/wolf_logo.ico" />
-<title>Admin</title>
+<title>관리자 | 내사위는주사위</title>
 <link type="text/css" href="css/admin/bootstrap.min.css"
 	rel="stylesheet">
 <link type="text/css" href="css/admin/bootstrap-responsive.min.css"
@@ -48,7 +48,7 @@
 							 <form id="viewForm" method="post">
 
 							 <input type = "hidden" name = "faq_no" value = "${faq_view.faq_no}">
-								<table class="table user_view" >
+								<table class="table table_view" >
 									<tr class="row">
 										<td class="cell span1">말머리</td>
 										<td class="cell span4">

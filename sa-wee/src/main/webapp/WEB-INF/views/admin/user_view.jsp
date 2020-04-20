@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 파피콘 -->
 <link rel="icon" type="image/png" href="images/share/wolf_logo.ico" />
-<title>Admin</title>
+<title>관리자 | 내사위는주사위</title>
 <link type="text/css" href="css/admin/bootstrap.min.css"rel="stylesheet">
 <link type="text/css" href="css/admin/bootstrap-responsive.min.css"rel="stylesheet">
 <link type="text/css" href="css/admin/theme.css" rel="stylesheet">
@@ -52,7 +52,7 @@
 
 							 <input type = "hidden" name = "m_no" value = "${user_view.m_no}">
 							 <input type = "hidden" name = "cate" value = "user">
-								<table class="table user_view" >
+								<table class="table table_view" >
 									<tr class="row ">
 										<td class="cell span3" rowspan= "5">프로필사진</td>
 										<td class="cell span2" rowspan= "5">사진</td>

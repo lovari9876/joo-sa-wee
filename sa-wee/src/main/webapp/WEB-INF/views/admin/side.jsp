@@ -43,16 +43,16 @@
                                 
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/"><i class="menu-icon icon-home"></i> MAIN </a></li>
+                                    <li><a href="/"><!-- <i class="menu-icon icon-home"></i> --> MAIN </a></li>
                                    <!--  <li><a href="#">Edit Profile</a></li>
                                     <li><a href="#">Account Settings</a></li> -->
                                     <li class="divider"></li>
-                                    <li><a href="#"> <i class="menu-icon icon-signout"></i>Logout </a></li>
-                                  <!--   <li>
-	                                    <form:form action="/logout" method="POST">
-											<input type="submit" value="로그아웃" />
+                                   <!--  <li><a href="#"> <i class="menu-icon icon-signout"></i>Logout </a></li> -->
+                                 <!--   <li><i class="menu-icon icon-signout"></i> -->
+	                                   <form:form action="/logout" method="POST">
+											<a><input type="submit" value="LOGOUT" id="logout" /></a>
 										</form:form>
-									</li> -->
+									</li>
                                     
                                     
                                 </ul>
