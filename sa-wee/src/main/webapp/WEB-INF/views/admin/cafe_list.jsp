@@ -100,7 +100,7 @@
 							<tbody>
 								<c:forEach items="${cafe_list}" var="cafe">
 									<tr class="trow">
-										<td class="cell">${cafe['C_NO']}</td>
+										<td class="cell">${cafe['RNUM']}</td>
 										<td class="cell"><a
 											href="/cafe_info?c_no=${cafe['C_NO']}">${cafe['C_TITLE']}</a></td>
 										<td class="cell">${cafe['C_ADD']}</td>

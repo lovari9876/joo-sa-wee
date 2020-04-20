@@ -63,7 +63,7 @@
 								<div class="controls">
 									<button type="button" class="btn  pull-left"
 										onclick="location='notice_list'">목록</button>
-									<button id="btnConfirm" class="btn  pull-right" value="">수정완료</button>
+									<button id="btnConfirm" class="btn  pull-right" value="notice_modify">수정완료</button>
 
 								</div>
 							</div>

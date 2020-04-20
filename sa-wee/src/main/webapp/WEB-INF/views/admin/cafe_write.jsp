@@ -73,7 +73,7 @@
 
 							<tr class="row">
 								<td class="cell span2">전화번호</td>
-								<td class="cell span8"><input type="text" maxlength="13" name="c_phone"
+								<td class="cell span8"><input type="text"  id="phone" maxlength="13" name="c_phone"
 									placeholder="전화번호를 입력하세요" class="span6"></td>
 							</tr>
 

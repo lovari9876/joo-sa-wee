@@ -194,9 +194,10 @@
 
 	SELECT * FROM
 	(
-         SELECT r_no, m_no, r_type, r_type_no, r_content,r_report_date,
-		               ROW_NUMBER() OVER(ORDER BY r_no DESC) AS RNUM
-		         FROM report 
+         SELECT r.r_no, m.m_no, m.m_id, r.r_type, r.r_type_no, r.r_content, r.r_report_date,
+		               ROW_NUMBER() OVER(ORDER BY r.r_no DESC) AS RNUM
+		         FROM report r INNER JOIN member m
+		         ON r.m_no = m.m_no
 		         WHERE 1=1
 		         <include refid="report_search"></include>
 		         <include refid="report_type"></include>
