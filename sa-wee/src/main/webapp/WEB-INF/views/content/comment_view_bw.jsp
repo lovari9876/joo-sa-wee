@@ -118,11 +118,20 @@
 						<div class="reply_test">
 							<div class="test_item rp">
 								<p>
+									<c:if test = "${content_view['BT_NO'] == 8 && memberVO.r_no == 0}">
 									<sec:authorize access="isAuthenticated()">
 									<a role="button" class="reply" href="reply_view?cm_no=${cm_comment_list['CM_NO']}"
 										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
 										>Reply</a>
 									</sec:authorize>
+									</c:if>
+									<c:if test = "${content_view['BT_NO'] != 8 && memberVO.r_no != 0}">
+									<sec:authorize access="isAuthenticated()">
+									<a role="button" class="reply" href="reply_view?cm_no=${cm_comment_list['CM_NO']}"
+										onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;"
+										>Reply</a>
+									</sec:authorize>
+									</c:if>
 									<sec:authorize access="isAnonymous()">
 									<a role="button" class="reply" href="loginview"
 										>Reply</a>

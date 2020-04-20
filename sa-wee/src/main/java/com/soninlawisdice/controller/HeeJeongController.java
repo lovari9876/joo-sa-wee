@@ -127,7 +127,7 @@ public class HeeJeongController {
 		System.out.println("cm_no2 : "+cm_no2);
 
 		model.addAttribute("comment_list", contentService.selectCommentList(cm_no2));
-		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
+//		model.addAttribute("memberVO",cm_commentVO.getMemberVO());
 		
 		// 댓글 갯수 세기
 		model.addAttribute("comment_count", contentService.selectCommentCount(cm_no2));
