@@ -30,13 +30,13 @@ $(document).ready(
 								insert.submit();
 								console.log("insert");
 								
-							}else if(page = 'notice_write'){
+							}else if(page == 'notice_write'){
 								var insert = document.getElementById("viewForm");
 								insert.action="/admin/boardInsert";
 								insert.submit();
 								console.log("insert");
 								
-							}else if(page = 'notice_modify'){
+							}else if(page == 'notice_modify'){
 								var modify = document.getElementById("viewForm");
 								modify.action="/admin/updateNotice";
 								modify.submit();

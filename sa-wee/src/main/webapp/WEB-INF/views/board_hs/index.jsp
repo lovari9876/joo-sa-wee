@@ -189,7 +189,7 @@
 						[ 댓글 많이 씀 ]
 						<br/>
 						<br/>
-						${rankWC}
+						<a href='#' id='other_page' name='m_nick' data-nick='${rankWC}' onclick='return false;' >${rankWC}</a>
 					</div>
 					
 				</div>
@@ -200,7 +200,7 @@
 						<br/>
 						<br/>
 						<c:forEach items = "${rankW}" var = "rankW" >
-						${rankW['I_NICK']}
+						<a href='#' id='other_page' name='m_nick' data-nick="${rankW['I_NICK']}" onclick='return false;'>${rankW['I_NICK']}</a>
 						</c:forEach>
 					</div>
 				</div>
@@ -474,6 +474,7 @@
 	<script src="js/board_hs/cafe-photo.js"></script>
 	<!---====== 후원 js ======-->
 	<script src="js/cassie/sponsor_modal.js"></script>
-	
+	<!-- 다른 회원 정보 보기 팝업  -->
+	<script src="js/mypage/other_page.js"></script>
 </body>
 </html>
