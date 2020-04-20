@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,7 +67,7 @@
 						<!-- 게시판이름과 게시글 작성자 -->
 						<div class="title">
 							<div class="title_item frist">
-								<h4 id="community">132 : 111 문의</h4>
+								<h4 id="community"> 1 : 1 문의</h4>
 								<span class="slash">&bullet;</span> 
 								<span class="slash">${content_view['S_CONTENT']}</span>
 								
@@ -77,9 +79,26 @@
 						<div>
 							<span class="text-white">작성자 ${content_view['M_NICK']}</span>
 							<span class="slash">&bullet;</span> 
-							<span class="text-white">작성일 ${content_view['BW_WRITTEN_DATE']}</span> 
+							<span class="text-white">작성일
+								<jsp:useBean id="today" class="java.util.Date" /> <!-- Date() 생성자가 가장 가까운 millisecond의 date 객체 하나를 생성 -->
+								<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+								<fmt:formatDate value="${content_view['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${content_view['BW_WRITTEN_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	</span> 
 							<span class="slash">&bullet;</span>
-							<span class="text-white">수정일 ${content_view['BW_UPDATED_DATE']}</span>
+							<span class="text-white">수정일 
+								<fmt:formatDate value="${content_view['BW_UPDATED_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+								<c:choose>
+									<c:when test="${now ne date}">${date}</c:when> 
+									<c:otherwise>
+										<fmt:formatDate value="${content_view['BW_UPDATED_DATE']}" pattern="HH:mm"/>
+									</c:otherwise>
+								</c:choose>	
+							</span>
 						</div>
 					</div>
 					<br />
@@ -98,18 +117,22 @@
 				<c:choose>
 					<c:when test="${content_view['BW_SECRET'] eq  'y'}">	
 						<c:choose>
-							<c:when test="${content_view['M_NO'] eq m_no}">
+							<c:when test="${content_view['M_NO'] eq m_no or m_no eq 0}">
 								<p>${content_view['BW_CONTENT']}</p>
 							</c:when>
 							<c:otherwise>
-								<h3>비밀글입니다</h3>
+								<h4> - 비밀글입니다 - </h4> 
 							</c:otherwise>
 						</c:choose>
 					</c:when>
 					<c:otherwise>
-						<p>${content_view['BW_CONTENT']}</p>
+						<p> ${content_view['BW_CONTENT']}</p>
 					</c:otherwise>
 				</c:choose>
+					<br />
+					<br />
+					<br />
+					<br />
 					<br />
 					<br />
 					<input type = "hidden" class = "countComment" value = "${count}">

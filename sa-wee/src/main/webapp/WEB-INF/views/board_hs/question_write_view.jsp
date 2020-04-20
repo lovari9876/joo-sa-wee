@@ -99,7 +99,7 @@
 						
 						<tr class = "row">
 							<td class = "cell">
-								<label class = "secret">비밀글
+								<label class = "secret" style="font-size:13px;">비밀글
 									<input id = "secret_box" type = "checkbox" name = "bw_secret"/>
 									<span class = "checkmark"></span>
 								</label>

@@ -184,9 +184,9 @@
 				<!-- <h3>오늘의 랭킹</h3> -->
 
 				<div class="rank medal">
-					<img src="images/board_hs/gold-medal128.png">
+					<img src="images/board_hs/gold-medal128.png" style="margin-right:30px;">
 					<div class="rank-name">
-						댓글 많이 씀
+						[ 댓글 많이 씀 ]
 						<br/>
 						<br/>
 						${rankWC}
@@ -195,19 +195,20 @@
 				</div>
 
 				<div class="rank shield">
-					<img src="images/board_hs/shield128.png">
-					<div class="rank-name">글 많이 씀
+					<img src="images/board_hs/shield128.png"  style="margin-right:30px;">
+					<div class="rank-name"> [ 글 많이 씀 ]
 						<br/>
 						<br/>
-						<c:forEach items = "${rankW}" var = "rankW">
+						<c:forEach items = "${rankW}" var = "rankW" >
 						${rankW['I_NICK']}
 						</c:forEach>
 					</div>
 				</div>
 
 				<div class="rank siren">
-					<img src="images/board_hs/alert.png">
-					<div class="rank-name">신고 많이 받음...
+					<img src="images/board_hs/alert.png"  style="margin-right:30px;">
+					<div class="rank-name">
+						[ 신고 많이 받음... ]
 						<br/>
 						<br/>
 						누구

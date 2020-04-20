@@ -9,7 +9,7 @@
 <title>SUN-IN-LAW IS DISE</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<!-- 
 <link rel="stylesheet" href="css/board_hj/custom-bs.css">
 <link rel="stylesheet" href="css/board_hj/jquery.fancybox.min.css">
 <link rel="stylesheet" href="css/board_hj/bootstrap-select.min.css">
@@ -19,11 +19,13 @@
 <link rel="stylesheet" href="css/board_hj/animate.css">
 <link rel="stylesheet" href="css/board_hj/animate.min.css">
 <link rel="stylesheet" href="css/board_hj/quill.snow.css">
-<link rel="stylesheet" href="css/board_hj/style.css">
-<!-- <link rel="stylesheet" href="css/board_hj/font-awesome.min.css"> -->
-<link rel="stylesheet" href="css/board_hj/magnific-popup.css">
-<link rel="stylesheet" href="css/board_hj/bootstrap.min.css" />
 
+<link rel="stylesheet" href="css/board_hj/font-awesome.min.css">
+<link rel="stylesheet" href="css/board_hj/magnific-popup.css">
+<link rel="stylesheet" href="css/board_hj/bootstrap.min.css" /> -->
+
+ 
+ <link rel="stylesheet" href="css/board_hj/style.css">
 </head>
 <body>
 	<!-- 댓글 쓰기 -->

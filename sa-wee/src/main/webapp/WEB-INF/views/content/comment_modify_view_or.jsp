@@ -7,7 +7,7 @@
 <title>SUN-IN-LAW IS DISE</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<!-- 
 <link rel="stylesheet" href="css/board_hj/custom-bs.css">
 <link rel="stylesheet" href="css/board_hj/jquery.fancybox.min.css">
 <link rel="stylesheet" href="css/board_hj/bootstrap-select.min.css">
@@ -16,12 +16,12 @@
 <link rel="stylesheet" href="css/board_hj/owl.carousel.min.css">
 <link rel="stylesheet" href="css/board_hj/animate.min.css">
 <link rel="stylesheet" href="css/board_hj/quill.snow.css">
-<link rel="stylesheet" href="css/board_hj/style.css">
+
 <link rel="stylesheet" href="css/board_hj/header_style.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 
-<!-- tooltip, popover -->
+tooltip, popover
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <script
@@ -29,8 +29,8 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+<link rel="stylesheet" href="css/board_hj/style.css">
 </head>
 <body>
 

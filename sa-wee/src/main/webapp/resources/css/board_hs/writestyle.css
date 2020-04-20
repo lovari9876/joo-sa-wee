@@ -359,8 +359,8 @@ input:focus, select:focus, button:focus, textarea:focus {
 	position: absolute;
 	top: 0;
 	left: 0;
-	height: 25px;
-	width: 25px;
+	height: 20px;
+	width: 20px;
 	background-color: #eee;
 }
 /* On mouse-over, add a grey background color */

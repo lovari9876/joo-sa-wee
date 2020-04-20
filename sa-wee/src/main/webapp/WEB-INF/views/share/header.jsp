@@ -49,7 +49,7 @@
 					<!-- 상단바 메뉴 -->
 					<ul class="main-menu head--ul primary-menu">
 						<li>
-							<img src="/images/share/logo2.png" style = "width:35px;">
+							<img src="/images/share/logo2.png" style = "width:35px;vertical-align: middle;">
 						</li>
 						<li>
 							<a href="/">내사위는 주사위</a>
