@@ -115,17 +115,17 @@ public class CassieController {
 		return "secondhand/tlist";
 	}
 	
-	//tList : 태그
-		@RequestMapping(value = "/tListGame")
-		public String tListGame(Model model, HttpServletRequest request) {
-			
-			int t_no = Integer.parseInt(request.getParameter("t_no"));
-			System.out.println("t_no : " + t_no);
-			
-			model.addAttribute("gameNames", secondhandService.selectTrade_gameList(t_no));
-			
-			return "secondhand/tListGame";
-		}
+	// tList : 태그
+	@RequestMapping(value = "/tListGame")
+	public String tListGame(Model model, HttpServletRequest request) {
+		
+		int t_no = Integer.parseInt(request.getParameter("t_no"));
+		System.out.println("t_no : " + t_no);
+		
+		model.addAttribute("gameNames", secondhandService.selectTrade_gameList(t_no));
+		
+		return "secondhand/tListGame";
+	}
 		
 	
 	// 중고거래 게시글(content) view
@@ -483,9 +483,9 @@ public class CassieController {
 	
 	// 후원 모달에서 후원 insert 처리 후에 redirect..
 	@ResponseBody
-	@RequestMapping(value = "/sponsor_modal_view/{amount}", method = RequestMethod.GET)
+	@RequestMapping(value = "/sponsor_modal_view", method = RequestMethod.POST)
 	public HashMap<String, Object> sponsor_modal_view(Principal principal, Model model, 
-						@PathVariable(value = "amount") int amount, 
+						@RequestParam(value = "amount") int amount, 
 						HttpServletRequest rq) throws Exception {
 		
 		logger.info("sponsor_modal_view");
@@ -523,8 +523,8 @@ public class CassieController {
 		String status = iamPort.getPaymentInfo(imp_uid); // 결제 상태
 		System.out.println(status);
 
-		// 날짜 update나 뭐그런거 사실 해야해...
-		// sponsorService.updateSponsor(sp_no);
+		// 해당 회원 포인트 금액만큼 더하기
+		sponsorService.updateSponsorPoint(sp_no);
 
 		return ""; // 사실 이 리턴값을 json으로 다시 보내야 함
 	}

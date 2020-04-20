@@ -169,3 +169,10 @@ COMMIT;
 
 
 
+-- 후원한 회원 포인트 업뎃
+update 
+member m
+set
+m.m_point = m.m_point + (select sp.sp_money from sponsor sp where sp.sp_no = 4)
+where m.m_no = (select sp.m_no from sponsor sp where sp.sp_no = 4) ;
+

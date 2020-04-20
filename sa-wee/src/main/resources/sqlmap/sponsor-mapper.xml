@@ -64,6 +64,23 @@
 	
 	</select>
 	
+	
+	<!-- 해당 회원 포인트 금액만큼 더하기 -->
+	<update id="updateSponsorPoint">
+		
+		UPDATE 
+			MEMBER M
+		SET
+			M.M_POINT = M.M_POINT + (SELECT SP.SP_MONEY FROM SPONSOR SP WHERE SP.SP_NO = 4)
+		WHERE 
+			M.M_NO = (SELECT SP.M_NO FROM SPONSOR SP WHERE SP.SP_NO = 4)
+		
+	</update>
+	
+	
+
+
+
 
 
 </mapper>
