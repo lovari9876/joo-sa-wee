@@ -56,8 +56,8 @@
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							
 							<input type = "hidden" name = "r_no" value = "${report_view['R_NO']} ${report_view['R_TYPE_NO']}">
-							<!-- get방식으로 url뒤에 붙는 값과 name이 맞지않으면 오류가난다. r_no, r_type외의 다른 값이 추가되면(해당 메소드에서 파라미터로 받으면) 오류가 난다... 
-							그래서 띄어쓰기 기준으로 값을 두가지 보내서 탈퇴처리할 신고당한 회원 번호를 가져옴  -->
+							<!-- get방식으로 url뒤에 붙는 값과 name이 맞지않으면 오류가난다. r_no, r_type외의 다른 값이 추가되면(해당 메소드에서 파라미터로 받으면) 오류가 난다 
+								그래서 띄어쓰기 기준으로 값을 두가지 보내서 (StringTokenizer)탈퇴처리할 신고당한 회원 번호를 가져옴  -->
 							<input type = "hidden" name = "r_type" value = "${report_view['R_TYPE']}">
 							
 								<table class="table table_view" >
@@ -149,9 +149,6 @@
 														<button id="de"class="btn  pull-right" onClick='board_delete()' value="${report_view['R_TYPE']}">삭제</button>
 													</c:when>
 												</c:choose>	
-												
-											
-
 										</div>
 									</div>
 								</div>
