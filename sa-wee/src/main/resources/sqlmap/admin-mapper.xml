@@ -123,6 +123,13 @@
 	</select>
 
 
+	<select id="myReportList" resultType="java.util.HashMap" >
+	
+		SELECT r.*, ROW_NUMBER() OVER(ORDER BY r.r_no ASC) AS RNUM 
+		FROM report r WHERE m_no = #{m_no} ORDER BY r_no DESC
+		
+	</select>
+
 
 
 	<!-- ================================================MemberList, userList====================================================== -->
