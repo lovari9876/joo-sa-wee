@@ -168,8 +168,8 @@
 					<br/>
 	
 					<!-- ** 거래하기 버튼 및 모달: 일단 판매시에만 나타나도록! -->
-					<!-- && 본인 글에서는 구매하기 버튼 미출력! && 표류자도 못사요 -->		
-					<c:if test="${content_view_t['S_NO']==32 && content_view_t['M_NO'] != m_no && memberVO.r_no != 4}" > 	
+					<!-- && 본인 글에서는 구매하기 버튼 미출력! && 표류자도 못사요 && 무인도 글도 못사요 -->		
+					<c:if test="${content_view_t['S_NO']==32 && content_view_t['M_NO'] != m_no && memberVO.r_no != 4 && content_view_t['T_ISLAND'] eq 0}" > 	
 						<!-- 구매하기 버튼: open modal -->
 						<sec:authorize access="isAuthenticated()">
 							<div align="center" class="buy--button" >
@@ -177,7 +177,7 @@
 								<!-- <a class="" data-modal href="#myModal">거래하기</a>  -->
 							</div>
 						</sec:authorize>
-						<sec:authorize access="isAnonymous()">
+						<sec:authorize access="isAnonymous()"> <!-- 로그인 안했으면 로그인뷰로 보내기 -->
 							<div align="center">
 								<button class="write-btn lavender-btn" type="button" 
 								onclick="location.href='loginview' ">거래하기</button> 

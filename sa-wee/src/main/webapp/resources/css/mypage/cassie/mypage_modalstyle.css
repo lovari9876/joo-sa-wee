@@ -32,6 +32,10 @@
     z-index: 100; /* Could be more or less, depending on screen size */                          
 }
 
+#sponsor-modal  .modal--content {
+    margin: 10% auto;
+}    
+
 /* The Close Button */
 .modal--close {
     color: #aaa;

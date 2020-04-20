@@ -35,48 +35,57 @@
 	<div id="sponsor-modal" class="modal--trade">
 	
 		<div class="modal--content">						
-			<div>
-				<!-- ajax로 값 불러와서... 값 넣을 때도 ajax사용..  -->
-				<!-- <form action="sponsorCancel" method="post" enctype="multipart/form-data"
-					  	onsubmit="return confirmCancel();">					
-					<input type = "hidden" class="sponsor-modal-p_no" name="p_no" />  -->		
-					<!-- <input type = "hidden" id = "m_no" value = ""/> -->									
-					<div class="table--div">
-						<div class="modal--info">
-							후원금 결제를 카카오페이로 진행합니다.<br>
-							결제하실 금액을 선택해주세요.														
-						</div>						
-						<table>
-							<thead>
-								<tr class="table--row">
-									<th class="table--cell">결제 금액</th>
+			<div>						
+				<div class="table--div">
+					<div class="modal--info">
+						후원금 결제를 카카오페이로 진행합니다.<br>
+						결제하실 금액을 선택해주세요.														
+					</div>						
+					<table>
+						<thead>							
+							<tr class="table--row">
+								<th class="table--cell">선택</th>
+								<th class="table--cell">결제 금액</th>
+							</tr>
+						</thead>
+						<tbody id="ajax-sponsor">
+						</tbody>			
+									
+							<!-- 1,000원 ~ 10,000원 -->
+							<c:forEach var="i" begin="1" end="3">
+								<tr class="table--row sum--row">
+									<td class="table--cell">
+										<input type="radio" id="amount${i}000" name="spAmount" value="${i}000">
+									</td>
+									<td class="table--cell">
+										${i},000
+									</td>
 								</tr>
-							</thead>
-							<tbody id="ajax-sponsor">
-							</tbody>						
-							<tr class="table--row sum--row">
-								<td id="ajax-sum-sponsor" class="table--cell">
-									<!-- 1,000원 ~ 10,000원 -->
-									<c:forEach var="i" begin="1" end="10">
-										<input type="checkbox" id="amount${i}000" name="spAmount" value="${i}000">
-									</c:forEach>
-									<!-- 20,000원 ~ 100,000원 -->
-									<c:forEach var="j" begin="2" end="10">
-										<input type="checkbox" id="amount${j}0000" name="spAmount" value="${j}0000">
-									</c:forEach>																			
-								</td>
-							</tr> <!-- 결국 마이페이지 내의 모달은 다 한 페이지에 있기에 -->
-								  <!-- 절대 모달끼리 id가 중복되면 안된다.. 안나와.. -->
+							</c:forEach>
 							
-						</table>
-						<br/>				
-						<!-- 카카오페이 이미지... -->
-						<img alt="" src="/images/cassie/pay/payment_icon_yellow_small.png" 
-							 onClick="payNow()" style="margin-right:10px;"/>
-						<span class="modal--close" onClick="closeSponsorModal()">close</span>
-						<br/>
-					</div>
-				<!-- </form> -->							
+							<!-- 20,000원 ~ 100,000원 -->
+							<c:forEach var="j" begin="2" end="10">
+								<tr class="table--row sum--row">
+									<td class="table--cell">
+										<input type="radio" id="amount${j}0000" name="spAmount" value="${j}0000">
+									</td>
+									<td class="table--cell">
+										${j}0,000
+									</td>
+								</tr>
+							</c:forEach>																	
+							
+						 <!-- 결국 마이페이지 내의 모달은 다 한 페이지에 있기에 -->
+							  <!-- 절대 모달끼리 id가 중복되면 안된다.. 안나와.. -->
+						
+					</table>
+					<br/>				
+					<!-- 카카오페이 이미지... -->
+					<img alt="" src="/images/cassie/pay/payment_icon_yellow_small.png" 
+						 onClick="return isRadioChecked();" style="margin-right:10px;"/>
+					<span class="modal--close" onClick="closeSponsorModal()">close</span>
+					<br/>
+				</div>						
 			</div>
 		</div>		
 	</div>

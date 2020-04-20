@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,19 +14,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.soninlawisdice.iamport.IamPort;
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.IslandService;
 import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
+import com.soninlawisdice.service.SponsorService;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
+import com.soninlawisdice.vo.PaymentVO;
 import com.soninlawisdice.vo.SearchCriteria;
 import com.soninlawisdice.vo.TradeVO;
 import com.soninlawisdice.vo.Trade_gameVO;
@@ -45,6 +51,8 @@ public class CassieController {
 	private ContentService contentService;
 	@Autowired
 	private MyPageService myPageService;
+	@Autowired
+	private SponsorService sponsorService;
 	
 
 	////////////////////////////////// 보부상 /////////////////////////////////////////////
@@ -269,7 +277,6 @@ public class CassieController {
 		
 		return "redirect:content_view_t?t_no="+t_no;
 	}
-
 	
 	
 	////////////////////////////////// 무인도 /////////////////////////////////////////////
@@ -347,5 +354,180 @@ public class CassieController {
 		}		
 		
 	}
+	
+	
+////////////////// 마이페이지 내거래 및 중고거래 결제 ////////////////////////////////////////////////////////
+
+	// ========판매자==================================================
+	// 판매자 주문확인 모달: sell_modal_view
+	@ResponseBody
+	@RequestMapping(value = "/sell_modal_view/{pno}", method = RequestMethod.GET)
+	public ArrayList<HashMap<String, Object>> sell_modal_view(Model model, @PathVariable(value = "pno") int pno,
+			HttpServletRequest rq) {
+		System.out.println("sell_modal_view");
+
+		// mypage c:import에서 버튼 클릭 시, c:param으로 보낸 p_no
+		// int p_no = rq.getParameter("pno");
+		System.out.println("p_no : " + pno);
+
+		/*
+		 * ArrayList<HashMap<String, Object>> ptgList =
+		 * secondhandService.selectPTGList(pno); model.addAttribute("ptgList", ptgList);
+		 */
+
+		return secondhandService.selectPTGList(pno);
+	}
+
+	// 판매자 운송장 입력 모달: sell2_modal_view
+	@ResponseBody
+	@RequestMapping(value = "/sell2_modal_view/{pno}", method = RequestMethod.POST)
+	public ArrayList<HashMap<String, Object>> sell2_modal_view(Model model, @RequestParam(value = "p_no") int p_no,
+			HttpServletRequest rq) {
+		System.out.println("sell2_modal_view");
+
+		System.out.println("p_no : " + p_no);
+		/* rq.getParameter(name); */
+
+		return secondhandService.selectPTGList(p_no);
+	}
+
+	// 판매자 운송장 받기: FROM sell2_modal_view(입력 시), sell3_modal_view(수정 시)
+	@RequestMapping(value = "sellerTracking", method = RequestMethod.POST)
+	public String sellerTracking(Model model, HttpServletRequest rq, @ModelAttribute("paymentVO") PaymentVO paymentVO) {
+		System.out.println("sellerTracking");
+
+		System.out.println("p_no : " + paymentVO.getP_no());
+
+		secondhandService.updatePaymentTracking(paymentVO);
+
+		return "redirect:/mypage#trade";
+	}
+
+	// ========구매자==================================================
+	// 구매자 결제 모달: buy_modal_view
+	@ResponseBody
+	@RequestMapping(value = "/buy_modal_view/{pno}", method = RequestMethod.GET)
+	public ArrayList<HashMap<String, Object>> buy_modal_view(Model model, @PathVariable(value = "pno") int pno,
+			HttpServletRequest rq) {
+		System.out.println("buy_modal_view");
+
+		// mypage c:import에서 버튼 클릭 시, c:param으로 보낸 p_no
+		// int p_no = rq.getParameter("pno");
+		System.out.println("p_no : " + pno);
+
+		return secondhandService.selectPTGList(pno);
+	}
+
+	// 구매자 구매취소(거래취소): FROM buy_modal_view
+	@RequestMapping(value = "buyerCancel", method = RequestMethod.POST)
+	public String buyerCancel(Model model, HttpServletRequest rq,
+			@ModelAttribute("paymentVO") PaymentVO paymentVO /* ,@RequestParam("p_no") int p_no */) {
+		System.out.println("buyerCancel");
+
+		// int p_no = Integer.parseInt(rq.getParameter("p_no"));
+		System.out.println("p_no : " + paymentVO.getP_no());
+
+		// PaymentVO paymentVO = new PaymentVO();
+		// paymentVO.setP_no(p_no);
+
+		secondhandService.updatePaymentBuyerCancel(paymentVO);
+
+		return "redirect:/mypage#trade";
+	}
+
+	// 결제 성공해서 rsp.success=true 일 때 ajax로 아임포트 서버의 결제 성공 정보 받을 곳
+	@ResponseBody
+	@RequestMapping(value = "/payments/complete", method = RequestMethod.POST)
+	public String pay_success(Model model, HttpServletRequest rq, HttpServletResponse rs,
+			@RequestParam("p_no") int p_no) throws Exception {
+
+		System.out.println("payments/complete");
+
+		// ajax로 보낸 json p_no 받기
+		// int p_no = paymentVO.getP_no();
+		System.out.println("ajax로 받은 p_no: " + p_no);
+
+		// ajax text로 넘겨줘서 받은 값 2개
+		String imp_uid = rq.getParameter("imp_uid");
+		String payedPrice = rq.getParameter("price");
+
+		System.out.println("imp_uid: " + imp_uid);
+
+		IamPort iamPort = new IamPort();
+		String status = iamPort.getPaymentInfo(imp_uid); // 결제 상태
+		System.out.println(status);
+
+		secondhandService.updatePaymentSuccess(p_no);
+
+		return "mypage/mypage#trade"; // 사실 이 리턴값을 json으로 다시 보내야 함
+	}
+
+	// 구매자 수취확인: FROM buy3_modal_view
+	@RequestMapping(value = "buyerConfirm", method = RequestMethod.POST)
+	public String buyerConfirm(Model model, HttpServletRequest rq, @RequestParam("p_no") int p_no) {
+		System.out.println("buyerConfirm");
+
+		// int p_no = Integer.parseInt(rq.getParameter("p_no"));
+		System.out.println("p_no : " + p_no);
+
+		PaymentVO paymentVO = new PaymentVO();
+		paymentVO.setP_no(p_no);
+
+		secondhandService.updatePaymentBuyerConfirm(paymentVO);
+
+		return "redirect:/mypage#trade";
+	}	
+
+
+///////////////////////////////// 후원 ///////////////////////////////////////////////////////////////////
+	
+	// 후원 모달에서 후원 insert 처리 후에 redirect..
+	@ResponseBody
+	@RequestMapping(value = "/sponsor_modal_view/{amount}", method = RequestMethod.GET)
+	public HashMap<String, Object> sponsor_modal_view(Principal principal, Model model, 
+						@PathVariable(value = "amount") int amount, 
+						HttpServletRequest rq) throws Exception {
+		
+		logger.info("sponsor_modal_view");
+		
+		String m_id = principal.getName();		
+		MemberVO memberVO = myPageService.mypage(m_id);
+		
+		int sponsor = memberVO.getM_no();
+		
+		// 후원 insert
+		sponsorService.insertSponsor(sponsor, amount);
+		
+		// 방금 생성한 거 가져오기
+		return sponsorService.selectSponsorLatest(sponsor, amount);
+	}
+	
+	
+	// 결제 성공해서 rsp.success=true 일 때 ajax로 아임포트 서버의 결제 성공 정보 받을 곳
+	@ResponseBody
+	@RequestMapping(value = "/payments/complete/sponsor", method = RequestMethod.POST)
+	public String sponsor_success(Model model, HttpServletRequest rq, HttpServletResponse rs,
+			@RequestParam("sp_no") int sp_no) throws Exception {
+
+		System.out.println("sponsor_success");
+
+		System.out.println("ajax로 받은 sp_no: " + sp_no);
+
+		// ajax text로 넘겨줘서 받은 값 2개
+		String imp_uid = rq.getParameter("imp_uid");
+		String payedPrice = rq.getParameter("price");
+
+		System.out.println("imp_uid: " + imp_uid);
+
+		IamPort iamPort = new IamPort();
+		String status = iamPort.getPaymentInfo(imp_uid); // 결제 상태
+		System.out.println(status);
+
+		// 날짜 update나 뭐그런거 사실 해야해...
+		// sponsorService.updateSponsor(sp_no);
+
+		return ""; // 사실 이 리턴값을 json으로 다시 보내야 함
+	}
+	
 
 }

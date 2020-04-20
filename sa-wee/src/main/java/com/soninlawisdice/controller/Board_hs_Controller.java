@@ -70,7 +70,7 @@ public class Board_hs_Controller {
 	// 베스트 + 핫이슈 + 랭킹+홈화면
 
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public String home(Locale locale, Model model) {
+		public String home(Locale locale, Model model, Principal principal) throws Exception {
 
 			//히트다 히트
 			model.addAttribute("hit", boardService.selectHitList());
@@ -82,8 +82,15 @@ public class Board_hs_Controller {
 			model.addAttribute("rankWC", boardService.rankWriteCo());
 			//랭킹(신고많이받은...)
 			
+			// 후원하기 위한 후원자 정보
+			if(principal != null) {
+				String m_id = principal.getName();
+				MemberVO memberVO = myPageService.mypage(m_id);
+				model.addAttribute("memberVO", memberVO); 
+			}
+						
 			return "board_hs/index";
-	}
+		}
 		
 		
 		

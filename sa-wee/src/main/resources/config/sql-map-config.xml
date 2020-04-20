@@ -21,6 +21,7 @@
 		<mapper resource="sqlmap/mypage-mapper.xml" />
 		<mapper resource="sqlmap/seconhand-mapper.xml" />
 		<mapper resource="sqlmap/security-mapper.xml" />
+		<mapper resource="sqlmap/sponsor-mapper.xml" />		
 		
 	</mappers>
 </configuration>

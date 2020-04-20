@@ -48,7 +48,7 @@
                     F.F_NO = BF.F_NO
 							
 				WHERE 
-					1=1 
+					1=1 AND T.T_ISLAND = 0
 					<include refid="subjectSearch"></include>
 					<include refid="tradeSearch"></include>
 			) 
@@ -79,7 +79,7 @@
 		ON 
 			T.S_NO = S.S_NO	
 		WHERE 
-			1=1 
+			1=1  AND T.T_ISLAND = 0
 			<include refid="subjectSearch"></include>	
 			<include refid="tradeSearch"></include>
 			AND T_NO > 0
