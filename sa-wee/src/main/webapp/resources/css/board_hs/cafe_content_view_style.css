@@ -23,6 +23,15 @@
 	font-style: normal; 
 }
 
+/* 정선동강 BOLD */
+@font-face {
+	font-family: 'JSDongkang-Bold';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff')
+		 format('woff');
+	font-weight: normal;
+	font-style: normal;	
+}
+
 
 
 /* 아이콘 폰트에 링크 걸 때 밑줄 때문에 점이 생기는 문제 해결 */
@@ -255,7 +264,7 @@
 }
 
 .review{
-	margin-top : 60px;
+	padding-top : 60px;
 }
 
 /* 댓글-추천하기 */
@@ -544,7 +553,7 @@
 
 .review-wrap{
 	text-align : left;
-	/* padding : 20px 80px 100px 140px; */
+	padding : 20px 80px 100px 140px;
 	
 	/* margin-top : 20px;
 	margin-bottom : 150px;
@@ -857,6 +866,10 @@
 /* 추천수 */
 .row .tcell:nth-child(6){
 	width: 60px;
+}
+
+.bold{
+	font-family:JSDongkang-Bold;
 }
 
 

@@ -73,7 +73,7 @@
 
 				<!-- Search Bar  -->
 				<form>
-					<div class="search">
+					<div class="search" style = "margin-top:0px;">
 						<script>
 								      $(function(){
 												  $('#searchBtn').click(function() {
@@ -118,14 +118,14 @@
 
 
 					<!-- 테이블  -->
-					<div id="tab1" class="tabcontent current">
+					<div id="tab1" class="tabcontent current" style = "margin-top: 70px;">
 						
 						<table class="table">
 
 
 							<tr class="row header">
 								<td class="cell">글 번호</td>
-								<td class="cell">카페 이름</td>
+								<td class="cell name">카페 이름</td>
 								<td class="cell">글 제목</td>
 								<td class="cell">작성자</td>
 								<td class="cell">작성일</td>
@@ -137,7 +137,7 @@
 							<c:forEach items="${list}" var="list">
 							<tr class="row">
 								<td class = "cell">${list['RNUM']}</td>
-								<td class = "cell">${list['C_TITLE']}</td>
+								<td class = "cell name">${list['C_TITLE']}</td>
 								<td class = "cell"><a href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a> [${list['CM']}]</td>
 								<td class = "cell">${list['M_NICK']}</td>
 								<td class = "cell">
@@ -184,14 +184,16 @@
 						</ul>
 					</div>
 					
-					<button class = "list" type="button" onclick="location.href='cafe_info?c_no='+${c_no}">목록</button>
-					<sec:authorize access="isAnonymous()">
-						<button class="write-view-btn" type="button" onclick="location.href='loginview'">글쓰기</button>
-					</sec:authorize>
-					<sec:authorize access="isAuthenticated()">
-						<button class="write-view-btn" type="button" style="margin-top:0px !important;" onclick="location.href='cafe_review_write?c_no='+${c_no}">글쓰기</button>
-					</sec:authorize>
-				
+					<button class = "list"  type="button" onclick="location.href='cafe_info?c_no='+${c_no}">목록</button>
+					
+					<c:if test="${r_no != 4}" > 
+						<sec:authorize access="isAnonymous()">
+							<button class="write-view-btn" type="button" onclick="location.href='loginview'">글쓰기</button>
+						</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<button class="write-view-btn" type="button" style="margin-top:0px !important;" onclick="location.href='cafe_review_write?c_no='+${c_no}">글쓰기</button>
+						</sec:authorize>
+					</c:if>
 			</div>
 		</div>
 	</div>

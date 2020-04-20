@@ -381,7 +381,16 @@ public class Board_hs_Controller {
 		
 		//카페 info 에 있는 리뷰리스트 --> 더보기
 			@RequestMapping("/read_more")
-			public String read_more(Model model, @ModelAttribute("scri")SearchCriteria scri, int c_no) throws Exception{
+			public String read_more(Model model, @ModelAttribute("scri")SearchCriteria scri, int c_no, MemberVO memberVO, Principal principal) throws Exception{
+				
+				if(principal != null) {
+					String m_id = principal.getName();
+					memberVO = myPageService.mypage(m_id);
+					model.addAttribute("r_no", memberVO.getR_no());
+				}
+				
+				scri.setPerPageNum(15);
+				
 				model.addAttribute("list", boardService.selectCafeReviewList(scri, c_no));
 				model.addAttribute("c_no", c_no);
 				System.out.println("c_no : " + c_no);
@@ -400,6 +409,8 @@ public class Board_hs_Controller {
 			String add = rq.getParameter("add");
 			model.addAttribute("list", boardService.selectAllCafeList(scri, add));	
 			model.addAttribute("add", add);
+			
+			scri.setPerPageNum(15);
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
@@ -428,6 +439,9 @@ public class Board_hs_Controller {
 		@RequestMapping(value = "/selectAllReviewList")
 		public String selectAllReviewList(Model model, @ModelAttribute("scri") SearchCriteria scri) {
 			model.addAttribute("list", boardService.selectAllReviewList(scri));	
+			
+			scri.setPerPageNum(15);
+			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
 			pageMaker.setTotalCount(boardService.allCafeReview_Count(scri));
@@ -534,6 +548,8 @@ public class Board_hs_Controller {
 			String s_content = rq.getParameter("s_content");
 			model.addAttribute("list", boardService.selectBoardList(scri, 8, s_content));
 			model.addAttribute("s_content", s_content);
+			
+			scri.setPerPageNum(15);
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);

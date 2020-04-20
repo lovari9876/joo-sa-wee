@@ -1420,7 +1420,7 @@ button span.lnr-magnifier {
 
 .ftco-footer {
   font-size: 16px;
-  padding: 3em 0;
+  padding: 3em;
   background: #1E0A37;; 
 }
   
@@ -1893,8 +1893,15 @@ button span.lnr-magnifier {
     	font-size: small;
 	}
 	
+@media screen and (max-width : 768px){
+	.slider-wrap{
+		display : contents;
+	}
 	
-	
+	.image-wrap{
+		display : contents;
+	}
+}
 	
 	
 	

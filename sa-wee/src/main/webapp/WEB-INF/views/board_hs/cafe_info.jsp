@@ -221,9 +221,9 @@
 									</tr>
 									</c:forEach>
 								</tbody>
-								<%-- <tr class = "row">
-									<td colspan = "6" class = "cell"><a style = "font-weight:bold !important;"href = "read_more?c_no=${cafe_info.c_no}">리뷰 더보기</a></td>
-								</tr> --%>
+								<tr class = "row">
+									<td colspan = "6" class = "cell"><a class = "bold"  href = "read_more?c_no=${cafe_info.c_no}">리뷰 더보기</a></td>
+								</tr>
 
 							</table>
 						</div>

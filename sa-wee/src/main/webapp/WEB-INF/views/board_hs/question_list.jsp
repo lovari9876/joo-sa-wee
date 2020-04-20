@@ -132,7 +132,7 @@
 								<td class = "cell">
 									<c:if test = "${question['BW_SECRET'] eq 'y'}">  
 										<img src="images/board_hs/lock.png">
-									</c:if> 
+									</c:if>
 									<a href="question_content_view?bw_no=${question['BW_NO']}">${question['BW_TITLE']}</a>  [${question['CM']}]
 								</td>
 								<td class = "cell">${question['M_NICK']}</td>
