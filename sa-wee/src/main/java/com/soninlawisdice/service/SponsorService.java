@@ -15,4 +15,7 @@ public interface SponsorService {
 	// select sponsor list
 	public ArrayList<HashMap<String, Object>> selectSponsorList(int sp_no);
 
+	// 해당 회원 포인트 금액만큼 더하기
+	public void updateSponsorPoint(int sp_no);
+
 }

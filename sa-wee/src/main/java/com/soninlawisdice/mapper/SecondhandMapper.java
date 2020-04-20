@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.soninlawisdice.vo.PaymentVO;
 import com.soninlawisdice.vo.SearchCriteria;

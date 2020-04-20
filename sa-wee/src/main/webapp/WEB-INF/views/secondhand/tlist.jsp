@@ -469,10 +469,14 @@
 					    </c:if>					   
 					</ul>
 					<!-- 글쓰기 버튼 -->
-					<!-- 표류자 신분(r_no=4)이면 보이지 않도록.. -->
-					<c:if test="${memberVO.r_no != 4}">
+					<!-- 표류자 신분(r_no=4)이면 보이지 않도록.. && 로그인 안하면 로그인 뷰로 보내기 -->
+					<c:if test="${memberVO.r_no != 4 && memberVO.m_no ne null}">
 						<button class="btn btn-primary write-btn lavender-btn" type="button"
 								onclick="location.href='write_view_t'">글쓰기</button>
+					</c:if>
+					<c:if test="${memberVO.m_no eq null}">
+						<button class="btn btn-primary write-btn lavender-btn" type="button"
+								onclick="location.href='loginview'">글쓰기</button>
 					</c:if>
                 </nav>
             </div>

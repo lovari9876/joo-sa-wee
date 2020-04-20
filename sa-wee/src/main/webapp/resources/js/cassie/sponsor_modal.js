@@ -36,7 +36,7 @@ function isRadioChecked(sponsorBtn) {
 		// 선택된 radio 버튼 값 가져오기
 		amount = $('input[name="spAmount"]:checked').val();		
 
-		var msg = amount + "원을 결제합니다.";
+		var msg = amount/1000 + ",000원을 결제합니다.";
 		alert(msg);	
 		
 		// sponsor table insert하고 돌아오기
@@ -53,9 +53,10 @@ function isRadioChecked(sponsorBtn) {
 function sponsorAjax(amount) { 
 	
 	$.ajax({ 
-		type : "GET",
-		url : "/sponsor_modal_view/"+amount, 
+		type : "POST",
+		url : "/sponsor_modal_view?amount="+amount, 
 		cache : false,
+		dataType : "json",
 		success : function(data) { /* 컨트롤러에서 넘긴 값이 여기로 온다 */
 			console.log("SUCCESS: ", amount); 
 			
@@ -66,7 +67,6 @@ function sponsorAjax(amount) {
 		}, 
 		error : function(e) { 
 			console.log("ERROR: ", e); 
-			display(e); 
 		}, 
 		done : function(e) { 
 			console.log("DONE"); 
@@ -83,11 +83,11 @@ function sponsorAjax(amount) {
 var IMP = window.IMP;
 IMP.init('imp42437735'); // 가맹점 식별코드
 
-function paySponsor(amount, sp_no) {
+function paySponsor(amount) {
 	console.log('결제금액: '+amount ); 
 	
 	IMP.request_pay({					
-		merchant_uid : sp_no, // 걍 p_no..// 가맹점에서 생성/관리하는 고유 주문번호
+		merchant_uid : sp_no, // 전역변수 sp_no..// 가맹점에서 생성/관리하는 고유 주문번호
 		name : '내 사위는 주사위 후원금',
 		amount : amount,
 		buyer_name : m_name, // 선택
@@ -163,8 +163,7 @@ function paySponsor(amount, sp_no) {
 			
 			// 결제 모달 닫기
 			$("#sponsor-modal").css("display", "none");
-		}		
-
+		}	
 		
 	});				
 };			
