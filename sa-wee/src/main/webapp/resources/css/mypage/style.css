@@ -13,11 +13,35 @@ Description: This Template is created for web template
 	font-weight: normal;
 	src: url("../../fonts/fonts_cassie/joosaweefonts/DungGeunMo.ttf") format('truetype');
 }
+
+@font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face { 
+	font-family: 'JSDongkang-Bold'; 
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff') format('woff'); 
+	font-weight: normal; 
+	font-style: normal; 
+}
+
 /* ===================================== Basic CSS ================================== */
 * {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
+	font-family: "JSDongkang-Bold";
+}
+.JSD-Regular-12{
+	font-family: "JSDongkang-Bold";
+	font-size:12px;
+	
+}
+.JSD-Bold-12{
+	font-family: "JSDongkang-Bold";
+	font-size:12px;
 }
 
 img {
@@ -101,16 +125,16 @@ p {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "DungGeunMo", Arial, Helvetica, sans-serif;
+	font-family: "JSDongkang-Bold", Arial, Helvetica, sans-serif;
 }
 
 strong {
-	font-family: "DungGeunMo", Arial, Helvetica, sans-serif;
+	font-family: "JSDongkang-Bold", Arial, Helvetica, sans-serif;
 }
 
 body {
 	background-color: #f7f7ff !important;
-	font-family: "DungGeunMo", Arial, Helvetica, sans-serif;
+	font-family: "JSDongkang-Regular", Arial, Helvetica, sans-serif;
 	color: #6A6A6A;
 }
 
@@ -146,7 +170,7 @@ body {
 	width: 100%;
 	text-align: center;
 	font-size: 2rem;
-	font-family: "DungGeunMo", Arial, Helvetica, sans-serif;
+	font-family: "JSDongkang-Bold", Arial, Helvetica, sans-serif;
 }
 
 .inner-title p {
@@ -701,5 +725,29 @@ input[type=text] {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+/* 버튼 만들기 */
+.btn-lavender {
+	color: #fff;
+	background-color: #9f80c2;
+	border-color: #9f80c2;
+}
+.btn-lavender-min {
+	color: #fff;
+	background-color: #9f80c2;
+	border-color: #9f80c2;
+	padding-top:3px;
+	padding-bottom:3px;
+}
+.margin-left-11{
+	margin-left: 11px;
+}
+.btn-lavender:hover{
+	cursor: pointer;
+	color:#2F4F4F;
+}
+.btn-min{
+	font-size: small;
+}
+
 
 /*# sourceMappingURL=style.css.map */

@@ -429,7 +429,7 @@
 							<ul>
 								<li><i class="fas fa-phone"></i> &nbsp;&nbsp; 02-1234-5678</li>
 								<li><i class="far fa-envelope"></i>&nbsp;&nbsp;
-									info.colorlib@gmail.com</li>
+									soninlaw55@gmail.com</li>
 								<li><i class="fas fa-map-marked-alt"></i>&nbsp;&nbsp; 서울
 									마포구 백범로 23 지하1층</li>
 

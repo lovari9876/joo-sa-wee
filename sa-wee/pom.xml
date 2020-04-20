@@ -190,7 +190,22 @@
 		    <version>2.2</version>
 		</dependency>
 
-		<!-- 시큐리티 END -->
+		<!-- 카카오로그인 httpcore와 httpclient STRAT -->
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.6</version>
+        </dependency>
+ 
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.2</version>
+        </dependency>
+		<!-- 카카오로그인 httpcore와 httpclient END -->
+		
 
 		<!-- Spring -->
 		<dependency>

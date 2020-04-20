@@ -11,6 +11,12 @@ body {
 	font-weight: normal;
 	src: url("../../fonts/fonts_cassie/joosaweefonts/DungGeunMo.ttf") format('truetype');
 }
+@font-face {
+	font-family: 'JSDongkang-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
 
 .page-content {
 	width: 100%;
@@ -50,7 +56,7 @@ body {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	margin: 70px 0;
-	font-family: "DungGeunMo";
+	font-family: "JSDongkang-Bold";
 	position: relative;
 	display: flex;
 	display: -webkit-flex
@@ -362,8 +368,7 @@ body {
 	margin-right: 20px
 }
 
-.inner .form-row .form-holder input, .inner .form-row .form-holder select
-	{
+.inner .form-row .form-holder input, .inner .form-row .form-holder select {
 	width: 100%;
 	padding: 13px 10px 8px;
 	border: none;
@@ -378,7 +383,7 @@ body {
 	-webkit-outline: none;
 	-o-outline: none;
 	-ms-outline: none;
-	font-family: "DungGeunMo";
+	font-family: "JSDongkang-Bold";
 	font-weight: 400;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -529,7 +534,7 @@ body {
 	-webkit-align-items: center;
 	align-items: center;
 	background: #8861B4;
-	font-family: "DungGeunMo";
+	font-family: "JSDongkang-Regular";
 	font-size: 16px;
 	font-weight: 400;
 	cursor: pointer

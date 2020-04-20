@@ -14,74 +14,13 @@
 <link rel="stylesheet" href="/css/mypage/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/mypage/style.css" />
 <!-- 403 에러 / csrf 토큰 문제 -->
-<meta id="_csrf" name="_csrf" content="${_csrf.token}" />
+<%-- <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
-	content="${_csrf.headerName}" />
+	content="${_csrf.headerName}" /> --%>
 <!-- 우편번호 api -->
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-	function sample4_execDaumPostcode() {
-		new daum.Postcode(
-				{
-					oncomplete : function(data) {
-						// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
-						// 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-						// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-						var roadAddr = data.roadAddress; // 도로명 주소 변수
-						var extraRoadAddr = ''; // 참고 항목 변수
-
-						// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-						// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-							extraRoadAddr += data.bname;
-						}
-						// 건물명이 있고, 공동주택일 경우 추가한다.
-						if (data.buildingName !== '' && data.apartment === 'Y') {
-							extraRoadAddr += (extraRoadAddr !== '' ? ', '
-									+ data.buildingName : data.buildingName);
-						}
-						// 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-						if (extraRoadAddr !== '') {
-							extraRoadAddr = ' (' + extraRoadAddr + ')';
-						}
-
-						// 우편번호와 주소 정보를 해당 필드에 넣는다.
-						document.getElementById('m_post').value = data.zonecode;
-						document.getElementById("m_addr1").value = roadAddr;
-						document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-
-						// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-						if (roadAddr !== '') {
-							document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-						} else {
-							document.getElementById("sample4_extraAddress").value = '';
-						}
-
-						var guideTextBox = document.getElementById("guide");
-						// 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-						if (data.autoRoadAddress) {
-							var expRoadAddr = data.autoRoadAddress
-									+ extraRoadAddr;
-							guideTextBox.innerHTML = '(예상 도로명 주소 : '
-									+ expRoadAddr + ')';
-							guideTextBox.style.display = 'block';
-
-						} else if (data.autoJibunAddress) {
-							var expJibunAddr = data.autoJibunAddress;
-							guideTextBox.innerHTML = '(예상 지번 주소 : '
-									+ expJibunAddr + ')';
-							guideTextBox.style.display = 'block';
-						} else {
-							guideTextBox.innerHTML = '';
-							guideTextBox.style.display = 'none';
-						}
-					}
-				}).open();
-	}
-</script>
 </head>
 <body>
 	<!-- header include -->
@@ -108,7 +47,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4 eml-mob">
+							<div class="col-md-4 eml-mob" style="border-right: none;">
 								<div class="pd">
 									<br />
 									<p>
@@ -117,7 +56,7 @@
 									</p>
 								</div>
 							</div>
-							<div class="col-md-4 eml-mob">
+							<div class="col-md-4 eml-mob" style="border-right: none;">
 								<div class="pd">
 									<br />
 									<p>
@@ -145,18 +84,6 @@
 											<br />
 
 											<p>
-												<label>이메일</label> <input class="form-control" type="text"
-													id="m_email" name="m_email" value="${ member.m_email }">
-											</p>
-											<div class="check_font" id="m_email_check"></div>
-
-											<p>
-												<label>핸드폰</label> <input class="form-control" type="text"
-													id="m_phone" name="m_phone" value="${ member.m_phone }">
-											</p>
-											<div class="check_font" id="m_phone_check"></div>
-											<br />
-											<p>
 												<label>우편번호</label> <input type="text" class="form-control"
 													id="m_post" name="m_post" required
 													value="${ member.m_post }">
@@ -172,17 +99,27 @@
 												<label>상세주소</label> <input class="form-control" type="text"
 													id="m_addr2" name="m_addr2" value="${ member.m_addr2 }">
 											</p>
-
+											<br /> <br />
+											<p>
+												<label>은행</label> <input class="form-control" type="text"
+													id="m_bank" name="m_bank" value="${ member.m_bank }">
+											</p>
+											<p>
+												<label>계좌번호</label> <input class="form-control" type="text"
+													id="m_account" name="m_account"
+													value="${ member.m_account }">
+											</p>
 
 										</div>
 										<div class="col-md-8 home-dat">
 											<div class="detal-jumbo">
 												<h3>자기소개</h3>
 												<p>
-													<input class="w3-input" type="text" id="m_self"
-														name="m_self" value="${ member.m_self }">
+													<textarea name="m_self" id="m_self" rows="7"
+														class="form-control" style="resize: none;"
+														placeholder="${ member.m_self }"
+														value="${ member.m_self }"></textarea>
 												</p>
-												<br /> <br /> <br /> <br /> <br />
 											</div>
 
 
@@ -248,42 +185,83 @@
 												</div>
 											</div>
 
-											<input type="hidden" name="${_csrf.parameterName}"
-												value="${_csrf.token}" />
+											<%-- <input type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" /> --%>
 
 											<div class="row no-margin home-det">
-												<div class="col-md-4 eml-mob">
+												<div class="col-md-4 eml-mob" style="border-right: none;">
+													<div class="pd">
+														<br /> <br /> <label>이메일</label> <input class="form-control"
+															type="text" id="m_email" name="m_email"
+															value="${ member.m_email }">
+														<div class="check_font" id="m_email_check"></div>
+														<a href="#" class="btn btn-lavender"
+															onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+															class="fas fa-circle-notch"></i>이메일 변경</a>
+
+													</div>
+												</div>
+												<div class="col-md-4 eml-mob" style="border-right: none;">
+													<div class="pd">
+														<br /> <br /> <label>핸드폰</label> <input class="form-control"
+															type="text" id="m_phone" name="m_phone"
+															value="${ member.m_phone }">
+														<div class="check_font" id="m_phone_check"></div>
+														<a href="#" class="btn btn-lavender"
+															onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+															class="fas fa-circle-notch"></i>핸드폰 변경</a>
+													</div>
+												</div>
+												<%-- <div class="col-md-4 eml-mob" style="border-right: none;">
+													<div class="pd">
+														<br /> <label>이메일</label> <input class="form-control"
+															type="text" id="m_email" name="m_email"
+															value="${ member.m_email }">
+
+														<div class="check_font" id="m_email_check"></div>
+
+														<br /> <label>핸드폰</label> <input class="form-control"
+															type="text" id="m_phone" name="m_phone"
+															value="${ member.m_phone }">
+
+														<div class="check_font" id="m_phone_check"></div>
+														<br />
+
+													</div>
+												</div>
+												<div class="col-md-4 eml-mob" style="border-right: none;">
 													<div class="pd">
 														<br /> <label>비밀번호</label> <input placeholder="password"
 															class="form-control" type="password" id="m_pw"
 															name="m_pw" value="">
 														<div class="check_font" id="m_pw_check"></div>
-
-													</div>
-												</div>
-												<div class="col-md-4 eml-mob">
-													<div class="pd">
 														<br /> <label>비밀번호 확인</label> <input
 															placeholder="comfirm password" class="form-control"
 															type="password" id="comfirm_password"
 															name="comfirm_password" value="">
 														<div class="check_font" id="comfirm_password_check"></div>
 													</div>
-												</div>
+												</div> --%>
 												<div class="col-md-4 eml-mob">
 													<div class="pd">
 														<div class="links">
 															<div class="row">
-																<ul class="btn-link">
-																	<li><a href="/mypage_modifyview"><i
-																			class="fas fa-circle-notch"></i>처음으로</a></li>
-																	<li><button class='btn-a' onclick="m_update()">
+																<ul class="">
+																	<li><a href="#" class="btn btn-lavender margin-left-11"
+																		onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+																			class="fas fa-circle-notch"></i>비밀번호 변경</a></li>
+																	<li><button
+																			class='btn-a btn btn-lavender margin-left-11'
+																			onclick="m_update()">
 																			<i class="fas fa-circle-notch"></i>수정하기
 																		</button></li>
 
-																	<li><a href="/mypage"><i
-																			class="fas fa-address-card"></i>마이페이지</a></li>
-																	<li class="btn-shake"><a href="/outview" onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+																	<li  style="cursor: pointer; "><a href="/mypage"
+																		class="btn btn-lavender margin-left-11"><i
+																			class="fas fa-address-card"></i>돌아가기</a></li>
+																	<li class="btn-shake"><a href="/outview"
+																		class="btn btn-lavender margin-left-11"
+																		onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
 																			class="fas fa-times"></i>탈퇴</a></li>
 																</ul>
 															</div>
@@ -331,6 +309,7 @@
 <script src="js/mypage/bootstrap.min.js"></script>
 <script src="js/mypage/script.js"></script>
 <script src="js/mypage/main.js"></script>
+<script src="js/join/address_api.js"></script>
 
 <!-- Java Script for header  ================================================== -->
 <script src="/js/header/jquery.slicknav.min.js"></script>
