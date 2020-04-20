@@ -104,7 +104,7 @@
 						<!-- <a href="#" class="login100-social-item">
 						<i class="fa fa-facebook-f"></i>
 					</a> -->
-						<a href="#" class="login100-social-item"> <img
+						<a href="https://kauth.kakao.com/oauth/authorize?client_id=808a2d6aa457367086dbabd054bb06a1&redirect_uri=http://localhost:8282/kakaologin&response_type=code" class="login100-social-item"> <img
 							src="resources/images/bl_share/icons/login/kakaolink_btn_medium_ov.png"
 							alt="KAKAO">
 						</a> <a href="#" class="login100-social-item"> <img

@@ -70,9 +70,6 @@
 	<update id="modifyMember">
 		update member set
 				m_nick = #{m_nick},
-				m_pw = #{m_pw},
-				m_email = #{m_email},
-				m_phone = #{m_phone},
 				m_post = #{m_post},
 				m_addr1 = #{m_addr1}, 
 				m_addr2 = #{m_addr2},
@@ -81,6 +78,8 @@
 				m_re_notice = #{m_re_notice},
 				m_re_message = #{m_re_message}, 
 				m_info = #{m_info}
+				m_account = #{m_account}
+				m_bank = #{m_bank}
 						where m_id = #{m_id}
 	</update>
 	

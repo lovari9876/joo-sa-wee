@@ -34,6 +34,15 @@ Description: This Template is created for web template
 	list-style: none;
 	font-family: "JSDongkang-Bold";
 }
+.JSD-Regular-12{
+	font-family: "JSDongkang-Bold";
+	font-size:12px;
+	
+}
+.JSD-Bold-12{
+	font-family: "JSDongkang-Bold";
+	font-size:12px;
+}
 
 img {
 	max-width: 100%;
@@ -716,5 +725,29 @@ input[type=text] {
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+/* 버튼 만들기 */
+.btn-lavender {
+	color: #fff;
+	background-color: #9f80c2;
+	border-color: #9f80c2;
+}
+.btn-lavender-min {
+	color: #fff;
+	background-color: #9f80c2;
+	border-color: #9f80c2;
+	padding-top:3px;
+	padding-bottom:3px;
+}
+.margin-left-11{
+	margin-left: 11px;
+}
+.btn-lavender:hover{
+	cursor: pointer;
+	color:#2F4F4F;
+}
+.btn-min{
+	font-size: small;
+}
+
 
 /*# sourceMappingURL=style.css.map */

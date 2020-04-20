@@ -47,7 +47,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4 eml-mob" style="border-right:none;">
+							<div class="col-md-4 eml-mob" style="border-right: none;">
 								<div class="pd">
 									<br />
 									<p>
@@ -56,7 +56,7 @@
 									</p>
 								</div>
 							</div>
-							<div class="col-md-4 eml-mob" style="border-right:none;">
+							<div class="col-md-4 eml-mob" style="border-right: none;">
 								<div class="pd">
 									<br />
 									<p>
@@ -84,18 +84,6 @@
 											<br />
 
 											<p>
-												<label>이메일</label> <input class="form-control" type="text"
-													id="m_email" name="m_email" value="${ member.m_email }">
-											</p>
-											<div class="check_font" id="m_email_check"></div>
-
-											<p>
-												<label>핸드폰</label> <input class="form-control" type="text"
-													id="m_phone" name="m_phone" value="${ member.m_phone }">
-											</p>
-											<div class="check_font" id="m_phone_check"></div>
-											<br />
-											<p>
 												<label>우편번호</label> <input type="text" class="form-control"
 													id="m_post" name="m_post" required
 													value="${ member.m_post }">
@@ -111,15 +99,26 @@
 												<label>상세주소</label> <input class="form-control" type="text"
 													id="m_addr2" name="m_addr2" value="${ member.m_addr2 }">
 											</p>
-
+											<br /> <br />
+											<p>
+												<label>은행</label> <input class="form-control" type="text"
+													id="m_bank" name="m_bank" value="${ member.m_bank }">
+											</p>
+											<p>
+												<label>계좌번호</label> <input class="form-control" type="text"
+													id="m_account" name="m_account"
+													value="${ member.m_account }">
+											</p>
 
 										</div>
 										<div class="col-md-8 home-dat">
 											<div class="detal-jumbo">
 												<h3>자기소개</h3>
 												<p>
-												<textarea name="m_self" id="m_self" rows="7"
-													class="form-control" style="resize: none;" placeholder="${ member.m_self }" value="${ member.m_self }"></textarea>
+													<textarea name="m_self" id="m_self" rows="7"
+														class="form-control" style="resize: none;"
+														placeholder="${ member.m_self }"
+														value="${ member.m_self }"></textarea>
 												</p>
 											</div>
 
@@ -190,38 +189,79 @@
 												value="${_csrf.token}" /> --%>
 
 											<div class="row no-margin home-det">
-												<div class="col-md-4 eml-mob">
+												<div class="col-md-4 eml-mob" style="border-right: none;">
+													<div class="pd">
+														<br /> <br /> <label>이메일</label> <input class="form-control"
+															type="text" id="m_email" name="m_email"
+															value="${ member.m_email }">
+														<div class="check_font" id="m_email_check"></div>
+														<a href="#" class="btn btn-lavender"
+															onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+															class="fas fa-circle-notch"></i>이메일 변경</a>
+
+													</div>
+												</div>
+												<div class="col-md-4 eml-mob" style="border-right: none;">
+													<div class="pd">
+														<br /> <br /> <label>핸드폰</label> <input class="form-control"
+															type="text" id="m_phone" name="m_phone"
+															value="${ member.m_phone }">
+														<div class="check_font" id="m_phone_check"></div>
+														<a href="#" class="btn btn-lavender"
+															onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+															class="fas fa-circle-notch"></i>핸드폰 변경</a>
+													</div>
+												</div>
+												<%-- <div class="col-md-4 eml-mob" style="border-right: none;">
+													<div class="pd">
+														<br /> <label>이메일</label> <input class="form-control"
+															type="text" id="m_email" name="m_email"
+															value="${ member.m_email }">
+
+														<div class="check_font" id="m_email_check"></div>
+
+														<br /> <label>핸드폰</label> <input class="form-control"
+															type="text" id="m_phone" name="m_phone"
+															value="${ member.m_phone }">
+
+														<div class="check_font" id="m_phone_check"></div>
+														<br />
+
+													</div>
+												</div>
+												<div class="col-md-4 eml-mob" style="border-right: none;">
 													<div class="pd">
 														<br /> <label>비밀번호</label> <input placeholder="password"
 															class="form-control" type="password" id="m_pw"
 															name="m_pw" value="">
 														<div class="check_font" id="m_pw_check"></div>
-
-													</div>
-												</div>
-												<div class="col-md-4 eml-mob">
-													<div class="pd">
 														<br /> <label>비밀번호 확인</label> <input
 															placeholder="comfirm password" class="form-control"
 															type="password" id="comfirm_password"
 															name="comfirm_password" value="">
 														<div class="check_font" id="comfirm_password_check"></div>
 													</div>
-												</div>
+												</div> --%>
 												<div class="col-md-4 eml-mob">
 													<div class="pd">
 														<div class="links">
 															<div class="row">
-																<ul class="btn-link">
-																	<li><a href="/mypage_modifyview"><i
-																			class="fas fa-circle-notch"></i>처음으로</a></li>
-																	<li><button class='btn-a' onclick="m_update()">
+																<ul class="">
+																	<li><a href="#" class="btn btn-lavender margin-left-11"
+																		onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+																			class="fas fa-circle-notch"></i>비밀번호 변경</a></li>
+																	<li><button
+																			class='btn-a btn btn-lavender margin-left-11'
+																			onclick="m_update()">
 																			<i class="fas fa-circle-notch"></i>수정하기
 																		</button></li>
 
-																	<li><a href="/mypage"><i
-																			class="fas fa-address-card"></i>마이페이지</a></li>
-																	<li class="btn-shake"><a href="/outview" onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+																	<li  style="cursor: pointer; "><a href="/mypage"
+																		class="btn btn-lavender margin-left-11"><i
+																			class="fas fa-address-card"></i>돌아가기</a></li>
+																	<li class="btn-shake"><a href="/outview"
+																		class="btn btn-lavender margin-left-11"
+																		onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
 																			class="fas fa-times"></i>탈퇴</a></li>
 																</ul>
 															</div>

@@ -20,11 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.soninlawisdice.service.JoinService;
 import com.soninlawisdice.service.MailService;
 import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.util.Coolsms;
+import com.soninlawisdice.util.Kakao;
 import com.soninlawisdice.vo.MemberVO;
 
 @Controller
@@ -164,8 +167,7 @@ public class JoinController {
 		}
 
 		return mailService.send(subject, sb.toString(), "lyeon615@gmail.com", userEmail);
-	}
-	
+	}	
 
 	// 이메일 인증 번호 확인
 	@ResponseBody
@@ -298,6 +300,73 @@ public class JoinController {
 //		return "login/login";
 //	}
 
+	
+	// 카카오로그인
+	@RequestMapping(value = "/kakaologin", produces="application/json",method = RequestMethod.GET)
+	public String kakaologin(@RequestParam("code") String code, RedirectAttributes ra, HttpSession session, HttpServletResponse res) throws Exception {
+		System.out.println("kakaologin");
+		System.out.println("code : "+ code);	
+
+		JsonNode accessToken;
+		 
+        // JsonNode트리형태로 토큰받아온다
+        JsonNode jsonToken = Kakao.getKakaoAccessToken(code);
+        // 여러 json객체 중 access_token을 가져온다
+        accessToken = jsonToken.get("access_token");
+        System.out.println("access_token : " + accessToken);
+		
+		JsonNode userInfo = Kakao.getKakaoUserInfo(accessToken);
+		 
+        // Get id
+        String id = userInfo.path("id").asText();
+        String name = null;
+        String email = null;
+ 
+        // 유저정보 카카오에서 가져오기 Get properties
+        JsonNode properties = userInfo.path("properties");
+        JsonNode kakao_account = userInfo.path("kakao_account");
+ 
+        name = properties.path("nickname").asText();
+        email = kakao_account.path("email").asText();
+ 
+        System.out.println("id : " + id);
+        System.out.println("name : " + name);
+        System.out.println("email : " + email);
+    
+        session.setAttribute("access_Token", accessToken);
+        session.setAttribute("kakaoID", name);
+        
+		return "/login/index";
+	}
+	
+	@RequestMapping(value="/kakaoLogout")
+	public String kakaoLogout(HttpSession session) {
+		System.out.println("kakaoLogout");
+		//JsonNode accessToken = Kakao.kakaoLogout((String)session.getAttribute("access_Token"));
+		
+	    session.removeAttribute("access_Token");
+	    session.removeAttribute("kakaoID");
+	    
+	    return "/login/index";
+	}
+
+	@RequestMapping(value="/kakaoLogout2")
+	public String kakaoLogout2(HttpSession session) {
+		System.out.println("kakaoLogout");
+		Kakao.kakaoUnlink((String)session.getAttribute("access_Token"));
+		
+	    session.removeAttribute("access_Token");
+	    session.removeAttribute("kakaoID");
+	    
+	    return "/login/index";
+	}
+	@RequestMapping(value="/login/index")
+	public String loginindex(HttpSession session) {
+		System.out.println("loginindex");
+	    
+	    return "/login/index";
+	}
+	
 	// ================================= 아이디, 비밀번호 찾기 =================================
 
 	@RequestMapping(value = "/forgot_idview", method = RequestMethod.GET)
