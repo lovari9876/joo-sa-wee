@@ -31,17 +31,29 @@ Description: This Template is created for web template
 * {
 	margin: 0px;
 	padding: 0px;
-	list-style: none;
-	font-family: "JSDongkang-Bold";
 }
 .JSD-Regular-12{
-	font-family: "JSDongkang-Bold";
+	font-family: "JSDongkang-Regular";
 	font-size:12px;
-	
+}
+.JSD-Regular-12.5{
+	font-family: "JSDongkang-Regular";
+	font-size:12.5px;
 }
 .JSD-Bold-12{
 	font-family: "JSDongkang-Bold";
 	font-size:12px;
+}
+.JSD-Bold-12.5{
+	font-family: "JSDongkang-Bold";
+	font-size:12.5px;
+}
+.nav-link{
+	font-family: "JSDongkang-Bold";
+	font-size:16px;
+}
+li{
+ 	list-style:none;
 }
 
 img {
