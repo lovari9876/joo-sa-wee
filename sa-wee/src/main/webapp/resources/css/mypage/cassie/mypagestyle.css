@@ -55,6 +55,20 @@
 	}
 }
 
+/* 내 후원/ 내 신고 반씩 가르기 */
+.mypage-sponsor {
+    display: inline-block;
+    width: 49%;
+    margin-right: 10px;
+}
+    
+.mypage-report {
+    display: inline-block;
+    float: right;
+    width: 49%;
+}
+ /* 내 후원/ 내 신고 반씩 가르기 끝*/  
+
 .table_row {
 	display : table-row;
 	background: #fff;
@@ -158,6 +172,21 @@
 	width: 100px;
 	padding: 10px 5px; /* vertical 가운데 정렬 */
 }
+
+
+/* 내 후원 항목들... 너비 */
+.mypage-sponsor .table_row .cell:nth-child(1) {
+	width: 10%;
+}
+
+.mypage-sponsor .table_row .cell:nth-child(2) {
+	width: 75%;
+}
+
+.mypage-sponsor .table_row .cell:nth-child(3) {
+	width: 15%;
+}
+
 
 /* 버튼 */
 .table_row .cell:nth-child(7) {
