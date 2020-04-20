@@ -50,8 +50,8 @@ public class BoardServiceImpl implements BoardService {
 	public String rankWriteCo() {
 		return boardMapper.rankWriteCo();
 	}
-	
-	//신고 많이 당한 사람
+
+	// 신고 많이 당한 사람
 	@Override
 	public String rankReport() {
 		return boardMapper.rankReport();
@@ -281,24 +281,21 @@ public class BoardServiceImpl implements BoardService {
 	public ArrayList<String> gameNameList() {
 		return boardMapper.gameNameList();
 	}
-	
-	
-	///////////////보부상 글작성////////////////
 
-	
+	/////////////// 보부상 글작성////////////////
+
 	@Override
 	public List<Map<String, Object>> selectFileList(int t_no) throws Exception {
 		return boardMapper.selectFileList(t_no);
 	}
-	
+
 	@Override
 	public String selectFileName(int t_no) throws Exception {
 		return boardMapper.selectFileName(t_no);
 	}
 
-	
-	
 	/////////////////////////////////////////////
+
 	/*
 	 * @Override public void insertGame() {
 	 * 
@@ -306,11 +303,12 @@ public class BoardServiceImpl implements BoardService {
 	 * 
 	 * try { JsonParser jsonParser = new JsonParser(); JsonReader jsonReader = new
 	 * JsonReader(new FileReader("C:\\Users\\user\\games.json")); JsonArray
-	 * jsonArray = (JsonArray)jsonParser.parse(jsonReader);
+	 * jsonArray = (JsonArray) jsonParser.parse(jsonReader);
 	 * 
-	 * GameVO gameVO= null;
+	 * GameVO gameVO = null;
 	 * 
-	 * for(Object object : jsonArray) { JsonObject jsonObject = (JsonObject)object;
+	 * for (Object object : jsonArray) { JsonObject jsonObject = (JsonObject)
+	 * object;
 	 * 
 	 * gameVO = new GameVO();
 	 * 
@@ -324,7 +322,6 @@ public class BoardServiceImpl implements BoardService {
 	 * getAsString())); gameVO.setG_image(jsonObject.get("image").getAsString());
 	 * gameVO.setG_thumbnail(jsonObject.get("thumbnail").getAsString());
 	 * 
-	 * 
 	 * System.out.println(gameVO.getG_name());
 	 * System.out.println(gameVO.getG_min());
 	 * System.out.println(gameVO.getG_image());
@@ -333,7 +330,5 @@ public class BoardServiceImpl implements BoardService {
 	 * 
 	 * } catch (Exception e) { e.printStackTrace(); }
 	 * boardMapper.insertGame(gameList); }
-	 * 
 	 */
-
 }

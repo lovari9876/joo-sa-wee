@@ -401,7 +401,7 @@ input:focus, select:focus, button:focus, textarea:focus {
 
 /*tagsinput 부분  */
 .badge-info {
-	background : red !important;
+	background : #1E0A37 !important;
 }
 
 /* ckEditor 부분 */

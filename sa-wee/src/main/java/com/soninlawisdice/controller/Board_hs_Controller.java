@@ -124,16 +124,15 @@ public class Board_hs_Controller {
 			@RequestMapping(value = "/board_story", method = RequestMethod.GET)
 			public String board_story(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
 				
+				scri.setPerPageNum(15);
+				
 				if(principal != null) {
 					String m_id = principal.getName();
 					memberVO = myPageService.mypage(m_id);
 					model.addAttribute("r_no", memberVO.getR_no());
 				}
 				
-				
 				String s_content = rq.getParameter("s_content");
-				
-				scri.setPerPageNum(15);
 				
 				model.addAttribute("list", boardService.selectBoardList(scri, 1, s_content));
 				model.addAttribute("s_content", s_content);
@@ -150,6 +149,8 @@ public class Board_hs_Controller {
 			@RequestMapping(value = "/board_open_review", method = RequestMethod.GET)
 			public String board_open_review(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
 				
+				scri.setPerPageNum(15);
+				
 				if(principal != null) {
 					String m_id = principal.getName();
 					memberVO = myPageService.mypage(m_id);
@@ -161,7 +162,6 @@ public class Board_hs_Controller {
 				model.addAttribute("list", boardService.selectBoardList(scri, 2, s_content));
 				model.addAttribute("s_content", s_content);
 				
-				scri.setPerPageNum(15);
 				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);
@@ -175,6 +175,8 @@ public class Board_hs_Controller {
 			@RequestMapping(value = "/board_meet", method = RequestMethod.GET)
 			public String board_meet(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
 				
+				scri.setPerPageNum(15);
+				
 				if(principal != null) {
 					String m_id = principal.getName();
 					memberVO = myPageService.mypage(m_id);
@@ -185,8 +187,6 @@ public class Board_hs_Controller {
 				model.addAttribute("list", boardService.selectBoardList(scri, 3, s_content));
 				model.addAttribute("s_content", s_content);
 
-				scri.setPerPageNum(15);
-				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);
 				pageMaker.setTotalCount(boardService.cboard_listCount(scri, 3, s_content));
@@ -199,6 +199,8 @@ public class Board_hs_Controller {
 			@RequestMapping(value = "/board_news", method = RequestMethod.GET)
 			public String board_news(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
 				
+				scri.setPerPageNum(15);
+				
 				if(principal != null) {
 					String m_id = principal.getName();
 					memberVO = myPageService.mypage(m_id);
@@ -209,7 +211,6 @@ public class Board_hs_Controller {
 				model.addAttribute("list", boardService.selectBoardList(scri, 4, s_content));
 				model.addAttribute("s_content", s_content);
 
-				scri.setPerPageNum(15);
 				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);
@@ -223,6 +224,8 @@ public class Board_hs_Controller {
 			@RequestMapping(value = "/board_qna", method = RequestMethod.GET)
 			public String board_qna(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
 				
+				scri.setPerPageNum(15);
+				
 				if(principal != null) {
 					String m_id = principal.getName();
 					memberVO = myPageService.mypage(m_id);
@@ -232,8 +235,6 @@ public class Board_hs_Controller {
 				String s_content = rq.getParameter("s_content");
 				model.addAttribute("list", boardService.selectBoardList(scri, 5, s_content));
 				model.addAttribute("s_content", s_content);
-				
-				scri.setPerPageNum(15);
 				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);
@@ -247,6 +248,8 @@ public class Board_hs_Controller {
 			@RequestMapping(value = "/board_creation", method = RequestMethod.GET)
 			public String board_creation(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq, MemberVO memberVO, Principal principal)  throws Exception{
 				
+				scri.setPerPageNum(15);
+				
 				if(principal != null) {
 					String m_id = principal.getName();
 					memberVO = myPageService.mypage(m_id);
@@ -256,8 +259,6 @@ public class Board_hs_Controller {
 				String s_content = rq.getParameter("s_content");
 				model.addAttribute("list", boardService.selectBoardList(scri, 6, s_content));
 				model.addAttribute("s_content", s_content);
-				
-				scri.setPerPageNum(15);
 				
 				PageMaker pageMaker  = new PageMaker();
 				pageMaker.setCri(scri);
@@ -390,14 +391,14 @@ public class Board_hs_Controller {
 		//카페 info 에 있는 리뷰리스트 --> 더보기
 			@RequestMapping("/read_more")
 			public String read_more(Model model, @ModelAttribute("scri")SearchCriteria scri, int c_no, MemberVO memberVO, Principal principal) throws Exception{
+
+				scri.setPerPageNum(15);
 				
 				if(principal != null) {
 					String m_id = principal.getName();
 					memberVO = myPageService.mypage(m_id);
 					model.addAttribute("r_no", memberVO.getR_no());
 				}
-				
-				scri.setPerPageNum(15);
 				
 				model.addAttribute("list", boardService.selectCafeReviewList(scri, c_no));
 				model.addAttribute("c_no", c_no);
@@ -414,11 +415,11 @@ public class Board_hs_Controller {
 		@RequestMapping("/cafe_list")
 		public String cafe_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
 			
+			scri.setPerPageNum(15);
+			
 			String add = rq.getParameter("add");
 			model.addAttribute("list", boardService.selectAllCafeList(scri, add));	
 			model.addAttribute("add", add);
-			
-			scri.setPerPageNum(15);
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
@@ -446,9 +447,10 @@ public class Board_hs_Controller {
 		// 카페 리뷰들 싹다 리스트(표)로 보기
 		@RequestMapping(value = "/selectAllReviewList")
 		public String selectAllReviewList(Model model, @ModelAttribute("scri") SearchCriteria scri) {
-			model.addAttribute("list", boardService.selectAllReviewList(scri));	
-			
+
 			scri.setPerPageNum(15);
+			
+			model.addAttribute("list", boardService.selectAllReviewList(scri));	
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
@@ -553,11 +555,11 @@ public class Board_hs_Controller {
 
 		public String question_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) throws Exception {
 			
+			scri.setPerPageNum(15);
+			
 			String s_content = rq.getParameter("s_content");
 			model.addAttribute("list", boardService.selectBoardList(scri, 8, s_content));
 			model.addAttribute("s_content", s_content);
-			
-			scri.setPerPageNum(15);
 			
 			PageMaker pageMaker = new PageMaker();
 			pageMaker.setCri(scri);
@@ -725,8 +727,6 @@ public class Board_hs_Controller {
 		// (이미지)파일 이름이 되어버림. filename + jjj 했더니 1.jpgjjj 가 되었음.
 		String newfilename = filename;
 		
-		
-
 		// 업로드 수행
 		// File file = new File( fuploadPath + "/" + newfilename);
 
@@ -741,7 +741,6 @@ public class Board_hs_Controller {
 			FileUtils.writeByteArrayToFile(file, fileload.getBytes());
 			//FileUtils.writeByteArrayToFile(file2, fileload.getBytes());
 			//FileUtils.writeByteArrayToFile(file3, fileload.getBytes());
-			
 			System.out.println(file);
 
 			return "{ \"uploaded\" : true, \"url\" : \"http://localhost:8282/resources/files/img/" + newfilename
@@ -749,8 +748,6 @@ public class Board_hs_Controller {
 			//url 가 src 로 들어가면서 저장됨. 
 			//return "{ \"uploaded\" : true, \"url\" : \"file:///C:/mp/file/"+ newfilename +
 			 //"\" }";
-			
-		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println(e);

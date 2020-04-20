@@ -111,7 +111,7 @@
 
 							<tr class="row header">
 								<td class="cell">글 번호</td>
-								<td class="cell">카페 이름</td>
+								<td style="width:150px;" class="cell">카페 이름</td>
 								<td class="cell">글 제목</td>
 								<td class="cell">작성자</td>
 								<td class="cell">작성일</td>
@@ -123,7 +123,7 @@
 							<c:forEach items="${list}" var="list">
 							<tr class="row">
 								<td class = "cell">${list['RNUM']}</td>
-								<td class = "cell"><a href="cafe_info?c_no=${list['C_NO']}">${list['C_TITLE']}</a></td>
+								<td style="width:150px;" class = "cell"><a href="cafe_info?c_no=${list['C_NO']}">${list['C_TITLE']}</a></td>
 								<td class = "cell"><a href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a> [${list['CM']}]</td>
 								<td class = "cell">
 									<sec:authorize access="isAuthenticated()">	
