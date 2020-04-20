@@ -42,6 +42,7 @@ import com.soninlawisdice.iamport.IamPort;
 import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.MyPageService;
 import com.soninlawisdice.service.SecondhandService;
+import com.soninlawisdice.service.SponsorService;
 import com.soninlawisdice.vo.CM_commentVO;
 import com.soninlawisdice.vo.MemberVO;
 import com.soninlawisdice.vo.PageMaker;
@@ -63,6 +64,9 @@ public class MyPageController {
 	
 	@Autowired
 	private SecondhandService secondhandService;
+
+	@Autowired
+	private SponsorService sponsorService;
 	
 
 	// 시큐리티 이전 마이페이지
@@ -106,6 +110,12 @@ public class MyPageController {
 		int myReplyCount = myPageService.myReplyCount(m_no);
 		model.addAttribute("myReplyCount", myReplyCount);
 			
+		
+		///////////// 내 후원 /////////////////////////////////
+		ArrayList<HashMap<String, Object>> sponsorList = 
+				sponsorService.selectSponsorList(m_no);
+		model.addAttribute("sponsorList", sponsorList);
+		
 		
 		///////////// 내 판매 /////////////////////////////////
 		String who = "seller"; // xml에서 판매자, 구매자 식별 위한 값

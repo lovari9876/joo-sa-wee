@@ -320,25 +320,26 @@
 								</div>
 								<table class="table">
 									<tr class="table_row header">
-										<td class="cell">글 번호</td>
-										<td class="cell">후원금액</td>
+										<td class="cell">후원 번호</td>
+										<td class="cell">후원 금액</td>
 										<td class="cell">후원일</td>
 									</tr>
-									<tr class="table_row">
-										<td class="cell">1</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">2</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
-									<tr class="table_row">
-										<td class="cell">3</td>
-										<td class="cell">Vincent Williamson</td>
-										<td class="cell">Vincent Williamson</td>
-									</tr>
+									<c:forEach items="${sponsorList}" var="spItem" varStatus="status">
+										<tr class="table_row">
+											<td class="cell">${spItem['SP_NO']}</td>
+											<td class="cell">${spItem['SP_MONEY']}</td>
+											<td class="cell">
+												<!-- 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+												<fmt:formatDate value="${spItem['SP_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+												<c:choose>
+													<c:when test="${now ne date}">${date}</c:when> 
+													<c:otherwise>
+														<fmt:formatDate value="${spItem['SP_DATE']}" pattern="HH:mm"/>
+													</c:otherwise>
+												</c:choose>
+											</td>
+										</tr>
+									</c:forEach>
 								</table>
 								<br />
 								<div class="sec-title">

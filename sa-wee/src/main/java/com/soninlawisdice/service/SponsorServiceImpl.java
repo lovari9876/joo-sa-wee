@@ -27,8 +27,8 @@ public class SponsorServiceImpl implements SponsorService {
 	}
 	
 	// select sponsor list
-	public ArrayList<HashMap<String, Object>> selectSponsorList(int sp_no) {
-		return sponsorMapper.selectSponsorList(sp_no);
+	public ArrayList<HashMap<String, Object>> selectSponsorList(int m_no) {
+		return sponsorMapper.selectSponsorList(m_no);
 	}
 	
 	// 해당 회원 포인트 금액만큼 더하기
