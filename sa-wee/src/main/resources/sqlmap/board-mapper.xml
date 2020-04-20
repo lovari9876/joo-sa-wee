@@ -837,7 +837,7 @@
 			<if test="s_content == '다 리뷰'">AND s.s_content = '다 리뷰'</if>
 			
 			<if test="s_content == '모집'">AND s.s_content = '모집'</if>
-			<if test="s_content == '모임 후기'">AND s.s_content = '모임 후기'</if>
+			<if test="s_content == '모임후기'">AND s.s_content = '모임 후기'</if>
 			
 			<if test="s_content == '이벤트'">AND s.s_content = '이벤트'</if>
 			<if test="s_content == '대회'">AND s.s_content = '대회'</if>

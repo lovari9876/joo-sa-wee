@@ -790,15 +790,17 @@
 	<delete id="selectDelete_comment" parameterType="com.soninlawisdice.vo.CM_commentVO" >
 		delete cm_comment where cm_no = #{cm_no}
 	</delete>
+
+	<delete id="cafeInfoDelete" >
+		delete cafe where c_no = #{c_no}
+	</delete>
 	
+	
+		
 	<delete id="faqDelete" parameterType="com.soninlawisdice.vo.FaqVO" >
 		delete faq where faq_no = #{faq_no}
 	</delete>
 	
-	
-	<delete id="cafeInfoDelete" >
-		delete cafe where c_no = #{c_no}
-	</delete>
 	
 	<!-- =============================================== 방문자수  ====================================================== -->
 	

@@ -22,7 +22,6 @@ $(".selectDelete_btn").click(function() {
 	
 	$("input[class='chBox']:checked").each(function() {
 		checkArr.push($(this).attr("data-BW"));
-		
 	});
 
 	if (checkArr == "") {

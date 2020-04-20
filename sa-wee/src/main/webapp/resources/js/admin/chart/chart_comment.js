@@ -37,14 +37,11 @@ $(document).ready(function chart1() {
 				
 				chartLabels.push(value.st_date);
 				chartData.push(value.st_comment_num);
-				
-				
 			});
 			
 			//최근 값 7개가 최근순으로 불러와지므로 reverse를 이용해 역순으로 바꿔줌
 			chartLabels.reverse();
 			chartData.reverse();
-			
 			
 			// ajax로 불러온 데이터 콘솔에 출력해서 확인
 			console.log(chartLabels);
@@ -63,7 +60,6 @@ $(document).ready(function chart1() {
 
 	var lineChartData = {
 			
-		
 		labels : chartLabels,
 		datasets : [ {
 			legend : {
@@ -76,12 +72,6 @@ $(document).ready(function chart1() {
 			data : chartData
 		} ],
 
-		// 옵션
-	/*	options: {
-	          legend: {
-	            display: false
-	          }
-		}*/
 
 	}
 	

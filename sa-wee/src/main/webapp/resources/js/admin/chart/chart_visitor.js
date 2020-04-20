@@ -1,6 +1,5 @@
 ﻿// 일간
 $(document).ready(function chart1() {
-
 	var chartLabels = []; // 받아올 데이터를 저장할 배열 선언
 	var chartData = [];
 	// 차트 생성
@@ -46,7 +45,6 @@ $(document).ready(function chart1() {
 			createChart();
 
 		},
-
 		error : function(request, status, error) {
 			console.log(request.responseText);
 			console.log(error);
@@ -67,10 +65,7 @@ $(document).ready(function chart1() {
 			borderColor : '#FAB79E',
 			data : chartData
 		} ],
-
-
 	}
-	
 });
 
 
