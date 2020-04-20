@@ -38,6 +38,8 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <link rel="stylesheet" href="css/board_hs/liststyle.css" />
 
@@ -135,7 +137,22 @@
 									</c:if>
 									<a href="question_content_view?bw_no=${question['BW_NO']}">${question['BW_TITLE']}</a>  [${question['CM']}]
 								</td>
-								<td class = "cell">${question['M_NICK']}</td>
+								<td class = "cell">
+									<sec:authorize access="isAuthenticated()">	
+										<a class="pointer" role = "button" class="pop_btn popovers"
+										data-toggle="popover" 
+										data-content="<a href='#' id='other_page' data-nick='${question["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+										<br/>
+														<a href='#' id='send_message' data-nick='${question["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
+										<br/>			
+														<a href='report_view_m?m_no=${question["M_NO"]}&bw_no=${question["BW_NO"]}'>신고하기</a>">
+										${question['M_NICK']}
+										</a>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										${question['M_NICK']}
+									</sec:authorize>			
+								</td>
 								<td class = "cell">
 											<jsp:useBean id="today" class="java.util.Date" />
 											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
@@ -331,5 +348,10 @@
 	<script src="js/board_hs/button.js"></script>
 	<script src="js/footer/footer_hee.js"></script>
 
+	<script src="js/board_hj/tooltip.js"></script>
+	<script src="js/board_hj/popover.js"></script>
+	
+	<!-- 다른 회원 정보 보기 팝업  -->
+	<script src="js/mypage/other_page.js"></script>
 </body>
 </html>

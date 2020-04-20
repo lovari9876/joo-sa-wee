@@ -29,11 +29,10 @@ public interface BoardService {
 	//댓글 많이 쓴 사람
 	public String rankWriteCo();
 		
-	
+	//신고 많이 당한사람
+	public String rankReport();
 	
 	///////////////////// 커뮤니티/////////////////////////
-
-	
 	
 	
 	// 커뮤니티 게시판

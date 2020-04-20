@@ -62,7 +62,7 @@
 			<div class="wrap-table100">
 
 				<div class="listName">
-					<h3>카페 리스트</h3>
+					<a href = "cafe_list"><h3 style="color:black;">카페 리스트</h3></a>
 					<p>카페 리스트임</p>
 				</div>
 				
@@ -152,7 +152,7 @@
 								<td class="cell">글 번호</td>
 								<td class="cell loc">지역</td>
 								<td class="cell cn">카페 이름</td>
-								<td class="cell">조회수</td>
+								<td class="cell" style="width:200px;">카페 번호</td>
 								
 							</tr>
 
@@ -162,7 +162,7 @@
 								<td class = "cell">${list['RNUM']}</td>
 								<td class = "cell loc">${list['C_ADD']}</td>
 								<td class = "cell cn"><a href="cafe_info?c_no=${list['C_NO']}">${list['C_TITLE']}</a></td>
-								<td class = "cell">${list['C_HIT']}</td>
+								<td class = "cell">${list['C_PHONE']}</td>
 								
 							</tr>
 							</c:forEach>

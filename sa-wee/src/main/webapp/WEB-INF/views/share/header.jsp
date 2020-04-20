@@ -111,7 +111,7 @@
 									<li><a href="/mypage" class="txt3 hov1">마이페이지</a><li>
 									<li><a href="/message" class="txt3 hov1">쪽지함</a><li>
 									<li><form:form action="/logout" method="POST">
-										<input type="submit" value="로그아웃" />
+										<input style="font-size:16px;" type="submit" value="로그아웃" />
 									</form:form></li>
 								</sec:authorize>
 								<sec:authorize access="hasRole('ROLE_ADMIN')">

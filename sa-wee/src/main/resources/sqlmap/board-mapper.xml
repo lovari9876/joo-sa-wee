@@ -136,7 +136,26 @@
 			WHERE RNUM <= 1
 	]]>
 	</select>
-
+	
+	
+	<!-- 신고 많이 받은 사람 -->
+	<select id="rankReport" resultType="String">
+		<![CDATA[
+		SELECT 
+			m_nick 
+				FROM
+				(
+					SELECT count(*), m.m_nick, row_number() over(ORDER by COUNT(*) desc) RNUM
+					FROM report r, member m
+					WHERE r.r_type_no = m.m_no
+					AND r.r_type = '회원'
+					GROUP BY m.m_nick
+					ORDER BY COUNT(*) DESC
+					
+				)
+			WHERE RNUM <= 1
+	]]>
+	</select>
 <!-- ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ커뮤니티ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->	
 	
 	<!-- 커뮤니티 전체보기 -->

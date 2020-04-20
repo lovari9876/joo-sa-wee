@@ -39,6 +39,9 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
 
 <link rel="stylesheet" href="css/board_hs/liststyle.css" />
 
@@ -129,7 +132,22 @@
 								<td class = "cell">${dto['RNUM']}</td>
 								<td class = "cell">${dto['S_CONTENT']}</td>
 								<td class = "cell"><a href="content_view?bw_no=${dto['BW_NO']}">${dto['BW_TITLE']}</a>  [${dto['CM']}]</td>
-								<td class = "cell">${dto['M_NICK']}</td>
+								<td class = "cell">
+									<sec:authorize access="isAuthenticated()">	
+										<a class="pointer" role = "button" class="pop_btn popovers"
+										data-toggle="popover" 
+										data-content="<a href='#' id='other_page' data-nick='${dto["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+										<br/>
+														<a href='#' id='send_message' data-nick='${dto["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
+										<br/>			
+														<a href='report_view_m?m_no=${dto["M_NO"]}&bw_no=${dto["BW_NO"]}'>신고하기</a>">
+										${dto['M_NICK']}
+										</a>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										${dto['M_NICK']}
+									</sec:authorize>			
+								</td>
 								<td class = "cell">
 									<jsp:useBean id="today" class="java.util.Date" />
 									<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
@@ -288,5 +306,10 @@
 	<script src="js/footer/footer_hee.js"></script>
 	<script src="js/board_hs/button.js"></script>
 
+	<script src="js/board_hj/tooltip.js"></script>
+	<script src="js/board_hj/popover.js"></script>
+	
+	<script src="js/mypage/other_page.js"></script>
+	
 </body>
 </html>
