@@ -144,7 +144,7 @@
 					<!-- 1. 사진이 2장 이상이면 갤러리 타입, 사진 1장: standard 타입, 사진 없으면 이미지 부분 태그 통으로 빼서 벽돌리스트 이쁘게 해야함 -->
 					<!-- 2. data-aos="fade-up"을 세번째 아이템에게 넣어줘야함; list[2]에 article param으로 넣을것!!-->
 					<!--  data-aos="fade-up" -->
-					<c:forEach items="${tList}" var="tItem">
+					<c:forEach items="${tList}" var="tItem" varStatus="status">
 					<c:choose>
 					<c:when test="${tItem['F_NAME'] eq null}">
 						<article class="masonry__brick entry format-standard">	                 
