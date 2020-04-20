@@ -312,7 +312,7 @@
 														</c:otherwise>
 													</c:choose>
 												</td>
-												<td class="cell text-center"><button class="scrap_delete"
+												<td class="cell text-center"><button class="scrap_delete btn-min btn-lavender-min"
 														data-bt="${myScrap['SC_BOARDTYPE']}"
 														data-no="${myScrap['SC_NO']}">삭제</button></td>
 											</tr>
