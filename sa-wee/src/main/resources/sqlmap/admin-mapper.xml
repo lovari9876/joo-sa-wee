@@ -794,6 +794,11 @@
 		delete faq where faq_no = #{faq_no}
 	</delete>
 	
+	
+	<delete id="cafeInfoDelete" >
+		delete cafe where c_no = #{c_no}
+	</delete>
+	
 	<!-- =============================================== 방문자수  ====================================================== -->
 	
 	<insert id="setTotalCount" parameterType="com.soninlawisdice.vo.VisitVO">

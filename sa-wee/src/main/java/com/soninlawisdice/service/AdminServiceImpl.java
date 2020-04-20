@@ -350,7 +350,10 @@ public class AdminServiceImpl implements AdminService {
 		adminMapper.selectDelete_trade(t_no);
 	}
 	
-	
+	@Override
+	public void cafeInfoDelete(int c_no) {
+		adminMapper.cafeInfoDelete(c_no);
+	}
 	
 	
 	

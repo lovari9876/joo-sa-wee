@@ -1,6 +1,4 @@
-﻿
-
-// 일간
+﻿// 일간
 $(document).ready(function chart1() {
 
 	var chartLabels = []; // 받아올 데이터를 저장할 배열 선언
@@ -31,15 +29,12 @@ $(document).ready(function chart1() {
 		type : "post",
 		cache : false,
 		dataType : "json",
-		/* data: "", */
 
 		success : function(data) {
 			$.each(data, function(key, value) {
 				
 				chartLabels.push(value.st_date);
 				chartData.push(value.st_visitor_num);
-				
-				
 			});
 			
 			//최근 값 7개가 최근순으로 불러와지므로 reverse를 이용해 역순으로 바꿔줌
@@ -55,14 +50,12 @@ $(document).ready(function chart1() {
 		error : function(request, status, error) {
 			console.log(request.responseText);
 			console.log(error);
-
 		}
 
 	});
 
 	var lineChartData = {
 			
-		
 		labels : chartLabels,
 		datasets : [ {
 			legend : {
@@ -75,16 +68,13 @@ $(document).ready(function chart1() {
 			data : chartData
 		} ],
 
-		// 옵션
-	/*	options: {
-	          legend: {
-	            display: false
-	          }
-		}*/
 
 	}
 	
 });
+
+
+
 
 // 주간
 $(document).ready(
@@ -154,7 +144,6 @@ $(document).ready(
 
 			var lineChartData = {
 					
-				
 				labels : chartLabels,
 				datasets : [ {
 					legend : {
@@ -167,12 +156,6 @@ $(document).ready(
 					data : chartData
 				} ],
 
-				// 옵션
-			/*	options: {
-			          legend: {
-			            display: false
-			          }
-				}*/
 
 			}
 			
@@ -256,13 +239,6 @@ $(document).ready(
 					borderColor : '#BADAD8',
 					data : chartData
 				} ],
-
-				// 옵션
-			/*	options: {
-			          legend: {
-			            display: false
-			          }
-				}*/
 
 			}
 			

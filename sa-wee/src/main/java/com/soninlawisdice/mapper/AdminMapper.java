@@ -145,6 +145,8 @@ public interface AdminMapper {
 	
 	public void faqDelete(int faq_no);
 	
+	public void cafeInfoDelete(int c_no);
+	
 	
 	// 글보기
 	public MemberVO selectMemberView(int m_no);

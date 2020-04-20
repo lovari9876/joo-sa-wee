@@ -670,6 +670,16 @@ public class AdminController {
 
 	}
 	
+	// cafe 정보글 삭제 
+	@RequestMapping(value = "/deleteCafe/{c_no}", method = RequestMethod.GET)
+	public String deleteCafe(@PathVariable("c_no")int c_no) throws Exception {
+		
+		adminService.cafeInfoDelete(c_no);
+		
+		return "redirect:/cafe_list";
+
+	}
+	
 	
 	////////////////////////////game_list///////////////////////////////////////
 	
