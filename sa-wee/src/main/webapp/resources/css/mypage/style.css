@@ -749,5 +749,9 @@ input[type=text] {
 	font-size: small;
 }
 
+div#contact {
+    box-sizing: border-box;
+    height: 580px;
+}
 
 /*# sourceMappingURL=style.css.map */

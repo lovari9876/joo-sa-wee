@@ -44,6 +44,10 @@ public interface AdminMapper {
 	//mypage scrap List
 	public ArrayList<HashMap<String, Object>> scrapList(@Param("m_no")int m_no);
 	
+	//mypage report List 신고
+	public ArrayList<HashMap<String, Object>> myReportList(@Param("m_no")int m_no);
+	
+	
 
 	// 페이징 처리 + 검색  List
 	public ArrayList<HashMap<String, Object>> boardList(@Param("scri") SearchCriteria scri, 

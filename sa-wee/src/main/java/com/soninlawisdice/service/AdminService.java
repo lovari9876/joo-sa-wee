@@ -42,6 +42,9 @@ public interface AdminService {
 	//mypage scrap List
 	public ArrayList<HashMap<String, Object>> scrapList(int m_no);
 	
+	//mypage report List 신고
+	public ArrayList<HashMap<String, Object>> myReportList(int m_no);
+	
 		
 	// 페이징 처리 + 검색  List
 	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content, String sort);
@@ -62,8 +65,8 @@ public interface AdminService {
 	public List<FaqVO> faqList(SearchCriteria scri, int s_no);
 	public int faq_listCount(SearchCriteria scri, int s_no);
 	
-	public ArrayList<HashMap<String, Object>> tradeList(@Param("scri")SearchCriteria scri);
-	public int tradeListCount(@Param("scri")SearchCriteria scri);
+	public ArrayList<HashMap<String, Object>> tradeList(SearchCriteria scri);
+	public int tradeListCount(SearchCriteria scri);
 	
 	
 	// trade : p_price 값 가져오기 

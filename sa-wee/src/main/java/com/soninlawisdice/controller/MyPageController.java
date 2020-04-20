@@ -143,6 +143,8 @@ public class MyPageController {
 		////////////////// 스크랩 //////////////////////////
 		model.addAttribute("myScrap", adminService.scrapList(m_no));
 		
+		//////////////////스크랩 //////////////////////////
+		model.addAttribute("myReport", adminService.myReportList(m_no));
 				
 		return "mypage/mypage";
 	}

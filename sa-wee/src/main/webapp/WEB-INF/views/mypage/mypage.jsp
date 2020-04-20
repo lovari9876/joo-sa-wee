@@ -349,29 +349,29 @@
 									</div>
 									<table class="table">
 										<tr class="table_row header">
-											<td class="cell">글 번호</td>
-											<td class="cell">신고 대상</td>
-											<td class="cell">신고 내용</td>
+											<td class="cell">신고번호</td>
+											<td class="cell">신고대상</td>
+											<td class="cell">신고내용</td>
 											<td class="cell">신고일</td>
 										</tr>
-										<tr class="table_row">
-											<td class="cell">1</td>
-											<td class="cell">Vincent Williamson</td>
-											<td class="cell">Vincent Williamson</td>
-											<td class="cell">Vincent Williamson</td>
-										</tr>
-										<tr class="table_row">
-											<td class="cell">2</td>
-											<td class="cell">Vincent Williamson</td>
-											<td class="cell">Vincent Williamson</td>
-											<td class="cell">Vincent Williamson</td>
-										</tr>
-										<tr class="table_row">
-											<td class="cell">3</td>
-											<td class="cell">Vincent Williamson</td>
-											<td class="cell">Vincent Williamson</td>
-											<td class="cell">Vincent Williamson</td>
-										</tr>
+										<c:forEach items="${myReport}" var="myReport">
+											<tr class="trow">
+												<td class="cell">${myReport['RNUM']}</td>
+												<td class="cell title">${myReport['R_TYPE']}</td>
+												<td class="cell title">${myReport['R_CONTENT']}</td>
+												<td>
+														<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+													<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+													<fmt:formatDate value="${myReport['R_REPORT_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+													<c:choose>
+														<c:when test="${now ne date}">${date}</c:when> 
+														<c:otherwise>
+															<fmt:formatDate value="${myReport['R_REPORT_DATE']}" pattern="HH:mm"/>
+														</c:otherwise>
+													</c:choose>
+												</td>
+											</tr>
+										</c:forEach>
 									</table>
 								</div>
 							</div>

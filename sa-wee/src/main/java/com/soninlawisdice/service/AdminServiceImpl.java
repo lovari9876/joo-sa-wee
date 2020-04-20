@@ -72,7 +72,10 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.scrapList(m_no);
 	}
 	
-		
+	//mypage report List 신고
+	public ArrayList<HashMap<String, Object>> myReportList(int m_no){
+		return adminMapper.myReportList(m_no);
+	}
 	
 	// 페이징 처리된 리스트
 	@Override
