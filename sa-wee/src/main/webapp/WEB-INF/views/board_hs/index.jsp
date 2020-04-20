@@ -353,7 +353,20 @@
 			<div class="section-title text-white">
 				<h2>커피 한잔 사주실래요</h2>
 			</div>
-			<button class="site-btn">후원하기</button>
+			<!-- 로그인에 따라... -->
+			<c:if test="${memberVO.m_no eq null}">
+				<button class="site-btn"
+						onclick="alert('로그인 하시고 후원해 주세요.'); location.href='/loginview';">
+					후원하기
+				</button>
+			</c:if>
+			<c:if test="${memberVO.m_no ne null}">
+				<button class="site-btn"
+						data-name="${memberVO.m_name}" data-phone="${memberVO.m_phone}"
+						onclick="sponsorModal(this);">
+					후원하기
+				</button>
+			</c:if>
 		</div>
 	</section>
 	<!-- Newsletter section end -->
@@ -448,5 +461,8 @@
 	<script src="js/board_hs/doro.js"></script>
 	<script src="js/board_hs/scroll.js"></script>
 	<script src="js/board_hs/cafe-photo.js"></script>
+	<!---====== 후원 js ======-->
+	<script src="js/cassie/sponsor_modal.js"></script>
+	
 </body>
 </html>
