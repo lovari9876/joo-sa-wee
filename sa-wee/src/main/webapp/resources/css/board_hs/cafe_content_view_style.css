@@ -203,7 +203,7 @@
 
 
 /* 관리자-수정하기 버튼 */
-.admin_modify{
+.admin_modify, .admin_delete{
 	float : right;
 }
 

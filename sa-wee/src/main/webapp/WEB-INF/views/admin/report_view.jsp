@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 파피콘 -->
 <link rel="icon" type="image/png" href="images/share/wolf_logo.ico" />
-<title>Admin</title>
+<title>관리자 | 내사위는주사위</title>
 <link type="text/css" href="css/admin/bootstrap.min.css"
 	rel="stylesheet">
 <link type="text/css" href="css/admin/bootstrap-responsive.min.css"
@@ -60,7 +60,7 @@
 							그래서 띄어쓰기 기준으로 값을 두가지 보내서 탈퇴처리할 신고당한 회원 번호를 가져옴  -->
 							<input type = "hidden" name = "r_type" value = "${report_view['R_TYPE']}">
 							
-								<table class="table" >
+								<table class="table table_view" >
 									<tr class="row">
 										<td class="cell span2">신고한 회원</td>
 										<td class="cell span3">${report_view['M_ID']}</td>

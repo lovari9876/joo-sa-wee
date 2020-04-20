@@ -872,6 +872,14 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 	width: 100%
 }
 
+/* user 페이지 항목부분 굵게 강조 */
+.table_view .cell:first-child, .table_view .cell:nth-child(odd) {
+	font-weight: bold;
+	color: #b5b5b7;
+}
+
+
+
 /* x통계페이지 탭 구현으로 버튼 방식 변경...폰트 적용 */
 .btn-group .btn a {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
@@ -2238,6 +2246,28 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 		padding: 20px 15px
 	}
 }
+
+/* 로그아웃 input  */
+#logout{
+	border:none;
+	background-color:transparent;
+	display:inline;
+	font-family:  'NanumSquareRound';
+	font-weight: 400;
+	display: block;
+    padding: 10px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 20px;
+    color: #333333;
+    white-space: nowrap;
+}
+#command:hover{ 
+	background: #f9f9f9;
+    color: #555;
+}
+
+
 
 /* .btn-box-row{
 	font-size: 20px;

@@ -3747,7 +3747,7 @@ html:not (.js ) .cd-faq__items {
 		margin-top: 30px;
 	}
 	/* 헤더 도로록 때문에... 첫번째만 패딩 적게!  */
-	.cd-faq__group:not (#member ){
+	.cd-faq__group:not(#member ){
 		display: block;
 		padding-top: 55px;
 		padiing-left: 60px;

@@ -150,10 +150,18 @@
 							</div>
 						</div>
 						<c:if test = "${m_id eq 'admin'}">
+							<div class = "admin_delete"><a href="/cafe_list">삭제</a></div>
+						</c:if>
+						
+						<c:if test = "${m_id eq 'admin'}">
 							<div class = "admin_modify">
-								<a href = "/admin/cafe_modify?c_no=${cafe_info.c_no}">수정하기</a>
+								<a href = "/admin/cafe_modify?c_no=${cafe_info.c_no}">수정</a>&nbsp;&nbsp;
 							</div>
 						</c:if>
+					
+						
+						
+						
 					</div>
 
 				</div>
@@ -283,6 +291,17 @@
 			$('[data-toggle="popover"]').popover({
 				html : true
 			});
+		});
+	</script>
+	
+	<!-- 삭제 완료 confirm -->
+	<script>
+		$('.admin_delete').click(function(){
+			var confirm_val = confirm("정말 삭제하시겠습니까?");
+			if (confirm_val){
+				location.href="/admin/deleteCafe/${cafe_info.c_no}";
+				alert('해당 글이 삭제되었습니다.');
+			}
 		});
 	</script>
 

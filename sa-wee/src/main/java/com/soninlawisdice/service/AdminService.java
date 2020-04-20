@@ -152,6 +152,8 @@ public interface AdminService {
 	public void selectDelete_comment(int cm_no);
 	
 	public void faqDelete(int faq_no);
+	
+	public void cafeInfoDelete(int c_no);
 
 	
 	// 통계

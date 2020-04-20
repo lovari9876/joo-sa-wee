@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 
     <body>
@@ -42,11 +43,18 @@
                                 
                                 <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="/"><i class="menu-icon icon-home"></i> MAIN </a></li>
-                                    <li><a href="#">Edit Profile</a></li>
-                                    <li><a href="#">Account Settings</a></li>
+                                    <li><a href="/"><!-- <i class="menu-icon icon-home"></i> --> MAIN </a></li>
+                                   <!--  <li><a href="#">Edit Profile</a></li>
+                                    <li><a href="#">Account Settings</a></li> -->
                                     <li class="divider"></li>
-                                    <li><a href="#"> <i class="menu-icon icon-signout"></i>Logout </a></li>
+                                   <!--  <li><a href="#"> <i class="menu-icon icon-signout"></i>Logout </a></li> -->
+                                 <!--   <li><i class="menu-icon icon-signout"></i> -->
+	                                   <form:form action="/logout" method="POST">
+											<a><input type="submit" value="LOGOUT" id="logout" /></a>
+										</form:form>
+									</li>
+                                    
+                                    
                                 </ul>
                             </li>
                         </ul>

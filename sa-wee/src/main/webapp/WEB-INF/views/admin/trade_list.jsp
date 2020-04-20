@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 파피콘 -->
 <link rel="icon" type="image/png" href="images/share/wolf_logo.ico" />
-<title>Admin</title>
+<title>관리자 | 내사위는주사위</title>
 <link type="text/css" href="css/admin/bootstrap.min.css"rel="stylesheet">
 <link type="text/css" href="css/admin/bootstrap-responsive.min.css"rel="stylesheet">
 <link type="text/css" href="css/admin/theme.css" rel="stylesheet">
@@ -165,7 +165,7 @@
 						$(".pgt_account").click(function() {
 							var sno = $(this).attr('data-sno');
 							var bno = $(this).attr('data-bno');
-							window.open("trade_list_account/" + sno + "/" + bno, "a", "width=450, height=290, left=800, top=300"); 
+							window.open("trade_list_account/" + sno + "/" + bno, "a", "width=450, height=320, left=800, top=300"); 
 						});
 						
 					
