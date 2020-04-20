@@ -55,7 +55,7 @@ public class FileUtils {
 		for (MultipartFile mf : fileList) {
 			//multipartFile = mpreq.getFile(iterator.next());
 
-			/* if (multipartFile.isEmpty() == false) { */
+			if (mf.isEmpty() == false) { 
 				originalFileName = mf.getOriginalFilename();
 				originalFileExtension = originalFileName.substring(originalFileName.lastIndexOf("."));
 				//저장되는 파일 이름은 중복을 피하기 위해서 랜덤 문자 필요
@@ -72,7 +72,7 @@ public class FileUtils {
 				listMap.put("F_TYPE",originalFileExtension);
 				listMap.put("F_PATH", filePath);
 				list.add(listMap);
-			/* } */
+			} 
 		}
 		System.out.println("++++++++++++++++++++++++");
 		System.out.println("FileUtils 에서 list 출력");
