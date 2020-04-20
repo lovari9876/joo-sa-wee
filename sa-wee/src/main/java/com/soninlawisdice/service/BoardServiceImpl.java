@@ -50,6 +50,12 @@ public class BoardServiceImpl implements BoardService {
 	public String rankWriteCo() {
 		return boardMapper.rankWriteCo();
 	}
+	
+	//신고 많이 당한 사람
+	@Override
+	public String rankReport() {
+		return boardMapper.rankReport();
+	}
 
 	//////////////////////// 커뮤니티////////////////////////
 

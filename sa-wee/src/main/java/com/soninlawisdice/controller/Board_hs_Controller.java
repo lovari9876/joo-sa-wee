@@ -80,7 +80,8 @@ public class Board_hs_Controller {
 			model.addAttribute("rankW", boardService.rankWrite());
 			//랭킹(댓글 많이 쓴)
 			model.addAttribute("rankWC", boardService.rankWriteCo());
-			//랭킹(신고많이받은...)
+			//랭킹(신고많이받은)
+			model.addAttribute("rankRe", boardService.rankReport());
 			
 			// 후원하기 위한 후원자 정보
 			if(principal != null) {

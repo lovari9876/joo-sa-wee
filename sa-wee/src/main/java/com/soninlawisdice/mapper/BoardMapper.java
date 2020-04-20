@@ -30,6 +30,8 @@ public interface BoardMapper {
 	//댓글 많이 쓴 사람
 	public String rankWriteCo();
 	
+	//댓글 많이 쓴 사람
+	public String rankReport();
 	
 	/////////////////////커뮤니티/////////////////////////
 	

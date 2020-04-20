@@ -37,6 +37,9 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <!-- Main Stylesheets -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
 
 <link rel="stylesheet" href="css/board_hs/liststyle.css" />
 
@@ -61,14 +64,14 @@
 			<div class="wrap-table100">
 
 				<div class="listName">
-					<h3>카페 리뷰 리스트</h3>
+					<a href="selectAllReviewList"><h3 style="color:black;">카페 리뷰 리스트</h3></a>
 					<p>카페 리뷰 리스트임</p>
 				</div>
 
 
 				<!-- Search Bar  -->
 				<form>
-					<div class="search">
+					<div class="search" style="margin-top:0px;">
 						<div class="dropdown pull-right">
 								<select name="searchType" class="span2">
 									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
@@ -97,7 +100,7 @@
 
 
 					<!-- 테이블  -->
-					<div id="tab1" class="tabcontent current">
+					<div id="tab1" class="tabcontent current" style = "margin-top: 70px;">
 						<!-- <div class="orderby">
 							<button class ="orderbutton">최신순</button>
 							<button class ="orderbutton">조회순</button>
@@ -122,7 +125,22 @@
 								<td class = "cell">${list['RNUM']}</td>
 								<td class = "cell"><a href="cafe_info?c_no=${list['C_NO']}">${list['C_TITLE']}</a></td>
 								<td class = "cell"><a href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a> [${list['CM']}]</td>
-								<td class = "cell">${list['M_NICK']}</td>
+								<td class = "cell">
+									<sec:authorize access="isAuthenticated()">	
+										<a class="pointer" role = "button" class="pop_btn popovers"
+										data-toggle="popover" 
+										data-content="<a href='#' id='other_page' data-nick='${list["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+										<br/>
+														<a href='#' id='send_message' data-nick='${list["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
+										<br/>			
+														<a href='report_view_m?m_no=${list["M_NO"]}&bw_no=${list["CR_NO"]}'>신고하기</a>">
+										${list['M_NICK']}
+										</a>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										${list['M_NICK']}
+									</sec:authorize>			
+								</td>
 								<td class = "cell">
 											<jsp:useBean id="today" class="java.util.Date" />
 											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
@@ -198,6 +216,13 @@
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
 	<script src="js/board_hs/tabdata.js" type="text/javascript"></script>
 	<script src="js/footer/footer_hee.js"></script>
+	
+	<script src="js/board_hj/tooltip.js"></script>
+	<script src="js/board_hj/popover.js"></script>
+	
+	<!-- 다른 회원 정보 보기 팝업  -->
+	<script src="js/mypage/other_page.js"></script>
+	
 
 </body>
 </html>

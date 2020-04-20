@@ -442,6 +442,10 @@
 
 
  */
+
+.pointer{
+	cursor : pointer;
+}
  
 input:focus, select:focus, button:focus, textarea:focus {
 	outline: none;
@@ -455,7 +459,7 @@ input:focus, select:focus, button:focus, textarea:focus {
 
 .row:hover{
 	background-color : #ececff;
-	cursor : pointer;
+	/* cursor : pointer; */
 }
 
 .header:hover{
@@ -547,7 +551,7 @@ input:focus, select:focus, button:focus, textarea:focus {
 /* 글쓰기 버튼 부분 */
 .write-view-btn{
 	float : right;
-	margin-top : 40px;
+	/* margin-top : 40px; */
 	margin-right : 7px;
 	padding : 4px 14px;
 	border: 1px solid rgba(198, 198, 236, 0.6);

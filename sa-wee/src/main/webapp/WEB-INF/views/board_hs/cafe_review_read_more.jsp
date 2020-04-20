@@ -139,7 +139,22 @@
 								<td class = "cell">${list['RNUM']}</td>
 								<td class = "cell name">${list['C_TITLE']}</td>
 								<td class = "cell"><a href="content_view_cr?cr_no=${list['CR_NO']}">${list['CR_TITLE']}</a> [${list['CM']}]</td>
-								<td class = "cell">${list['M_NICK']}</td>
+								<td class = "cell">
+									<sec:authorize access="isAuthenticated()">	
+										<a class="pointer" role = "button" class="pop_btn popovers"
+										data-toggle="popover" 
+										data-content="<a href='#' id='other_page' data-nick='${list["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+										<br/>
+														<a href='#' id='send_message' data-nick='${list["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
+										<br/>			
+														<a href='report_view_m?m_no=${list["M_NO"]}&bw_no=${list["CR_NO"]}'>신고하기</a>">
+										${list['M_NICK']}
+										</a>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										${list['M_NICK']}
+									</sec:authorize>			
+								</td>
 								<td class = "cell">
 											<jsp:useBean id="today" class="java.util.Date" />
 											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>

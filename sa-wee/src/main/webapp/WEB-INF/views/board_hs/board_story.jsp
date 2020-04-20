@@ -129,18 +129,20 @@
 								<td class = "cell">${dto['S_CONTENT']}</td>
 								<td class = "cell"><a href="content_view?bw_no=${dto['BW_NO']}">${dto['BW_TITLE']}</a>  [${dto['CM']}]</td>
 								<td class = "cell">
-									<%-- <a href="#" data-toggle="popover" data-content = "<a href = "#">회원정보보기</a><br/><a href = "#">쪽지보내기</a>">	
+									<sec:authorize access="isAuthenticated()">	
+										<a  class="pointer" role = "button" class="pop_btn popovers"
+										data-toggle="popover" 
+										data-content="<a href='#' id='other_page' data-nick='${dto["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+										<br/>
+														<a href='#' id='send_message' data-nick='${dto["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
+										<br/>			
+														<a href='report_view_m?m_no=${dto["M_NO"]}&bw_no=${dto["BW_NO"]}'>신고하기</a>">
 										${dto['M_NICK']}
-									</a> --%>
-									<a role = "button" class="pop_btn popovers"
-									data-toggle="popover" 
-									data-content="<a href='#' id='other_page' data-nick='${dto["M_NICK"]}' onclick='return false;' >회원정보보기</a>
-									<br/>
-													<a href='#' id='send_message' data-nick='${dto["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
-									<br/>			
-													<a href='report_view_m?m_no=${comment_list[status.index]["M_NO"]}&bw_no=${content_view["BW_NO"]}'>신고하기</a>">
-									${dto['M_NICK']}
-								</a>		
+										</a>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										${dto['M_NICK']}
+									</sec:authorize>			
 								</td>
 								<td class = "cell">
 									<jsp:useBean id="today" class="java.util.Date" />
