@@ -67,7 +67,7 @@
 											<button type="button" class="btn  pull-left"
 												onclick="location='notice_list'">목록</button>
 											
-											<button type="submit" class="btn  pull-right" onClick='faq_delete()'>삭제</button>
+											<button type="submit" class="btn  pull-right" onClick='notice_delete()'>삭제</button>
 											<div class="btn  pull-right"><a href="notice_modify?bw_no=${content_view['BW_NO']}">수정</a></div>
 											
 										
@@ -79,9 +79,9 @@
 							</form> 
 							<script>
 								
-								function faq_delete(){
+								function notice_delete(){
 									var out = document.getElementById("viewForm");
-									out.action="<c:url value='/admin/faqDelete'/>";
+									out.action="<c:url value='/admin/notice_delete'/>";
 									out.submit();
 									console.log("delete");
 									alert("해당 글이 삭제되었습니다.");

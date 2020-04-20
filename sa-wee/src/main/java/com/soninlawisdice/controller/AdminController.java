@@ -789,6 +789,16 @@ public class AdminController {
 		return "redirect:faq_list";
 	}
 	
+	// notice 삭제
+	@RequestMapping(value = "/notice_delete", method = RequestMethod.POST)
+	public String notice_delete(Board_writeVO board_writeVO) throws Exception {
+
+		System.out.println("------------delete");
+		adminService.selectDelete(board_writeVO);
+
+		return "redirect:notice_list";
+	}
+	
 	
 	@RequestMapping("/ask_list")
 	public String ask_list(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq) {
@@ -886,7 +896,7 @@ public class AdminController {
 			no = Integer.parseInt(st.nextToken());
 
 			if (1 <= bt && bt <= 6) { // bt_no이 1~6인 커뮤니티
-				boardVO.setBw_no(no);
+				boardVO.setBt_no(no);
 				adminService.selectDelete(boardVO);
 				result = 1;
 			} else if (bt == 11) { // bt_no이 11인 카페리뷰

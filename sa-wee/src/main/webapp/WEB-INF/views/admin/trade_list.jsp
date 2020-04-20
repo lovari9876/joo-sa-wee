@@ -165,7 +165,7 @@
 						$(".pgt_account").click(function() {
 							var sno = $(this).attr('data-sno');
 							var bno = $(this).attr('data-bno');
-							window.open("trade_list_account/" + sno + "/" + bno, "a", "width=450, height=290, left=800, top=300"); 
+							window.open("trade_list_account/" + sno + "/" + bno, "a", "width=450, height=320, left=800, top=300"); 
 						});
 						
 					
