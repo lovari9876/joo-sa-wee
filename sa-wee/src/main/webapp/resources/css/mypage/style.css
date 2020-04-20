@@ -750,15 +750,20 @@ input[type=text] {
 	padding-top:3px;
 	padding-bottom:3px;
 }
-.margin-left-11{
-	margin-left: 11px;
-}
+
 .btn-lavender:hover{
+	cursor: pointer;
+	color:#2F4F4F;
+}
+.btn-lavender-min:hover{
 	cursor: pointer;
 	color:#2F4F4F;
 }
 .btn-min{
 	font-size: small;
+}
+.margin-left-11{
+	margin-left: 11px;
 }
 
 div#contact {
