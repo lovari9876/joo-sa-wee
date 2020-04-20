@@ -189,7 +189,7 @@
 						[ 댓글 많이 씀 ]
 						<br/>
 						<br/>
-						<a href='#' id='other_page' name='m_nick' data-nick='${rankWC}' onclick='return false;' >${rankWC}</a>
+						<a style="font-family:JSDongkang-Bold;" href='#' id='other_page' name='m_nick' data-nick='${rankWC}' onclick='return false;' >- ${rankWC} -</a>
 					</div>
 					
 				</div>
@@ -200,7 +200,7 @@
 						<br/>
 						<br/>
 						<c:forEach items = "${rankW}" var = "rankW" >
-						<a href='#' id='other_page' name='m_nick' data-nick="${rankW['I_NICK']}" onclick='return false;'>${rankW['I_NICK']}</a>
+						<a style="font-family:JSDongkang-Bold;" href='#' id='other_page' name='m_nick' data-nick="${rankW['I_NICK']}" onclick='return false;'>- ${rankW['I_NICK']} -</a>
 						</c:forEach>
 					</div>
 				</div>
@@ -211,7 +211,7 @@
 						[ 신고 많이 받음... ]
 						<br/>
 						<br/>
-						${rankRe}
+						<a style="font-family:JSDongkang-Bold;" href='#' id='other_page' name='m_nick' data-nick='${rankRe}' onclick='return false;' >- ${rankRe} -</a>
 					</div>
 
 				</div>
