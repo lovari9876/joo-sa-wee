@@ -116,78 +116,83 @@
 													pattern="yyyy.MM.dd" />
 											</li>
 											<br />
+
+											<li>은행 : ${member.m_bank}</li>
+											<br />
+											<li>계좌번호 : ${member.m_account}</li>
+											<br />
 											<li>신고당한 수 : ${member.m_report_num}</li>
 											<br />
 										</ul>
 									</div>
-									<div class="col-md-8 home-dat">
+									<div class="col-md-8 home-dat" >
 										<div class="detal-jumbo">
 											<h3>자기소개</h3>
-											<p>${member.m_self}</p>
-											<br /> <br /> <br /> <br /> <br />
+											<p style="height:200px;">${member.m_self}</p><br/>
 										</div>
+										<!-- <div style="position: absolute; bottom: 0px;"> -->
+											<div class="jumbo-address">
+												<div class="row no-margin">
+													<div class="col-lg-6 no-padding">
 
-										<div class="jumbo-address">
-											<div class="row no-margin">
-												<div class="col-lg-6 no-padding">
+														<table class="addrss-list">
+															<tbody>
+																<tr>
+																	<th>sms수신여부</th>
+																	<td>${member.m_re_sms}</td>
+																</tr>
+																<tr>
+																	<th>메일수신여부</th>
+																	<td>${member.m_re_notice}</td>
+																</tr>
+															</tbody>
+														</table>
 
-													<table class="addrss-list">
-														<tbody>
-															<tr>
-																<th>sms수신여부</th>
-																<td>${member.m_re_sms}</td>
-															</tr>
-															<tr>
-																<th>메일수신여부</th>
-																<td>${member.m_re_notice}</td>
-															</tr>
-														</tbody>
-													</table>
-
-												</div>
-												<div class="col-lg-6 no-padding">
-													<table class="addrss-list">
-														<tbody>
-															<tr>
-																<th>쪽지수신여부</th>
-																<td>${member.m_re_message}</td>
-															</tr>
-															<tr>
-																<th>회원정보공개여부</th>
-																<td>${member.m_info}</td>
-															</tr>
-														</tbody>
-													</table>
+													</div>
+													<div class="col-lg-6 no-padding">
+														<table class="addrss-list">
+															<tbody>
+																<tr>
+																	<th>쪽지수신여부</th>
+																	<td>${member.m_re_message}</td>
+																</tr>
+																<tr>
+																	<th>회원정보공개여부</th>
+																	<td>${member.m_info}</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
 												</div>
 											</div>
-										</div>
 
-										<div class="links">
-											<div class="row ">
-												<div class="col-xl-6 col-md-12">
-													<ul class="btn-link">
-														<li><a href="/message"><i
-																class="fas fa-paper-plane"></i> 쪽지함</a></li>
-														<li><a href="/mypage_modifyview"> <i
-																class="fas fa-address-card"></i> 회원정보수정
-														</a></li>
-														<!-- <li><a href="#modify_mypage"> <i class="fas fa-cloud-download-alt"></i>
+											<div class="links">
+												<div class="row ">
+													<div class="col-xl-6 col-md-12">
+														<ul class="btn-link">
+															<li><a href="/message"><i
+																	class="fas fa-paper-plane"></i> 쪽지함</a></li>
+															<li><a href="/mypage_modifyview"> <i
+																	class="fas fa-address-card"></i> 회원정보수정
+															</a></li>
+															<!-- <li><a href="#modify_mypage"> <i class="fas fa-cloud-download-alt"></i>
 																수정
 														</a></li> -->
-													</ul>
-												</div>
-												<div class="col-xl-6 col-md-12">
-													<ul class="social-link">
-														<li><i class="fab fa-facebook-f"></i></li>
-														<li><i class="fab fa-twitter"></i></li>
-														<li><i class="fab fa-pinterest-p"></i></li>
-														<li><i class="fab fa-linkedin-in"></i></li>
-														<li><i class="fab fa-youtube"></i></li>
-													</ul>
+														</ul>
+													</div>
+													<div class="col-xl-6 col-md-12">
+														<ul class="social-link">
+															<li><i class="fab fa-facebook-f"></i></li>
+															<li><i class="fab fa-twitter"></i></li>
+															<li><i class="fab fa-pinterest-p"></i></li>
+															<li><i class="fab fa-linkedin-in"></i></li>
+															<li><i class="fab fa-youtube"></i></li>
+														</ul>
+													</div>
 												</div>
 											</div>
-										</div>
 
+										<!-- </div> -->
 									</div>
 								</div>
 
@@ -406,8 +411,8 @@
 								file="/WEB-INF/views/mypage/mytrade/mypage_mytrade.jsp"%>
 							<!-- 내 거래 include end -->
 
-							<div class="tab-pane tab-pane2 education-detail fade"
-								id="ask" role="tabpanel" aria-labelledby="contact-tab">
+							<div class="tab-pane tab-pane2 education-detail fade" id="ask"
+								role="tabpanel" aria-labelledby="contact-tab">
 								<div class="table-mypage JSD-Bold-12.5">
 									<table class="table">
 										<tr class="table_row header">

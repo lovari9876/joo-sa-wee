@@ -42,7 +42,7 @@ public class MemberVO implements UserDetails{
 	private String m_extra; // 비고
 	private int f_no; // 파일번호
 	private String m_bank; // 은행
-	private int	m_account; // 계좌번호
+	private String m_account; // 계좌번호
 
 	private Set<GrantedAuthority> autorities;
 	
@@ -55,7 +55,7 @@ public class MemberVO implements UserDetails{
 	public MemberVO(int m_no, String m_id, String m_pw, String m_name, int m_birth, String m_nick, String m_gender,
 			int m_point, String m_phone, String m_email, int m_post, String m_addr1, String m_addr2, int r_no,
 			String m_re_sms, String m_re_notice, String m_re_message, String m_info, String m_self, Timestamp m_indate,
-			Timestamp m_outdate, String m_out, int m_report_num, String m_extra, int f_no, String m_bank, int m_account) {
+			Timestamp m_outdate, String m_out, int m_report_num, String m_extra, int f_no, String m_bank, String m_account) {
 		super();
 		this.m_no = m_no;
 		this.m_id = m_id;
@@ -376,11 +376,11 @@ public class MemberVO implements UserDetails{
 		this.m_bank = m_bank;
 	}
 
-	public int getM_account() {
+	public String getM_account() {
 		return m_account;
 	}
 
-	public void setM_account(int m_account) {
+	public void setM_account(String m_account) {
 		this.m_account = m_account;
 	}
 	
