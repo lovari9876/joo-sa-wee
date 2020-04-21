@@ -716,6 +716,8 @@ public class Board_hs_Controller {
 
 		String fuploadPath = req.getSession().getServletContext().getRealPath("/resources/files/img/");
 		
+		System.out.println(fuploadPath);
+		
 		// String fuploadPath = "c://sa-wee/file";
 		//test
 		//String filePath = "C:\\mp\\file\\";
@@ -743,7 +745,7 @@ public class Board_hs_Controller {
 			//FileUtils.writeByteArrayToFile(file3, fileload.getBytes());
 			System.out.println(file);
 
-			return "{ \"uploaded\" : true, \"url\" : \"http://localhost:8282/resources/files/img/" + newfilename
+			return "{ \"uploaded\" : true, \"url\" : \"http://192.168.6.13:8282/resources/files/img/" + newfilename
 					+ "\" }";
 			//url 가 src 로 들어가면서 저장됨. 
 			//return "{ \"uploaded\" : true, \"url\" : \"file:///C:/mp/file/"+ newfilename +
