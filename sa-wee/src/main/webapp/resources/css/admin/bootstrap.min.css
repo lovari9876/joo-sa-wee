@@ -300,6 +300,67 @@ a:hover {
 	width: 60px;
 }
 
+
+
+
+
+
+/*============================표 반응형 미디어쿼리 span============================ */
+.perspan12 {
+	width: 96%;
+}
+
+.perspan11 {
+	width: 88%;
+}
+
+.perspan10 {
+	width: 80%;
+}
+
+.perspan9 {
+	width: 72%;
+}
+
+.perspan8 {
+	width: 64%;
+}
+
+.perspan7 {
+	width: 56%;
+}
+
+.perspan6 {
+	width: 48%;
+}
+
+.perspan5 {
+	width: 40%;
+}
+
+.perspan4 {
+	width: 32%;
+}
+
+.perspan3 {
+	width: 24%;
+}
+
+.perspan2 {
+	width: 16%;
+}
+
+.perspan1 {
+	width: 8%;
+}
+
+
+/*======================================================== */
+
+
+
+
+
 .offset12 {
 	margin-left: 980px;
 }
@@ -1042,7 +1103,7 @@ table {
 	border-top: 1px solid #dddddd;
 }
 
-.row .span8{ /* content_view 의 내용들 왼쪽 정렬하기위해서 */
+.row .perspan11{ /* content_view 의 내용들 왼쪽 정렬하기위해서 */
 	text-align: left;
 }
 
@@ -5969,8 +6030,6 @@ button.close {
 		margin-left: 20px;
 	}
 	
-
-	
 	.container, .navbar-static-top .container, .navbar-fixed-top .container,
 		.navbar-fixed-bottom .container {
 		width: 724px;
@@ -6011,6 +6070,8 @@ button.close {
 	.span1 {
 		width: 42px;
 	}
+	
+	
 	.offset12 {
 		margin-left: 764px;
 	}

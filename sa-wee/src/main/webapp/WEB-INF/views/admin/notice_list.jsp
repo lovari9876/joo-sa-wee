@@ -84,10 +84,10 @@
 					<div class = "table_mobile">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell span1">번호</td>
-							<td class="cell span6">글 제목</td>
-							<td class="cell">작성일</td>
-							<td class="cell">조회수</td>
+							<td class="cell perspan1">번호</td>
+							<td class="cell perspan6">글 제목</td>
+							<td class="cell perspan2">작성일</td>
+							<td class="cell perspan1">조회수</td>
 						</tr>
 						<tbody>
 							

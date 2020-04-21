@@ -92,10 +92,10 @@
 					<div class="table_mobile">
 						<table class="table">
 							<tr class="trow header">
-								<td class="cell span1">번호</td>
-								<td class="cell span3">카페 이름</td>
-								<td class="cell ">주소</td>
-								<td class="cell span2">전화번호</td>
+								<td class="cell perspan1">번호</td>
+								<td class="cell perspan2">카페 이름</td>
+								<td class="cell perspan4">주소</td>
+								<td class="cell perspan2">전화번호</td>
 							</tr>
 							<tbody>
 								<c:forEach items="${cafe_list}" var="cafe">

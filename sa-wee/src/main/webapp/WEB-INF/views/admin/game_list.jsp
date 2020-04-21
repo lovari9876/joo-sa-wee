@@ -76,13 +76,13 @@
 					<div class = "table_mobile">
 					<table class="table">
 							<tr class="trow header">
-								<td class="cell">번호</td>
-								<td class="cell">한글이름</td> <!-- 행 클릭시 상세 정보  -->
-								<td class="cell span3">영어이름</td> 
-								<td class="cell">인원</td>
-								<td class="cell">출시일</td>
-								<td class="cell">플레이시간</td><!-- 분 단위 -->
-								<td class="cell">수정일</td>
+								<td class="cell perspan1">번호</td>
+								<td class="cell perspan2">한글이름</td> <!-- 행 클릭시 상세 정보  -->
+								<td class="cell perspan3">영어이름</td> 
+								<td class="cell perspan1">인원</td>
+								<td class="cell perspan1">출시일</td>
+								<td class="cell perspan1">시간</td><!-- 분 단위 -->
+								<td class="cell perspan2">수정일</td>
 							</tr>
 							
 							<tbody>

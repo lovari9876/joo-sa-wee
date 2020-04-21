@@ -91,14 +91,14 @@
 				<section class="list-section">
 
 					<div style="overflow-x: auto;">
-					<table class="table">
+					<table class="table table_mobile">
 						<tr class="trow header">
-							<td class="cell span1">번호</td>
-							<td class="cell">말머리</td>
-							<td class="cell span5">글 제목</td> <!-- 메인 사이트의 ask 1대1문의 게시판 링크 걸기 -->
-							<td class="cell">답변여부</td> <!-- 댓글 유무 -->
-							<td class="cell">작성자</td>
-							<td class="cell">작성일</td>
+							<td class="cell perspan1">번호</td>
+							<td class="cell perspan2">말머리</td>
+							<td class="cell perspan5">글 제목</td> <!-- 메인 사이트의 ask 1대1문의 게시판 링크 걸기 -->
+							<td class="cell perspan1">답변여부</td> <!-- 댓글 유무 -->
+							<td class="cell perspan2">작성자</td>
+							<td class="cell perspan2">작성일</td>
 						</tr>
 						<tbody>
 							<c:forEach items="${ask_list}" var="board">

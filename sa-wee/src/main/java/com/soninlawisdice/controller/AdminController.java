@@ -103,7 +103,8 @@ public class AdminController {
 
 		int result = 0;
 
-		int overlap = adminService.scrapSelect(m_no, type_name, num); // 중복값이 존재하는지 확인
+		int overlap = adminService.scrapSelect(m_no, type_name, num); 
+		// 중복값이 존재하는지 확인 0이면 존재하지 않는것, 1 이상이면 존재하는것
 
 		if (overlap >= 1) {
 			result = 0;
@@ -910,6 +911,26 @@ public class AdminController {
 		// }
 		return result;
 	}
+	
+	
+	
+	// 선택한 댓글 삭제
+	@ResponseBody
+	@RequestMapping(value = "/deleteComment", method = RequestMethod.POST)
+	public int deleteComment(CM_commentVO cm_commentVO, @RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+
+		int cm_no = 0;
+		int result = 0;
+
+		for (String i : chArr) {
+			cm_no = Integer.parseInt(i);
+			adminService.selectDelete_comment(cm_no);
+		}
+		System.out.println("=======================deleteComment");
+		
+		return result;
+	}
+
 
 	////////////////////////////////////////////////////////////////////////////
 

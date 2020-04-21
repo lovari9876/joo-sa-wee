@@ -48,10 +48,11 @@
 							 <form id="viewForm" method="post">
 
 							 <input type = "hidden" name = "faq_no" value = "${faq_view.faq_no}">
+							 <div class = "table_mobile">
 								<table class="table table_view" >
 									<tr class="row">
-										<td class="cell span1">말머리</td>
-										<td class="cell span4">
+										<td class="cell perspan2">말머리</td>
+										<td class="cell perspan4">
 											<c:choose>				
 													<c:when test="${faq_view.s_no eq 22}">회원</c:when>
 													<c:when test="${faq_view.s_no eq 23}">결제</c:when>
@@ -60,22 +61,23 @@
 													<c:when test="${faq_view.s_no eq 26}">기타</c:when>
 												</c:choose>
 										</td>
-										<td class="cell span1">조회수</td>
-										<td class="cell span4">${faq_view.faq_hit}</td>
+										<td class="cell perspan2">조회수</td>
+										<td class="cell perspan4">${faq_view.faq_hit}</td>
 
 									</tr>
 									<tr class="row">
-										<td class="cell span1">제목</td>
-										<td class="cell span8" colspan="3">${faq_view.faq_title}</td>
+										<td class="cell perspan2">제목</td>
+										<td class="cell perspan11" colspan="3">${faq_view.faq_title}</td>
 
 									</tr>
 
 									<tr class="row">
-										<td class="cell span1">내용</td>
-										<td class="cell span8" colspan="3">${faq_view.faq_content}</td>
+										<td class="cell">내용</td>
+										<td class="cell perspan11" colspan="3">${faq_view.faq_content}</td>
 									</tr>
 
 								</table>
+								</div>
 								<div class="module-option clearfix">
 									<div class="control-group">
 										<div class="controls">

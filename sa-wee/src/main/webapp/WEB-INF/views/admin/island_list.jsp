@@ -117,14 +117,14 @@
 					<div class = "table_mobile">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
-							<td class="cell span1">번호</td>
-							<td class="cell">게시판</td>
-							<td class="cell span4">글 제목</td>
-							<td class="cell">작성자</td>
-							<td class="cell">작성일</td>
-							<td class="cell span1">신고수</td>
-							<td class="cell">상태</td>
+							<td class="cell perspan1"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
+							<td class="cell perspan1">번호</td>
+							<td class="cell perspan1">게시판</td>
+							<td class="cell perspan5">글 제목</td>
+							<td class="cell perspan2">작성자</td>
+							<td class="cell perspan2">작성일</td>
+							<td class="cell perspan1">신고수</td>
+							<td class="cell perspan1">상태</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						<tbody>
 						

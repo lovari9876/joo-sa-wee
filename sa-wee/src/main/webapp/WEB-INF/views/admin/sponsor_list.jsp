@@ -70,10 +70,10 @@
 					<div class = "table_mobile">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell">후원 번호</td>
-							<td class="cell">회원 아이디</td> <!-- 아이디 클릭시 회원 정보로 이동 -->
-							<td class="cell">후원 금액</td>
-							<td class="cell">후원일</td>
+							<td class="cell perspan1">후원 번호</td>
+							<td class="cell perspan3">회원 아이디</td> <!-- 아이디 클릭시 회원 정보로 이동 -->
+							<td class="cell perspan3">후원 금액</td>
+							<td class="cell perspan2">후원일</td>
 						</tr>
 						<tbody>
 							

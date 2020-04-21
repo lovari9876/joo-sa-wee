@@ -257,9 +257,10 @@
 														<c:when test="${cm['CM_TYPE'] == '카페리뷰'}">
 															<a href="/content_view_cr?cr_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
 														</c:when>
-														<c:when test="${cm['CM_TYPE'] == '증고거래'}">
+														<c:when test="${cm['CM_TYPE'] == '중고거래'}">
 															<a href="/content_view_t?t_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
-														</c:when><c:when test="${cm['CM_TYPE'] == '한줄평'}">
+														</c:when>
+														<c:when test="${cm['CM_TYPE'] == '한줄평'}">
 															<a href="/content_view_c?c_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
 														</c:when>
 													</c:choose></td>

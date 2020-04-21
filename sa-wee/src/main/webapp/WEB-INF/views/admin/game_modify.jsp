@@ -43,39 +43,41 @@
 
 					<form method="post" id="viewForm">
 					<input type = "hidden" name = "g_no" value = "${game_info['G_NO']}">
+					<div class = "table_mobile">
 						<table class="table">
 							
 							<tr class="row">
-								<td class="cell span2">한국어 제목</td>
-								<td class="cell span8"><input type="text" maxlength="60" name="g_name_kor" class="span6" value="${game_info['G_NAME_KOR']}"></td>
+								<td class="cell perspan2">한국어 제목</td>
+								<td class="cell perspan11"><input type="text" maxlength="60" name="g_name_kor" class="perspan11" value="${game_info['G_NAME_KOR']}"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">최소인원</td>
-								<td class="cell span8"><input id="g_min" type="number" maxlength="3" name="g_min" class="span6" rows="2" value="${game_info['G_MIN']}"
+								<td class="cell">최소인원</td>
+								<td class="cell"><input id="g_min" type="number" maxlength="3" name="g_min" class="perspan11" rows="2" value="${game_info['G_MIN']}"
 														oninput="numberMaxLength(this);"></input></td>
 																
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">최대인원</td>
-								<td class="cell span8"><input id="g_max" type="number" maxlength="3" name="g_max" class="span6" value="${game_info['G_MAX']}"
+								<td class="cell">최대인원</td>
+								<td class="cell"><input id="g_max" type="number" maxlength="3" name="g_max" class="perspan11" value="${game_info['G_MAX']}"
 														oninput="numberMaxLength(this);"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">플레이시간</td>
-								<td class="cell span8"><input id="g_playtime" type="number" maxlength="5" name="g_playtime" class="span6" value="${game_info['G_PLAYTIME']}"
+								<td class="cell">플레이시간</td>
+								<td class="cell"><input id="g_playtime" type="number" maxlength="5" name="g_playtime" class="perspan11" value="${game_info['G_PLAYTIME']}"
 														oninput="numberMaxLength(this);"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">출시일</td>
-								<td class="cell span8"><input type="text" maxlength="10" name="g_release" class="span6" value="${game_info['G_RELEASE']}"></td>
+								<td class="cell">출시일</td>
+								<td class="cell"><input type="text" maxlength="10" name="g_release" class="perspan11" value="${game_info['G_RELEASE']}"></td>
 							</tr>
 
 							
 						</table>
+						</div>
 						<div class="module-option clearfix">
 							<div class="control-group">
 								<div class="controls">

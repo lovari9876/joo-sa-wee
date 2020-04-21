@@ -130,9 +130,9 @@
 					<div class = "table_mobile">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell">회원 아이디</td>
-							<td class="cell">탈퇴 사유</td> 
-							<td class="cell">탈퇴일</td>
+							<td class="cell perspan2">회원 아이디</td>
+							<td class="cell perspan4">탈퇴 사유</td> 
+							<td class="cell perspan2">탈퇴일</td>
 							
 						</tr>
 						<tbody>

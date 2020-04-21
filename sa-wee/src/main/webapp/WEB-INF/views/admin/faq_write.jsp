@@ -47,10 +47,11 @@
 							<div class="write-view"> -->
 
 					<form id="viewForm" method="post">
+					<div class = "table_mobile">
 						<table class="table">
 							 <tr class = "row">
-							<td class = "cell span2">말머리</td>
-							<td class = "cell span8">
+							<td class = "cell perspan2">말머리</td>
+							<td class = "cell perspan11">
 								<select name="s_no">
 										<option value="22" selected>회원</option>
 										<option value="23">결제</option>
@@ -62,18 +63,19 @@
 						</tr> 
 
 							<tr class="row">
-								<td class="cell span2">제목</td>
-								<td class="cell span8"><input id="title" maxlength="60" type="text" name="faq_title" maxlength="30"
-									class="span6" placeholder="제목을 입력하세요"></td>
+								<td class="cell perspan2">제목</td>
+								<td class="cell perspan11"><input id="title" maxlength="60" type="text" name="faq_title" maxlength="30"
+									class="perspan11" placeholder="제목을 입력하세요"></td>
 							</tr>
 
 							<tr class="row">
 								<td class="cell">내용</td>
-								<td class="cell"><textarea id="editor" name="faq_content" class="span5"
+								<td class="cell"><textarea id="editor" name="faq_content" 
 										rows="10" placeholder="내용을 입력하세요"></textarea></td>
 							</tr>
 
 						</table>
+						</div>
 						<div class="module-option clearfix">
 							<div class="control-group">
 								<div class="controls">

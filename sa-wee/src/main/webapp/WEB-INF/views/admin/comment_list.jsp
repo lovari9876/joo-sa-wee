@@ -70,7 +70,9 @@
 									</button>
 								</div>
 								
-								
+								<div class="btn-group pull-right" >
+									<button type="button" value="board" class="btn selectDelete_btn" data-BW="${board['BT_NO']}">선택 댓글 삭제</button>
+								</div>
 							</div>
 						</div>
 
@@ -89,18 +91,20 @@
 					<div class="table_mobile">
 						<table class="table">
 							<tr class="trow header">
-								<td class="cell span1">번호</td>
-								<td class="cell">작성자</td>
-								<td class="cell">내용</td>
-								<td class="cell">신고수</td>
-								<td class="cell">작성일</td>
+								<td class="cell perspan1"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
+								<td class="cell perspan1">번호</td>
+								<td class="cell perspan2">작성자</td>
+								<td class="cell perspan4">내용</td>
+								<td class="cell perspan1">신고수</td>
+								<td class="cell perspan2">작성일</td>
 							</tr>
 							<tbody>
 								<c:forEach items="${comment_list}" var="cm">
 									<tr class="trow">
+										<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-no="${cm['CM_NO']}"></td>
 										<td class="cell">${cm['CM_NO']}</td>
 										<td class="cell">${cm['M_ID']}</td>
-										<td class="cell">
+										<td class="cell title">
 											<c:choose>
 												<c:when test="${cm['CM_TYPE'] == '게시판'}">
 													<a href="/content_view?bw_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
@@ -187,5 +191,7 @@
 	<script src="js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="js/admin/bootstrap.min.js" type="text/javascript"></script>
+	<!-- 체크박스 한번에 전체선택, 선택삭제 -->
+	<script src="js/admin/checkBox_comment.js" type="text/javascript"></script>
 </body>
 </html>

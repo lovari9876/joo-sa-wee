@@ -43,57 +43,59 @@
 
 					<form method="post" id="viewForm">
 					<input type = "hidden" name = "c_no" value = "${cafe_info.c_no}">
+						<div class = "table_mobile">
 						<table class="table">
 							
 							<tr class="row">
-								<td class="cell span2">카페 이름</td>
-								<td class="cell span8"><input type="text" maxlength="30" name="c_title" class="span6" value="${cafe_info.c_title}"></td>
+								<td class="cell perspan2">카페 이름</td>
+								<td class="cell perspan11"><input type="text" maxlength="30" name="c_title" class="perspan11" value="${cafe_info.c_title}"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">카페 주소</td>
-								<td class="cell span8"><input type="text" maxlength="60" name="c_add" class="span6" rows="2" value="${cafe_info.c_add}"></input></td>
+								<td class="cell">카페 주소</td>
+								<td class="cell"><input type="text" maxlength="60" name="c_add" class="perspan11" rows="2" value="${cafe_info.c_add}"></input></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">전화번호</td>
-								<td class="cell span8"><input type="text" id="phone" maxlength="13" name="c_phone" class="span6" value="${cafe_info.c_phone}"></td>
+								<td class="cell">전화번호</td>
+								<td class="cell"><input type="text" id="phone" maxlength="13" name="c_phone" class="perspan11" value="${cafe_info.c_phone}"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">수용인원</td>
-								<td class="cell span8"><input type="number" maxlength="3" name="c_people" class="span6" value="${cafe_info.c_people}"
+								<td class="cell">수용인원</td>
+								<td class="cell"><input type="number" maxlength="3" name="c_people" class="perspan11" value="${cafe_info.c_people}"
 															oninput="numberMaxLength(this);"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">테이블개수</td>
-								<td class="cell span8"><input type="number" maxlength="3" name="c_table" class="span6" value="${cafe_info.c_table}"
+								<td class="cell">테이블개수</td>
+								<td class="cell"><input type="number" maxlength="3" name="c_table" class="perspan11" value="${cafe_info.c_table}"
 															oninput="numberMaxLength(this);"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">의자개수</td>
-								<td class="cell span8"><input type="number" maxlength="3"name="c_chair" class="span6" value="${cafe_info.c_chair}"
+								<td class="cell">의자개수</td>
+								<td class="cell"><input type="number" maxlength="3"name="c_chair" class="perspan11" value="${cafe_info.c_chair}"
 															oninput="numberMaxLength(this);"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">오픈시간</td>
-								<td class="cell span8"><input type="text" maxlength="6" name="c_open"  class="span6" value="${cafe_info.c_open}"></td>
+								<td class="cell">오픈시간</td>
+								<td class="cell"><input type="text" maxlength="6" name="c_open"  class="perspan11" value="${cafe_info.c_open}"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">마감시간</td>
-								<td class="cell span8"><input type="text"  maxlength="6" name="c_close" class="span6" value="${cafe_info.c_close}"></td>
+								<td class="cell">마감시간</td>
+								<td class="cell"><input type="text"  maxlength="6" name="c_close" class="perspan11" value="${cafe_info.c_close}"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">휴일</td>
-								<td class="cell span8"><input type="text"  maxlength="30" name="c_rest" class="span6" value="${cafe_info.c_rest}"></td>
+								<td class="cell">휴일</td>
+								<td class="cell"><input type="text"  maxlength="30" name="c_rest" class="perspan11" value="${cafe_info.c_rest}"></td>
 							</tr> 
 
 						</table>
+						</div>
 						<div class="module-option clearfix">
 							<div class="control-group">
 								<div class="controls">
