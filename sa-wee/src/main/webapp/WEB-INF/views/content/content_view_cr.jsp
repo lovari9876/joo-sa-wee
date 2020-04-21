@@ -172,7 +172,7 @@
 								</sec:authorize>
 							</div>
 							<div class="test_item fourth">
-								<c:if test = "${content_view_cr['M_NO'] != m_no}">
+								<c:if test = "${content_view_cr['M_NO'] != memberVO.m_no}">
 								<sec:authorize access="isAuthenticated()">
 									<a href="report_view_cr?cr_no=${content_view_cr['CR_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
@@ -183,12 +183,12 @@
 								</sec:authorize>
 							</div>
 							<div class="test_item third">
-								<c:if test = "${content_view_cr['M_NO'] eq m_no}">
+								<c:if test = "${content_view_cr['M_NO'] eq memberVO.m_no}">
 									<a href="delete?bw_no=${content_view_cr['BW_NO']}">삭제</a>
 								</c:if>	
 							</div>
 							<div class="test_item second"> 
-								<c:if test = "${content_view_cr['M_NO'] eq m_no}">
+								<c:if test = "${content_view_cr['M_NO'] eq memberVO.m_no}">
 									<a href="board_modify_view?bw_no=${content_view_cr['BW_NO']}">수정</a>
 								</c:if>
 							</div>
