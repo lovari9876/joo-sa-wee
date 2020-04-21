@@ -47,6 +47,10 @@ public interface AdminMapper {
 	//mypage report List 신고
 	public ArrayList<HashMap<String, Object>> myReportList(@Param("m_no")int m_no);
 	
+	//mypage 내 1대1 문의 ask
+	public ArrayList<HashMap<String, Object>> myAskList(@Param("m_no")int m_no);
+	
+	
 	
 
 	// 페이징 처리 + 검색  List

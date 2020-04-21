@@ -77,6 +77,14 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.myReportList(m_no);
 	}
 	
+	
+	//mypage 내 1대1 문의 ask
+	public ArrayList<HashMap<String, Object>> myAskList(int m_no){
+		return adminMapper.myAskList(m_no);
+	}
+	
+	
+	
 	// 페이징 처리된 리스트
 	@Override
 	public List<MemberVO> memberList(SearchCriteria scri, String sort){

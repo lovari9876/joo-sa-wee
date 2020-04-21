@@ -55,6 +55,17 @@
 	</delete>
 	
 	
+	
+	<!-- ================================================ 마이페이지 내 1대1문의 ask   ====================================================== -->
+	
+	<select id="myAskList" resultType="java.util.HashMap" >
+	
+		SELECT bw.*, (SELECT COUNT(*) FROM cm_comment WHERE cm_type ='게시판' AND cm_no2 = bw.bw_no)cm ,
+		ROW_NUMBER() OVER(ORDER BY bw.bw_no ASC) AS RNUM 
+		FROM board_write bw WHERE bw.m_no = #{m_no} AND bw.bt_no = 8 ORDER BY bw.bw_no DESC
+		
+	</select>
+	
 
 	<!-- ================================================ 마이페이지 mypage ====================================================== -->
 
