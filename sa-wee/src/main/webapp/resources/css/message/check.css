@@ -1,7 +1,7 @@
 .allCheck { float:left; width:200px; }
 .allCheck input { width:16px; height:16px; }
 .allCheck label { margin-left:10px; }
-.delBtn { float:right; width:300px; text-align:right; }
+.delBtn { float:right; width:290px; text-align:right; }
 .delBtn button { font-size:18px; padding:5px 10px; border:1px solid #eee; background:#eee;}
 
 .checkBox { float:left; width:30px; }
@@ -26,12 +26,22 @@
 
 .btn-receive{
 	float: left;
-	color:none;	
+	color:none;
+	border: 1px solid #CCC;
+	padding: 10px;
+	margin:2px;
+    cursor: pointer;
 }
 .btn-send{
 	float: left;
-	color:none;	
+	color:none;
+	border: 1px solid #CCC;
+	padding: 10px;
+	margin:2px;
+    cursor: pointer;
+
 }
+
 
 /* 경고글자 사이즈, 색 조절 */
 .check_font {

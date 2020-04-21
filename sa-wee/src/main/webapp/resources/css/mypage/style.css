@@ -32,6 +32,10 @@ Description: This Template is created for web template
 	margin: 0px;
 	padding: 0px;
 }
+.password-font{
+	font-family: "DungGeunMo" !important;
+	font-size:12px;
+}
 .JSD-Regular-12{
 	font-family: "JSDongkang-Regular";
 	font-size:12px;
@@ -99,6 +103,9 @@ a:hover, a:focus, input, textarea {
 html, body {
 	height: 100%;
 	background-image: url("../../images/bl_share/bg_3.jpg");
+	background-repeat : no-repeat;
+	background-size : cover;
+
 }
 
 p {
@@ -766,9 +773,10 @@ input[type=text] {
 	margin-left: 11px;
 }
 
-div#contact {
+div.tab-pane2 {
     box-sizing: border-box;
     height: 580px;
+    padding:20px;
 }
 
 /*# sourceMappingURL=style.css.map */

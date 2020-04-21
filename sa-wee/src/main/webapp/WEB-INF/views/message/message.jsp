@@ -32,14 +32,22 @@
 <%-- <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" /> --%>
+	
+<style>
+.header-top{
+	position: fixed;
+	top: 0;
+}
+</style>
+
 </head>
 
 <body>
-
-	<!-- header include -->
-	<%@ include file="/WEB-INF/views/share/header.jsp"%>
-
-	<div class="container web-portion">
+	<div class="header-top">
+		<!-- header include -->
+		<%@ include file="/WEB-INF/views/share/header.jsp"%>
+	</div>
+	<div class="container web-portion JSD-Regular-12">
 		<h3 class=" text-center"></h3>
 		<div class="messaging">
 			<form id="viewForm" method="post">
@@ -58,7 +66,7 @@
 							<div class="srch_bar">
 								<!-- <div class="stylish-input-group"> -->
 								<div class="delBtn">
-									<button type="button" class="selectDelete_btn"
+									<button type="button" class="selectDelete_btn" style="cursor: pointer;"
 										data-NN="<%-- ${message['N_NO']} --%>">delete</button>
 								</div>
 								<!-- </div> -->
@@ -165,7 +173,7 @@
 <script src="js/header/jquery.slicknav.min.js"></script>
 <script src="js/header/header_hyesoo.js"></script>
 <!-- header 200317 새로 추가해야할 js -->
-<script src="js/header/scroll.js"></script>
+
 
 <script src="https://code.jquery.com/ui/1.8.5/jquery-ui.min.js"
 	integrity="sha256-fOse6WapxTrUSJOJICXXYwHRJOPa6C1OUQXi7C9Ddy8="

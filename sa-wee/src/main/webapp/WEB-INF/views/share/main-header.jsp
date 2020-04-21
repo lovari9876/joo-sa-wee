@@ -102,8 +102,17 @@
 								<sec:authorize access="isAnonymous()">
 									<li><a href="/loginview">로그인</a></li>
 									<li><a href="/joinview">회원가입</a></li>
+								</sec:authorize>								
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<li><span class="txt1"> <%=name%>
+									</span></li>
+									<hr/>									
+									<li><a href="/admin/index" class="txt3 hov1">관리</a><li>
+									<li><form:form action="/logout" method="POST">
+										<input style="font-size:16px;" type="submit" value="로그아웃" />
+									</form:form></li>
 								</sec:authorize>
-								<sec:authorize access="hasRole('ROLE_USER')">
+								<sec:authorize access="isAuthenticated() && !hasRole('ROLE_ADMIN')">
 									<li><span class="txt1"> <%=name%>
 									</span></li>
 									<hr/>
@@ -114,15 +123,7 @@
 										<input type="submit" value="로그아웃" />
 									</form:form></li>
 								</sec:authorize>
-								<sec:authorize access="hasRole('ROLE_ADMIN')">
-									<li><span class="txt1"> <%=name%>
-									</span></li>
-									<hr/>									
-									<li><a href="/admin/index" class="txt3 hov1">관리</a><li>
-									<li><form:form action="/logout" method="POST">
-										<input type="submit" value="로그아웃" />
-									</form:form></li>
-								</sec:authorize>
+								
 							</ul></li>
 					</ul>
 				</nav>

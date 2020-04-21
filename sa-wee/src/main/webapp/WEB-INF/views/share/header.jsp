@@ -8,6 +8,9 @@
 	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="org.springframework.security.core.Authentication"%>
 <%@ page import="com.soninlawisdice.vo.MemberVO"%>
+<%@ page import="com.soninlawisdice.service.MyPageService"%>
+<%@ page import="com.soninlawisdice.service.MyPageServiceImpl"%>
+
 <html class="no-js" lang="UTF-8">
 <head>
 
@@ -28,6 +31,7 @@
 <body id="top">
 
 	<%
+		MyPageService myPageService = new MyPageServiceImpl();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
 		Object principal = auth.getPrincipal();
@@ -36,6 +40,10 @@
 
 		if (principal != null && principal instanceof MemberVO) {
 			name = ((MemberVO) principal).getM_id();
+			//String id = ((MemberVO) principal).getM_id();
+			//MemberVO memberVO = myPageService.mypage(id);
+			
+			//name = memberVO.getM_nick();
 		}
 	%>
 
@@ -112,7 +120,7 @@
 										<input style="font-size:16px;" type="submit" value="로그아웃" />
 									</form:form></li>
 								</sec:authorize>
-								<sec:authorize access="isAuthenticated()">
+								<sec:authorize access="isAuthenticated() && !hasRole('ROLE_ADMIN')">
 									<li><span class="txt1"> <%=name%>
 									</span></li>
 									<hr/>

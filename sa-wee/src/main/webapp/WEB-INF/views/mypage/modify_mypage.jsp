@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>SON-IN-RAW IS DICE - my page</title>
+<title>내 사위는 주사위</title>
 
 <!-- 파피콘 -->
 <link rel="icon" type="image/png" href="/images/share/wolf_logo.ico" />
@@ -34,7 +34,7 @@
 						method="post">
 						<div class="row top-det">
 							<div class="col-md-4">
-								<div class="profil-det-img d-flex">
+								<div class="profil-det-img d-flex JSD-Bold-12">
 									<div class="dp">
 										<img src="images/bl_share/icons/login/wolf_logo.png" alt="">
 									</div>
@@ -47,7 +47,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4 eml-mob" style="border-right: none;">
+							<div class="col-md-4 eml-mob JSD-Bold-12" style="border-right: none;">
 								<div class="pd">
 									<br />
 									<p>
@@ -56,7 +56,7 @@
 									</p>
 								</div>
 							</div>
-							<div class="col-md-4 eml-mob" style="border-right: none;">
+							<div class="col-md-4 eml-mob JSD-Bold-12" style="border-right: none;">
 								<div class="pd">
 									<br />
 									<p>
@@ -77,7 +77,7 @@
 
 
 							<div class="tab-content" id="myTabContent">
-								<div class="tab-pane fade show active" id="home" role="tabpanel"
+								<div class="tab-pane fade show active JSD-Bold-12" id="home" role="tabpanel"
 									aria-labelledby="home-tab">
 									<div class="row no-margin home-det">
 										<div class="col-md-4 eml-mob">
@@ -247,8 +247,8 @@
 														<div class="links">
 															<div class="row">
 																<ul class="">
-																	<li><a href="#" class="btn btn-lavender margin-left-11"
-																		onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+																	<li><a href="/pw_modifyview" class="btn btn-lavender margin-left-11"
+																		onclick="window.open(this.href, '', 'width=500, height=500, left=600, top=300'); return false;"><i
 																			class="fas fa-circle-notch"></i>비밀번호 변경</a></li>
 																	<li><button
 																			class='btn-a btn btn-lavender margin-left-11'
@@ -261,7 +261,7 @@
 																			class="fas fa-address-card"></i>돌아가기</a></li>
 																	<li class="btn-shake"><a href="/outview"
 																		class="btn btn-lavender margin-left-11"
-																		onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
+																		onclick="window.open(this.href, '', 'width=500, height=500, left=600, top=200'); return false;"><i
 																			class="fas fa-times"></i>탈퇴</a></li>
 																</ul>
 															</div>
@@ -287,20 +287,6 @@
 			</div>
 		</div>
 	</div>
-	<script>
-		function m_out() {
-			var out = document.getElementById("viewForm");
-			console.log("out");
-			var result = confirm("사위님 정말 탈퇴하시겠습니까?");
-			if (result) {
-				alert("당신에게는 앞으로 주사위의 저주가 있을 것입니다. 탈퇴가 완료되었습니다.");
-				out.action = "<c:url value='/out'/>";
-				out.submit();
-			} else {
-				alert("탈퇴가 취소되었습니다. 내 사위는 주사위를 즐기세요!");
-			}
-		}
-	</script>
 </body>
 
 <script src="js/mypage/jquery-3.2.1.min.js"></script>

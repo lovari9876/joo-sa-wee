@@ -22,6 +22,7 @@ import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -68,6 +69,8 @@ public class MyPageController {
 	@Autowired
 	private SponsorService sponsorService;
 	
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
 
 	// 시큐리티 이전 마이페이지
 //	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
@@ -167,7 +170,7 @@ public class MyPageController {
 
 	// 회원정보 수정
 	@RequestMapping(value = "/mypage_modify", method = RequestMethod.POST)
-	public String modifyMember(Principal principal, MemberVO memberVO) throws Exception {
+	public String modifyMember(MemberVO memberVO) throws Exception {
 		System.out.println("mypageModify()");
 
 		System.out.println(memberVO.getM_id());
@@ -175,6 +178,34 @@ public class MyPageController {
 
 		return "redirect:/mypage";
 	}
+	
+	// 회원비밀번호 수정뷰
+	@RequestMapping(value = "/pw_modifyview", method = RequestMethod.GET)
+	public String pwModifyView(Principal principal, Model model, MemberVO memberVO) throws Exception {
+		System.out.println("pwModifyView()");
+
+		String m_id = principal.getName();
+		memberVO = myPageService.mypage(m_id);
+
+		model.addAttribute("member", memberVO);
+
+		return "mypage/modify_pw";
+	}
+	
+	// 회원비밀번호 수정
+	@RequestMapping(value = "/pw_modify", method = RequestMethod.POST)
+	public String pwModify(MemberVO memberVO) throws Exception {
+		System.out.println("pwModify()");
+		System.out.println(memberVO.getM_id());
+		
+		String m_pw = memberVO.getM_pw();
+		myPageService.pwModify(memberVO.getM_no(), pwdEncoder.encode(m_pw));
+
+		return "mypage/modify_pw";
+	}
+	
+	
+	
 	// 회원 탈퇴 뷰
 	@RequestMapping(value = "/outview", method = RequestMethod.GET)
 	public String outview(Model model) throws Exception {
