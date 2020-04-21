@@ -28,10 +28,10 @@
 	<div class="span9">
 		<div class="content">
 			
-			<!-- 구매자 -->
+			<!-- 판매자 -->
 			<div class="module">
 				<div class="module-head">
-					<h3>구매자 계좌 정보</h3>
+					<h3>판매자 계좌 정보</h3>
 				</div>
 				
 					<div class = "table_mobile">
@@ -60,10 +60,10 @@
 				</div>
 				
 				
-				<!-- 판매자 -->
+				<!-- 구매자 -->
 			<div class="module">
 				<div class="module-head">
-					<h3>판매자 계좌 정보</h3>
+					<h3>구매자 계좌 정보</h3>
 				</div>
 				
 					<div class = "table_mobile">

@@ -54,7 +54,7 @@
 	</div>
 
 	<!-- Header section -->
-	
+	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
 	<!-- header include end -->
@@ -69,12 +69,29 @@
 					<h3>질문 & 답변</h3>
 					<p>질문하고 답하고 하세요</p>
 				</div>
+				
+				<script>
+				      $(function(){
+							  $('#searchBtn').click(function() {
+							  	event.preventDefault(); // event canceled 막기!
+							    	self.location = "board_qna" 
+							    				+ '${pageMaker.makeQuery(1)}' 
+							    				+ "&searchType=" 
+							    				+ $("#searchType option:selected").val() 
+							    				+ "&s_content=" 
+							    				+ "${s_content}"
+							    				+ "&keyword=" 
+							    				+ encodeURIComponent($('#keywordInput').val());
+							  });
+							}); 
+				  </script>
 
 
 				<!-- Search Bar  -->
+				<form>
 				<div class="search">		
 						 <div class="dropdown pull-right">
-								<select name="searchType" class="span2">
+								<select id="searchType" name="searchType" class="span2">
 									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 									<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 									<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
@@ -89,7 +106,7 @@
 							</button>
 						</div>
 					 </div>
-
+				</form>
 
 
 
@@ -97,13 +114,13 @@
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
-						<li class="current" data-tab="tab1"><button type = "button" 
+						<li <c:out value="${s_content eq null ? 'class = current' : ''}"/>  data-tab="tab1"><button type = "button" 
 							onclick ="location.href='board_qna'" >전체보기</button></li>
-						<li data-tab="tab2" id = "룰"><button type = "button" value = "14" class = "select"
+						<li <c:out value="${s_content == '룰' ? 'class = current' : ''}"/> data-tab="tab2" id = "룰"><button type = "button" value = "14" class = "select"
 							onclick ="location.href='board_qna?s_content=룰'">룰</button></li>
-						<li data-tab="tab3" id = "추천"><button type = "button" value = "15" class= "select"
+						<li <c:out value="${s_content == '추천' ? 'class = current' : ''}"/> data-tab="tab3" id = "추천"><button type = "button" value = "15" class= "select"
 							onclick ="location.href='board_qna?s_content=추천'">추천</button></li>
-						<li data-tab="tab4" id = "기타"><button type = "button" value = "16" class = "select"
+						<li <c:out value="${s_content == '기타' ? 'class = current' : ''}"/> data-tab="tab4" id = "기타"><button type = "button" value = "16" class = "select"
 							onclick ="location.href='board_qna?s_content=기타'">기타</button></li>
 					</ul>
 
@@ -168,7 +185,7 @@
 
 					
 					<!-- 여기서부터는 말머리 선택 부분이라  -->
-					<div id="tab2" class="tabcontent">
+					<!-- <div id="tab2" class="tabcontent">
 					
 						<table class="table">
 
@@ -235,7 +252,7 @@
 							
 							
 						</table>
-					</div>
+					</div> -->
 				</div>
 				
 				<div class="Page navigation example">
@@ -285,7 +302,7 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
+	
 	<script src="js/board_hs/bootstrap.min.js"></script>
 	<script src="js/board_hs/jquery.slicknav.min.js"></script>
 	<script src="js/board_hs/owl.carousel.min.js"></script>
@@ -294,7 +311,7 @@
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
 	<script src="js/header/scroll.js"></script>
-	<script src="js/board_hs/tab.js"></script>
+	<!-- <script src="js/board_hs/tab.js"></script> -->
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>

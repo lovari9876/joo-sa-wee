@@ -307,14 +307,23 @@
 										<c:forEach items="${myScrap}" var="myScrap">
 											<tr class="trow">
 												<td class="cell table-width-100 text-center">${myScrap['SC_BOARDTYPE']}</td>
-												<td class="cell title text-left"><c:choose>
-														<c:when test="${myScrap['SC_BOARDTYPE'] eq '카페 리뷰'}">
-															<a href="content_view_cr?cr_no=${myScrap['SC_NO']}">${myScrap['BW_TITLE']}</a>
-														</c:when>
-														<c:otherwise>
-															<a href="content_view?bw_no=${myScrap['SC_NO']}">${myScrap['BW_TITLE']}</a>
-														</c:otherwise>
-													</c:choose></td>
+												<td class="cell title text-left">
+												<c:choose>
+													<c:when test = "${myScrap['ISLAND'] eq '0'}">
+														<c:choose>
+															<c:when test="${myScrap['SC_BOARDTYPE'] eq '카페 리뷰'}">
+																<a href="content_view_cr?cr_no=${myScrap['SC_NO']}">${myScrap['BW_TITLE']}</a>
+															</c:when>
+															<c:otherwise>
+																<a href="content_view?bw_no=${myScrap['SC_NO']}">${myScrap['BW_TITLE']}</a>
+															</c:otherwise>
+														</c:choose>
+													</c:when>
+													<c:otherwise><p style = "color:#b7b7bd">무인도행 처리된 글입니다. </p></c:otherwise>
+												</c:choose>
+												
+												
+												</td>
 												<td class="text-center">
 													<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 --> <fmt:formatDate
 														value="${today}" pattern="yyyy.MM.dd" var="now" /> <fmt:formatDate

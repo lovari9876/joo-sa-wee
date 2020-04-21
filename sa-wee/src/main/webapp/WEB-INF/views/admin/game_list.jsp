@@ -55,10 +55,10 @@
 						</div>
 
 					</form>
-					<!-- <div class="btn-group pull-left">
+					<div class="btn-group pull-right">
 							<button type="button" class="btn"
-										onclick="location = 'game_write'">글 작성(보류)</button>
-					</div> -->
+										onclick="location = 'game_write'">글 작성</button>
+					</div> 
 					<!-- 			
 					<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn">정렬</button>
@@ -77,7 +77,7 @@
 					<table class="table">
 							<tr class="trow header">
 								<td class="cell perspan1">번호</td>
-								<td class="cell perspan2">한글이름</td> <!-- 행 클릭시 상세 정보  -->
+								<td class="cell perspan3">한글이름</td> <!-- 행 클릭시 상세 정보  -->
 								<td class="cell perspan3">영어이름</td> 
 								<td class="cell perspan1">인원</td>
 								<td class="cell perspan1">출시일</td>
@@ -89,7 +89,7 @@
 								<c:forEach items="${game_list}" var="game">
 									<tr class="trow"  onClick="location.href='/game_detail?g_no=${game['G_NO']}'">
 										<td class="cell">${game['RNUM']}</td>
-										<td class="cell">
+										<td class="cell g_title">
 											<c:if test="${game['G_NAME_KOR'] == null}"> 입력안됨 </c:if>
 											<c:if test="${game['G_NAME_KOR'] != null}"> ${game['G_NAME_KOR']} </c:if>
 										</td>

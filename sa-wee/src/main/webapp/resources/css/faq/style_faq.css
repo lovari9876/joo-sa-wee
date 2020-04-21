@@ -3744,14 +3744,14 @@ html:not (.js ) .cd-faq__items {
 		display: block;
 		padding-top: 1px;
 		padiing-left: 60px;
-		margin-top: 30px;
+		margin-top: 35px;
 	}
 	/* 헤더 도로록 때문에... 첫번째만 패딩 적게!  */
-	.cd-faq__group:not(#member ){
+	.cd-faq__group:not(#member){
 		display: block;
-		padding-top: 55px;
+		padding-top: 65px;
 		padiing-left: 60px;
-		margin-top: 30px;
+		margin-top: 35px;
 	}
 }
 
