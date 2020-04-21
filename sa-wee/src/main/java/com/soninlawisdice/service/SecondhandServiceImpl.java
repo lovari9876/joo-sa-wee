@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.math.BigDecimal;
 
 import javax.annotation.Resource;
 
@@ -29,8 +30,28 @@ public class SecondhandServiceImpl implements SecondhandService {
 	// list
 	@Override
 	public ArrayList<HashMap<String, Object>> selectTradeList(SearchCriteria scri, String s_content, String sort) {
-
-		return secondhandMapper.selectTradeList(scri, s_content, sort);
+		
+		// return할 tList
+		ArrayList<HashMap<String, Object>> tList = new ArrayList<>(); 
+		
+		// f_name이 여러개라서 t_no이 중복되는 tList
+		ArrayList<HashMap<String, Object>> tempTList = secondhandMapper.selectTradeList(scri, s_content, sort);
+		
+		
+		int t_no = ((BigDecimal) tempTList.get(0).get("T_NO")).intValueExact(); // 0번째 t_no
+		System.out.println(t_no);
+//		int t_no = Integer.valueOf(tempTList.get(0).get("T_NO").toString()); // 0번째 t_no
+		tList.add(tempTList.get(0)); // 0번째는 넣기
+		
+		for (HashMap<String, Object> tMap : tempTList) {
+			
+			if(((BigDecimal) tMap.get("T_NO")).intValueExact() != t_no) { // 중복 아니면
+				tList.add(tMap);
+				t_no = ((BigDecimal) tMap.get("T_NO")).intValueExact(); // 업뎃
+			}
+		}
+		
+		return tList;
 	}
 
 	// list count
