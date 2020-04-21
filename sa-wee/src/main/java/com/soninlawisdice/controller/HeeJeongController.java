@@ -189,6 +189,7 @@ public class HeeJeongController {
 		return "redirect:/content_view";
 	}
 	
+	// 1대1 문의 댓글 쓰기
 	@RequestMapping(value = "/comment_write_q", method = RequestMethod.POST)
 	public String comment_write_q(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
 									Model model, @RequestParam int bw_no, @RequestParam("m_no") int m_no, RedirectAttributes re,
@@ -196,7 +197,7 @@ public class HeeJeongController {
 		System.out.println("comment_write_bw");
 		
 		System.out.println(cm_commentVO.getCm_no2());
-		System.out.println(cm_commentVO.getM_no());
+		System.out.println(memberVO.getM_no());
 		
 		// 로그인 해야 댓글 쓰기 가능
 		if(principal != null) {
@@ -253,6 +254,19 @@ public class HeeJeongController {
 		re.addAttribute("bw_no", bw_no);
 			
 		return "redirect:/content_view";
+	}
+	
+	// 1대1 문의 댓글 삭제
+	@RequestMapping(value = "/comment_delete_q", method = RequestMethod.GET)
+	public String comment_delete_q(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
+									Model model, @RequestParam int bw_no, RedirectAttributes re) {
+		System.out.println("comment_delete_q");
+		
+		contentService.deleteComment(cm_commentVO);
+	
+		re.addAttribute("bw_no", bw_no);
+			
+		return "redirect:/question_content_view";
 	}
 	
 	// 댓글 추천수 증가

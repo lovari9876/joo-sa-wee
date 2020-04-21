@@ -33,19 +33,19 @@
 			<form action="comment_write_q" method="post">
 				<input type="hidden" name="cm_no2" value="${content_view['BW_NO']}">
 				<input type="hidden" name="bw_no" value="${content_view['BW_NO']}">
-				<input type="hidden" name="m_no" value="${memberVO.m_no}">
+				<input type="hidden" name="m_no" value="${m_no}">
 				<div class="form-group">
 					<label for="message">Comment</label>
 					<textarea name="cm_content" id="message" cols="30" rows="10"
 						class="form-control" placeholder="댓글을 입력하세요."></textarea>
 				</div>
 				<div class="form-group">
-					<c:if test = "${memberVO.r_no == 4}">
+					<c:if test = "${content_view['M_NO'] == m_no}">
 					<sec:authorize access="isAuthenticated()">
-					<input type="button" value="작성" class="btn btn-lavender btn-md" id="btnRno"/>
+					<input type="submit" value="작성" class="btn btn-lavender btn-md">
 					</sec:authorize>
 					</c:if>
-					<c:if test = "${memberVO.r_no < 4}">
+					<c:if test = "${0 == m_no}">
 					<sec:authorize access="isAuthenticated()">
 					<input type="submit" value="작성" class="btn btn-lavender btn-md">
 					</sec:authorize>
@@ -57,8 +57,6 @@
 			</form>
 		</div>
 	</div>
-	
-<script src="js/board_hj/btnRno.js"></script>
 
 	
 </body>

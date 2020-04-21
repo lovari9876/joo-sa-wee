@@ -1078,7 +1078,7 @@ dl, ol, ul {
 	outline: none;
 }
 
-/* 목록보기, 수정, 삭제, 신고 */
+/* 목록보기, 수정, 삭제, 신고, 스크랩 */
  .test {
 	text-align: left;
  }
@@ -1093,17 +1093,17 @@ dl, ol, ul {
 
 .test_item.third {
 	float: right;
-	padding-left:15px;
+	margin-left:25px;
 }
 
 .test_item.fourth {
 	float: right;
-	padding-left:15px;
+	margin-left:25px;
 }
 
 .test_item.fifth {
 	float: right;
-	padding-left:15px;
+	margin-left:25px;
 	cursor: pointer;
 }
 

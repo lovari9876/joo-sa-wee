@@ -137,29 +137,31 @@
 					<br />
 					<input type = "hidden" class = "countComment" value = "${count}">
 					<!-- 목록보기와 수정, 삭제, 신고 -->
-					<form action="" method="get">
+					<form action="/question_list" method="get">
 						<div class="test">
 							<div class="test_item first">
 								<input type = "button" onclick ="location.href='question_list'" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item fourth">
-								<c:if test = "${content_view['M_NO'] eq m_no}">
-									<a href="question_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
-								</c:if>
-							</div>
-							<div class="test_item fourth">
-								<c:if test = "${content_view['M_NO'] eq m_no}">
-									<a style = "cursor:pointer;"onclick = "commentDelete();"<%-- href="question_delete?bw_no=${content_view['BW_NO']}" --%>>삭제</a>
-								</c:if>
-							</div>
-							<div class="test_item fourth">
+								<c:if test = "${content_view['M_NO'] != m_no}">
 								<sec:authorize access="isAuthenticated()">
 									<a href="content/report_view_bw?bw_no=${content_view['BW_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
 								</sec:authorize>
+								</c:if>
 								<sec:authorize access="isAnonymous()">
 									<a href="loginview">신고</a>
 								</sec:authorize>
+							</div>
+							<div class="test_item third">
+								<c:if test = "${content_view['M_NO'] eq m_no}">
+									<a style = "cursor:pointer;"onclick = "commentDelete();"<%-- href="question_delete?bw_no=${content_view['BW_NO']}" --%>>삭제</a>
+								</c:if>
+							</div>
+							<div class="test_item second">
+							<c:if test = "${content_view['M_NO'] eq m_no}">
+								<a href="question_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
+							</c:if>
 							</div>
 						</div>
 					</form>

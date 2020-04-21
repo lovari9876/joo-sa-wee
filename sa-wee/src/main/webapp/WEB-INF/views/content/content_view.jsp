@@ -159,9 +159,11 @@
 								<input type="button" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item fifth">
+								<c:if test="${content_view['M_NO'] != memberVO.m_no}">
 								<sec:authorize access="isAuthenticated()">
 									<a id="scrap" data-bt="${content_view['BT_NAME']}" data-no="${content_view['BW_NO']}">스크랩</a>
 								</sec:authorize>
+								</c:if>
 								<sec:authorize access="isAnonymous()">
 									<a href="loginview">스크랩</a>
 								</sec:authorize>
