@@ -65,6 +65,11 @@
 		SELECT COUNT(*) FROM CM_COMMENT
 		WHERE m_no = #{m_no}
 	</select>
+	<!-- 안본쪽지 갯수 -->
+	<select id="newNoteCount" resultType="int">
+		SELECT COUNT(*) FROM NOTE 
+		WHERE n_check = 1 AND n_blind != 2 AND n_blind != 4 AND m_no = #{m_no}
+	</select>
 	
 	<!-- 회원정보 수정 -->
 	<update id="modifyMember">
@@ -167,5 +172,12 @@
 	<select id="note" resultType="com.soninlawisdice.vo.NoteVO">
 		select * from note where n_no = #{n_no}
 	</select>
+	
+	<!-- 쪽지 알람 -->
+	<update id="newNote">
+		update note set 
+			n_check = 0 
+			where n_no = #{n_no}
+	</update>
 
 </mapper>

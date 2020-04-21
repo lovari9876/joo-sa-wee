@@ -65,7 +65,7 @@
 						<div class="col-md-4 eml-mob JSD-Bold-12" style="border-right: none;">
 							<ul>
 								<li>포인트 : ${member.m_point}</li>
-								<li>안 본 쪽지 :</li>
+								<li>안 본 쪽지 : ${newNoteCount}</li>
 							</ul>
 						</div>
 					</div>

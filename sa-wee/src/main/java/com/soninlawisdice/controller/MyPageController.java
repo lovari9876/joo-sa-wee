@@ -113,7 +113,8 @@ public class MyPageController {
 		int myReplyCount = myPageService.myReplyCount(m_no);
 		model.addAttribute("myReplyCount", myReplyCount);
 			
-		
+		int newNoteCount = myPageService.newNoteCount(m_no);
+		model.addAttribute("newNoteCount", newNoteCount);
 		///////////// 내 후원 /////////////////////////////////
 		ArrayList<HashMap<String, Object>> sponsorList = 
 				sponsorService.selectSponsorList(m_no);
@@ -289,9 +290,9 @@ public class MyPageController {
 	@RequestMapping(value = "/select_message", method = { RequestMethod.GET, RequestMethod.POST })
 	public HashMap<String, Object> select_message(int n_no, Principal principal, Model model) throws Exception {
 		System.out.println("select_message" + n_no);
-
+		
 		model.addAttribute("noteContent", myPageService.noteContent(n_no));
-
+		myPageService.newNote(n_no);
 		return myPageService.noteContent(n_no);
 	}
 
@@ -344,24 +345,34 @@ public class MyPageController {
 
 		MemberVO otherVO = myPageService.mypageNick(m_nick);
 		model.addAttribute("other", otherVO);
+		if(otherVO.getM_re_message().equals("n")) {
+			System.out.println("no message");
+			return "message/no_message";
+		}
 		
 		return "message/send_message2";
 	}
 	
 
 	// 쪽지 보내기
-	@RequestMapping(value = "/send_message", method = RequestMethod.GET)
+	@RequestMapping(value = "/send_message", method ={ RequestMethod.GET, RequestMethod.POST })
 	public String send_message(String m_nick, NoteVO noteVO) throws Exception {
 		System.out.println("send_message()");
 
 		System.out.println(m_nick);
 		MemberVO memberVO = myPageService.mypageNick(m_nick);
 		int m_no = memberVO.getM_no();
+		System.out.println("memberVO.getM_re_message()" + memberVO.getM_re_message());
+		
+		if(memberVO.getM_re_message().equals("n")) {
+			System.out.println("no message");
+			return "message/no_message";
+		}
 
 		System.out.println(noteVO.getM_no2());
 
 		myPageService.sendMessage(m_no, noteVO);
-
+		
 		return "message/send_message_success";
 	}
 

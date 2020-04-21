@@ -46,9 +46,13 @@ $(document).ready(function() {
 						tag += '</div>';
 						tag += '<div class="chat_ib">';
 						tag += '<h5>';
+						if( value['N_CHECK'] == 1){
+							tag += '<i class="fas fa-bell" style="font-size: 20px; color: #8861B4"></i>'
+						}
 						tag += '<input class="select_note" type="button" id="' +value['N_NO'] + '" value="'+ value['N_TITLE'] +'"/>';
 						tag += '<input name="n_no" class="n_no" type="hidden" value="'+  value['N_NO'] + '" />';
-						tag += '<span class="chat_date">' + value['WRITTEN_DATE'] + '</span></h5>';
+						tag += '<span class="chat_date">' + value['WRITTEN_DATE']						
+						tag += '</span></h5>';
 						tag += '<p>' + value['M2_NICK'] + '</p>';
 						tag += '</div>';
 						tag += '</div>';
@@ -174,7 +178,7 @@ function select_note(n_no) {
 			tag += '</div>';
 			
 			$("#ajax_content").empty().append(tag);
-			
+			$(".btn-receive").click();
 		},
 		error : function(request, status, error) {
 			console.log(request.responseText);
@@ -220,3 +224,4 @@ function select_send_note(n_no) {
 		}
 	});
 }
+

@@ -74,7 +74,11 @@ $(function() {
 						},
 
 						onFinished : function(event, currentIndex) {
-
+							
+							if ($('#agree').val() == "N") {
+								alert("회원가입약관의 내용에 동의하셔야 회원가입 하실 수 있습니다.");
+								return false;
+							}
 							if($('#phone_pass').val() == "N"){
 								alert("핸드폰을 인증해주세요.");
 								return false;
@@ -370,5 +374,19 @@ $(function() {
 
 		}
 	});
-	
+	$("input[name='agree']").on('click', function() { 
+//		var agree = document.getElementById('agree');
+//		console.log(agree);
+//		var check = agree.getAttribute("checked")
+//		console.log(check);
+		
+		if ( $(this).prop('checked') ) { 
+			$('#agree').attr("value","Y");
+
+		} else { 
+			$('#agree').attr("value","N");
+
+		} 
+
+	});		
 });

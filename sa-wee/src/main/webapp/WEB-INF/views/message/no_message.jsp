@@ -19,6 +19,7 @@
 <body>
 
 	<script type="text/javascript">
+		alert("해당 회원은 쪽지 수신을 거부한 회원입니다.");
 		window.opener.location.reload();
 		window.close();
 	</script>

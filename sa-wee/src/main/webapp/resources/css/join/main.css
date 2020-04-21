@@ -33,6 +33,11 @@ body, html {
 	/* 배경이미지 */
 }
 
+.password-font{
+	font-family: "DungGeunMo" !important;
+	font-size:12px;
+}
+
 /*---------------------------------------------*/
 a {
 	font-family: "JSDongkang-Regular";
@@ -432,12 +437,26 @@ iframe {
 	
 }
 
+/* 약관 */
+#agree-check{
+	width:640px;  
+	height:200px;     
+	resize:none;
+	overflow-x:hidden;
+}
+
 /*//////////////////////////////////////////////////////////////////
 [ Responsive ]*/
 @media ( max-width : 480px) {
 	.wrap-login100 {
 		padding-left: 15px;
 		padding-right: 15px;
+	}
+	#agree-check{
+		width:320px !important;  
+		height:400px !important;     
+		resize:none;
+		overflow-x:hidden;
 	}
 }
 
