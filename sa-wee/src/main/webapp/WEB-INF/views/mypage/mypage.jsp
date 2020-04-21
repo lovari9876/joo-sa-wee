@@ -186,7 +186,7 @@
 								</div>
 
 							</div>
-							<div class="tab-pane fade profile-tab " id="profile"
+							<div class="tab-pane tab-pane2 fade profile-tab " id="profile"
 								role="tabpanel" aria-labelledby="profile-tab">
 								<div class="table-mypage JSD-Bold-12.5">
 									<table class="table ">
@@ -237,7 +237,7 @@
 							<!-- 내가쓴글 끝, 댓글 시작 -->
 
 
-							<div class="tab-pane education-detail fade" id="education"
+							<div class="tab-pane tab-pane2 education-detail fade" id="education"
 								role="tabpanel" aria-labelledby="contact-tab">
 								<div class="table-mypage JSD-Bold-12.5">
 									<table class="table">
@@ -281,19 +281,19 @@
 									</table>
 								</div>
 							</div>
-							<div class="tab-pane portfolio-detail fade" id="portfolio"
+							<div class="tab-pane tab-pane2 portfolio-detail fade" id="portfolio"
 								role="tabpanel" aria-labelledby="contact-tab">
 								<div class="table-mypage JSD-Bold-12.5">
 									<table class="table">
 										<tr class="table_row header">
-											<td class="cell text-center" style="padding: 13px 5px; width:15px;">카테고리</td>
-											<td class="cell text-center" style="width:500px;">글제목</td>
+											<td class="cell table-width-100 text-center" style="padding: 13px 5px;">카테고리</td>
+											<td class="cell text-center" style="width:400px;">글제목</td>
 											<td class="cell text-center">작성일</td>
 											<td class="cell text-center">삭제</td>
 										</tr>
 										<c:forEach items="${myScrap}" var="myScrap">
 											<tr class="trow">
-												<td class="cell text-center">${myScrap['SC_BOARDTYPE']}</td>
+												<td class="cell table-width-100 text-center">${myScrap['SC_BOARDTYPE']}</td>
 												<td class="cell title text-left"><c:choose>
 														<c:when test="${myScrap['SC_BOARDTYPE'] eq '카페 리뷰'}">
 															<a href="content_view_cr?cr_no=${myScrap['SC_NO']}">${myScrap['BW_TITLE']}</a>
@@ -322,11 +322,11 @@
 									</table>
 								</div>
 							</div>
-							<div class="tab-pane portfolio-detail contact-tab fade"
+							<div class="tab-pane tab-pane2 portfolio-detail contact-tab fade"
 								id="contact" role="tabpanel" aria-labelledby="contact-tab">
-								<div class="mypage-sponsor">
+								<div class="mypage-sponsor table-mypage">
 									<div class="sec-title">
-										<h2>내 후원</h2>
+										<h5>내 후원</h5>
 									</div>
 									<table class="table">
 										<tr class="table_row header">
@@ -352,23 +352,23 @@
 										</c:forEach>
 									</table>
 								</div>
-								<div class="mypage-report">
+								<div class="mypage-report table-mypage">
 									<div class="sec-title">
-										<h2>내 신고</h2>
+										<h5>내 신고</h5>
 									</div>
 									<table class="table">
 										<tr class="table_row header">
-											<td class="cell">신고번호</td>
-											<td class="cell">신고대상</td>
-											<td class="cell">신고내용</td>
-											<td class="cell">신고일</td>
+											<td class="cell table-width-20 text-center">신고<br/>번호</td>
+											<td class="cell table-width-60 text-center">신고대상</td>
+											<td class="cell table-width-160 text-center">신고내용</td>
+											<td class="cell text-center">신고일</td>
 										</tr>
 
 										<c:forEach items="${myReport}" var="myReport">
 											<tr class="trow">
-												<td class="cell">${myReport['RNUM']}</td>
-												<td class="cell title">${myReport['R_TYPE']}</td>
-												<td class="cell title">${myReport['R_CONTENT']}</td>
+												<td class="cell table-width-20 ">${myReport['RNUM']}</td>
+												<td class="cell table-width-60 title">${myReport['R_TYPE']}</td>
+												<td class="cell table-width-160 title text-left">${myReport['R_CONTENT']}</td>
 												<td>
 														<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
 													<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>

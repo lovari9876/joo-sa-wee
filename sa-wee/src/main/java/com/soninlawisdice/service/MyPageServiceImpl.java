@@ -44,6 +44,12 @@ public class MyPageServiceImpl implements MyPageService {
 	public void modifyMember(MemberVO memberVO) throws Exception {
 		myPageMapper.modifyMember(memberVO);
 	}
+	
+	// 회원비밀번호수정
+	@Override
+	public void pwModify(int m_no, String m_pw) throws Exception{
+		myPageMapper.pwModify(m_no, m_pw);
+	}
 
 	// 내 작성글 갯수
 	@Override

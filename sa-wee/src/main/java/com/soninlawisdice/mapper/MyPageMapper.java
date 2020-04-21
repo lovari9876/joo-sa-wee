@@ -23,6 +23,9 @@ public interface MyPageMapper {
 	// 회원정보 수정
 	public void modifyMember(MemberVO memberVO) throws Exception;
 
+	// 회원비밀번호수정
+	public void pwModify(@Param("m_no")int m_no, @Param("m_pw")String m_pw) throws Exception;
+
 	// 탈퇴 정보 테이블
 	public ArrayList<WithdrawalVO> withdrawal() throws Exception;
 	

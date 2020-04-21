@@ -1,0 +1,16 @@
+@font-face {
+	font-family: "DungGeunMo";
+	font-style: normal;
+	font-weight: normal;
+	src: url("../../fonts/fonts_cassie/joosaweefonts/DungGeunMo.ttf") format('truetype');
+}
+.password-font{
+	font-family: "DungGeunMo" !important;
+	font-size:12px;
+}
+
+/* 경고글자 사이즈, 색 조절 */
+.check_font {
+	color: red;
+	font-size: 13px;
+}

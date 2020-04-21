@@ -11,8 +11,10 @@
 	src: url("designhouseBold.ttf") format('truetype');
 }
 @font-face {
-	font-family: 'dunggeunmo';
-	src: url("DungGeunMo.ttf") format('truetype');
+	font-family: "DungGeunMo";
+	font-style: normal;
+	font-weight: normal;
+	src: url("../../fonts/fonts_cassie/joosaweefonts/DungGeunMo.ttf") format('truetype');
 }
 @font-face {
 	font-family: 'JSDongkang-Regular';
@@ -120,13 +122,25 @@
 	}
 }
 /*수정*/
-.table-width-30{
-	width:30px !important;
-}
+
 .table-width-20{
 	width:20px !important;
 }
-
+.table-width-30{
+	width:30px !important;
+}
+.table-width-40{
+	width:40px !important;
+}
+.table-width-60{
+	width:60px !important;
+}
+.table-width-100{
+	width:100px !important;
+}
+.table-width-160{
+	width:160px !important;
+}
 
 .table_row .cell {
 	font-family: 'JSDongkang-Regular'; 
@@ -222,6 +236,10 @@
 /* 테이블 */
 .table-mypage{
 	height: 500px;
+	overflow-y: scroll;
+}
+.table-mypage-half{
+	height: 260px;
 	overflow-y: scroll;
 }
 .table_row.header .cell{

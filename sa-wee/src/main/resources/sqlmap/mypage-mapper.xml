@@ -83,6 +83,12 @@
 						where m_id = #{m_id}
 	</update>
 	
+	<update id="pwModify">
+		update member set
+			m_pw = #{m_pw}
+				where m_no = #{m_no}
+	</update>
+	
 	<!-- 탈퇴 사유 테이블 -->
 	<select id="withdrawal" resultType="com.soninlawisdice.vo.WithdrawalVO">
 		select * from withdrawal
