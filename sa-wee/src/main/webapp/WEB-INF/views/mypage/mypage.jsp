@@ -18,14 +18,15 @@
 
 <link rel="stylesheet" type="text/css" href="/css/mypage/liststyle.css" />
 
-<link rel="stylesheet" type="text/css" href="/css/mypage/cassie/mypagestyle.css" />
+<link rel="stylesheet" type="text/css"
+	href="/css/mypage/cassie/mypagestyle.css" />
 
 </head>
 
 <body>
 	<!-- header include -->
 	<%@ include file="/WEB-INF/views/share/header.jsp"%>
-	
+
 	<div class="container-fluid">
 		<div class="cover">
 			<div class="cover-layer">
@@ -56,13 +57,15 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4 eml-mob JSD-Bold-12" style="border-right: none;">
+						<div class="col-md-4 eml-mob JSD-Bold-12"
+							style="border-right: none;">
 							<ul>
 								<li>작성글 수 : ${myWriteCount}</li>
 								<li>댓글 수 : ${myReplyCount}</li>
 							</ul>
 						</div>
-						<div class="col-md-4 eml-mob JSD-Bold-12" style="border-right: none;">
+						<div class="col-md-4 eml-mob JSD-Bold-12"
+							style="border-right: none;">
 							<ul>
 								<li>포인트 : ${member.m_point}</li>
 								<li>안 본 쪽지 : ${newNoteCount}</li>
@@ -91,6 +94,9 @@
 							<li class="nav-item"><a class="nav-link" id="contact-tab"
 								data-toggle="tab" href="#trade" role="tab"
 								aria-controls="contact" aria-selected="false">내 거래 </a></li>
+							<li class="nav-item"><a class="nav-link" id="contact-tab"
+								data-toggle="tab" href="#ask" role="tab" aria-controls="contact"
+								aria-selected="false">내 문의 </a></li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
 							<div class="tab-pane fade show active JSD-Bold-12" id="home"
@@ -237,12 +243,12 @@
 							<!-- 내가쓴글 끝, 댓글 시작 -->
 
 
-							<div class="tab-pane tab-pane2 education-detail fade" id="education"
-								role="tabpanel" aria-labelledby="contact-tab">
+							<div class="tab-pane tab-pane2 education-detail fade"
+								id="education" role="tabpanel" aria-labelledby="contact-tab">
 								<div class="table-mypage JSD-Bold-12.5">
 									<table class="table">
 										<tr class="table_row header">
-											<td class="cell text-center">댓글<br/> 번호
+											<td class="cell text-center">댓글<br /> 번호
 											</td>
 											<td class="cell text-center">댓글 내용</td>
 											<td class="cell text-center">작성일</td>
@@ -282,13 +288,14 @@
 									</table>
 								</div>
 							</div>
-							<div class="tab-pane tab-pane2 portfolio-detail fade" id="portfolio"
-								role="tabpanel" aria-labelledby="contact-tab">
+							<div class="tab-pane tab-pane2 portfolio-detail fade"
+								id="portfolio" role="tabpanel" aria-labelledby="contact-tab">
 								<div class="table-mypage JSD-Bold-12.5">
 									<table class="table">
 										<tr class="table_row header">
-											<td class="cell table-width-100 text-center" style="padding: 13px 5px;">카테고리</td>
-											<td class="cell text-center" style="width:400px;">글제목</td>
+											<td class="cell table-width-100 text-center"
+												style="padding: 13px 5px;">카테고리</td>
+											<td class="cell text-center" style="width: 400px;">글제목</td>
 											<td class="cell text-center">작성일</td>
 											<td class="cell text-center">삭제</td>
 										</tr>
@@ -315,7 +322,8 @@
 														</c:otherwise>
 													</c:choose>
 												</td>
-												<td class="cell text-center"><button class="scrap_delete btn-min btn-lavender-min"
+												<td class="cell text-center"><button
+														class="scrap_delete btn-min btn-lavender-min"
 														data-bt="${myScrap['SC_BOARDTYPE']}"
 														data-no="${myScrap['SC_NO']}">삭제</button></td>
 											</tr>
@@ -331,21 +339,24 @@
 									</div>
 									<table class="table">
 										<tr class="table_row header">
-											<td class="cell">후원<br/>번호</td>
+											<td class="cell">후원<br />번호
+											</td>
 											<td class="cell">후원 금액</td>
 											<td class="cell">후원일</td>
 										</tr>
-										<c:forEach items="${sponsorList}" var="spItem" varStatus="status">
+										<c:forEach items="${sponsorList}" var="spItem"
+											varStatus="status">
 											<tr class="table_row">
 												<td class="cell">${spItem['SP_NO']}</td>
 												<td class="cell">${spItem['SP_MONEY']}</td>
 												<td class="cell">
-													<!-- 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-													<fmt:formatDate value="${spItem['SP_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-													<c:choose>
-														<c:when test="${now ne date}">${date}</c:when> 
+													<!-- 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 --> <fmt:formatDate
+														value="${spItem['SP_DATE']}" pattern="yyyy.MM.dd"
+														var="date" /> <c:choose>
+														<c:when test="${now ne date}">${date}</c:when>
 														<c:otherwise>
-															<fmt:formatDate value="${spItem['SP_DATE']}" pattern="HH:mm"/>
+															<fmt:formatDate value="${spItem['SP_DATE']}"
+																pattern="HH:mm" />
 														</c:otherwise>
 													</c:choose>
 												</td>
@@ -359,7 +370,8 @@
 									</div>
 									<table class="table">
 										<tr class="table_row header">
-											<td class="cell table-width-20 text-center">신고<br/>번호</td>
+											<td class="cell table-width-20 text-center">신고<br />번호
+											</td>
 											<td class="cell table-width-60 text-center">신고대상</td>
 											<td class="cell table-width-160 text-center">신고내용</td>
 											<td class="cell text-center">신고일</td>
@@ -371,13 +383,14 @@
 												<td class="cell table-width-60 title">${myReport['R_TYPE']}</td>
 												<td class="cell table-width-160 title text-left">${myReport['R_CONTENT']}</td>
 												<td>
-														<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
-													<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
-													<fmt:formatDate value="${myReport['R_REPORT_DATE']}" pattern="yyyy.MM.dd" var="date"/>
-													<c:choose>
-														<c:when test="${now ne date}">${date}</c:when> 
+													<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 --> <fmt:formatDate
+														value="${today}" pattern="yyyy.MM.dd" var="now" /> <fmt:formatDate
+														value="${myReport['R_REPORT_DATE']}" pattern="yyyy.MM.dd"
+														var="date" /> <c:choose>
+														<c:when test="${now ne date}">${date}</c:when>
 														<c:otherwise>
-															<fmt:formatDate value="${myReport['R_REPORT_DATE']}" pattern="HH:mm"/>
+															<fmt:formatDate value="${myReport['R_REPORT_DATE']}"
+																pattern="HH:mm" />
 														</c:otherwise>
 													</c:choose>
 												</td>
@@ -393,6 +406,51 @@
 								file="/WEB-INF/views/mypage/mytrade/mypage_mytrade.jsp"%>
 							<!-- 내 거래 include end -->
 
+							<div class="tab-pane tab-pane2 education-detail fade"
+								id="ask" role="tabpanel" aria-labelledby="contact-tab">
+								<div class="table-mypage JSD-Bold-12.5">
+									<table class="table">
+										<tr class="table_row header">
+											<td class="cell text-center">댓글<br /> 번호
+											</td>
+											<td class="cell text-center">댓글 내용</td>
+											<td class="cell text-center">작성일</td>
+										</tr>
+										<c:forEach items="${myCommentList}" var="cm">
+											<tr class="trow">
+												<td class="cell">${cm['RNUM']}</td>
+												<td class="cell title text-left"><c:choose>
+														<c:when test="${cm['CM_TYPE'] == '게시판'}">
+															<a href="/content_view?bw_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
+														</c:when>
+														<c:when test="${cm['CM_TYPE'] == '카페리뷰'}">
+															<a href="/content_view_cr?cr_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
+														</c:when>
+														<c:when test="${cm['CM_TYPE'] == '중고거래'}">
+															<a href="/content_view_t?t_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
+														</c:when>
+														<c:when test="${cm['CM_TYPE'] == '한줄평'}">
+															<a href="/content_view_c?c_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
+														</c:when>
+													</c:choose></td>
+												<td>
+													<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 --> <fmt:formatDate
+														value="${today}" pattern="yyyy.MM.dd" var="now" /> <fmt:formatDate
+														value="${cm['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd"
+														var="date" /> <c:choose>
+														<c:when test="${now ne date}">${date}</c:when>
+														<c:otherwise>
+															<fmt:formatDate value="${cm['CM_WRITTEN_DATE']}"
+																pattern="HH:mm" />
+														</c:otherwise>
+													</c:choose>
+												</td>
+
+											</tr>
+										</c:forEach>
+									</table>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

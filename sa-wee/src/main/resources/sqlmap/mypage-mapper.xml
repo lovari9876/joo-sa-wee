@@ -74,18 +74,18 @@
 	<!-- 회원정보 수정 -->
 	<update id="modifyMember">
 		update member set
-				m_nick = #{m_nick},
-				m_post = #{m_post},
-				m_addr1 = #{m_addr1}, 
-				m_addr2 = #{m_addr2},
-				m_self = #{m_self},
-				m_re_sms = #{m_re_sms},
-				m_re_notice = #{m_re_notice},
-				m_re_message = #{m_re_message}, 
-				m_info = #{m_info}
-				m_account = #{m_account}
-				m_bank = #{m_bank}
-						where m_id = #{m_id}
+				m_nick = #{memberVO.m_nick},
+				m_post = #{memberVO.m_post},
+				m_addr1 = #{memberVO.m_addr1}, 
+				m_addr2 = #{memberVO.m_addr2},
+				m_self = #{memberVO.m_self},
+				m_re_sms = #{memberVO.m_re_sms},
+				m_re_notice = #{memberVO.m_re_notice},
+				m_re_message = #{memberVO.m_re_message}, 
+				m_info = #{memberVO.m_info},
+				m_account = #{memberVO.m_account},
+				m_bank = #{memberVO.m_bank}
+						where m_id = #{memberVO.m_id}
 	</update>
 	
 	<update id="pwModify">
