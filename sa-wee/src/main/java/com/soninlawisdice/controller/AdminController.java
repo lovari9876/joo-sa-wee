@@ -537,6 +537,42 @@ public class AdminController {
 
 		return "admin/withdrawer_list";
 	}
+	
+	
+	@RequestMapping(value = "/sponsor_list", method = RequestMethod.GET)
+	public String sponsor_list(Model model, @ModelAttribute("scri") SearchCriteria scri)
+			throws Exception {
+		
+		scri.setPerPageNum(15);
+		model.addAttribute("sponsor_list", adminService.sponsorList(scri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.sponsorListCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "admin/sponsor_list";
+	}
+	
+	
+	
+	@RequestMapping(value = "/comment_list", method = RequestMethod.GET)
+	public String comment_list(Model model, @ModelAttribute("scri") SearchCriteria scri)
+			throws Exception {
+		
+		scri.setPerPageNum(15);
+		model.addAttribute("comment_list", adminService.commentList(scri));
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(scri);
+		pageMaker.setTotalCount(adminService.commentListCount(scri));
+
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "admin/comment_list";
+	}
+	
+	
+	
 
 	@RequestMapping(value = "/board_list_cafe", method = RequestMethod.GET)
 	public String board_list_cafe(Model model, @ModelAttribute("scri") SearchCriteria scri, HttpServletRequest rq)

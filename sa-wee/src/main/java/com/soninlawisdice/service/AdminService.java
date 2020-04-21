@@ -68,6 +68,12 @@ public interface AdminService {
 	public ArrayList<HashMap<String, Object>> tradeList(SearchCriteria scri);
 	public int tradeListCount(SearchCriteria scri);
 	
+	public ArrayList<HashMap<String, Object>> sponsorList(SearchCriteria scri);
+	public int sponsorListCount(SearchCriteria scri);
+	
+	public ArrayList<HashMap<String, Object>> commentList(SearchCriteria scri);
+	public int commentListCount(SearchCriteria scri);
+	
 	
 	// trade : p_price 값 가져오기 
 	public PaymentVO selectTrade(int p_no);

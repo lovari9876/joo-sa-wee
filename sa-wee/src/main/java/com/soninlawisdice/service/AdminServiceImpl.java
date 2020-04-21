@@ -139,14 +139,32 @@ public class AdminServiceImpl implements AdminService {
 	
 	
 	@Override
-	public ArrayList<HashMap<String, Object>> tradeList(@Param("scri")SearchCriteria scri){
+	public ArrayList<HashMap<String, Object>> tradeList(SearchCriteria scri){
 		return adminMapper.tradeList(scri);
 	}
 	@Override
-	public int tradeListCount(@Param("scri")SearchCriteria scri) {
+	public int tradeListCount(SearchCriteria scri) {
 		return adminMapper.tradeListCount(scri);
 	}
 	
+	@Override
+	public ArrayList<HashMap<String, Object>> sponsorList(SearchCriteria scri){
+		return adminMapper.sponsorList(scri);
+	}
+	@Override
+	public int sponsorListCount(SearchCriteria scri) {
+		return adminMapper.sponsorListCount(scri);
+	}
+	
+	
+	@Override
+	public ArrayList<HashMap<String, Object>> commentList(SearchCriteria scri){
+		return adminMapper.commentList(scri);
+	}
+	@Override
+	public int commentListCount(SearchCriteria scri) {
+		return adminMapper.commentListCount(scri);
+	}
 	
 	
 	

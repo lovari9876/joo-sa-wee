@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %><!-- 날짜포맷 -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,28 +36,22 @@
 						<div class="control-group">
 
 							<div class="controls">
-								<div class="dropdown">
-									<a class="dropdown-toggle btn" data-toggle="dropdown" href="#">검색 <i class="icon-caret-down"></i>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										<li><a href="#">전체보기</a></li>
-										<li><a href="#">아이디</a></li>
-										<li><a href="#">ㅇㅇㅇ</a></li>
-									
-									</ul>
-								
-									
 								</div>
 									<div class="input-append pull-left">
-									<input type="text" class="span3"
-										placeholder="검색을 해라">
-									<button type="submit" class="btn">
-										<i class="icon-search"></i>
-									</button>
-								</div>
-								
-								
-							</div>
+										<input type="text" maxlength="30" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="후원한 회원 아이디">
+										<button type="submit" class="btn" id="searchBtn">
+											<i class="icon-search"></i>
+										</button>
+										
+								 		<script>
+									      $(function(){
+									        $('#searchBtn').click(function() {
+									          self.location = "sponsor_list" + '${pageMaker.makeQuery(1)}' 
+									          + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+									        });
+									      });   
+									    </script> 
+									</div>
 						</div>
 
 					</form>
@@ -81,96 +76,27 @@
 							<td class="cell">후원일</td>
 						</tr>
 						<tbody>
-							<tr class="trow">
-								<td class="cell">1</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
 							
-							<tr class="trow">
-								<td class="cell">2</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">3</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">4</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">5</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							<tr class="trow">
-								<td class="cell">6</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">7</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">8</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">9</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">10</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">11</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">12</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-							
-							<tr class="trow">
-								<td class="cell">13</td>
-								<td class="cell">Vincent</td>
-								<td class="cell">100,000 </td>
-								<td class="cell">2020-02-20</td>
-							</tr>
-					</tbody>
+							<c:forEach items="${sponsor_list}" var="sponsor">
+									<tr class="trow">
+										<td class="cell">${sponsor['RNUM']}</td>
+										<td class="cell"><a href="user_view?m_no=${sponsor['M_NO']}">${sponsor['M_ID']}</a></td>
+										<td class="cell">${sponsor['SP_MONEY']}</td>
+										<td class="cell"> 
+											<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->
+											<jsp:useBean id="today" class="java.util.Date" />
+											<fmt:formatDate value="${today}" pattern="yyyy.MM.dd" var="now"/>
+											<fmt:formatDate value="${sponsor['SP_DATE']}" pattern="yyyy.MM.dd" var="date"/>
+											<c:choose>
+												<c:when test="${now ne date}">${date}</c:when>
+												<c:otherwise>
+													<fmt:formatDate value="${sponsor['SP_DATE']}" pattern="HH:mm:ss"/>
+												</c:otherwise>
+											</c:choose>
+										</td>
+									</tr>
+								</c:forEach>
+						</tbody>
 
 
 						
@@ -180,11 +106,22 @@
 
 					<div class="pagination pagination-centered">
 						<ul>
-							<li><a href="#"><i class="icon-double-angle-left"></i></a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"></i></a></li>
+							<c:if test="${pageMaker.prev}">
+								<li><a
+									href="sponsor_list${pageMaker.makeSearch(pageMaker.startPage - 1)}"><i
+										class="icon-double-angle-left"></i></a></li>
+							</c:if>
+
+							<c:forEach begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}" var="idx">
+								<li><a href="sponsor_list${pageMaker.makeSearch(idx)}">${idx}</a></li>
+							</c:forEach>
+
+							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+								<li><a
+									href="sponsor_list${pageMaker.makeSearch(pageMaker.endPage + 1)}"><i
+										class="icon-double-angle-right"></i></a></li>
+							</c:if>
 						</ul>
 					</div>
 			</div>

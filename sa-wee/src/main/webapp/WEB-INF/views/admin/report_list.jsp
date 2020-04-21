@@ -96,7 +96,7 @@
 							<c:forEach items="${report_list}" var="report">
 								<tr class="trow">
 									<td class="cell">${report['R_NO']}</td>
-									<td class="cell">${report['M_ID']}</td>
+									<td class="cell"><a href="user_view?m_no=${report['M_NO']}">${report['M_ID']}</a></td>
 									<td class="cell">${report['R_TYPE']}</td>
 									<td class="cell title"><a href="report_view?r_no=${report['R_NO']}&r_type=${report['R_TYPE']}">${report['R_CONTENT']}</a></td>
 									<td class="cell">

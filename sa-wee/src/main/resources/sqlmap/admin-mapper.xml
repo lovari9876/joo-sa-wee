@@ -53,6 +53,8 @@
 	<delete id="scrapDelete">
 		DELETE scrap WHERE m_no =  #{m_no} AND sc_boardtype = #{sc_boardtype} AND sc_no = #{sc_no}
 	</delete>
+	
+	
 
 	<!-- ================================================ 마이페이지 mypage ====================================================== -->
 
@@ -1082,13 +1084,94 @@
 	
 	<select id="selectTrade" resultType="com.soninlawisdice.vo.PaymentVO" >
 	
-	
 		SELECT * FROM payment WHERE p_no = #{p_no}
 				
-			
-	
 	</select>
 	
+	<!-- ================================================ 후원 sponsor list  ====================================================== -->
+
+	<select id="sponsorList" resultType="java.util.HashMap" >
+		
+		SELECT * FROM 
+			(
+				SELECT sp.*, m.m_id,
+				ROW_NUMBER() OVER(ORDER BY sp.sp_no DESC) AS RNUM
+				FROM sponsor sp
+				
+				LEFT JOIN member m 
+				ON sp.m_no = m.m_no
+				
+				WHERE sp.sp_no>0
+				<include refid="sponsor_search"></include>	
+			)SP
+		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}	
+			
+		ORDER BY sp.sp_no DESC
+			
+			
+	</select>
+	
+	<select id="sponsorListCount" resultType="int">
+	
+		SELECT COUNT(sp.sp_no)
+		FROM sponsor sp
+		
+		LEFT JOIN member m 
+		ON sp.m_no = m.m_no
+		
+		WHERE sp.sp_no>0
+		
+		 <include refid="sponsor_search"></include>	
+	</select>
+	
+	<sql id="sponsor_search">
+		<if test="scri.keyword != null">
+			AND m.m_id LIKE '%' || #{scri.keyword} || '%'
+		</if>
+	</sql>
+	
+	
+	<!-- ================================================ 댓글 comment list  ====================================================== -->
+
+	<select id="commentList" resultType="java.util.HashMap" >
+		
+		SELECT * FROM 
+			(
+				SELECT cm.*, m.m_id,
+				ROW_NUMBER() OVER(ORDER BY cm.cm_no DESC) AS RNUM
+				FROM cm_comment cm
+				
+				LEFT JOIN member m 
+				ON cm.m_no = m.m_no
+				
+				WHERE cm.cm_no>0
+				<include refid="comment_search"></include>	
+			)CM
+		WHERE RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}	
+			
+		ORDER BY cm.cm_no DESC
+			
+			
+	</select>
+	
+	<select id="commentListCount" resultType="int">
+	
+		SELECT COUNT(cm.cm_no)
+		FROM cm_comment cm
+		
+		LEFT JOIN member m 
+		ON cm.m_no = m.m_no
+		
+		WHERE cm.cm_no>0
+		
+		 <include refid="comment_search"></include>	
+	</select>
+	
+	<sql id="comment_search">
+		<if test="scri.keyword != null">
+			AND m.m_id LIKE '%' || #{scri.keyword} || '%'
+		</if>
+	</sql>
 	
 	
 </mapper>
