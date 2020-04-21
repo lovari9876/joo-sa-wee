@@ -714,6 +714,8 @@ public class Board_hs_Controller {
 
 		String fuploadPath = req.getSession().getServletContext().getRealPath("/resources/files/img/");
 		
+		System.out.println(fuploadPath);
+		
 		// String fuploadPath = "c://sa-wee/file";
 		//test
 		//String filePath = "C:\\mp\\file\\";
