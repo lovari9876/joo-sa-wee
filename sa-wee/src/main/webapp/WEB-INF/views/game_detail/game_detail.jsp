@@ -224,7 +224,7 @@
 										<span><input type="submit" value="완료" class="btn"></span>
 									</sec:authorize>
 									<sec:authorize access="isAnonymous()">
-										<span><input type="button" value="완료" class="btn" Onclick="location.href='http://localhost:8282/loginview'"></span>
+										<span><input type="button" value="완료" class="btn" Onclick="location.href='/loginview'"></span>
 									</sec:authorize>
 								</li>
 							</ul>

@@ -91,7 +91,7 @@
 									<div class="test_item reco tooltip-purple">
 										<input class="rec_cm_btn_t" id="rec_cm_btn" type="image"
 											src="images/board_hj/thums_up_cm2_color.png" name="button"
-											Onclick="location.href='http://localhost:8282/loginview'"
+											Onclick="location.href='/loginview'"
 											data-toggle="tooltip" data-container=".tooltip-purple"
 											data-placement="top" title="추천" />
 											<span class="text_items">(</span><span

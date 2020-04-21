@@ -141,7 +141,7 @@
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
 						<input class="good" type="image" src="images/board_hj/good.png"
-							id="rec_btn" Onclick="location.href='http://localhost:8282/loginview'"
+							id="rec_btn" Onclick="location.href='/loginview'"
 							data-toggle="tooltip" data-container=".tooltip-purple"
 							data-placement="top" title="추천 +1">
 						<p>
