@@ -72,22 +72,22 @@
 			
 			<div  style="text-align:center;margin-bottom:20px;">
 				<ul class="game-filter" id="game-filter">
-					<li class="btn-color"><a href="game_info">전체</a></li>
-					<li class="btn-color"><a href="game_info?init=num">숫자</a></li>
-					<li class="btn-color"><a href="game_info?init=가">ㄱ</a></li>
-					<li class="btn-color"><a href="game_info?init=나">ㄴ</a></li>
-					<li class="btn-color"><a href="game_info?init=다">ㄷ</a></li>
-					<li class="btn-color"><a href="game_info?init=라">ㄹ</a></li>
-					<li class="btn-color"><a href="game_info?init=마">ㅁ</a></li>
-					<li class="btn-color"><a href="game_info?init=바">ㅂ</a></li>
-					<li class="btn-color"><a href="game_info?init=사">ㅅ</a></li>
-					<li class="btn-color"><a href="game_info?init=아">ㅇ</a></li>
-					<li class="btn-color"><a href="game_info?init=자">ㅈ</a></li>
-					<li class="btn-color"><a href="game_info?init=차">ㅊ</a></li>
-					<li class="btn-color"><a href="game_info?init=카">ㅋ</a></li>
-					<li class="btn-color"><a href="game_info?init=타">ㅌ</a></li>
-					<li class="btn-color"><a href="game_info?init=파">ㅍ</a></li>
-					<li class="btn-color"><a href="game_info?init=하">ㅎ</a></li>
+					<li class="btn-color<c:out value="${init eq null ? '-select' : ''}"/>"><a href="game_info">전체</a></li>
+					<li class="btn-color<c:out value="${init == 'num' ? '-select' : ''}"/>"><a href="game_info?init=num">숫자</a></li>
+					<li class="btn-color<c:out value="${init == '가' ? '-select' : ''}"/>"><a href="game_info?init=가">ㄱ</a></li>
+					<li class="btn-color<c:out value="${init == '나' ? '-select' : ''}"/>"><a href="game_info?init=나">ㄴ</a></li>
+					<li class="btn-color<c:out value="${init == '다' ? '-select' : ''}"/>"><a href="game_info?init=다">ㄷ</a></li>
+					<li class="btn-color<c:out value="${init == '라' ? '-select' : ''}"/>"><a href="game_info?init=라">ㄹ</a></li>
+					<li class="btn-color<c:out value="${init == '마' ? '-select' : ''}"/>"><a href="game_info?init=마">ㅁ</a></li>
+					<li class="btn-color<c:out value="${init == '바' ? '-select' : ''}"/>"><a href="game_info?init=바">ㅂ</a></li>
+					<li class="btn-color<c:out value="${init == '사' ? '-select' : ''}"/>"><a href="game_info?init=사">ㅅ</a></li>
+					<li class="btn-color<c:out value="${init == '아' ? '-select' : ''}"/>"><a href="game_info?init=아">ㅇ</a></li>
+					<li class="btn-color<c:out value="${init == '자' ? '-select' : ''}"/>"><a href="game_info?init=자">ㅈ</a></li>
+					<li class="btn-color<c:out value="${init == '차' ? '-select' : ''}"/>"><a href="game_info?init=차">ㅊ</a></li>
+					<li class="btn-color<c:out value="${init == '카' ? '-select' : ''}"/>"><a href="game_info?init=카">ㅋ</a></li>
+					<li class="btn-color<c:out value="${init == '타' ? '-select' : ''}"/>"><a href="game_info?init=타">ㅌ</a></li>
+					<li class="btn-color<c:out value="${init == '파' ? '-select' : ''}"/>"><a href="game_info?init=파">ㅍ</a></li>
+					<li class="btn-color<c:out value="${init == '하' ? '-select' : ''}"/>"><a href="game_info?init=하">ㅎ</a></li>
 				</ul>
 			</div>
 			
