@@ -910,8 +910,9 @@ ul, ol {
 ---------------------*/
 
 .page-top-section h3 {
-	height: 355px;
-	padding-top: 240px;
+	/* height: 355px; */
+	padding-top: 150px;
+	padding-bottom:50px;
 	background-position: center;
 	font-family: JSDongkang-Bold !important;
 }
@@ -921,7 +922,7 @@ ul, ol {
 	margin: 0 auto;
 	font-size: 30px;
 	color: #fff !important;
-	padding-left: 60px;
+	padding-left: 100px;
 }
 
 .page-info h2 {

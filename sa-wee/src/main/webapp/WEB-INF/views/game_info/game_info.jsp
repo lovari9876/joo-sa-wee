@@ -66,51 +66,25 @@
 	<!-- Games section -->
 	<!-- ㄱㄴ~z까지 버튼 부분 -->
 	<section class="games-section">
-		<div class="container">
-			<ul class="game-filter" id="game-filter">
-				<li class="btn-color"><a href="game_info">전체</a></li>
-				<li class="btn-color"><a href="game_info?init=가">ㄱ</a></li>
-				<li class="btn-color"><a href="game_info?init=나">ㄴ</a></li>
-				<li class="btn-color"><a href="game_info?init=다">ㄷ</a></li>
-				<li class="btn-color"><a href="game_info?init=라">ㄹ</a></li>
-				<li class="btn-color"><a href="game_info?init=마">ㅁ</a></li>
-				<li class="btn-color"><a href="game_info?init=바">ㅂ</a></li>
-				<li class="btn-color"><a href="game_info?init=사">ㅅ</a></li>
-				<li class="btn-color"><a href="game_info?init=아">ㅇ</a></li>
-				<li class="btn-color"><a href="game_info?init=자">ㅈ</a></li>
-				<li class="btn-color"><a href="game_info?init=차">ㅊ</a></li>
-				<li class="btn-color"><a href="game_info?init=카">ㅋ</a></li>
-				<li class="btn-color"><a href="game_info?init=타">ㅌ</a></li>
-				<li class="btn-color"><a href="game_info?init=파">ㅍ</a></li>
-				<li class="btn-color"><a href="game_info?init=하">ㅎ</a></li>
-				<li class="btn-color"><a href="game_info?init=num">숫자</a></li>
-				<!-- <li><a href="">A</a></li>
-				<li><a href="">B</a></li>
-				<li><a href="">C</a></li>
-				<li><a href="">D</a></li>
-				<li><a href="">E</a></li>
-				<li><a href="">F</a></li>
-				<li><a href="">G</a></li>
-				<li><a href="">H</a></li>
-				<li><a href="">I</a></li>
-				<li><a href="">J</a></li>
-				<li><a href="">K</a></li>
-				<li><a href="">L</a></li>
-				<li><a href="">M</a></li>
-				<li><a href="">N</a></li>
-				<li><a href="">O</a></li>
-				<li><a href="">P</a></li>
-				<li><a href="">Q</a></li>
-				<li><a href="">R</a></li>
-				<li><a href="">S</a></li>
-				<li><a href="">T</a></li>
-				<li><a href="">U</a></li>
-				<li><a href="">V</a></li>
-				<li><a href="">W</a></li>
-				<li><a href="">X</a></li>
-				<li><a href="">Y</a></li>
-				<li><a href="">Z</a></li> -->
-			</ul>
+		
+		
+		<div class = "initial" style="float:right;margin-right:250px;">
+				<form role="form" method="get">
+					<div class="" id="">
+						<select id="searchType" name="searchType" class="span2" style="height:30px;">
+							<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>한글제목</option>
+							<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>영어제목</option>
+							<option value = "ab" class="btn" <c:out value="${scri.searchType eq 'ab' ? 'selected' : ''}"/>>한영제목</option>
+						</select>
+				
+						<input style="width:300px;" type="text" maxlength="30" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회  / 검색어입력">
+						<button type="submit" class="btn" id="searchBtn" style="height:30px;margin:0px;">
+							<i class="icon-search"></i>
+						</button>
+					</div>
+				</form>
+			</div>
+				
 			
 			<script>
 		      $(function(){
@@ -127,21 +101,35 @@
 						  });
 						}); 
 		   </script>
-			<!-- 검색창.. .미안.... -->
-			<form role="form" method="get">
-				<div class="row right-align" id="row">
-					<select id="searchType" name="searchType" class="span2">
-						<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>한글제목</option>
-						<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>영어제목</option>
-						<option value = "ab" class="btn" <c:out value="${scri.searchType eq 'ab' ? 'selected' : ''}"/>>한영제목</option>
-					</select>
+		
+		
+		
+		<div class="container">
 			
-					<input type="text" maxlength="30" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회  / 검색어입력">
-					<button type="submit" class="btn" id="searchBtn">
-						<i class="icon-search"></i>
-					</button>
-				</div>
-			</form>
+			<div  style="float:left;">
+				<ul class="game-filter" id="game-filter">
+					<li class="btn-color"><a href="game_info">전체</a></li>
+					<li class="btn-color"><a href="game_info?init=가">ㄱ</a></li>
+					<li class="btn-color"><a href="game_info?init=나">ㄴ</a></li>
+					<li class="btn-color"><a href="game_info?init=다">ㄷ</a></li>
+					<li class="btn-color"><a href="game_info?init=라">ㄹ</a></li>
+					<li class="btn-color"><a href="game_info?init=마">ㅁ</a></li>
+					<li class="btn-color"><a href="game_info?init=바">ㅂ</a></li>
+					<li class="btn-color"><a href="game_info?init=사">ㅅ</a></li>
+					<li class="btn-color"><a href="game_info?init=아">ㅇ</a></li>
+					<li class="btn-color"><a href="game_info?init=자">ㅈ</a></li>
+					<li class="btn-color"><a href="game_info?init=차">ㅊ</a></li>
+					<li class="btn-color"><a href="game_info?init=카">ㅋ</a></li>
+					<li class="btn-color"><a href="game_info?init=타">ㅌ</a></li>
+					<li class="btn-color"><a href="game_info?init=파">ㅍ</a></li>
+					<li class="btn-color"><a href="game_info?init=하">ㅎ</a></li>
+					<li class="btn-color"><a href="game_info?init=num">숫자</a></li>
+				</ul>
+			</div>
+			
+			
+			<!-- 검색창.. .미안.... -->
+			
 			<br><br>
 			
 			
@@ -165,7 +153,7 @@
 					</div>
 					<div class="site-pagination">
 						<!-- <a href="#" class="active">01.</a> <a href="#">02.</a> <a href="#">03.</a> -->
-						<ul>
+						<ul style="list-style:none;display:inherit;">
 							<c:if test="${pageMaker.prev}">
 								<li><a
 									href="game_info${pageMaker.makeSearch(pageMaker.startPage - 1)}&init=${init}"><i
