@@ -6,7 +6,7 @@ $(document).ready(function() {
 		console.log(category);
 		
 		$.ajax({
-			url: "http://localhost:8282/rec_cm_cr",
+			url: "/rec_cm_cr",
 			type: "get",
 			cache: false,
 			//파라미터 넘기는 방법(key-value 형택)

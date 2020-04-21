@@ -35,7 +35,7 @@
 					</sec:authorize>
 					</c:if>
 					<sec:authorize access="isAnonymous()">
-					<input type="button" value="작성" class="btn btn-lavender btn-md" Onclick="location.href='http://localhost:8282/loginview'">
+					<input type="button" value="작성" class="btn btn-lavender btn-md" Onclick="location.href='/loginview'">
 					</sec:authorize>
 				</div>
 			</form>

@@ -59,44 +59,6 @@
 
 
 
-
-
-	<!-- <script>
-		$("#cm_modi").click(function() {
-			
-			var bw_no = '${content_view["BW_NO"]}';
-			
-			function commentModify(cm_no, cm_content) {
-				var a = '';
-				
-				a += '<div class="form-group">';
-				a += '<input type="hidden" name="bw_no" value="'+bw_no+'">';
-			    a += '<input type="text" class="form-control" name="content_'+cm_no+'" value="'+cm_content+'"/>';
-			    a += '<span class="input-group-btn"><button class="btn btn-lavender btn-md" type="button" onclick="commentUpdateProc('+cm_no+');">수정</button> </span>';
-			    a += '</div>';
-			    
-			    $('.commentContent'+cm_no).html(a);
-
-			}
-			
-			function commentUpdateProc(cm_no){
-			    var updateContent = $('[name=content_'+cm_no+']').val();
-			    
-			    $.ajax({
-			        url : 'http://localhost:8282/comment_modify',
-			        type : 'post',
-			        data : {'cm_content' : updateContent, 'cm_no' : cm_no},
-			        success : function(data){
-			            if(data == 1) window.location.href = 'content_view'; //댓글 수정후 목록 출력 
-			        }
-			    });
-			}
-		});
-	</script> -->
-
-
-
-
 	<!-- SCRIPTS -->
 	<script src="js/board_hj/jquery.min.js"></script>
 	<script src="js/board_hj/jquery-3.2.1.min.js"></script>
