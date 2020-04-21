@@ -34,13 +34,13 @@
 	<select id="scrapList" resultType="java.util.HashMap" >
 	
 		SELECT * FROM (
-				(SELECT s.*, bw.bw_title
+				(SELECT s.*, bw.bw_title, bw.bw_island as island
 				FROM scrap s, board_write bw 
 				WHERE s.sc_no = bw.bw_no AND s.m_no = #{m_no})
 		
 				UNION
 				
-				(SELECT s.*, cr.cr_title
+				(SELECT s.*, cr.cr_title, cr.cr_island as island
 				FROM scrap s, cafe_review cr 
 				WHERE s.sc_no = cr.cr_no AND s.m_no = #{m_no})
 			) 
@@ -51,7 +51,7 @@
 	<!-- ================================================ 스크랩 삭제   ====================================================== -->
 
 	<delete id="scrapDelete">
-		DELETE scrap WHERE m_no =  #{m_no} AND sc_boardtype = #{sc_boardtype} AND sc_no = #{sc_no}
+		DELETE scrap WHERE (m_no =  #{m_no} AND sc_boardtype = #{sc_boardtype} AND sc_no = #{sc_no})
 	</delete>
 	
 	

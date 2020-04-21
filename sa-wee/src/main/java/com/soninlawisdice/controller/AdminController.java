@@ -210,7 +210,7 @@ public class AdminController {
 	// 무인도행
 	@ResponseBody
 	@RequestMapping(value = "/updateIsland", method = RequestMethod.POST)
-	public int updateIsland(@RequestParam(value = "chbox[]") List<String> chArr) throws Exception {
+	public int updateIsland(@RequestParam(value = "chbox[]") List<String> chArr, MemberVO memberVO) throws Exception {
 
 		int bt = 0;
 		int no = 0;
@@ -238,7 +238,6 @@ public class AdminController {
 		System.out.println(bt);
 		System.out.println("무인도행 갈 회원 : " + mem);
 		adminService.updateIsland_memberReport(mem);
-
 		return result;
 	}
 
@@ -910,15 +909,15 @@ public class AdminController {
 			no = Integer.parseInt(st.nextToken());
 
 			if (1 <= bt && bt <= 6) { // bt_no이 1~6인 커뮤니티
-				boardVO.setBt_no(no);
-				adminService.selectDelete(boardVO);
+				/* boardVO.setBt_no(no); */
+				adminService.selectDelete(no);
 				result = 1;
 			} else if (bt == 11) { // bt_no이 11인 카페리뷰
-				cafe_reviewVO.setCr_no(no);
-				adminService.selectDelete_cafe(cafe_reviewVO);
+				/* cafe_reviewVO.setCr_no(no); */
+				adminService.selectDelete_cafe(no);
 				result = 2;
 			} else {// 중고거래는 bt 테이블과 조인하지않음
-				System.out.println("trade 삭제 ");
+				/* System.out.println("trade 삭제 "); */
 				secondhandService.deleteContent(no);
 				result = 3;
 			}

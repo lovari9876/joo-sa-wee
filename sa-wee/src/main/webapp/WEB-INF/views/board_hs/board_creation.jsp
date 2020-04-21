@@ -57,7 +57,7 @@
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp"%>
 	<!-- header include end -->
-
+	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
 
 
 	<div class="limiter">
@@ -68,13 +68,29 @@
 					<h3>창작보드게임</h3>
 					<p>만든 보드게임 자랑하세요</p>
 				</div>
+					
+			 <script>
+			      $(function(){
+					  $('#searchBtn').click(function() {
+					  	event.preventDefault(); // event canceled 막기!
+					    	self.location = "board_creation" 
+					    				+ '${pageMaker.makeQuery(1)}' 
+					    				+ "&s_content="
+					    				+ "${s_content}"
+					    				+ "&searchType=" 
+					    				+ $("#searchType option:selected").val() 
+					    				+ "&keyword=" 
+					    				+ encodeURIComponent($('#keywordInput').val());
+					  });
+					}); 
+			   </script>
 
 
 				<!-- Search Bar  -->
 				<form>
 					<div class="search">		
 						 <div class="dropdown pull-right">
-								<select name="searchType" class="span2">
+								<select id="searchType" name="searchType" class="span2">
 									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 									<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 									<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
@@ -96,23 +112,23 @@
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
-						<li class="current" data-tab="tab1"><button type = "button" 
+						<li <c:out value="${s_content eq null ? 'class = current' : ''}"/> data-tab="tab1"><button type = "button" 
 							onclick ="location.href='board_creation'">전체보기</button></li>
-						<li data-tab="tab2" id = "계획"><button type = "button" value = "17" class = "select"
+						<li <c:out value="${s_content == '계획' ? 'class = current' : ''}"/> data-tab="tab2" id = "계획"><button type = "button" value = "17" class = "select"
 							onclick ="location.href='board_creation?s_content=계획'">계획</button></li>
-						<li data-tab="tab3" id = "디자인"><button type = "button" value = "18" class= "select"
+						<li <c:out value="${s_content == '디자인' ? 'class = current' : ''}"/> data-tab="tab3" id = "디자인"><button type = "button" value = "18" class= "select"
 							onclick ="location.href='board_creation?s_content=디자인'">디자인</button></li>
-						<li data-tab="tab4" id = "완성"><button type = "button" value = "19" class = "select"
+						<li <c:out value="${s_content == '완성' ? 'class = current' : ''}"/> data-tab="tab4" id = "완성"><button type = "button" value = "19" class = "select"
 							onclick ="location.href='board_creation?s_content=완성'">완성</button></li>
-						<li data-tab="tab5" id = "공유"><button type = "button" value = "20" class = "select"
+						<li <c:out value="${s_content == '공유' ? 'class = current' : ''}"/> data-tab="tab5" id = "공유"><button type = "button" value = "20" class = "select"
 							onclick ="location.href='board_creation?s_content=공유'">공유</button></li>
-						<li data-tab="tab6" id = "테스트플레이"><button type = "button" value = "21" class = "select"
+						<li <c:out value="${s_content == '테스트 플레이' ? 'class = current' : ''}"/> data-tab="tab6" id = "테스트플레이"><button type = "button" value = "21" class = "select"
 							onclick ="location.href='board_creation?s_content=테스트플레이'">테스트 플레이</button></li>
 					</ul>
 
 
 					<!-- 테이블  -->
-					<div id="tab1" class="tabcontent current">
+					 <div id="tab1" class="tabcontent current"> 
 						<table class="table">
 
 
@@ -167,11 +183,11 @@
 
 						</table>
 
-					</div>
+					<!-- </div> -->
 
 					
 					<!-- 여기서부터는 말머리 선택 부분이라  -->
-					<div id="tab2" class="tabcontent">
+					<!-- <div id="tab2" class="tabcontent">
 						<table class="table">
 
 							
@@ -280,7 +296,7 @@
 							
 							
 						</table>
-					</div>
+					</div> -->
 
 				</div>
 
@@ -333,7 +349,7 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
+
 	<script src="js/board_hs/bootstrap.min.js"></script>
 	<script src="js/board_hs/jquery.slicknav.min.js"></script>
 	<script src="js/board_hs/owl.carousel.min.js"></script>
@@ -342,7 +358,7 @@
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
 	<script src="js/header/scroll.js"></script>
-	<script src="js/board_hs/tab.js"></script>
+<!-- 	<script src="js/board_hs/tab.js"></script> -->
 	<script src="js/board_hs/button.js"></script>
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>

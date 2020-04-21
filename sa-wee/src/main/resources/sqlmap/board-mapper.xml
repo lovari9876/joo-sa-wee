@@ -183,9 +183,10 @@
                 		WHERE bt.bt_no = #{bt_no}
                 	</otherwise>
                 </choose> 
-		        AND bw.bw_island = 0
+		        AND 
+		        (bw.bw_island = 0
 		         <include refid="subject_search"></include>
-		         <include refid="board_search"></include>
+		         <include refid="board_search"></include>)
 		                       )
 		WHERE RNUM_COUNT BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
 		ORDER BY bw_no DESC

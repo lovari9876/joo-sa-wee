@@ -43,6 +43,8 @@
 											    				+ '${pageMaker.makeQuery(1)}' 
 											    				+ "&searchType=" 
 											    				+ $("#searchType option:selected").val() 
+											    				+ "&sort=" 
+											    				+ "${sort}"
 											    				+ "&keyword=" 
 											    				+ encodeURIComponent($('#keywordInput').val());
 											  });
@@ -59,7 +61,7 @@
 								</div>
 									<div class="input-append pull-left">
 									<input type="text" maxlength="30" name="keyword" id="keywordInput" value="${scri.keyword}" class="span3" placeholder="조회  / 검색어입력">
-									<button type="submit" class="btn" id="serchBtn">
+									<button type="submit" class="btn" id="searchBtn">
 										<i class="icon-search"></i>
 									</button>
 								</div>
