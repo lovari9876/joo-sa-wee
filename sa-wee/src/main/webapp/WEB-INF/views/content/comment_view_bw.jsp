@@ -66,8 +66,8 @@
 							<div class="test_item name" id="pop">
 								<span role="button" class="pop_btn popovers"
 									data-toggle="popover"
-									data-content="<a href='#' id='other_page' name='m_nick' data-nick='${cm_comment_list["M_NICK"]}' onclick='return false;'>회원정보보기</a><br/>
-										<a href='#'>쪽지보내기</a><br/>
+									data-content="<a href='other?m_nick=${cm_comment_list["M_NICK"]}'>회원정보보기</a><br/>
+										<a href='send_messageview_other?m_nick=${cm_comment_list["M_NICK"]}'>쪽지보내기</a><br/>
 										<a href='report_view_m?m_no=${cm_comment_list["M_NO"]}&bw_no=${content_view["BW_NO"]}'>신고하기</a>">
 									<h3>${cm_comment_list['M_NICK']}</h3></span>
 							</div>
@@ -154,11 +154,22 @@
 							</div>
 							</sec:authorize>
 							<c:if test = "${cm_comment_list['M_NO'] eq memberVO.m_no}">
+							<c:if test = "${content_view['BT_NO'] == 8}">
+							<div class="test_item del tooltip-purple">
+								<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete_q?cm_no=${cm_comment_list['CM_NO']}&bw_no=${content_view['BW_NO']}"
+									data-toggle="tooltip" data-container=".tooltip-purple"
+									data-placement="top" title="삭제"></a>
+							</div>
+							</c:if>
+							</c:if>
+							<c:if test = "${cm_comment_list['M_NO'] eq memberVO.m_no}">
+							<c:if test = "${content_view['BT_NO'] != 8}">
 							<div class="test_item del tooltip-purple">
 								<a class="fas fa-trash-alt fa-lg no-text-deco" href="comment_delete?cm_no=${cm_comment_list['CM_NO']}&bw_no=${content_view['BW_NO']}"
 									data-toggle="tooltip" data-container=".tooltip-purple"
 									data-placement="top" title="삭제"></a>
 							</div>
+							</c:if>
 							</c:if>
 							<c:if test = "${cm_comment_list['M_NO'] eq memberVO.m_no}">
 							<div class="test_item modi tooltip-purple">

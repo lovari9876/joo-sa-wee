@@ -68,7 +68,7 @@
 								<div class="test_item name" id="pop">
 									<span role="button" class="pop_btn popovers"
 										data-toggle="popover"
-										data-content="<a href='#'>회원정보보기</a><br/><a href='#'>쪽지보내기</a><br/><a href='report_view_m_t?m_no=${cm_comment_list_t["M_NO"]}&t_no=${content_view_t["T_NO"]}'>신고하기</a>"><h3>${cm_comment_list_t['M_NICK']}</h3></span>
+										data-content="<a href='other?m_nick=${cm_comment_list_t["M_NICK"]}'>회원정보보기</a><br/><a href='send_messageview_other?m_nick=${cm_comment_list_t["M_NICK"]}'>쪽지보내기</a><br/><a href='report_view_m_t?m_no=${cm_comment_list_t["M_NO"]}&t_no=${content_view_t["T_NO"]}'>신고하기</a>"><h3>${cm_comment_list_t['M_NICK']}</h3></span>
 								</div>
 								</sec:authorize>
 								<sec:authorize access="isAnonymous()">

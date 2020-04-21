@@ -164,9 +164,11 @@
 								<input type="button" style="margin:0 !important" onclick = "location.href='cafe_info?c_no=${content_view_cr['C_NO']}'" value="카페정보" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item fifth">
+								<c:if test = "${content_view_cr['M_NO'] != memberVO.m_no}">
 								<sec:authorize access="isAuthenticated()">
 									<a id="scrap" data-bt="${content_view_cr['BT_NAME']}" data-no="${content_view_cr['CR_NO']}">스크랩</a>
 								</sec:authorize>
+								</c:if>
 								<sec:authorize access="isAnonymous()">
 									<a href="loginview">스크랩</a>
 								</sec:authorize>
