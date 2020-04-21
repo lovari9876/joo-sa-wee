@@ -195,7 +195,7 @@
 								<input type="submit" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item fourth">
-								<c:if test = "${content_view_t['M_NO'] != m_no}">
+								<c:if test = "${content_view_t['M_NO'] != memberVO.m_no}">
 								<sec:authorize access="isAuthenticated()">
 									<a href="report_view_t?t_no=${content_view_t['T_NO']}"
 									onClick="window.open(this.href, '', 'width=500, height=600, left=400, top=100, resizable=no, scrollbars=no'); return false;">신고</a>
@@ -207,17 +207,17 @@
 							</div>
 							<div class="test_item third"> 
 								<!-- 결제 테이블에 없는 것만 삭제 가능(&& pCnt==0) -->
-								<c:if test = "${content_view_t['M_NO'] eq m_no && pCnt==0}">
+								<c:if test = "${content_view_t['M_NO'] eq memberVO.m_no && pCnt==0}">
 									<a href="delete_t?t_no=${content_view_t['T_NO']}" 
 									   onclick="alert('삭제되었습니다.');">삭제</a>
 								</c:if>
 								<!-- 삭제 버튼 공갈로 만들고 삭제불가 처리 -->
-								<c:if test = "${content_view_t['M_NO'] eq m_no && pCnt!=0}">
+								<c:if test = "${content_view_t['M_NO'] eq memberVO.m_no && pCnt!=0}">
 									<a onclick="alert('구매 요청이 발생한 글은 삭제하실 수 없습니다.');">삭제</a>
 								</c:if>
 							</div>
 							<div class="test_item second">
-								<c:if test = "${content_view_t['M_NO'] eq m_no}">
+								<c:if test = "${content_view_t['M_NO'] eq memberVO.m_no}">
 									<a href="trade_modify_view?t_no=${content_view_t['T_NO']}">수정</a>
 								</c:if>
 							</div>
