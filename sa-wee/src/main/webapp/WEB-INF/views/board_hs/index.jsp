@@ -122,21 +122,21 @@
 											href="https://www.zmangames.com/en/products/terra-mystica/">
 											<img class="d-block w-100 " src="images/board_hs/root.jpeg">
 										</a>
-										<div class="carousel-caption">첫번째</div>
+										<!-- <div class="carousel-caption">첫번째</div> -->
 									</div>
 
 									<div id="target" class="carousel-item ">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
 											class="d-block w-100" src="images/board_hs/root.jpeg"></a>
-										<div class="carousel-caption">두번째</div>
+										<!-- <div class="carousel-caption">두번째</div> -->
 									</div>
 
 									<div class="carousel-item">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
 											class="d-block w-100" src="images/board_hs/root.jpeg"></a>
-										<div class="carousel-caption">세번째</div>
+										<!-- <div class="carousel-caption">세번째</div> -->
 									</div>
 
 
@@ -186,7 +186,7 @@
 				<div class="rank medal">
 					<img src="images/board_hs/gold-medal128.png" style="margin-right:30px;">
 					<div class="rank-name">
-						[ 댓글 많이 씀 ]
+						[ 투머치토커 ]
 						<br/>
 						<br/>
 						<a style="font-family:JSDongkang-Bold;" href='#' id='other_page' name='m_nick' data-nick='${rankWC}' onclick='return false;' >- ${rankWC} -</a>
@@ -196,7 +196,7 @@
 
 				<div class="rank shield">
 					<img src="images/board_hs/shield128.png"  style="margin-right:30px;">
-					<div class="rank-name"> [ 글 많이 씀 ]
+					<div class="rank-name"> [ 내사주에서 글 제일 많이 쓴사람 ]
 						<br/>
 						<br/>
 						<c:forEach items = "${rankW}" var = "rankW" >
@@ -208,7 +208,7 @@
 				<div class="rank siren">
 					<img src="images/board_hs/alert.png"  style="margin-right:30px;">
 					<div class="rank-name">
-						[ 신고 많이 받음... ]
+						[ 희대의 범법자 ]
 						<br/>
 						<br/>
 						<a style="font-family:JSDongkang-Bold;" href='#' id='other_page' name='m_nick' data-nick='${rankRe}' onclick='return false;' >- ${rankRe} -</a>
@@ -307,7 +307,7 @@
 									<td class="cell">제목</td>
 									<td class="cell">작성자 </td>
 									<td class="cell">작성일</td>
-									<td class="cell">추천쑤</td>
+									<td class="cell">추천수</td>
 								</tr>
 							<c:forEach items = "${best}" var = "best">
 								<tr class="row">
