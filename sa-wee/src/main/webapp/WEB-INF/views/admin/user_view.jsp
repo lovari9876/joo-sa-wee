@@ -52,12 +52,13 @@
 
 							 <input type = "hidden" name = "m_no" value = "${user_view.m_no}">
 							 <input type = "hidden" name = "cate" value = "user">
+							 <div class = "table_mobile">
 								<table class="table table_view" >
 									<tr class="row ">
-										<td class="cell span3" rowspan= "5">프로필사진</td>
-										<td class="cell span2" rowspan= "5">사진</td>
-										<td class="cell span2">이름</td>
-										<td class="cell span3">${user_view.m_name}</td>
+										<td class="cell perspan3" rowspan= "5">프로필사진</td>
+										<td class="cell perspan2" rowspan= "5">사진</td>
+										<td class="cell perspan2">이름</td>
+										<td class="cell perspan3">${user_view.m_name}</td>
 									</tr>
 									
 									<tr class="row">
@@ -154,6 +155,7 @@
 										</td>
 									</tr>
 								</table>
+								</div>
 								<div class="module-option clearfix">
 									<div class="control-group">
 										<div class="controls">

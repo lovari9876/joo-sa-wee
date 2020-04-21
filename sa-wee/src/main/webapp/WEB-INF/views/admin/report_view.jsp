@@ -59,18 +59,18 @@
 							<!-- get방식으로 url뒤에 붙는 값과 name이 맞지않으면 오류가난다. r_no, r_type외의 다른 값이 추가되면(해당 메소드에서 파라미터로 받으면) 오류가 난다 
 								그래서 띄어쓰기 기준으로 값을 두가지 보내서 (StringTokenizer)탈퇴처리할 신고당한 회원 번호를 가져옴  -->
 							<input type = "hidden" name = "r_type" value = "${report_view['R_TYPE']}">
-							
+							<div class = "table_mobile">
 								<table class="table table_view" >
 									<tr class="row">
-										<td class="cell span2">신고한 회원</td>
-										<td class="cell span3">${report_view['M_ID']}</td>
-										<td class="cell span2">신고 타입</td>
-										<td class="cell span3">${report_view['R_TYPE']}</td>
+										<td class="cell perspan2">신고한 회원</td>
+										<td class="cell perspan3">${report_view['M_ID']}</td>
+										<td class="cell perspan2">신고 타입</td>
+										<td class="cell perspan3">${report_view['R_TYPE']}</td>
 									</tr>
 									
 									<tr class="row">
 										<td class="cell">신고 대상</td>
-										<td class="cell" colspan= "3">
+										<td class="cell perspan11" colspan= "3">
 											<c:if test="${report_view['R_ID'] eq null}">삭제된 글입니다....</c:if>
 											<c:choose>
 												<c:when test="${report_view['R_TYPE'] == '회원'}">
@@ -121,11 +121,12 @@
 
 									<tr class="row">
 										<td class = "cell span1">신고 내용</td>
-										<td colspan= "3" class="cell span8">${report_view['R_CONTENT']}</td>
+										<td colspan= "3" class="cell perspan11">${report_view['R_CONTENT']}</td>
 									</tr>
 
 
 								</table>
+								</div>
 								<div class="module-option clearfix">
 									<div class="control-group">
 										<div class="controls">

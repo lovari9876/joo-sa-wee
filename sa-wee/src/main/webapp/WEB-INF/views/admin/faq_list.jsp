@@ -99,11 +99,11 @@
 					<div style="overflow-x: auto;">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell span1">번호</td>
-							<td class="cell">말머리</td>
-							<td class="cell span5">글 제목</td>
-							<td class="cell">작성일</td>
-							<td class="cell span1">조회수</td>
+							<td class="cell perspan1">번호</td>
+							<td class="cell perspan1">말머리</td>
+							<td class="cell perspan5">글 제목</td>
+							<td class="cell perspan2">작성일</td>
+							<td class="cell perspan1">조회수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						<tbody>

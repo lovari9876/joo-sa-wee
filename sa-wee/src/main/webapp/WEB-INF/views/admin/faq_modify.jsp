@@ -43,10 +43,11 @@
 
 					<form method="post" id="viewForm">
 					<input type = "hidden" name = "faq_no" value = "${faq.faq_no}">
+					<div class = "table_mobile">
 						<table class="table">
 							 <tr class = "row">
-							<td class = "cell span2">말머리</td>
-							<td class = "cell span8">
+							<td class = "cell perspan2">말머리</td>
+							<td class = "cell perspan11">
 								<select name="s_no">
 										<option value="22" <c:out value="${faq.s_no == 22 ? 'selected' : ''}"/>>회원</option>
 										<option value="23" <c:out value="${faq.s_no == 23 ? 'selected' : ''}"/>>결제</option>
@@ -58,18 +59,19 @@
 						</tr> 
 
 							<tr class="row">
-								<td class="cell span2">제목</td>
-								<td class="cell span8"><input id="title" maxlength="60" type="text" name="faq_title"
-									class="span6" value="${faq.faq_title}" ></td>
+								<td class="cell">제목</td>
+								<td class="cell"><input id="title" maxlength="60" type="text" name="faq_title" class="perspan11"
+								  value="${faq.faq_title}" ></td>
 							</tr>
 
 							<tr class="row">
 								<td class="cell">내용</td>
-								<td class="cell"><textarea id="editor" name="faq_content" class="span5"
+								<td class="cell"><textarea id="editor" name="faq_content" class="perspan11"
 										rows="10" >${faq.faq_content}</textarea></td>
 							</tr>
 
 						</table>
+						</div>
 						<div class="module-option clearfix">
 							<div class="control-group">
 								<div class="controls">

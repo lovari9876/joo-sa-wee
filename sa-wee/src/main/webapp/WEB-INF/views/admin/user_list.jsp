@@ -89,15 +89,15 @@
 					<div class = "table_mobile">
 					<table class="table user_list">
 						<tr class="trow header">
-							<td class="cell">아이디</td><!-- 아이디 클릭시 회원정보 보기 링크 걸기 -->
+							<td class="cell perspan2">아이디</td><!-- 아이디 클릭시 회원정보 보기 링크 걸기 -->
 							<!-- <td class="cell">이름</td> -->
-							<td class="cell">닉네임</td>
-							<td class="cell">등급</td>
-							<td class="cell">포인트</td>
-							<td class="cell span2">이메일</td>
-							<td class="cell">가입일</td>
-							<td class="cell span1">탈퇴</td>
-							<td class="cell span1">수정</td>
+							<td class="cell perspan2">닉네임</td>
+							<td class="cell perspan2">등급</td>
+							<td class="cell perspan2">포인트</td>
+							<td class="cell perspan4">이메일</td>
+							<td class="cell perspan2">가입일</td>
+							<td class="cell perspan1">탈퇴</td>
+							<td class="cell perspan1">수정</td>
 							<!-- <td class="cell span1">탈퇴</td> -->
 							
 						</tr>

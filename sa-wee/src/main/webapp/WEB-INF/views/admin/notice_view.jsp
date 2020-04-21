@@ -48,19 +48,21 @@
 							 <form id="viewForm" method="post">
 
 							 <input type = "hidden" name = "bw_no" value = "${content_view['BW_NO']}">
+							 <div class = "table_mobile">
 								<table class="table table_view" >
 									<tr class="row">
-										<td class="cell span1">제목</td>
-										<td class="cell span8" colspan="3"><a href="/content_view?bw_no=${content_view['BW_NO']}">${content_view['BW_TITLE']}</a></td>
+										<td class="cell perspan1">제목</td>
+										<td class="cell perspan11" colspan="3"><a href="/content_view?bw_no=${content_view['BW_NO']}">${content_view['BW_TITLE']}</a></td>
 
 									</tr>
 
 									<tr class="row">
-										<td class="cell span1">내용</td>
-										<td class="cell span8" colspan="3">${content_view['BW_CONTENT']}</td>
+										<td class="cell">내용</td>
+										<td class="cell perspan11" colspan="3">${content_view['BW_CONTENT']}</td>
 									</tr>
 
 								</table>
+								</div>
 								<div class="module-option clearfix">
 									<div class="control-group">
 										<div class="controls">

@@ -89,18 +89,18 @@
 					<div class="table_mobile">
 						<table class="table">
 							<tr class="trow header">
-								<td class="cell span1">번호</td>
-								<td class="cell">작성자</td>
-								<td class="cell">내용</td>
-								<td class="cell">신고수</td>
-								<td class="cell">작성일</td>
+								<td class="cell perspan1">번호</td>
+								<td class="cell perspan2">작성자</td>
+								<td class="cell perspan4">내용</td>
+								<td class="cell perspan1">신고수</td>
+								<td class="cell perspan2">작성일</td>
 							</tr>
 							<tbody>
 								<c:forEach items="${comment_list}" var="cm">
 									<tr class="trow">
 										<td class="cell">${cm['CM_NO']}</td>
 										<td class="cell">${cm['M_ID']}</td>
-										<td class="cell">
+										<td class="cell title">
 											<c:choose>
 												<c:when test="${cm['CM_TYPE'] == '게시판'}">
 													<a href="/content_view?bw_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>

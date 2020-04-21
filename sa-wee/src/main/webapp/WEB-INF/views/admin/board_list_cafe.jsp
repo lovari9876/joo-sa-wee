@@ -25,7 +25,7 @@
 	<!-- content -->
 
 	<div class="span9">
-		<div class="content">
+		<div class="content table_mobile">
 			<div class="module">
 				<div class="module-head">
 					<h3>게시글관리 - 카페리뷰</h3>
@@ -96,16 +96,16 @@
 
 					<!-- 리스트 -->
 					<div class = "table_mobile">
-					<table class="table">
+					<table class="table ">
 						<tr class="trow header">
-							<td class="cell"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
-							<td class="cell span1">번호</td>
-							<td class="cell">카페 이름</td>
-							<td class="cell span4">리뷰 제목</td>
-							<td class="cell">작성자</td>
-							<td class="cell">작성일</td>
-							<td class="cell span1">조회수</td>
-							<td class="cell span1">신고수</td>
+							<td class="cell perspan1"><input type="checkbox" name = "allCheck" id = "allCheck" value="0"></td> <!-- 전체선택 처리하기  -->
+							<td class="cell perspan1">번호</td>
+							<td class="cell perspan2">카페 이름</td>
+							<td class="cell perspan4">리뷰 제목</td>
+							<td class="cell perspan2">작성자</td>
+							<td class="cell perspan2">작성일</td>
+							<td class="cell perspan1">조회수</td>
+							<td class="cell perspan1">신고수</td>
 						</tr><!-- 조회수 추천수 추가..? -->
 						
 						<tbody>

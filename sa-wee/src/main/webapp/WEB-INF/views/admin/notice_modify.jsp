@@ -43,21 +43,23 @@
 
 					<form method="post" id="viewForm">
 					<input type = "hidden" name = "bw_no" value = "${notice['BW_NO']}">
+					<div class = "table_mobile">
 						<table class="table">
 							 
 							<tr class="row">
-								<td class="cell span2">제목</td>
-								<td class="cell span8"><input type="text" maxlength="60" name="bw_title"
-									class="span6" value="${notice['BW_TITLE']}" ></td>
+								<td class="cell perspan2">제목</td>
+								<td class="cell perspan11"><input type="text" maxlength="60" name="bw_title"
+									class="perspan11" value="${notice['BW_TITLE']}" ></td>
 							</tr>
 
 							<tr class="row">
 								<td class="cell">내용</td>
-								<td class="cell"><textarea id="editor" name="bw_content" class="span5"
+								<td class="cell"><textarea id="editor" name="bw_content" class="perspan11"
 										rows="10" >${notice['BW_CONTENT']}</textarea></td>
 							</tr>
 
 						</table>
+						</div>
 						<div class="module-option clearfix">
 							<div class="control-group">
 								<div class="controls">

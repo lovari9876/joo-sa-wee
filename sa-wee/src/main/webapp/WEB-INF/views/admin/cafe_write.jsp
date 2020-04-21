@@ -47,6 +47,7 @@
 							<div class="write-view"> -->
 
 					<form id="viewForm" method="post" >  <!-- action="/admin/cafeInsert" -->
+					<div class = "table_mobile">
 						<table class="table">
 							<!-- <tr class = "row">
 							<td class = "cell">말머리</td>
@@ -60,65 +61,66 @@
 						</tr>  -->
 
 							<tr class="row">
-								<td class="cell span2">카페 이름</td>
-								<td class="cell span8"><input type="text" maxlength="30" name="c_title" class="span6"
+								<td class="cell perspan2">카페 이름</td>
+								<td class="cell perspan11"><input type="text" maxlength="30" name="c_title" class="perspan11"
 									placeholder="카페이름을 입력하세요"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">카페 주소</td>
-								<td class="cell span8"><input type="text" maxlength="60" name="c_add" class="span6" rows="2"
+								<td class="cell">카페 주소</td>
+								<td class="cell"><input type="text" maxlength="60" name="c_add" class="perspan11" rows="2"
 										placeholder="카페주소를 입력하세요"></input></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">전화번호</td>
-								<td class="cell span8"><input type="text"  id="phone" maxlength="13" name="c_phone"
-									placeholder="전화번호를 입력하세요" class="span6"></td>
+								<td class="cell">전화번호</td>
+								<td class="cell"><input type="text"  id="phone" maxlength="13" name="c_phone"
+									placeholder="전화번호를 입력하세요" class="perspan11"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">수용인원</td>
-								<td class="cell span8"><input type="number" maxlength="3" name="c_people" oninput="numberMaxLength(this);"
-									placeholder="수용인원을 입력하세요" class="span6"></td>
+								<td class="cell">수용인원</td>
+								<td class="cell"><input type="number" maxlength="3" name="c_people" oninput="numberMaxLength(this);"
+									placeholder="수용인원을 입력하세요" class="perspan11"></td>
 							</tr>
  
 							<tr class="row">
-								<td class="cell span2">테이블개수</td>
-								<td class="cell span8"><input type="number" maxlength="3" name="c_table" oninput="numberMaxLength(this);"
-									placeholder="테이블 개수를 입력하세요" class="span6"></td>
+								<td class="cell">테이블개수</td>
+								<td class="cell"><input type="number" maxlength="3" name="c_table" oninput="numberMaxLength(this);"
+									placeholder="테이블 개수를 입력하세요" class="perspan11"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">의자개수</td>
-								<td class="cell span8"><input type="number" maxlength="3" name="c_chair" oninput="numberMaxLength(this);"
-									placeholder="의자 개수를 입력하세요" class="span6"></td>
+								<td class="cell">의자개수</td>
+								<td class="cell"><input type="number" maxlength="3" name="c_chair" oninput="numberMaxLength(this);"
+									placeholder="의자 개수를 입력하세요" class="perspan11"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">오픈시간</td>
-								<td class="cell span8"><input type="text" maxlength="6" name="c_open"
-									placeholder="오픈시간을 입력하세요" class="span6"></td>
+								<td class="cell">오픈시간</td>
+								<td class="cell"><input type="text" maxlength="6" name="c_open"
+									placeholder="오픈시간을 입력하세요" class="perspan11"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">마감시간</td>
-								<td class="cell span8"><input type="text" maxlength="6" name="c_close"
-									placeholder="마감시간을 입력하세요" class="span6"></td>
+								<td class="cell">마감시간</td>
+								<td class="cell"><input type="text" maxlength="6" name="c_close"
+									placeholder="마감시간을 입력하세요" class="perspan11"></td>
 							</tr>
 
 							<tr class="row">
-								<td class="cell span2">휴일</td>
-								<td class="cell span8"><input type="text" maxlength="30" name="c_rest"
-									placeholder="카페 휴일을 입력하세요" class="span6"></td>
+								<td class="cell">휴일</td>
+								<td class="cell"><input type="text" maxlength="30" name="c_rest"
+									placeholder="카페 휴일을 입력하세요" class="perspan11"></td>
 							</tr>
 
 							<!-- <tr class="row">
-								<td class="cell span2">첨부파일</td>
-								<td class="cell span8"><input multiple="multiple" type="file"
+								<td class="cell">첨부파일</td>
+								<td class="cell"><input multiple="multiple" type="file"
 									name="file" class="pull-left" /></td>
 							</tr> -->
 						</table>
+						</div>
 						<div class="module-option clearfix">
 							<div class="control-group">
 								<div class="controls">
