@@ -24,7 +24,7 @@ public interface MyPageMapper {
 	public int newNoteCount(int m_no) throws Exception;
 		
 	// 회원정보 수정
-	public void modifyMember(MemberVO memberVO) throws Exception;
+	public void modifyMember(@Param("memberVO")MemberVO memberVO) throws Exception;
 
 	// 회원비밀번호수정
 	public void pwModify(@Param("m_no")int m_no, @Param("m_pw")String m_pw) throws Exception;
