@@ -16,42 +16,46 @@
 			*
 		FROM 
 		
-			(
+			(	
 			SELECT 
-				T.*, M.M_NICK, M.M_ID, S.S_CONTENT, F.F_NAME,
-				(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_NO2 = T.T_NO) CM,
+				NEWT.*, 
 				ROW_NUMBER() OVER(
-					<choose>
+					<choose> <!-- 조회순, 신고순 -->
 						<when test = "sort == 'hit'">ORDER BY T_HIT DESC</when>
 						<when test = "sort == 'report'">ORDER BY T_REPORT_NUM DESC </when>
 						<otherwise>ORDER BY T_NO DESC</otherwise>
 					</choose>
 				) AS RNUM 
-				
-			FROM
-				TRADE T
-			LEFT JOIN
-				MEMBER M
-			ON 
-				T.M_NO = M.M_NO
-			LEFT JOIN
-				SUBJECT S
-			ON 
-				T.S_NO = S.S_NO
-			LEFT JOIN
-			    BOARD_FILE BF
-			ON
-			    BF.BF_WNO = T.T_NO
-			LEFT JOIN
-			    F_FILE F
-			ON
-			    F.F_NO = BF.F_NO						
-			WHERE 
-				1=1 AND T.T_ISLAND = 0
-				<include refid="subjectSearch"></include>
-				<include refid="tradeSearch"></include>
-				AND F.ROWID IN (SELECT MAX(F.ROWID) FROM F_FILE F GROUP BY F.F_NO)
-			) 
+			FROM 			
+				(
+				SELECT 
+					T.*, M.M_NICK, M.M_ID, S.S_CONTENT, F.F_NAME,
+					(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_NO2 = T.T_NO) CM					
+				FROM
+					TRADE T
+				LEFT JOIN
+					MEMBER M
+				ON 
+					T.M_NO = M.M_NO
+				LEFT JOIN
+					SUBJECT S
+				ON 
+					T.S_NO = S.S_NO
+				LEFT JOIN
+				    BOARD_FILE BF
+				ON
+				    BF.BF_WNO = T.T_NO
+				LEFT JOIN
+				    F_FILE F
+				ON
+				    F.F_NO = BF.F_NO						
+				WHERE 
+					1=1 AND T.T_ISLAND = 0
+					<include refid="subjectSearch"></include> <!-- 말머리 검색 -->
+					<include refid="tradeSearch"></include>	<!-- 검색어 검색 -->					
+
+				) NEWT				
+			)	
 			
 		WHERE 
 			RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
@@ -64,7 +68,7 @@
 	</select> <!-- 1=1 조건 달아야, 처음에 검색어 없이 호출시에도, WHERE 하나만 남아서 BadGrammarException이 뜨지 않는다.. -->
 	
 	
-	<!-- list count: t_no의 중복을 제거하여 하나씩만 센다. -->	
+	<!-- list count:  -->	
 	<select id="tradeListCount" resultType="int">
 
 		SELECT 
@@ -258,13 +262,13 @@
 						  (SELECT G.G_NO FROM GAME G WHERE G.G_NAME_KOR = #{game}),
 						  #{game}, 
 						  #{price} 
-						)
+						)						
 				</foreach>
 					
 				SELECT  
 					*
 				FROM 
-					DUAL	
+					DUAL;	
 				
 				COMMIT;		
 				
