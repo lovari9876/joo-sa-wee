@@ -125,7 +125,7 @@
 					<br/><br/><br/><br/><br/>
 					<!-- 태그 -->
 					<c:forEach items = "${gameName}" var = "gameName" >
-						<a href = "game_detail?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']} &emsp;</a> &nbsp;
+						<a style="color:#400186;" href = "game_detail?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']} &emsp;</a> &nbsp;
 					</c:forEach>
 					
 

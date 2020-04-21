@@ -189,6 +189,35 @@ public class HeeJeongController {
 		return "redirect:/content_view";
 	}
 	
+	@RequestMapping(value = "/comment_write_q", method = RequestMethod.POST)
+	public String comment_write_q(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
+									Model model, @RequestParam int bw_no, @RequestParam("m_no") int m_no, RedirectAttributes re,
+									Principal principal, MemberVO memberVO) throws Exception {
+		System.out.println("comment_write_bw");
+		
+		System.out.println(cm_commentVO.getCm_no2());
+		System.out.println(cm_commentVO.getM_no());
+		
+		// 로그인 해야 댓글 쓰기 가능
+		if(principal != null) {
+			String m_id = principal.getName();
+			memberVO = myPageService.mypage(m_id);
+			model.addAttribute("memberVO", memberVO);
+		}
+		
+		// content_view에서 가져온 m_no을 cm_commentVO에 저장
+//		System.out.println("m_no = " + m_no);
+//		cm_commentVO.setM_no(m_no);
+		
+		contentService.insertCommentBW(cm_commentVO);
+		contentService.updatePoint(cm_commentVO);
+		
+//		int bw_no = Integer.parseInt(rq.getParameter("bw_no"));
+		re.addAttribute("bw_no", bw_no);
+
+		return "redirect:/question_content_view";
+	}
+	
 	// 댓글 수정하기 view
 	@RequestMapping(value = "/comment_modify_view", method = RequestMethod.GET)
 	public String comment_modify_view(HttpServletRequest request, Model model, CM_commentVO cm_commentVO) {

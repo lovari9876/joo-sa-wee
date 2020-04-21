@@ -135,7 +135,7 @@
 										</sec:authorize>
 									</p>
 								</div>
-								<c:if test = "${cm_comment_list_t['M_NO'] != m_no}">
+								<c:if test = "${cm_comment_list_t['M_NO'] != memberVO.m_no}">
 								<sec:authorize access="isAuthenticated()">
 								<div class="test_item rep tooltip-purple">
 									<a class="fas fa-skull fa-lg no-text-deco"
@@ -153,7 +153,7 @@
 									data-placement="top" title="신고"></a>
 								</div>
 								</sec:authorize>
-								<c:if test = "${cm_comment_list_t['M_NO'] eq m_no}">
+								<c:if test = "${cm_comment_list_t['M_NO'] eq memberVO.m_no}">
 								<div class="test_item del tooltip-purple">
 									<a class="fas fa-trash-alt fa-lg no-text-deco"
 										href="comment_delete_t?cm_no=${cm_comment_list_t['CM_NO']}&t_no=${content_view_t['T_NO']}"
@@ -161,7 +161,7 @@
 										data-placement="top" title="삭제"></a>
 								</div>
 								</c:if>
-								<c:if test = "${cm_comment_list_t['M_NO'] eq m_no}">
+								<c:if test = "${cm_comment_list_t['M_NO'] eq memberVO.m_no}">
 								<div class="test_item modi tooltip-purple">
 									<a class="fas fa-edit fa-lg no-text-deco" id="cm_modi"
 										href="comment_modify_view_t?cm_no=${cm_comment_list_t['CM_NO']}"

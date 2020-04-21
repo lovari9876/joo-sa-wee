@@ -130,7 +130,19 @@
 							<c:forEach items="${list}" var="dto">
 							<tr class="row">
 								<td class = "cell">${dto['RNUM']}</td>
-								<td class = "cell">${dto['S_CONTENT']}</td>
+								<td class = "cell">
+									<c:choose>
+										<c:when test="${dto['S_CONTENT'] eq '다 리뷰'}">
+											다<span style = "font-family:dunggeunmo!important">(多)</span>리뷰
+										</c:when>
+										<c:when test="${dto['S_CONTENT'] eq '일 리뷰'}">
+											일(一)리뷰
+										</c:when>
+										<c:otherwise>
+											${dto['S_CONTENT']}
+										</c:otherwise>
+									</c:choose>
+								</td>
 								<td class = "cell"><a href="content_view?bw_no=${dto['BW_NO']}">${dto['BW_TITLE']}</a>  [${dto['CM']}]</td>
 								<td class = "cell">
 									<sec:authorize access="isAuthenticated()">	
