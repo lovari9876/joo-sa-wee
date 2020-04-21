@@ -66,7 +66,7 @@
 
 				<div class="listName">
 					<h3>창작보드게임</h3>
-					<p>창작보드게임 올리세요</p>
+					<p>만든 보드게임 자랑하세요</p>
 				</div>
 
 
@@ -83,7 +83,7 @@
 								</select>
 						</div> 
 						<div class="input-append pull-right"> 
-							<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
+							<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색어를 입력해주세요">
 							<button type="submit" class="btn" id="searchBtn">
 								<i class="icon-search"></i>
 							</button>
@@ -302,20 +302,23 @@
 									href="board_creation${pageMaker.makeSearch(pageMaker.endPage + 1)}&s_content=${s_content}"><i
 										class="icon-double-angle-right"></i></a></li>
 							</c:if>
+							
+							<c:if test="${r_no != 4}" > 
+							<sec:authorize access="isAnonymous()">
+							<button class="write-view-btn" type="button"
+								onclick="location.href='loginview'">글쓰기</button>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+								<button class="write-view-btn" type="button"
+								onclick="location.href='board_write_view?bt_no=6'">글쓰기</button>
+							</sec:authorize>
+						</c:if>
 						</ul>
+						
 					</div>
 				
 				<!-- 버튼에 링크 걸기 -->
-				<c:if test="${r_no != 4}" > 
-					<sec:authorize access="isAnonymous()">
-					<button class="write-view-btn" type="button"
-						onclick="location.href='loginview'">글쓰기</button>
-					</sec:authorize>
-					<sec:authorize access="isAuthenticated()">
-						<button class="write-view-btn" type="button"
-						onclick="location.href='board_write_view?bt_no=6'">글쓰기</button>
-					</sec:authorize>
-				</c:if>
+				
 			</div>
 		</div>
 	</div>

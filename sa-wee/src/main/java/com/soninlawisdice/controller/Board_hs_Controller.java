@@ -686,8 +686,6 @@ public class Board_hs_Controller {
 	@ResponseBody
 	@RequestMapping("/gameList")
 	public ArrayList<String> gameNameList(){
-		System.out.println("gameList");
-		System.out.println(boardService.gameNameList());
 		return boardService.gameNameList();
 	}
 	
@@ -743,7 +741,7 @@ public class Board_hs_Controller {
 			//FileUtils.writeByteArrayToFile(file3, fileload.getBytes());
 			System.out.println(file);
 
-			return "{ \"uploaded\" : true, \"url\" : \"http://localhost:8282/resources/files/img/" + newfilename
+			return "{ \"uploaded\" : true, \"url\" : \"http://192.168.6.13:8282/resources/files/img/" + newfilename
 					+ "\" }";
 			//url 가 src 로 들어가면서 저장됨. 
 			//return "{ \"uploaded\" : true, \"url\" : \"file:///C:/mp/file/"+ newfilename +

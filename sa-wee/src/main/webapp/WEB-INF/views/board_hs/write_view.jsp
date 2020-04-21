@@ -158,7 +158,6 @@
 	
  
 	<script>
-		
 		var games = new Bloodhound({
 			datumTokenizer : Bloodhound.tokenizers.obj.whitespace('name'),
 			queryTokenizer : Bloodhound.tokenizers.whitespace,
@@ -172,9 +171,6 @@
 			} 
 		});
 		games.initialize();
-		console.log("games : " + games);
-		console.log("name : " + name);
-		
 		$('.typeahead').tagsinput({
 			
 			typeaheadjs : {
@@ -182,14 +178,11 @@
 				displayKey : 'name',
 				valueKey : 'name',
 				source : games.ttAdapter(),
-				
 				hint: true,
 				highlight: true,
 				minLength: 1
 			}
 		});
-	
-	
 	</script> 
 	
 

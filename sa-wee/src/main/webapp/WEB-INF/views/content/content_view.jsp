@@ -156,7 +156,8 @@
 					<form action="/list_home" method="get">
 						<div class="test">
 							<div class="test_item first">
-								<input type="button" value="목록" class="btn btn-lavender btn-md">
+								<input type="hidden" id="bt_no" value="${content_view['BT_NO']}">
+								<input type="button" onclick = "toList()" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item fifth">
 								<c:if test="${content_view['M_NO'] != memberVO.m_no}">
@@ -281,6 +282,8 @@
 	<script src="js/board_hj/tooltip.js"></script>
 	<script src="js/board_hj/recommend.js"></script>
 	<script src="js/board_hj/popover.js"></script>
+	
+	<script src="js/board_hs/toList.js"></script>
 
 	
 	<!-- ====================스크랩기능============================== -->

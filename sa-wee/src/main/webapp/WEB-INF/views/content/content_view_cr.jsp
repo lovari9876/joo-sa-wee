@@ -186,12 +186,12 @@
 							</div>
 							<div class="test_item third">
 								<c:if test = "${content_view_cr['M_NO'] eq memberVO.m_no}">
-									<a href="delete?bw_no=${content_view_cr['BW_NO']}">삭제</a>
+									<a href="review_delete?cr_no=${content_view_cr['CR_NO']}">삭제</a>
 								</c:if>	
 							</div>
 							<div class="test_item second"> 
 								<c:if test = "${content_view_cr['M_NO'] eq memberVO.m_no}">
-									<a href="board_modify_view?bw_no=${content_view_cr['BW_NO']}">수정</a>
+									<a href="review_modify_view?cr_no=${content_view_cr['CR_NO']}">수정</a>
 								</c:if>
 							</div>
 						</div>

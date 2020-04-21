@@ -83,7 +83,7 @@
 								</select>
 						</div> 
 						<div class="input-append pull-right"> 
-							<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색을 해라">
+							<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="검색어를 입력해주세요">
 							<button type="submit" class="btn" id="searchBtn">
 								<i class="icon-search"></i>
 							</button>
