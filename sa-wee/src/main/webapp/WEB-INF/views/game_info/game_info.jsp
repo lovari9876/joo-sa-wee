@@ -68,7 +68,32 @@
 	<section class="games-section">
 		
 		
-		<div class = "initial" style="float:right;margin-right:250px;">
+		<div class="container">
+			
+			<div  style="text-align:center;margin-bottom:20px;">
+				<ul class="game-filter" id="game-filter">
+					<li class="btn-color"><a href="game_info">전체</a></li>
+					<li class="btn-color"><a href="game_info?init=num">숫자</a></li>
+					<li class="btn-color"><a href="game_info?init=가">ㄱ</a></li>
+					<li class="btn-color"><a href="game_info?init=나">ㄴ</a></li>
+					<li class="btn-color"><a href="game_info?init=다">ㄷ</a></li>
+					<li class="btn-color"><a href="game_info?init=라">ㄹ</a></li>
+					<li class="btn-color"><a href="game_info?init=마">ㅁ</a></li>
+					<li class="btn-color"><a href="game_info?init=바">ㅂ</a></li>
+					<li class="btn-color"><a href="game_info?init=사">ㅅ</a></li>
+					<li class="btn-color"><a href="game_info?init=아">ㅇ</a></li>
+					<li class="btn-color"><a href="game_info?init=자">ㅈ</a></li>
+					<li class="btn-color"><a href="game_info?init=차">ㅊ</a></li>
+					<li class="btn-color"><a href="game_info?init=카">ㅋ</a></li>
+					<li class="btn-color"><a href="game_info?init=타">ㅌ</a></li>
+					<li class="btn-color"><a href="game_info?init=파">ㅍ</a></li>
+					<li class="btn-color"><a href="game_info?init=하">ㅎ</a></li>
+				</ul>
+			</div>
+			
+			
+			<!-- 검색창.. .미안.... -->
+			<div class = "initial" style="float:right;margin-right:80px;">
 				<form role="form" method="get">
 					<div class="" id="">
 						<select id="searchType" name="searchType" class="span2" style="height:30px;">
@@ -77,7 +102,7 @@
 							<option value = "ab" class="btn" <c:out value="${scri.searchType eq 'ab' ? 'selected' : ''}"/>>한영제목</option>
 						</select>
 				
-						<input style="width:300px;" type="text" maxlength="30" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회  / 검색어입력">
+						<input style="width:200px;" type="text" maxlength="30" name="keyword" id="keywordInput" value="${scri.keyword}" class="span2" placeholder="조회  / 검색어입력">
 						<button type="submit" class="btn" id="searchBtn" style="height:30px;margin:0px;">
 							<i class="icon-search"></i>
 						</button>
@@ -102,46 +127,21 @@
 						}); 
 		   </script>
 		
-		
-		
-		<div class="container">
-			
-			<div  style="float:left;">
-				<ul class="game-filter" id="game-filter">
-					<li class="btn-color"><a href="game_info">전체</a></li>
-					<li class="btn-color"><a href="game_info?init=가">ㄱ</a></li>
-					<li class="btn-color"><a href="game_info?init=나">ㄴ</a></li>
-					<li class="btn-color"><a href="game_info?init=다">ㄷ</a></li>
-					<li class="btn-color"><a href="game_info?init=라">ㄹ</a></li>
-					<li class="btn-color"><a href="game_info?init=마">ㅁ</a></li>
-					<li class="btn-color"><a href="game_info?init=바">ㅂ</a></li>
-					<li class="btn-color"><a href="game_info?init=사">ㅅ</a></li>
-					<li class="btn-color"><a href="game_info?init=아">ㅇ</a></li>
-					<li class="btn-color"><a href="game_info?init=자">ㅈ</a></li>
-					<li class="btn-color"><a href="game_info?init=차">ㅊ</a></li>
-					<li class="btn-color"><a href="game_info?init=카">ㅋ</a></li>
-					<li class="btn-color"><a href="game_info?init=타">ㅌ</a></li>
-					<li class="btn-color"><a href="game_info?init=파">ㅍ</a></li>
-					<li class="btn-color"><a href="game_info?init=하">ㅎ</a></li>
-					<li class="btn-color"><a href="game_info?init=num">숫자</a></li>
-				</ul>
-			</div>
-			
-			
-			<!-- 검색창.. .미안.... -->
 			
 			<br><br>
 			
 			
 			<!-- 보드게임종뷰 부분 -->
 			<div class="row right-align" id="row">
-				<div class="col-xl-7 col-lg-8 col-md-7">
+				<div class="col-xl-12 col-lg-8 col-md-7">
 					<div class="row right-item photo">
 					
 						<c:forEach items = "${gameList}" var = "game">
-							<div class="col-lg-4 col-md-6">
-								<div class="game-item">
-									<img src="${game['G_THUMBNAIL']}" alt="#">
+							<div class="col-lg-3 col-md-6">
+								<div class="game-item" style="width:150px;">
+									<div style = "background:#c7c4d9;text-align:center;vertical-align:center;height:100%;">
+									<img style="height:100%;" src="${game['G_THUMBNAIL']}" alt="#">
+									</div>
 									<h5>${game['G_NAME_KOR']}</h5>
 									<a href="game_detail?g_no=${game['G_NO']}" class="read-more">Read More <img
 										src="images/board_hj/icons/double-arrow.png" alt="" /></a>
@@ -153,7 +153,7 @@
 					</div>
 					<div class="site-pagination">
 						<!-- <a href="#" class="active">01.</a> <a href="#">02.</a> <a href="#">03.</a> -->
-						<ul style="list-style:none;display:inherit;">
+						<ul style="list-style:none;display:inherit;padding-left:200px;">
 							<c:if test="${pageMaker.prev}">
 								<li><a
 									href="game_info${pageMaker.makeSearch(pageMaker.startPage - 1)}&init=${init}"><i
@@ -176,7 +176,7 @@
 				</div>
 				
 				<!-- 사이드바 부분 -->
-				<div class="col-xl-3 col-lg-4 col-md-5 sidebar game-page-sideber">
+				<!-- <div class="col-xl-3 col-lg-4 col-md-5 sidebar game-page-sideber">
 					<div id="stickySidebar" class="right-item bar">
 						<div class="widget-item">
 						<div class="categories-widget">
@@ -218,7 +218,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</div>
 	</section>

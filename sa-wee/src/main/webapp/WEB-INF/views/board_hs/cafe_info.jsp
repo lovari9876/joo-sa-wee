@@ -264,7 +264,7 @@
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
 	<script src="js/board_hs/bootstrap.min.js"></script>
-	<script src="js/board_hs/jquery.slicknav.min.js"></script>
+	<!-- <script src="js/board_hs/jquery.slicknav.min.js"></script> -->
 	<script src="js/board_hs/owl.carousel.min.js"></script>
 	<script src="js/board_hs/jquery.sticky-sidebar.min.js"></script>
 	<script src="js/board_hs/jquery.magnific-popup.min.js"></script>
