@@ -128,14 +128,14 @@
 									<div id="target" class="carousel-item ">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
-											class="d-block w-100" src="images/board_hs/root.jpeg"></a>
+											class="d-block w-100" src="images/board_hs/24.jpg"></a>
 										<!-- <div class="carousel-caption">두번째</div> -->
 									</div>
 
 									<div class="carousel-item">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
-											class="d-block w-100" src="images/board_hs/root.jpeg"></a>
+											class="d-block w-100" src="images/board_hs/25.png"></a>
 										<!-- <div class="carousel-caption">세번째</div> -->
 									</div>
 
@@ -189,7 +189,7 @@
 						[ 투머치토커 ]
 						<br/>
 						<br/>
-						<a style="font-family:JSDongkang-Bold;" href='#' id='other_page' name='m_nick' data-nick='${rankWC}' onclick='return false;' >- ${rankWC} -</a>
+						<a style="font-family:JSDongkang-Bold;color:#400186;" href='#' id='other_page' name='m_nick' data-nick='${rankWC}' onclick='return false;' >- ${rankWC} -</a>
 					</div>
 					
 				</div>
@@ -200,7 +200,7 @@
 						<br/>
 						<br/>
 						<c:forEach items = "${rankW}" var = "rankW" >
-						<a style="font-family:JSDongkang-Bold;" href='#' id='other_page' name='m_nick' data-nick="${rankW['I_NICK']}" onclick='return false;'>- ${rankW['I_NICK']} -</a>
+						<a style="font-family:JSDongkang-Bold;color:#400186;" href='#' id='other_page' name='m_nick' data-nick="${rankW['I_NICK']}" onclick='return false;'>- ${rankW['I_NICK']} -</a>
 						</c:forEach>
 					</div>
 				</div>
@@ -211,7 +211,7 @@
 						[ 희대의 범법자 ]
 						<br/>
 						<br/>
-						<a style="font-family:JSDongkang-Bold;" href='#' id='other_page' name='m_nick' data-nick='${rankRe}' onclick='return false;' >- ${rankRe} -</a>
+						<a style="font-family:JSDongkang-Bold;color:#400186;" href='#' id='other_page' name='m_nick' data-nick='${rankRe}' onclick='return false;' >- ${rankRe} -</a>
 					</div>
 
 				</div>
