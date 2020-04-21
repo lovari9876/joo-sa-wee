@@ -80,7 +80,7 @@
 					<div class = "table_mobile">
 					<table class="table">
 						<tr class="trow header">
-							<td class="cell perspan1">거래번호</td>
+							<td class="cell perspan1">거래<br>번호</td>
 							<td class="cell perspan1">보부상<br>글번호</td>
 							<td class="cell perspan2">판매자</td>
 							<td class="cell perspan2">구매자</td>
@@ -88,7 +88,7 @@
 							<td class="cell perspan2">결제일</td>
 							<td class="cell perspan2">상태</td>
 							<td class="cell perspan2">거래상세</td>
-							<td class="cell perspan1">입금</td>
+							<td class="cell perspan2">입금</td>
 						</tr>
 						<tbody>
 

@@ -62,7 +62,7 @@
 
 							<tr class="row">
 								<td class="cell perspan2">카페 이름</td>
-								<td class="cell perspan11"><input type="text" maxlength="30" name="c_title" class="perspan11"
+								<td class="cell perspan12"><input type="text" maxlength="30" name="c_title" class="perspan11"
 									placeholder="카페이름을 입력하세요"></td>
 							</tr>
 
