@@ -66,5 +66,11 @@ public interface SecondhandService {
 	// 구매자가 수취확인 payment에 update
 	public void updatePaymentBuyerConfirm(PaymentVO paymentVO);
 
+	// 관리자 페이지에서 구매자 환불처리
+	public void paymentBuyerRefund(int p_no);
+
+	// 관리자 페이지에서 판매자 판매대금 입금 처리
+	public void paymentBuyerRemit(int p_no);
+
 
 }

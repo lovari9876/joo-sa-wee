@@ -669,14 +669,32 @@ public class AdminController {
 		return "admin/trade_list_pgt";
 	}
 
-	@RequestMapping("/trade_list_account/{p_sno}/{p_bno}")
-	public String trade_list_account(Model model, @PathVariable(value = "p_sno") int p_sno,
+	@RequestMapping("/trade_list_account/{p_no}/{p_sno}/{p_bno}")
+	public String trade_list_account(Model model, @PathVariable(value = "p_no") int p_no,
+			@PathVariable(value = "p_sno") int p_sno,
 			@PathVariable(value = "p_bno") int p_bno) throws Exception {
-
+		
+		model.addAttribute("p_no", p_no);
 		model.addAttribute("account_s", adminService.selectMemberView(p_sno));
 		model.addAttribute("account_b", adminService.selectMemberView(p_bno));
 
 		return "admin/trade_list_account";
+	}
+	
+	@RequestMapping("/trade_list_refund/{p_no}")
+	public String trade_list_refund(Model model, @PathVariable(value = "p_no") int p_no) throws Exception {
+
+		secondhandService.paymentBuyerRefund(p_no);
+
+		return "redirect:/admin/trade_list";
+	}
+	
+	@RequestMapping("/trade_list_remit/{p_no}")
+	public String trade_list_remit(Model model, @PathVariable(value = "p_no") int p_no) throws Exception {
+
+		secondhandService.paymentBuyerRemit(p_no);
+
+		return "redirect:/admin/trade_list";
 	}
 
 	//////////////////////////// cafe_list///////////////////////////////////////

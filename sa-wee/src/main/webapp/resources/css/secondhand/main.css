@@ -67,7 +67,7 @@
 @import url('https://fonts.googleapis.com/css?family=Black+And+White+Picture&display=swap&subset=korean');
 
 html, body {
-	font-family: 'dunggeunmo';
+	font-family: 'JSDongkang-Regular', sans-serif;
 }
 
 /* ===================================================================
@@ -90,7 +90,7 @@ html, body {
 
 body {
 	background: #19191b;
-	font-family: "metropolis-regular", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 1.6rem;
 	font-style: normal;
 	font-weight: normal;
@@ -114,6 +114,7 @@ a {
 
 a:hover, a:focus, a:active {
 	color: #000000;
+	cursor: pointer;
 }
 
 a:hover, a:active {
@@ -125,7 +126,7 @@ a:hover, a:active {
  * 
  * ------------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-	font-family: "librebaskerville-bold", serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	color: #000000;
 	font-style: normal;
 	font-weight: normal;
@@ -206,7 +207,7 @@ p img {
 }
 
 p.lead {
-	font-family: "metropolis-medium", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 2rem;
 	line-height: 1.8;
 	margin-bottom: 3.6rem;
@@ -227,11 +228,11 @@ em, i, strong, b {
 }
 
 em, i {
-	font-family: "metropolis-italic", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 }
 
 strong, b {
-	font-family: "metropolis-bold", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 }
 
 small {
@@ -251,14 +252,14 @@ blockquote:before {
 	line-height: 0px;
 	margin: 0;
 	color: rgba(0, 0, 0, 0.25);
-	font-family: arial, sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	position: absolute;
 	top: 3.6rem;
 	left: 0;
 }
 
 blockquote p {
-	font-family: "metropolis-medium", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	padding: 0;
 	font-size: 2.1rem;
 	line-height: 1.857;
@@ -267,7 +268,7 @@ blockquote p {
 
 blockquote cite {
 	display: block;
-	font-family: "metropolis-medium", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 1.5rem;
 	font-style: normal;
 	line-height: 1.4;
@@ -283,7 +284,7 @@ blockquote cite a, blockquote cite a:visited {
 }
 
 abbr {
-	font-family: "metropolis-bold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	font-variant: small-caps;
 	text-transform: lowercase;
 	letter-spacing: .05rem;
@@ -291,7 +292,7 @@ abbr {
 }
 
 var, kbd, samp, code, pre {
-	font-family: Consolas, "Andale Mono", Courier, "Courier New", monospace;
+	font-family: 'JSDongkang-Regular', sans-serif;
 }
 
 pre {
@@ -438,7 +439,7 @@ table {
 	border-width: 0;
 	width: 100%;
 	max-width: 100%;
-	font-family: "metropolis-regular", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 }
 
 th, td {
@@ -449,7 +450,7 @@ th, td {
 
 th {
 	color: #000000;
-	font-family: "metropolis-bold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 }
 
 td {
@@ -502,7 +503,7 @@ input[type="email"], input[type="number"], input[type="search"], input[type="tex
 	border: 0;
 	outline: none;
 	color: #151515;
-	font-family: "metropolis-regular", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 1.6rem;
 	line-height: 3rem;
 	max-width: 100%;
@@ -578,7 +579,7 @@ input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focu
 }
 
 label, legend {
-	font-family: "metropolis-regular", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 1.4rem;
 	font-weight: bold;
 	margin-bottom: .9rem;
@@ -594,7 +595,7 @@ input[type="checkbox"], input[type="radio"] {
 label>.label-text {
 	display: inline-block;
 	margin-left: 1rem;
-	font-family: "librebaskerville-regular", serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-weight: normal;
 	line-height: inherit;
 }
@@ -646,7 +647,7 @@ textarea:-webkit-autofill:focus, select:-webkit-autofill, select:-webkit-autofil
 .btn, button, input[type="submit"], input[type="reset"], input[type="button"]
 	{
 	display: inline-block;
-	font-family: "metropolis-bold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	font-size: 1.2rem;
 	text-transform: uppercase;
 	letter-spacing: .3rem;
@@ -745,7 +746,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	position: relative;
 	margin-bottom: 3rem;
 	border-radius: 3px;
-	font-family: "metropolis-semibold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	font-size: 1.5rem;
 	line-height: 1.6;
 }
@@ -792,7 +793,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	margin: 0;
 	padding: 1.5rem .6rem 0 0;
 	font-size: 8.4rem;
-	font-family: "metropolis-extrabold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	font-weight: bold;
 	line-height: 6rem;
 	text-indent: 0;
@@ -965,7 +966,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .pgn__num {
-	font-family: "metropolis-bold", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 1.5rem;
 	line-height: 2.4rem;
 	display: inline-block;
@@ -1279,7 +1280,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 .masonry .entry__thumb-link::after {
 	content: "...";
-	font-family: georgia, serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 2.7rem;
 	z-index: 1;
 	display: block;
@@ -1344,7 +1345,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .masonry .entry__date {
-	font-family: "metropolis-medium", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 1.4rem;
 	line-height: 1.714;
 	margin-bottom: .6rem;
@@ -1360,7 +1361,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .masonry .entry__meta {
-	font-family: "metropolis-semibold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	font-size: 1.5rem;
 	margin-bottom: 0;
 }
@@ -1431,7 +1432,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 }
 
 .format-quote blockquote p, .format-link .link-wrap p {
-	font-family: "librebaskerville-bold", serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	color: #000000;
 	padding: 7.8rem 0 0 0;
 	margin-bottom: 3.3rem;
@@ -1441,7 +1442,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 
 .format-quote cite, .format-link cite {
 	display: block;
-	font-family: "metropolis-regular", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 1.5rem;
 	font-style: normal;
 	line-height: 1.6;
@@ -1703,7 +1704,7 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	color: #000000;
 	height: auto;
 	width: 100%;
-	font-family: "metropolis-semibold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	font-size: 6rem;
 	line-height: 1.5;
 	border: none;
@@ -1777,7 +1778,7 @@ body.search-is-visible {
 }
 
 .header__search-trigger::before {
-	font-family: "metropolis-semibold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	font-size: 12px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
@@ -1900,7 +1901,7 @@ body.search-is-visible {
 
 .header__nav-wrap .header__nav-heading {
 	text-align: center;
-	font-family: "metropolis-semibold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	font-size: 1.4rem;
 	color: #FFFFFF;
 	text-transform: uppercase;
@@ -1917,7 +1918,7 @@ body.search-is-visible {
 	list-style: none;
 	margin: 0;
 	padding: 0;
-	font-family: "metropolis-medium", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 15px;
 }
 
@@ -2012,7 +2013,7 @@ body.search-is-visible {
 	display: block;
 	white-space: nowrap;
 	padding: 7.5px 3rem 7.5px 2rem;
-	font-family: "metropolis-regular", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	line-height: 18px;
 	color: rgba(255, 255, 255, 0.6);
 }
@@ -2069,7 +2070,7 @@ body.search-is-visible {
 	.header__nav {
 		margin: 4.8rem 6rem 3rem 6rem;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-		font-family: "metropolis-semibold", sans-serif;
+		font-family: 'JSDongkang-Regular', sans-serif;
 		font-size: 16px;
 	}
 	.header__nav li {
@@ -2209,7 +2210,7 @@ body.search-is-visible {
 
 .featured .entry__category {
 	display: inline-block;
-	font-family: "metropolis-bold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 	font-size: 1.1rem;
 	line-height: 2.4rem;
 	text-transform: uppercase;
@@ -2242,7 +2243,7 @@ body.search-is-visible {
 	list-style: none;
 	margin: 0 0 0 6rem;
 	padding: 0;
-	font-family: "metropolis-semibold", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	color: rgba(255, 255, 255, 0.5);
 	line-height: 1.5;
 }
@@ -2607,7 +2608,7 @@ to {
 
 /* ================= 내가 추가한 것 ============================= */
 .s-content {
-	font-family: 'SSRockRegular';
+	font-family: 'JSDongkang-Regular', sans-serif;
 }
 
 .s-content h1 {
@@ -2632,7 +2633,7 @@ to {
     white-space: normal;
     line-height: normal;
     font-weight: normal;
-    font-size: 13.5px;
+    font-size: 12px;
     font-style: normal;
     text-align: start;
     border-spacing: 2px;

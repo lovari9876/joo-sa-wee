@@ -16,45 +16,39 @@
 			*
 		FROM 
 		
-			(	
+			(				
 			SELECT 
-				NEWT.*, 
+				T.*, M.M_NICK, M.M_ID, S.S_CONTENT, F.F_NAME,
+				(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_NO2 = T.T_NO) CM,
 				ROW_NUMBER() OVER(
 					<choose> <!-- 조회순, 신고순 -->
 						<when test = "sort == 'hit'">ORDER BY T_HIT DESC</when>
 						<when test = "sort == 'report'">ORDER BY T_REPORT_NUM DESC </when>
 						<otherwise>ORDER BY T_NO DESC</otherwise>
 					</choose>
-				) AS RNUM 
-			FROM 			
-				(
-				SELECT 
-					T.*, M.M_NICK, M.M_ID, S.S_CONTENT, F.F_NAME,
-					(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_NO2 = T.T_NO) CM					
-				FROM
-					TRADE T
-				LEFT JOIN
-					MEMBER M
-				ON 
-					T.M_NO = M.M_NO
-				LEFT JOIN
-					SUBJECT S
-				ON 
-					T.S_NO = S.S_NO
-				LEFT JOIN
-				    BOARD_FILE BF
-				ON
-				    BF.BF_WNO = T.T_NO
-				LEFT JOIN
-				    F_FILE F
-				ON
-				    F.F_NO = BF.F_NO						
-				WHERE 
-					1=1 AND T.T_ISLAND = 0
-					<include refid="subjectSearch"></include> <!-- 말머리 검색 -->
-					<include refid="tradeSearch"></include>	<!-- 검색어 검색 -->					
-
-				) NEWT				
+				) AS RNUM 					
+			FROM
+				TRADE T
+			LEFT JOIN
+				MEMBER M
+			ON 
+				T.M_NO = M.M_NO
+			LEFT JOIN
+				SUBJECT S
+			ON 
+				T.S_NO = S.S_NO
+			LEFT JOIN
+			    BOARD_FILE BF
+			ON
+			    BF.BF_WNO = T.T_NO
+			LEFT JOIN
+			    F_FILE F
+			ON
+			    F.F_NO = BF.F_NO						
+			WHERE 
+				1=1 AND T.T_ISLAND = 0
+				<include refid="subjectSearch"></include> <!-- 말머리 검색 -->
+				<include refid="tradeSearch"></include>	<!-- 검색어 검색 -->	
 			)	
 			
 		WHERE 
@@ -607,7 +601,8 @@
 		SET 
 			P_STATUS = 3, <!-- 3: 배송중 -->
 			P_COURIER = #{paymentVO.p_courier},
-			P_TRACKING = #{paymentVO.p_tracking}
+			P_TRACKING = #{paymentVO.p_tracking},
+			P_SHIPPED_DATE = SYSDATE
 		WHERE 
 			P_NO = #{paymentVO.p_no} 			
 
@@ -625,6 +620,34 @@
 			P_NO = #{paymentVO.p_no} 			
 
 	</update>
+	
+	
+	<!-- 수취확인: 관리자 페이지에서 구매자 환불처리하고 update -->
+	<update id = "paymentBuyerRefund">
+	
+		UPDATE 
+			PAYMENT 
+		SET 
+			P_STATUS = 7, <!-- 7: 거래취소 -->
+			P_REFUND_DATE = SYSDATE
+		WHERE 
+			P_NO = #{p_no} 			
+
+	</update>
+	
+	
+	<!-- 거래완료: 관리자 페이지에서 판매자 판매대금 입금 처리하고 update -->
+	<update id = "paymentBuyerRemit">
+	
+		UPDATE 
+			PAYMENT 
+		SET 
+			P_STATUS = 5 <!-- 5: 거래완료 -->
+		WHERE 
+			P_NO = #{p_no} 			
+
+	</update>
+	
 	
 	
 

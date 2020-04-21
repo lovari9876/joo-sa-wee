@@ -231,5 +231,16 @@ public class SecondhandServiceImpl implements SecondhandService {
 		secondhandMapper.updatePaymentBuyerConfirm(paymentVO);
 	}
 
+	// 관리자 페이지에서 구매자 환불처리
+	@Override
+	public void paymentBuyerRefund(int p_no) {
+		secondhandMapper.paymentBuyerRefund(p_no);
+	}
+	
+	// 관리자 페이지에서 판매자 판매대금 입금 처리
+	@Override
+	public void paymentBuyerRemit(int p_no) {
+		secondhandMapper.paymentBuyerRemit(p_no);
+	}
 	
 }
