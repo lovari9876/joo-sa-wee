@@ -533,7 +533,7 @@ public class Board_hs_Controller {
 			boardService.review_delete(cr_no);
 		
 			//경로 어떻게 할지 생각해봐야함.
-			return "redirect:list";
+			return "redirect:selectAllReviewList";
 		}
 
 		// HttpServletRequest request, RedirectAttributes redirectAttributes

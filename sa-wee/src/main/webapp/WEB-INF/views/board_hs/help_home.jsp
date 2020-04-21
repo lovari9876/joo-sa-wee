@@ -77,7 +77,7 @@
 			
 					<div class="col-lg-6 ">
 						<div class="room-wrap d-md-flex">
-							<a href="list" class="img"
+							<a href="notice_list" class="img"
 								style="background-image: url(images/board_hs/notice.jpg);"></a>
 							
 							
@@ -101,16 +101,16 @@
 					<!-- 자주하는 질문  -->
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
-							<a href="list" class="img"
+							<a href="faq" class="img"
 								style="background-image: url(images/board_hs/question.jpg);"></a>
 							<div class="half left-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
 									<p class="star mb-0"></p>
 									<h3 class="mb-3">
-										<a href="board_open_review">자주하는 질문</a>
+										<a href="faq">자주하는 질문</a>
 									</h3>
 									<p class="pt-1">
-										<a href="board_open_review" class="btn-custom px-3 py-2">
+										<a href="faq" class="btn-custom px-3 py-2">
 											<span class="far fa-hand-point-left"></span>  게시판 가기	
 										</a>
 									</p>
@@ -124,7 +124,7 @@
 					<!-- 1 : 1 문의 -->
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
-							<a href="list" class="img order-md-last"
+							<a href="question_list" class="img order-md-last"
 								style="background-image: url(images/board_hs/qna.jpg);"></a>
 							<div class="half right-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">
@@ -146,7 +146,7 @@
 					<!-- 무인도 -->
 					<div class="col-lg-6">
 						<div class="room-wrap d-md-flex">
-							<a href="list" class="img order-md-last"
+							<a href="island_list" class="img order-md-last"
 								style="background-image: url(images/board_hs/island.jpg);"></a>
 							<div class="half right-arrow d-flex align-items-center">
 								<div class="text p-4 p-xl-5 text-center">

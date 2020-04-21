@@ -118,11 +118,12 @@
 				<div class="col-lg-8 blog-content">
 
 					<p>${content_view['BW_CONTENT']}</p>
-					
+				
+				
 					<br/><br/><br/><br/><br/>
 					<!-- 태그 -->
 					<c:forEach items = "${gameName}" var = "gameName" >
-						<a style="color:#400186" href = "game_detail?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']} &emsp;</a> &nbsp;
+						<a style="color:#400186;" href = "game_detail?g_no=${gameName['G_NO']}">#${gameName['G_NAME_KOR']} &emsp;</a> &nbsp;
 					</c:forEach>
 
 
@@ -155,7 +156,7 @@
 					<form action="/list_home" method="get">
 						<div class="test">
 							<div class="test_item first">
-								<input type="submit" value="목록" class="btn btn-lavender btn-md">
+								<input type="button" value="목록" class="btn btn-lavender btn-md">
 							</div>
 							<div class="test_item fifth">
 								<sec:authorize access="isAuthenticated()">
@@ -227,12 +228,7 @@
 									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
 								</c:import>
 							</c:when>
-							<c:when test="${content_view['BT_NO'] == 8}">
-								<c:import url="/comment_view_bw">
-									<c:param name="cm_type" value="게시판"></c:param>
-									<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
-								</c:import>
-							</c:when>
+							
 							<c:otherwise>
 								<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
 							</c:otherwise>

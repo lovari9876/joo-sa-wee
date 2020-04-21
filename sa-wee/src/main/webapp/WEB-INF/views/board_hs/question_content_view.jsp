@@ -142,12 +142,12 @@
 							<div class="test_item first">
 								<input type = "button" onclick ="location.href='question_list'" value="목록" class="btn btn-lavender btn-md">
 							</div>
-							<div class="test_item second">
+							<div class="test_item fourth">
 								<c:if test = "${content_view['M_NO'] eq m_no}">
 									<a href="question_modify_view?bw_no=${content_view['BW_NO']}">수정</a>
 								</c:if>
 							</div>
-							<div class="test_item third">
+							<div class="test_item fourth">
 								<c:if test = "${content_view['M_NO'] eq m_no}">
 									<a style = "cursor:pointer;"onclick = "commentDelete();"<%-- href="question_delete?bw_no=${content_view['BW_NO']}" --%>>삭제</a>
 								</c:if>
@@ -179,7 +179,7 @@
 					
 					<!-- 댓글 쓰기 -->
 					<div class="comment-form-wrap pt-5">
-						<%@ include file="/WEB-INF/views/content/comment_write_view_bw.jsp" %>
+						<%@ include file="/WEB-INF/views/content/comment_write_view_q.jsp" %>
 					</div>
 				</div>
 			</div>
