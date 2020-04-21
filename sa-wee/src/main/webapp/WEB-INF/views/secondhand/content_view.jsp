@@ -158,7 +158,7 @@
 					<p> [ 첨부사진 ] </p>
 						<div style = "padding:10px;">	
 						<c:forEach items="${fileName}" var = "img">
-							<img style = "width:150px;margin-right:5px;" src="<c:url value="/img/${img['F_NAME']} "/>" />
+							<img style = "width:300px;margin-right:5px;" src="<c:url value="/img/${img['F_NAME']} "/>" />
 						</c:forEach>
 						</div> 
 					</div>
