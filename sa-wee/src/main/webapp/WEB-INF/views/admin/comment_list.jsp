@@ -57,9 +57,9 @@
 								
  								<div class="dropdown pull-left">
 										<select id="searchType" name="searchType" class="span2">
-											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
-											<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>카페이름</option>
-											<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>주소</option>
+											<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>검색타입선택</option>
+											<option value = "a" class="btn" <c:out value="${scri.searchType eq 'a' ? 'selected' : ''}"/>>작성자</option>
+											<option value = "b" class="btn" <c:out value="${scri.searchType eq 'b' ? 'selected' : ''}"/>>내용</option>
 										</select>
 								</div> 
 								

@@ -1168,8 +1168,9 @@
 	</select>
 	
 	<sql id="comment_search">
-		<if test="scri.keyword != null">
-			AND m.m_id LIKE '%' || #{scri.keyword} || '%'
+		<if test="scri.searchType != null">
+			<if test="scri.searchType == 'a'.toString()">AND m.m_id LIKE '%' || #{scri.keyword} || '%'</if>
+			<if test="scri.searchType == 'b'.toString()">AND cm_content LIKE '%' || #{scri.keyword} || '%'</if>
 		</if>
 	</sql>
 	
