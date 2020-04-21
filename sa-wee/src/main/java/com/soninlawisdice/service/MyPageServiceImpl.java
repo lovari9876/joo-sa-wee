@@ -63,6 +63,12 @@ public class MyPageServiceImpl implements MyPageService {
 		return myPageMapper.myReplyCount(m_no);
 	}
 	
+	// 안본쪽지 갯수
+	@Override
+	public int newNoteCount(int m_no) throws Exception{
+		return myPageMapper.newNoteCount(m_no);
+	}
+		
 	// 탈퇴 정보 테이블
 	@Override
 	public ArrayList<WithdrawalVO> withdrawal() throws Exception {
@@ -108,10 +114,15 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	// 쪽지 전체 정보 불러오기
+	@Override
 	public NoteVO note(int n_no) throws Exception{
 		return myPageMapper.note(n_no);
 	}
-
+	// 쪽지 알림 표시 없애기
+	@Override
+	public void newNote(@Param("n_no") int n_no) throws Exception{
+		myPageMapper.newNote(n_no);
+	}
 	
 
 		

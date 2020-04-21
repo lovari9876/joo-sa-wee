@@ -61,6 +61,8 @@ public class MyPageRestController {
 		System.out.println("============================== 쪽지 선택 ajax start ==============================");
 
 		model.addAttribute("noteContent", myPageService.noteContent(n_no));
+		myPageService.newNote(n_no);
+
 		System.out.println("============================== 쪽지 선택 ajax end ==============================");
 
 		return myPageService.noteContent(n_no);

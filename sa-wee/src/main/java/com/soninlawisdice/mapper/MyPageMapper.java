@@ -20,6 +20,9 @@ public interface MyPageMapper {
 	// 내 댓글 갯수
 	public int myReplyCount(@Param("m_no") int m_no) throws Exception;
 	
+	// 안본쪽지 갯수
+	public int newNoteCount(int m_no) throws Exception;
+		
 	// 회원정보 수정
 	public void modifyMember(MemberVO memberVO) throws Exception;
 
@@ -55,5 +58,7 @@ public interface MyPageMapper {
 	// 쪽지 전체 정보 불러오기
 	public NoteVO note(@Param("n_no") int n_no) throws Exception;
 	
+	// 쪽지 알림 표시 없애기
+	public void newNote(@Param("n_no") int n_no) throws Exception;
 	
 }

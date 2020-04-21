@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>SON-IN-RAW IS DICE - my page</title>
+<title>내 사위는 주사위</title>
 
 <!-- 파피콘 -->
 <link rel="icon" type="image/png" href="/images/share/wolf_logo.ico" />
@@ -32,9 +32,9 @@
 <%-- <meta id="_csrf" name="_csrf" content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	content="${_csrf.headerName}" /> --%>
-	
+
 <style>
-.header-top{
+.header-top {
 	position: fixed;
 	top: 0;
 }
@@ -60,13 +60,15 @@
 										value="${member.m_no} ">receive</button>
 								</div>
 								<div>
-									<button type="button" class="btn-send active" value="${member.m_no}">send</button>
+									<button type="button" class="btn-send active"
+										value="${member.m_no}">send</button>
 								</div>
 							</div>
 							<div class="srch_bar">
 								<!-- <div class="stylish-input-group"> -->
 								<div class="delBtn">
-									<button type="button" class="selectDelete_btn" style="cursor: pointer;"
+									<button type="button" class="selectDelete_btn"
+										style="cursor: pointer;"
 										data-NN="<%-- ${message['N_NO']} --%>">delete</button>
 								</div>
 								<!-- </div> -->
@@ -99,12 +101,14 @@
 												</div>
 												<div class="chat_ib">
 													<h5>
-														<input class="select_note" type="button" style=" " 
+														<c:if test="${ message['N_CHECK'] == 1 }">
+															<i class="fas fa-bell"
+																style="font-size: 20px; color: #8861B4"></i>
+														</c:if>
+														<input class="select_note" type="button" style=""
 															id="${message['N_NO']}" value="${message['N_TITLE']}" />
-														<%-- <a href="#n_no${message['N_NO']}"
-															class="select_note_content">${message['N_TITLE']} </a> --%>
-														<span
-															class="chat_date"> <fmt:formatDate
+
+														<span class="chat_date"> <fmt:formatDate
 																pattern="yyyy-MM-dd HH:mm"
 																value="${message['N_WRITTEN_DATE']}" />
 														</span>
@@ -129,8 +133,9 @@
 								<div class="msg_history tab_content" id="n_no${message['N_NO']}">
 									<h5 class="text-center" id="one_n_title">${message['N_TITLE']}</h5>
 									<hr />
-									<p>보낸 이 : ${message['M2_NICK']}
-										<span class="time_date" id="one_n_date"><fmt:formatDate
+									<p>
+										보낸 이 : ${message['M2_NICK']} <span class="time_date"
+											id="one_n_date"><fmt:formatDate
 												pattern="yyyy-MM-dd HH:mm"
 												value="${message['N_WRITTEN_DATE']}" /></span>
 									</p>
