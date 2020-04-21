@@ -149,6 +149,9 @@ public class MyPageController {
 		
 		//////////////////내 신고 //////////////////////////
 		model.addAttribute("myReport", adminService.myReportList(m_no));
+		
+		///////////////// 내 문의 //////////////////////////
+		model.addAttribute("myAsk", adminService.myAskList(m_no));
 				
 		return "mypage/mypage";
 	}

@@ -406,41 +406,46 @@
 								file="/WEB-INF/views/mypage/mytrade/mypage_mytrade.jsp"%>
 							<!-- 내 거래 include end -->
 
+
+							<!-- 내 문의  -->
 							<div class="tab-pane tab-pane2 education-detail fade"
 								id="ask" role="tabpanel" aria-labelledby="contact-tab">
 								<div class="table-mypage JSD-Bold-12.5">
 									<table class="table">
 										<tr class="table_row header">
-											<td class="cell text-center">댓글<br /> 번호
-											</td>
-											<td class="cell text-center">댓글 내용</td>
+											<td class="cell text-center">글번호</td>
+											<td class="cell text-center">말머리</td>
+											<td class="cell text-center">글제목</td>
+											<td class="cell text-center">답변여부</td>
 											<td class="cell text-center">작성일</td>
 										</tr>
-										<c:forEach items="${myCommentList}" var="cm">
+										<c:forEach items="${myAsk}" var="ask">
 											<tr class="trow">
-												<td class="cell">${cm['RNUM']}</td>
-												<td class="cell title text-left"><c:choose>
-														<c:when test="${cm['CM_TYPE'] == '게시판'}">
-															<a href="/content_view?bw_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
-														</c:when>
-														<c:when test="${cm['CM_TYPE'] == '카페리뷰'}">
-															<a href="/content_view_cr?cr_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
-														</c:when>
-														<c:when test="${cm['CM_TYPE'] == '중고거래'}">
-															<a href="/content_view_t?t_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
-														</c:when>
-														<c:when test="${cm['CM_TYPE'] == '한줄평'}">
-															<a href="/content_view_c?c_no=${cm['CM_NO2']}">${cm['CM_CONTENT']}</a>
-														</c:when>
-													</c:choose></td>
+												<td class="cell">${ask['RNUM']}</td>
+												<td class="cell">
+													<c:choose>
+														<c:when test="${ask['S_NO'] eq '27'}">회원 관련 문의</c:when>
+														<c:when test="${ask['S_NO'] eq '28'}">결제 관련 문의</c:when>
+														<c:when test="${ask['S_NO'] eq '29'}">정보수정 요청</c:when>
+														<c:when test="${ask['S_NO'] eq '30'}">무인도 관련 문의</c:when>
+														<c:when test="${ask['S_NO'] eq '31'}">기타 문의</c:when>
+													</c:choose>
+												</td>
+												<td class="cell"><a href="/content_view?bw_no=${ask['BW_NO']}">${ask['BW_TITLE']}</a></td>
+												<td class="cell">
+													<c:choose>
+														<c:when test="${ask['CM'] eq 0}">N</c:when>
+														<c:otherwise>Y</c:otherwise>
+													</c:choose>
+												</td>
 												<td>
 													<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 --> <fmt:formatDate
 														value="${today}" pattern="yyyy.MM.dd" var="now" /> <fmt:formatDate
-														value="${cm['CM_WRITTEN_DATE']}" pattern="yyyy.MM.dd"
+														value="${ask['BW_WRITTEN_DATE']}" pattern="yyyy.MM.dd"
 														var="date" /> <c:choose>
 														<c:when test="${now ne date}">${date}</c:when>
 														<c:otherwise>
-															<fmt:formatDate value="${cm['CM_WRITTEN_DATE']}"
+															<fmt:formatDate value="${ask['BW_WRITTEN_DATE']}"
 																pattern="HH:mm" />
 														</c:otherwise>
 													</c:choose>

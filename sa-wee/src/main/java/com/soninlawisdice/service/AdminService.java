@@ -45,6 +45,10 @@ public interface AdminService {
 	//mypage report List 신고
 	public ArrayList<HashMap<String, Object>> myReportList(int m_no);
 	
+	
+	//mypage 내 1대1 문의 ask
+	public ArrayList<HashMap<String, Object>> myAskList(int m_no);
+	
 		
 	// 페이징 처리 + 검색  List
 	public ArrayList<HashMap<String, Object>> boardList(SearchCriteria scri, int bt_no, String s_content, String sort);
