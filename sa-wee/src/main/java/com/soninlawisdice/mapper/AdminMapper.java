@@ -73,6 +73,13 @@ public interface AdminMapper {
 	public ArrayList<HashMap<String, Object>> tradeList(@Param("scri")SearchCriteria scri);
 	public int tradeListCount(@Param("scri")SearchCriteria scri);
 	
+	public ArrayList<HashMap<String, Object>> sponsorList(@Param("scri")SearchCriteria scri);
+	public int sponsorListCount(@Param("scri")SearchCriteria scri);
+	
+	public ArrayList<HashMap<String, Object>> commentList(@Param("scri")SearchCriteria scri);
+	public int commentListCount(@Param("scri")SearchCriteria scri);
+	
+	
 	// trade : p_price 값 가져오기 
 	public PaymentVO selectTrade(int p_no);
 	

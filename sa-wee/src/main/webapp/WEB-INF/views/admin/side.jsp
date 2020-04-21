@@ -90,6 +90,8 @@
                                 </li>
                                 <li><a href="island_list"><i class="menu-icon icon-flag"></i>무인도관리 </a><!-- icon-leaf -->
                                 </li>
+                                 <li><a href="comment_list"><i class="menu-icon icon-comments"></i>댓글관리 </a><!-- icon-leaf -->
+                                </li>
                             </ul>
                             <!--/.widget-nav-->
                             
