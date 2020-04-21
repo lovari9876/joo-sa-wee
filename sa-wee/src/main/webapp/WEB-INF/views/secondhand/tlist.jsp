@@ -32,6 +32,16 @@
     <!-- favicons
     ================================================== -->
 	<link rel="icon" type="image/png" href="resources/images/share/wolf_logo.ico" />
+	
+	<!-- 다른 회원 정보 보기 팝업 
+    ================================================== -->	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="js/board_hs/bootstrap.min.js"></script>
+	<script src="js/board_hj/popover.js"></script>	
+	<script src="js/mypage/other_page.js"></script>
+    <link rel="stylesheet" href="css/secondhand/popover_bootstrap.css">
+
+	
 </head>
 
 <body id="top">
@@ -169,8 +179,21 @@
 		                            <h1 class="entry__title"><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']}</a></h1>
 		                            
 		                        </div>
-		                        <div class="entry__excerpt" style="font-family:ariel;">
-		                            ${tItem['M_NICK']}
+		                        <div class="entry__excerpt" >		                            
+		                            <sec:authorize access="isAuthenticated()">	
+										<a  class="pointer" role = "button" class="pop_btn popovers"
+										data-toggle="popover" 
+										data-content="<a href='#' id='other_page' data-nick='${tItem["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+										<br/>
+														<a href='#' id='send_message' data-nick='${tItem["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
+										<br/>			
+														<a href='report_view_m?m_no=${tItem["M_NO"]}&bw_no=${tItem["T_NO"]}'>신고하기</a>">
+										${tItem['M_NICK']}
+										</a>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										${tItem['M_NICK']}
+									</sec:authorize>	
 		                        </div>
 		                        <div class="entry__excerpt" style="font-weight:50;">
 		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']}  | 댓글수 ${tItem['CM']}
@@ -212,8 +235,21 @@
 		                            <h1 class="entry__title"><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']} </a></h1>
 		                            
 		                        </div>
-								<div class="entry__excerpt" style="font-family:ariel;">
-		                            ${tItem['M_NICK']}
+								<div class="entry__excerpt" >
+		                            <sec:authorize access="isAuthenticated()">	
+										<a  class="pointer" role = "button" class="pop_btn popovers"
+										data-toggle="popover" 
+										data-content="<a href='#' id='other_page' data-nick='${tItem["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+										<br/>
+														<a href='#' id='send_message' data-nick='${tItem["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
+										<br/>			
+														<a href='report_view_m?m_no=${tItem["M_NO"]}&bw_no=${tItem["T_NO"]}'>신고하기</a>">
+										${tItem['M_NICK']}
+										</a>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										${tItem['M_NICK']}
+									</sec:authorize>	
 		                        </div>
 		                        <div class="entry__excerpt" style="font-weight:50;">
 		                            조회수 ${tItem['T_HIT']} | 추천수 ${tItem['T_RECOMMEND_NUM']} | 댓글수 ${tItem['CM']}
@@ -231,149 +267,8 @@
 	                </c:forEach>
 	                
 	            </div> <!-- end masonry -->
-	        </div> <!-- end masonry-wrap -->               
-	
-	
-	                <%-- <article class="masonry__brick entry format-quote" data-aos="fade-up">
-	                        
-	                    <div class="entry__thumb">
-	                        <blockquote>
-	                                <p>Good design is making something intelligible and memorable. Great design is making something memorable and meaningful.</p>
-	    
-	                                <cite>Dieter Rams</cite>
-	                        </blockquote>
-	                    </div>   
-	    
-	                </article> <!-- end article -->
-	
-	                <article class="masonry__brick entry format-video" data-aos="fade-up">
-	                        
-	                    <div class="entry__thumb video-image">
-	                        <a href="https://player.vimeo.com/video/117310401?color=01aef0&title=0&byline=0&portrait=0" data-lity>
-	                            <img src="images/cassie/thumbs/masonry/shutterbug-400.jpg" 
-	                                 srcset="images/cassie/thumbs/masonry/shutterbug-400.jpg 1x, images/cassie/thumbs/masonry/shutterbug-800.jpg 2x" alt="">
-	                        </a>
-	                    </div>
-	    
-	                    <div class="entry__text">
-	                        <div class="entry__header">
-	                            
-	                            <div class="entry__date">
-	                                <a href="single-video.html">December 10, 2017</a>
-	                            </div>
-	                            <h1 class="entry__title"><a href="single-video.html">Key Benefits Of Family Photography.</a></h1>
-	                            
-	                        </div>
-	                        <div class="entry__excerpt">
-	                            <p>
-	                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-	                            </p>
-	                        </div>
-	                        <div class="entry__meta">
-	                            <span class="entry__meta-links">
-	                                <a href="category.html">Family</a> 
-	                                <a href="category.html">Photography</a>
-	                            </span>
-	                        </div>
-	                    </div>
-	    
-	                </article> <!-- end article -->
-	
-	
-	                <article class="masonry__brick entry format-gallery" data-aos="fade-up">
-	                        
-	                    <div class="entry__thumb slider">
-	                        <div class="slider__slides">
-	                            <div class="slider__slide">
-	                                <img src="images/cassie/thumbs/masonry/gallery/gallery-1-400.jpg" 
-	                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-1-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-1-800.jpg 2x" alt=""> 
-	                            </div>
-	                            <div class="slider__slide">
-	                                <img src="images/cassie/thumbs/masonry/gallery/gallery-2-400.jpg" 
-	                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-2-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-2-800.jpg 2x" alt=""> 
-	                            </div>
-	                            <div class="slider__slide">
-	                                <img src="images/cassie/thumbs/masonry/gallery/gallery-3-400.jpg" 
-	                                     srcset="images/cassie/thumbs/masonry/gallery/gallery-3-400.jpg 1x, images/cassie/thumbs/masonry/gallery/gallery-3-800.jpg 2x" alt="">  
-	                            </div>
-	                        </div>
-	                    </div>
-	    
-	                    <div class="entry__text">
-	                        <div class="entry__header">
-	                            
-	                            <div class="entry__date">
-	                                <a href="single-gallery.html">December 10, 2017</a>
-	                            </div>
-	                            <h1 class="entry__title"><a href="single-gallery.html">Workspace Design Trends and Ideas.</a></h1>
-	                            
-	                        </div>
-	                        <div class="entry__excerpt">
-	                            <p>
-	                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-	                            </p>
-	                        </div>
-	                        <div class="entry__meta">
-	                            <span class="entry__meta-links">
-	                                <a href="category.html">Work</a> 
-	                                <a href="category.html">Management</a>
-	                            </span>
-	                        </div>
-	                    </div>
-	    
-	                </article> <!-- end article -->
-	
-	                <article class="masonry__brick entry format-audio" data-aos="fade-up">
-	
-	                    <div class="entry__thumb">
-	                        <a href="single-audio.html" class="entry__thumb-link">
-	                            <img src="images/cassie/thumbs/masonry/guitarman-400.jpg" 
-	                                 srcset="images/cassie/thumbs/masonry/guitarman-400.jpg 1x, images/cassie/thumbs/masonry/guitarman-800.jpg 2x" alt="">
-	                        </a>
-	                        <div class="audio-wrap">
-	                            <audio id="player" src="media/AirReview-Landmarks-02-ChasingCorporate.mp3" width="100%" height="42" controls="controls"></audio>
-	                        </div>
-	                    </div>
-	
-	                    <div class="entry__text">
-	                        <div class="entry__header">
-	                            
-	                            <div class="entry__date">
-	                                <a href="single-audio.html">December 10, 2017</a>
-	                            </div>
-	                            <h1 class="entry__title"><a href="single-audio.html">What Your Music Preference Says About You and Your Personality.</a></h1>
-	                            
-	                        </div>
-	                        <div class="entry__excerpt">
-	                            <p>
-	                                Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua...
-	                            </p>
-	                        </div>
-	                        <div class="entry__meta">
-	                            <span class="entry__meta-links">
-	                                <a href="category.html">Music</a> 
-	                                <a href="category.html">Lifestyle</a>
-	                            </span>
-	                        </div>
-	                    </div>
-	
-	                </article> <!-- end article -->
-	
-	                <article class="masonry__brick entry format-link" data-aos="fade-up">
-	                    
-	                    <div class="entry__thumb">
-	                        <div class="link-wrap">
-	                            <p>The Only Resource You Will Need To Start a Blog Using WordPress.</p>
-	                            <cite>
-	                                <a target="_blank" href="https://colorlib.com/">https://colorlib.com</a>
-	                            </cite>
-	                        </div>
-	                    </div>
-	                    
-	                </article> <!-- end article -->
-	
-	                 --%>
-
+	        </div> <!-- end masonry-wrap -->     
+	        
 		  </div> <!-- end view1 -->
 			
 			
@@ -401,7 +296,22 @@
 										<tr>											
 											<td><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_NO']}</a></td>
 											<td>${tItem['S_CONTENT']}</td>
-											<td>${tItem['M_NICK']}</td>
+											<td>
+												<sec:authorize access="isAuthenticated()">	
+													<a  class="pointer" role = "button" class="pop_btn popovers"
+													data-toggle="popover" 
+													data-content="<a href='#' id='other_page' data-nick='${tItem["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+													<br/>
+																	<a href='#' id='send_message' data-nick='${tItem["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
+													<br/>			
+																	<a href='report_view_m?m_no=${tItem["M_NO"]}&bw_no=${tItem["T_NO"]}'>신고하기</a>">
+													${tItem['M_NICK']}
+													</a>
+												</sec:authorize>
+												<sec:authorize access="isAnonymous()">
+													${tItem['M_NICK']}
+												</sec:authorize>
+											</td>
 											<td><a href="content_view_t?t_no=${tItem['T_NO']}">${tItem['T_TITLE']}  [${tItem['CM']}]</a></td>
 											<td>
 												<!-- 작성일이 오늘이면 시간, 아니면 날짜 출력 jstl로 구현 -->

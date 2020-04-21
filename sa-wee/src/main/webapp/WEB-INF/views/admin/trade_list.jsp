@@ -142,7 +142,8 @@
 									</td>	
 									
 									<td class="cell"> <!-- 버튼 -->
-										<button class="btn pgt_account" type="button" data-sno="${trade['M_SNO']}" data-bno="${trade['M_BNO']}">
+										<button class="btn pgt_account" type="button" value="${trade['P_NO']}" 
+												data-sno="${trade['M_SNO']}" data-bno="${trade['M_BNO']}">
 											입금
 										</button> 
 									</td>	
@@ -163,9 +164,10 @@
 						});
 						
 						$(".pgt_account").click(function() {
+							var p_no = $(this).val();
 							var sno = $(this).attr('data-sno');
 							var bno = $(this).attr('data-bno');
-							window.open("trade_list_account/" + sno + "/" + bno, "a", "width=450, height=320, left=800, top=300"); 
+							window.open("trade_list_account/" + p_no + "/" + sno + "/" + bno, "a", "width=450, height=320, left=800, top=300"); 
 						});
 						
 					

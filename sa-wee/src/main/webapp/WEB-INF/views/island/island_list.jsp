@@ -23,13 +23,6 @@
     <link rel="stylesheet" href="css/island/base.css">
     <link rel="stylesheet" href="css/island/vendor.css">
     <link rel="stylesheet" href="css/island/main.css">
-    
-	<style type="text/css" media="screen"> /* 이 페이지에만 해당쓰~~ */
-    	body{
-    		
-    		
-    	}  
-    </style> 
 
     <!-- script
     ================================================== -->
@@ -39,6 +32,14 @@
     <!-- favicons
     ================================================== -->
 	<link rel="icon" type="image/png" href="resources/images/share/wolf_logo.ico" />
+	
+	<!-- 다른 회원 정보 보기 팝업 
+    ================================================== -->	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="js/board_hs/bootstrap.min.js"></script>
+	<script src="js/board_hj/popover.js"></script>	
+	<script src="js/mypage/other_page.js"></script>
+    <link rel="stylesheet" href="css/secondhand/popover_bootstrap.css">
 
 </head>
 
@@ -180,7 +181,22 @@
 												<c:otherwise>불명확</c:otherwise>
 											</c:choose>
 										</td>
-										<td>${IMap['M_NICK']}</td>
+										<td>
+											<sec:authorize access="isAuthenticated()">	
+												<a  class="pointer" role = "button" class="pop_btn popovers"
+												data-toggle="popover" 
+												data-content="<a href='#' id='other_page' data-nick='${IMap["M_NICK"]}' onclick='return false;' >회원정보보기</a>
+												<br/>
+																<a href='#' id='send_message' data-nick='${IMap["M_NICK"]}' onclick='return false;' >쪽지보내기</a>
+												<br/>			
+																<a href='report_view_m?m_no=${IMap["M_NO"]}&bw_no=${IMap["I_NO"]}'>신고하기</a>">
+												${IMap["M_NICK"]}
+												</a>
+											</sec:authorize>
+											<sec:authorize access="isAnonymous()">
+												${tItem['M_NICK']}
+											</sec:authorize>
+										</td>
 										<td> <!-- 컨텐트 뷰 링크 -->
 											<a href="/content_view_i?i_no=${IMap['I_NO']}&bt_no=${IMap['BT_NO']}">${IMap['I_TITLE']}</a>
 										</td>

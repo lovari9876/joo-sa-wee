@@ -176,3 +176,161 @@ set
 m.m_point = m.m_point + (select sp.sp_money from sponsor sp where sp.sp_no = 4)
 where m.m_no = (select sp.m_no from sponsor sp where sp.sp_no = 4) ;
 
+
+-- tLIST
+
+		SELECT 
+			*
+		FROM 
+		
+			(	
+			SELECT 
+				NEWT.*, 
+				ROW_NUMBER() OVER(
+					ORDER BY T_NO DESC
+				) AS RNUM 
+			FROM 			
+				(
+				SELECT 
+					T.*, M.M_NICK, M.M_ID, S.S_CONTENT, F.F_NAME,
+					(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_NO2 = T.T_NO) CM					
+				FROM
+					TRADE T
+				LEFT JOIN
+					MEMBER M
+				ON 
+					T.M_NO = M.M_NO
+				LEFT JOIN
+					SUBJECT S
+				ON 
+					T.S_NO = S.S_NO
+				LEFT OUTER JOIN
+				    BOARD_FILE BF
+				ON
+				    BF.BF_WNO = T.T_NO
+				LEFT JOIN
+				    F_FILE F
+				ON
+				    F.F_NO = BF.F_NO						
+				WHERE 
+					1=1 AND T.T_ISLAND = 0
+                    
+                    
+					AND F.F_NO IN 
+								(SELECT 
+									MAX(BF.F_NO)
+								FROM 
+									BOARD_FILE BF 
+								WHERE 
+									BF.BT_NO = 9 
+								GROUP BY 
+									BF.BF_WNO 
+								) 
+                AND F.F_NAME IS NULL
+                                --<!-- 파일 번호를 T_NO으로 그룹바이해서 출력 -->
+				) NEWT				
+			)	
+			
+		WHERE 1=1
+			
+			ORDER BY T_NO DESC
+            ;
+
+		SELECT 
+			*
+		FROM 
+		
+			(	
+			SELECT 
+				NEWT.*, 
+				ROW_NUMBER() OVER(
+					<choose> <!-- 조회순, 신고순 -->
+						<when test = "sort == 'hit'">ORDER BY T_HIT DESC</when>
+						<when test = "sort == 'report'">ORDER BY T_REPORT_NUM DESC </when>
+						<otherwise>ORDER BY T_NO DESC</otherwise>
+					</choose>
+				) AS RNUM 
+			FROM 			
+				(
+				SELECT 
+					T.*, M.M_NICK, M.M_ID, S.S_CONTENT, F.F_NAME,
+					(SELECT COUNT(*) FROM CM_COMMENT WHERE CM_NO2 = T.T_NO) CM					
+				FROM
+					TRADE T
+				LEFT JOIN
+					MEMBER M
+				ON 
+					T.M_NO = M.M_NO
+				LEFT JOIN
+					SUBJECT S
+				ON 
+					T.S_NO = S.S_NO
+				LEFT JOIN
+				    BOARD_FILE BF
+				ON
+				    BF.BF_WNO = T.T_NO
+				LEFT JOIN
+				    F_FILE F
+				ON
+				    F.F_NO = BF.F_NO						
+				WHERE 
+					1=1 AND T.T_ISLAND = 0
+					<include refid="subjectSearch"></include> <!-- 말머리 검색 -->
+					<include refid="tradeSearch"></include>	<!-- 검색어 검색 -->
+					<if test="F.F_NAME != null"> 
+						AND F.F_NO IN 
+							(SELECT 
+								MAX(BF.F_NO)
+							FROM 
+								BOARD_FILE BF 
+							WHERE 
+								BF.BT_NO = 9 
+							GROUP BY 
+								BF.BF_WNO 
+							) <!-- 파일 번호를 T_NO으로 그룹바이해서 출력 -->
+					</if>						
+
+				) NEWT				
+			)	
+			
+		WHERE 
+			RNUM BETWEEN #{scri.rowStart} AND #{scri.rowEnd}
+			<choose>
+				<when test = "sort == 'hit'">ORDER BY T_HIT DESC</when>
+				<when test = "sort == 'report'">ORDER BY T_REPORT_NUM DESC </when>
+				<otherwise>ORDER BY T_NO DESC</otherwise>
+			</choose>
+;
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

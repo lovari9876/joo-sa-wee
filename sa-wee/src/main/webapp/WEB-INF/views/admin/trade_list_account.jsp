@@ -14,6 +14,10 @@
 <link type="text/css" href="/images/admin/icons/css/font-awesome.css"rel="stylesheet">
 <link type="text/css"href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'rel='stylesheet'>
 <!-- <link rel="stylesheet" href="css/liststyle.css" /> -->
+
+<!-- jQuery for  -->
+<script src="/js/cassie/jquery-3.2.1.min.js"></script>
+
 </head>
 
 
@@ -44,7 +48,8 @@
 										<td class="cell">${account_s.m_bank}</td>	
 										<td class="cell">${account_s.m_account}</td>	
 										<td class="cell"> <!-- 버튼 -->
-											<button class="btn" type="button">
+											<button class="btn" type="button" value="${p_no}" 
+													onclick="buyerRefund(this);">
 												환불
 											</button> 
 										</td>	
@@ -75,7 +80,8 @@
 										<td class="cell">${account_b.m_bank}</td>	
 										<td class="cell">${account_b.m_account}</td>	
 										<td class="cell"> <!-- 버튼 -->
-											<button class="btn" type="button">
+											<button class="btn" type="button" value="${p_no}" 
+													onclick="sellerRemit(this);">
 												입금
 											</button> 
 										</td>	
@@ -87,11 +93,37 @@
 				
 				
 			</div>
-		</div>
+		</div>		
 
+	<script type="text/javascript">
+		/* 구매자 환불 */
+		function buyerRefund(btn) {
+			var p_no = $(btn).val();
+			
+			alert("구매자에게 환불 처리합니다.");
+			
+			// 부모창 이동, 자식 닫기
+			opener.document.location.href="/admin/trade_list_refund/"+p_no;			
+			self.close();
+		}
+		
+		/* 판매자 입금 */
+		function sellerRemit(btn) {
+			var p_no = $(btn).val();
+			
+			alert("판매자에게 판매대금을 입금 처리합니다.");
+			
+			// 부모창 이동, 자식 닫기
+			opener.document.location.href="/admin/trade_list_remit/"+p_no;			
+			self.close();
+		}
+	
+	</script>
 	
 	<script src="/js/admin/jquery-ui-1.10.1.custom.min.js"
 		type="text/javascript"></script>
 	<script src="/js/admin/bootstrap.min.js" type="text/javascript"></script>
+
+
 </body>
 </html>

@@ -51,8 +51,8 @@
 						<tbody id="ajax-sponsor">
 						</tbody>			
 									
-							<!-- 1,000원 ~ 10,000원 -->
-							<c:forEach var="i" begin="1" end="3">
+							<!-- 1,000원 5000원 -->
+							<c:forEach var="i" begin="1" end="5" step="4">
 								<tr class="table--row sum--row">
 									<td class="table--cell">
 										<input type="radio" id="amount${i}000" name="spAmount" value="${i}000">
@@ -63,8 +63,8 @@
 								</tr>
 							</c:forEach>
 							
-							<!-- 20,000원 ~ 100,000원 -->
-							<c:forEach var="j" begin="2" end="10">
+							<!-- 10,000원 ~ 100,000원 -->
+							<c:forEach var="j" begin="1" end="10">
 								<tr class="table--row sum--row">
 									<td class="table--cell">
 										<input type="radio" id="amount${j}0000" name="spAmount" value="${j}0000">

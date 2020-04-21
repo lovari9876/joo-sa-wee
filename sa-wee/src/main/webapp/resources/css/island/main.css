@@ -90,7 +90,7 @@ html, body {
 
 body {
 	background: #19191b;
-	font-family: "metropolis-regular", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 	font-size: 1.6rem;
 	font-style: normal;
 	font-weight: normal;
@@ -114,6 +114,7 @@ a {
 
 a:hover, a:focus, a:active {
 	color: #000000;
+	cursor: pointer;
 }
 
 a:hover, a:active {
@@ -439,7 +440,7 @@ table {
 	border-width: 0;
 	width: 100%;
 	max-width: 100%;
-	font-family: "metropolis-regular", sans-serif;
+	font-family: 'JSDongkang-Regular', sans-serif;
 }
 
 th, td {
@@ -450,7 +451,7 @@ th, td {
 
 th {
 	color: #000000;
-	font-family: "metropolis-bold", sans-serif;
+	font-family: 'JSDongkang-Bold', sans-serif;
 }
 
 td {
@@ -2421,7 +2422,7 @@ to {
     white-space: normal;
     line-height: normal;
     font-weight: normal;
-    font-size: 13.5px;
+    font-size: 12px;
     font-style: normal;
     text-align: start;
     border-spacing: 2px;
