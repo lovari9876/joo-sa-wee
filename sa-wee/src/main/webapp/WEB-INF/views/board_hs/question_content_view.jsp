@@ -166,8 +166,16 @@
 						</div>
 					</form>
 					
-					<!-- 댓글부분 -->
+					<br/>
+					<br/>
+					<br/>
+					
 					<c:choose>
+					<c:when test="${content_view['BW_SECRET'] eq  'y'}">	
+						<c:choose>
+							<c:when test="${content_view['M_NO'] eq m_no or m_no eq 0}">
+								
+								<c:choose>
 						<c:when test="${content_view['BT_NO'] == 8}">
 							<c:import url="/comment_view_bw">
 								<c:param name="cm_type" value="게시판"></c:param>
@@ -178,11 +186,56 @@
 							<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
 						</c:otherwise>
 					</c:choose>
+							</c:when>
+							<c:otherwise>
+								 - 비밀글의 댓글은 볼 수 없습니다 -
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<c:choose>
+						<c:when test="${content_view['BT_NO'] == 8}">
+							<c:import url="/comment_view_bw">
+								<c:param name="cm_type" value="게시판"></c:param>
+								<c:param name="cm_no2" value="${content_view['BW_NO']}"></c:param>
+							</c:import>
+						</c:when>
+						<c:otherwise>
+							<%@ include file="/WEB-INF/views/content/comment_view_bw.jsp" %>
+						</c:otherwise>
+					</c:choose>
+					</c:otherwise>
+				</c:choose>
 					
-					<!-- 댓글 쓰기 -->
-					<div class="comment-form-wrap pt-5">
+					
+					
+					<c:choose>
+					<c:when test="${content_view['BW_SECRET'] eq  'y'}">	
+						<c:choose>
+							<c:when test="${content_view['M_NO'] eq m_no or m_no eq 0}">
+								<div class="comment-form-wrap pt-5">
 						<%@ include file="/WEB-INF/views/content/comment_write_view_q.jsp" %>
 					</div>
+							</c:when>
+							<c:otherwise>
+								<h4>  </h4> 
+							</c:otherwise>
+						</c:choose>
+					</c:when>
+					<c:otherwise>
+						<div class="comment-form-wrap pt-5">
+						<%@ include file="/WEB-INF/views/content/comment_write_view_q.jsp" %>
+					</div>
+					</c:otherwise>
+				</c:choose>
+					
+					
+					
+					<!-- 댓글부분 -->
+					
+					
+					<!-- 댓글 쓰기 -->
+					
 				</div>
 			</div>
 		</div>
