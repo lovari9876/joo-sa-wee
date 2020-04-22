@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.soninlawisdice.mapper.ContentMapper;
+import com.soninlawisdice.service.AdminService;
 import com.soninlawisdice.service.BoardService;
 import com.soninlawisdice.service.ContentService;
 import com.soninlawisdice.service.MyPageService;
@@ -48,6 +49,9 @@ public class HeeJeongController {
 	
 	@Autowired
 	private MyPageService myPageService;
+	
+	@Autowired
+	private AdminService adminService;
 
 	private static final Logger logger = LoggerFactory.getLogger(HeeJeongController.class);
 
@@ -193,7 +197,7 @@ public class HeeJeongController {
 	@RequestMapping(value = "/comment_write_q", method = RequestMethod.POST)
 	public String comment_write_q(@ModelAttribute("cm_commentVO") CM_commentVO cm_commentVO, 
 									Model model, @RequestParam int bw_no, @RequestParam("m_no") int m_no, RedirectAttributes re,
-									Principal principal, MemberVO memberVO) throws Exception {
+									Principal principal, MemberVO memberVO, int m_point) throws Exception {
 		System.out.println("comment_write_bw");
 		
 		System.out.println(cm_commentVO.getCm_no2());
@@ -212,6 +216,8 @@ public class HeeJeongController {
 		
 		contentService.insertCommentBW(cm_commentVO);
 		contentService.updatePoint(cm_commentVO);
+		
+		adminService.confirmIsland_member(m_no, m_point);
 		
 //		int bw_no = Integer.parseInt(rq.getParameter("bw_no"));
 		re.addAttribute("bw_no", bw_no);
