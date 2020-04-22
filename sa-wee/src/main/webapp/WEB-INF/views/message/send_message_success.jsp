@@ -19,8 +19,10 @@
 <body>
 
 	<script type="text/javascript">
-		history.go(-1);
-	</script>
+		alert("메시지 전송이 완료되었습니다.");
+		window.opener.location.reload();
+		window.close();
+    </script>
 
 	<!--===============================================================================================-->
 	<script
