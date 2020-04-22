@@ -992,6 +992,13 @@ ul, ol {
 	background: #5a5280;
 }
 
+
+/* 탭 선택 */
+.game-filter .btn-color-select {
+	background: #5a5280;
+}
+
+
 .game-filter li a {
 	font-size: 12px;
 	font-weight: 700;

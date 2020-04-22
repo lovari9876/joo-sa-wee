@@ -52,7 +52,7 @@
 	</div>
 
 	<!-- Header section -->
-	
+	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
 	<!-- header include start -->
 	<%@ include file="/WEB-INF/views/share/header.jsp" %>
 	<!-- header include end -->
@@ -67,13 +67,28 @@
 					<h3>1 : 1 문의</h3>
 					<p>문의하세요</p>
 				</div>
+				<script>
+				      $(function(){
+							  $('#searchBtn').click(function() {
+							  	event.preventDefault(); // event canceled 막기!
+							    	self.location = "question_list" 
+							    				+ '${pageMaker.makeQuery(1)}' 
+							    				+ "&searchType=" 
+							    				+ $("#searchType option:selected").val() 
+							    				+ "&s_content=" 
+							    				+ "${s_content}"
+							    				+ "&keyword=" 
+							    				+ encodeURIComponent($('#keywordInput').val());
+							  });
+							}); 
+				  </script>
 
 
 				<!-- Search Bar  -->
 				<form>
 					<div class="search">
 						<div class="dropdown pull-right">
-								<select name="searchType" class="span2">
+								<select id="searchType" name="searchType" class="span2">
 									<option value = "n" class="btn" <c:out value="${scri.searchType == null ? 'selected' : ''}"/>>전체보기</option>
 									<option value = "t" class="btn" <c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
 									<option value = "c" class="btn" <c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
@@ -97,17 +112,17 @@
 				<div class=tab-table>
 					<!-- 탭부분 -->
 					<ul class="tab">
-						<li class="current" data-tab="tab1"><button type = "button" 
+						<li <c:out value="${s_content eq null ? 'class = current' : ''}"/>  data-tab="tab1"><button type = "button" 
 							onclick ="location.href='question_list'">전체보기</button></li>
-						<li data-tab="tab2" id = "27"><button type = "button" value = "27" class = "select"
+						<li <c:out value="${s_content == '27' ? 'class = current' : ''}"/> data-tab="tab2" id = "27"><button type = "button" value = "27" class = "select"
 							onclick ="location.href='question_list?s_content=27'">회원 관련 문의</button></li>
-						<li data-tab="tab3" id = "28"><button type = "button" value = "28" class= "select"
+						<li <c:out value="${s_content == '28' ? 'class = current' : ''}"/> data-tab="tab3" id = "28"><button type = "button" value = "28" class= "select"
 							onclick ="location.href='question_list?s_content=28'">결제 관련 문의</button></li>
-						<li data-tab="tab4" id = "29"><button type = "button" value = "29" class = "select"
+						<li <c:out value="${s_content == '29' ? 'class = current' : ''}"/> data-tab="tab4" id = "29"><button type = "button" value = "29" class = "select"
 							onclick ="location.href='question_list?s_content=29'">정보수정 요청</button></li>
-						<li data-tab="tab5" id = "30"><button type = "button" value = "30" class = "select"
+						<li <c:out value="${s_content == '30' ? 'class = current' : ''}"/> data-tab="tab5" id = "30"><button type = "button" value = "30" class = "select"
 							onclick ="location.href='question_list?s_content=30'">무인도 관련 문의</button></li>
-						<li data-tab="tab6" id = "31"><button type = "button" value = "31" class= "select"
+						<li <c:out value="${s_content == '31' ? 'class = current' : ''}"/> data-tab="tab6" id = "31"><button type = "button" value = "31" class= "select"
 							onclick ="location.href='question_list?s_content=31'">기타 문의</button></li>
 					</ul>
 
@@ -332,7 +347,7 @@
 
 
 	<!--====== Javascripts & Jquery ======-->
-	<script src="js/board_hs/jquery-3.2.1.min.js"></script>
+	
 	<script src="js/board_hs/bootstrap.min.js"></script>
 	<script src="js/board_hs/jquery.slicknav.min.js"></script>
 	<script src="js/board_hs/owl.carousel.min.js"></script>
@@ -341,7 +356,7 @@
 	<script src="js/board_hs/main.js"></script>
 	<script src="js/board_hs/doro.js"></script>
 	<script src="js/header/scroll.js"></script>
-	<script src="js/board_hs/tab.js"></script>
+<!-- 	<script src="js/board_hs/tab.js"></script> -->
 	<script src="js/board_hs/jquery.easing.1.3.js"></script>
 	<script src="js/board_hs/isotope.pkgd.min.js"></script>
 	<script src="js/board_hs/bootstrap-select.min.js"></script>
