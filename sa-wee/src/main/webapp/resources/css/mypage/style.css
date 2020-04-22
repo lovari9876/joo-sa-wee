@@ -103,8 +103,6 @@ a:hover, a:focus, input, textarea {
 html, body {
 	height: 100%;
 	background-image: url("../../images/bl_share/bg_3.jpg");
-	background-repeat : no-repeat;
-	background-size : cover;
 
 }
 
