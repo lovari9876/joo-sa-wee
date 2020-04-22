@@ -132,7 +132,7 @@
 									<tr class="trow">
 										<td class="cell"><input type="checkbox" name="chBox" class="chBox" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}"></td>
 										<td class="cell">${island['RNUM']}</td>
-										<td>
+										<td class="cell subject">
 											<c:choose>				
 													<c:when test="${island['BT_NO'] eq 1}">보드이야기</c:when>		
 													<c:when test="${island['BT_NO'] eq 2}">개봉기 및 리뷰</c:when>
