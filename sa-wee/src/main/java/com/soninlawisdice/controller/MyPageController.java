@@ -102,10 +102,11 @@ public class MyPageController {
 
 		String m_id = principal.getName();
 		memberVO = myPageService.mypage(m_id);
+		
+		int m_no = memberVO.getM_no();
+		adminService.confirmIsland_member(m_no, memberVO.getM_point());
 
 		model.addAttribute("member", memberVO);
-
-		int m_no = memberVO.getM_no();
 
 		int myWriteCount = myPageService.myWriteCount(m_no);
 		model.addAttribute("myWriteCount", myWriteCount);
@@ -115,6 +116,8 @@ public class MyPageController {
 			
 		int newNoteCount = myPageService.newNoteCount(m_no);
 		model.addAttribute("newNoteCount", newNoteCount);
+		
+
 		///////////// 내 후원 /////////////////////////////////
 		ArrayList<HashMap<String, Object>> sponsorList = 
 				sponsorService.selectSponsorList(m_no);

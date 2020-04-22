@@ -47,7 +47,8 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-4 eml-mob JSD-Bold-12" style="border-right: none;">
+							<div class="col-md-4 eml-mob JSD-Bold-12"
+								style="border-right: none;">
 								<div class="pd">
 									<br />
 									<p>
@@ -56,7 +57,8 @@
 									</p>
 								</div>
 							</div>
-							<div class="col-md-4 eml-mob JSD-Bold-12" style="border-right: none;">
+							<div class="col-md-4 eml-mob JSD-Bold-12"
+								style="border-right: none;">
 								<div class="pd">
 									<br />
 									<p>
@@ -77,8 +79,8 @@
 
 
 							<div class="tab-content" id="myTabContent">
-								<div class="tab-pane fade show active JSD-Bold-12" id="home" role="tabpanel"
-									aria-labelledby="home-tab">
+								<div class="tab-pane fade show active JSD-Bold-12" id="home"
+									role="tabpanel" aria-labelledby="home-tab">
 									<div class="row no-margin home-det">
 										<div class="col-md-4 eml-mob">
 											<br />
@@ -116,9 +118,7 @@
 												<h3>자기소개</h3>
 												<p>
 													<textarea name="m_self" id="m_self" rows="7"
-														class="form-control" style="resize: none;"
-														placeholder="${ member.m_self }"
-														value="${ member.m_self }"></textarea>
+														class="form-control" style="resize: none;">${ member.m_self }</textarea>
 												</p>
 											</div>
 
@@ -191,9 +191,9 @@
 											<div class="row no-margin home-det">
 												<div class="col-md-4 eml-mob" style="border-right: none;">
 													<div class="pd">
-														<br /> <br /> <label>이메일</label> <input class="form-control"
-															type="text" id="m_email" name="m_email"
-															value="${ member.m_email }">
+														<br /> <br /> <label>이메일</label> <input
+															class="form-control" type="text" id="m_email"
+															name="m_email" value="${ member.m_email }" readonly>
 														<div class="check_font" id="m_email_check"></div>
 														<a href="#" class="btn btn-lavender"
 															onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
@@ -203,9 +203,9 @@
 												</div>
 												<div class="col-md-4 eml-mob" style="border-right: none;">
 													<div class="pd">
-														<br /> <br /> <label>핸드폰</label> <input class="form-control"
-															type="text" id="m_phone" name="m_phone"
-															value="${ member.m_phone }">
+														<br /> <br /> <label>핸드폰</label> <input
+															class="form-control" type="text" id="m_phone"
+															name="m_phone" value="${ member.m_phone }" readonly>
 														<div class="check_font" id="m_phone_check"></div>
 														<a href="#" class="btn btn-lavender"
 															onclick="window.open(this.href, '', 'width=500, height=630, left=600, top=200'); return false;"><i
@@ -247,7 +247,8 @@
 														<div class="links">
 															<div class="row">
 																<ul class="">
-																	<li><a href="/pw_modifyview" class="btn btn-lavender margin-left-11"
+																	<li><a href="/pw_modifyview"
+																		class="btn btn-lavender margin-left-11"
 																		onclick="window.open(this.href, '', 'width=500, height=500, left=600, top=300'); return false;"><i
 																			class="fas fa-circle-notch"></i>비밀번호 변경</a></li>
 																	<li><button
@@ -256,7 +257,7 @@
 																			<i class="fas fa-circle-notch"></i>수정하기
 																		</button></li>
 
-																	<li  style="cursor: pointer; "><a href="/mypage"
+																	<li style="cursor: pointer;"><a href="/mypage"
 																		class="btn btn-lavender margin-left-11"><i
 																			class="fas fa-address-card"></i>돌아가기</a></li>
 																	<li class="btn-shake"><a href="/outview"

@@ -19,8 +19,7 @@
 <body>
 
 	<script type="text/javascript">
-		window.opener.location.reload();
-		window.close();
+		history.go(-1);
 	</script>
 
 	<!--===============================================================================================-->
