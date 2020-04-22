@@ -96,7 +96,7 @@
 					
 					<div class="btn-group pull-right" >
 						<button type="button" value="island" class="btn selectDelete_btn" data-BW="${island['BT_NO']} ${island['I_NO']}">선택 글 삭제</button>
-						<button type="button" class="btn selectConfirm_btn" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}">수정완료</button>
+						<button type="button" class="btn selectConfirm_btn" data-BW="${island['BT_NO']} ${island['I_NO']} ${island['M_NO']}">용서하기</button>
 					</div>
 				<!-- 	<div class="btn-group pull-right" data-toggle="buttons-radio">
 						<button type="button" class="btn">정렬</button>

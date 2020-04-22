@@ -40,7 +40,7 @@
     <security:http pattern="/images/*" security="none"/>  
     <security:http auto-config="true" use-expressions="true">
 	    <security:intercept-url pattern="/loginView" access="anonymous" />
-	   	<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+	   	<!-- <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" /> -->
 		<security:intercept-url pattern="/mypage" access="authenticated" />
 		<security:intercept-url pattern="/message" access="hasRole('ROLE_USER')" />
 		<!-- <security:intercept-url pattern="/mypage" access="hasRole('ROLE_USER, ROLE_ADMIN')" /> -->
