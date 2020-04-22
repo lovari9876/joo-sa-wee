@@ -73,15 +73,16 @@
 			<li><a class="icon fas fa-home" id="uno" href="#advertise"></a>
 				<div class="hide">홈</div></li>
 			<li><a class="icon fab fa-hotjar" id="uno" href="#hot-issue"></a>
-				<div class="hide">핫이슈</div></li>
-			<li><a class="icon far fa-kiss-wink-heart" id="dos" href="#best"></a>
+				<div class="hide">히트다 히트</div></li>
+			<li><a class="icon far fas fa-star" id="dos" href="#best"></a>
 				<div class="hide">베스트</div></li>
 			<li><a class="icon fas fa-coffee" id="tres" href="#support"></a>
 				<div class="hide">후원</div>
 		</ul>
 	</div>
 
-	
+	<!-- <i class="fas fa-star"></i> -->
+	<!-- far fa-kiss-wink-heart -->
 
 
 
@@ -128,7 +129,7 @@
 									<div id="target" class="carousel-item ">
 										<a target="_blank"
 											href="https://www.zmangames.com/en/products/terra-mystica/"><img
-											class="d-block w-100" src="images/board_hs/24.jpg"></a>
+											class="d-block w-100" src="images/board_hs/sss.jpg"></a>
 										<!-- <div class="carousel-caption">두번째</div> -->
 									</div>
 

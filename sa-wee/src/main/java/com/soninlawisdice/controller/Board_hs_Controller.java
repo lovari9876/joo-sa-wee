@@ -628,7 +628,7 @@ public class Board_hs_Controller {
 		}
 		
 		//문의 삭제(댓글 달렸으면 삭제 못하게 해야함)
-		@RequestMapping("/question_delete")
+		@RequestMapping("/question_delete") 
 		public String question_delte(int bw_no) {
 			boardService.deleteQuestion(bw_no);
 			return "redirect:question_list";

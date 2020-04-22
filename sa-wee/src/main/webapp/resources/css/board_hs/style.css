@@ -645,6 +645,10 @@ button span.lnr-magnifier {
 	font-size : x-large;
 }
 
+.fa-star{
+	font-size : x-large;
+}
+
 .fa-coffee:before{
 	font-size : x-large;
 }
@@ -1028,6 +1032,8 @@ button span.lnr-magnifier {
 	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 	/* filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#501755', endColorstr='#2d1854', GradientType=1); */
 	/* IE6-9 fallback on horizontal gradient */
+	
+	padding-bottom:160px !important;
 }
 
 #best {
@@ -1332,6 +1338,7 @@ button span.lnr-magnifier {
 
 .gradient-bg, .newsletter-section {
 	background-image: url("/images/board_hs/sub4.jpg");
+	/* padding-bottom:160px !important; */
 	/* Old browsers */
 	/* FF3.6-15 */
 	/* background: -webkit-linear-gradient(left, #3e0f3d 0%, #1c0f3b 100%);

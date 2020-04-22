@@ -515,5 +515,13 @@ button span.lnr-magnifier {
 	button span.lnr-magnifier {
     	font-size: small;
 	}
+	
+	.logout{
+		border: none;
+    	background: inherit;
+    	color: #fff;
+    	margin-left: 10px;
+    	font-size:14px;
+	}
 }
 
