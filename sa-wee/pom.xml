@@ -48,7 +48,7 @@
 		</dependency>
 	
 		<!-- 파일 업로드 위한 -->
-		<!-- 첨부파일 START -->
+		<!-- 첨부파일 START --> <!-- 놀랍게도 둘 중 어느 것이 적용되는 것인지 모름 -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -176,7 +176,7 @@
 			<artifactId>mail</artifactId>
 			<version>1.4.7</version>
 		</dependency>
-		<dependency>
+		<dependency> <!-- 꼭 추가해야 하는지는 확신없음 -->
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
             <version>${org.springframework-version}</version>
