@@ -449,7 +449,7 @@ public class CassieController {
 
 		// ajax text로 넘겨줘서 받은 값 2개
 		String imp_uid = rq.getParameter("imp_uid");
-		String payedPrice = rq.getParameter("price");
+		// String payedPrice = rq.getParameter("price"); // 결국 안씀
 
 		System.out.println("imp_uid: " + imp_uid);
 
@@ -515,7 +515,7 @@ public class CassieController {
 
 		// ajax text로 넘겨줘서 받은 값 2개
 		String imp_uid = rq.getParameter("imp_uid");
-		String payedPrice = rq.getParameter("price");
+		// String payedPrice = rq.getParameter("price");
 
 		System.out.println("imp_uid: " + imp_uid);
 

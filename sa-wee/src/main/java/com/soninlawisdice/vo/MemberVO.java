@@ -3,15 +3,11 @@ package com.soninlawisdice.vo;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.soninlawisdice.service.JoinService;
-import com.soninlawisdice.service.JoinServiceImpl;
 
 // 회원
 @SuppressWarnings("serial")
