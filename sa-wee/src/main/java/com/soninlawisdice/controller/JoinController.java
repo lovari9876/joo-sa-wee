@@ -198,9 +198,10 @@ public class JoinController {
 		
 		System.out.println("userPhoneNumber " + userPhoneNumber);
 		
-		// 서버에서 받은 API_KEY, API_SECRET를 입력해주세요.		 
-		String api_key = "NCSUL3FWFJIXTQNK";
-		String api_secret = "5TSOHNXHCE80YVOSGBXV53SMVA1KBEPA";
+		// 서버에서 받은 API_KEY, API_SECRET를 입력해주세요.
+		// coolsms 등록된 메일 : lovari9876@gmail.com
+		String api_key = "NCSPXESNFWQZFAJ0";
+		String api_secret = "6IE5OVVPDJFH7SOWTKFUGF5WNRFDYAP7";
 		Coolsms coolsms = new Coolsms(api_key, api_secret);
 	
 		// Parameters 관련정보 : http://www.coolsms.co.kr/SDK_Java_API_Reference_ko#toc-0
@@ -208,7 +209,7 @@ public class JoinController {
 		set.put("to", userPhoneNumber); // 수신번호
 		set.put("mode", "test");
 		// 10월 16일 이후로 발신번호 사전등록제로 인해 등록된 발신번호로만 문자를 보내실 수 있습니다.
-		set.put("from", "01077550819"); // 발신번호: 지수번호 => 홈페이지에 등록된 것 붙여둠
+		set.put("from", "01028476843"); // 발신번호: 지수번호 => 홈페이지에 등록된 것 붙여둠
 		set.put("text", "[내 사위는 주사위]\n 인증번호는 " + ran + "입니다."); // 문자내용
 		set.put("type", "sms"); // 문자 타입
 		//set.put("mode", "test"); // test모드 수신번호를 반드시 01000000000 으로 테스트하세요. 예약필드 datetime는 무시됨. 결과값은 60. 잔액에서 실제 차감되며 다음날 새벽에 재충전됨

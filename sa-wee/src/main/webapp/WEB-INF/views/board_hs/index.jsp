@@ -395,8 +395,7 @@
 				<div class="col-md site">
 					<div class="ftco-footer-widget mb-4">
 						<h2 class="ftco-heading-2">내사위는 주사위</h2>
-						<p>Far far away, behind the word mountains, far from the
-							countries Vokalia and Consonantia, there live the blind texts.</p>
+						<p>역사와 전통을 자랑하는 보드게임 커뮤니티, <br>내 사위는 주사위</p>
 						<ul
 							class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
 							<li class="ftco-animate"><a href="#"><span
