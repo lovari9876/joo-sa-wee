@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 사위는 주사위</title>
 </head>
 <body>
 	<div id="container">

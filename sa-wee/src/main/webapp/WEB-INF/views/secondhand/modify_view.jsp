@@ -8,7 +8,7 @@
 <meta id="_csrf" name="_csrf" content="${_csrf.token}" /> 
 <meta id="_csrf_header" name="_csrf_header" content="${_csrf.headerName}" />
 
-<title>Insert title here</title>
+<title>내 사위는 주사위</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
