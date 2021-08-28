@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 사위는 주사위</title>
+<title>SON-IN-LAW IS DICE</title>
 
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
