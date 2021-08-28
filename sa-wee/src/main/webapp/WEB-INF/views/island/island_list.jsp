@@ -10,7 +10,7 @@
     <!--- basic page needs
     ================================================== -->
     <meta charset="utf-8">
-    <title>내 사위는 주사위</title>
+    <title>secondhand_trade_list</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
